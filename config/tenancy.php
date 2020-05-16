@@ -3,10 +3,9 @@
 declare(strict_types=1);
 
 use Stancl\Tenancy\Database\Models\Domain;
-use Stancl\Tenancy\Database\Models\Tenant;
 
 return [
-    'tenant_model' => Tenant::class,
+    'tenant_model' => App\Tenant::class,
     'domain_model' => Domain::class,
     'internal_prefix' => 'tenancy_',
 
@@ -22,12 +21,13 @@ return [
     'central_domains' => [
         '127.0.0.1',
         'localhost',
+        'saas.test',
     ],
 
     /**
      * Controller namespace used by routes in routes/tenant.php.
      */
-    'tenant_route_namespace' => 'App\Http\Controllers',
+    'tenant_route_namespace' => 'App\Http\Controllers\Tenant',
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
@@ -179,6 +179,7 @@ return [
     'migration_parameters' => [
         '--force' => true, // Set this to true to be able to run migrations in production
         '--path' => [database_path('migrations/tenant')],
+        '--realpath' => true,
     ],
 
     'seeder_parameters' => [

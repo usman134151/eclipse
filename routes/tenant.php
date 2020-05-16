@@ -1,6 +1,8 @@
 <?php
 
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +18,16 @@ use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 */
 
 Route::group([
-    'middleware' => ['web', InitializeTenancyByDomain::class],
-    'prefix' => '/app',
+    'middleware' => ['web', InitializeTenancyBySubdomain::class],
 ], function () {
     Route::get('/', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
+    });
+
+    Auth::routes();
+    Route::group([
+        'middleware' => ['auth']
+    ], function () {
+        Route::get('/home', 'HomeController@index')->name('home');
     });
 });
