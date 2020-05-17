@@ -24,6 +24,12 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    /** @override */
+    public function showRegistrationForm()
+    {
+        return view('tenant.auth.register');
+    }
+
     /**
      * Where to redirect users after registration.
      *

@@ -21,6 +21,12 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    /** @override */
+    public function showLoginForm()
+    {
+        return view('tenant.auth.login');
+    }
+
     /**
      * Where to redirect users after login.
      *

@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Facade\Ignition\Exceptions\ViewException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Stancl\Tenancy\Exceptions\TenantDatabaseDoesNotExistException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +53,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if (
+            ($exception instanceof TenantDatabaseDoesNotExistException) ||
+            (tenant() && $exception instanceof QueryException) ||
+            (tenant() && $exception instanceof ViewException && $exception->getPrevious() instanceof QueryException)
+        ) {
+            return response()->view('errors.building');
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -21,6 +21,12 @@ class ConfirmPasswordController extends Controller
 
     use ConfirmsPasswords;
 
+    /** @override */
+    public function showConfirmForm()
+    {
+        return view('tenant.auth.passwords.confirm');
+    }
+
     /**
      * Where to redirect users when the intended url fails.
      *

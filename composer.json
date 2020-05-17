@@ -15,6 +15,7 @@
         "laravel/framework": "^7.0",
         "laravel/telescope": "^3.5",
         "laravel/tinker": "^2.0",
+        "laravel/nova": "~3.0",
         "stancl/tenancy-private": "dev-master"
     },
     "require-dev": {
@@ -43,10 +44,16 @@
             "database/factories"
         ]
     },
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/stancl/tenancy-private"
-    }],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/stancl/tenancy-private"
+        },
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

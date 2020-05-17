@@ -2,25 +2,22 @@
 
 declare(strict_types=1);
 
-use Stancl\Tenancy\Database\Models\Domain;
-
 return [
     'tenant_model' => App\Tenant::class,
-    'domain_model' => Domain::class,
+    'domain_model' => App\Domain::class,
     'internal_prefix' => 'tenancy_',
 
-    'central_connection' => 'central',
+    'central_connection' => env('DB_CONNECTION'),
     'template_tenant_connection' => null,
 
     'id_generator' => Stancl\Tenancy\UniqueIDGenerators\UUIDGenerator::class,
 
     'custom_columns' => [
-        // 
+        'email',
     ],
 
     'central_domains' => [
-        '127.0.0.1',
-        'localhost',
+        // todo: mention that you can only use one central domain if you want to use named routes
         'saas.test',
     ],
 
@@ -128,7 +125,7 @@ return [
          * disable asset() helper tenancy and explicitly use tenant_asset() calls in places
          * where you want to use tenant-specific assets (product images, avatars, etc).
          */
-        'asset_helper_tenancy' => true,
+        'asset_helper_tenancy' => false,
     ],
 
     /**
@@ -171,7 +168,7 @@ return [
      * understand which ones you want to enable.
      */
     'features' => [
-        // Stancl\Tenancy\Features\UserImpersonation::class,
+        Stancl\Tenancy\Features\UserImpersonation::class,
         // Stancl\Tenancy\Features\TenantConfig::class, // https://tenancy.samuelstancl.me/docs/v2/features/tenant-config/
         // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancy.samuelstancl.me/docs/v2/features/tenant-redirect/
     ],

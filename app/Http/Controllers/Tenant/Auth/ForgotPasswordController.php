@@ -19,4 +19,10 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    /** @override */
+    public function showLinkRequestForm()
+    {
+        return view('tenant.auth.passwords.email');
+    }
 }

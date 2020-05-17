@@ -1,8 +1,10 @@
 <?php
 
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
+use Stancl\Tenancy\Features\UserImpersonation;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +20,18 @@ use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 */
 
 Route::group([
-    'middleware' => ['web', InitializeTenancyBySubdomain::class],
+    'middleware' => ['web', PreventAccessFromCentralDomains::class, InitializeTenancyByDomainOrSubdomain::class],
 ], function () {
     Route::get('/', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });
 
+    Route::get('/impersonate/{token}', function ($token) {
+        return UserImpersonation::makeResponse($token);
+    })->name('tenant.impersonate');
+
     Auth::routes();
-    Route::group([
-        'middleware' => ['auth']
-    ], function () {
-        Route::get('/home', 'HomeController@index')->name('home');
+    Route::middleware('auth')->group(function () {
+        Route::get('/home', 'HomeController@index')->name('tenant.home');
     });
 });
