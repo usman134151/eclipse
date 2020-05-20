@@ -41,7 +41,12 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            Text::make('ID')
+                ->sortable()
+                ->help('Optional.')
+                ->rules('nullable', 'max:254')
+                ->creationRules('unique:tenants,id')
+                ->updateRules('unique:tenants,id,{{resourceId}}'),
 
             Text::make('Email')
                 ->sortable()
