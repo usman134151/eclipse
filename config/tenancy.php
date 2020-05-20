@@ -154,8 +154,8 @@ return [
      * MySQLDatabaseManager to use the mysql connection to create databases.
      */
     'database_manager_connections' => [
+        'mysql' => 'central',
         'sqlite' => 'sqlite',
-        'mysql' => 'mysql',
         'pgsql' => 'pgsql',
     ],
 

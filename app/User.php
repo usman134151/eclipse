@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    // todo on update if user = workspace owner, update tenant()'s email
+
     /**
      * The attributes that are mass assignable.
      *
