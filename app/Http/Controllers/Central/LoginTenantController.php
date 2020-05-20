@@ -20,10 +20,10 @@ class LoginTenantController extends Controller
         ]);
 
         /** @var Tenant $tenant */
-        $tenant = Tenant::where('email', $request->post('email'))->firstOrFail();
+        $tenant = Tenant::where('email', $email = $request->post('email'))->firstOrFail();
 
         return redirect(
-            $tenant->route('tenant.home'),
+            $tenant->route('login', ['email' => $email]),
         );
     }
 }
