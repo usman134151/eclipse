@@ -4,27 +4,19 @@ declare(strict_types=1);
 
 return [
     'tenant_model' => App\Tenant::class,
+    'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
+
     'domain_model' => App\Domain::class,
-    'internal_prefix' => 'tenancy_',
-
-    'central_connection' => env('DB_CONNECTION'),
-    'template_tenant_connection' => null,
-
-    'id_generator' => Stancl\Tenancy\UniqueIDGenerators\UUIDGenerator::class,
-
-    'custom_columns' => [
-        'email',
-    ],
-
-    'central_domains' => [
-        // todo: mention that you can only use one central domain if you want to use named routes
-        'saas.test',
-    ],
 
     /**
-     * Controller namespace used by routes in routes/tenant.php.
+     * The list of domains hosting your central app.
+     *
+     * Only relevant if you're using the domain or subdomain identification middleware.
      */
-    'tenant_route_namespace' => 'App\Http\Controllers\Tenant',
+    'central_domains' => [
+        // todo: explain that only one can be used due to the redirects
+        'saas.test',
+    ],
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
@@ -44,27 +36,39 @@ return [
      * Database tenancy config. Used by DatabaseTenancyBootstrapper.
      */
     'database' => [
+        'central_connection' => env('DB_CONNECTION', 'central'),
+
+        /**
+         * Connection used as a "template" for the tenant database connection.
+         */
+        'template_tenant_connection' => null,
+
         /**
          * Tenant database names are created like this:
          * prefix + tenant_id + suffix.
          */
         'prefix' => 'tenant',
         'suffix' => '',
-    ],
 
-    /**
-     * Redis tenancy config. Used by RedisTenancyBoostrapper.
-     *
-     * Note: You need phpredis to use Redis tenancy.
-     *
-     * Note: You don't need to use this if you're using Redis only for cache.
-     * Redis tenancy is only relevant if you're making direct Redis calls,
-     * either using the Redis facade or by injecting it as a dependency.
-     */
-    'redis' => [
-        'prefix_base' => 'tenant', // Each key in Redis will be prepended by this prefix_base, followed by the tenant id.
-        'prefixed_connections' => [ // Redis connections whose keys are prefixed, to separate one tenant's keys from another.
-            // 'default',
+        /**
+         * TenantDatabaseManagers are classes that handle the creation & deletion of tenant databases.
+         */
+        'managers' => [
+            'sqlite' => Stancl\Tenancy\TenantDatabaseManagers\SQLiteDatabaseManager::class,
+            'mysql' => Stancl\Tenancy\TenantDatabaseManagers\MySQLDatabaseManager::class,
+            'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLDatabaseManager::class,
+
+            /**
+             * Use this database manager for MySQL to have a DB user created for each tenant database.
+             * You can customize the grants given to these users by changing the $grants property.
+             */
+            // 'mysql' => Stancl\Tenancy\TenantDatabaseManagers\PermissionControlledMySQLDatabaseManager::class,
+
+            /**
+             * Disable the pgsql manager above, and enable the one below if you
+             * want to separate tenant DBs by schemas rather than databases.
+             */
+            // 'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLSchemaManager::class, // Separate by schema instead of database
         ],
     ],
 
@@ -125,38 +129,23 @@ return [
          * disable asset() helper tenancy and explicitly use tenant_asset() calls in places
          * where you want to use tenant-specific assets (product images, avatars, etc).
          */
-        'asset_helper_tenancy' => false,
+        'asset_helper_tenancy' => true,
     ],
 
     /**
-     * TenantDatabaseManagers are classes that handle the creation & deletion of tenant databases.
+     * Redis tenancy config. Used by RedisTenancyBoostrapper.
+     *
+     * Note: You need phpredis to use Redis tenancy.
+     *
+     * Note: You don't need to use this if you're using Redis only for cache.
+     * Redis tenancy is only relevant if you're making direct Redis calls,
+     * either using the Redis facade or by injecting it as a dependency.
      */
-    'database_managers' => [
-        'sqlite' => Stancl\Tenancy\TenantDatabaseManagers\SQLiteDatabaseManager::class,
-        // 'mysql' => Stancl\Tenancy\TenantDatabaseManagers\MySQLDatabaseManager::class,
-        'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLDatabaseManager::class,
-
-        /**
-         * Use this database manager for MySQL to have a DB user created for each tenant database.
-         * You can customize the grants given to these users by changing the $grants property.
-         */
-        'mysql' => Stancl\Tenancy\TenantDatabaseManagers\PermissionControlledMySQLDatabaseManager::class,
-
-        /**
-         * Disable the pgsql manager above, and enable the one below if you
-         * want to separate tenant DBs by schemas rather than databases.
-         */
-        // 'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLSchemaManager::class, // Separate by schema instead of database
-    ],
-
-    /**
-     * Connections used by TenantDatabaseManagers. This tells, for example, the
-     * MySQLDatabaseManager to use the mysql connection to create databases.
-     */
-    'database_manager_connections' => [
-        'mysql' => 'central',
-        'sqlite' => 'sqlite',
-        'pgsql' => 'pgsql',
+    'redis' => [
+        'prefix_base' => 'tenant', // Each key in Redis will be prepended by this prefix_base, followed by the tenant id.
+        'prefixed_connections' => [ // Redis connections whose keys are prefixed, to separate one tenant's keys from another.
+            // 'default',
+        ],
     ],
 
     /**
@@ -169,18 +158,26 @@ return [
      */
     'features' => [
         Stancl\Tenancy\Features\UserImpersonation::class,
+        // Stancl\Tenancy\Features\TelescopeTags::class,
+        // Stancl\Tenancy\Features\UniversalRoutes::class,
         // Stancl\Tenancy\Features\TenantConfig::class, // https://tenancy.samuelstancl.me/docs/v2/features/tenant-config/
-        // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancy.samuelstancl.me/docs/v2/features/tenant-redirect/
+        Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancy.samuelstancl.me/docs/v2/features/tenant-redirect/
     ],
 
+    /**
+     * Parameters used by the tenants:migrate command.
+     */
     'migration_parameters' => [
-        '--force' => true, // Set this to true to be able to run migrations in production
+        '--force' => true, // This needs to be true to run migrations in production.
         '--path' => [database_path('migrations/tenant')],
         '--realpath' => true,
     ],
 
+    /**
+     * Parameters used by the tenants:seed command.
+     */
     'seeder_parameters' => [
-        '--class' => 'DatabaseSeeder', // root seeder class, e.g.: 'DatabaseSeeder'
+        '--class' => 'DatabaseSeeder', // root seeder class
         // '--force' => true,
     ],
 ];

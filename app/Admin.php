@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 class Admin extends Authenticatable
 {
-    use Notifiable;
+    use CentralConnection, Notifiable;
 
     /**
      * The attributes that are mass assignable.

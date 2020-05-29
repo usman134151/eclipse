@@ -17,7 +17,6 @@ class TenancyServiceProvider extends ServiceProvider
     public function events()
     {
         return [
-
             // Tenant events
             Events\CreatingTenant::class => [],
             Events\TenantCreated::class => [
@@ -112,7 +111,7 @@ class TenancyServiceProvider extends ServiceProvider
     protected function mapRoutes()
     {
         if (file_exists(base_path('routes/tenant.php'))) {
-            Route::namespace($this->app['config']['tenancy.tenant_route_namespace'] ?? 'App\Http\Controllers')
+            Route::namespace('App\Http\Controllers\Tenant')
                 ->group(base_path('routes/tenant.php'));
         }
     }

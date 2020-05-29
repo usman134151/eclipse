@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Facade\Ignition\Exceptions\ViewException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Stancl\Tenancy\Contracts\TenantCouldNotBeIdentifiedException;
 use Stancl\Tenancy\Exceptions\TenantDatabaseDoesNotExistException;
 use Throwable;
 
@@ -59,6 +60,10 @@ class Handler extends ExceptionHandler
             (tenant() && $exception instanceof ViewException && $exception->getPrevious() instanceof QueryException)
         ) {
             return response()->view('errors.building');
+        }
+
+        if ($exception instanceof TenantCouldNotBeIdentifiedException) {
+            return redirect()->route('central.landing');
         }
 
         return parent::render($request, $exception);

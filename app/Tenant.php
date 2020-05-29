@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exceptions\NoPrimaryDomainException;
+use Laravel\Cashier\Billable;
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDatabase;
@@ -10,7 +11,18 @@ use Stancl\Tenancy\Database\Concerns\HasDomains;
 
 class Tenant extends BaseTenant implements TenantWithDatabase
 {
-    use HasDatabase, HasDomains;
+    use HasDatabase, HasDomains, Billable;
+
+    public static function getCustomColumns(): array
+    {
+        return [
+            'email',
+            'stripe_id',
+            'card_brand',
+            'card_last_four',
+            'trial_ends_at',
+        ];
+    }
 
     public function primary_domain()
     {
