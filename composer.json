@@ -17,7 +17,7 @@
         "laravel/nova": "~3.0",
         "laravel/telescope": "^3.5",
         "laravel/tinker": "^2.0",
-        "stancl/tenancy-private": "dev-master"
+        "stancl/tenancy": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -46,10 +46,6 @@
         ]
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/stancl/tenancy-private"
-        },
         {
             "type": "composer",
             "url": "https://nova.laravel.com"

@@ -23,7 +23,7 @@ class TenancyServiceProvider extends ServiceProvider
                 JobPipeline::make([
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
-                    // SeedDatabase::class,
+                    // Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
@@ -56,7 +56,6 @@ class TenancyServiceProvider extends ServiceProvider
             Events\DomainDeleted::class => [],
 
             // Database events
-            // todo: let -ing events cacnel the operations
             Events\DatabaseCreated::class => [],
             Events\DatabaseMigrated::class => [],
             Events\DatabaseSeeded::class => [],
@@ -64,7 +63,6 @@ class TenancyServiceProvider extends ServiceProvider
             Events\DatabaseDeleted::class => [],
 
             // Tenancy events
-            // todo: let -ing events cacnel the operations
             Events\InitializingTenancy::class => [],
             Events\TenancyInitialized::class => [
                 Listeners\BootstrapTenancy::class,
@@ -79,6 +77,11 @@ class TenancyServiceProvider extends ServiceProvider
             Events\TenancyBootstrapped::class => [],
             Events\RevertingToCentralContext::class => [],
             Events\RevertedToCentralContext::class => [],
+
+            // Resource syncing
+            Events\SyncedResourceSaved::class => [
+                Listeners\UpdateSyncedResource::class,
+            ],
         ];
     }
 

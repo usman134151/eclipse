@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c35c2d920c67c0ae9527bb3c5b1cd209",
+    "content-hash": "4cd6d674fdf64176a0268e9896c8d38c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3258,17 +3258,17 @@
             "time": "2020-05-21T17:43:23+00:00"
         },
         {
-            "name": "stancl/tenancy-private",
+            "name": "stancl/tenancy",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:stancl/tenancy-private.git",
-                "reference": "0049a483837cb371dd53eb4de4bb744e8c479e03"
+                "url": "https://github.com/stancl/tenancy.git",
+                "reference": "d94ff221707bcce3492900beb5ee47b0c4c1746f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stancl/tenancy-private/zipball/0049a483837cb371dd53eb4de4bb744e8c479e03",
-                "reference": "0049a483837cb371dd53eb4de4bb744e8c479e03",
+                "url": "https://api.github.com/repos/stancl/tenancy/zipball/d94ff221707bcce3492900beb5ee47b0c4c1746f",
+                "reference": "d94ff221707bcce3492900beb5ee47b0c4c1746f",
                 "shasum": ""
             },
             "require": {
@@ -3306,11 +3306,7 @@
                     "src/helpers.php"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Stancl\\Tenancy\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3327,33 +3323,29 @@
                 "multi-tenancy",
                 "tenancy"
             ],
-            "support": {
-                "source": "https://github.com/stancl/tenancy-private/tree/master",
-                "issues": "https://github.com/stancl/tenancy-private/issues"
-            },
             "funding": [
                 {
-                    "type": "github",
-                    "url": "https://github.com/stancl"
+                    "url": "https://gumroad.com/l/tenancy",
+                    "type": "custom"
                 },
                 {
-                    "type": "patreon",
-                    "url": "https://www.patreon.com/samuelstancl"
+                    "url": "https://www.paypal.me/samuelstancl",
+                    "type": "custom"
                 },
                 {
-                    "type": "ko_fi",
-                    "url": "https://ko-fi.com/samuelstancl"
+                    "url": "https://github.com/stancl",
+                    "type": "github"
                 },
                 {
-                    "type": "custom",
-                    "url": "https://www.paypal.me/samuelstancl"
+                    "url": "https://ko-fi.com/samuelstancl",
+                    "type": "ko_fi"
                 },
                 {
-                    "type": "custom",
-                    "url": "https://gumroad.com/l/tenancy"
+                    "url": "https://www.patreon.com/samuelstancl",
+                    "type": "patreon"
                 }
             ],
-            "time": "2020-05-22T08:56:02+00:00"
+            "time": "2020-05-26T11:25:35+00:00"
         },
         {
             "name": "stripe/stripe-php",
@@ -7424,7 +7416,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "stancl/tenancy-private": 20
+        "stancl/tenancy": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
