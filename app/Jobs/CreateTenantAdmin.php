@@ -35,11 +35,9 @@ class CreateTenantAdmin implements ShouldQueue
     public function handle()
     {
         $this->tenant->run(function ($tenant) {
-            User::create([
-                'name' => $tenant->fullname,
-                'email' => $tenant->email,
-                'password' => $tenant->password,
-            ]);
+            User::create(
+                $tenant->only(['name', 'email', 'password'])
+            );
 
             $tenant->update([
                 'ready' => true,

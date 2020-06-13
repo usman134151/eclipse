@@ -32,7 +32,7 @@ class PrimaryDomainTest extends TestCase
     /** @test */
     public function tenant_has_one_primary_domain()
     {
-        $tenant = Tenant::create();
+        $tenant = factory(Tenant::class)->create();
         $domain = $tenant->createDomain([
             'domain' => 'acme',
         ]);
@@ -47,7 +47,7 @@ class PrimaryDomainTest extends TestCase
     /** @test */
     public function making_a_domain_primary_will_make_previous_primary_domains_secondary()
     {
-        $tenant = Tenant::create();
+        $tenant = factory(Tenant::class)->create();
         $foo = $tenant->createDomain([
             'domain' => 'foo',
             'is_primary' => true,
@@ -69,7 +69,7 @@ class PrimaryDomainTest extends TestCase
     /** @test */
     public function tenant_routes_are_generated_using_the_primary_domain()
     {
-        $tenant = Tenant::create();
+        $tenant = factory(Tenant::class)->create();
         $domain = $tenant->createDomain([
             'domain' => 'acme.localhost',
         ]);
@@ -85,7 +85,7 @@ class PrimaryDomainTest extends TestCase
     /** @test */
     public function a_primary_domain_is_needed_to_generate_a_tenant_route()
     {
-        $tenant = Tenant::create();
+        $tenant = factory(Tenant::class)->create();
         $domain = $tenant->createDomain([
             'domain' => 'acme.localhost',
         ]);
@@ -102,7 +102,7 @@ class PrimaryDomainTest extends TestCase
             'localhost',
         ]]);
 
-        $tenant = Tenant::create();
+        $tenant = factory(Tenant::class)->create();
         $domain = $tenant->createDomain([
             'domain' => 'acme',
         ]);

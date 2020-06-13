@@ -18,13 +18,13 @@ class RegisterTenantController extends Controller
         $data = $this->validate($request, [
             'domain' => 'required|string|unique:domains',
             'company' => 'required|string|max:255',
-            'fullname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|string|confirmed|max:255',
         ]);
 
         $data['password'] = bcrypt($data['password']);
-        
+
         $domain = $data['domain'];
         unset($data['domain']);
 
@@ -35,6 +35,7 @@ class RegisterTenantController extends Controller
             'domain' => $domain
         ])->makePrimary();
 
+        // We impersonate user with id 1. This user will be created by the CreateTenantAdmin job.
         $token = tenancy()->impersonate($tenant, 1, $tenant->route('tenant.home'))->token;
 
         return redirect(

@@ -2,28 +2,27 @@
 
 namespace App\Nova;
 
-use App\Nova\Actions\ImpersonateTenant;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Tenant extends Resource
+class Domain extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Tenant::class;
+    public static $model = \App\Domain::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'domain';
 
     /**
      * The columns that should be searched.
@@ -31,7 +30,7 @@ class Tenant extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'domain',
     ];
 
     /**
@@ -43,20 +42,11 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make('ID')
-                ->sortable()
-                ->help('Optional.')
-                ->rules('nullable', 'max:254')
-                ->creationRules('unique:tenants,id')
-                ->updateRules('unique:tenants,id,{{resourceId}}'),
+            ID::make()->sortable(),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:tenants,email')
-                ->updateRules('unique:tenants,email,{{resourceId}}'),
+            Text::make('Domain')->rules('required'),
 
-            HasMany::make('Domains', 'domains', Domain::class),
+            BelongsTo::make('Tenant'),
         ];
     }
 
@@ -101,8 +91,6 @@ class Tenant extends Resource
      */
     public function actions(Request $request)
     {
-        return [
-            new ImpersonateTenant,
-        ];
+        return [];
     }
 }
