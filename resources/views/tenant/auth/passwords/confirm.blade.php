@@ -36,7 +36,7 @@
                                 {{ __('Confirm Password') }}
                             </button>
 
-                            @if (Route::has('password.request'))
+                            @if (Route::has('tenant.password.request'))
                                 <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline ml-auto" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>

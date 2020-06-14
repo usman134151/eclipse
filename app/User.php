@@ -49,6 +49,11 @@ class User extends Authenticatable
         });
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function getGravatarUrlAttribute()
     {
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email)));

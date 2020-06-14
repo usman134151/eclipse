@@ -8,7 +8,7 @@
     </h2>
     <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
         Already have an account?
-        <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+        <a href="{{ route('tenant.login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
             Sign in.
         </a>
     </p>
@@ -16,7 +16,7 @@
 
 <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('tenant.register') }}">
             @csrf
             <div>
                 <label for="name" class="block text-sm font-medium leading-5 text-gray-700">

@@ -6,32 +6,27 @@ use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
 
-/*
-|--------------------------------------------------------------------------
-| Tenant Routes
-|--------------------------------------------------------------------------
-|
-| Here you can register the tenant routes for your application.
-| These routes are loaded by the TenantRouteServiceProvider
-| with the namespace configured in your tenancy config.
-|
-| Feel free to customize them however you want. Good luck!
-|
-*/
-
 Route::group([
     'middleware' => ['web', PreventAccessFromCentralDomains::class, InitializeTenancyByDomainOrSubdomain::class],
+    'as' => 'tenant.',
 ], function () {
-    Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    });
+    Route::redirect('/', '/home');
 
     Route::get('/impersonate/{token}', function ($token) {
         return UserImpersonation::makeResponse($token);
-    })->name('tenant.impersonate');
+    })->name('impersonate');
 
     Auth::routes();
     Route::middleware('auth')->group(function () {
-        Route::get('/home', 'HomeController@index')->name('tenant.home');
+        Route::redirect('/home', '/posts')->name('home');
+
+        Route::get('/posts', 'PostController@index')->name('posts.index');
+        Route::post('/posts', 'PostController@store')->name('posts.store');
+        Route::get('/posts/create', 'PostController@create')->name('posts.create');
+        Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+
+        Route::get('/settings/user', 'UserSettingsController@show')->name('settings.user');
+        Route::post('/settings/user/personal', 'UserSettingsController@personal')->name('settings.user.personal');
+        Route::post('/settings/user/password', 'UserSettingsController@password')->name('settings.user.password');
     });
 });

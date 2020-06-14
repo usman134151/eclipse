@@ -6,10 +6,10 @@
     <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
         {{ __('Login') }}
     </h2>
-    @if (Route::has('register'))
+    @if (Route::has('tenant.register'))
     <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
         Or
-        <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+        <a href="{{ route('tenant.register') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
             register a new account.
         </a>
     </p>
@@ -18,7 +18,7 @@
 
 <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('tenant.login') }}">
             @csrf
             <div>
                 <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
@@ -58,9 +58,9 @@
                     </label>
                 </div>
                 
-                @if (Route::has('password.request'))
+                @if (Route::has('tenant.password.request'))
                 <div class="text-sm leading-5">
-                    <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <a href="{{ route('tenant.password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                         {{ __('Forgot your password?') }}
                     </a>
                 </div>

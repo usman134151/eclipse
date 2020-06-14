@@ -18,6 +18,7 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * The path to the "home" route for your application.
+     * Used by the tenant app's login flow.
      *
      * @var string
      */

@@ -32,7 +32,7 @@ class RegisterTenantController extends Controller
             'ready' => false,
         ]);
         $tenant->createDomain([
-            'domain' => $domain
+            'domain' => $domain,
         ])->makePrimary();
 
         // We impersonate user with id 1. This user will be created by the CreateTenantAdmin job.

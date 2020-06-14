@@ -56,8 +56,8 @@ class Handler extends ExceptionHandler
     {
         if (
             ($exception instanceof TenantDatabaseDoesNotExistException) ||
-            (tenant() && $exception instanceof QueryException) ||
-            (tenant() && $exception instanceof ViewException && $exception->getPrevious() instanceof QueryException)
+            (tenant() && (! tenant('ready')) && $exception instanceof QueryException) ||
+            (tenant() && (! tenant('ready')) && $exception instanceof ViewException && $exception->getPrevious() instanceof QueryException)
         ) {
             return response()->view('errors.building');
         }
