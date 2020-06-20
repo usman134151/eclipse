@@ -20,7 +20,9 @@ class UserSettingsController extends Controller
     {
         $validated = $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user())],
+            'email' => ['required', 'string', 'email', 'max:255',
+                        Rule::unique('tenant.users')->ignore(auth()->user()),
+                        Rule::unique('central.tenants')->ignore(tenant())], // todo write tests for this
         ]);
 
         /** @var User $user */
@@ -34,13 +36,16 @@ class UserSettingsController extends Controller
     public function password(Request $request)
     {
         $validated = $this->validate($request, [
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => 'required|password',
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         /** @var User $user */
         $user = auth()->user();
 
-        $user->update($validated);
+        $user->update([
+            'password' => bcrypt($validated['new_password']),
+        ]);
 
         return redirect()->back()->with('success', 'Password updated.');
     }

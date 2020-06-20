@@ -12,6 +12,6 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-    config(['tenancy.database.prefix' => 'test_tenant']);
+        config(['tenancy.database.prefix' => 'test_tenant']);
     }
 }

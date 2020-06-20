@@ -22,11 +22,15 @@
               <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name
               </label>
               <div class="mt-1 relative rounded-md shadow-sm">
-                <input id="name" name="name" value="{{ old('name', auth()->user()->name) }}" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="you@example.com" />
+                <input id="name" name="name" value="{{ old('name', auth()->user()->name) }}" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="John Doe" />
               </div>
             </div>
 
-            {{-- todo validation --}}
+            @error('name')
+              <p class="text-red-500 text-xs mt-4">
+                  {{ $message }}
+              </p>
+            @enderror
             
             <div class="mt-4">
               <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email
@@ -40,6 +44,12 @@
                 </div>
                 <input id="email" name="email" value="{{ old('email', auth()->user()->email) }}" class="form-input block w-full pl-10 sm:text-sm sm:leading-5" placeholder="you@example.com" />
               </div>
+
+              @error('email')
+              <p class="text-red-500 text-xs mt-4">
+                  {{ $message }}
+              </p>
+            @enderror
             </div>
           </div>
           <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -77,7 +87,7 @@
           <div class="px-4 py-5 bg-white sm:p-6">
             <div class="">
                 <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
-                    {{ __('Password') }}
+                    {{ __('Current password') }}
                 </label>
                 <div class="mt-1 rounded-md">
                     <input id="password" type="password" required class="shadow-sm appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-500 @enderror" name="password" />
@@ -91,11 +101,26 @@
             </div>
 
             <div class="mt-4">
-                <label for="password_confirmation" class="block text-sm font-medium leading-5 text-gray-700">
+                <label for="new_password" class="block text-sm font-medium leading-5 text-gray-700">
+                    {{ __('New password') }}
+                </label>
+                <div class="mt-1 rounded-md">
+                    <input id="new_password" type="password" required class="shadow-sm appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('new_password') border-red-500 @enderror" name="new_password" />
+
+                    @error('new_password')
+                    <p class="text-red-500 text-xs mt-4">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <label for="new_password_confirmation" class="block text-sm font-medium leading-5 text-gray-700">
                     {{ __('Confirm password') }}
                 </label>
                 <div class="mt-1 rounded-md">
-                    <input id="password_confirmation" type="password" required class="shadow-sm appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password_confirmation') border-red-500 @enderror" name="password_confirmation" />
+                    <input id="new_password_confirmation" type="password" required class="shadow-sm appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('new_password_confirmation') border-red-500 @enderror" name="new_password_confirmation" />
                 </div>
             </div>
           </div>

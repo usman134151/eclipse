@@ -13,6 +13,10 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 {
     use HasDatabase, HasDomains, Billable;
 
+    protected $casts = [
+        'trial_ends_at' => 'datetime',
+    ];
+
     public static function getCustomColumns(): array
     {
         return [

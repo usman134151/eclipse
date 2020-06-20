@@ -40,6 +40,7 @@ class CreateTenantAdmin implements ShouldQueue
             );
 
             $tenant->update([
+                'name' => '', // We don't need this anymore
                 'ready' => true,
             ]);
         });

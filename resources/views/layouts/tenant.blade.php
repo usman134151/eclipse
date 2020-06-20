@@ -64,13 +64,15 @@
                                     <div class="py-1 rounded-md bg-white shadow-xs">
                                         <a href="{{ route('tenant.settings.user') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My account
                                         </a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings
+                                        @if(auth()->user()->isOwner())
+                                        <a href="{{ route('tenant.settings.application') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Application settings
                                         </a>
+                                        @endif
                                         <a href="{{ route('tenant.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
                                     <form id="logout-form" action="{{ route('tenant.logout') }}" method="POST" class="hidden">
                                         {{ csrf_field() }}
                                     </form>

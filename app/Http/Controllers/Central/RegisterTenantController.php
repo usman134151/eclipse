@@ -30,6 +30,7 @@ class RegisterTenantController extends Controller
 
         $tenant = Tenant::create($data + [
             'ready' => false,
+            'trial_ends_at' => now()->addDays(config('saas.trial_days')),
         ]);
         $tenant->createDomain([
             'domain' => $domain,

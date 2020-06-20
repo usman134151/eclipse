@@ -49,6 +49,18 @@ class User extends Authenticatable
         });
     }
 
+    /**
+     * Is this user the "organization" owner.
+     *
+     * @return boolean
+     */
+    public function isOwner()
+    {
+        // We assume the superadmin is the first user in the DB.
+        // Feel free to change this logic.
+        return $this->getKey() === 1;
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);

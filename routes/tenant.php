@@ -28,5 +28,8 @@ Route::group([
         Route::get('/settings/user', 'UserSettingsController@show')->name('settings.user');
         Route::post('/settings/user/personal', 'UserSettingsController@personal')->name('settings.user.personal');
         Route::post('/settings/user/password', 'UserSettingsController@password')->name('settings.user.password');
+
+        Route::get('/settings/application', 'ApplicationSettingsController@show')->name('settings.application');
+        Route::post('/settings/application/configuration', 'ApplicationSettingsController@storeConfiguration')->name('settings.application.configuration');
     });
 });
