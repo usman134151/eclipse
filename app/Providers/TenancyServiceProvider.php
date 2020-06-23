@@ -82,6 +82,9 @@ class TenancyServiceProvider extends ServiceProvider
             Events\SyncedResourceSaved::class => [
                 Listeners\UpdateSyncedResource::class,
             ],
+
+            // Fired only when a synced resource is changed in a different DB than the origin DB (to avoid infinite loops)
+            Events\SyncedResourceChangedInForeignDatabase::class => [],
         ];
     }
 
@@ -122,6 +125,9 @@ class TenancyServiceProvider extends ServiceProvider
     protected function makeTenancyMiddlewareHighestPriority()
     {
         $tenancyMiddleware = [
+            // Even higher priority than the initialization middleware
+            Middleware\PreventAccessFromCentralDomains::class,
+
             Middleware\InitializeTenancyByDomain::class,
             Middleware\InitializeTenancyBySubdomain::class,
             Middleware\InitializeTenancyByDomainOrSubdomain::class,

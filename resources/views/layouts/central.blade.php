@@ -14,6 +14,8 @@
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 </head>
 <body class="bg-gray-100 h-screen antialiased font-sans">
     <div class="min-h-screen bg-gray-100">

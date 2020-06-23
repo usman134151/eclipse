@@ -28,7 +28,12 @@ class ApplicationSettingsController extends Controller
         
     }
 
-    public function addDomain(Request $request)
+    public function storeDomain(Request $request)
+    {
+        
+    }
+
+    public function destroyDomain()
     {
         
     }

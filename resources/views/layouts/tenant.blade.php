@@ -17,6 +17,7 @@
     
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    @stack('head')
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none">
     <div id="app">
@@ -54,7 +55,7 @@
                             @endif
                             @else
                             <!-- Profile dropdown -->
-                            <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }">
+                            <div @click.away="open = false" class="ml-3 relative z-10" x-data="{ open: false }">
                                 <div>
                                     <button @click="open = !open" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid" id="user-menu" aria-label="User menu" aria-haspopup="true" x-bind:aria-expanded="open">
                                         <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->gravatar_url }}" alt="{{ auth()->user()->name }}">
@@ -69,10 +70,10 @@
                                         </a>
                                         @endif
                                         <a href="{{ route('tenant.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
                                     <form id="logout-form" action="{{ route('tenant.logout') }}" method="POST" class="hidden">
                                         {{ csrf_field() }}
                                     </form>
@@ -118,72 +119,82 @@
                         <img class="h-10 w-10 rounded-full" src="{{ auth()->user()->gravatar_url }}" alt="{{ auth()->user()->name }}">
                     </div>
                     <div class="ml-3">
-                        <div class="text-base font-medium leading-none text-white">Tom Cook
+                        <div class="text-base font-medium leading-none text-white">{{ auth()->user()->name }}
                         </div>
-                        <div class="mt-1 text-sm font-medium leading-none text-gray-400">tom@example.com
+                        <div class="mt-1 text-sm font-medium leading-none text-gray-400">{{ auth()->user()->email }}
                         </div>
                     </div>
                 </div>
                 <div class="mt-3 px-2">
-                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Your Profile
+                    <a href="{{ route('tenant.settings.user') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My account
                     </a>
-                    <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Settings
+                    @if(auth()->user()->isOwner())
+                    <a href="{{ route('tenant.settings.application') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Application settings
                     </a>
-                    <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Sign out
-                    </a>
+                    @endif
+                    <a href="{{ route('tenant.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('tenant.logout') }}" method="POST" class="hidden">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+        </div>
+        @else
+        <a href="{{ route('tenant.login') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Login</a>
+        
+        @if (Route::has('tenant.register'))
+        <a href="{{ route('tenant.register') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Register</a>
+        @endif
+        @endauth
+    </div>
+</nav>
+
+@if(isset($title))
+<header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold leading-tight text-gray-900">
+            {{ $title }}
+        </h1>
+    </div>
+</header>
+@endif
+
+<main>
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        @if (session('success'))
+        <div x-data="{ show: true }" x-show="show" class="rounded-md bg-green-50 p-4 mb-6">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm leading-5 font-medium text-green-800">
+                        {{ session('success') }}
+                    </p>
+                </div>
+                <div class="ml-auto pl-3">
+                    <div class="-mx-1.5 -my-1.5">
+                        <button @click="show = false" class="inline-flex rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:bg-green-100 transition ease-in-out duration-150">
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-            @else
-            <a href="{{ route('tenant.login') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Login</a>
-            
-            @if (Route::has('tenant.register'))
-            <a href="{{ route('tenant.register') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Register</a>
-            @endif
-            @endauth
         </div>
-    </nav>
-    
-    @if(isset($title))
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold leading-tight text-gray-900">
-                {{ $title }}
-            </h1>
-        </div>
-    </header>
-    @endif
-    
-    <main>
-        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            @if (session('success'))
-            <div x-data="{ show: true }" x-show="show" class="rounded-md bg-green-50 p-4 mb-6">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm leading-5 font-medium text-green-800">
-                            {{ session('success') }}
-                        </p>
-                    </div>
-                    <div class="ml-auto pl-3">
-                        <div class="-mx-1.5 -my-1.5">
-                            <button @click="show = false" class="inline-flex rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:bg-green-100 transition ease-in-out duration-150">
-                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
-            
-            @yield('content')
-        </div>
-    </main>
+        @endif
+        
+        @yield('content')
+    </div>
+</main>
 </div>
+
+@stack('body')
 </body>
 </html>

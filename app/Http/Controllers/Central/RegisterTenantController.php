@@ -34,7 +34,7 @@ class RegisterTenantController extends Controller
         ]);
         $tenant->createDomain([
             'domain' => $domain,
-        ])->makePrimary();
+        ])->makePrimary()->makeFallback();
 
         // We impersonate user with id 1. This user will be created by the CreateTenantAdmin job.
         $token = tenancy()->impersonate($tenant, 1, $tenant->route('tenant.home'))->token;

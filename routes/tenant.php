@@ -31,5 +31,7 @@ Route::group([
 
         Route::get('/settings/application', 'ApplicationSettingsController@show')->name('settings.application');
         Route::post('/settings/application/configuration', 'ApplicationSettingsController@storeConfiguration')->name('settings.application.configuration');
+        Route::post('/settings/application/domain', 'ApplicationSettingsController@storeDomain')->name('settings.application.domain');
+        Route::post('/settings/application/primary_domain', 'ApplicationSettingsController@setPrimaryDomain')->name('settings.application.primary_domain');
     });
 });

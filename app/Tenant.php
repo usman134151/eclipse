@@ -20,6 +20,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     public static function getCustomColumns(): array
     {
         return [
+            'id',
             'email',
             'stripe_id',
             'card_brand',
@@ -31,6 +32,11 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     public function primary_domain()
     {
         return $this->hasOne(Domain::class)->where('is_primary', true);
+    }
+
+    public function fallback_domain()
+    {
+        return $this->hasOne(Domain::class)->where('is_fallback', true);
     }
 
     public function route($route, $parameters = [], $absolute = true)
