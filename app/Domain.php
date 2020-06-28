@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Exceptions\CannotUpdateDomainException;
+use App\Exceptions\DomainCannotBeChangedException;
 use Illuminate\Support\Facades\DB;
 use Stancl\Tenancy\Database\Models\Domain as BaseDomain;
 use Illuminate\Support\Str;
@@ -16,8 +16,10 @@ class Domain extends BaseDomain
 
     public static function booted()
     {
-        static::updating(function () {
-            throw new CannotUpdateDomainException;
+        static::updating(function (self $model) {
+            if ($model->getAttribute('domain') !== $model->getOriginal('domain')) {
+                throw new DomainCannotBeChangedException;
+            }
         });
     }
 
