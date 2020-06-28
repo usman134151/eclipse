@@ -1,13 +1,12 @@
 <?php
 
-use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+use App\Http\Middleware\CheckSubscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
 
 Route::group([
-    'middleware' => ['web', PreventAccessFromCentralDomains::class, InitializeTenancyByDomainOrSubdomain::class],
+    'middleware' => 'tenant', // See the middleware group in Http Kernel
     'as' => 'tenant.',
 ], function () {
     Route::redirect('/', '/home');
@@ -17,7 +16,7 @@ Route::group([
     })->name('impersonate');
 
     Auth::routes();
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', CheckSubscription::class])->group(function () {
         Route::redirect('/home', '/posts')->name('home');
 
         Route::get('/posts', 'PostController@index')->name('posts.index');
@@ -31,7 +30,7 @@ Route::group([
 
         Route::get('/settings/application', 'ApplicationSettingsController@show')->name('settings.application');
         Route::post('/settings/application/configuration', 'ApplicationSettingsController@storeConfiguration')->name('settings.application.configuration');
-        Route::post('/settings/application/domain', 'ApplicationSettingsController@storeDomain')->name('settings.application.domain');
-        Route::post('/settings/application/primary_domain', 'ApplicationSettingsController@setPrimaryDomain')->name('settings.application.primary_domain');
+
+        Route::get('/settings/application/invoice/{id}/download', 'DownloadInvoiceController')->name('invoice.download');
     });
 });

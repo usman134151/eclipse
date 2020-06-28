@@ -11,6 +11,7 @@ class NewDomain extends Component
     public function save()
     {
         $this->validate([
+            // todo regex only alpha + dot
             'domain' => ['required', 'string', 'unique:central.domains', 'regex:/\\./'],
         ]);
 

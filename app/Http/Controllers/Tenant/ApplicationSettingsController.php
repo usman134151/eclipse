@@ -21,30 +21,5 @@ class ApplicationSettingsController extends Controller
         tenant()->update($validated);
 
         return redirect()->back()->with('success', 'Configuration updated.');
-    }
-
-    public function setPrimaryDomain(Request $request)
-    {
-        
-    }
-
-    public function storeDomain(Request $request)
-    {
-        
-    }
-
-    public function destroyDomain()
-    {
-        
-    }
-
-    public function setDefaultPaymentMethod(Request $request)
-    {
-        
-    }
-
-    public function setSubscription(Request $request)
-    {
-        
-    }
+    }    
 }

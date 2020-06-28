@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckSubscription;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 class Kernel extends HttpKernel
 {
@@ -41,6 +44,12 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'tenant' => [
+            'web',
+            PreventAccessFromCentralDomains::class,
+            InitializeTenancyByDomainOrSubdomain::class,
         ],
 
         'universal' => [],

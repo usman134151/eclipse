@@ -15,7 +15,7 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id'); // tenant_id
+            $table->string('tenant_id'); // tenant_id
             $table->string('name');
             $table->string('stripe_id');
             $table->string('stripe_status');
@@ -25,7 +25,7 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
 
-            $table->index(['user_id', 'stripe_status']);
+            $table->index(['tenant_id', 'stripe_status']);
         });
     }
 

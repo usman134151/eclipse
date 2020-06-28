@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Central;
 
+use App\Actions\CreateTenantAction;
 use App\Http\Controllers\Controller;
 use App\Tenant;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class RegisterTenantController extends Controller
             'domain' => 'required|string|unique:domains',
             'company' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:tenants',
             'password' => 'required|string|confirmed|max:255',
         ]);
 
@@ -28,19 +29,9 @@ class RegisterTenantController extends Controller
         $domain = $data['domain'];
         unset($data['domain']);
 
-        $tenant = Tenant::create($data + [
-            'ready' => false,
-            'trial_ends_at' => now()->addDays(config('saas.trial_days')),
-        ]);
-        $tenant->createDomain([
-            'domain' => $domain,
-        ])->makePrimary()->makeFallback();
+        $tenant = (new CreateTenantAction)($data, $domain);
 
         // We impersonate user with id 1. This user will be created by the CreateTenantAdmin job.
-        $token = tenancy()->impersonate($tenant, 1, $tenant->route('tenant.home'))->token;
-
-        return redirect(
-            $tenant->route('tenant.impersonate', ['token' => $token])
-        );
+        return redirect($tenant->impersonationUrl(1));
     }
 }

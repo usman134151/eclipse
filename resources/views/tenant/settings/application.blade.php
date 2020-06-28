@@ -14,7 +14,7 @@
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
       <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">Configuration.
+        <h3 class="text-xl font-medium leading-6 text-gray-900">Configuration.
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-600">
           Settings for your application.
@@ -52,7 +52,7 @@
 </div>
 
 <div class="hidden sm:block">
-  <div class="py-5">
+  <div class="py-8">
     <div class="border-t border-gray-200"></div>
   </div>
 </div>
@@ -61,7 +61,7 @@
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
       <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">Domains
+        <h3 class="text-xl font-medium leading-6 text-gray-900">Domains
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-600">
           Manage your application's domains.
@@ -72,7 +72,35 @@
       @livewire('domains')
       @livewire('new-domain')
       @livewire('fallback-domain')
+    </div>
   </div>
 </div>
+
+<div class="hidden sm:block">
+  <div class="py-8">
+    <div class="border-t border-gray-200"></div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-xl font-medium leading-6 text-gray-900">Billing
+        </h3>
+        <p class="mt-1 text-sm leading-5 text-gray-600">
+          Manage your subscription and payment methods.
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      @livewire('subscription-banner')
+      @livewire('upcoming-payment')
+      @livewire('billing-address')
+      @livewire('invoices')
+      @livewire('subscription-plan')
+      @livewire('payment-method')
+    </div>
+  </div>
 </div>
 @endsection

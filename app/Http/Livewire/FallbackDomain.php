@@ -18,6 +18,7 @@ class FallbackDomain extends Component
     public function save()
     {
         $this->validate([
+            // todo regex only alpha
             'domain' => ['required', 'string', Rule::unique('central.domains')->ignoreModel(tenant()->fallback_domain), 'not_regex:/\\./'],
         ]);
 
