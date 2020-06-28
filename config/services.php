@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'ploi' => [
+        'token' => env('PLOI_TOKEN'),
+        'server' => env('PLOI_SERVER'),
+        'site' => env('PLOI_SITE'),
+    ],
+
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Jobs\AddDomainToPloi;
 use App\Jobs\CreateTenantAdmin;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Stancl\JobPipeline\JobPipeline;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Events;
+use Stancl\Tenancy\Events\DomainCreated;
 use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Middleware;
 
@@ -47,7 +49,13 @@ class TenancyServiceProvider extends ServiceProvider
 
             // Domain events
             Events\CreatingDomain::class => [],
-            Events\DomainCreated::class => [],
+            Events\DomainCreated::class => [
+                JobPipeline::make([
+                    AddDomainToPloi::class,
+                ])->send(function (DomainCreated $event) {
+                    return $event->domain;
+                })->shouldBeQueued(false),
+            ],
             Events\SavingDomain::class => [],
             Events\DomainSaved::class => [],
             Events\UpdatingDomain::class => [],

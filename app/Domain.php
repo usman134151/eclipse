@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\CannotUpdateDomainException;
 use Illuminate\Support\Facades\DB;
 use Stancl\Tenancy\Database\Models\Domain as BaseDomain;
 use Illuminate\Support\Str;
@@ -12,6 +13,13 @@ class Domain extends BaseDomain
         'is_primary' => 'bool',
         'is_fallback' => 'bool',
     ];
+
+    public static function booted()
+    {
+        static::updating(function () {
+            throw new CannotUpdateDomainException;
+        });
+    }
 
     public static function domainFromSubdomain(string $subdomain): string
     {
