@@ -12,7 +12,7 @@ use App\Tenant;
  */
 class CreateTenantAction
 {
-    public function __invoke(array $data, string $domain, bool $createStripeCustomer): Tenant
+    public function __invoke(array $data, string $domain, bool $createStripeCustomer = true): Tenant
     {
         $tenant = Tenant::create($data + [
             'ready' => false,

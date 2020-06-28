@@ -43,15 +43,22 @@ class AddDomainToPloi implements ShouldQueue
             ],
         ]);
 
+        $hostname = $this->domain->domain;
+
+        $parts = explode('.', $hostname);
+        if (count($parts) === 1) { // If subdomain
+            $hostname = Domain::domainFromSubdomain($hostname);
+        }
+
         $server = config('services.ploi.server');
         $site = config('services.ploi.site');
 
         $guzzle->post("servers/{$server}/sites/{$site}/aliases", [
-            'aliases' => [$this->domain->domain],
+            'aliases' => [$hostname],
         ]);
 
         $guzzle->post("servers/{$server}/sites/{$site}/certificates", [
-            'certificate' => $this->domain->domain,
+            'certificate' => $hostname,
             'type' => 'letsencrypt',
         ]);
     }
