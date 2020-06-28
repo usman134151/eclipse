@@ -3,6 +3,7 @@
 namespace Tests\Feature\Central;
 
 use App\Actions\CreateTenantAction;
+use App\Domain;
 use App\Exceptions\DomainCannotBeChangedException;
 use App\Tenant;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -20,6 +21,8 @@ class DomainsCannotBeUpdated extends TestCase
         $tenant = $this->createTenant();
 
         $domain = $tenant->createDomain('foo.localhost');
+
+        /** @var Domain $domain */
         $domain->update([
             'is_primary' => true,
         ]);
@@ -33,6 +36,8 @@ class DomainsCannotBeUpdated extends TestCase
         $tenant = $this->createTenant();
 
         $this->expectException(DomainCannotBeChangedException::class);
+
+        /** @var Domain $domain */
         $domain = $tenant->createDomain('foo.localhost');
         $domain->update([
             'domain' => 'bar.localhost',

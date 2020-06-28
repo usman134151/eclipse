@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Domain;
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -54,12 +55,16 @@ class AddDomainToPloi implements ShouldQueue
         $site = config('services.ploi.site');
 
         $guzzle->post("servers/{$server}/sites/{$site}/aliases", [
-            'aliases' => [$hostname],
+            RequestOptions::JSON => [
+                'aliases' => [$hostname]
+            ],
         ]);
 
         $guzzle->post("servers/{$server}/sites/{$site}/certificates", [
-            'certificate' => $hostname,
-            'type' => 'letsencrypt',
+            RequestOptions::JSON => [
+                'certificate' => $hostname,
+                'type' => 'letsencrypt',
+            ],
         ]);
     }
 }
