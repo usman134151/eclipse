@@ -13,6 +13,11 @@ class Domain extends BaseDomain
         'is_fallback' => 'bool',
     ];
 
+    public static function domainFromSubdomain(string $subdomain): string
+    {
+        return $subdomain . '.' . config('tenancy.central_domains')[0];
+    }
+
     public function makePrimary(): self
     {
         DB::transaction(function () {

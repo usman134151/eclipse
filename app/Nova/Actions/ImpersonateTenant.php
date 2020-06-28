@@ -24,7 +24,6 @@ class ImpersonateTenant extends Action
     {
         $tenant = $models[0];
 
-        // todo use admin route here later
         $token = tenancy()->impersonate($tenant, 1, $tenant->route('tenant.home'))->token;
 
         return Action::redirect(

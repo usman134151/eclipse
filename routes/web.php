@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('central.landing');
-})->name('central.landing');
+Route::view('/', 'central.landing')->name('central.landing');
 
 Route::get('/register', 'RegisterTenantController@show')->name('central.tenants.register');
 Route::post('/register/submit', 'RegisterTenantController@submit')->name('central.tenants.register.submit');

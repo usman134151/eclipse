@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Cashier::ignoreMigrations(); // todo create a SaaS provider and move this there?
+        Cashier::ignoreMigrations();
     }
 }

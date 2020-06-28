@@ -14,8 +14,7 @@ return [
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
     'central_domains' => [
-        // todo: explain that only one can be used due to the redirects
-        'saas.test',
+        env('CENTRAL_DOMAIN'),
     ],
 
     /**

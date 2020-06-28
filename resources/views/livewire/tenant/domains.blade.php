@@ -79,7 +79,7 @@
                               </span>
                               @if(! $domain->is_fallback)
                               <span class="ml-2 inline-flex rounded-md shadow-sm">
-                                  <button type="button" @click="modalOpen = true; id = {{ $domain->id }}" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs leading-4 font-medium rounded text-red-700 bg-white hover:text-red-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+                                  <button id="delete_{{ $domain->id }}" name="delete_{{ $domain->id }}" type="button" @click="modalOpen = true; id = {{ $domain->id }}" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs leading-4 font-medium rounded text-red-700 bg-white hover:text-red-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
                                       Delete
                                   </button>
                               </span>

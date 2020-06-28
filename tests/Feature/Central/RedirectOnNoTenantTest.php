@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Central;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Stancl\Tenancy\Contracts\TenantCouldNotBeIdentifiedException;

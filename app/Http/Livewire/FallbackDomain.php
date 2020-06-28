@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Domain;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Stancl\Tenancy\Resolvers\DomainTenantResolver;
@@ -18,8 +19,7 @@ class FallbackDomain extends Component
     public function save()
     {
         $this->validate([
-            // todo regex only alpha
-            'domain' => ['required', 'string', Rule::unique('central.domains')->ignoreModel(tenant()->fallback_domain), 'not_regex:/\\./'],
+            'domain' => ['required', 'string', Rule::unique('central.domains')->ignoreModel(tenant()->fallback_domain), 'regex:/^[A-Za-z0-9]+$/'],
         ]);
 
         if ($this->domain === tenant()->fallback_domain->domain) {
@@ -45,9 +45,9 @@ class FallbackDomain extends Component
         $this->domain = '';
 
         // If we were visiting the old fallback, which was deleted,
-        // we'll redirect the user to the primary domain.
+        // we'll redirect the user to the new fallback domain.
         if ($oldFallback->is(DomainTenantResolver::$currentDomain)) {
-            redirect(tenant()->route('tenant.settings.application'));
+            redirect(tenant_route(Domain::domainFromSubdomain($newFallback->domain), 'tenant.settings.application'));
         }
     }
 
