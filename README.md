@@ -2,7 +2,7 @@
 
 # Gumroad / GitHub
 
-The boilerplate is delivered as a file via Gumroad (for accessibility & legal reasons), but we recommend using the GitHub repo. During purchase, you were asked for your GH username. If you supplied one, you will be invited to the GitHub repository. There you'll be able to view changes, interact with the community, suggest features, report bugs and even make PRs. Like any other GitHub repo, except it's private.
+The boilerplate is delivered as a file via Gumroad (for accessibility & legal reasons), but I recommend using the GitHub repo. During purchase, you were asked for your GH username. If you supplied one, you will be invited to the GitHub repository. There you'll be able to view changes, interact with the community, suggest features, report bugs and even make PRs. Like any other GitHub repo, except it's private.
 
 # Basic information
 
