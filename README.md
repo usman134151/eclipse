@@ -64,7 +64,7 @@ The job will run pretty much instantly.
 
 The user clicks on the refresh button and if the database is set up already, he'll be taken to the tenant's (sub)domain and logged in as the first user (= the owner of the organization/application/team/whatever is the business term in your case).
 
-> Note: The "We're building your application" screen is displayed using the exception handler. In some rare instances, it could make local debugging somewhat more difficult, so be aware of how this works.
+Note: The "We're building your application" screen is displayed using the exception handler. In some rare instances, it could make local debugging somewhat more difficult, so be aware of how this works.
 
 Also note that if the queued job runs fast, the user won't even see the "we're building your application" screen. Wonders of modern technology!
 
