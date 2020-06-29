@@ -162,6 +162,8 @@ I decided to go with Livewire because:
 
 You can manage tenants, their domains, and administrators in a Nova admin panel.
 
+Nova can be visited on `/nova`.
+
 If you don't have a Nova license and don't want to purchase one — that's fine. You can write your own admin panel and everything will work just as well.
 
 I would love to have a custom admin panel that would have worked for everyone, but then a lot of people use Nova or other custom admin panels, so there would be no way to integrate the tenant admin panel into their own admin panel.
