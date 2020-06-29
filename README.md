@@ -18,6 +18,8 @@ The boilerplate uses Laravel 7. Both PHP 7.2 and 7.4 are supported.
 
 These are the steps to get the app up and running. Once you're using the app, feel free to change any individual parts.
 
+> Note: If you don't want to use Nova, remove it from composer dependencies. See the *Nova admin panel* section for an explanation why I chose Nova.
+
 1. Clone the repository
 2. `composer install`
 3. Rename `.env.example` to `.env` and run `php artisan key:generate`
