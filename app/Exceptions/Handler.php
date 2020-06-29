@@ -55,7 +55,6 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if (
-            ($exception instanceof TenantDatabaseDoesNotExistException) ||
             (tenant() && (! tenant('ready')) && $exception instanceof QueryException) ||
             (tenant() && (! tenant('ready')) && $exception instanceof ViewException && $exception->getPrevious() instanceof QueryException)
         ) {

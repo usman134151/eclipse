@@ -15,13 +15,18 @@ abstract class TenantTestCase extends TestCase
      * @var boolean
      */
     protected $tenancy = true;
+    protected $shouldSeed = true;
 
     public function setUp(): void
     {
         parent::setUp();
 
+        if (! $this->shouldSeed) {
+            config(['tenancy.seeder_parameters.--class' => EmptySeeder::class]);
+        }
+
         if ($this->tenancy) {
-            $tenant = $this->createTenant();
+            $tenant = $this->createTenant([], 'tenant');
             tenancy()->initialize($tenant);
 
             config(['app.url' => 'http://tenant.localhost']);

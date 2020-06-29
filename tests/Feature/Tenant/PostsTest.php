@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 class PostsTest extends TenantTestCase
 {
+    protected $shouldSeed = false;
+
     /** @test */
     public function posts_can_be_created()
     {

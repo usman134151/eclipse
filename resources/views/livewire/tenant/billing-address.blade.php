@@ -82,8 +82,8 @@
             </p>
             @endif
         </div>
-        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button wire:click="save" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
+        <div class="px-4 sm:px-6 py-2 bg-gray-50 flex justify-end">
+            <button wire:click="save" class="py-1 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
                 Save billing address
             </button>
         </div>

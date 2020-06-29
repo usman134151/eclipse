@@ -10,18 +10,18 @@
 
 @section('content')
 
-<div class="mt-10 sm:mt-0">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-xl font-medium leading-6 text-gray-900">Configuration.
+<div>
+  <div class="flex flex-row flex-wrap">
+    <div class="w-full md:w-1/3">
+      <div class="px-4 md:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Configuration.
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-600">
           Settings for your application.
         </p>
       </div>
     </div>
-    <div class="mt-5 md:mt-0 md:col-span-2">
+    <div class="mt-4 md:mt-0 w-full md:w-2/3 pl-0 md:pl-2">
       <form action="{{ route('tenant.settings.application.configuration') }}" method="POST">
         @csrf
         <div class="shadow overflow-hidden sm:rounded-md">
@@ -40,8 +40,8 @@
             </p>
             @enderror
           </div>
-          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
+          <div class="px-4 sm:px-6 py-2 bg-gray-50 flex justify-end">
+            <button class="py-1 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
               Save
             </button>
           </div>
@@ -51,24 +51,22 @@
   </div>
 </div>
 
-<div class="hidden sm:block">
-  <div class="py-8">
-    <div class="border-t border-gray-200"></div>
-  </div>
+<div class="py-4 md:py-10">
+  <div class="border-t border-transparent md:border-gray-200"></div>
 </div>
 
-<div class="mt-10 sm:mt-0">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-xl font-medium leading-6 text-gray-900">Domains
+<div>
+  <div class="flex flex-row flex-wrap">
+    <div class="w-full md:w-1/3">
+      <div class="px-4 md:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Domains
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-600">
           Manage your application's domains.
         </p>
       </div>
     </div>
-    <div class="mt-5 md:mt-0 md:col-span-2">
+    <div class="mt-4 md:mt-0 w-full md:w-2/3 pl-0 md:pl-2">
       @livewire('domains')
       @livewire('new-domain')
       @livewire('fallback-domain')
@@ -76,24 +74,22 @@
   </div>
 </div>
 
-<div class="hidden sm:block">
-  <div class="py-8">
-    <div class="border-t border-gray-200"></div>
-  </div>
+<div class="py-4 md:py-10">
+  <div class="border-t border-transparent md:border-gray-200"></div>
 </div>
 
-<div class="mt-10 sm:mt-0">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
-    <div class="md:col-span-1">
-      <div class="px-4 sm:px-0">
-        <h3 class="text-xl font-medium leading-6 text-gray-900">Billing
+<div>
+  <div class="flex flex-row flex-wrap">
+    <div class="w-full md:w-1/3">
+      <div class="px-4 md:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Billing
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-600">
           Manage your subscription and payment methods.
         </p>
       </div>
     </div>
-    <div class="mt-5 md:mt-0 md:col-span-2">
+    <div class="mt-4 md:mt-0 w-full md:w-2/3 pl-0 md:pl-2">
       @livewire('subscription-banner')
       @livewire('upcoming-payment')
       @livewire('billing-address')

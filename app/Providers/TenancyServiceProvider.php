@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Jobs\AddDomainToPloi;
 use App\Jobs\CreateTenantAdmin;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +12,7 @@ use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Events\DomainCreated;
 use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Middleware;
+use Stancl\Tenancy\Resolvers\DomainTenantResolver;
 
 class TenancyServiceProvider extends ServiceProvider
 {
@@ -25,11 +25,11 @@ class TenancyServiceProvider extends ServiceProvider
                 JobPipeline::make([
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
-                    // Jobs\SeedDatabase::class,
+                    CreateTenantAdmin::class,
+                    Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
-                    CreateTenantAdmin::class,
                 ])->send(function (Events\TenantCreated $event) {
                     return $event->tenant;
                 })->shouldBeQueued(true), // `false` by default, but you probably want to make this `true` for production.
@@ -51,7 +51,7 @@ class TenancyServiceProvider extends ServiceProvider
             Events\CreatingDomain::class => [],
             Events\DomainCreated::class => [
                 JobPipeline::make([
-                    AddDomainToPloi::class,
+                    // AddDomainToPloi::class, WIP, coming in ~1 week
                 ])->send(function (DomainCreated $event) {
                     return $event->domain;
                 })->shouldBeQueued(false),
@@ -103,6 +103,10 @@ class TenancyServiceProvider extends ServiceProvider
     
     public function boot()
     {
+        if ($this->app->environment('production')) {
+            DomainTenantResolver::$shouldCache = true;
+        }
+
         $this->bootEvents();
         $this->mapRoutes();
 

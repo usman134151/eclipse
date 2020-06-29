@@ -21,8 +21,8 @@
             </div>
             <p id="payment-method-message" class="text-sm"></p>
         </div>
-        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button id="card-button" data-secret="{{ $intent->client_secret }}" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
+        <div class="px-4 sm:px-6 py-2 bg-gray-50 flex justify-end">
+            <button id="card-button" data-secret="{{ $intent->client_secret }}" class="py-1 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
                 Update payment method
             </button>
         </div>
@@ -46,7 +46,7 @@
     
     function paymentMethodMessage(message, success) {
         document.getElementById('payment-method-message').innerHTML = message;
-        document.getElementById('payment-method-message').classList = 'mt-4 ' + (success ? 'text-green-500' : 'text-red-500');
+        document.getElementById('payment-method-message').classList = 'text-sm mt-4 ' + (success ? 'text-green-500' : 'text-red-500');
     }
     
     cardButton.addEventListener('click', async (e) => {

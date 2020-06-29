@@ -3341,12 +3341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stancl/tenancy.git",
-                "reference": "c8ed904d16414bb8b5f76143d8a3dea5c604d732"
+                "reference": "9ed46bbc355f856ad6590608c6d4dd9b3faad9d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stancl/tenancy/zipball/c8ed904d16414bb8b5f76143d8a3dea5c604d732",
-                "reference": "c8ed904d16414bb8b5f76143d8a3dea5c604d732",
+                "url": "https://api.github.com/repos/stancl/tenancy/zipball/9ed46bbc355f856ad6590608c6d4dd9b3faad9d3",
+                "reference": "9ed46bbc355f856ad6590608c6d4dd9b3faad9d3",
                 "shasum": ""
             },
             "require": {
@@ -3419,7 +3419,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-06-28T16:25:43+00:00"
+            "time": "2020-06-29T07:59:36+00:00"
         },
         {
             "name": "stripe/stripe-php",

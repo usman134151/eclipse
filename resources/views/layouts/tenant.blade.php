@@ -19,57 +19,40 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @stack('head')
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none">
+<body class="bg-gray-100 h-screen antialiased">
     <div id="app">
-        <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-gray-800">
+        <nav class="bg-gray-900">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg" alt="Workflow logo">
-                        </div>
-                        <div class="hidden md:block">
-                            <div class="ml-10 flex items-baseline">
-                                @auth
-                                <a href="{{ route('tenant.posts.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Posts
-                                </a>
-                                <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Team
-                                </a>
-                                <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects
-                                </a>
-                                <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar
-                                </a>
-                                <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports
-                                </a>
-                                @endauth
-                            </div>
-                        </div>
+                    <div>
+                        <a href="{{ route('tenant.posts.index') }}" class="text-sm font-medium text-white">Posts
+                        </a>
                     </div>
-                    <div class="hidden md:block">
+
+
+                    <div class="">
                         <div class="ml-4 flex items-center md:ml-6">
-                            
                             @guest
-                            <a href="{{ route('tenant.login') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Login</a>
+                                <a href="{{ route('tenant.login') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Login</a>
                             @if (Route::has('tenant.register'))
-                            <a href="{{ route('tenant.register') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Register</a>
+                                <a href="{{ route('tenant.register') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Register</a>
                             @endif
                             @else
-                            <!-- Profile dropdown -->
-                            <div @click.away="open = false" class="ml-3 relative z-10" x-data="{ open: false }">
+                            <div x-data="{ expanded: false }" @click.away="expanded = false" class="ml-3 relative z-10">
                                 <div>
-                                    <button @click="open = !open" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid" id="user-menu" aria-label="User menu" aria-haspopup="true" x-bind:aria-expanded="open">
+                                    <button @click="expanded = !expanded" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none">
                                         <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->gravatar_url }}" alt="{{ auth()->user()->name }}">
                                     </button>
                                 </div>
-                                <div x-show="open" x-description="Profile dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" style="display: none;">
+                                <div x-show="expanded" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg" style="display: none;">
                                     <div class="py-1 rounded-md bg-white shadow-xs">
-                                        <a href="{{ route('tenant.settings.user') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My account
+                                        <a href="{{ route('tenant.settings.user') }}" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100">My account
                                         </a>
                                         @if(auth()->user()->isOwner())
-                                        <a href="{{ route('tenant.settings.application') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Application settings
+                                        <a href="{{ route('tenant.settings.application') }}" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100">Application settings
                                         </a>
                                         @endif
-                                        <a href="{{ route('tenant.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        <a href="{{ route('tenant.logout') }}" class="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -83,79 +66,15 @@
                         @endguest
                     </div>
                 </div>
-                <div class="-mr-2 flex md:hidden">
-                    <!-- Mobile menu button -->
-                    <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white" x-bind:aria-label="open ? 'Close main menu' : 'Main menu'" x-bind:aria-expanded="open" aria-label="Main menu">
-                        <svg x-state:on="Menu open" x-state:off="Menu closed" :class="{ 'hidden': open, 'block': !open }" class="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                        <svg x-state:on="Menu open" x-state:off="Menu closed" :class="{ 'hidden': !open, 'block': open }" class="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
-        
-        <div x-description="Mobile menu, toggle classes based on menu state." x-state:on="Open" x-state:off="closed" :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 sm:px-3">
-                @auth
-                <a href="{{ route('tenant.posts.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Posts
-                </a>
-                <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Team
-                </a>
-                <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects
-                </a>
-                <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar
-                </a>
-                <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports
-                </a>
-                @endauth
-            </div>
-            <div class="pt-4 pb-3 border-t border-gray-700">
-                @auth
-                <div class="flex items-center px-5">
-                    <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="{{ auth()->user()->gravatar_url }}" alt="{{ auth()->user()->name }}">
-                    </div>
-                    <div class="ml-3">
-                        <div class="text-base font-medium leading-none text-white">{{ auth()->user()->name }}
-                        </div>
-                        <div class="mt-1 text-sm font-medium leading-none text-gray-400">{{ auth()->user()->email }}
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3 px-2">
-                    <a href="{{ route('tenant.settings.user') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My account
-                    </a>
-                    @if(auth()->user()->isOwner())
-                    <a href="{{ route('tenant.settings.application') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Application settings
-                    </a>
-                    @endif
-                    <a href="{{ route('tenant.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-                <form id="logout-form" action="{{ route('tenant.logout') }}" method="POST" class="hidden">
-                    {{ csrf_field() }}
-                </form>
-            </div>
-        </div>
-        @else
-        <a href="{{ route('tenant.login') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Login</a>
-        
-        @if (Route::has('tenant.register'))
-        <a href="{{ route('tenant.register') }}" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Register</a>
-        @endif
-        @endauth
     </div>
 </nav>
 
 @if(isset($title))
-<header class="bg-white shadow">
+<header class="bg-white border-b border-gray-200">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold leading-tight text-gray-900">
+        <h1 class="text-3xl font-semibold text-gray-900">
             {{ $title }}
         </h1>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckSubscription;
+use App\Http\Middleware\OwnerOnly;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
@@ -28,9 +29,10 @@ Route::group([
         Route::post('/settings/user/personal', 'UserSettingsController@personal')->name('settings.user.personal');
         Route::post('/settings/user/password', 'UserSettingsController@password')->name('settings.user.password');
 
-        Route::get('/settings/application', 'ApplicationSettingsController@show')->name('settings.application');
-        Route::post('/settings/application/configuration', 'ApplicationSettingsController@storeConfiguration')->name('settings.application.configuration');
-
-        Route::get('/settings/application/invoice/{id}/download', 'DownloadInvoiceController')->name('invoice.download');
+        Route::middleware(OwnerOnly::class)->group(function () {
+            Route::get('/settings/application', 'ApplicationSettingsController@show')->name('settings.application');
+            Route::post('/settings/application/configuration', 'ApplicationSettingsController@storeConfiguration')->name('settings.application.configuration');
+            Route::get('/settings/application/invoice/{id}/download', 'DownloadInvoiceController')->name('invoice.download');
+        });
     });
 });
