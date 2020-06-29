@@ -53,8 +53,8 @@ class Admin extends Resource
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:admin,email')
-                ->updateRules('unique:admin,email,{{resourceId}}'),
+                ->creationRules('unique:admins,email')
+                ->updateRules('unique:admins,email,{{resourceId}}'),
 
             Password::make('Password')
                 ->onlyOnForms()
