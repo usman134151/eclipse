@@ -2,11 +2,11 @@
 
 # Gumroad / GitHub
 
-The boilerplate is delivered as a file via Gumroad (for accessibility & legal reasons), but I recommend using the GitHub repo. During purchase, you were asked for your GH username. If you supplied one, you will be invited to the GitHub repository. There you'll be able to view changes, interact with the community, suggest features, report bugs and even make PRs. Like any other GitHub repo, except it's private.
+The boilerplate is delivered as a file via Gumroad (for accessibility & legal reasons), but I recommend using the GitHub repo. During purchase, you were asked for your GH username. If you supplied one, you will be invited to the GitHub repository. There you'll be able to view changes, interact with the community, suggest features, report bugs, and even make PRs. Like any other GitHub repo, except it's private.
 
 # Basic information
 
-The boilerplate is an application skeleton. This means that it's not a package, but instead a repository that you clone and use to build your application.
+The boilerplate is an application skeleton. This means that it's not a package, but instead, a repository that you clone and use to build your application.
 
 Think of this as `laravel new`, except it comes with many more features you'd have to normally build yourself.
 
@@ -23,12 +23,12 @@ These are the steps to get the app up and running. Once you're using the app, fe
 1. Clone the repository
 2. `composer install`
 3. Rename `.env.example` to `.env` and run `php artisan key:generate`
-4. Create a MySQL database. If you want to use a non-root user, make sure that user has permissions to create other users and access all databases (or change the DB manager used for `mysql` to the one that does not create permissions). Add the database name to your `.env`
+4. Create a MySQL database. If you want to use a non-root user, make sure that the user has permissions to create other users and access all databases (or change the DB manager used for `mysql` to the one that does not create permissions). Add the database name to your `.env`
 5. Start Redis (it's used as the queue driver — feel free to change this to any other *asynchronous* driver)
 6. Run migrations: `php artisan migrate`
 7. Grab your Stripe test keys: [https://dashboard.stripe.com/dashboard](https://dashboard.stripe.com/dashboard) and add them to `.env` (`STRIPE_KEY` and `STRIPE_SECRET`)
 8. Create two products in Stripe: [https://dashboard.stripe.com/products](https://dashboard.stripe.com/products) and copy the price ids to the `config/saas.php` file — see how it looks now, you'll know what to paste where.
-9. Configure the app url & domains
+9. Configure the app URL & domains
     - If you're using Valet, you can go with the default set-up. Just make sure your project is accessible on `saas.test`
     - If you're using `php artisan serve`, make `[localhost](http://localhost)` your central & Nova domain (replace the `saas.test` instances with `localhost` in `.env`). Your development tenants will have domains like `foo.localhost` and `bar.localhost`
     - If you're using anything else — the process will be similar to the one to `php artisan serve`.
@@ -68,7 +68,7 @@ The user clicks on the refresh button and if the database is set up already, he'
 
 Also note that if the queued job runs fast, the user won't even see the "we're building your application" screen. Wonders of modern technology!
 
-And, conversely, if the queued job runs super slow, the user might get a 403. The TTL for the impersonation token is 60 seconds. If you're queues are slow for whatever reason, you can increase the TTL.
+And, conversely, if the queued job runs super slow, the user might get a 403. The TTL for the impersonation token is 60 seconds. If your queues are slow for whatever reason, you can increase the TTL.
 
 ### Login
 
@@ -134,7 +134,7 @@ We're using the `InitializeTenancyByDomainOrSubdomain` middleware. To make life 
 
 ### Tenancy setup
 
-We use only one central domain. This is so that we can use named routes, generate domains from subdomains and a few other things. If you **really** need multiple central domains, you may change the implementation, but really consider if you need it. Also note that in our implementation, we read the one central domain from an environment variable. So you can use a different one locally, on your staging server, and on your production server.
+We use only one central domain. This is so that we can use named routes, generate domains from subdomains, and a few other things. If you **really** need multiple central domains, you may change the implementation, but really consider if you need it. Also note that in our implementation, we read the one central domain from an environment variable. So you can use a different one locally, on your staging server, and on your production server.
 
 Next, we use seeder — `TenantDatabaseSeeder`. Feel free to disable seeding in the TenancyServiceProvider file.
 
@@ -168,7 +168,7 @@ I would love to have a custom admin panel that would have worked for everyone, b
 
 For that reason, Nova is the imperfect but best solution for providing you with an admin panel.
 
-There are Nova resources prepared for the aforementioned tenants, domains and administrators. There's also a Nova action for impersonating tenants. Simply open the detail page for the tenant and select the Impersonate action up top.
+There are Nova resources prepared for the aforementioned tenants, domains, and administrators. There's also a Nova action for impersonating tenants. Simply open the detail page for the tenant and select the Impersonate action up top.
 
 ### Creating an admin
 
@@ -193,33 +193,33 @@ tenant()->route('tenant.settings.user');
 
 ### Fallback domains
 
-Each tenant can add any number of custom third party domains. He can also make them primary. But in case something goes wrong, we need a fallback domain on which the application will be guaranteed to be accessible.
+Each tenant can add any number of custom third-party domains. He can also make them primary. But in case something goes wrong, we need a fallback domain on which the application will be guaranteed to be accessible.
 
 The fallback domain should be a subdomain on your central domain.
 
 ## Domain management UI
 
-In the domain management part of the Application Settings page, you can add custom domains, mark domains as primary, remove domains and change fallback domains.
+In the domain management part of the Application Settings page, you can add custom domains, mark domains as primary, remove domains, and change fallback domains.
 
 Primary domains or fallback domains **cannot** be removed. If you're visiting a fallback domain (we're using a secret trick to check that) and change it, you'll be redirected to the new fallback domain.
 
 # SaaS config file
 
-The `config/saas.php` file stores some config keys related to the SaaS functionality. Currently, it stores the trial length, your Stripe keys (loaded from env) and your subscription plans.
+The `config/saas.php` file stores some config keys related to the SaaS functionality. Currently, it stores the trial length, your Stripe keys (loaded from env), and your subscription plans.
 
 Feel free to add your own config keys to the file.
 
 # Tenant app
 
-The tenant part of the app contains a very slim sample app so that you can see the data separation in action and get a sense for how the tenant app should be structured and tested.
+The tenant part of the app contains a very slim sample app so that you can see the data separation in action and get a sense of how the tenant app should be structured and tested.
 
-Right now, the tenant app contains controllers, models, migrations and views for a very simple blog-type application. You can create posts, view an index of posts and view each post individually.
+Right now, the tenant app contains controllers, models, migrations, and views for a very simple blog-type application. You can create posts, view an index of posts, and view each post individually.
 
 ## Settings
 
 Apart from this blog-type logic, there are also two setting screens. You can navigate to them using the menu shown by clicking your gravatar on the top right corner of the screen.
 
-On the user settings screen, any user can update their name, email and password.
+On the user settings screen, any user can update their name, email, and password.
 
 On the application settings screen, the owner can:
 
@@ -286,7 +286,7 @@ For tenant tests, we do some nice magic.
 - We create a tenant initialize tenancy
 - We force the app URL to that tenant's URL
 - We set the `SERVER_NAME` and `HTTP_HOST` server variables to that tenant's domain (`tenant.localhost`)
-- We login as the superadmin (feel free to remove this part, it's in `TenantTestCase`)
+- We log in as the superadmin (feel free to remove this part, it's in `TenantTestCase`)
 
 The magical thing about forcing the URLs and hostnames is that you can use:
 
@@ -310,7 +310,7 @@ Cashier Stripe is used for billing.
 
 A user may configure billing on the Application Settings screen.
 
-The user first needs to add a payment card, then he can select a subscription and then he can download invoices. He will be shown the upcoming payment along with the current state of his subscription.
+The user first needs to add a payment card, then he can select a subscription, and then he can download invoices. He will be shown the upcoming payment along with the current state of his subscription.
 
 By default, 14 days of trial are used. See the SaaS config section of this document.
 
@@ -334,4 +334,4 @@ I'm currently in the talks with Ploi developers to get an API that we can use to
 
 Since this is an application template and not a package, there's no straightforward way to update it.
 
-That said, updates won't really be "needed". We recommend that you join the GH repo, Watch it and then see new commits as they're added and if you like the added stuff, you add it to your project too.
+That said, updates won't really be "needed". We recommend that you join the GH repo, Watch it, and then see new commits as they're added and if you like the added stuff, you add it to your project too.
