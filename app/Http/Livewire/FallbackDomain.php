@@ -19,7 +19,7 @@ class FallbackDomain extends Component
     public function save()
     {
         $this->validate([
-            'domain' => ['required', 'string', Rule::unique('central.domains')->ignoreModel(tenant()->fallback_domain), 'regex:/^[A-Za-z0-9]+$/'],
+            'domain' => ['required', 'string', Rule::unique('central.domains')->ignoreModel(tenant()->fallback_domain), 'regex:/^[A-Za-z0-9-]+$/'],
         ]);
 
         if ($this->domain === tenant()->fallback_domain->domain) {

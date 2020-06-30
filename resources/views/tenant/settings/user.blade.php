@@ -6,7 +6,7 @@
   <div class="flex flex-row flex-wrap">
     <div class="w-full md:w-1/3">
       <div class="px-4 md:px-0">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">Personal information.
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Personal information
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-600">
           This information will be displayed publicly.

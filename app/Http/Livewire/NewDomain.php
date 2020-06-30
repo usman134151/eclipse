@@ -17,7 +17,7 @@ class NewDomain extends Component
                 'required',
                 'string',
                 'unique:central.domains',
-                'regex:/^[A-Za-z0-9]+[A-Za-z0-9.]+[A-Za-z0-9]+$/',
+                'regex:/^[A-Za-z0-9]+[A-Za-z0-9.-]+[A-Za-z0-9]+$/',
                 'regex:/\\./', // Must contain a dot
                 function ($attribute, $value, $fail) {
                     if (Str::endsWith($value, config('tenancy.central_domains')[0])) {
