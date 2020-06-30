@@ -272,6 +272,8 @@ Now, we don't have any controllers in the central app that would use auth. So in
 
 If you want to use authentication in central routes, be sure to specify the `admin` auth guard.
 
+Note: The authentication routes are registered in a route group with a `tenant.` name prefix, so you should use `tenant.register`, not `register`.
+
 # Testing
 
 An important part of this boilerplate is the test suite.
