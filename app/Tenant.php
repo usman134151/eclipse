@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Exceptions\NoPrimaryDomainException;
-use Illuminate\Http\RedirectResponse;
 use Laravel\Cashier\Billable;
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
@@ -63,7 +62,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 
     public function impersonationUrl($user_id): string
     {
-        $token = tenancy()->impersonate($this, $user_id, $this->route('tenant.home'))->token;
+        $token = tenancy()->impersonate($this, $user_id, $this->route('tenant.home'), 'web')->token;
 
         return $this->route('tenant.impersonate', ['token' => $token]);
     }

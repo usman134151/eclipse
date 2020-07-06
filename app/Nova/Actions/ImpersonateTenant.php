@@ -2,6 +2,7 @@
 
 namespace App\Nova\Actions;
 
+use App\Tenant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,12 +23,11 @@ class ImpersonateTenant extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
+        /** @var Tenant $tenant */
         $tenant = $models[0];
 
-        $token = tenancy()->impersonate($tenant, 1, $tenant->route('tenant.home'))->token;
-
         return Action::redirect(
-            $tenant->route('tenant.impersonate', ['token' => $token])
+            $tenant->impersonationUrl(1)
         );
     }
 

@@ -3,9 +3,14 @@
 namespace App\Nova;
 
 use App\Nova\Actions\ImpersonateTenant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -55,6 +60,26 @@ class Tenant extends Resource
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:tenants,email')
                 ->updateRules('unique:tenants,email,{{resourceId}}'),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Company')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Password::make('Password')
+                ->onlyOnForms()
+                ->creationRules('required', 'string', 'min:8')
+                ->updateRules('nullable', 'string', 'min:8'),
+            
+            DateTime::make('Trial until', 'trial_ends_at')->rules('required')
+                ->default(Carbon::now()->addDays(config('saas.trial_days'))),
+
+            Boolean::make('Ready')
+                ->readonly()
+                ->onlyOnDetail(),
 
             HasMany::make('Domains', 'domains', Domain::class),
         ];

@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Exceptions\DomainCannotBeChangedException;
-use Illuminate\Support\Facades\DB;
 use Stancl\Tenancy\Database\Models\Domain as BaseDomain;
 use Illuminate\Support\Str;
 
@@ -21,6 +20,24 @@ class Domain extends BaseDomain
                 throw new DomainCannotBeChangedException;
             }
         });
+
+        static::saved(function (self $domain) {
+            if (
+                $domain->is_primary &&
+                $domain->tenant->primary_domain &&
+                $domain->tenant->primary_domain->getKey() !== $domain->getKey()
+            ) {
+                $domain->tenant->primary_domain->update(['is_primary' => false]);
+            }
+
+            if (
+                $domain->is_fallback &&
+                $domain->tenant->fallback_domain &&
+                $domain->tenant->fallback_domain->getKey() !== $domain->getKey()
+            ) {
+                $domain->tenant->fallback_domain->update(['is_fallback' => false]);
+            }
+        });
     }
 
     public static function domainFromSubdomain(string $subdomain): string
@@ -30,16 +47,9 @@ class Domain extends BaseDomain
 
     public function makePrimary(): self
     {
-        DB::transaction(function () {
-            // Make any previous primary domains secondary
-            $this->tenant->domains()->update([
-                'is_primary' => false,
-            ]);
-
-            $this->update([
-                'is_primary' => true,
-            ]);
-        }, 2);
+        $this->update([
+            'is_primary' => true,
+        ]);
 
         $this->tenant->setRelation('primary_domain', $this);
 
@@ -48,16 +58,9 @@ class Domain extends BaseDomain
 
     public function makeFallback(): self
     {
-        DB::transaction(function () {
-            // Make any previous fallback domains normal
-            $this->tenant->domains()->update([
-                'is_fallback' => false,
-            ]);
-
-            $this->update([
-                'is_fallback' => true,
-            ]);
-        }, 2);
+        $this->update([
+            'is_fallback' => true,
+        ]);
 
         $this->tenant->setRelation('fallback_domain', $this);
 

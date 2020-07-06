@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Tenant;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -17,6 +18,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::serving(function () {
+            Tenant::creating(function (Tenant $tenant) {
+                $tenant->ready = false;
+            });
+
+            Tenant::created(function (Tenant $tenant) {
+                $tenant->createAsStripeCustomer();
+            });
+        });
     }
 
     /**
