@@ -30,7 +30,7 @@ These are the steps to get the app up and running. Once you're using the app, fe
 8. Create two products in Stripe: [https://dashboard.stripe.com/products](https://dashboard.stripe.com/products) and copy the price ids to the `config/saas.php` file — see how it looks now, you'll know what to paste where.
 9. Configure the app URL & domains
     - If you're using Valet, you can go with the default set-up. Just make sure your project is accessible on `saas.test`
-    - If you're using `php artisan serve`, make `[localhost](http://localhost)` your central & Nova domain (replace the `saas.test` instances with `localhost` in `.env`). Your development tenants will have domains like `foo.localhost` and `bar.localhost`
+    - If you're using `php artisan serve`, make `localhost` your central & Nova domain (replace the `saas.test` instances with `localhost` in `.env`). Your development tenants will have domains like `foo.localhost` and `bar.localhost`
     - If you're using anything else — the process will be similar to the one to `php artisan serve`.
 10. Run the queue worker: `php artisan queue:work`
 11. Visit your central domain, e.g. `saas.test`.
@@ -272,6 +272,8 @@ Now, we don't have any controllers in the central app that would use auth. So in
 
 If you want to use authentication in central routes, be sure to specify the `admin` auth guard.
 
+Note: The authentication routes are registered in a route group with a `tenant.` name prefix, so you should use `tenant.register`, not `register`.
+
 # Testing
 
 An important part of this boilerplate is the test suite.
@@ -300,7 +302,7 @@ $this->get('posts')->assertSee('foo');
 
 Normally, you'd have to make a request to `http://tenant.localhost/posts`. While that's fine once in a while, having to think of that constantly would be a pain and your tests would be a mess.
 
-Also, tests use `[localhost](http://localhost)` as the central domain. This is set in `phpunit.xml`'s env. The reason for this is that changing the central domains config in `setUp()` doesn't work — the config is read before `setUp()` is executed to register the central routes.
+Also, tests use `localhost` as the central domain. This is set in `phpunit.xml`'s env. The reason for this is that changing the central domains config in `setUp()` doesn't work — the config is read before `setUp()` is executed to register the central routes.
 
 Finally, one thing to keep in mind: The tests use your central connection with the `saas_test` database. This is in `phpunit.xml`. Be sure to create that database.
 
