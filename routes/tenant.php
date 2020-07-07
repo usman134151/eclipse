@@ -17,6 +17,10 @@ Route::group([
     })->name('impersonate');
 
     Auth::routes();
+
+    Route::post('/ploi/webhook/certificateIssued', 'PloiWebhookController@certificateIssued')->name('ploi.certificate.issued');
+    Route::post('/ploi/webhook/certificateRevoked', 'PloiWebhookController@certificateRevoked')->name('ploi.certificate.revoked');
+
     Route::middleware(['auth', CheckSubscription::class])->group(function () {
         Route::redirect('/home', '/posts')->name('home');
 

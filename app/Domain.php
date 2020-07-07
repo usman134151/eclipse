@@ -6,6 +6,14 @@ use App\Exceptions\DomainCannotBeChangedException;
 use Stancl\Tenancy\Database\Models\Domain as BaseDomain;
 use Illuminate\Support\Str;
 
+/**
+ * @property int $id
+ * @property int $tenant_id
+ * @property string $domain
+ * @property bool $is_primary
+ * @property bool $is_fallback
+ * @property string $certificate_status
+ */
 class Domain extends BaseDomain
 {
     protected $casts = [

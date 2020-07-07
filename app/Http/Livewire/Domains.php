@@ -21,7 +21,19 @@ class Domains extends Component
 
     public function delete($domain)
     {
-        tenant()->domains()->where('id', $domain)->delete();
+        $domain = tenant()->domains()->firstWhere('id', $domain);
+
+        $domain->delete();
+    }
+
+    public function requestCertificate($domain)
+    {
+        ploi()->requestCertificate(tenant()->domains()->firstWhere('id', $domain));
+    }
+
+    public function revokeCertificate($domain)
+    {
+        ploi()->revokeCertificate(tenant()->domains()->firstWhere('id', $domain));
     }
 
     public function render()

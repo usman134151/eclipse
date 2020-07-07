@@ -21,6 +21,7 @@ class CreateDomainsTable extends Migration
             $table->string('tenant_id');
             $table->unsignedTinyInteger('is_primary')->default(false);
             $table->unsignedTinyInteger('is_fallback')->default(false);
+            $table->string('certificate_status', 64)->nullable();
 
             $table->timestamps();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');

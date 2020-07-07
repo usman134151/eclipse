@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Jobs\AddDomainToPloi;
 use App\Jobs\CreateTenantAdmin;
+use App\Jobs\RemoveDomainFromPloi;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -10,6 +12,7 @@ use Stancl\JobPipeline\JobPipeline;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Events\DomainCreated;
+use Stancl\Tenancy\Events\DomainDeleted;
 use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Middleware;
 use Stancl\Tenancy\Resolvers\DomainTenantResolver;
@@ -51,7 +54,7 @@ class TenancyServiceProvider extends ServiceProvider
             Events\CreatingDomain::class => [],
             Events\DomainCreated::class => [
                 JobPipeline::make([
-                    // AddDomainToPloi::class, WIP, coming in ~1 week
+                    AddDomainToPloi::class,
                 ])->send(function (DomainCreated $event) {
                     return $event->domain;
                 })->shouldBeQueued(false),
@@ -61,7 +64,13 @@ class TenancyServiceProvider extends ServiceProvider
             Events\UpdatingDomain::class => [],
             Events\DomainUpdated::class => [],
             Events\DeletingDomain::class => [],
-            Events\DomainDeleted::class => [],
+            Events\DomainDeleted::class => [
+                JobPipeline::make([
+                    RemoveDomainFromPloi::class,
+                ])->send(function (DomainDeleted $event) {
+                    return $event->domain;
+                })->shouldBeQueued(false),
+            ],
 
             // Database events
             Events\DatabaseCreated::class => [],

@@ -27,7 +27,7 @@ class NewDomain extends Component
             ],
         ]);
 
-        tenant()->createDomain($this->domain);
+        $domain = tenant()->createDomain($this->domain);
 
         $this->emit('domainsUpdated');
 
