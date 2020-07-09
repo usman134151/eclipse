@@ -333,7 +333,7 @@ If you'd like to use the Cashier way of generating invoices, feel free to change
 ## Ploi integration - Production set-up & HTTPS certificates
 
 Open your `.env` file and set the Ploi environment variables. You can read the server & site from the URL in your Ploi dashboard. In my case:
-> https://ploi.io/panel/servers/**9690**/sites/**19533**
+> /panel/servers/**9690**/sites/**19533**
 
 So `PLOI_SERVER=9690` and `PLOI_SITE=19533`.
 
