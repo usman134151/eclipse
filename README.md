@@ -330,12 +330,24 @@ We use Stripe invoices because we store customer info (billing address etc) on S
 
 If you'd like to use the Cashier way of generating invoices, feel free to change this.
 
-## Production set-up & HTTPS certificates
+## Ploi integration - Production set-up & HTTPS certificates
 
-I'm currently in the talks with Ploi developers to get an API that we can use to manage certificates for client 2nd level domains. I originally wanted to release this boilerplate with this already done, but after I spent a day playing with Ploi I realized that this is not currently possible in a straightforward way. So we'll wait for their amazing support to add this feature and then I'll add the (quite simple) code to this repo :)
+Open your `.env` file and set the Ploi environment variables. You can read the server & site from the URL in your Ploi dashboard. In my case:
+> https://ploi.io/panel/servers/**9690**/sites/**19533**
+
+So `PLOI_SERVER=9690` and `PLOI_SITE=19533`.
+
+Your `PLOI_TOKEN` can be generated here: https://ploi.io/profile/api-keys
+
+If you set this up, the integration will work as follows:
+1. when you add a custom domain, Ploi will be listening to that domain on port 80
+2. when you click *Request certificate*, Ploi will generate a certificate and start listening on 443 as well
+3. when you click *Revoke certificate*, the previous step will be reversed
 
 ## Updating
 
 Since this is an application template and not a package, there's no straightforward way to update it.
 
 That said, updates won't really be "needed". We recommend that you join the GH repo, Watch it, and then see new commits as they're added and if you like the added stuff, you add it to your project too.
+
+See [this GitHub issue](https://github.com/tenancy-for-laravel/saas-boilerplate/issues/23) for info about using multiple git remotes to pull new commits.
