@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
  * @property bool $is_primary
  * @property bool $is_fallback
  * @property string $certificate_status
+ * @property Tenant $tenant
  */
 class Domain extends BaseDomain
 {
@@ -29,21 +30,16 @@ class Domain extends BaseDomain
             }
         });
 
-        static::saved(function (self $domain) {
-            if (
-                $domain->is_primary &&
-                $domain->tenant->primary_domain &&
-                $domain->tenant->primary_domain->getKey() !== $domain->getKey()
-            ) {
-                $domain->tenant->primary_domain->update(['is_primary' => false]);
-            }
+        static::saved(function (self $model) {
+            // There can only be one of these
+            $uniqueKeys = ['is_primary', 'is_fallback'];
 
-            if (
-                $domain->is_fallback &&
-                $domain->tenant->fallback_domain &&
-                $domain->tenant->fallback_domain->getKey() !== $domain->getKey()
-            ) {
-                $domain->tenant->fallback_domain->update(['is_fallback' => false]);
+            foreach ($uniqueKeys as $key) {
+                if ($model->$key) {
+                    $model->tenant->domains()
+                        ->where('id', '!=', $model->id)
+                        ->update([$key => false]);
+                }
             }
         });
     }

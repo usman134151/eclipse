@@ -8,11 +8,14 @@ use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDomains;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * @property-read string $plan_name The tenant's subscription plan name
  * @property-read bool $on_active_subscription Is the tenant actively subscribed (not on grace period)
  * @property-read bool $can_use_app Can the tenant use the application (is on trial or subscription)
+ * 
+ * @property-read Domain[]|Collection $domains
  */
 class Tenant extends BaseTenant implements TenantWithDatabase
 {
