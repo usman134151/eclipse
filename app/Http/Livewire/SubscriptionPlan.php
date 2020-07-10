@@ -36,10 +36,13 @@ class SubscriptionPlan extends Component
             $this->success = 'Plan updated.';
             $this->error = '';
         } else {
-            tenant()
-                ->newSubscription('default', $this->plan)
-                ->trialUntil(tenant()->trial_ends_at)
-                ->create(tenant()->defaultPaymentMethod()->asStripePaymentMethod());
+            $subscription = tenant()->newSubscription('default', $this->plan);
+
+            if (config('saas.trial_days')) {
+                $subscription->trialUntil(tenant()->trial_ends_at);
+            }
+
+            $subscription->create(tenant()->defaultPaymentMethod()->asStripePaymentMethod());
             
             $this->success = 'Subscription created.';
             $this->error = '';
