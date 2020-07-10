@@ -332,6 +332,19 @@ If you'd like to use the Cashier way of generating invoices, feel free to change
 
 ## Ploi integration - Production set-up & HTTPS certificates
 
+### Subdomains
+
+Say your central domain is `acme.com`. You want to add an alias for `*.acme.com` in the site's aliases (Manage tab on the left).
+
+Then, you want to open the SSL tab and create a certificate for both `acme.com` and `*.acme.com`:
+```
+acme.com,*.acme.com
+```
+
+You will need to use a supported DNS provider for the wildcard certificate. I recommend Cloudflare, it's free.
+
+### Customer domains
+
 Open your `.env` file and set the Ploi environment variables. You can read the server & site from the URL in your Ploi dashboard. In my case:
 > /panel/servers/**9690**/sites/**19533**
 
