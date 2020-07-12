@@ -357,6 +357,8 @@ If you set this up, the integration will work as follows:
 2. when you click *Request certificate*, Ploi will generate a certificate and start listening on 443 as well
 3. when you click *Revoke certificate*, the previous step will be reversed
 
+When customers add their own domains, you want them to add a `CNAME` or `ALIAS` record pointing either at your central domain or at their fallback subdomain. I recommend playing with Netlify (it's free) and adding your own domain to a project. You'll see the process from the user's perspective.
+
 ## Updating
 
 Since this is an application template and not a package, there's no straightforward way to update it.
