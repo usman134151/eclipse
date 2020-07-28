@@ -78,7 +78,7 @@ class TenancyServiceProvider extends ServiceProvider
             Events\DatabaseCreated::class => [
                 function (DatabaseCreated $event) {
                     ploi()->acknowledgeDatabase($event->tenant->database()->getName());
-                }
+                },
             ],
             Events\DatabaseMigrated::class => [],
             Events\DatabaseSeeded::class => [],
@@ -86,7 +86,7 @@ class TenancyServiceProvider extends ServiceProvider
             Events\DatabaseDeleted::class => [
                 function (DatabaseDeleted $event) {
                     ploi()->forgetDatabase($event->tenant->database()->getName());
-                }
+                },
             ],
 
             // Tenancy events
@@ -136,7 +136,7 @@ class TenancyServiceProvider extends ServiceProvider
     {
         foreach ($this->events() as $event => $listeners) {
             foreach (array_unique($listeners) as $listener) {
-                if ($listener instanceof JobPipeline) {
+                if (is_object($listener) && $listener instanceof JobPipeline) {
                     $listener = $listener->toListener();
                 }
 
