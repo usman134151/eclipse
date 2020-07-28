@@ -104,6 +104,12 @@ class PloiManager
         $domain->update(['certificate_status' => 'pending']);
     }
 
+    /**
+     * Let ploi know about a tenant's database.
+     *
+     * @param string $databaseName
+     * @return void
+     */
     public function acknowledgeDatabase(string $databaseName): void
     {
         if (! $this->token) {
@@ -114,9 +120,18 @@ class PloiManager
             ->post("https://ploi.io/api/servers/{$this->server}/databases/acknowledge", [
                 'name' => $databaseName,
                 'description' => 'Tenant database',
-            ]);
+            ]
+        );
+
+        // Create a backup if you want: https://developers.ploi.io/database-backups/create-backup
     }
 
+    /**
+     * Make ploi forget a tenant database.
+     *
+     * @param string $databaseName
+     * @return void
+     */
     public function forgetDatabase(string $databaseName): void
     {
         if (! $this->token) {
