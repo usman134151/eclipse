@@ -343,7 +343,9 @@ acme.com,*.acme.com
 
 You will need to use a supported DNS provider for the wildcard certificate. I recommend Cloudflare, it's free.
 
-### Customer domains
+### Ploi - Customer domains & tenant DB management
+
+**If you haven't set up a Ploi site before, watch this video: [Deploying SaaS boilerplate to Ploi](https://youtu.be/FUm5vnHnZNQ)**
 
 Open your `.env` file and set the Ploi environment variables. You can read the server & site from the URL in your Ploi dashboard. In my case:
 > /panel/servers/**9690**/sites/**19533**
