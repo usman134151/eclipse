@@ -11,6 +11,8 @@ use Illuminate\Support\ServiceProvider;
 use Stancl\JobPipeline\JobPipeline;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Events;
+use Stancl\Tenancy\Events\DatabaseCreated;
+use Stancl\Tenancy\Events\DatabaseDeleted;
 use Stancl\Tenancy\Events\DomainCreated;
 use Stancl\Tenancy\Events\DomainDeleted;
 use Stancl\Tenancy\Jobs;
@@ -73,11 +75,19 @@ class TenancyServiceProvider extends ServiceProvider
             ],
 
             // Database events
-            Events\DatabaseCreated::class => [],
+            Events\DatabaseCreated::class => [
+                function (DatabaseCreated $event) {
+                    ploi()->acknowledgeDatabase($event->tenant->database()->getName());
+                }
+            ],
             Events\DatabaseMigrated::class => [],
             Events\DatabaseSeeded::class => [],
             Events\DatabaseRolledBack::class => [],
-            Events\DatabaseDeleted::class => [],
+            Events\DatabaseDeleted::class => [
+                function (DatabaseDeleted $event) {
+                    ploi()->forgetDatabase($event->tenant->database()->getName());
+                }
+            ],
 
             // Tenancy events
             Events\InitializingTenancy::class => [],

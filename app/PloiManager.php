@@ -27,16 +27,16 @@ class PloiManager
      * Add tenant :80 vhost
      *
      * @param Domain $domain
-     * @return boolean
+     * @return void
      */
-    public function addDomain(Domain $domain): bool
+    public function addDomain(Domain $domain): void
     {
         if ($domain->isSubdomain() || ! $this->token) {
-            return false;
+            return;
         }
 
         if (gethostbyname($domain->domain) !== gethostbyname(Domain::domainFromSubdomain(tenant()->fallback_domain->domain))) {
-            return false;
+            return;
         }
 
         Http::withToken($this->token)->asJson()
@@ -44,38 +44,34 @@ class PloiManager
                 'tenants' => [$domain->domain],
             ]
         );
-
-        return true;
     }
 
     /**
      * Remove a tenant :80 host.
      *
      * @param Domain $domain
-     * @return boolean
+     * @return void
      */
-    public function removeDomain(Domain $domain): bool
+    public function removeDomain(Domain $domain)
     {
         if ($domain->isSubdomain() || ! $this->token) {
-            return false;
+            return;
         }
 
         Http::withToken($this->token)->asJson()
             ->delete("https://ploi.io/api/servers/{$this->server}/sites/{$this->site}/tenants/$domain->domain");
-
-        return true;
     }
 
     /**
      * Request a certificate for a tenant host.
      *
      * @param Domain $domain
-     * @return boolean
+     * @return void
      */
-    public function requestCertificate(Domain $domain): bool
+    public function requestCertificate(Domain $domain): void
     {
         if ($domain->isSubdomain() || ! $this->token) {
-            return false;
+            return;
         }
 
         Http::withToken($this->token)->asJson()
@@ -85,20 +81,18 @@ class PloiManager
         );
 
         $domain->update(['certificate_status' => 'pending']);
-
-        return true;
     }
 
     /**
      * Revoke a certificate for a tenant host.
      *
      * @param Domain $domain
-     * @return boolean
+     * @return void
      */
-    public function revokeCertificate(Domain $domain): bool
+    public function revokeCertificate(Domain $domain): void
     {
         if ($domain->isSubdomain() || ! $this->token) {
-            return false;
+            return;
         }
 
         Http::withToken($this->token)->asJson()
@@ -108,7 +102,28 @@ class PloiManager
         );
 
         $domain->update(['certificate_status' => 'pending']);
+    }
 
-        return true;
+    public function acknowledgeDatabase(string $databaseName): void
+    {
+        if (! $this->token) {
+            return;
+        }
+
+        Http::withToken($this->token)->asJson()
+            ->post("https://ploi.io/api/servers/{$this->server}/databases/acknowledge", [
+                'name' => $databaseName,
+                'description' => 'Tenant database',
+            ]);
+    }
+
+    public function forgetDatabase(string $databaseName): void
+    {
+        if (! $this->token) {
+            return;
+        }
+
+        Http::withToken($this->token)->asJson()
+            ->delete("https://ploi.io/api/servers/{$this->server}/databases/$databaseName/forget");
     }
 }
