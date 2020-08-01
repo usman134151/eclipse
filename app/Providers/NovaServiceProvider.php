@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Nova\Central\Admin;
+use App\Nova\Central\Domain;
+use App\Nova\Central\Tenant as TenantResource;
+use App\Nova\Tenant\Post;
+use App\Nova\Tenant\User;
 use App\Tenant;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
@@ -37,9 +42,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function routes()
     {
-        Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
+        Nova::routes(['tenant', 'universal'])
+                ->withAuthenticationRoutes(['tenant', 'universal'])
+                ->withPasswordResetRoutes(['tenant', 'universal'])
                 ->register();
     }
 
@@ -53,9 +58,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
+            /** @var \App\User|\App\Admin $user */
+
+            return $user->isOwner();
         });
     }
 
@@ -88,9 +93,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [
-            new \Tightenco\NovaStripe\NovaStripe,
-        ];
+        if (tenancy()->initialized) {
+            return [];
+        } else {
+            return [
+                new \Tightenco\NovaStripe\NovaStripe,
+            ];
+        }
     }
 
     /**
@@ -101,5 +110,21 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         //
+    }
+
+    protected function resources()
+    {
+        if (tenancy()->initialized) {
+            Nova::resources([
+                Post::class,
+                User::class,
+            ]);
+        } else {
+            Nova::resources([
+                Admin::class,
+                TenantResource::class,
+                Domain::class,
+            ]);
+        }
     }
 }

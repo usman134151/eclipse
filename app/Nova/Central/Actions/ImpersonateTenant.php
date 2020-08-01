@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Nova\Actions;
+namespace App\Nova\Central\Actions;
 
 use App\Tenant;
 use Illuminate\Bus\Queueable;

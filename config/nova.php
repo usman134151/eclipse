@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'domain' => env('NOVA_DOMAIN_NAME', 'saas.test'),
+    'domain' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -98,6 +98,8 @@ return [
     */
 
     'middleware' => [
+        'tenant',
+        'universal',
         'web',
         Authenticate::class,
         DispatchServingNovaEvent::class,

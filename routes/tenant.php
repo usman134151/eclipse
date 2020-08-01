@@ -5,9 +5,10 @@ use App\Http\Middleware\OwnerOnly;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 Route::group([
-    'middleware' => 'tenant', // See the middleware group in Http Kernel
+    'middleware' => ['tenant', PreventAccessFromCentralDomains::class], // See the middleware group in Http Kernel
     'as' => 'tenant.',
 ], function () {
     Route::redirect('/', '/home');

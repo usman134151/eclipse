@@ -24,11 +24,13 @@ return [
      * To configure their behavior, see the config keys below.
      */
     'bootstrappers' => [
-        'database' => Stancl\Tenancy\Bootstrappers\DatabaseTenancyBootstrapper::class,
-        'cache' => Stancl\Tenancy\Bootstrappers\CacheTenancyBootstrapper::class,
-        'filesystem' => Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
-        'queue' => Stancl\Tenancy\Bootstrappers\QueueTenancyBootstrapper::class,
-        // 'redis' => Stancl\Tenancy\Bootstrappers\RedisTenancyBootstrapper::class, // Note: phpredis is needed
+        Stancl\Tenancy\Bootstrappers\DatabaseTenancyBootstrapper::class,
+        Stancl\Tenancy\Bootstrappers\CacheTenancyBootstrapper::class,
+        Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
+        Stancl\Tenancy\Bootstrappers\QueueTenancyBootstrapper::class,
+        // Stancl\Tenancy\Bootstrappers\RedisTenancyBootstrapper::class, // Note: phpredis is needed
+
+        App\TenancyBootstrappers\NovaAuthGuardBootstrapper::class,
     ],
 
     /**

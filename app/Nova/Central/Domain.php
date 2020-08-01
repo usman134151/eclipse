@@ -1,28 +1,30 @@
 <?php
 
-namespace App\Nova;
+namespace App\Nova\Central;
 
+use App\Nova\Resource;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Admin extends Resource
+class Domain extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Admin::class;
+    public static $model = \App\Domain::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'domain';
 
     /**
      * The columns that should be searched.
@@ -30,7 +32,7 @@ class Admin extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'domain',
     ];
 
     /**
@@ -44,22 +46,12 @@ class Admin extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
+            Text::make('Domain')->rules('required'),
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            Boolean::make('Primary', 'is_primary')->rules('required'),
+            Boolean::make('Fallback', 'is_fallback')->rules('required'),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:admins,email')
-                ->updateRules('unique:admins,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
+            BelongsTo::make('Tenant'),
         ];
     }
 

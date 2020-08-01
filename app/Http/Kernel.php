@@ -48,7 +48,6 @@ class Kernel extends HttpKernel
 
         'tenant' => [
             'web',
-            PreventAccessFromCentralDomains::class,
             InitializeTenancyByDomainOrSubdomain::class,
         ],
 

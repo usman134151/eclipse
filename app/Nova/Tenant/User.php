@@ -1,34 +1,30 @@
 <?php
 
-namespace App\Nova;
+namespace App\Nova\Tenant;
 
-use App\Nova\Actions\ImpersonateTenant;
-use Carbon\Carbon;
+use App\Nova\Resource;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Tenant extends Resource
+class User extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Tenant::class;
+    public static $model = \App\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -36,7 +32,7 @@ class Tenant extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name', 'email',
     ];
 
     /**
@@ -48,40 +44,24 @@ class Tenant extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make('ID')
-                ->sortable()
-                ->help('Optional.')
-                ->rules('nullable', 'max:254')
-                ->creationRules('unique:tenants,id')
-                ->updateRules('unique:tenants,id,{{resourceId}}'),
+            ID::make()->sortable(),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:tenants,email')
-                ->updateRules('unique:tenants,email,{{resourceId}}'),
+            Gravatar::make()->maxWidth(50),
 
             Text::make('Name')
-                ->sortable()
+            ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Company')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            Text::make('Email')
+            ->sortable()
+                ->rules('required', 'email', 'max:254')
+                ->creationRules('unique:admins,email')
+                ->updateRules('unique:admins,email,{{resourceId}}'),
 
             Password::make('Password')
-                ->onlyOnForms()
+            ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
-            
-            DateTime::make('Trial until', 'trial_ends_at')->rules('required')
-                ->default(Carbon::now()->addDays(config('saas.trial_days'))),
-
-            Boolean::make('Ready')
-                ->readonly()
-                ->onlyOnDetail(),
-
-            HasMany::make('Domains', 'domains', Domain::class),
         ];
     }
 
@@ -126,8 +106,6 @@ class Tenant extends Resource
      */
     public function actions(Request $request)
     {
-        return [
-            new ImpersonateTenant,
-        ];
+        return [];
     }
 }
