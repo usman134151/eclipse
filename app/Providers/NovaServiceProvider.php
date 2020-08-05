@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Nova\Central\Admin;
 use App\Nova\Central\Domain;
 use App\Nova\Central\Tenant as TenantResource;
+use App\Nova\Central\SubscriptionCancelation;
 use App\Nova\Tenant\Post;
 use App\Nova\Tenant\User;
 use App\Tenant;
@@ -124,6 +125,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 Admin::class,
                 TenantResource::class,
                 Domain::class,
+                SubscriptionCancelation::class,
             ]);
         }
     }

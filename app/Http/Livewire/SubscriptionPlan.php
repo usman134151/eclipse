@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\SubscriptionCancelation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -51,9 +53,16 @@ class SubscriptionPlan extends Component
         $this->emit('billingUpdated');
     }
 
-    public function cancel()
+    public function cancel($cancelationReason)
     {
-        tenant()->subscription('default')->cancel();
+        DB::transaction(function () use ($cancelationReason) {
+            tenant()->subscription('default')->cancel();
+    
+            SubscriptionCancelation::create([
+                'tenant_id' => tenant('id'),
+                'reason' => $cancelationReason,
+            ]);
+        });
 
         $this->plan = '';
 

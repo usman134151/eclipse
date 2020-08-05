@@ -3343,16 +3343,16 @@
         },
         {
             "name": "stancl/tenancy",
-            "version": "v3.1.0",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stancl/tenancy.git",
-                "reference": "dbc77a110e9784f4093d1cb4e1a0ec3f6e58fcd3"
+                "reference": "a002f59420d68190ffbaf6791049fe496b07ec5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stancl/tenancy/zipball/dbc77a110e9784f4093d1cb4e1a0ec3f6e58fcd3",
-                "reference": "dbc77a110e9784f4093d1cb4e1a0ec3f6e58fcd3",
+                "url": "https://api.github.com/repos/stancl/tenancy/zipball/a002f59420d68190ffbaf6791049fe496b07ec5d",
+                "reference": "a002f59420d68190ffbaf6791049fe496b07ec5d",
                 "shasum": ""
             },
             "require": {
@@ -3426,7 +3426,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-07-06T12:45:10+00:00"
+            "time": "2020-08-01T13:07:17+00:00"
         },
         {
             "name": "stancl/virtualcolumn",
