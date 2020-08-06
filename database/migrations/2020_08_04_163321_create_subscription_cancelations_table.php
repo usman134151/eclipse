@@ -16,12 +16,12 @@ class CreateSubscriptionCancelationsTable extends Migration
         Schema::create('subscription_cancelations', function (Blueprint $table) {
             $table->id();
 
-            $table->string('tenant_id');
+            $table->string('tenant_id')->nullable();
             $table->string('reason');
 
             $table->timestamps();
 
-            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('set null')->onDelete('set null');
         });
     }
 
