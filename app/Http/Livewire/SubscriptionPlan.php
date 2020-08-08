@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\SubscriptionCancelation;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -40,8 +41,11 @@ class SubscriptionPlan extends Component
         } else {
             $subscription = tenant()->newSubscription('default', $this->plan);
 
-            if (config('saas.trial_days')) {
-                $subscription->trialUntil(tenant()->trial_ends_at);
+            /** @var Carbon $trial_end */
+            $trial_end = tenant()->trial_ends_at;
+
+            if (config('saas.trial_days') && $trial_end->isFuture()) {
+                $subscription->trialUntil($trial_end);
             }
 
             $subscription->create(tenant()->defaultPaymentMethod()->asStripePaymentMethod());
