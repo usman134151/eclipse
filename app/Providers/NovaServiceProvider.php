@@ -59,9 +59,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            /** @var \App\User|\App\Admin $user */
+            if ($user instanceof \App\User) {
+                return $user->isOwner();
+            }
 
-            return $user->isOwner();
+            /** @var \App\Admin $user */
+
+            return true;
         });
     }
 
