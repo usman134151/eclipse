@@ -19,6 +19,8 @@ The boilerplate uses Laravel 7. Both PHP 7.2 and 7.4 are supported.
 These are the steps to get the app up and running. Once you're using the app, feel free to change any individual parts.
 
 > Note: If you don't want to use Nova, remove it like this: https://github.com/tenancy-for-laravel/saas-boilerplate/issues/6. See the *Nova admin panel* section for an explanation why I chose Nova.
+>
+> Also note that **for production deploys, you will need to have Nova credentials in auth.json**
 
 1. Clone the repository
 2. `composer install`
@@ -346,6 +348,8 @@ You will need to use a supported DNS provider for the wildcard certificate. I re
 ### Ploi - Customer domains & tenant DB management
 
 **If you haven't set up a Ploi site before, watch this video: [Deploying SaaS boilerplate to Ploi](https://youtu.be/FUm5vnHnZNQ)**
+
+> Note that **for production deploys, you will need to have Nova credentials in auth.json**
 
 Open your `.env` file and set the Ploi environment variables. You can read the server & site from the URL in your Ploi dashboard. In my case:
 > /panel/servers/**9690**/sites/**19533**
