@@ -1,24 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Exceptions\NoPrimaryDomainException;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Cashier\Billable;
-use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDomains;
-use Illuminate\Database\Eloquent\Collection;
+use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 
 /**
  * @property-read string $plan_name The tenant's subscription plan name
  * @property-read bool $on_active_subscription Is the tenant actively subscribed (not on grace period)
  * @property-read bool $can_use_app Can the tenant use the application (is on trial or subscription)
- * 
+ *
  * @property-read Domain[]|Collection $domains
  */
 class Tenant extends BaseTenant implements TenantWithDatabase
 {
+    use HasFactory;
     use HasDatabase, HasDomains, Billable;
 
     protected $casts = [
@@ -31,8 +33,8 @@ class Tenant extends BaseTenant implements TenantWithDatabase
             'id',
             'email',
             'stripe_id',
-            'card_brand',
-            'card_last_four',
+            'pm_type',
+            'pm_last_four',
             'trial_ends_at',
         ];
     }
@@ -54,7 +56,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         }
 
         $domain = $this->primary_domain->domain;
-        
+
         $parts = explode('.', $domain);
         if (count($parts) === 1) { // If subdomain
             $domain = Domain::domainFromSubdomain($domain);
@@ -77,13 +79,13 @@ class Tenant extends BaseTenant implements TenantWithDatabase
      */
     public function getPlanNameAttribute(): string
     {
-        return config('saas.plans')[$this->subscription('default')->stripe_plan];
+        return config('saas.plans')[$this->subscription('default')->stripe_price];
     }
 
     /**
      * Is the tenant actively subscribed (not on grace period).
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getOnActiveSubscriptionAttribute(): bool
     {
@@ -93,7 +95,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     /**
      * Can the tenant use the application (is on trial or subscription).
      *
-     * @return boolean
+     * @return bool
      */
     public function getCanUseAppAttribute(): bool
     {

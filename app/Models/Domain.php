@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Exceptions\DomainCannotBeChangedException;
-use Stancl\Tenancy\Database\Models\Domain as BaseDomain;
 use Illuminate\Support\Str;
+use Stancl\Tenancy\Database\Models\Domain as BaseDomain;
 
 /**
  * @property int $id
