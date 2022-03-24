@@ -49,7 +49,7 @@ class UserSettingsController extends Controller
     public function password(Request $request)
     {
         $validated = $this->validate($request, [
-            'password' => 'required|password',
+            'password' => 'required|current_password',
             'new_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
