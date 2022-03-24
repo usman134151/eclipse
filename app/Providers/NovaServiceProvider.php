@@ -102,7 +102,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             return [];
         } else {
             return [
-                new \Tightenco\NovaStripe\NovaStripe,
+                new \Tighten\NovaStripe\NovaStripe,
             ];
         }
     }
