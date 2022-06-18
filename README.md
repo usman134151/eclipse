@@ -21,6 +21,8 @@ These are the steps to get the app up and running. Once you're using the app, fe
 > Note: If you don't want to use Nova, remove it like this: https://github.com/tenancy-for-laravel/saas-boilerplate/issues/6. See the *Nova admin panel* section for an explanation why I chose Nova.
 >
 > Also note that **for production deploys, you will need to have Nova credentials in auth.json**
+> 
+> And final Note about Nova: the master branch uses Nova 3, **if you want to use Nova 4 see [#92](https://github.com/tenancy-for-laravel/saas-boilerplate/issues/92)**
 
 1. Clone the repository
 2. `composer install` (or `composer update` if you see errors related to your PHP version)
