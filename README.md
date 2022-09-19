@@ -1,8 +1,11 @@
 # Multi-tenant SaaS boilerplate
 
-# Gumroad / GitHub
+# License information
 
-The boilerplate is delivered as a file via Gumroad (for accessibility & legal reasons), but I recommend using the GitHub repo. During purchase, you were asked for your GH username. If you supplied one, you will be invited to the GitHub repository. There you'll be able to view changes, interact with the community, suggest features, report bugs, and even make PRs. Like any other GitHub repo, except it's private.
+- Your license includes access to this repo for 1 GitHub user.
+- You may share the codebase with your entire team.
+- You may use the codebase for an unlimited number of projects.
+- **YOU MAY NOT REPUBLISH ANY PARTS OF THE CODE PUBLICLY**. Your repo will get removed if we contact GitHub, so make sure you keep all repos private! You'll also get kicked from this repo and will not receive any future updates.
 
 # Basic information
 
