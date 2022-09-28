@@ -6,7 +6,7 @@
 @if (session('status'))
 <div class="rounded-md bg-green-50 p-4">
     <div class="flex">
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
             <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
             </svg>
@@ -46,26 +46,19 @@
         <form method="POST" action="{{ route('tenant.password.email') }}">
             @csrf
             <div>
-                <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
-                    {{ __('Email address') }}:
-                </label>
+                <x-form.label for="email" value="Email address"/>
+
                 <div class="mt-1 rounded-md">
-                    <input name="email" id="email" type="email" required class="shadow-sm appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-500 @enderror" name="email" value="{{ old('email', request()->query('email')) }}" autofocus />
-                    
-                    @error('email')
-                    <p class="text-red-500 text-xs italic mt-4">
-                        {{ $message }}
-                    </p>
-                    @enderror
+                    <x-form.input name="email" id="email" type="email" required value="{{ old('email', request()->query('email')) }}" autofocus/>
+
+                    <x-form.input-error for="email" />
                 </div>
             </div>
             
             
             <div class="mt-6">
                 <span class="block w-full rounded-md shadow-sm">
-                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                        {{ __('Send password reset link') }}
-                    </button>
+                    <x-button class="w-full" type="submit">Send password reset link</x-button>
                 </span>
             </div>
         </form>

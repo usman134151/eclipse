@@ -4,9 +4,7 @@
 
 <div class="">
   <div class="max-w-7xl mx-auto">
-    <a href="{{ route('tenant.posts.create') }}" class="px-5 py-2 text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 active:bg-indigo-700 transition ease-in-out duration-150">
-      New post
-    </a>
+    <x-button class="px-5" as="a" href="{{ route('tenant.posts.create') }}">New post</x-button>
     <div class="">
       @foreach($posts as $post)
       <a href="{{ route('tenant.posts.show', $post) }}">

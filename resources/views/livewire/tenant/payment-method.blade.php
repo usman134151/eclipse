@@ -20,22 +20,20 @@
                     <div class="border-t border-gray-200"></div>
                 </div>
             </div>
-            <label for="card-holder-name" class="block text-sm font-medium leading-5 text-gray-700">Card holder name
-            </label>
+            <x-form.label for="card-holder-name" value="Card holder name"/>
+
             <div class="mt-1 relative rounded-md shadow-sm">
-                <input id="card-holder-name" type="text" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Taylor Otwell">
+                <x-form.input id="card-holder-name" type="text" placeholder="Taylor Otwell"/>
             </div>
 
             <!-- Stripe Elements Placeholder -->
             <div class="mt-2 relative rounded-md shadow-sm" wire:ignore>
-                <div id="card-element" class="form-input block w-full sm:text-sm sm:leading-5"></div>
+                <div id="card-element" class="form-input py-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 placeholder-gray-400 rounded-md shadow-sm mt-1 block w-full"></div>
             </div>
             <p id="payment-method-message" class="text-sm"></p>
         </div>
         <div class="px-4 sm:px-6 py-2 bg-gray-50 flex justify-end">
-            <button id="card-button" data-secret="{{ $intent->client_secret }}" class="py-1 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue focus:bg-indigo-500 active:bg-indigo-600 transition duration-150 ease-in-out">
-                Update payment method
-            </button>
+            <x-button id="card-button" data-secret="{{ $intent->client_secret }}">Update payment method</x-button>
         </div>
     </div>
 </div>

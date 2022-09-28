@@ -52,9 +52,7 @@
                         </div>
 
                         <div class="flex flex-wrap">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold  py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                {{ __('Reset Password') }}
-                            </button>
+                            <x-button class="w-full" type="submit">Reset Password</x-button>
                         </div>
                     </form>
 

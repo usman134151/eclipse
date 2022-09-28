@@ -1,7 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [
+  content: [
     './resources/views/**/*.blade.php',
     './resources/css/**/*.css',
   ],
@@ -9,11 +10,14 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        colors: {
+          green: colors.emerald,
+        }
       },
     },
   },
   plugins: [
-    require('@tailwindcss/ui'),
-    require('@tailwindcss/custom-forms'),
+      require('@tailwindcss/forms'),
   ]
 }
+
