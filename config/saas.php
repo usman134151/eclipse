@@ -4,8 +4,8 @@ return [
     'trial_days' => 14,
 
     'plans' => [
-        'price_1Jg5QKGlrejN28VyHdwwSIrD' => 'Pro — $10',
-        'price_1Jg5QKGlrejN28VyCaMaTd7X' => 'Premium — $20',
+    	'march-monthly' => 'Monthly - $299',
+	'march-yearly'=>'Yearly - $3588'
     ],
 
     'cancelation_reasons' => [
