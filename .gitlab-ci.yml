@@ -1,0 +1,13 @@
+stages:       
+  - deploy
+
+Build-Dev:
+  stage: deploy
+  script:
+    - echo "Compiling the code..."
+    - sudo -s bash deploy-dev.sh
+    - echo "Compile complete"
+  tags: 
+    - ics-dev-abmasoft
+  only:
+    - master
