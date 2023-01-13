@@ -8,7 +8,7 @@
         <?php /*
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="{{asset('video/video.json')}}" background="transparent" speed="1" classname="w-full" loop="" autoplay="true"></lottie-player>
-        */ ?>*
+        */ ?>
 
 <svg width="590" height="487" viewBox="0 0 590 487" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M582.97 486.013C586.399 486.013 589.179 483.233 589.179 479.804C589.179 476.366 586.399 473.586 582.97 473.586H6.20849C2.78037 473.586 0 476.366 0 479.804C0 483.233 2.78037 486.013 6.20849 486.013H582.97Z" fill="url(#paint0_linear_2664_98182)"/>
