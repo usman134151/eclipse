@@ -4,3 +4,7 @@
 .btn-primary {
 	background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
 }
+
+.text-primary {
+	color: #023DB0;
+}
