@@ -1,4 +1,4 @@
-@extends('layouts.tenant')
+@extends('layouts.tenant-login')
 
 @section('content')
 <div class="w-8/12 flex flex-column justify-center items-center bg-[#f8f8f8]">
