@@ -3,9 +3,10 @@
 @section('content')
 
 <div class="text-center leading-loose">
-    <h1 class="font-bold text-4xl">Awesome SaaS</h1>
-    <p>This is a sample landing page. Of course, replace it completely.</p>
-    <p>It's meant to guide you towards the onboarding flow &mdash; the registration feature and the login feature.</p>
+    <h1 class="font-bold text-4xl">Eclipse Scheduling</h1>
+    <p>Our intuitive, secure system improves the efficiency by which your staff, customers, and providers manage language interpreting and accommodation services. Eclipse Scheduling was envisioned, designed, and developed by a team of professional interpreters and accommodation professionals with more than 50-years of industry experience.</p>
+    <p>After years of the industry feeling pressure to accommodate out-dated and overly-restrictive scheduling platforms, the Eclipse Scheduling team recognized how operations could be improved through innovations that can only be recognized by professionals actively working in the field.</p>
+    <p>Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs. Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs</p>
 </div>
 
 <div class="flex justify-center mt-4">
