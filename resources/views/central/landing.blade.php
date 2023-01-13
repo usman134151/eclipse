@@ -4,7 +4,7 @@
 
 <div class="flex max-w-2xl">
 <div class="lg:w-5/12">
-    <img src="{{ assets/img/img-content-1.jpg }}" alt="img-content-1" class="w-full">
+    <img src="{{asset('images/img-content-1.jpg')}}" alt="img-content-1" class="w-full">
 </div>
 <div class="lg:w-7/12">
     <h1 class="font-semibold text-4xl mb">Eclipse Scheduling</h1>
