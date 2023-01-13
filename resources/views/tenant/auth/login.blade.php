@@ -5,7 +5,8 @@
 
     <div class="w-8/12 flex flex-column justify-center items-center bg-[#f8f8f8]">
       <div class="w-7/12">
-        <img src="{{asset('images/img-content-1.jpg')}}" alt="img-content-1" class="w-full">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://abmasoft.dev-tenant.eclipsescheduling.com/assets/video/video.json" background="transparent" speed="1" classname="w-full" loop="" autoplay="true"></lottie-player>
       </div>
     </div>
     <div class="w-4/12 flex flex-col justify-center px-14">
