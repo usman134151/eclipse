@@ -3,3 +3,8 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+.btn-primary {
+	background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
+}
