@@ -12,3 +12,7 @@
 .w-sidebar {
 	background-color: #ffffff;
 }
+
+.h-header .no-underline .dim.font-bold.text-90.mr-6 {
+	display: none;
+}
