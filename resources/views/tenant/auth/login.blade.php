@@ -1,6 +1,4 @@
-<?php /*
 @extends('layouts.tenant')
-*/ ?>
 
 @section('content')
 
