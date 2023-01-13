@@ -1,4 +1,4 @@
-@extends('tenant-login')
+@extends('layouts.tenant-login')
 
 @section('content')
 
