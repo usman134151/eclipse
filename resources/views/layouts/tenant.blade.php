@@ -150,6 +150,7 @@
     @yield('content')
     </div>
 </div>
+
     </div>
 
     @stack('body')
