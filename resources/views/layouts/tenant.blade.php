@@ -21,7 +21,7 @@
 </head>
 
 <body class="bg-gray-100 h-screen antialiased">
-    <div id="app">
+    <div id="app" class="flex h-screen">
         <?php /*
         <nav class="bg-gray-900">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
