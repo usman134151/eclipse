@@ -46,7 +46,7 @@
                     </svg>
                 </a>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center px-4">
                 <x-button as="a" href="{{ route('central.tenants.login') }}">Login</x-button>
                 <x-button class="ml-2" as="a" href="{{ route('central.tenants.register') }}">Register</x-button>
             </div>
