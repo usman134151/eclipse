@@ -2,7 +2,7 @@
 
 @php
   $variantClass = [
-      'primary' => 'bg-gradient-to-r from-brand-tertiary to-brand-secondary hover:bg-gradient-to-l hover:from-ep-blue hover:to-ep-blue text-white',
+      'primary' => 'bg-gradient-to-r from-[#213969] to-[#204387] hover:bg-gradient-to-l hover:from-[#023DB0] hover:to-[#023DB0] text-white',
       'secondary' => 'bg-white text-red-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500',
   ][$variant];
 @endphp
