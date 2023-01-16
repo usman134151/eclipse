@@ -22,7 +22,7 @@
 
 <body class="bg-gray-100 h-screen antialiased">
     <div id="app">
-        <div class="fixed left-0 top-0 bottom-0 w-2/12 bg-white overflow-y-auto">
+        <div class="fixed left-0 top-0 bottom-0 w-2/12 bg-white overflow-y-auto px-3">
             @include('partials.sidebar')
         </div>
         <div class="w-10/12 ml-auto">
