@@ -55,27 +55,6 @@
     </ul>
   </div>
   <div class="shadow-bottom"></div>
-  <div x-data="" class="navbar">
-	  <div x-on:click="console.log('clicked')" class="navitem msn">
-	    <div>
-	      <svg
-	        xmlns="http://www.w3.org/2000/svg"
-	        class="h-6 w-6"
-	        fill="none"
-	        viewBox="0 0 24 24"
-	        stroke="currentColor"
-	      >
-	        <path
-	          stroke-linecap="round"
-	          stroke-linejoin="round"
-	          stroke-width="2"
-	          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-	        />
-	      </svg>
-	      <div class="navtitle">Title1</div>
-	    </div>
-	  </div>
-	</div>
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
       <li class="nav-item  active ">
@@ -114,8 +93,33 @@
           <span class="menu-item">Chat</span>
         </a>
       </li>
-      <li class="nav-item has-sub">
-        <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+      <li class="relative nav-item has-sub" x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+        <a x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.25 2.25H12.75V1.5C12.75 1.05 12.45 0.75 12 0.75C11.55 0.75 11.25 1.05 11.25 1.5V2.25H6.75V1.5C6.75 1.05 6.45 0.75 6 0.75C5.55 0.75 5.25 1.05 5.25 1.5V2.25H3.75C2.475 2.25 1.5 3.225 1.5 4.5V15C1.5 16.275 2.475 17.25 3.75 17.25H14.25C15.525 17.25 16.5 16.275 16.5 15V4.5C16.5 3.225 15.525 2.25 14.25 2.25ZM3.75 3.75H5.25V4.5C5.25 4.95 5.55 5.25 6 5.25C6.45 5.25 6.75 4.95 6.75 4.5V3.75H11.25V4.5C11.25 4.95 11.55 5.25 12 5.25C12.45 5.25 12.75 4.95 12.75 4.5V3.75H14.25C14.7 3.75 15 4.05 15 4.5V6.75H3V4.5C3 4.05 3.3 3.75 3.75 3.75ZM3.75 15.75H14.25C14.7 15.75 15 15.45 15 15V8.25H3V15C3 15.45 3.3 15.75 3.75 15.75Z"></path>
             <mask id="mask0_204_9002" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="0" width="16" height="18">
@@ -127,7 +131,12 @@
           </svg>
           <span class="menu-item">Assignments</span>
         </a>
-        <ul class="menu-content " id="Bookings">
+        <ul class="menu-content " id="Bookings" x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;">
           <li class="nav-item ">
             <a class="nav-link" href="">
               <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
