@@ -10,7 +10,7 @@
         @apply flex items-center space-x-2 py-2;
     }
     .navigation ul.menu-content {
-    	@apply pl-3 hidden;
+    	@apply pl-3;
     }
     .navigation li.has-sub > a {
     	@apply relative;
