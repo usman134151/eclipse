@@ -16,26 +16,11 @@
 
                     <x-form.input-error for="title" />
                 </div>
-                <?php /*
-                <div class="sm:col-span-3">
-                    <x-form.label for="title" value="Title"/>
-
-                    <div class="mt-1 flex rounded-md shadow-sm">
-                        <x-form.select>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </x-form.select>
-                    </div>
-
-                    <x-form.input-error for="title" />
-                </div>
-                */ ?>
 
                 <div class="sm:col-span-6">
                     <x-form.label for="body" value="Body"/>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <x-form-textarea id="body" name="body" rows="5">{{ old('body') }}</x-form-textarea>
+                        <textarea id="body" name="body" rows="5" class="placeholder-gray-500 leading-none text-gray-800 rounded w-full py-2 px-2 border border-gray-600 active:border-[#213969] transition ease-in-out focus:outline-none focus:border-[#023DB0] focus:ring-0 mt-1 block w-full @error('body') border-red-500 @enderror">{{ old('body') }}</textarea>
                     </div>
                     <x-form.input-error for="body" />
                 </div>
