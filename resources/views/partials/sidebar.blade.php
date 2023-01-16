@@ -185,8 +185,35 @@
               <span class="menu-item">Draft Assignments</span>
             </a>
           </li>
-          <li class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+          <li class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg class="fill-none" width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
                 <mask id="path-1-outside-1_3029_106293" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="9">
                   <rect fill="white" width="18" height="9"></rect>
@@ -198,7 +225,13 @@
               </svg>
               <span class="menu-item">Quotes &amp; Leads</span>
             </a>
-            <ul class="menu-content  " id="Quote">
+            <ul class="menu-content  " id="Quote"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;">
               <li class="nav-item ">
                 <a class="nav-link" href="">
                   <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -357,8 +390,35 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item has-sub">
-        <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+      <li class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+        <a cla
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"ss="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M2.25 1.5H7.5C7.95 1.5 8.25 1.8 8.25 2.25V7.5C8.25 7.95 7.95 8.25 7.5 8.25H2.25C1.8 8.25 1.5 7.95 1.5 7.5V2.25C1.5 1.8 1.8 1.5 2.25 1.5ZM3 6.75H6.75V3H3V6.75ZM15.75 1.5H10.5C10.05 1.5 9.75 1.8 9.75 2.25V7.5C9.75 7.95 10.05 8.25 10.5 8.25H15.75C16.2 8.25 16.5 7.95 16.5 7.5V2.25C16.5 1.8 16.2 1.5 15.75 1.5ZM11.25 6.75H15V3H11.25V6.75ZM15.75 9.75H10.5C10.05 9.75 9.75 10.05 9.75 10.5V15.75C9.75 16.2 10.05 16.5 10.5 16.5H15.75C16.2 16.5 16.5 16.2 16.5 15.75V10.5C16.5 10.05 16.2 9.75 15.75 9.75ZM11.25 15H15V11.25H11.25V15ZM7.5 9.75H2.25C1.8 9.75 1.5 10.05 1.5 10.5V15.75C1.5 16.2 1.8 16.5 2.25 16.5H7.5C7.95 16.5 8.25 16.2 8.25 15.75V10.5C8.25 10.05 7.95 9.75 7.5 9.75ZM3 15H6.75V11.25H3V15Z"></path>
             <mask id="mask0_204_8998" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
@@ -370,7 +430,13 @@
           </svg>
           <span class="menu-item">Providers</span>
         </a>
-        <ul role="menu" class="menu-content  " id="Providers">
+        <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content  " id="Providers">
           <li role="menuitem" class="nav-item ">
             <a class="nav-link" href="">
               <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -434,14 +500,47 @@
               <span class="menu-item">Deactivated Providers</span>
             </a>
           </li>
-          <li role="menuitem" class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+          <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.63636 15.5455V17.2727H1.72727C0.777273 17.2727 0 16.4955 0 15.5455V1.72727C0 0.777273 0.777273 0 1.72727 0H17.2727C18.2227 0 19 0.777273 19 1.72727V8.72273L18.8273 8.55C18.3955 8.11818 17.8773 7.85909 17.2727 7.85909V3.45455H1.72727V15.5455H8.63636ZM17.6182 9.75909L18.7409 10.8818C18.9136 11.0545 18.9136 11.4 18.7409 11.5727L17.8773 12.4364L16.0636 10.6227L16.9273 9.75909C17.0136 9.67273 17.1 9.58636 17.2727 9.58636C17.4455 9.58636 17.5318 9.67273 17.6182 9.75909M17.3591 12.8682L12.1773 18.1364H10.3636V16.3227L15.6318 11.0545L17.3591 12.8682V12.8682Z"></path>
               </svg>
               Provider Applicants
             </a>
-            <ul role="menu" class="menu-content  " id="ProSc">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content  " id="ProSc">
               <li role="menuitem" class="nav-item ">
                 <a class="nav-link" href="">
                   <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -498,8 +597,35 @@
           <span class="menu-item">System Logs</span>
         </a>
       </li>
-      <li class="nav-item has-sub">
-        <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+      <li class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+        <a cla
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"ss="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M5.25 5.25C5.25 3.15 6.9 1.5 9 1.5C11.1 1.5 12.75 3.15 12.75 5.25C12.75 7.35 11.1 9 9 9C6.9 9 5.25 7.35 5.25 5.25ZM15.75 14.25V15.75C15.75 16.2 15.45 16.5 15 16.5C14.55 16.5 14.25 16.2 14.25 15.75V14.25C14.25 12.975 13.275 12 12 12H6C4.725 12 3.75 12.975 3.75 14.25V15.75C3.75 16.2 3.45 16.5 3 16.5C2.55 16.5 2.25 16.2 2.25 15.75V14.25C2.25 12.15 3.9 10.5 6 10.5H12C14.1 10.5 15.75 12.15 15.75 14.25ZM9 7.5C7.725 7.5 6.75 6.525 6.75 5.25C6.75 3.975 7.725 3 9 3C10.275 3 11.25 3.975 11.25 5.25C11.25 6.525 10.275 7.5 9 7.5Z"></path>
             <mask id="mask0_204_8985" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="1" width="14" height="16">
@@ -511,15 +637,54 @@
           </svg>
           <span class="menu-item">Settings</span>
         </a>
-        <ul role="menu" class="menu-content  " id="Settings">
-          <li role="menuitem" class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+        <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content  " id="Settings">
+          <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.18848 18.0942C9.33298 18.3267 9.49634 18.5403 9.67853 18.7351C9.86073 18.9298 10.0555 19.1183 10.2628 19.3005H0V0H10.5079L15.6817 5.17382V9.82932C15.2859 9.6911 14.8838 9.6 14.4754 9.55602V6.03141H9.65026V1.20628H1.20628V18.0942H9.18848ZM10.8565 2.06387V4.82513H13.6178L10.8565 2.06387ZM9.65026 11.4691C9.56859 11.5634 9.49005 11.6576 9.41466 11.7518C9.33927 11.8461 9.26387 11.9497 9.18848 12.0628H3.61885V10.8565H9.65026V11.4691ZM3.61885 14.4754V13.2691H8.44398V13.8346C8.44398 13.9225 8.43141 14.0262 8.40628 14.1455C8.38115 14.2649 8.3623 14.3749 8.34974 14.4754H3.61885ZM12.0628 8.44398V9.65026H3.61885V8.44398H12.0628ZM16.888 15.0785C16.888 15.2733 16.8691 15.4649 16.8314 15.6534L18 16.134L17.5382 17.2555L16.3696 16.7654C16.1497 17.0859 15.8796 17.356 15.5592 17.5759L16.0492 18.7445L14.9277 19.2063L14.4471 18.0377C14.2586 18.0754 14.067 18.0942 13.8723 18.0942C13.6775 18.0942 13.4859 18.0754 13.2974 18.0377L12.8168 19.2063L11.6953 18.7445L12.1853 17.5759C11.8649 17.356 11.5948 17.0859 11.3749 16.7654L10.2063 17.2555L9.7445 16.134L10.9131 15.6534C10.8754 15.4649 10.8565 15.2733 10.8565 15.0785C10.8565 14.8838 10.8754 14.6921 10.9131 14.5037L9.7445 14.023L10.2063 12.9016L11.3749 13.3916C11.488 13.2346 11.6105 13.0869 11.7424 12.9487C11.8743 12.8105 12.022 12.688 12.1853 12.5812L11.6953 11.4126L12.8168 10.9508L13.2974 12.1194C13.4859 12.0817 13.6775 12.0628 13.8723 12.0628C14.067 12.0628 14.2586 12.0817 14.4471 12.1194L14.9277 10.9508L16.0492 11.4126L15.5592 12.5812C15.8796 12.801 16.1497 13.0712 16.3696 13.3916L17.5382 12.9016L18 14.023L16.8314 14.5037C16.8691 14.6921 16.888 14.8838 16.888 15.0785ZM15.6817 15.0785C15.6817 14.8272 15.6346 14.5916 15.5403 14.3717C15.4461 14.1518 15.3173 13.9602 15.1539 13.7969C14.9906 13.6335 14.799 13.5047 14.5791 13.4105C14.3592 13.3162 14.1236 13.2691 13.8723 13.2691C13.6209 13.2691 13.3853 13.3162 13.1654 13.4105C12.9455 13.5047 12.7539 13.6335 12.5906 13.7969C12.4272 13.9602 12.2984 14.1518 12.2042 14.3717C12.1099 14.5916 12.0628 14.8272 12.0628 15.0785C12.0628 15.3298 12.1099 15.5654 12.2042 15.7853C12.2984 16.0052 12.4272 16.1969 12.5906 16.3602C12.7539 16.5236 12.9455 16.6524 13.1654 16.7466C13.3853 16.8408 13.6209 16.888 13.8723 16.888C14.1236 16.888 14.3592 16.8408 14.5791 16.7466C14.799 16.6524 14.9906 16.5236 15.1539 16.3602C15.3173 16.1969 15.4461 16.0052 15.5403 15.7853C15.6346 15.5654 15.6817 15.3298 15.6817 15.0785Z"></path>
               </svg>
               <span class="menu-item">Business Profile &amp; Settings</span>
             </a>
-            <ul role="menu" class="menu-content " id="Business-rofile-settings">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="Business-rofile-settings">
               <li role="menuitem" class="nav-item  ">
                 <a class="nav-link" href="">
                   <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -579,8 +744,35 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-sub">
-            <a class="d-flex align-items-start" href="#" aria-haspopup="true" aria-expanded="true">
+          <li class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-start" href="#" aria-haspopup="true" aria-expanded="true">
               <svg class="fill-none" width="21" height="18" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.0382 16.6925C12.9573 16.6925 12.8789 16.6478 12.8387 16.5707L11.7592 14.4775C11.702 14.3679 11.7453 14.232 11.8565 14.1761C11.9661 14.1189 12.102 14.1623 12.1582 14.2734L13.2377 16.3663C13.2949 16.4759 13.2516 16.6115 13.1407 16.6677C13.1079 16.6851 13.0732 16.6925 13.0382 16.6925Z"></path>
                 <path d="M7.96177 16.6924C7.92675 16.6924 7.89205 16.6851 7.85928 16.6677C7.74972 16.6102 7.70602 16.4759 7.76225 16.3663L8.84179 14.2721C8.89931 14.1623 9.03393 14.1189 9.14349 14.1748C9.25337 14.232 9.29707 14.3666 9.24084 14.4765L8.1613 16.572C8.12113 16.6491 8.04274 16.6924 7.96177 16.6924Z"></path>
@@ -612,7 +804,13 @@
               </svg>
               <span class="menu-item text-wrap">Accommodations &amp; Services Setup</span>
             </a>
-            <ul role="menu" class="menu-content " id="Accommodation">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="Accommodation">
               <li role="menuitem" class="nav-item  ">
                 <a class="nav-link" href="https://production-qa.eclipsescheduling.com/admin/accommodation">
                   <svg class="fill-none" width="23" height="19" viewBox="0 0 23 19" xmlns="http://www.w3.org/2000/svg">
@@ -641,8 +839,35 @@
                   <span class="menu-item">All Accommodations</span>
                 </a>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -807,8 +1032,35 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -841,8 +1093,35 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -897,8 +1176,35 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -964,8 +1270,35 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -1042,8 +1375,35 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -1109,8 +1469,35 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="nav-link" aria-haspopup="true" aria-expanded="true">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="nav-link" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0894 3.24854H11.3553V4.50459H12.8295V19.5288H1.17047V4.50459H2.64504V3.24854H0.910558C0.39074 3.24854 0 3.68137 0 4.15839V19.8325C0 20.352 0.433181 20.7424 0.910558 20.7424H13.0894C13.6093 20.7424 14 20.3096 14 19.8325V4.15839C14 3.68137 13.5651 3.24854 13.0894 3.24854Z"></path>
                     <path d="M9.40511 4.15819C9.1452 4.15819 8.92773 3.94072 8.92773 3.68116C8.92773 3.42161 9.1452 3.20414 9.40511 3.20414C9.66502 3.20414 9.88248 3.42161 9.88248 3.68116C9.83829 3.94072 9.66502 4.15819 9.40511 4.15819ZM6.97789 2.38092C6.45807 2.38092 6.02489 1.94844 6.02489 1.42897C6.02489 0.909856 6.45807 0.477026 6.97789 0.477026C7.49771 0.477026 7.93089 0.909856 7.93089 1.42897C7.93089 1.94844 7.49771 2.38092 6.97789 2.38092ZM4.55067 4.15819C4.29076 4.15819 4.07505 3.94072 4.07505 3.68116C4.07505 3.42161 4.29076 3.20414 4.55067 3.20414C4.81058 3.20414 5.02805 3.42161 5.02805 3.68116C5.02805 3.94072 4.81058 4.15819 4.55067 4.15819ZM10.793 2.38092H8.06172C8.27919 2.16556 8.40826 1.81936 8.40826 1.42897C8.40826 0.649947 7.75762 0 6.97789 0C6.19816 0 5.54786 0.649947 5.54786 1.42897C5.54786 1.77517 5.6787 2.12136 5.89406 2.38092H3.16449V4.97931H10.793V2.38092Z"></path>
@@ -1189,8 +1576,35 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+          <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.925 12.3578L15.7195 13.1769L14.9498 14.7135L14.4587 14.8771L14.594 14.6433C14.7286 14.3746 14.7143 14.0617 14.556 13.8061C14.3977 13.5507 14.1238 13.398 13.8227 13.398C13.5431 13.398 13.2804 13.5343 13.1186 13.7616C12.0781 15.2285 12.0311 15.2951 12.0314 15.2951C12.0314 15.2951 12.0314 15.2951 12.0314 15.2948C11.3867 16.2004 11.4424 17.5209 11.4875 18.5813C11.4937 18.7368 11.5002 18.8877 11.5043 19.0313L12.1045 19.0149C12.1005 18.8684 12.0939 18.7147 12.0871 18.5561C12.046 17.5865 11.9947 16.3798 12.5212 15.6409L13.6081 14.1074C13.6573 14.0384 13.7375 13.997 13.8224 13.997C13.954 13.997 14.0224 14.0838 14.0454 14.1211C14.0681 14.1584 14.1157 14.2579 14.0653 14.3593L13.4219 15.4696C13.3435 15.6061 13.3015 15.7616 13.3015 15.9196H13.902C13.902 15.867 13.916 15.8148 13.9425 15.7697L14.0059 15.6596L15.3615 15.208L15.3712 15.2127L15.3758 15.2033L16.1937 14.9306C16.3365 14.8774 16.4634 14.7885 16.5613 14.6744L17.9347 13.0749C17.9838 13.0177 18.0553 12.9835 18.1309 12.9819C18.2093 12.9751 18.2802 13.0106 18.3358 13.0687C18.4186 13.1561 18.421 13.3079 18.3414 13.4217L16.6711 15.8029C16.6294 15.8623 16.5806 15.9161 16.5268 15.9637L15.3926 16.9542C14.9967 17.2997 14.0827 18.1904 14.1406 18.9943L14.7389 18.9511C14.7078 18.5135 15.2841 17.8449 15.7876 17.4052L16.9218 16.4147C17.0126 16.3354 17.0937 16.2455 17.1631 16.1466L18.8334 13.765C19.0769 13.4173 19.0511 12.9512 18.7715 12.657C18.6008 12.4769 18.3607 12.3802 18.1163 12.383C17.8712 12.3892 17.6386 12.4993 17.4794 12.6849L17.3901 12.7885L17.4106 12.6657C17.4473 12.4455 17.3854 12.2219 17.2411 12.0515C17.0962 11.8813 16.8851 11.7837 16.6615 11.7837C16.3125 11.7837 16.0099 12.0197 15.925 12.3578ZM16.2942 13.3539L16.5072 12.503C16.5249 12.4324 16.5884 12.3827 16.6615 12.3827C16.7258 12.3827 16.765 12.4178 16.7827 12.4386C16.8005 12.4598 16.8288 12.5043 16.8182 12.5674L16.6344 13.668L16.1051 14.2847C16.0727 14.3226 16.0305 14.3519 15.9938 14.3658L15.7555 14.4455L16.2715 13.4155C16.2811 13.3959 16.2886 13.375 16.2942 13.3539Z"></path>
                 <path d="M2.83759 16.1466C2.90663 16.2455 2.9878 16.3354 3.07892 16.415L4.21279 17.4055C4.71629 17.8452 5.29287 18.5138 5.26146 18.9514L5.86011 18.9946C5.91796 18.1907 5.00364 17.3004 4.60775 16.9545L3.47388 15.964C3.41946 15.9165 3.37094 15.8626 3.32958 15.8029L1.65894 13.422C1.57901 13.3079 1.5815 13.1564 1.66453 13.069C1.71958 13.0109 1.78955 12.9751 1.86886 12.9819C1.94443 12.9835 2.01595 13.0174 2.06509 13.0746L3.43812 14.6734C3.53608 14.7885 3.66358 14.8774 3.81628 14.9343L4.62392 15.2033L4.6289 15.2124L4.63823 15.2077L5.99353 15.6593L6.05759 15.7694C6.07345 15.7973 6.09802 15.899 6.09802 15.9771H6.69823C6.69823 15.8661 6.67273 15.6344 6.57757 15.4696L5.94315 14.3755C5.88437 14.2579 5.93164 14.1584 5.95465 14.1211C5.97767 14.0835 6.04577 13.997 6.17763 13.997C6.26254 13.997 6.34277 14.0384 6.3916 14.1074L7.47944 15.6418C8.00502 16.3801 7.9537 17.5868 7.91265 18.5561C7.90612 18.7144 7.89959 18.8681 7.89524 19.0149L8.49545 19.0313C8.49949 18.8877 8.50571 18.7368 8.51256 18.5813C8.55734 17.5205 8.61363 16.2004 7.97361 15.3019C7.97081 15.2982 7.97081 15.2982 6.8811 13.7613C6.71969 13.5339 6.45659 13.3977 6.17732 13.3977C5.87628 13.3977 5.6023 13.5504 5.44401 13.8058C5.2854 14.0614 5.27141 14.3742 5.41415 14.6591L5.54041 14.8768L5.04998 14.7135L4.27997 13.1769L4.07471 12.3575C3.99012 12.0197 3.68722 11.7837 3.33829 11.7837C3.11469 11.7837 2.90383 11.8813 2.75922 12.0515C2.61492 12.2219 2.55272 12.4455 2.58942 12.666L2.60995 12.7885L2.52069 12.6849C2.36146 12.4993 2.12884 12.3892 1.88378 12.383C1.64121 12.3802 1.40019 12.4769 1.22884 12.657C0.948944 12.9512 0.92282 13.4176 1.16695 13.7653L2.83759 16.1466ZM3.217 12.4386C3.23504 12.4178 3.27422 12.3827 3.33829 12.3827C3.41137 12.3827 3.47512 12.4324 3.49316 12.5027L3.70619 13.3539C3.71148 13.375 3.71894 13.3959 3.72858 13.4152L4.24452 14.4455L4.01687 14.3696C3.9696 14.3519 3.9273 14.3226 3.89465 14.2844L3.36534 13.6683L3.18186 12.5677C3.17097 12.5043 3.19959 12.4598 3.217 12.4386Z"></path>
@@ -1203,7 +1617,13 @@
               </svg>
               <span class="menu-item">Specializations</span>
             </a>
-            <ul role="menu" class="menu-content " id="Specialization">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="Specialization">
               <li role="menuitem" class="nav-item ">
                 <a class="nav-link" href="https://production-qa.eclipsescheduling.com/admin/specialization/create">
                   <svg class="fill-none" width="13" height="19" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
@@ -1235,8 +1655,35 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+          <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <mask id="path-1-outside-1_3022_105722" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
                   <rect fill="white" width="20" height="20"></rect>
@@ -1267,7 +1714,13 @@
               </svg>
               <span class="menu-item">Industries</span>
             </a>
-            <ul role="menu" class="menu-content " id="Industry">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="Industry">
               <li role="menuitem" class="nav-item ">
                 <a class="nav-link" href="https://production-qa.eclipsescheduling.com/admin/industry/create">
                   <svg class="fill-none" width="16" height="19" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
@@ -1313,8 +1766,35 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+          <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg class="fill-none" width="21" height="19" viewBox="0 0 21 19" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.58659 12.1086L2.68551 10.9681L2.24002 10.5684L1.15623 11.7088C1.03746 11.8421 0.977906 12.0197 1.00752 12.1974C1.03746 12.3751 1.1411 12.538 1.30462 12.6268L9.44125 17.0251L7.55564 15.3368L1.58659 12.1086Z"></path>
                 <path d="M2.32918 9.04324L4.24441 7.76954L3.9325 7.26611L2.00247 8.5543C1.85408 8.65795 1.75011 8.82114 1.7353 8.99882C1.72018 9.17651 1.79453 9.35419 1.92811 9.48745L9.81239 16.566L8.63943 14.7149L2.32918 9.04324Z"></path>
@@ -1325,7 +1805,13 @@
               </svg>
               <span class="menu-item">Saved Forms</span>
             </a>
-            <ul role="menu" class="menu-content " id="CustomizeForm">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="CustomizeForm">
               <li role="menuitem" class="nav-item ">
                 <a class="nav-link" href="https://production-qa.eclipsescheduling.com/admin/customize-form/create">
                   <svg class="fill-none" width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
@@ -1372,7 +1858,13 @@
               </svg>
               <span class="menu-item">Coupons &amp; Referrals Setup</span>
             </a>
-            <ul role="menu" class="menu-content " id="Coupon">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="Coupon">
               <li role="menuitem" class="nav-item  ">
                 <a class="nav-link" href="https://production-qa.eclipsescheduling.com/admin/coupon">
                   <svg class="fill-none" width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
@@ -1410,8 +1902,35 @@
               <span class="menu-item">Platform Integrations</span>
             </a>
             <ul role="menu" class="list-unstyled flex-column quickbooks collapse " id="thirdParty">
-              <li role="menuitem" class="nav-item has-sub">
-                <a class="d-flex align-items-center" href="#">
+              <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+              
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"  <a class="d-flex align-items-center" href="#">
                   <svg class="fill-none" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
                     <mask id="path-1-outside-1_3026_106085" maskUnits="userSpaceOnUse" x="0" y="0" width="21" height="21">
                       <rect fill="white" width="21" height="21"></rect>
@@ -1462,8 +1981,35 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+          <li role="menuitem" class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+            <a
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button" class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
               <svg class="fill-none" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.5279 17.7913L14.9225 12.9444C14.8367 12.2579 14.503 11.6263 13.9843 11.1685C13.4655 10.7107 12.7974 10.4582 12.1055 10.4585H10.0207C9.32913 10.4587 8.66146 10.7114 8.14309 11.1692C7.62472 11.6269 7.29135 12.2582 7.2056 12.9444L6.59926 17.7913C6.56598 18.0576 6.58974 18.3279 6.66895 18.5844C6.74816 18.8408 6.88102 19.0774 7.0587 19.2785C7.23638 19.4796 7.45481 19.6406 7.69949 19.7508C7.94418 19.8611 8.20951 19.918 8.47787 19.9178H13.6502C13.9185 19.9178 14.1837 19.8608 14.4283 19.7506C14.6729 19.6403 14.8912 19.4792 15.0687 19.2781C15.2463 19.077 15.3791 18.8405 15.4583 18.5841C15.5374 18.3278 15.5611 18.0575 15.5279 17.7913V17.7913Z" stroke-width="1.89186" stroke-linecap="round" stroke-linejoin="round"></path>
                 <path d="M11.0639 6.67557C12.6311 6.67557 13.9016 5.40505 13.9016 3.83779C13.9016 2.27052 12.6311 1 11.0639 1C9.49659 1 8.22607 2.27052 8.22607 3.83779C8.22607 5.40505 9.49659 6.67557 11.0639 6.67557Z" stroke-width="1.89186"></path>
@@ -1473,7 +2019,13 @@
               </svg>
               <span class="menu-item">Admin Staff</span>
             </a>
-            <ul role="menu" class="menu-content " id="Admin-Staff">
+            <ul role="menu"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;" class="menu-content " id="Admin-Staff">
               <li role="menuitem" class="nav-item ">
                 <a class="nav-link" href="https://production-qa.eclipsescheduling.com/admin/admin-staff/create">
                   <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg">
