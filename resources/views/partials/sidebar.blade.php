@@ -644,29 +644,7 @@
             x-on:click.outside="close($refs.button)"
             :id="$id('dropdown-button')"
             style="display: none;" class="menu-content  " id="Settings">
-          <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+          <li role="menuitem">
             <a
             x-ref="button"
             x-on:click="toggle()"
@@ -744,29 +722,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+          <li>
             <a
             x-ref="button"
             x-on:click="toggle()"
@@ -839,29 +795,7 @@
                   <span class="menu-item">All Accommodations</span>
                 </a>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1032,29 +966,7 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1093,29 +1005,7 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1176,29 +1066,7 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1270,29 +1138,7 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1375,29 +1221,7 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1469,29 +1293,7 @@
                   </li>
                 </ul>
               </li>
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+              <li role="menuitem">
               
             x-ref="button"
             x-on:click="toggle()"
@@ -1576,29 +1378,7 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+          <li role="menuitem">
             <a
             x-ref="button"
             x-on:click="toggle()"
@@ -1655,29 +1435,7 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+          <li role="menuitem">
             <a
             x-ref="button"
             x-on:click="toggle()"
@@ -1766,29 +1524,7 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+          <li role="menuitem">
             <a
             x-ref="button"
             x-on:click="toggle()"
@@ -1902,35 +1638,7 @@
               <span class="menu-item">Platform Integrations</span>
             </a>
             <ul role="menu" class="list-unstyled flex-column quickbooks collapse " id="thirdParty">
-              <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
-              
-            x-ref="button"
-            x-on:click="toggle()"
-            :aria-expanded="open"
-            :aria-controls="$id('dropdown-button')"
-            type="button"  <a class="d-flex align-items-center" href="#">
+              <li role="menuitem"><a class="d-flex align-items-center" href="#">
                   <svg class="fill-none" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
                     <mask id="path-1-outside-1_3026_106085" maskUnits="userSpaceOnUse" x="0" y="0" width="21" height="21">
                       <rect fill="white" width="21" height="21"></rect>
@@ -1981,29 +1689,7 @@
               </li>
             </ul>
           </li>
-          <li role="menuitem" class="nav-item has-sub"
-        x-data="{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-        }"
-        x-on:keydown.escape.prevent.stop="close($refs.button)"
-        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']">
+          <li role="menuitem">
             <a
             x-ref="button"
             x-on:click="toggle()"
