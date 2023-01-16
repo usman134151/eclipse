@@ -114,7 +114,7 @@
         }"
         x-on:keydown.escape.prevent.stop="close($refs.button)"
         x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']" x-on:click.outside="open = true">
+        x-id="['dropdown-button']">
         <a x-ref="button"
             x-on:click="toggle()"
             :aria-expanded="open"
