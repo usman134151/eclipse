@@ -25,7 +25,7 @@
         <nav class="bg-gray-900">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
-                    <div class="fixed left-0 top-0 bottom-0 w-72">
+                    <div class="fixed left-0 top-0 bottom-0 w-72 bg-white">
                         @include('partials.sidebar')
                     </div>
                     <div class="w-8/12 ml-auto">
