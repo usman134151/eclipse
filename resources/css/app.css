@@ -21,7 +21,8 @@
 	fill: #6E6B7B;
 }
 
-.navigation li a svg.fill-none {
+.navigation li a svg.fill-none,
+.navigation li a svg.fill-none-tenants-svg-icon {
 	fill: none;
 	stroke: #6E6B7B;
 }
