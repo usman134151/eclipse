@@ -14,3 +14,8 @@
 .navigation li a svg {
 	fill: #6E6B7B;
 }
+
+.navigation li a svg.fill-none {
+	fill: none;
+	stroke: #6E6B7B;
+}
