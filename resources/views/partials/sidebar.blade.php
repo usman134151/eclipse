@@ -134,7 +134,7 @@
         <ul class="menu-content " id="Bookings" x-ref="panel"
             x-show="open"
             x-transition.origin.top.left
-            x-on:click.outside="open = true"
+            x-on:click.outside="close($refs.button)"
             :id="$id('dropdown-button')"
             style="display: none;">
           <li class="nav-item ">
