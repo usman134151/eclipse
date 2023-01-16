@@ -9,8 +9,8 @@
     .navigation .nav-item a {
         @apply flex items-center space-x-2 py-2;
     }
-    .navigation .menu-content {
-    	@apply pl-3;
+    .navigation div.menu-content {
+    	@apply pl-3 hidden;
     }
 }
 
