@@ -253,8 +253,35 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item has-sub">
-        <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+      <li class="nav-item has-sub"
+        x-data="{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        x-on:keydown.escape.prevent.stop="close($refs.button)"
+        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+        x-id="['dropdown-button']">
+        <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true"
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.25 9C14.25 8.55 14.55 8.25 15 8.25C15.45 8.25 15.75 8.55 15.75 9V14.25C15.75 15.525 14.775 16.5 13.5 16.5H3C1.725 16.5 0.75 15.525 0.75 14.25V3.75C0.75 2.475 1.725 1.5 3 1.5H11.25C11.7 1.5 12 1.8 12 2.25C12 2.7 11.7 3 11.25 3H3C2.55 3 2.25 3.3 2.25 3.75V14.25C2.25 14.7 2.55 15 3 15H13.5C13.95 15 14.25 14.7 14.25 14.25V9ZM8.775 11.025L17.025 2.775C17.325 2.475 17.325 2.025 17.025 1.725C16.725 1.425 16.275 1.425 15.975 1.725L8.25 9.45L6.525 7.725C6.225 7.425 5.775 7.425 5.475 7.725C5.175 8.025 5.175 8.475 5.475 8.775L7.725 11.025C7.875 11.175 8.025 11.25 8.25 11.25C8.475 11.25 8.625 11.175 8.775 11.025Z"></path>
             <mask id="mask0_204_9006" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="1" width="18" height="16">
@@ -266,7 +293,13 @@
           </svg>
           <span class="menu-item">Customers</span>
         </a>
-        <ul class="menu-content " id="Customers">
+        <ul class="menu-content " id="Customers"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;">
           <li class="nav-item ">
             <a class="nav-link" href="">
               <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
