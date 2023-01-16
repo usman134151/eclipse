@@ -25,7 +25,7 @@
         <div class="fixed left-0 top-0 bottom-0 w-[16.25rem] bg-white overflow-y-auto p-3">
             @include('partials.sidebar')
         </div>
-        <div class="ml-auto">
+        <div class="ml-auto w-[82%]">
             
         
         <nav class="bg-gray-900">
