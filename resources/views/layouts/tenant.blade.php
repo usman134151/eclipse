@@ -23,12 +23,15 @@
 <body class="bg-gray-100 h-screen antialiased">
     <div id="app">
         <div class="fixed left-0 top-0 bottom-0 w-72 bg-white">
-                        @include('partials.sidebar')
-                    </div>
-                    <div class="w-8/12 ml-auto">
+            @include('partials.sidebar')
+        </div>
+        <div class="w-8/12 ml-auto">
+            
+        </div>
         <nav class="bg-gray-900">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
+                    <div>
                         <a href="{{ route('tenant.posts.index') }}" class="text-sm font-medium text-white">Posts
                         </a>
                     </div>
@@ -72,7 +75,6 @@
                                 </div>
                             @endguest
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
