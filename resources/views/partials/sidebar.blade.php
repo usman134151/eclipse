@@ -1,9 +1,9 @@
 <!-- BEGIN: Main Menu-->
 <div role="navigation" aria-label="Main Menu" class="">
   <div class="navbar-header">
-    <ul class="nav navbar-nav flex-row">
+    <ul class="nav navbar-nav flex-row flex items-center justify-between py-3">
       <li class="nav-item me-auto">
-        <a class="navbar-brand" href="" aria-label="Eclipse Scheduling Brand Logo">
+        <a class="navbar-brand flex items-center space-x-4" href="" aria-label="Eclipse Scheduling Brand Logo">
           <span class="brand-logo">
             <svg height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M24.596 0.0127934C23.5834 0.128856 22.932 0.341638 22.2096 0.799441C20.0361 2.17285 19.2944 4.95836 20.4811 7.27317C21.1777 8.63368 22.3966 9.54929 23.9381 9.86524C26.06 10.3037 28.3303 9.19465 29.3236 7.22158C29.7234 6.43494 29.8202 5.97068 29.8137 4.93901C29.8137 4.05565 29.8008 3.97182 29.6073 3.43665C29.1172 2.06324 28.311 1.14763 27.0468 0.52218C26.3245 0.167544 25.2538 -0.0581339 24.596 0.0127934Z" fill="black"/>
@@ -40,7 +40,7 @@
           </h2>
         </a>
       </li>
-      <li class="nav-item nav-toggle">
+      <li class="nav-item nav-toggle flex items-center space-x-4">
         <a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x d-block d-xl-none text-primary toggle-icon font-medium-4">
             <line x1="18" y1="6" x2="6" y2="18"></line>
