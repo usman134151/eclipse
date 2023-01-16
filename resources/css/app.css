@@ -6,8 +6,11 @@
 
 
 @layer components {
-    .nav-item a {
+    .navigation .nav-item a {
         @apply flex items-center space-x-2 py-2;
+    }
+    .navigation .menu-content {
+    	@apply pl-3;
     }
 }
 
