@@ -10,3 +10,7 @@
         @apply flex items-center space-x-2;
     }
 }
+
+.navigation li a svg {
+	fill: #6E6B7B;
+}
