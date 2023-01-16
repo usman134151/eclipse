@@ -8,10 +8,10 @@
         <div>
             <div class="grid grid-cols-1 sm:grid-cols-6 gap-6">
                 <div class="sm:col-span-3">
-                    <x-form.label for="title" value="Title"/>
+                    <x-form.label for="title" value="Title" class="label-text"/>
 
                     <div class="mt-1 flex rounded-md shadow-sm">
-                        <x-form.input id="title" name="title" type="text" value="{{ old('title') }}" />
+                        <x-form.input id="title" name="title" type="text" value="{{ old('title') }}" class="input-field" />
                     </div>
 
                     <x-form.input-error for="title" />
@@ -32,7 +32,7 @@
     <div class="mt-8 border-t border-gray-200 pt-5">
         <div class="flex justify-end">
             <span class="inline-flex rounded-md shadow-sm">
-                <x-button variant="secondary" as="a" href="{{ route('tenant.posts.index') }}">Cancel</x-button>
+                <x-button as="a" href="{{ route('tenant.posts.index') }}">Cancel</x-button>
             </span>
             <span class="ml-3 inline-flex rounded-md shadow-sm">
                 <x-button type="submit">Post</x-button>
