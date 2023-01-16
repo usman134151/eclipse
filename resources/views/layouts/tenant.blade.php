@@ -22,10 +22,10 @@
 
 <body class="bg-gray-100 h-screen antialiased">
     <div id="app">
-        <div class="fixed left-0 top-0 bottom-0 w-72 bg-white">
+        <div class="fixed left-0 top-0 bottom-0 w-2/12 bg-white">
             @include('partials.sidebar')
         </div>
-        <div class="w-8/12 ml-auto">
+        <div class="w-10/12 ml-auto">
             
         
         <nav class="bg-gray-900">
