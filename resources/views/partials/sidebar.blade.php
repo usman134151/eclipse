@@ -1,7 +1,7 @@
 <!-- BEGIN: Main Menu-->
 <div role="navigation" aria-label="Main Menu" class="">
   <div class="navbar-header">
-    <ul class="nav navbar-nav flex-row flex items-center justify-between py-3">
+    <ul class="nav navbar-nav flex-row flex items-center justify-between pt-3">
       <li class="nav-item me-auto">
         <a class="navbar-brand flex items-center space-x-4" href="" aria-label="Eclipse Scheduling Brand Logo">
           <span class="brand-logo">
