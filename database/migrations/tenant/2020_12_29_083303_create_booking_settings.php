@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+class CreateBookingSettings extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,15 +13,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('booking_settings', function (Blueprint $table) {
             $table->id();
-
-            $table->string('title');
-            $table->string('body');
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->tinyInteger('auto_notify')->default(0)->comment('1=auto notify');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('booking_settings');
     }
-};
+}

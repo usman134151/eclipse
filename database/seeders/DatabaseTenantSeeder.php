@@ -1,31 +1,23 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\Post;
 use Illuminate\Database\Seeder;
 
-class TenantDatabaseSeeder extends Seeder
+class DatabaseTenantSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the application's database.
      *
      * @return void
      */
     public function run()
     {
-      $this->call(UsersTableSeeder::class);
       $this->call(RolesTableSeeder::class);
-      $this->call(RoleUserTableSeeder::class);
       $this->call(StatusTableSeeder::class);
-      $this->call(UserDetailSeeder::class);
       $this->call(CountrySeeder::class);
       $this->call(StateSeeder::class);
-      $this->call(LanguageTableSeeder::class);
       $this->call(notification_templatesSeeder::class);
       $this->call(sms_seeder::class);
       $this->call(TemplateSeeder::class);
-      $this->call(PlansTableSeeder::class);
-      $this->call(PlanPermissionSeeder::class);
+
     }
 }

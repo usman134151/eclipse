@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+class AddColumnToBookingDocuments extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,10 +13,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+        Schema::table('booking_documents', function (Blueprint $table) {
+            $table->text('permissions')->nullable()->comment('1 for admin,2 for customer,3 for providers,4 for all user');
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::table('booking_documents', function (Blueprint $table) {
+            //
+        });
     }
-};
+}
