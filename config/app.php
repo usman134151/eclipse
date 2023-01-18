@@ -17,6 +17,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    // mailfrom config
+    'mail_from' => env('MAIL_FROM_ADDRESS', 'eclipsetestadmin@dispostable.com'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
