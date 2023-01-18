@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>List - Eclipse Scheduling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/components.css">
@@ -1450,14 +1452,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1485,14 +1503,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1520,14 +1554,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1555,14 +1605,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1590,14 +1656,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1625,14 +1707,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1660,14 +1758,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -1695,14 +1809,30 @@
                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                     </svg>
                   </a>
-                  <div class="dropdown">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                  <div class="dropdown ac-cstm">
+                    <a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </a>
+                    <div class="tablediv dropdown-menu">
+                      <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                      <a href="javascript:void(0)" aria-label="Reschedule" title="Reschedule" class="dropdown-item"><i class="fa fa-calendar"></i>Reschedule</a>
+                      <a title="Assign" aria-label="Assign" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-user-plus"></i>Assign Provider</a>
+                      <a title="Invite Providers" aria-label="Invite Providers" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-envelope-o"></i>Invite Providers</a>
+                      <a title="View Available Providers" aria-label="View Available Providers" class="dropdown-item"><i class="fa fa-thumbs-up"></i>View Available Providers</a>
+                      <a title="Manual/Auto Assign" aria-label="Manual/Auto Assign" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-check"></i>Auto Assign</a>
+                      <a title="Manual/Auto Notify" aria-label="Manual/Auto Notify" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-bell"></i>Auto Notify</a>
+                      <a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Message Customer</a> 
+                      <a href="javascript:void(0)" title="Cancel" aria-label="Cancel" class="dropdown-item">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.3125 16.8125H1.4375V1.1875H14.5625V9.3125M15.8125 12.4375L11.4375 16.8125M5.1875 8.6875H10.8125M5.1875 12.4375H7.0625M5.1875 4.9375H10.8125M11.4375 12.4375L15.8125 16.8125" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        Cancel
+                      </a>
+                    </div>
                   </div>
                 </div>
               </td>
