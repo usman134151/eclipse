@@ -6,12 +6,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckSubscription;
 use Stancl\Tenancy\Features\UserImpersonation;
 use App\Http\Controllers\Tenant as Controllers;
+use App\Http\Controllers\Tenant\Auth\OtpController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 Route::group([
     'middleware' => ['tenant', PreventAccessFromCentralDomains::class], // See the middleware group in Http Kernel
     'as' => 'tenant.',
 ], function () {
+
     Route::redirect('/', '/home');
 
     Route::get('/impersonate/{token}', function ($token) {
@@ -21,7 +23,7 @@ Route::group([
     Route::post('/ploi/webhook/certificateIssued', [Controllers\PloiWebhookController::class, 'certificateIssued'])->name('ploi.certificate.issued');
     Route::post('/ploi/webhook/certificateRevoked', [Controllers\PloiWebhookController::class, 'certificateRevoked'])->name('ploi.certificate.revoked');
 
-    Route::middleware(['auth', CheckSubscription::class])->group(function () {
+    Route::middleware(['auth','otpcheck', CheckSubscription::class])->group(function () {
         Route::redirect('/home', '/posts')->name('home');
 
         Route::get('/posts', [Controllers\PostController::class, 'index'])->name('posts.index');
@@ -42,5 +44,11 @@ Route::group([
 
     Route::namespace('App\\Http\\Controllers\\Tenant')->group(function () {
         Auth::routes();
+    });
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('otpverify', [OtpController::class, 'loadOtpView'])->name('otpverify');
+        Route::get('resendotp', [OtpController::class, 'resendOtpView'])->name('resendotp');
+        Route::post('otpverify', [OtpController::class, 'verifyOtp'])->name('submit.otpverify');
     });
 });

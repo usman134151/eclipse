@@ -1,6 +1,10 @@
 .btn {
+<<<<<<< HEAD
+  transition: none; }
+=======
   transition: none;
   padding: 0.5rem 1.5rem; }
+>>>>>>> 1743b75253dabbcb153699e54b6ec2c8ec1395d2
 
 html, body {
   height: 100%; }
@@ -11,12 +15,15 @@ body {
 a {
   text-decoration: none; }
 
+<<<<<<< HEAD
+=======
 h2 {
   margin-bottom: 1rem; }
 
 h3 {
   margin-bottom: 1rem; }
 
+>>>>>>> 1743b75253dabbcb153699e54b6ec2c8ec1395d2
 .auth-wrapper {
   min-height: 100vh;
   overflow-y: auto; }
@@ -52,8 +59,11 @@ h3 {
   display: none;
   z-index: 99; }
 
+<<<<<<< HEAD
+=======
 .form-actions {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
 
+>>>>>>> 1743b75253dabbcb153699e54b6ec2c8ec1395d2
 /*# sourceMappingURL=style.css.map */

@@ -31,7 +31,7 @@
         <li class="nav-item dropdown dropdown-user">
               <div class="user-nav d-sm-flex d-none"><span class="user-name fw-medium m-1">Interpreter Admin</span></div>
             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                <input type="hidden" name="_token" value="kWtnu4F4RDnERarx4srwDZ6QjTAIGXnRmpP1jnjo">
+                @csrf
               </form>
           </li>
           <li class="nav-item dropdown dropdown-notification me-25">
@@ -69,7 +69,7 @@
             </ul>
           </li>
           <li class="nav-item d-none d-lg-block">
-            <a href="{{ url('/logout') }}" aria-label="Eclipse Scheduling Tenant Logout" class="nav-link"
+            <a href="javascript:void();" aria-label="Eclipse Scheduling Tenant Logout" class="nav-link"
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">

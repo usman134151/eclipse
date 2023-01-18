@@ -13,6 +13,13 @@
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
           <h1 class="card-title fw-normal mb-3">Welcome to Eclipse Scheduling! </h1>
           <p class="card-text mb-4">Please sign into your account to start exploring.</p>
+
+          {{-- Show auth errors --}}
+
+          @if($errors->has('loginError'))
+          <p class='mt-2 text-sm text-red-600'>{{$errors->first('loginError')}}</p>
+          @endif
+
           <form method="POST" action="{{ route('tenant.login') }}">
             @csrf
             <div class="mb-3">
