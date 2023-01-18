@@ -12,7 +12,7 @@ class PostController extends Controller
     public function index()
     {
         return view('tenant.posts.index', [
-            'posts' => Post::cursor(),
+           // 'posts' => Post::cursor(),
         ]);
     }
 

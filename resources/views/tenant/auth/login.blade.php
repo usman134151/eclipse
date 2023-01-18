@@ -18,6 +18,8 @@
             <div class="mb-3">
               <label class="form-label" for="email">Email</label>
               <input class="form-control" id="email" type="text" name="email" placeholder="Email address" aria-describedby="email" autofocus="" tabindex="1" />
+              <x-form.input-error for="email" />
+
             </div>
             <div class="mb-3">
               <div class="d-flex justify-content-between">
