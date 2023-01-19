@@ -18,14 +18,14 @@ class CreateAccommodationsTable extends Migration
           $table->string('name');
           $table->string('image')->nullable();
           $table->tinyInteger('status')->nullable()->comment('1 for active,0 for inactive');
-          $table->integer('added_by')->unsigned();
+          $table->biginteger('added_by')->unsigned();
           $table->integer('updated_by')->nullable();
           $table->integer('deleted_by')->nullable();
           $table->softDeletes();
           $table->timestamps();
         });
         Schema::table('accommodations', function($table) {
-          $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
+          $table->foreign('added_by')->references('id')->signed()->on('users')->onDelete('cascade');
         });
     }
 
