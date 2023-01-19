@@ -1,30 +1,34 @@
 <?php
 
-namespace App\Mail;
+namespace App\Http\Controllers\Tenant\Mails;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class OTPEmail extends Mailable
+class createEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $subject;
     public $data;
+    public $mailview;
+    public $attachments;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject,$data)
+    public function __construct($subject,$data,$mailview,$attachments = [])
     {
         $this->subject = $subject;
         $this->data = $data;
+        $this->mailview = $mailview;
+        $this->attachments = $attachments;
     }
 
     /**
@@ -49,7 +53,7 @@ class OTPEmail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.otp',
+            view: $this->mailview,
         );
     }
 
@@ -60,6 +64,6 @@ class OTPEmail extends Mailable
      */
     public function attachments()
     {
-        return [];
+        return $this->attachments;
     }
 }
