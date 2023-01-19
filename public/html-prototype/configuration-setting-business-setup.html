@@ -1434,8 +1434,76 @@
     <!-- END: Main Menu-->
     <!-- BEGIN: Content-->
     <div class="app-content content ">
-        <!-- BEGIN: Header-->
+        <div class="content-wrapper container-xxl p-0">
+            <div class="content-header row">
+              <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                  <div class="col-12">
+                    <h1 class="content-header-title float-start mb-0">Basic Form</h1>
+                    <div class="breadcrumb-wrapper">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                          <a href="http://127.0.0.1:8000">
+                          Home
+                          </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                          <a href="javascript:void(0)">
+                          Forms
+                          </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                          Form Layouts
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="content-body">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- BEGIN: Steps -->
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="configuration-setting-tab" data-bs-toggle="tab" data-bs-target="#configuration-setting" type="button" role="tab" aria-controls="configuration-setting" aria-selected="true"><span class="number">1</span> <span class="text">Configuration Setting</span></button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="business-hours-tab" data-bs-toggle="tab" data-bs-target="#business-hours" type="button" role="tab" aria-controls="business-hours" aria-selected="false"><span class="number">1</span> <span class="text">Business Hours</span></button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments" type="button" role="tab" aria-controls="payments" aria-selected="false"><span class="number">1</span> <span class="text">Payments</span></button>
+                          </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
+                              <h2>Configuration Setting</h2>
+                              <div></div>
+                              <h3>Choose Portal Default Colours</h3>
+                              <div class="row gap-0 row-gap-3">
+                                  <div class="col-12 choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                      <label>Default Colour</label>
+                                      <div class="choosen-color"></div>
+                                      <a href="" class="btn btn-primary">Choose Colour</a>
+                                  </div>
+                                  <div class="col-12 choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                      <label>Foreground Color</label>
+                                      <div class="choosen-color"></div>
+                                      <a href="" class="btn btn-dark">Choose Colour</a>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">...</div>
+                          <div class="tab-pane" id="payments" role="tabpanel" aria-labelledby="payments-tab" tabindex="0">...</div>
+                          <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
+                        </div>
+                        <!-- END: Steps -->    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
