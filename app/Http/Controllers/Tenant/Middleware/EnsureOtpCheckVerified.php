@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Controllers\Tenant\Middleware;
 
-use App\Models\UserOtpVerification;
+use App\Http\Controllers\Tenant\Models\UserOtpVerification;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
