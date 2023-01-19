@@ -2,13 +2,11 @@
 namespace App\Http\Controllers\Tenant\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\OPTEmail;
-use App\Mail\OTPEmail;
-use App\Models\UserOtpVerification;
+use App\Http\Controllers\Tenant\Helper\Helper;
+use App\Http\Controllers\Tenant\Models\UserOtpVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class OtpController extends Controller
 {
@@ -101,8 +99,7 @@ class OtpController extends Controller
                 'otp_valid_upto' => date('Y-m-d H:i:s', strtotime('+15 minutes')),
             );
 
-            $mail = Mail::to($email)->send(new OTPEmail($subject,$params));
-
+            $mail = Helper::sendMail($email, $subject, $params, 'tenant.emails.otp', [],'dispatch');
             if ($mail) {
                 UserOtpVerification::where('user_id', auth()->user()->id)->updateOrCreate(['user_id' => auth()->user()->id], $otpData);
                 return true;
