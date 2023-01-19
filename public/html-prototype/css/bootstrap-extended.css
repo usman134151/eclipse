@@ -2906,8 +2906,12 @@ input[type="radio"].form-control {
 
 body .table .actions .tablediv.dropdown-menu {
   max-width: 18%;
-  display: flex;
     flex-direction: column;
+}
+
+body .table .actions .tablediv.dropdown-menu.show {
+  display: flex;
+  
 }
 
 
