@@ -1,10 +1,6 @@
 .btn {
-<<<<<<< HEAD
-  transition: none; }
-=======
   transition: none;
   padding: 0.5rem 1.5rem; }
->>>>>>> 1743b75253dabbcb153699e54b6ec2c8ec1395d2
 
 html, body {
   height: 100%; }
@@ -15,15 +11,20 @@ body {
 a {
   text-decoration: none; }
 
-<<<<<<< HEAD
-=======
-h2 {
-  margin-bottom: 1rem; }
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 1.875rem; }
 
-h3 {
-  margin-bottom: 1rem; }
+  h2 {
+    font-size: 1.625rem;
+    margin-bottom: 1rem; }
 
->>>>>>> 1743b75253dabbcb153699e54b6ec2c8ec1395d2
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem; }
+
+  h4 {
+    font-size: 1.375rem; } }
 .auth-wrapper {
   min-height: 100vh;
   overflow-y: auto; }
@@ -43,15 +44,6 @@ h3 {
   .auth-wrapper .brand-logo {
     left: 1.5rem;
     padding-left: 0; } }
-h1 {
-  font-size: 2rem; }
-
-h2 {
-  font-size: 1.875rem; }
-
-h3 {
-  font-size: 1.5rem; }
-
 .scroll-top {
   position: fixed;
   bottom: 5%;
@@ -59,15 +51,10 @@ h3 {
   display: none;
   z-index: 99; }
 
-<<<<<<< HEAD
-=======
 .form-actions {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem; }
 
-<<<<<<< HEAD
->>>>>>> 1743b75253dabbcb153699e54b6ec2c8ec1395d2
-=======
 .navigation.navbar-nav .dropdown-menu {
   position: absolute !important;
   transform: none !important;
@@ -134,5 +121,12 @@ h3 {
   .navigation li > ul > ul {
     padding: 0 0.5rem; }
 
->>>>>>> 851d92209d8b2ae80acfb25bff38c373f6fc0123
+.choose-portal-colors label {
+  margin: 0; }
+.choose-portal-colors .choosen-color {
+  border-radius: 100px;
+  width: 2rem;
+  height: 2rem;
+  background-color: #0A1E46; }
+
 /*# sourceMappingURL=style.css.map */
