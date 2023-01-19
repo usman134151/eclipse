@@ -23,7 +23,7 @@ class AddColumnToServiceCategoriesTable extends Migration
             $table->json('service_charge_v')->nullable()->after('service_charge');
             $table->json('one_time_payment')->nullable()->after('service_charge_v');
             $table->json('one_time_payment_v')->nullable()->after('one_time_payment');
-            $table->json('emergency_hour')->nullable()->after('one_time_payment_v')->default('')->change();
+            $table->json('emergency_hour')->nullable()->after('one_time_payment_v')->default(null)->change();
             $table->json('emergency_hour_v')->nullable()->after('emergency_hour');
             $table->string('minimum_assistance_hours_v',10)->nullable()->comment('virtual hours')->after('minimum_assistance_hours');
             $table->string('minimum_assistance_min_v',10)->nullable()->comment('virtual minutes')->after('minimum_assistance_min');
