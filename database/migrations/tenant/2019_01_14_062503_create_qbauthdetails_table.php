@@ -15,7 +15,7 @@ class CreateQbauthdetailsTable extends Migration
     {
         Schema::create('qbauthdetails', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->longText('access_token');
             $table->longText('refresh_token');
             $table->string('realm_id');

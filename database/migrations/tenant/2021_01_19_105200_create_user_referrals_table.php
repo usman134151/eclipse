@@ -15,7 +15,7 @@ class CreateUserReferralsTable extends Migration
     {
         Schema::create('user_referrals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->comment('new user who put referral code on existing user');
+            $table->biginteger('user_id')->unsigned()->comment('new user who put referral code on existing user');
             $table->integer('referral_user_id')->comment('referral code user');
             $table->string('referral_code')->nullable();
             $table->enum('type',[0,1])->comment('0 for referrer,1 for referee');

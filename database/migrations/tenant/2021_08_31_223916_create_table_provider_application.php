@@ -15,7 +15,7 @@ class CreateTableProviderApplication extends Migration
     {
         Schema::create('provider_applications', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('user_id')->unsigned();
+          $table->biginteger('user_id')->unsigned();
           $table->integer('status')->default(0)->comment('0 for pending,1 for approved,2 deny,3 for screening');
           $table->softDeletes();
           $table->timestamps();

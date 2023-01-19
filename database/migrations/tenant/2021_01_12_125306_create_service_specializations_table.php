@@ -18,7 +18,7 @@ class CreateServiceSpecializationsTable extends Migration
           $table->integer('service_id')->unsigned()->nullable();
           $table->integer('specialization_id')->unsigned()->nullable();
           $table->double('specialization_price', 8, 2)->default(0);
-          $table->integer('added_by')->unsigned();
+          $table->biginteger('added_by')->unsigned();
           $table->timestamps();
         });
 

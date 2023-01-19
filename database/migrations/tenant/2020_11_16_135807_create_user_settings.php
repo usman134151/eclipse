@@ -15,7 +15,7 @@ class CreateUserSettings extends Migration
     {
         Schema::create('user_settings', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->tinyInteger('email_enabled')->nullable()->default(0)->comment('0=enable, 1=disable');
             $table->tinyInteger('sms_enabled')->nullable()->default(0)->comment('0=enable, 1=disable');
             $table->tinyInteger('call_enabled')->nullable()->default(0)->comment('0=enable, 1=disable');

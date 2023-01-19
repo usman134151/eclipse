@@ -35,7 +35,7 @@ class CreateServiceCategoriesTable extends Migration
         $table->double('emergency_price', 8, 2)->default(0);
         $table->double('virtual_phone', 8, 2)->default(0);
         $table->tinyInteger('status')->nullable()->comment('1 for active,0 for inactive');
-        $table->integer('added_by')->unsigned();
+        $table->biginteger('added_by')->unsigned();
         $table->integer('updated_by')->nullable();
         $table->integer('deleted_by')->nullable();
         $table->softDeletes();

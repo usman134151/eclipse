@@ -22,7 +22,7 @@ class CreateCouponsTable extends Migration
             $table->enum('discount_type',[1,2])->default(1)->comment('1 for percentage,2 for amount');
             $table->enum('type',[1,2])->default(1)->comment('1 for one time,2 for mutliple');
             $table->enum('status',[0,1])->default(1)->comment('1 for active,0 for inactive');
-            $table->integer('added_by')->unsigned();
+            $table->biginteger('added_by')->unsigned();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->softDeletes();

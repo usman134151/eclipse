@@ -15,7 +15,7 @@ class CreatePaymentPreferences extends Migration
     {
         Schema::create('payment_preferences', function (Blueprint $table) {
             $table->id();
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('method')->comment("1=Direct Deposit,2=Mail a check");
             $table->integer('updated_by');

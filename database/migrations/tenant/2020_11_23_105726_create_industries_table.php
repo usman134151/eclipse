@@ -17,7 +17,7 @@ class CreateIndustriesTable extends Migration
           $table->increments('id');
           $table->string('name');
           $table->tinyInteger('status')->nullable()->comment('1 for active,0 for inactive');
-          $table->integer('added_by')->unsigned();
+          $table->biginteger('added_by')->unsigned();
           $table->integer('updated_by')->nullable();
           $table->integer('deleted_by')->nullable();
           $table->softDeletes();

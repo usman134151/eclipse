@@ -15,7 +15,7 @@ class CreateReceiptsTable extends Migration
       $table->double('outstanding_amount', 8, 2)->default(0)->nullable();
       $table->double('paid_amount', 8, 2)->default(0)->nullable();
       $table->enum('receipt_status',[0,1])->default(0)->comment('1 for Paid,0 for Not Paid');
-      $table->integer('created_by')->unsigned()->nullable();
+      $table->biginteger('created_by')->unsigned()->nullable();
       $table->timestamps();
     });
 

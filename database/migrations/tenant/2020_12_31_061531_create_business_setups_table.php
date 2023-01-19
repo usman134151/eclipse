@@ -15,7 +15,7 @@ class CreateBusinessSetupsTable extends Migration
     {
         Schema::create('business_setups', function (Blueprint $table) {
           $table->id();
-          $table->integer('user_id')->unsigned();
+          $table->biginteger('user_id')->unsigned();
           $table->string('business_start_time',20)->nullable();
           $table->string('business_end_time',20)->nullable();
           $table->string('after_start_time',20)->nullable();

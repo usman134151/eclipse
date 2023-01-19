@@ -14,7 +14,7 @@ class AddAddedByInBookingTable extends Migration
   public function up()
   {
     Schema::table('bookings', function (Blueprint $table) {
-      $table->integer('added_by')->unsigned();
+      $table->biginteger('added_by')->unsigned();
       $table->integer('updated_by')->nullable();
     });
   }
