@@ -13,13 +13,14 @@
         "laravel/cashier": "^13.8",
         "laravel/framework": "^9.5",
         "laravel/nova": "^3.31",
+        "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.8",
         "laravel/tinker": "^2.7",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^2.0",
         "stancl/tenancy": "^3.5",
         "tightenco/nova-stripe": "^1.0",
-        "league/flysystem-aws-s3-v3": "^3.0",
-        "laravel/sanctum": "^3.2"
+        "twilio/sdk": "^6.44"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
