@@ -27,7 +27,7 @@ class AddColumnToServiceCategoriesTable extends Migration
             $table->json('emergency_hour_v')->nullable()->after('emergency_hour');
             $table->string('minimum_assistance_hours_v',10)->nullable()->comment('virtual hours')->after('minimum_assistance_hours');
             $table->string('minimum_assistance_min_v',10)->nullable()->comment('virtual minutes')->after('minimum_assistance_min');
-            $table->json('cancellation_hour1')->nullable()->after('minimum_assistance_min_v')->change();
+            $table->json('cancellation_hour1')->nullable()->default(null)->after('minimum_assistance_min_v')->change();
             $table->json('cancellation_hour1_v')->nullable()->after('cancellation_hour1');
             $table->double('hours_price_v',8,2)->default(0)->nullable()->comment('virtual hour price')->after('hours_price');
             $table->double('after_hours_price_v',8,2)->default(0)->nullable()->comment('virtual after hours price')->after('after_hours_price');
