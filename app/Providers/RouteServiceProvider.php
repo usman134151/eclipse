@@ -66,6 +66,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->domain($domain)
                 ->middleware('api')
                 ->group(base_path('routes/api.php'));
+            #######API SETTING CHANGES (Sakhawat)########    
+            Route::prefix('api')
+            ->domain($domain)
+            ->middleware('api')
+            ->group(base_path('routes/api-tenant.php'));    
         }
     }
 
