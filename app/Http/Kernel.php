@@ -40,12 +40,12 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
         'api' => [
+            #######API SETTING CHANGES (Sakhawat)########
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
         'tenant' => [
             'web',
             InitializeTenancyByDomainOrSubdomain::class,
@@ -71,6 +71,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'otpcheck' => \App\Http\Middleware\EnsureOtpCheckVerified::class,  // otp middleware
+        'otpcheck' => \App\Http\Controllers\Tenant\Middleware\EnsureOtpCheckVerified::class,  // otp middleware
     ];
 }

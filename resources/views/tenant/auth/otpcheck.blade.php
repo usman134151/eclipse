@@ -31,6 +31,9 @@
             </div>
         @endif
             
+          <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
             
           <form method="POST" action="{{ route('tenant.otpverify') }}">
             @csrf
@@ -47,7 +50,7 @@
             
             <button class="btn btn-primary w-100 mb-1" name="login" id="login" type="submit" tabindex="4">Login</button>
             <a href="{{ route('tenant.resendotp') }}" class="btn btn-primary w-100 mb-1 otpF" id="resendOtp" type="button" tabindex="4">Resend OTP</a>
-            <a class="otpF" href="{{ url('/login') }}">Not you? Log in as a different user</a>
+            <a class="otpF" href="javascript:void();" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Not you? Log in as a different user</a>
           </form>
         </div>
       </div>
