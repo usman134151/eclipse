@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/bootstrap-extended.css">
@@ -1439,21 +1440,21 @@
               <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                   <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">Basic Form</h1>
+                    <h1 class="content-header-title float-start mb-0">Business Setup</h1>
                     <div class="breadcrumb-wrapper">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                          <a href="http://127.0.0.1:8000">
+                          <a href="">
                           Home
                           </a>
                         </li>
                         <li class="breadcrumb-item">
                           <a href="javascript:void(0)">
-                          Forms
+                          Settings
                           </a>
                         </li>
                         <li class="breadcrumb-item">
-                          Form Layouts
+                          Business Setup
                         </li>
                       </ol>
                     </div>
@@ -1466,40 +1467,148 @@
                     <div class="card-body">
                         <!-- BEGIN: Steps -->
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
                           <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="configuration-setting-tab" data-bs-toggle="tab" data-bs-target="#configuration-setting" type="button" role="tab" aria-controls="configuration-setting" aria-selected="true"><span class="number">1</span> <span class="text">Configuration Setting</span></button>
+                            <button class="nav-link active" id="configuration-setting-tab" data-bs-toggle="tab" data-bs-target="#configuration-setting" type="button" role="tab" aria-controls="configuration-setting" aria-selected="true">1Configuration Setting</button>
                           </li>
                           <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="business-hours-tab" data-bs-toggle="tab" data-bs-target="#business-hours" type="button" role="tab" aria-controls="business-hours" aria-selected="false"><span class="number">1</span> <span class="text">Business Hours</span></button>
+                            <button class="nav-link" id="business-hours-tab" data-bs-toggle="tab" data-bs-target="#business-hours" type="button" role="tab" aria-controls="business-hours" aria-selected="false">1Business Hours</button>
                           </li>
                           <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments" type="button" role="tab" aria-controls="payments" aria-selected="false"><span class="number">1</span> <span class="text">Payments</span></button>
+                            <button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments" type="button" role="tab" aria-controls="payments" aria-selected="false">1Payments</button>
                           </li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                          <div class="tab-pane active" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
+                          <div class="tab-pane fade show active" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
                               <h2>Configuration Setting</h2>
-                              <div></div>
-                              <h3>Choose Portal Default Colours</h3>
-                              <div class="row gap-0 row-gap-3">
-                                  <div class="col-12 choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                      <label>Default Colour</label>
-                                      <div class="choosen-color"></div>
-                                      <a href="" class="btn btn-primary">Choose Colour</a>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                      <div class="col-lg-6 mb-4">
+                                        <h3>Choose Portal Default Colours</h3>
+                                        <div class="row gap-0 row-gap-3">
+                                          <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                            <label>Default Colour</label>
+                                            <div class="choosen-color choosen-default-color"></div>
+                                            <a href="" class="btn btn-primary btn-sm rounded">Choose Colour</a>
+                                          </div>
+                                          <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                              <label>Foreground Color</label>
+                                              <div class="choosen-color choosen-foreground-color"></div>
+                                              <a href="" class="btn btn-primary btn-sm rounded">Choose Colour</a>
+                                           </div>
+                                       </div>
+                                      </div>
+                                    </div>
+                                
+                                <div class="row">
+                                  <div class="col-lg-6 mb-4">
+                                    <h3>Choose URL for Users to Access the Portal</h3>
+                                      <div class="d-lg-flex gap-3 align-items-center">
+                                        <input type="" name="" class="form-control w-auto" placeholder="Name">
+                                        <label>.eclipsescheduling.com</label>
+                                        <div class="option">
+                                            <div>
+                                                <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2 10L8.66667 17L22 2" stroke="#15974F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                Available
+                                            </div>
+                                        </div>
+                                      </div>
                                   </div>
-                                  <div class="col-12 choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                      <label>Foreground Color</label>
-                                      <div class="choosen-color"></div>
-                                      <a href="" class="btn btn-dark">Choose Colour</a>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-6 mb-4">
+                                      <h3>Assign Email to Send Notifications</h3>
+                                      <label class="form-label" for="EmailAddressSendNotifications">Email Address</label>
+                                        <input
+                                          type="text"
+                                          id="EmailAddressSendNotifications"
+                                          class="form-control"
+                                          name="EmailAddressSendNotifications"
+                                          placeholder=""
+                                          />
                                   </div>
-                              </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-6 mb-4">
+                                      <h3>Assign Email to Receive Customer Responses</h3>
+                                      <label class="form-label" for="EmailAddressCustomerResponses">Email Address</label>
+                                        <input
+                                          type="text"
+                                          id="EmailAddressCustomerResponses"
+                                          class="form-control"
+                                          name="EmailAddressCustomerResponses"
+                                          placeholder=""
+                                          />
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-6 mb-4">
+                                      <h3>Announcements & Communications</h3>
+                                      <label class="form-label" for="AnnouncementsCommunications">Message</label>
+                                        <textarea class="form-control" rows="3" cols="3" placeholder="Enter Message" id="AnnouncementsCommunications"></textarea>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-8 mb-4 d-lg-flex gap-3">
+                                      <div class="col-lg-4">
+                                          <h3>Audience:</h3>
+                                          <div class="form-check">
+                                            <input class="form-check-input" id="DisplayToProviders" name="DisplayToProviders" type="checkbox" tabindex="" />
+                                            <label class="form-check-label" for="DisplayToProviders"> Display to Providers</label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" id="DisplayToCustomers" name="DisplayToCustomers" type="checkbox" tabindex="" />
+                                            <label class="form-check-label" for="DisplayToCustomers"> Display to Customers</label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" id="DisplayToAdminUsers" name="DisplayToAdminUsers" type="checkbox" tabindex="" />
+                                            <label class="form-check-label" for="DisplayToAdminUsers"> Display to Admin-users</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4">
+                                          <h3>Display:</h3>
+                                          <div class="form-check">
+                                            <input class="form-check-input" id="DisplayOnLoginScreen" name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
+                                            <label class="form-check-label" for="DisplayOnLoginScreen"> Display On Log-in Screen</label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" id="DisplayOnDashboard" name="DisplayOnDashboard" type="checkbox" tabindex="" />
+                                            <label class="form-check-label" for="DisplayOnDashboard"> Display On Dashboard</label>
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-4">
+                                          <h3>Duration:</h3>
+                                          <label class="form-label-sm" for="DisplayToProviders"> Days</label>
+                                          <input class="form-control text-center" id="DisplayToProviders" name="DisplayToProviders" value="5" type="" tabindex="" />
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-8">
+                                    <a href="" class="btn btn-primary btn-sm rounded">Apply</a>
+                                  </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-12 justify-content-center form-actions d-flex">
+                                    <button type="button"
+                                        class="btn btn-outline-dark rounded px-4 py-2 mx-2">CANCEL</button>
+                                    <button type="submit"
+                                        class="btn btn-primary rounded px-4 py-2">NEXT</button>
+
+                            </div>
+                            </div>
+                          
+                          <div class="tab-pane fade" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
+                              <h2>Business Hours Setup</h2>
                           </div>
-                          <div class="tab-pane" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">...</div>
-                          <div class="tab-pane" id="payments" role="tabpanel" aria-labelledby="payments-tab" tabindex="0">...</div>
-                          <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
+                          <div class="tab-pane fade" id="payments" role="tabpanel" aria-labelledby="payments-tab" tabindex="0">
+                              <h2>Payments</h2>
+                          </div>
+                          </div>
                         </div>
                         <!-- END: Steps -->    
                     </div>
@@ -1521,8 +1630,10 @@
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 
