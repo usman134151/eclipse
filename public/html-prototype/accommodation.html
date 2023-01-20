@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Specialization - Eclipse Scheduling</title>
+    <title>Accommodations - Eclipse Scheduling</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -1391,39 +1391,42 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12 mb-md-2">
+                        <div class="page-title">
                           <div class="row">
                           <div class="col-md-3">
-                            <h1>Specializations</h1>
+                            <h1>Accommodations</h1>
                           </div>
                           <div class="col-md-3 ms-auto text-end">
-                            <a href="add-specialization.html" class="btn btn-primary">Create</a>
+                            <a href="add-accommodation.html" class="btn btn-primary">Add Accommodation</a>
                           </div>
-                          <p>Here you can create and manage service specializations. Deactivated specializations will not display in the service request form.</p>
-                        </div>
-                        </div>    
-                        </div>
-                        <div class="d-flex justify-content-between mb-2">
-                          <div class="d-inline-flex align-items-center gap-4">
-                            <label for="show_records_number" class="form-label">Show</label>
-                            <select class="form-select" id="show_records_number">
-                              <option>10</option>
-                              <option>15</option>
-                              <option>20</option>
-                              <option>25</option>
-                            </select>
                           </div>
-                          <div class="d-inline-flex align-items-center gap-4">
-                            <label for="search" class="form-label fw-semibold">Search</label>
-                            <input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                          <p>Create unique categories by which to group your more specific services. You can organize services by setting (Conference Interpreting, Medical Interpreting, Legal Interpreting...), by language modality (Spoken Languages, Signed Languages, Caption Services...), or however you see fit (Spanish Interpreting, French Interpreting, German Interpreting...).</p>
                         </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between mb-2">
+                        <div class="d-inline-flex align-items-center gap-4">
+                          <label for="show_records_number" class="form-label">Show</label>
+                          <select class="form-select" id="show_records_number">
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                          </select>
+                        </div>
+                        <div class="d-inline-flex align-items-center gap-4">
+                          <label for="search" class="form-label fw-semibold">Search</label>
+                          <input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+                        </div>
+                      </div>
                         <div class="table-responsive">
-                          <table id="industries" class="table table-hover" aria-label="Specializations">
+                          <table id="industries" class="table table-hover" aria-label="Accomodations">
                             <thead>
                               <tr role="row">
-                                <th scope="col">NAME</th>   
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>   
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                               </tr>
@@ -1431,6 +1434,13 @@
                             <tbody>
                               <tbody>
                                 <tr role="row" class="odd"> 
+                                  <td>
+                                      <div class="row g-2">
+                                        <div class="col-md-2">
+                                          <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                        </div>
+                                      </div> 
+                                  </td>
                                   <td>Administration</td>
                                   <td><button class="btn btn-success btn-sm">Activated</button></td>
                                   <td>
@@ -1445,8 +1455,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a href="javascript:void(0)" aria-label="action" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1454,6 +1467,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="even"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>Blog Writing</td>
                                   <td><button class="btn btn-warning  btn-sm">Deactivated</button></td>
                                   <td>
@@ -1468,8 +1488,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
-                                            <a title="Activate" aria-label="Activate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-check-circle"></i>Activate</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1477,6 +1500,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>Closed-Captioning</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
@@ -1491,8 +1521,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1500,6 +1533,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="even"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>Conference Interperting</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
@@ -1514,8 +1554,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1523,6 +1566,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>FRBNY  Interpreting</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
@@ -1537,21 +1587,31 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </td>
                                 </tr>
-                                <tr role="row" class="even"> 
+                                <tr role="row" class="even">
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td> 
                                   <td>General</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
                                     <div class="d-flex actions">  
                                       <div class="dropdown"> 
-                                        <div class="dropdown ac-cstm">
+                                        <div class="dropdown ac-cstm"> 
                                           <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                               <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -1560,8 +1620,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1569,6 +1632,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>Legal Interpreting</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
@@ -1583,8 +1653,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1592,6 +1665,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="even"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>ICS Admin</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
@@ -1606,8 +1686,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1615,6 +1698,13 @@
                                   </td>
                                 </tr>
                                 <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
                                   <td>Johnn tooth</td>
                                   <td><button class="btn btn-success  btn-sm">Activated</button></td>
                                   <td>
@@ -1629,8 +1719,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -1638,39 +1731,38 @@
                                   </td>
                                 </tr>
                             </tbody>
-                            </table>
+                            </table>  
                       </div>
-                      <div class="d-flex justify-content-between">
-                        <div>
-                          <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
-                        </div>
-                        <nav aria-label="Page Navigation">
-                          <ul class="pagination">
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Previous">Previous
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Next">Next
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
                       </div>
+                      <nav aria-label="Page Navigation">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">Previous
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">Next
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
                   </div>
-                
                 </div>
               </div>
-            </div>
+            </div>  
           </section>
           <!-- Basic Floating Label Form section end -->
-        </div>
+        </div>  
       </div>
     </div>
     <!-- End: Content-->
