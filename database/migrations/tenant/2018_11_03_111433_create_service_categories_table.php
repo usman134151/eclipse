@@ -22,7 +22,7 @@ class CreateServiceCategoriesTable extends Migration
         $table->string('frequency_id')->nullable();
         $table->enum('service_type',[1,2,3])->default(1)->comment('1 for In-person,2 for Virtual and 3 for Both');
         $table->double('service_charge', 8, 2)->nullable();
-        $table->string('emergency_hour',10)->default(1);
+        $table->string('emergency_hour',10);
         $table->string('minimum_assistance_hours',10)->default(1);
         $table->string('minimum_assistance_min',10)->default(0);
         $table->string('payment_deduct_hour',10)->default(1);
@@ -35,7 +35,7 @@ class CreateServiceCategoriesTable extends Migration
         $table->double('emergency_price', 8, 2)->default(0);
         $table->double('virtual_phone', 8, 2)->default(0);
         $table->tinyInteger('status')->nullable()->comment('1 for active,0 for inactive');
-        $table->integer('added_by')->unsigned();
+        $table->biginteger('added_by')->unsigned();
         $table->integer('updated_by')->nullable();
         $table->integer('deleted_by')->nullable();
         $table->softDeletes();

@@ -15,10 +15,10 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->integer('rating');
             $table->integer('description');
-            $table->integer('action_by')->unsigned();
+            $table->biginteger('action_by')->unsigned();
         });
         Schema::table('ratings', function($table) {
           $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');

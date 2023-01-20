@@ -20,7 +20,7 @@ class CreateSubscriptionPlansTable extends Migration
             $table->string('price');
             $table->integer('sale_price')->nullable();
             $table->enum('status',[0,1])->default(0)->comment('1 for active,0 for inactive');
-            $table->integer('added_by')->unsigned();
+            $table->biginteger('added_by')->unsigned();
             $table->timestamps();
         });
         Schema::table('subscription_plans', function($table) {

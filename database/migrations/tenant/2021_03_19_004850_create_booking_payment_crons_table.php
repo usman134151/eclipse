@@ -19,7 +19,7 @@ class CreateBookingPaymentCronsTable extends Migration
       $table->datetime('payment_deduct_time')->nullable();
       $table->string('payment_status')->nullable();
       $table->enum('cron_status',[0,1])->default(0)->comment('0 for not proceed,1 for proceed');
-      $table->integer('added_by')->unsigned();
+      $table->biginteger('added_by')->unsigned();
       $table->timestamps();
     });
     Schema::table('booking_payment_crons', function($table) {

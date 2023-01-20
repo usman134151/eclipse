@@ -16,7 +16,7 @@ class Remittances extends Migration
         Schema::create('remittances', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('amount', 8, 2)->default(0);
             $table->tinyInteger('payment_status')->comment('0=pending, 1=issued, 2=paid')->nullable();

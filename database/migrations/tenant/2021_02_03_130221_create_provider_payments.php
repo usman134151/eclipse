@@ -15,7 +15,7 @@ class CreateProviderPayments extends Migration
     {
         Schema::create('provider_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('booking_id')->unsigned();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
