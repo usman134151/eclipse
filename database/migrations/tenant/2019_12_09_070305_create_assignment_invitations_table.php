@@ -16,9 +16,9 @@ class CreateAssignmentInvitationsTable extends Migration
         Schema::create('assignment_invitations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('assignment_id')->unsigned();
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->tinyInteger('status')->nullable()->comment("'0' for pending '1' for interested '2' for not interested");
-            $table->integer('added_by');
+            $table->biginteger('added_by')->unsigned();
             $table->timestamps();
         });
 

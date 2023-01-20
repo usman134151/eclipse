@@ -20,8 +20,8 @@ class CreateInvoicePaymentsTable extends Migration
           $table->string('paid_date', 50)->nullable();
           $table->double('outstanding_amount', 8, 2)->default(0)->nullable();
           $table->tinyInteger('approved_by_admin')->default(0);
-          $table->integer('created_by')->unsigned()->nullable();
-          $table->integer('approved_by')->unsigned()->nullable();
+          $table->biginteger('created_by')->unsigned()->nullable();
+          $table->biginteger('approved_by')->unsigned()->nullable();
           $table->timestamps();
         });
 

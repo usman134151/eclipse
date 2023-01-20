@@ -15,7 +15,7 @@ class CreateUserLoginAddress extends Migration
     {
         Schema::create('user_login_address', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('ip_address')->nullable();
             $table->string('browser')->nullable();

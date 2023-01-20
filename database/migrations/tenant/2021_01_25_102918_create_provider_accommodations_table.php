@@ -15,7 +15,7 @@ class CreateProviderAccommodationsTable extends Migration
     {
         Schema::create('provider_accommodations', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('user_id')->unsigned();
+          $table->biginteger('user_id')->unsigned();
           $table->integer('accommodation_id')->unsigned();
           $table->integer('added_by');
           $table->timestamps();

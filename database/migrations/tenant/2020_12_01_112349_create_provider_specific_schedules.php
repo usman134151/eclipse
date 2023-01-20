@@ -15,7 +15,7 @@ class CreateProviderSpecificSchedules extends Migration
     {
         Schema::create('provider_specific_schedules', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('scheduled_date');
             $table->time('from_time', 0);

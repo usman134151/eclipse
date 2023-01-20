@@ -15,13 +15,13 @@ class CreateSpecializationRatesTable extends Migration
     {
         Schema::create('specialization_rates', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->integer('accommodation_id');
             $table->integer('accommodation_service_id');
             $table->string('specialization');
             $table->string('specialization_other')->nullable();
             $table->double('specialization_rate', 8, 2)->default(0);
-            $table->integer('added_by')->nullable();
+            $table->biginteger('added_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->softDeletes();
