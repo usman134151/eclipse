@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Provider - Eclipse Scheduling</title>
+    <title>Notifications - Eclipse Scheduling</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -1402,11 +1402,16 @@
                     </li>
                     <li class="breadcrumb-item">
                       <a href="javascript:void(0)">
-                      Providers
+                      Settings
                       </a>
                     </li>
                     <li class="breadcrumb-item">
-                      Add Provider
+                      <a href="javascript:void(0)">
+                        Business profile & Settings
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      Notification
                     </li>
                   </ol>
                 </div>
@@ -1422,343 +1427,99 @@
                 <div class="card">
                   <div class="card-body">
                     <form class="form">
-                      <div class="row mt-2 mb-5">
-                        <div class="col-12 text-center">
-                          <div class="d-inline-block position-relative">
-                            <img src="images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
-                            <!-- <div>
-                              <input class="position-absolute form-control" type="file" />
-                            </div> -->
-                            <div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                              <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="28.5" cy="28.5" r="28" fill="#0A1E46" stroke="white"/>
-                                <path d="M42.9375 37.625C42.9375 38.172 42.7202 38.6966 42.3334 39.0834C41.9466 39.4702 41.422 39.6875 40.875 39.6875H16.125C15.578 39.6875 15.0534 39.4702 14.6666 39.0834C14.2798 38.6966 14.0625 38.172 14.0625 37.625V25.25C14.0625 24.703 14.2798 24.1784 14.6666 23.7916C15.0534 23.4048 15.578 23.1875 16.125 23.1875H18.5422C20.1824 23.1866 21.7551 22.5345 22.9147 21.3746L24.6266 19.6668C25.0123 19.281 25.5352 19.0637 26.0807 19.0625H30.9152C31.4622 19.0626 31.9867 19.28 32.3734 19.6668L34.0811 21.3746C34.6558 21.9494 35.3381 22.4054 36.0891 22.7165C36.84 23.0275 37.6449 23.1876 38.4578 23.1875H40.875C41.422 23.1875 41.9466 23.4048 42.3334 23.7916C42.7202 24.1784 42.9375 24.703 42.9375 25.25V37.625ZM16.125 21.125C15.031 21.125 13.9818 21.5596 13.2082 22.3332C12.4346 23.1068 12 24.156 12 25.25V37.625C12 38.719 12.4346 39.7682 13.2082 40.5418C13.9818 41.3154 15.031 41.75 16.125 41.75H40.875C41.969 41.75 43.0182 41.3154 43.7918 40.5418C44.5654 39.7682 45 38.719 45 37.625V25.25C45 24.156 44.5654 23.1068 43.7918 22.3332C43.0182 21.5596 41.969 21.125 40.875 21.125H38.4578C37.3638 21.1248 36.3148 20.69 35.5414 19.9164L33.8336 18.2086C33.0602 17.435 32.0112 17.0002 30.9172 17H26.0828C24.9888 17.0002 23.9398 17.435 23.1664 18.2086L21.4586 19.9164C20.6852 20.69 19.6362 21.1248 18.5422 21.125H16.125Z" fill="white"/>
-                                <path d="M28.5 35.5625C27.1325 35.5625 25.821 35.0193 24.854 34.0523C23.887 33.0853 23.3438 31.7738 23.3438 30.4063C23.3438 29.0387 23.887 27.7272 24.854 26.7602C25.821 25.7932 27.1325 25.25 28.5 25.25C29.8675 25.25 31.179 25.7932 32.146 26.7602C33.113 27.7272 33.6562 29.0387 33.6562 30.4063C33.6562 31.7738 33.113 33.0853 32.146 34.0523C31.179 35.0193 29.8675 35.5625 28.5 35.5625ZM28.5 37.625C30.4145 37.625 32.2506 36.8645 33.6044 35.5107C34.9582 34.1569 35.7188 32.3208 35.7188 30.4063C35.7188 28.4917 34.9582 26.6556 33.6044 25.3018C32.2506 23.948 30.4145 23.1875 28.5 23.1875C26.5855 23.1875 24.7494 23.948 23.3956 25.3018C22.0418 26.6556 21.2812 28.4917 21.2812 30.4063C21.2812 32.3208 22.0418 34.1569 23.3956 35.5107C24.7494 36.8645 26.5855 37.625 28.5 37.625ZM18.1875 26.2813C18.1875 26.5548 18.0789 26.8171 17.8855 27.0105C17.6921 27.2039 17.4298 27.3125 17.1562 27.3125C16.8827 27.3125 16.6204 27.2039 16.427 27.0105C16.2336 26.8171 16.125 26.5548 16.125 26.2813C16.125 26.0077 16.2336 25.7454 16.427 25.552C16.6204 25.3586 16.8827 25.25 17.1562 25.25C17.4298 25.25 17.6921 25.3586 17.8855 25.552C18.0789 25.7454 18.1875 26.0077 18.1875 26.2813Z" fill="white"/>
-                                </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                   
                       <div class="row">
                         <div class="col-md-12 mb-md-2">
-                          <h2>Provider Info</h2>
+                          <!-- <h2>Provider Info</h2> -->
                           <div class="row">
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-5 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="first-name-column">First Name</label>
+                                <label class="form-label" for="name-column">Name</label>
                                 <input
                                   type="text"
-                                  id="first-name-column"
+                                  id="name-column"
                                   class="form-control"
-                                  name="fname-column"
-                                  placeholder="Enter First Name"
+                                  name="name-column"
+                                  placeholder="Enter Name"
                                   />
                               </div>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-5 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="last-name-column">Last Name</label>
-                                <input
-                                  type="text"
-                                  id="last-name-column"
-                                  class="form-control"
-                                  placeholder="Enter Last Name"
-                                  name="lname-column"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="pronouns-column">Pronouns</label>
-                                <input
-                                  type="text"
-                                  id="pronouns-column"
-                                  class="form-control"
-                                  placeholder="Enter Pronouns"
-                                  name="pronouns"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="gender-column">Gender</label>
+                                <label class="form-label" for="gender-column">Select Trigger</label>
                                 <select class="select2 form-select" id="gender-column">
-                                  <option>Male</option>
-                                  <option>Female</option>
-                                  <option>Others</option>
+                                  <option>Select Trigger</option>
                                 </select>
                               </div>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-5 col-12">
                               <div class="mb-4">
-                                <form>
-                                  <label class="form-label" for="date">Date</label>
-                                  <div class="input-group mb-3" id="datepicker">
-                                    <input type="text" class="form-control" placeholder="Select Date of Birth" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z" fill="white"/>
-                                      </svg>
-                                      </span>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="ethnicity-column">Ethnicity</label>
-                               
-                                  
-                                <select class="select2 form-select" id="ethnicity-column">
-                                  <option>Select Ethnicity</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="education-column">Education</label>
-                               
-                                  
-                                <input
-                                  type="email"
-                                  id="education-column"
-                                  class="form-control"
-                                  name="education-column"
-                                  placeholder="Enter Education"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="certifications-column">Certification(s)</label>
-                              
-                                <select class="select2 form-select" id="certifications-column">
-                                  <option>Select Certification(s)</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="preferred-language">Preferred Language</label>
-                                <select class="select2 form-select" id="preferred-language">
-                                  <option>English</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="set-time-zone">Set Time Zone</label>
-                                <select class="select2 form-select" id="set-time-zone">
-                                  <option>Select Time Zone</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="email-id-column">Email</label>
-                                <input
-                                  type="email"
-                                  id="email-id-column"
-                                  class="form-control"
-                                  name="email-id-column"
-                                  placeholder="Enter Email"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="phone">Phone Number</label>
-                                <input
-                                  type="text"
-                                  id="phone"
-                                  class="form-control"
-                                  name="phone"
-                                  placeholder="Enter Phone Number"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="phone">Provider ID</label>
-                                <input
-                                  type="text"
-                                  id="phone"
-                                  class="form-control"
-                                  name="providerID"
-                                  placeholder="Enter Provider ID"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="country">Country</label>
-                                <select class="select2 form-select" id="country">
-                                  <option value="USA">USA</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="state">State</label>
-                                <select class="select2 form-select" id="state">
-                                  <option value="Al">Alabama</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="city">City</label>
-                                <input
-                                  type="text"
-                                  id="city"
-                                  class="form-control"
-                                  name="city"
-                                  placeholder="Select City"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="address-line-1">Address Line 1</label>
-                                <input
-                                  type="text"
-                                  id="address-line-1"
-                                  class="form-control"
-                                  name="address-line-1"
-                                  placeholder="Enter Address Line 1"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="address-line-2">Address Line 2</label>
-                                <input
-                                  type="text"
-                                  id="address-line-2"
-                                  class="form-control"
-                                  name="address-line-2"
-                                  placeholder="Enter Address Line 2"
-                                  />
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="phone">Zip Code</label>
-                                <input
-                                  type="text"
-                                  id="phone"
-                                  class="form-control"
-                                  name="zipcode"
-                                  placeholder="Enter Zip Code"
-                                  />
-                              </div>
-                            </div>                
-                          </div>
-                            <!-- ...row for a new line.... -->
-                          <div class="row">
-                          
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="experienceColumn">
-                                  Experience
+                                <label class="form-label" for="trigger-description">
+                                  Trigger Description
                                 </label>
                                 <textarea
                                 class="form-control"
-                                rows="3"
+                                rows="2"
                                 cols="3"
                                 placeholder=""
-                                name="experienceColumn"
-                                id="experienceColumn"
+                                name="trigger-description"
+                                id="trigger-description"
                                 ></textarea>
                               </div>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-5 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="notes_column">
-                                  Notes
-                                </label>
-                                <textarea
-                                class="form-control"
-                                rows="3"
-                                placeholder=""
-                                name="notes_column"
-                                id="notes_column"
-                                ></textarea>
-                              </div>
-                            </div>
-                          
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="associatedTags">Associated Tags</label>
-                                <input
-                                  type="text"
-                                  id="associatedTags"
-                                  class="form-control"
-                                  name="associatedTags"
-                                  placeholder="Enter Associated Tags"
-                                  />
-                              </div>
-                            </div> 
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="companeyAdmins">Company-Admin(s)</label>
-                                <input
-                                  type="text"
-                                  id="companeyAdmins"
-                                  class="form-control"
-                                  name="companeyAdmins"
-                                  placeholder="Add Admins"
-                                  />
-                              </div>
-                            </div> 
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="payment-settings">Payment Settings</label>
-                                <select class="select2 form-select" id="payment-settings">
-                                  <option value="Al">Select Payment Settings</option>
+                                <label class="form-label" for="select-role">Select Role</label>
+                                <select class="select2 form-select" id="select-role">
+                                  <option>Select Role</option>
                                 </select>
                               </div>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-5 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="remittance-temp">Select Default Remittance Template</label>
-                                <select class="select2 form-select" id="remittance-temp">
-                                  <option value="Al">Select Default Remittance Template</option>
+                                <label class="form-label" for="select-role">Select Role</label>
+                                <select class="select2 form-select" id="select-role">
+                                  <option>Select Role</option>
                                 </select>
                               </div>
                             </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <form>
-                                  <label class="form-label" for="date">Start Date</label>
-                                  <div class="input-group mb-3" id="datepicker">
-                                    <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z" fill="white"/>
-                                      </svg>
-                                      </span>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <form>
-                                  <label class="form-label" for="date">End Date</label>
-                                  <div class="input-group mb-3" id="datepicker">
-                                    <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z" fill="white"/>
-                                      </svg>
-                                      </span>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
+                            
                            </div>
+                           
+                           <!-- .....  -->
+                          <div class="row">
+                            <div class="col-md-2 col-12">
+                              <div class="mb-4">
+                                <div class="d-inline-flex align-items-center gap-3">
+                                  <label for="search" class="form-label fw-semibold"><h2>Frequency</h2></label>
+                                  <input type="search" class="form-control" id="search" name="search" placeholder="2" autocomplete="on"/>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2 col-12">
+                              <div class="mb-4">
+                                <label class="form-label" for="company-column">2</label>
+                                <select class="select2 form-select" id="company-column">
+                                  <option>Select Companey</option>
+                                 
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-2 col-12">
+                              <div class="mb-4">
+                                <label class="form-label" for="company-column">3</label>
+                                <select class="select2 form-select" id="company-column">
+                                  <option>Select Companey</option>
+                                 
+                                </select>
+                              </div>
+                            </div>
+                          </div>
 
-<!-- ....input fields end...  -->
-                        </div>
+                        <!-- .....  -->
+                      </div>
+                      </div>
+                      
                         <div class="col-md-12 col-12 mb-md-2">
                           <div class="row">
                             <div class="col-md-5 col-12">
