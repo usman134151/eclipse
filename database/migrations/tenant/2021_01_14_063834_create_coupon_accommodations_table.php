@@ -17,7 +17,7 @@ class CreateCouponAccommodationsTable extends Migration
       $table->increments('id');
       $table->integer('coupon_id')->unsigned();
       $table->integer('accommodation_id')->unsigned();
-      $table->integer('added_by')->unsigned();
+      $table->biginteger('added_by')->unsigned();
       $table->timestamps();
     });
     Schema::table('coupon_accommodations', function($table) {

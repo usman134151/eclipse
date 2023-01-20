@@ -15,7 +15,7 @@ class CreateProviderLocationsTable extends Migration
     {
         Schema::create('provider_locations', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->integer('location_id')->unsigned();
         });
         Schema::table('provider_locations', function($table) {

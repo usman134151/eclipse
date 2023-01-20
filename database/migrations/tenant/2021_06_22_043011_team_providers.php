@@ -17,7 +17,7 @@ class TeamProviders extends Migration
             $table->id();
             $table->unsignedBigInteger('team_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('status')->comment('0=active, 1=deactive')->default(0);
             $table->dateTime('deleted_at')->nullable();

@@ -17,7 +17,7 @@ class CreateBookingReimbursements extends Migration
             $table->id();
             $table->integer('booking_id')->unsigned();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('remittance_id')->default(0);
             $table->double('amount', 8, 2)->default(0);

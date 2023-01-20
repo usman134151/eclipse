@@ -15,14 +15,14 @@ class CreateStandardRatesTable extends Migration
     {
         Schema::create('standard_rates', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->integer('accommodation_id');
             $table->integer('accommodation_service_id');
             $table->double('hours_price', 8, 2)->default(0);
             $table->double('after_hours_price', 8, 2)->default(0);
             $table->double('emergency_price', 8, 2)->default(0);
             $table->double('virtual_phone', 8, 2)->default(0);
-            $table->integer('added_by')->nullable();
+            $table->biginteger('added_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->timestamps();

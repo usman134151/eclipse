@@ -19,7 +19,7 @@ class CreateSpecializationsTable extends Migration
           $table->string('description')->nullable();
           $table->string('image')->nullable();
           $table->enum('status',[0,1])->default(1)->comment('1 for active,0 for inactive');
-          $table->integer('added_by')->unsigned();
+          $table->biginteger('added_by')->unsigned();
           $table->integer('updated_by')->nullable();
           $table->integer('deleted_by')->nullable();
           $table->softDeletes();
