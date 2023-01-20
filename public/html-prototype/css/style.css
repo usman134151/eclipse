@@ -5,6 +5,10 @@
 .btn-sm {
   padding: 0.25rem 1rem; }
 
+
+.btn-sm {
+  padding: 0.25rem 1rem; }
+
 html, body {
   height: 100%; }
 
@@ -125,6 +129,12 @@ a {
     padding: 0 0.5rem; }
 
 .choose-portal-colors label {
+  margin: 0; }
+.choose-portal-colors .choosen-color {
+  border-radius: 100px;
+  width: 2rem;
+  height: 2rem;
+  background-color: #0A1E46;
   margin: 0;
   width: 10rem; }
 .choose-portal-colors .choosen-color {

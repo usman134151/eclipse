@@ -153,6 +153,12 @@ a {
 .choose-portal-colors {
 	label {
 		margin: 0;
+	}
+	.choosen-color {
+		border-radius: 100px;
+		width: 2rem;
+		height: 2rem;
+		background-color: $primary;
 		width: 10rem;
 	}
 	.choosen-color {
