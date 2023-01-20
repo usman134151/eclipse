@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/bootstrap-extended.css">
@@ -1481,7 +1482,7 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                          <div class="tab-pane fade show active" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
+                          <div class="tab-pane fade" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
                               <div class="row">
                                 <div class="col-lg-12">
                                     <h2>Configuration Setting</h2>
@@ -1599,7 +1600,7 @@
                             </div>
                             </div>
                           
-                          <div class="tab-pane fade" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
+                          <div class="tab-pane fade show active" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
                             <div class="row mb-4">
                                 <div class="col-lg-12">
                                   <h2>Business Hours Setup</h2>
@@ -1658,10 +1659,16 @@
                                         <div class="col-lg-12">
                                             <label class="form-label">Select Days & Time</label>
                                             <div class="d-lg-flex gap-3 align-items-center mb-3">
-                                                <input type="" name="" class="form-control w-auto" placeholder="Select Day">
+                                                <input type="" name="" class="form-control w-auto js-select-day" placeholder="Select Day">
                                                 <label class="form-label-sm">Choose Time</label>
-                                                <button class="btn btn-primary btn-sm rounded">Start Time</button>
-                                                <button class="btn btn-primary btn-sm rounded">End Time</button>
+                                                <div class="input-group w-auto">
+                                                  <input type="text" class="form-control w-auto js-timepciker-start-time" placeholder="Start Time" aria-label="Start Time" aria-describedby="start-time">
+                                                  <button class="btn btn-primary btn-sm">Start Time</button>
+                                                </div>
+                                                <div class="input-group w-auto">
+                                                  <input type="text" class="form-control w-auto js-timepciker-end-time" placeholder="End Time" aria-label="End Time" aria-describedby="end-time">
+                                                  <button class="btn btn-primary btn-sm">End Time</button>
+                                                </div>
                                             </div>
                                             <button class="btn btn-primary btn-sm rounded">Submit</button>
                                         </div>
@@ -1689,8 +1696,8 @@
                                                                 Monday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="mondayOn">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="mondayOn">
+                                                                <label class="form-check-label" for="monday">ON</label>
+                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="monday">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -1698,8 +1705,8 @@
                                                                 Tuesday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="tuesdayOn">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="tuesdayOn">
+                                                                <label class="form-check-label" for="tuesday">ON</label>
+                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="tuesday">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -1707,8 +1714,8 @@
                                                                 Wednesday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="wednesdayOn">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="wednesdayOn">
+                                                                <label class="form-check-label" for="wednesday">ON</label>
+                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="wednesday">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -1716,8 +1723,8 @@
                                                                 Thursday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="thursdayOn">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="thursdayOn">
+                                                                <label class="form-check-label" for="thursday">ON</label>
+                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="thursday">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -1725,8 +1732,8 @@
                                                                 Friday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="fridayOn">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="fridayOn">
+                                                                <label class="form-check-label" for="friday">ON</label>
+                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="friday">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -1734,8 +1741,8 @@
                                                                 Saturday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="saturdayOn">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="saturdayOn">
+                                                                <label class="form-check-label" for="saturday">ON</label>
+                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="saturday">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -1743,8 +1750,8 @@
                                                                 Sunday
                                                             </div>
                                                             <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="sundayOn">OFF</label>
-                                                                <input class="form-check-input" type="checkbox" role="switch" id="sundayOn">
+                                                                <label class="form-check-label" for="sunday">OFF</label>
+                                                                <input class="form-check-input" type="checkbox" role="switch" id="sunday">
                                                             </div>
                                                         </th>
                                                     </thead>
@@ -1819,8 +1826,8 @@
                                                 <div>
                                                     <label class="form-label">Select Days / Holidays </label>
                                                     <div class="position-relative">
-                                                        <input type="" name="" class="form-control w-auto" placeholder="MM/DD/YYYY">
-                                                        <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <input type="" class="form-control w-auto js-single-date" placeholder="MM/DD/YYYY" name="selectHolidays">
+                                                        <svg class="icon-date cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
                                                         </svg>
                                                     </div>
@@ -2186,9 +2193,11 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 

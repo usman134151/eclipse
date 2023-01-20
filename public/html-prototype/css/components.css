@@ -4066,7 +4066,6 @@ body .border-bottom{border-bottom:1px solid #f1f1f2!important}
 .calender_dashboard ul{list-style-type:none;padding-left:0;display:inline-block;width:100%;margin-bottom:0}
 .right_dash ul,ul.weekdays{padding-left:0;width:100%;display:flex;justify-content:space-between}
 .weekdays{margin:0}
-.month{width:100%;background:#fff;text-align:center;display:inline-block}
 .month ul{margin:0;padding:0}
 .common_sel a{font-size:18px;position:relative;padding-bottom:10px;display:inline-block;margin-bottom:20px;text-transform:capitalize;color:#007fdc;text-decoration:none}
 .toggle_dashboard{display:none}
@@ -4389,11 +4388,6 @@ table.dataTable.dtr-column>tbody>tr>td.dtr-control:before, table.dataTable.dtr-c
   .modal-md {
     max-width: 700px;
   }
-}
-
-.daterangepicker th.month {
-    width: auto;
-    display: table-cell;
 }
 
 .drp-calendar.left.single {
