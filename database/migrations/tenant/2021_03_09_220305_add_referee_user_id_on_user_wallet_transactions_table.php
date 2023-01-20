@@ -14,7 +14,7 @@ class AddRefereeUserIdOnUserWalletTransactionsTable extends Migration
   public function up()
   {
     Schema::table('user_wallet_transactions', function (Blueprint $table) {
-      $table->integer('referre_user_id')->unsigned()->nullable()->comment('referre user id')->after('user_id');
+      $table->biginteger('referre_user_id')->unsigned()->nullable()->comment('referre user id')->after('user_id');
       $table->enum('payment_status',[1,2])->default(2)->comment('1 for paid,2 for unpaid')->after('balance');
     });
     Schema::table('user_wallet_transactions', function($table) {

@@ -18,7 +18,7 @@ class CreateBookingInvitationProviders extends Migration
             $table->integer('invitation_id')->unsigned();
             $table->integer('booking_id')->unsigned();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
-            $table->integer('provider_id')->unsigned();
+            $table->biginteger('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('status')->comment('0=pending, 1=intrested, 2=not intrested')->default(0);
             $table->text('notes')->nullable();

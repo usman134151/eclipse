@@ -18,7 +18,7 @@ class CreateBookingCustomizeDataTable extends Migration
             $table->integer('booking_log_id')->unsigned();
             $table->integer('booking_id')->unsigned()->nullable();
             $table->text('customize_data')->nullable();
-            $table->integer('added_by')->unsigned();
+            $table->biginteger('added_by')->unsigned();
             $table->timestamps();
         });
         Schema::table('booking_customize_data', function($table) {

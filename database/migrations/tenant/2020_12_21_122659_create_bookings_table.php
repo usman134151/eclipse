@@ -16,7 +16,7 @@ class CreateBookingsTable extends Migration
     Schema::create('bookings', function (Blueprint $table) {
       $table->increments('id');
       $table->string('booking_number');
-      $table->integer('user_id')->unsigned();
+      $table->biginteger('user_id')->unsigned();
       $table->enum('frequency_id',[1,2,3,4])->default(1)->comment('1 for one_time,2 for daily,3 for weekly,4 for monthly');
       $table->integer('accommodation_id')->unsigned();
       $table->integer('service_category')->unsigned();

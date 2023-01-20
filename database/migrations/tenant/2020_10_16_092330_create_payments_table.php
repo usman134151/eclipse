@@ -29,7 +29,7 @@ class CreatePaymentsTable extends Migration
       $table->double('outstanding_amount', 8, 2)->default(0)->nullable();
       $table->integer('coupon_id')->unsigned()->nullable();
       $table->tinyInteger('coupon_type')->nullable();
-      $table->integer('payment_by')->unsigned();
+      $table->biginteger('payment_by')->unsigned();
       $table->string('payment_proceed_on','50')->nullable();
       $table->timestamps();
     });
