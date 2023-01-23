@@ -24,9 +24,10 @@ Route::group([
     Route::post('/ploi/webhook/certificateRevoked', [Controllers\PloiWebhookController::class, 'certificateRevoked'])->name('ploi.certificate.revoked');
 
     Route::middleware(['auth','otpcheck', CheckSubscription::class])->group(function () {
-        Route::redirect('/home', '/posts')->name('home');
+        Route::redirect('/home', '/dashboard')->name('home');
 
-        Route::get('/posts', [Controllers\PostController::class, 'index'])->name('posts.index');
+        Route::view('*/dashboard', 'tenant/dashboard/index');
+        
         Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
         Route::get('/posts/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');

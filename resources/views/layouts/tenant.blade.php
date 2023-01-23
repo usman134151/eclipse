@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     @stack('head')
+    @livewireStyles
 </head>
 <body class="pace-done vertical-layout vertical-menu-modern navbar-floating footer-static menu-expanded">
 @include('partials/header')
@@ -42,5 +43,6 @@
     <!-- END: Footer-->
     <script type="text/javascript" src="tenant/js/bootstrap.bundle.min.js"></script>
     <script src="tenant/js/app.js"></script>
+    @livewireScripts
   </body>
 </html>
