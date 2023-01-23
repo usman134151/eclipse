@@ -54,3 +54,6 @@
       <!-- /Login-->
  
 @endsection
+<script>
+localStorage.removeItem("first_time");
+</script>
