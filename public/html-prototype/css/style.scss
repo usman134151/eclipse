@@ -153,6 +153,12 @@ a {
 .choose-portal-colors {
 	label {
 		margin: 0;
+	}
+	.choosen-color {
+		border-radius: 100px;
+		width: 2rem;
+		height: 2rem;
+		background-color: $primary;
 		width: 10rem;
 	}
 	.choosen-color {
@@ -259,4 +265,82 @@ a {
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.daterangepicker {
+	background-color: #F5F5F5;
+	border-radius: 0.5rem;
+	.calendar-table {
+		background-color: #F5F5F5;
+		table {
+			border-spacing: 2px;
+    border-collapse: separate;
+		}
+	}
+	select.monthselect, select.yearselect, select.hourselect, select.minuteselect, select.ampmselect {
+		border: 1px solid #fff;
+		border-radius: 0.25rem;
+		padding: 6.6px 1px;
+		background-color: #ffffff;
+		&:hover {
+			border-color: $primary;
+		}
+	}
+	td.month {
+		background-color: #F5F5F5;
+	}
+	td.available, th.available {
+		transition: all 0.15s ease-in-out;
+		background-color: #ffffff;
+		border: 1px solid #fff;
+		&:hover {
+			background-color: #ffffff;
+		}
+	}
+	td.available {
+		border: 1px solid #fff;
+		&:hover {
+			border-color: $primary;
+		}
+	}
+	td.off.ends {
+		background-color: #F5F5F5;
+	}
+	th {
+		&.prev.available,
+		&.next.available {
+			border-radius: 100px;
+			border: 1px solid #fff;
+			&:hover {
+				border-color: $primary;
+			}
+			&.prev.available {
+				span {
+					margin-left: 3px;
+				}
+			}
+			&.next.available {
+				span {
+					margin-right: 3px;
+				}
+			}
+		}
+	}
+	td.active {
+		transition: none;
+		border-color: transparent;
+	  background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+	  color: #fff;
+	  &:hover {
+		  background: #204387;
+		  border-color: #204387;
+		}
+	}
+	.drp-buttons .btn:hover {
+		border-color: $primary;
+	}
 }

@@ -1,17 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Configuration Setting Business Setup - Eclipse Scheduling</title>
+    <title>Accommodations - Eclipse Scheduling</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/bootstrap-extended.css">
@@ -20,177 +19,122 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<!-- END: Head-->
-<!-- BEGIN: Body-->
-
-<body class="pace-done vertical-layout vertical-menu-modern navbar-floating footer-static menu-expanded">
+  </head>
+  <!-- END: Head-->
+  <!-- BEGIN: Body-->
+  <body class="pace-done vertical-layout vertical-menu-modern navbar-floating footer-static menu-expanded">
     <!-- BEGIN: Header-->
-    <nav
-        class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
-        <div class="navbar-container d-flex content">
-            <div class="bookmark-wrapper d-flex align-items-center">
-                <ul class="nav navbar-nav d-xl-none">
-                    <li class="nav-item"><a title="Navbar Toggler" aria-label="Navbar Toggler"
-                            class="nav-link menu-toggle" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu ficon">
-                                <line x1="3" y1="12" x2="21" y2="12"></line>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <line x1="3" y1="18" x2="21" y2="18"></line>
-                            </svg></a></li>
-                </ul>
-                <ul class="nav navbar-nav bookmark-icons">
-                    <li class="nav-item d-none d-lg-block"><a
-                            href="/admin/chat" title="Chat"
-                            aria-label="Eclipse Scheduling Chat" class="nav-link" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M16.2 0H1.8C0.8073 0 0 0.816816 0 1.82122V12.7485C0 13.7529 0.8073 14.5697 1.8 14.5697H4.5V18L10.1493 14.5697H16.2C17.1927 14.5697 18 13.7529 18 12.7485V1.82122C18 0.816816 17.1927 0 16.2 0ZM16.2 12.7485H9.6507L6.3 14.7819V12.7485H1.8V1.82122H16.2V12.7485Z"
-                                    fill="#6E6B7B" />
-                            </svg></a></li>
-                    <li class="nav-item d-none d-lg-block"><a
-                            href="/admin/dashboard" title="Dashboard"
-                            aria-label="Eclipse Scheduling Dashboard" class="nav-link" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M15.3 1.8H13.5V0.9C13.5 0.661305 13.4052 0.432387 13.2364 0.263604C13.0676 0.0948211 12.8387 0 12.6 0C12.3613 0 12.1324 0.0948211 11.9636 0.263604C11.7948 0.432387 11.7 0.661305 11.7 0.9V1.8H6.3V0.9C6.3 0.661305 6.20518 0.432387 6.0364 0.263604C5.86761 0.0948211 5.63869 0 5.4 0C5.1613 0 4.93239 0.0948211 4.7636 0.263604C4.59482 0.432387 4.5 0.661305 4.5 0.9V1.8H2.7C1.98392 1.8 1.29716 2.08446 0.790812 2.59081C0.284464 3.09716 0 3.78392 0 4.5V15.3C0 16.0161 0.284464 16.7028 0.790812 17.2092C1.29716 17.7155 1.98392 18 2.7 18H15.3C16.0161 18 16.7028 17.7155 17.2092 17.2092C17.7155 16.7028 18 16.0161 18 15.3V4.5C18 3.78392 17.7155 3.09716 17.2092 2.59081C16.7028 2.08446 16.0161 1.8 15.3 1.8ZM16.2 15.3C16.2 15.5387 16.1052 15.7676 15.9364 15.9364C15.7676 16.1052 15.5387 16.2 15.3 16.2H2.7C2.46131 16.2 2.23239 16.1052 2.0636 15.9364C1.89482 15.7676 1.8 15.5387 1.8 15.3V9H16.2V15.3ZM16.2 7.2H1.8V4.5C1.8 4.2613 1.89482 4.03239 2.0636 3.8636C2.23239 3.69482 2.46131 3.6 2.7 3.6H4.5V4.5C4.5 4.73869 4.59482 4.96761 4.7636 5.1364C4.93239 5.30518 5.1613 5.4 5.4 5.4C5.63869 5.4 5.86761 5.30518 6.0364 5.1364C6.20518 4.96761 6.3 4.73869 6.3 4.5V3.6H11.7V4.5C11.7 4.73869 11.7948 4.96761 11.9636 5.1364C12.1324 5.30518 12.3613 5.4 12.6 5.4C12.8387 5.4 13.0676 5.30518 13.2364 5.1364C13.4052 4.96761 13.5 4.73869 13.5 4.5V3.6H15.3C15.5387 3.6 15.7676 3.69482 15.9364 3.8636C16.1052 4.03239 16.2 4.2613 16.2 4.5V7.2Z"
-                                    fill="#6E6B7B" />
-                            </svg></a></li>
-
-                    <li class="nav-item d-none d-lg-block"><a
-                            href="/admin/reports" title="Reports"
-                            aria-label="Reports" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <svg width="17" height="19" viewBox="0 0 17 19" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5.14286 14.1574V12.2778M8.25 14.1574V10.3981M11.3571 14.1574V8.51852M13.4286 17.9167H3.07143C2.52205 17.9167 1.99518 17.7186 1.60671 17.3661C1.21824 17.0136 1 16.5355 1 16.037V2.87963C1 2.38112 1.21824 1.90303 1.60671 1.55053C1.99518 1.19803 2.52205 1 3.07143 1H8.85693C9.13159 1.00005 9.39499 1.0991 9.58918 1.27537L15.1965 6.36352C15.3908 6.53973 15.4999 6.77874 15.5 7.02797V16.037C15.5 16.5355 15.2818 17.0136 14.8933 17.3661C14.5048 17.7186 13.9779 17.9167 13.4286 17.9167Z"
-                                    stroke="#6E6B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="nav-item d-none d-lg-block"><a
-                            href="/admin/bookings/today" title="Assignments"
-                            aria-label="Assignments" class="nav-link" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M13.4552 11.999H7.47604C7.20227 11.999 6.97764 11.7753 6.97764 11.4988C6.97764 11.2226 7.20227 11.0004 7.47604 11.0004H13.4552C13.7308 11.0004 13.9536 11.2226 13.9536 11.4988C13.9536 11.7753 13.7308 11.999 13.4552 11.999ZM13.4552 14.9985H7.47604C7.20227 14.9985 6.97764 14.7748 6.97764 14.4983C6.97764 14.2236 7.20227 13.9999 7.47604 13.9999H13.4552C13.7308 13.9999 13.9536 14.2236 13.9536 14.4983C13.9536 14.7748 13.7308 14.9985 13.4552 14.9985ZM13.4552 8.99952H7.47604C7.20227 8.99952 6.97764 8.77581 6.97764 8.49929C6.97764 8.22309 7.20227 7.99938 7.47604 7.99938H13.4552C13.7308 7.99938 13.9536 8.22309 13.9536 8.49929C13.9536 8.77581 13.7308 8.99952 13.4552 8.99952ZM5.23556 14.5001C5.23556 14.6982 5.15591 14.8899 5.01582 15.029C4.87573 15.1694 4.6862 15.2494 4.48721 15.2494C4.28975 15.2494 4.09869 15.1694 3.95861 15.029C3.81852 14.8899 3.74039 14.6982 3.74039 14.5001C3.74039 14.3002 3.81852 14.1101 3.95861 13.9694C4.09869 13.8287 4.28975 13.749 4.48721 13.749C4.6862 13.749 4.87573 13.8287 5.01582 13.9694C5.15591 14.1101 5.23556 14.3002 5.23556 14.5001ZM5.23556 11.4988C5.23556 11.6987 5.15591 11.8888 5.01582 12.0311C4.87573 12.1699 4.6862 12.2499 4.48721 12.2499C4.28975 12.2499 4.09869 12.1699 3.95861 12.0311C3.81852 11.8888 3.74039 11.6987 3.74039 11.4988C3.74039 11.3007 3.81852 11.1106 3.95861 10.9684C4.09869 10.8292 4.28975 10.7495 4.48721 10.7495C4.6862 10.7495 4.87573 10.8292 5.01582 10.9684C5.15591 11.1106 5.23556 11.3007 5.23556 11.4988ZM5.23556 8.49929C5.23556 8.6992 5.15591 8.88934 5.01582 9.03004C4.87573 9.17073 4.6862 9.24887 4.48721 9.24887C4.28975 9.24887 4.09869 9.17073 3.95861 9.03004C3.81852 8.88934 3.74039 8.6992 3.74039 8.49929C3.74039 8.30122 3.81852 8.10955 3.95861 7.96886C4.09869 7.82816 4.28975 7.75003 4.48721 7.75003C4.6862 7.75003 4.87573 7.82816 5.01582 7.96886C5.15591 8.10955 5.23556 8.30122 5.23556 8.49929ZM15.9475 16.0005H15.9456C15.9456 16.5294 15.7357 17.0394 15.3615 17.4133C14.9888 17.7887 14.4825 17.998 13.9536 17.9996H3.98882C3.46174 17.9996 2.95389 17.7887 2.58124 17.4133C2.20707 17.0394 1.99678 16.5294 1.99678 16.0005V6.00001C1.99678 5.46958 2.20707 4.96142 2.58124 4.58572C2.95389 4.21032 3.46174 4.00095 3.98882 3.99943H4.98561C4.98561 4.26465 5.09059 4.51888 5.27707 4.70719C5.46507 4.89427 5.71809 4.99987 5.98239 4.99987H11.96C12.2243 4.99987 12.4792 4.89427 12.6657 4.70719C12.8518 4.51888 12.9568 4.26465 12.9568 3.99943H13.9536C14.4825 4.00095 14.9888 4.21032 15.3615 4.58572C15.7357 4.96142 15.9456 5.46958 15.9456 6.00001L15.9475 16.0005ZM13.9536 3.00051H10.9648C10.9648 2.28482 10.5842 1.62467 9.96799 1.2685C9.3518 0.9105 8.59246 0.9105 7.97443 1.2685C7.35823 1.62467 6.97917 2.28482 6.97917 3.00051H3.98882C3.19591 3.00051 2.43627 3.31547 1.87592 3.87796C1.31527 4.44044 1 5.20436 1 6.00001V16.0005C1 16.7965 1.31527 17.5585 1.87592 18.121C2.43627 18.6835 3.19591 19 3.98882 19H13.9536C14.7468 19 15.508 18.6835 16.0683 18.121C16.629 17.5585 16.9427 16.7965 16.9427 16.0005V6.00001C16.9427 5.20436 16.629 4.44044 16.0683 3.87796C15.508 3.31547 14.7468 3.00051 13.9536 3.00051Z"
-                                    fill="#6E6B7B" stroke="#6E6B7B" stroke-width="0.5" />
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <ul class="nav navbar-nav align-items-center ms-auto">
-                <li class="nav-item dropdown dropdown-user">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name fw-medium m-1">Interpreter
-                            Admin</span></div>
-                    <form id="logout-form" action="/logout" method="POST"
-                        style="display: none;">
-                        <input type="hidden" name="_token" value="kWtnu4F4RDnERarx4srwDZ6QjTAIGXnRmpP1jnjo">
-                    </form>
-                </li>
-                <li class="nav-item dropdown dropdown-notification me-25">
-                    <a href="#" aria-label="Eclipse Scheduling Notification" id="dropdownNotification" class="nav-link"
-                        data-bs-toggle="dropdown"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M19.1667 14.1668C19.1667 14.6668 18.8334 15.0002 18.3334 15.0002H1.66671C1.16671 15.0002 0.833374 14.6668 0.833374 14.1668C0.833374 13.6668 1.16671 13.3335 1.66671 13.3335C2.58337 13.3335 3.33337 12.5835 3.33337 11.6668V7.50016C3.33337 3.8335 6.33337 0.833496 10 0.833496C13.6667 0.833496 16.6667 3.8335 16.6667 7.50016V11.6668C16.6667 12.5835 17.4167 13.3335 18.3334 13.3335C18.8334 13.3335 19.1667 13.6668 19.1667 14.1668ZM12.1667 17.9168C11.6667 18.7502 10.8334 19.1668 10 19.1668C9.58337 19.1668 9.16671 19.0835 8.75004 18.8335C8.33337 18.5835 8.08337 18.3335 7.83337 17.9168C7.58337 17.5002 7.75004 17.0002 8.16671 16.7502C8.58337 16.5002 9.08337 16.6668 9.33337 17.0835C9.3586 17.1087 9.38383 17.1416 9.41137 17.1775L9.41138 17.1775C9.47481 17.2601 9.5505 17.3587 9.66671 17.4168C10.0834 17.6668 10.5834 17.5002 10.8334 17.0835C11.0834 16.6668 11.5834 16.5835 12 16.7502C12.4167 16.9168 12.4167 17.5002 12.1667 17.9168ZM15 11.6668C15 12.2502 15.1667 12.8335 15.4167 13.3335H4.58337C4.83337 12.8335 5.00004 12.2502 5.00004 11.6668V7.50016C5.00004 4.75016 7.25004 2.50016 10 2.50016C12.75 2.50016 15 4.75016 15 7.50016V11.6668Z"
-                                fill="black" />
-                            <mask id="mask0_207_5890" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
-                                width="20" height="20">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M19.1667 14.1668C19.1667 14.6668 18.8334 15.0002 18.3334 15.0002H1.66671C1.16671 15.0002 0.833374 14.6668 0.833374 14.1668C0.833374 13.6668 1.16671 13.3335 1.66671 13.3335C2.58337 13.3335 3.33337 12.5835 3.33337 11.6668V7.50016C3.33337 3.8335 6.33337 0.833496 10 0.833496C13.6667 0.833496 16.6667 3.8335 16.6667 7.50016V11.6668C16.6667 12.5835 17.4167 13.3335 18.3334 13.3335C18.8334 13.3335 19.1667 13.6668 19.1667 14.1668ZM12.1667 17.9168C11.6667 18.7502 10.8334 19.1668 10 19.1668C9.58337 19.1668 9.16671 19.0835 8.75004 18.8335C8.33337 18.5835 8.08337 18.3335 7.83337 17.9168C7.58337 17.5002 7.75004 17.0002 8.16671 16.7502C8.58337 16.5002 9.08337 16.6668 9.33337 17.0835C9.3586 17.1087 9.38383 17.1416 9.41137 17.1775L9.41138 17.1775C9.47481 17.2601 9.5505 17.3587 9.66671 17.4168C10.0834 17.6668 10.5834 17.5002 10.8334 17.0835C11.0834 16.6668 11.5834 16.5835 12 16.7502C12.4167 16.9168 12.4167 17.5002 12.1667 17.9168ZM15 11.6668C15 12.2502 15.1667 12.8335 15.4167 13.3335H4.58337C4.83337 12.8335 5.00004 12.2502 5.00004 11.6668V7.50016C5.00004 4.75016 7.25004 2.50016 10 2.50016C12.75 2.50016 15 4.75016 15 7.50016V11.6668Z"
-                                    fill="white" />
-                            </mask>
-                            <g mask="url(#mask0_207_5890)">
-                                <rect width="20" height="20" fill="#6E6B7B" />
-                            </g>
-                        </svg><span class="badge rounded-pill bg-danger badge-up">21</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-                        <li class="dropdown-menu-header">
-                            <div class="dropdown-header d-flex">
-                                <h4 class="notification-title mb-0 me-auto">Notifications</h4>
-                                <div class="badge rounded-pill bg-primary">
-                                    21 New
-                                </div>
-                            </div>
-                        </li>
-                        <li class="scrollable-container media-list">
-                            <a aria-label="Notification User Avatar" class="d-flex"
-                                href="/admin/bookings">
-                                <div class="list-item d-flex align-items-start">
-                                    <!-- <div class="me-1">
-                          <div class="avatar"><img src="https://production-qa.eclipsescheduling.com/images/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
-                      </div> -->
-                                    <div class="list-item-body flex-grow-1">
-                                        ALB Requests has approved a new service request for Consumer User_company (
-                                        102391 , 9:41 AM )
-                                    </div>
-                                </div>
-                            </a>
-                            <a aria-label="Notification User Avatar" class="d-flex"
-                                href="/admin/bookings">
-                                <div class="list-item d-flex align-items-start">
-                                    <!-- <div class="me-1">
-                          <div class="avatar"><img src="https://production-qa.eclipsescheduling.com/images/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
-                      </div> -->
-                                    <div class="list-item-body flex-grow-1">
-                                        Consumer User has submitted a new request for services! ( 102391 )
-                                    </div>
-                                </div>
-                            </a>
-                            <a aria-label="Notification User Avatar" class="d-flex"
-                                href="/admin/bookings">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="list-item-body flex-grow-1">
-                                        has approved a new service request for Supervisor Supervisor1_company ( 102390 ,
-                                        6:41 PM )
-                                    </div>
-                                </div>
-                            </a>
-                            <a aria-label="Notification User Avatar" class="d-flex"
-                                href="/admin/bookings">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="list-item-body flex-grow-1">
-                                        Supervisor Supervisor1 has submitted a new request for services! ( 102390 )
-                                    </div>
-                                </div>
-                            </a>
-                            <a aria-label="Notification User Avatar" class="d-flex"
-                                href="/admin/bookings">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="list-item-body flex-grow-1">
-                                        Sam Faulkner has approved a new service request for Consumerr John_company (
-                                        102389 , 6:31 PM )
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="dropdown-menu-footer"><a
-                                href="/admin/notifications"
-                                aria-label="Read All Notifications" class="btn btn-primary w-100 all_notify">Read all
-                                notifications</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                    <a href="/logout"
-                        aria-label="Eclipse Scheduling Tenant Logout" class="nav-link" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">
-                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M3.8385 2.1263L4.8708 3.6014C3.61636 4.47959 2.67458 5.73485 2.18227 7.18484C1.68995 8.63482 1.67274 10.204 2.13314 11.6644C2.59354 13.1249 3.50756 14.4005 4.74244 15.306C5.97731 16.2115 7.46872 16.6997 9 16.6997C10.5313 16.6997 12.0227 16.2115 13.2576 15.306C14.4924 14.4005 15.4065 13.1249 15.8669 11.6644C16.3273 10.204 16.31 8.63482 15.8177 7.18484C15.3254 5.73485 14.3836 4.47959 13.1292 3.6014L14.1615 2.1263C15.3477 2.95558 16.316 4.05901 16.9843 5.34278C17.6526 6.62655 18.001 8.0527 18 9.5C18 14.4707 13.9707 18.5 9 18.5C4.0293 18.5 2.33121e-06 14.4707 2.33121e-06 9.5C-0.00103989 8.0527 0.347392 6.62655 1.01568 5.34278C1.68397 4.05901 2.65235 2.95558 3.8385 2.1263ZM8.1 9.5V0.5H9.9V9.5H8.1Z"
-                                fill="#6E6B7B" />
-                        </svg></a>
-                </li>
-
-            </ul>
+    <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
+      <div class="navbar-container d-flex content">
+        <div class="bookmark-wrapper d-flex align-items-center">
+          <ul class="nav navbar-nav d-xl-none">
+              <li class="nav-item"><a title="Navbar Toggler" aria-label="Navbar Toggler" class="nav-link menu-toggle" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu ficon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a></li>
+          </ul>
+          <ul class="nav navbar-nav bookmark-icons">
+            <li class="nav-item d-none d-lg-block"><a href="/admin/chat" title="Chat" aria-label="Eclipse Scheduling Chat" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.2 0H1.8C0.8073 0 0 0.816816 0 1.82122V12.7485C0 13.7529 0.8073 14.5697 1.8 14.5697H4.5V18L10.1493 14.5697H16.2C17.1927 14.5697 18 13.7529 18 12.7485V1.82122C18 0.816816 17.1927 0 16.2 0ZM16.2 12.7485H9.6507L6.3 14.7819V12.7485H1.8V1.82122H16.2V12.7485Z" fill="#6E6B7B"/>
+            </svg></a></li>
+            <li class="nav-item d-none d-lg-block"><a href="/admin/dashboard" title="Dashboard" aria-label="Eclipse Scheduling Dashboard" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.3 1.8H13.5V0.9C13.5 0.661305 13.4052 0.432387 13.2364 0.263604C13.0676 0.0948211 12.8387 0 12.6 0C12.3613 0 12.1324 0.0948211 11.9636 0.263604C11.7948 0.432387 11.7 0.661305 11.7 0.9V1.8H6.3V0.9C6.3 0.661305 6.20518 0.432387 6.0364 0.263604C5.86761 0.0948211 5.63869 0 5.4 0C5.1613 0 4.93239 0.0948211 4.7636 0.263604C4.59482 0.432387 4.5 0.661305 4.5 0.9V1.8H2.7C1.98392 1.8 1.29716 2.08446 0.790812 2.59081C0.284464 3.09716 0 3.78392 0 4.5V15.3C0 16.0161 0.284464 16.7028 0.790812 17.2092C1.29716 17.7155 1.98392 18 2.7 18H15.3C16.0161 18 16.7028 17.7155 17.2092 17.2092C17.7155 16.7028 18 16.0161 18 15.3V4.5C18 3.78392 17.7155 3.09716 17.2092 2.59081C16.7028 2.08446 16.0161 1.8 15.3 1.8ZM16.2 15.3C16.2 15.5387 16.1052 15.7676 15.9364 15.9364C15.7676 16.1052 15.5387 16.2 15.3 16.2H2.7C2.46131 16.2 2.23239 16.1052 2.0636 15.9364C1.89482 15.7676 1.8 15.5387 1.8 15.3V9H16.2V15.3ZM16.2 7.2H1.8V4.5C1.8 4.2613 1.89482 4.03239 2.0636 3.8636C2.23239 3.69482 2.46131 3.6 2.7 3.6H4.5V4.5C4.5 4.73869 4.59482 4.96761 4.7636 5.1364C4.93239 5.30518 5.1613 5.4 5.4 5.4C5.63869 5.4 5.86761 5.30518 6.0364 5.1364C6.20518 4.96761 6.3 4.73869 6.3 4.5V3.6H11.7V4.5C11.7 4.73869 11.7948 4.96761 11.9636 5.1364C12.1324 5.30518 12.3613 5.4 12.6 5.4C12.8387 5.4 13.0676 5.30518 13.2364 5.1364C13.4052 4.96761 13.5 4.73869 13.5 4.5V3.6H15.3C15.5387 3.6 15.7676 3.69482 15.9364 3.8636C16.1052 4.03239 16.2 4.2613 16.2 4.5V7.2Z" fill="#6E6B7B"/>
+            </svg></a></li>
+             
+            <li class="nav-item d-none d-lg-block"><a href="/admin/reports" title="Reports" aria-label="Reports" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom">
+              <svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.14286 14.1574V12.2778M8.25 14.1574V10.3981M11.3571 14.1574V8.51852M13.4286 17.9167H3.07143C2.52205 17.9167 1.99518 17.7186 1.60671 17.3661C1.21824 17.0136 1 16.5355 1 16.037V2.87963C1 2.38112 1.21824 1.90303 1.60671 1.55053C1.99518 1.19803 2.52205 1 3.07143 1H8.85693C9.13159 1.00005 9.39499 1.0991 9.58918 1.27537L15.1965 6.36352C15.3908 6.53973 15.4999 6.77874 15.5 7.02797V16.037C15.5 16.5355 15.2818 17.0136 14.8933 17.3661C14.5048 17.7186 13.9779 17.9167 13.4286 17.9167Z" stroke="#6E6B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                </a>
+              </li>
+                            <li class="nav-item d-none d-lg-block"><a href="/admin/bookings/today" title="Assignments" aria-label="Assignments" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="bottom">
+              <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.4552 11.999H7.47604C7.20227 11.999 6.97764 11.7753 6.97764 11.4988C6.97764 11.2226 7.20227 11.0004 7.47604 11.0004H13.4552C13.7308 11.0004 13.9536 11.2226 13.9536 11.4988C13.9536 11.7753 13.7308 11.999 13.4552 11.999ZM13.4552 14.9985H7.47604C7.20227 14.9985 6.97764 14.7748 6.97764 14.4983C6.97764 14.2236 7.20227 13.9999 7.47604 13.9999H13.4552C13.7308 13.9999 13.9536 14.2236 13.9536 14.4983C13.9536 14.7748 13.7308 14.9985 13.4552 14.9985ZM13.4552 8.99952H7.47604C7.20227 8.99952 6.97764 8.77581 6.97764 8.49929C6.97764 8.22309 7.20227 7.99938 7.47604 7.99938H13.4552C13.7308 7.99938 13.9536 8.22309 13.9536 8.49929C13.9536 8.77581 13.7308 8.99952 13.4552 8.99952ZM5.23556 14.5001C5.23556 14.6982 5.15591 14.8899 5.01582 15.029C4.87573 15.1694 4.6862 15.2494 4.48721 15.2494C4.28975 15.2494 4.09869 15.1694 3.95861 15.029C3.81852 14.8899 3.74039 14.6982 3.74039 14.5001C3.74039 14.3002 3.81852 14.1101 3.95861 13.9694C4.09869 13.8287 4.28975 13.749 4.48721 13.749C4.6862 13.749 4.87573 13.8287 5.01582 13.9694C5.15591 14.1101 5.23556 14.3002 5.23556 14.5001ZM5.23556 11.4988C5.23556 11.6987 5.15591 11.8888 5.01582 12.0311C4.87573 12.1699 4.6862 12.2499 4.48721 12.2499C4.28975 12.2499 4.09869 12.1699 3.95861 12.0311C3.81852 11.8888 3.74039 11.6987 3.74039 11.4988C3.74039 11.3007 3.81852 11.1106 3.95861 10.9684C4.09869 10.8292 4.28975 10.7495 4.48721 10.7495C4.6862 10.7495 4.87573 10.8292 5.01582 10.9684C5.15591 11.1106 5.23556 11.3007 5.23556 11.4988ZM5.23556 8.49929C5.23556 8.6992 5.15591 8.88934 5.01582 9.03004C4.87573 9.17073 4.6862 9.24887 4.48721 9.24887C4.28975 9.24887 4.09869 9.17073 3.95861 9.03004C3.81852 8.88934 3.74039 8.6992 3.74039 8.49929C3.74039 8.30122 3.81852 8.10955 3.95861 7.96886C4.09869 7.82816 4.28975 7.75003 4.48721 7.75003C4.6862 7.75003 4.87573 7.82816 5.01582 7.96886C5.15591 8.10955 5.23556 8.30122 5.23556 8.49929ZM15.9475 16.0005H15.9456C15.9456 16.5294 15.7357 17.0394 15.3615 17.4133C14.9888 17.7887 14.4825 17.998 13.9536 17.9996H3.98882C3.46174 17.9996 2.95389 17.7887 2.58124 17.4133C2.20707 17.0394 1.99678 16.5294 1.99678 16.0005V6.00001C1.99678 5.46958 2.20707 4.96142 2.58124 4.58572C2.95389 4.21032 3.46174 4.00095 3.98882 3.99943H4.98561C4.98561 4.26465 5.09059 4.51888 5.27707 4.70719C5.46507 4.89427 5.71809 4.99987 5.98239 4.99987H11.96C12.2243 4.99987 12.4792 4.89427 12.6657 4.70719C12.8518 4.51888 12.9568 4.26465 12.9568 3.99943H13.9536C14.4825 4.00095 14.9888 4.21032 15.3615 4.58572C15.7357 4.96142 15.9456 5.46958 15.9456 6.00001L15.9475 16.0005ZM13.9536 3.00051H10.9648C10.9648 2.28482 10.5842 1.62467 9.96799 1.2685C9.3518 0.9105 8.59246 0.9105 7.97443 1.2685C7.35823 1.62467 6.97917 2.28482 6.97917 3.00051H3.98882C3.19591 3.00051 2.43627 3.31547 1.87592 3.87796C1.31527 4.44044 1 5.20436 1 6.00001V16.0005C1 16.7965 1.31527 17.5585 1.87592 18.121C2.43627 18.6835 3.19591 19 3.98882 19H13.9536C14.7468 19 15.508 18.6835 16.0683 18.121C16.629 17.5585 16.9427 16.7965 16.9427 16.0005V6.00001C16.9427 5.20436 16.629 4.44044 16.0683 3.87796C15.508 3.31547 14.7468 3.00051 13.9536 3.00051Z" fill="#6E6B7B" stroke="#6E6B7B" stroke-width="0.5"/>
+                </svg>
+                </a>
+              </li>
+          </ul>
         </div>
+        <ul class="nav navbar-nav align-items-center ms-auto">
+        <li class="nav-item dropdown dropdown-user">
+              <div class="user-nav d-sm-flex d-none"><span class="user-name fw-medium m-1">Interpreter Admin</span></div>
+            <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                <input type="hidden" name="_token" value="kWtnu4F4RDnERarx4srwDZ6QjTAIGXnRmpP1jnjo">
+              </form>
+          </li>
+          <li class="nav-item dropdown dropdown-notification me-25">
+                        <a href="#" aria-label="Eclipse Scheduling Notification" id="dropdownNotification" class="nav-link" data-bs-toggle="dropdown"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.1667 14.1668C19.1667 14.6668 18.8334 15.0002 18.3334 15.0002H1.66671C1.16671 15.0002 0.833374 14.6668 0.833374 14.1668C0.833374 13.6668 1.16671 13.3335 1.66671 13.3335C2.58337 13.3335 3.33337 12.5835 3.33337 11.6668V7.50016C3.33337 3.8335 6.33337 0.833496 10 0.833496C13.6667 0.833496 16.6667 3.8335 16.6667 7.50016V11.6668C16.6667 12.5835 17.4167 13.3335 18.3334 13.3335C18.8334 13.3335 19.1667 13.6668 19.1667 14.1668ZM12.1667 17.9168C11.6667 18.7502 10.8334 19.1668 10 19.1668C9.58337 19.1668 9.16671 19.0835 8.75004 18.8335C8.33337 18.5835 8.08337 18.3335 7.83337 17.9168C7.58337 17.5002 7.75004 17.0002 8.16671 16.7502C8.58337 16.5002 9.08337 16.6668 9.33337 17.0835C9.3586 17.1087 9.38383 17.1416 9.41137 17.1775L9.41138 17.1775C9.47481 17.2601 9.5505 17.3587 9.66671 17.4168C10.0834 17.6668 10.5834 17.5002 10.8334 17.0835C11.0834 16.6668 11.5834 16.5835 12 16.7502C12.4167 16.9168 12.4167 17.5002 12.1667 17.9168ZM15 11.6668C15 12.2502 15.1667 12.8335 15.4167 13.3335H4.58337C4.83337 12.8335 5.00004 12.2502 5.00004 11.6668V7.50016C5.00004 4.75016 7.25004 2.50016 10 2.50016C12.75 2.50016 15 4.75016 15 7.50016V11.6668Z" fill="black"/>
+            <mask id="mask0_207_5890" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.1667 14.1668C19.1667 14.6668 18.8334 15.0002 18.3334 15.0002H1.66671C1.16671 15.0002 0.833374 14.6668 0.833374 14.1668C0.833374 13.6668 1.16671 13.3335 1.66671 13.3335C2.58337 13.3335 3.33337 12.5835 3.33337 11.6668V7.50016C3.33337 3.8335 6.33337 0.833496 10 0.833496C13.6667 0.833496 16.6667 3.8335 16.6667 7.50016V11.6668C16.6667 12.5835 17.4167 13.3335 18.3334 13.3335C18.8334 13.3335 19.1667 13.6668 19.1667 14.1668ZM12.1667 17.9168C11.6667 18.7502 10.8334 19.1668 10 19.1668C9.58337 19.1668 9.16671 19.0835 8.75004 18.8335C8.33337 18.5835 8.08337 18.3335 7.83337 17.9168C7.58337 17.5002 7.75004 17.0002 8.16671 16.7502C8.58337 16.5002 9.08337 16.6668 9.33337 17.0835C9.3586 17.1087 9.38383 17.1416 9.41137 17.1775L9.41138 17.1775C9.47481 17.2601 9.5505 17.3587 9.66671 17.4168C10.0834 17.6668 10.5834 17.5002 10.8334 17.0835C11.0834 16.6668 11.5834 16.5835 12 16.7502C12.4167 16.9168 12.4167 17.5002 12.1667 17.9168ZM15 11.6668C15 12.2502 15.1667 12.8335 15.4167 13.3335H4.58337C4.83337 12.8335 5.00004 12.2502 5.00004 11.6668V7.50016C5.00004 4.75016 7.25004 2.50016 10 2.50016C12.75 2.50016 15 4.75016 15 7.50016V11.6668Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask0_207_5890)">
+            <rect width="20" height="20" fill="#6E6B7B"/>
+            </g>
+            </svg><span class="badge rounded-pill bg-danger badge-up">21</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
+              <li class="dropdown-menu-header">
+                <div class="dropdown-header d-flex">
+                  <h4 class="notification-title mb-0 me-auto">Notifications</h4>
+                                      <div class="badge rounded-pill bg-primary">
+                      21 New
+                    </div>
+                                  </div>
+              </li>
+              <li class="scrollable-container media-list">
+                                                    <a aria-label="Notification User Avatar" class="d-flex"  href="/admin/bookings"  >
+                    <div class="list-item d-flex align-items-start">
+                      <!-- <div class="me-1">
+                          <div class="avatar"><img src="https://production-qa.eclipsescheduling.com/images/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
+                      </div> -->
+                      <div class="list-item-body flex-grow-1">
+                        ALB Requests  has approved a new service request for Consumer User_company  ( 102391 , 9:41 AM  )
+                      </div>
+                    </div>
+                  </a>
+                                    <a aria-label="Notification User Avatar" class="d-flex"  href="/admin/bookings"  >
+                    <div class="list-item d-flex align-items-start">
+                      <!-- <div class="me-1">
+                          <div class="avatar"><img src="https://production-qa.eclipsescheduling.com/images/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
+                      </div> -->
+                      <div class="list-item-body flex-grow-1">
+                        Consumer User  has submitted a new request for services! ( 102391 )
+                      </div>
+                    </div>
+                  </a>
+                                    <a aria-label="Notification User Avatar" class="d-flex"  href="/admin/bookings"  >
+                    <div class="list-item d-flex align-items-start">
+                      <div class="list-item-body flex-grow-1">
+                          has approved a new service request for Supervisor Supervisor1_company  ( 102390 , 6:41 PM  )
+                      </div>
+                    </div>
+                  </a>
+                                    <a aria-label="Notification User Avatar" class="d-flex"  href="/admin/bookings"  >
+                    <div class="list-item d-flex align-items-start">
+                      <div class="list-item-body flex-grow-1">
+                        Supervisor Supervisor1  has submitted a new request for services! ( 102390 )
+                      </div>
+                    </div>
+                  </a>
+                                    <a aria-label="Notification User Avatar" class="d-flex"  href="/admin/bookings/"  >
+                    <div class="list-item d-flex align-items-start">
+                      <div class="list-item-body flex-grow-1">
+                        Sam Faulkner  has approved a new service request for Consumerr John_company  ( 102389 , 6:31 PM  )
+                      </div>
+                    </div>
+                  </a>
+                                                  </li>
+              <li class="dropdown-menu-footer"><a href="/admin/notifications" aria-label="Read All Notifications" class="btn btn-primary w-100 all_notify">Read all notifications</a></li>
+            </ul>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <a href="/logout" aria-label="Eclipse Scheduling Tenant Logout" class="nav-link"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+              <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.8385 2.1263L4.8708 3.6014C3.61636 4.47959 2.67458 5.73485 2.18227 7.18484C1.68995 8.63482 1.67274 10.204 2.13314 11.6644C2.59354 13.1249 3.50756 14.4005 4.74244 15.306C5.97731 16.2115 7.46872 16.6997 9 16.6997C10.5313 16.6997 12.0227 16.2115 13.2576 15.306C14.4924 14.4005 15.4065 13.1249 15.8669 11.6644C16.3273 10.204 16.31 8.63482 15.8177 7.18484C15.3254 5.73485 14.3836 4.47959 13.1292 3.6014L14.1615 2.1263C15.3477 2.95558 16.316 4.05901 16.9843 5.34278C17.6526 6.62655 18.001 8.0527 18 9.5C18 14.4707 13.9707 18.5 9 18.5C4.0293 18.5 2.33121e-06 14.4707 2.33121e-06 9.5C-0.00103989 8.0527 0.347392 6.62655 1.01568 5.34278C1.68397 4.05901 2.65235 2.95558 3.8385 2.1263ZM8.1 9.5V0.5H9.9V9.5H8.1Z" fill="#6E6B7B"/>
+          </svg></a></li>
+
+        </ul>
+      </div>
     </nav>
     <!-- END: Header-->
     <!-- BEGIN: Main Menu-->
@@ -1436,769 +1380,412 @@
     <!-- END: Main Menu-->
     <!-- BEGIN: Content-->
     <div class="app-content content ">
-        <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-              <div class="content-header-left col-md-9 col-12 mb-2">
-                <div class="row breadcrumbs-top">
-                  <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">Business Setup</h1>
-                    <div class="breadcrumb-wrapper">
-                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                          <a href="">
-                          Home
-                          </a>
-                        </li>
-                        <li class="breadcrumb-item">
-                          <a href="javascript:void(0)">
-                          Settings
-                          </a>
-                        </li>
-                        <li class="breadcrumb-item">
-                          Business Setup
-                        </li>
-                      </ol>
+      <!-- BEGIN: Header-->
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-body">
+          <!-- Basic multiple Column Form section start -->
+          <section id="multiple-column-form">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                        <div class="page-title">
+                          <div class="row">
+                          <div class="col-md-3">
+                            <h1>Accommodations</h1>
+                          </div>
+                          <div class="col-md-3 ms-auto text-end">
+                            <a href="add-accommodation.html" class="btn btn-primary">Add Accommodation</a>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                          <p>Create unique categories by which to group your more specific services. You can organize services by setting (Conference Interpreting, Medical Interpreting, Legal Interpreting...), by language modality (Spoken Languages, Signed Languages, Caption Services...), or however you see fit (Spanish Interpreting, French Interpreting, German Interpreting...).</p>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between mb-2">
+                        <div class="d-inline-flex align-items-center gap-4">
+                          <label for="show_records_number" class="form-label">Show</label>
+                          <select class="form-select" id="show_records_number">
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                          </select>
+                        </div>
+                        <div class="d-inline-flex align-items-center gap-4">
+                          <label for="search" class="form-label fw-semibold">Search</label>
+                          <input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+                        </div>
+                      </div>
+                        <div class="table-responsive">
+                          <table id="industries" class="table table-hover" aria-label="Accomodations">
+                            <thead>
+                              <tr role="row">
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>   
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tbody>
+                                <tr role="row" class="odd"> 
+                                  <td>
+                                      <div class="row g-2">
+                                        <div class="col-md-2">
+                                          <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                        </div>
+                                      </div> 
+                                  </td>
+                                  <td>Administration</td>
+                                  <td><button class="btn btn-success btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="even"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>Blog Writing</td>
+                                  <td><button class="btn btn-warning  btn-sm">Deactivated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>Closed-Captioning</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="even"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>Conference Interperting</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>FRBNY  Interpreting</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="even">
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td> 
+                                  <td>General</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm"> 
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>Legal Interpreting</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="even"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>ICS Admin</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr role="row" class="odd"> 
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="images/portrait/small/avatar-s-8.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+                                      </div>
+                                    </div> 
+                                </td>
+                                  <td>Johnn tooth</td>
+                                  <td><button class="btn btn-success  btn-sm">Activated</button></td>
+                                  <td>
+                                    <div class="d-flex actions">  
+                                      <div class="dropdown"> 
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">                      
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </a>
+                                          <div class="tablediv dropdown-menu fadeIn">
+                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
+                                            <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
+                                            <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                            </tbody>
+                            </table>  
+                      </div>
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
+                      </div>
+                      <nav aria-label="Page Navigation">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">Previous
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">Next
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="content-body">
-                <div class="card">
-                    <div class="card-body">
-                        <!-- BEGIN: Steps -->
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
-                          <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="configuration-setting-tab" data-bs-toggle="tab" data-bs-target="#configuration-setting" type="button" role="tab" aria-controls="configuration-setting" aria-selected="true"><span class="number">1</span> Configuration Setting</button>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="business-hours-tab" data-bs-toggle="tab" data-bs-target="#business-hours" type="button" role="tab" aria-controls="business-hours" aria-selected="false"><span class="number">2</span> Business Hours</button>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments" type="button" role="tab" aria-controls="payments" aria-selected="false"><span class="number">3</span> Payments</button>
-                          </li>
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                          <div class="tab-pane fade" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
-                              <div class="row">
-                                <div class="col-lg-12">
-                                    <h2>Configuration Setting</h2>
-                                    <div class="row">
-                                      <div class="col-lg-6 mb-4">
-                                        <h3>Choose Portal Default Colours</h3>
-                                        <div class="row gap-0 row-gap-3">
-                                          <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                            <label>Default Colour</label>
-                                            <div class="choosen-color choosen-default-color"></div>
-                                            <a href="" class="btn btn-primary btn-sm rounded">Choose Colour</a>
-                                          </div>
-                                          <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                              <label>Foreground Color</label>
-                                              <div class="choosen-color choosen-foreground-color"></div>
-                                              <a href="" class="btn btn-primary btn-sm rounded">Choose Colour</a>
-                                           </div>
-                                       </div>
-                                      </div>
-                                    </div>
-                                
-                                <div class="row">
-                                  <div class="col-lg-6 mb-4">
-                                    <h3>Choose URL for Users to Access the Portal</h3>
-                                      <div class="d-lg-flex gap-3 align-items-center">
-                                        <input type="" name="" class="form-control w-auto" placeholder="Name">
-                                        <label>.eclipsescheduling.com</label>
-                                        <div class="option">
-                                            <div>
-                                                <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 10L8.66667 17L22 2" stroke="#15974F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                                Available
-                                            </div>
-                                        </div>
-                                      </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-lg-6 mb-4">
-                                      <h3>Assign Email to Send Notifications</h3>
-                                      <label class="form-label" for="EmailAddressSendNotifications">Email Address</label>
-                                        <input
-                                          type="text"
-                                          id="EmailAddressSendNotifications"
-                                          class="form-control"
-                                          name="EmailAddressSendNotifications"
-                                          placeholder=""
-                                          />
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-lg-6 mb-4">
-                                      <h3>Assign Email to Receive Customer Responses</h3>
-                                      <label class="form-label" for="EmailAddressCustomerResponses">Email Address</label>
-                                        <input
-                                          type="text"
-                                          id="EmailAddressCustomerResponses"
-                                          class="form-control"
-                                          name="EmailAddressCustomerResponses"
-                                          placeholder=""
-                                          />
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-lg-6 mb-4">
-                                      <h3>Announcements & Communications</h3>
-                                      <label class="form-label" for="AnnouncementsCommunications">Message</label>
-                                        <textarea class="form-control" rows="3" cols="3" placeholder="Enter Message" id="AnnouncementsCommunications"></textarea>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-lg-8 mb-4 d-lg-flex gap-3">
-                                      <div class="col-lg-4">
-                                          <h3>Audience:</h3>
-                                          <div class="form-check">
-                                            <input class="form-check-input" id="DisplayToProviders" name="DisplayToProviders" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="DisplayToProviders"> Display to Providers</label>
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" id="DisplayToCustomers" name="DisplayToCustomers" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="DisplayToCustomers"> Display to Customers</label>
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" id="DisplayToAdminUsers" name="DisplayToAdminUsers" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="DisplayToAdminUsers"> Display to Admin-users</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-lg-4">
-                                          <h3>Display:</h3>
-                                          <div class="form-check">
-                                            <input class="form-check-input" id="DisplayOnLoginScreen" name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="DisplayOnLoginScreen"> Display On Log-in Screen</label>
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" id="DisplayOnDashboard" name="DisplayOnDashboard" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="DisplayOnDashboard"> Display On Dashboard</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-lg-4">
-                                          <h3>Duration:</h3>
-                                          <label class="form-label-sm" for="DisplayToProviders"> Days</label>
-                                          <input class="form-control text-center" id="DisplayToProviders" name="DisplayToProviders" value="5" type="" tabindex="" />
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-8">
-                                    <a href="" class="btn btn-primary btn-sm rounded">Apply</a>
-                                  </div>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-12 justify-content-center form-actions d-flex">
-                                <button type="button" class="btn btn-outline-dark rounded mx-2">CANCEL</button>
-                                <button type="submit" class="btn btn-primary rounded">NEXT</button>
-                            </div>
-                            </div>
-                          
-                          <div class="tab-pane fade show active" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
-                            <div class="row mb-4">
-                                <div class="col-lg-12">
-                                  <h2>Business Hours Setup</h2>
-                                  <p>Your set hours determine when "Business hours" and "After-hours" rates are in effect for customer billing and Provider payroll and prevents services from being scheduled during your "closed" hours.You can also set the times which you are closed and not providing services; this will restrict customers from scheduling.</p>
-                              </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-lg-12">
-                                    <h3>Time Configuration</h3>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label class="form-label">Set Business Time Zone</label>
-                                            <input type="" name="" class="form-control" placeholder="Select Time Zone">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="form-label">Set Time Format</label>
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
-                                              <label class="form-check-label" for="12Hrs1">
-                                                12 Hrs
-                                              </label>
-                                            </div>
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="Hrs" id="24Hrs">
-                                              <label class="form-check-label" for="24Hrs">
-                                                24 Hrs
-                                              </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-lg-12">
-                                    <h3>Add Hours Slot In Schedule</h3>
-                                    <div class="row mb-2">
-                                        <div class="col-lg-6">
-                                            <label class="form-label">Type Of Slot</label>
-                                            <div>
-                                                <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="HoursSlot" id="BusinessHours" checked>
-                                                  <label class="form-check-label" for="BusinessHours">
-                                                    Business Hours
-                                                  </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="HoursSlot" id="AfterBusinessHours">
-                                                  <label class="form-check-label" for="AfterBusinessHours">
-                                                    After Business Hours
-                                                  </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12">
-                                            <label class="form-label">Select Days & Time</label>
-                                            <div class="d-lg-flex gap-3 align-items-center mb-3">
-                                                <input type="" name="" class="form-control w-auto js-select-day" placeholder="Select Day">
-                                                <label class="form-label-sm">Choose Time</label>
-                                                <div class="input-group w-auto">
-                                                  <input type="text" class="form-control w-auto js-timepciker-start-time" placeholder="Start Time" aria-label="Start Time" aria-describedby="start-time">
-                                                  <button class="btn btn-primary btn-sm">Start Time</button>
-                                                </div>
-                                                <div class="input-group w-auto">
-                                                  <input type="text" class="form-control w-auto js-timepciker-end-time" placeholder="End Time" aria-label="End Time" aria-describedby="end-time">
-                                                  <button class="btn btn-primary btn-sm">End Time</button>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-primary btn-sm rounded">Submit</button>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-12">
-                                            <div class="d-lg-flex justify-content-between mb-4">
-                                                <h3 class="mb-lg-0">Business Schedule</h3>
-                                                <div class="helping-labels d-flex gap-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="label-color bg-success"></span>
-                                                        Business Hours
-                                                    </div>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="label-color bg-warning"></span>
-                                                        After Business Hours
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <table class="table table-bordered table-schedule">
-                                                    <thead>
-                                                        <th>
-                                                            <div class="day">
-                                                                Monday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="monday">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="monday">
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <div class="day">
-                                                                Tuesday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="tuesday">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="tuesday">
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <div class="day">
-                                                                Wednesday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="wednesday">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="wednesday">
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <div class="day">
-                                                                Thursday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="thursday">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="thursday">
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <div class="day">
-                                                                Friday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="friday">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="friday">
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <div class="day">
-                                                                Saturday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="saturday">ON</label>
-                                                                <input checked class="form-check-input" type="checkbox" role="switch" id="saturday">
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <div class="day">
-                                                                Sunday
-                                                            </div>
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="sunday">OFF</label>
-                                                                <input class="form-check-input" type="checkbox" role="switch" id="sunday">
-                                                            </div>
-                                                        </th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-slot mb-3 bg-success text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                                <div class="time-slot bg-warning text-white">
-                                                                    09 : 00 AM To 06 : 00 PM
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-12">
-                                            <h3>Add Holidays / Days Closed</h3>
-                                            <div class="d-lg-flex gap-3 mb-3">
-                                                <div>
-                                                    <label class="form-label">Select Days / Holidays </label>
-                                                    <div class="position-relative">
-                                                        <input type="" class="form-control w-auto js-single-date" placeholder="MM/DD/YYYY" name="selectHolidays">
-                                                        <svg class="icon-date cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <label class="form-label">Repeat Holiday</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="yearly" name="yearly" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="yearly"> Yearly</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-primary btn-sm rounded">Submit</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-9">
-                                            <h3>Listed Holidays</h3>
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <th>DATE</th>
-                                                    <th>DAY</th>
-                                                    <th>ACTION</th>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="odd">
-                                                        <td>
-                                                            12/25/2022
-                                                        </td>
-                                                        <td>
-                                                            Tuesday
-                                                        </td>
-                                                        <td>
-                                                            <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M8.4 4.2H12.6C12.6 3.64305 12.3787 3.1089 11.9849 2.71508C11.5911 2.32125 11.057 2.1 10.5 2.1C9.94304 2.1 9.4089 2.32125 9.01508 2.71508C8.62125 3.1089 8.4 3.64305 8.4 4.2ZM6.3 4.2C6.3 3.08609 6.7425 2.0178 7.53015 1.23015C8.3178 0.442499 9.38609 0 10.5 0C11.6139 0 12.6822 0.442499 13.4698 1.23015C14.2575 2.0178 14.7 3.08609 14.7 4.2H19.95C20.2285 4.2 20.4955 4.31062 20.6925 4.50754C20.8894 4.70445 21 4.97152 21 5.25C21 5.52848 20.8894 5.79555 20.6925 5.99246C20.4955 6.18937 20.2285 6.3 19.95 6.3H19.0239L18.0936 17.157C18.0042 18.2054 17.5245 19.182 16.7494 19.8937C15.9744 20.6053 14.9605 21.0001 13.9083 21H7.0917C6.0395 21.0001 5.02559 20.6053 4.25056 19.8937C3.47552 19.182 2.99584 18.2054 2.9064 17.157L1.9761 6.3H1.05C0.771523 6.3 0.504451 6.18937 0.307538 5.99246C0.110625 5.79555 0 5.52848 0 5.25C0 4.97152 0.110625 4.70445 0.307538 4.50754C0.504451 4.31062 0.771523 4.2 1.05 4.2H6.3ZM13.65 10.5C13.65 10.2215 13.5394 9.95445 13.3425 9.75754C13.1455 9.56062 12.8785 9.45 12.6 9.45C12.3215 9.45 12.0545 9.56062 11.8575 9.75754C11.6606 9.95445 11.55 10.2215 11.55 10.5V14.7C11.55 14.9785 11.6606 15.2455 11.8575 15.4425C12.0545 15.6394 12.3215 15.75 12.6 15.75C12.8785 15.75 13.1455 15.6394 13.3425 15.4425C13.5394 15.2455 13.65 14.9785 13.65 14.7V10.5ZM8.4 9.45C8.67848 9.45 8.94555 9.56062 9.14246 9.75754C9.33937 9.95445 9.45 10.2215 9.45 10.5V14.7C9.45 14.9785 9.33937 15.2455 9.14246 15.4425C8.94555 15.6394 8.67848 15.75 8.4 15.75C8.12152 15.75 7.85445 15.6394 7.65754 15.4425C7.46062 15.2455 7.35 14.9785 7.35 14.7V10.5C7.35 10.2215 7.46062 9.95445 7.65754 9.75754C7.85445 9.56062 8.12152 9.45 8.4 9.45ZM4.998 16.9785C5.04273 17.5029 5.28273 17.9913 5.67046 18.3472C6.0582 18.703 6.56542 18.9003 7.0917 18.9H13.9083C14.4342 18.8998 14.9409 18.7023 15.3282 18.3465C15.7155 17.9907 15.9552 17.5025 15.9999 16.9785L16.9155 6.3H4.0845L5.0001 16.9785H4.998Z" fill="black"/>
-                                                                </svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="even">
-                                                        <td>
-                                                            12/25/2022
-                                                        </td>
-                                                        <td>
-                                                            Tuesday
-                                                        </td>
-                                                        <td>
-                                                            <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M8.4 4.2H12.6C12.6 3.64305 12.3787 3.1089 11.9849 2.71508C11.5911 2.32125 11.057 2.1 10.5 2.1C9.94304 2.1 9.4089 2.32125 9.01508 2.71508C8.62125 3.1089 8.4 3.64305 8.4 4.2ZM6.3 4.2C6.3 3.08609 6.7425 2.0178 7.53015 1.23015C8.3178 0.442499 9.38609 0 10.5 0C11.6139 0 12.6822 0.442499 13.4698 1.23015C14.2575 2.0178 14.7 3.08609 14.7 4.2H19.95C20.2285 4.2 20.4955 4.31062 20.6925 4.50754C20.8894 4.70445 21 4.97152 21 5.25C21 5.52848 20.8894 5.79555 20.6925 5.99246C20.4955 6.18937 20.2285 6.3 19.95 6.3H19.0239L18.0936 17.157C18.0042 18.2054 17.5245 19.182 16.7494 19.8937C15.9744 20.6053 14.9605 21.0001 13.9083 21H7.0917C6.0395 21.0001 5.02559 20.6053 4.25056 19.8937C3.47552 19.182 2.99584 18.2054 2.9064 17.157L1.9761 6.3H1.05C0.771523 6.3 0.504451 6.18937 0.307538 5.99246C0.110625 5.79555 0 5.52848 0 5.25C0 4.97152 0.110625 4.70445 0.307538 4.50754C0.504451 4.31062 0.771523 4.2 1.05 4.2H6.3ZM13.65 10.5C13.65 10.2215 13.5394 9.95445 13.3425 9.75754C13.1455 9.56062 12.8785 9.45 12.6 9.45C12.3215 9.45 12.0545 9.56062 11.8575 9.75754C11.6606 9.95445 11.55 10.2215 11.55 10.5V14.7C11.55 14.9785 11.6606 15.2455 11.8575 15.4425C12.0545 15.6394 12.3215 15.75 12.6 15.75C12.8785 15.75 13.1455 15.6394 13.3425 15.4425C13.5394 15.2455 13.65 14.9785 13.65 14.7V10.5ZM8.4 9.45C8.67848 9.45 8.94555 9.56062 9.14246 9.75754C9.33937 9.95445 9.45 10.2215 9.45 10.5V14.7C9.45 14.9785 9.33937 15.2455 9.14246 15.4425C8.94555 15.6394 8.67848 15.75 8.4 15.75C8.12152 15.75 7.85445 15.6394 7.65754 15.4425C7.46062 15.2455 7.35 14.9785 7.35 14.7V10.5C7.35 10.2215 7.46062 9.95445 7.65754 9.75754C7.85445 9.56062 8.12152 9.45 8.4 9.45ZM4.998 16.9785C5.04273 17.5029 5.28273 17.9913 5.67046 18.3472C6.0582 18.703 6.56542 18.9003 7.0917 18.9H13.9083C14.4342 18.8998 14.9409 18.7023 15.3282 18.3465C15.7155 17.9907 15.9552 17.5025 15.9999 16.9785L16.9155 6.3H4.0845L5.0001 16.9785H4.998Z" fill="black"/>
-                                                                </svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="odd">
-                                                        <td>
-                                                            12/25/2022
-                                                        </td>
-                                                        <td>
-                                                            Tuesday
-                                                        </td>
-                                                        <td>
-                                                            <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M8.4 4.2H12.6C12.6 3.64305 12.3787 3.1089 11.9849 2.71508C11.5911 2.32125 11.057 2.1 10.5 2.1C9.94304 2.1 9.4089 2.32125 9.01508 2.71508C8.62125 3.1089 8.4 3.64305 8.4 4.2ZM6.3 4.2C6.3 3.08609 6.7425 2.0178 7.53015 1.23015C8.3178 0.442499 9.38609 0 10.5 0C11.6139 0 12.6822 0.442499 13.4698 1.23015C14.2575 2.0178 14.7 3.08609 14.7 4.2H19.95C20.2285 4.2 20.4955 4.31062 20.6925 4.50754C20.8894 4.70445 21 4.97152 21 5.25C21 5.52848 20.8894 5.79555 20.6925 5.99246C20.4955 6.18937 20.2285 6.3 19.95 6.3H19.0239L18.0936 17.157C18.0042 18.2054 17.5245 19.182 16.7494 19.8937C15.9744 20.6053 14.9605 21.0001 13.9083 21H7.0917C6.0395 21.0001 5.02559 20.6053 4.25056 19.8937C3.47552 19.182 2.99584 18.2054 2.9064 17.157L1.9761 6.3H1.05C0.771523 6.3 0.504451 6.18937 0.307538 5.99246C0.110625 5.79555 0 5.52848 0 5.25C0 4.97152 0.110625 4.70445 0.307538 4.50754C0.504451 4.31062 0.771523 4.2 1.05 4.2H6.3ZM13.65 10.5C13.65 10.2215 13.5394 9.95445 13.3425 9.75754C13.1455 9.56062 12.8785 9.45 12.6 9.45C12.3215 9.45 12.0545 9.56062 11.8575 9.75754C11.6606 9.95445 11.55 10.2215 11.55 10.5V14.7C11.55 14.9785 11.6606 15.2455 11.8575 15.4425C12.0545 15.6394 12.3215 15.75 12.6 15.75C12.8785 15.75 13.1455 15.6394 13.3425 15.4425C13.5394 15.2455 13.65 14.9785 13.65 14.7V10.5ZM8.4 9.45C8.67848 9.45 8.94555 9.56062 9.14246 9.75754C9.33937 9.95445 9.45 10.2215 9.45 10.5V14.7C9.45 14.9785 9.33937 15.2455 9.14246 15.4425C8.94555 15.6394 8.67848 15.75 8.4 15.75C8.12152 15.75 7.85445 15.6394 7.65754 15.4425C7.46062 15.2455 7.35 14.9785 7.35 14.7V10.5C7.35 10.2215 7.46062 9.95445 7.65754 9.75754C7.85445 9.56062 8.12152 9.45 8.4 9.45ZM4.998 16.9785C5.04273 17.5029 5.28273 17.9913 5.67046 18.3472C6.0582 18.703 6.56542 18.9003 7.0917 18.9H13.9083C14.4342 18.8998 14.9409 18.7023 15.3282 18.3465C15.7155 17.9907 15.9552 17.5025 15.9999 16.9785L16.9155 6.3H4.0845L5.0001 16.9785H4.998Z" fill="black"/>
-                                                                </svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="even">
-                                                        <td>
-                                                            12/25/2022
-                                                        </td>
-                                                        <td>
-                                                            Tuesday
-                                                        </td>
-                                                        <td>
-                                                            <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M8.4 4.2H12.6C12.6 3.64305 12.3787 3.1089 11.9849 2.71508C11.5911 2.32125 11.057 2.1 10.5 2.1C9.94304 2.1 9.4089 2.32125 9.01508 2.71508C8.62125 3.1089 8.4 3.64305 8.4 4.2ZM6.3 4.2C6.3 3.08609 6.7425 2.0178 7.53015 1.23015C8.3178 0.442499 9.38609 0 10.5 0C11.6139 0 12.6822 0.442499 13.4698 1.23015C14.2575 2.0178 14.7 3.08609 14.7 4.2H19.95C20.2285 4.2 20.4955 4.31062 20.6925 4.50754C20.8894 4.70445 21 4.97152 21 5.25C21 5.52848 20.8894 5.79555 20.6925 5.99246C20.4955 6.18937 20.2285 6.3 19.95 6.3H19.0239L18.0936 17.157C18.0042 18.2054 17.5245 19.182 16.7494 19.8937C15.9744 20.6053 14.9605 21.0001 13.9083 21H7.0917C6.0395 21.0001 5.02559 20.6053 4.25056 19.8937C3.47552 19.182 2.99584 18.2054 2.9064 17.157L1.9761 6.3H1.05C0.771523 6.3 0.504451 6.18937 0.307538 5.99246C0.110625 5.79555 0 5.52848 0 5.25C0 4.97152 0.110625 4.70445 0.307538 4.50754C0.504451 4.31062 0.771523 4.2 1.05 4.2H6.3ZM13.65 10.5C13.65 10.2215 13.5394 9.95445 13.3425 9.75754C13.1455 9.56062 12.8785 9.45 12.6 9.45C12.3215 9.45 12.0545 9.56062 11.8575 9.75754C11.6606 9.95445 11.55 10.2215 11.55 10.5V14.7C11.55 14.9785 11.6606 15.2455 11.8575 15.4425C12.0545 15.6394 12.3215 15.75 12.6 15.75C12.8785 15.75 13.1455 15.6394 13.3425 15.4425C13.5394 15.2455 13.65 14.9785 13.65 14.7V10.5ZM8.4 9.45C8.67848 9.45 8.94555 9.56062 9.14246 9.75754C9.33937 9.95445 9.45 10.2215 9.45 10.5V14.7C9.45 14.9785 9.33937 15.2455 9.14246 15.4425C8.94555 15.6394 8.67848 15.75 8.4 15.75C8.12152 15.75 7.85445 15.6394 7.65754 15.4425C7.46062 15.2455 7.35 14.9785 7.35 14.7V10.5C7.35 10.2215 7.46062 9.95445 7.65754 9.75754C7.85445 9.56062 8.12152 9.45 8.4 9.45ZM4.998 16.9785C5.04273 17.5029 5.28273 17.9913 5.67046 18.3472C6.0582 18.703 6.56542 18.9003 7.0917 18.9H13.9083C14.4342 18.8998 14.9409 18.7023 15.3282 18.3465C15.7155 17.9907 15.9552 17.5025 15.9999 16.9785L16.9155 6.3H4.0845L5.0001 16.9785H4.998Z" fill="black"/>
-                                                                </svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="odd">
-                                                        <td>
-                                                            12/25/2022
-                                                        </td>
-                                                        <td>
-                                                            Tuesday
-                                                        </td>
-                                                        <td>
-                                                            <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M8.4 4.2H12.6C12.6 3.64305 12.3787 3.1089 11.9849 2.71508C11.5911 2.32125 11.057 2.1 10.5 2.1C9.94304 2.1 9.4089 2.32125 9.01508 2.71508C8.62125 3.1089 8.4 3.64305 8.4 4.2ZM6.3 4.2C6.3 3.08609 6.7425 2.0178 7.53015 1.23015C8.3178 0.442499 9.38609 0 10.5 0C11.6139 0 12.6822 0.442499 13.4698 1.23015C14.2575 2.0178 14.7 3.08609 14.7 4.2H19.95C20.2285 4.2 20.4955 4.31062 20.6925 4.50754C20.8894 4.70445 21 4.97152 21 5.25C21 5.52848 20.8894 5.79555 20.6925 5.99246C20.4955 6.18937 20.2285 6.3 19.95 6.3H19.0239L18.0936 17.157C18.0042 18.2054 17.5245 19.182 16.7494 19.8937C15.9744 20.6053 14.9605 21.0001 13.9083 21H7.0917C6.0395 21.0001 5.02559 20.6053 4.25056 19.8937C3.47552 19.182 2.99584 18.2054 2.9064 17.157L1.9761 6.3H1.05C0.771523 6.3 0.504451 6.18937 0.307538 5.99246C0.110625 5.79555 0 5.52848 0 5.25C0 4.97152 0.110625 4.70445 0.307538 4.50754C0.504451 4.31062 0.771523 4.2 1.05 4.2H6.3ZM13.65 10.5C13.65 10.2215 13.5394 9.95445 13.3425 9.75754C13.1455 9.56062 12.8785 9.45 12.6 9.45C12.3215 9.45 12.0545 9.56062 11.8575 9.75754C11.6606 9.95445 11.55 10.2215 11.55 10.5V14.7C11.55 14.9785 11.6606 15.2455 11.8575 15.4425C12.0545 15.6394 12.3215 15.75 12.6 15.75C12.8785 15.75 13.1455 15.6394 13.3425 15.4425C13.5394 15.2455 13.65 14.9785 13.65 14.7V10.5ZM8.4 9.45C8.67848 9.45 8.94555 9.56062 9.14246 9.75754C9.33937 9.95445 9.45 10.2215 9.45 10.5V14.7C9.45 14.9785 9.33937 15.2455 9.14246 15.4425C8.94555 15.6394 8.67848 15.75 8.4 15.75C8.12152 15.75 7.85445 15.6394 7.65754 15.4425C7.46062 15.2455 7.35 14.9785 7.35 14.7V10.5C7.35 10.2215 7.46062 9.95445 7.65754 9.75754C7.85445 9.56062 8.12152 9.45 8.4 9.45ZM4.998 16.9785C5.04273 17.5029 5.28273 17.9913 5.67046 18.3472C6.0582 18.703 6.56542 18.9003 7.0917 18.9H13.9083C14.4342 18.8998 14.9409 18.7023 15.3282 18.3465C15.7155 17.9907 15.9552 17.5025 15.9999 16.9785L16.9155 6.3H4.0845L5.0001 16.9785H4.998Z" fill="black"/>
-                                                                </svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="even">
-                                                        <td>
-                                                            12/25/2022
-                                                        </td>
-                                                        <td>
-                                                            Tuesday
-                                                        </td>
-                                                        <td>
-                                                            <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M8.4 4.2H12.6C12.6 3.64305 12.3787 3.1089 11.9849 2.71508C11.5911 2.32125 11.057 2.1 10.5 2.1C9.94304 2.1 9.4089 2.32125 9.01508 2.71508C8.62125 3.1089 8.4 3.64305 8.4 4.2ZM6.3 4.2C6.3 3.08609 6.7425 2.0178 7.53015 1.23015C8.3178 0.442499 9.38609 0 10.5 0C11.6139 0 12.6822 0.442499 13.4698 1.23015C14.2575 2.0178 14.7 3.08609 14.7 4.2H19.95C20.2285 4.2 20.4955 4.31062 20.6925 4.50754C20.8894 4.70445 21 4.97152 21 5.25C21 5.52848 20.8894 5.79555 20.6925 5.99246C20.4955 6.18937 20.2285 6.3 19.95 6.3H19.0239L18.0936 17.157C18.0042 18.2054 17.5245 19.182 16.7494 19.8937C15.9744 20.6053 14.9605 21.0001 13.9083 21H7.0917C6.0395 21.0001 5.02559 20.6053 4.25056 19.8937C3.47552 19.182 2.99584 18.2054 2.9064 17.157L1.9761 6.3H1.05C0.771523 6.3 0.504451 6.18937 0.307538 5.99246C0.110625 5.79555 0 5.52848 0 5.25C0 4.97152 0.110625 4.70445 0.307538 4.50754C0.504451 4.31062 0.771523 4.2 1.05 4.2H6.3ZM13.65 10.5C13.65 10.2215 13.5394 9.95445 13.3425 9.75754C13.1455 9.56062 12.8785 9.45 12.6 9.45C12.3215 9.45 12.0545 9.56062 11.8575 9.75754C11.6606 9.95445 11.55 10.2215 11.55 10.5V14.7C11.55 14.9785 11.6606 15.2455 11.8575 15.4425C12.0545 15.6394 12.3215 15.75 12.6 15.75C12.8785 15.75 13.1455 15.6394 13.3425 15.4425C13.5394 15.2455 13.65 14.9785 13.65 14.7V10.5ZM8.4 9.45C8.67848 9.45 8.94555 9.56062 9.14246 9.75754C9.33937 9.95445 9.45 10.2215 9.45 10.5V14.7C9.45 14.9785 9.33937 15.2455 9.14246 15.4425C8.94555 15.6394 8.67848 15.75 8.4 15.75C8.12152 15.75 7.85445 15.6394 7.65754 15.4425C7.46062 15.2455 7.35 14.9785 7.35 14.7V10.5C7.35 10.2215 7.46062 9.95445 7.65754 9.75754C7.85445 9.56062 8.12152 9.45 8.4 9.45ZM4.998 16.9785C5.04273 17.5029 5.28273 17.9913 5.67046 18.3472C6.0582 18.703 6.56542 18.9003 7.0917 18.9H13.9083C14.4342 18.8998 14.9409 18.7023 15.3282 18.3465C15.7155 17.9907 15.9552 17.5025 15.9999 16.9785L16.9155 6.3H4.0845L5.0001 16.9785H4.998Z" fill="black"/>
-                                                                </svg>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Form Actions -->
-                            <div class="col-12 justify-content-center form-actions d-flex">
-                                <button type="button" class="btn btn-outline-dark rounded mx-2">CANCEL</button>
-                                <button type="submit" class="btn btn-primary rounded">NEXT</button>
-                            </div><!-- /Form Actions -->
-                          </div>
-                          <div class="tab-pane fade" id="payments" role="tabpanel" aria-labelledby="payments-tab" tabindex="0">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h2>Payments</h2>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="mb-5">
-                                            <h3>Provider Payments & Preferences</h3>
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12 mb-1">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="providerPayroll" checked>
-                                                        <label class="form-check-label" for="providerPayroll">Provider Payroll</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label class="form-label" for="directDepositFormUpload">
-                                                        Direct Deposit Form Upload
-                                                    </label>
-                                                    <input class="form-control" type="file" id="directDepositFormUpload">
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label class="form-label" for="paymentSchedule">
-                                                        Payment Schedule
-                                                    </label>
-                                                    <div class="position-relative">
-                                                        <input type="" name="" class="form-control" placeholder="Select Date" id="paymentSchedule">
-                                                        <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12">
-                                                    <h3>Options:</h3>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="enrollDirectDeposit" name="enrollDirectDeposit" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="enrollDirectDeposit">Require Provider to Acknowledge to Enroll in Direct Deposit</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-lg-6">
-                                                    <div class="d-lg-flex justify-content-between">
-                                                        <label class="form-label" for="reimburseProviders">
-                                                            Rate Per Mile to Reimburse Providers
-                                                        </label>
-                                                        <a href="">
-                                                            KM <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path> </svg>
-                                                        </a>
-                                                    </div>
-                                                    <input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label class="form-label" for="selectCurrency">
-                                                        Select Currency
-                                                    </label>
-                                                    <select class="form-select">
-                                                        <option>Select Currency</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12 mb-1">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="customerBilling" checked>
-                                                        <label class="form-check-label" for="customerBilling">Customer Billing</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label class="form-label" for="billingSchedule">
-                                                        Billing Schedule (Days After Invoice)
-                                                    </label>
-                                                    <input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="mb-5">
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12">
-                                                    <h3>Service Agreements / Terms of Service</h3>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <label class="form-label" for="serviceAgreementsUpload">
-                                                                Upload File
-                                                            </label>
-                                                            <input class="form-control" type="file" id="serviceAgreementsUpload">
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label class="form-label" for="serviceAgreementsURL">
-                                                                URL Link
-                                                            </label>
-                                                            <input type="" name="" class="form-control" placeholder="Enter URL link" id="serviceAgreementsURL">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12">
-                                                    <h3>Options:</h3>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="attachSendQuotes" name="attachSendQuotes" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="attachSendQuotes">Attach and Send with Quotes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="acknowledgeInitialLogin" name="acknowledgeInitialLogin" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="acknowledgeInitialLogin">Require Customer to Acknowledge on Initial Login</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="mb-5">
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12">
-                                                    <h3>Privacy Policy</h3>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <label class="form-label" for="privacyPolicyUpload">
-                                                                Upload File
-                                                            </label>
-                                                            <input class="form-control" type="file" id="privacyPolicyUpload">
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label class="form-label" for="privacyPolicyURL">
-                                                                URL Link
-                                                            </label>
-                                                            <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-lg-12">
-                                                    <h3>Options:</h3>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="customerDrive">Add to Customer Drive</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Require Customer to Acknowledge on Initial Login</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="providerDrive">Add to Provider Drive</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Require Customer to Acknowledge on Initial Login</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <!-- Duplicate Block -->
-                                            <div>
-                                                <div class="row mb-4">
-                                                    <div class="col-lg-12">
-                                                        <h3>Additional Policies</h3>
-                                                        <h3 class="text-primary">Policy 1</h3>
-                                                        <div class="row mb-3">
-                                                            <div class="col-lg-6">
-                                                                <label class="form-label" for="privacyPolicyUpload">
-                                                                    Upload File
-                                                                </label>
-                                                                <input class="form-control" type="file" id="privacyPolicyUpload">
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <label class="form-label" for="privacyPolicyURL">
-                                                                    URL Link
-                                                                </label>
-                                                                <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-12 text-lg-end">
-                                                                <button type="button" class="btn btn-primary btn rounded">Add Policy
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                <div class="col-lg-12">
-                                                    <h3>Options:</h3>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="customerDrive">Add to Customer Drive</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Require Customer to Acknowledge on Initial Login</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="providerDrive">Add to Provider Drive</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
-                                                        <label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Require Customer to Acknowledge on Initial Login</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div><!-- /Duplicate Block -->
-                                            <!-- Form Actions -->
-                                            <div class="col-12 justify-content-center form-actions d-flex">
-                                                <button type="button" class="btn btn-outline-dark rounded mx-2">CANCEL</button>
-                                                <button type="submit" class="btn btn-primary rounded">NEXT</button>
-                                            </div><!-- /Form Actions -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                          </div>
-                          </div>
-                        </div>
-                        <!-- END: Steps -->    
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div>  
+          </section>
+          <!-- Basic Floating Label Form section end -->
+        </div>  
+      </div>
     </div>
     <!-- End: Content-->
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
     <!-- BEGIN: Footer-->
-    <footer class="footer footer-light  footer-static">
-        <p class="clearfix mb-0">
-            <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
-                <a class="ms-25" href="" target="_blank">Eclipse Scheduling</a>,
-                <span class="d-none d-sm-inline-block">All rights Reserved</span>
-            </span>
-        </p>
+    <footer
+      class="footer footer-light  footer-static">
+      <p class="clearfix mb-0">
+        <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
+        <a class="ms-25" href=""
+          target="_blank">Eclipse Scheduling</a>,
+        <span class="d-none d-sm-inline-block">All rights Reserved</span>
+        </span>
+      </p>
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="js/app.js"></script>
-</body>
-
+  </body>
 </html>
+
