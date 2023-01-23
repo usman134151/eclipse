@@ -14,8 +14,6 @@ Route::group([
     'as' => 'tenant.',
 ], function () {
 
-    Route::redirect('/', '/home');
-
     Route::get('/impersonate/{token}', function ($token) {
         return UserImpersonation::makeResponse($token);
     })->name('impersonate');
@@ -41,6 +39,8 @@ Route::group([
             Route::post('/settings/application/configuration', [Controllers\ApplicationSettingsController::class, 'storeConfiguration'])->name('settings.application.configuration');
             Route::get('/settings/application/invoice/{id}/download', Controllers\DownloadInvoiceController::class)->name('invoice.download');
         });
+
+        Route::post('/saveBrowser', 'Helper@saveUserBrowser'); // savebrowser 
     });
 
     Route::namespace('App\\Http\\Controllers\\Tenant')->group(function () {

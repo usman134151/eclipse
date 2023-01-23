@@ -19,21 +19,22 @@ class AuthController extends ApiController
     public function register(Request $request)
     {
         try {
-            //Validated
-            $validateUser = Validator::make($request->all(), 
-            [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-                'device_name' => 'required',
-            ]);
-
-            if($validateUser->fails()){
-                return $this->response([
-                    'errors' => $validateUser->errors(),
-                ],401);
-            }
-
+           
+            $validate = $this->vallidateApi(
+                            $request,
+                            [
+                                'name' => 'required',
+                                'email' => 'required|email|unique:users,email',
+                                'password' => 'required',
+                                'device_name' => 'required',
+                            ]
+                        );
+            if($validate   !== true )
+            {
+                return $validate;
+            }   
+            
+            
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -58,18 +59,19 @@ class AuthController extends ApiController
     public function login(Request $request)
     {
         try {
-            $validateUser = Validator::make($request->all(), 
-            [
-                'email' => 'required|email',
-                'password' => 'required',
-                'device_name' => 'required',
-            ]);
 
-            if($validateUser->fails()){
-                return $this->response([
-                    'errors' => $validateUser->errors()
-                ], 401);
-            }
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'email' => 'required|email',
+                    'password' => 'required',
+                    'device_name' => 'required',
+                ]
+            );
+            if($validate !== true )
+            {
+                return $validate;
+            }   
 
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return  $this->response([
@@ -81,6 +83,31 @@ class AuthController extends ApiController
             $result = $this->usersDataMap($user->id);
             $result['token'] = $user->createToken($request->device_name)->plainTextToken;
             return $this->response($result, 300);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
+
+
+     /**
+     * logout The User
+     * @param Request $request
+     * @return User
+     */
+    public function logout(Request $request)
+    {
+        try {
+
+            $user = Auth::user();
+            // Revoke all tokens...
+            $user->tokens()->delete();
+            $result = [];
+            // Revoke a specific token...
+           // $user->tokens()->where('id', $tokenId)->delete();
+            return $this->response($result, 302);
 
         } catch (\Throwable $th) {
             return $this->response([
