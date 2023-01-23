@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
              'name' => 'Admin',
              'email' => 'eclipsetestadmin@dispostable.com',
              'password' => bcrypt('test!836'),
-             'status'  =>'1',
-             'added_by'  =>'1',
+            //  'status'  =>'1',
+            //  'added_by'  =>'1',
              'created_at'  =>now(),
              'updated_at' => now()
          ]);
@@ -33,8 +33,8 @@ class UsersTableSeeder extends Seeder
              'last_name' => 'Provider',
              'email' => 'eclipsetestprovider@dispostable.com',
              'password' => bcrypt('test!836'),
-             'status'  =>'1',
-             'added_by'  =>'1',
+            //  'status'  =>'1',
+            //  'added_by'  =>'1',
              'created_at'  =>now(),
              'updated_at' => now()
          ]);
@@ -46,8 +46,8 @@ class UsersTableSeeder extends Seeder
              'name' => 'Supervisor',
              'email' => 'eclipsetestsupervisor@dispostable.com',
              'password' => bcrypt('test!836'),
-             'added_by'  =>'1',
-             'status'  =>'1',
+            //  'added_by'  =>'1',
+            //  'status'  =>'1',
              'created_at'  =>now(),
              'updated_at' => now()
          ]);
@@ -59,8 +59,8 @@ class UsersTableSeeder extends Seeder
              'name' => 'Staff',
              'email' => 'eclipseteststaff@dispostable.com',
              'password' => bcrypt('test!836'),
-             'added_by'  =>'1',
-             'status'  =>'1',
+            //  'added_by'  =>'1',
+            //  'status'  =>'1',
              'created_at'  =>now(),
              'updated_at' => now()
          ]);
@@ -72,8 +72,8 @@ class UsersTableSeeder extends Seeder
              'name' => 'Consumer',
              'email' => 'eclipsetestconsumer@dispostable.com',
              'password' => bcrypt('test!836'),
-             'added_by'  =>'1',
-             'status'  =>'1',
+            //  'added_by'  =>'1',
+            //  'status'  =>'1',
              'created_at'  =>now(),
              'updated_at' => now()
          ]);
