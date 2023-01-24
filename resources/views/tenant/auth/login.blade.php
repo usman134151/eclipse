@@ -2,29 +2,7 @@
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eclipse | Login Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
-    <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/bootstrap-extended.css">
-    <link rel="stylesheet" href="css/vertical-menu.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- BEGIN: Content-->
+      <!-- BEGIN: Content-->
     <div class="row m-0 auth-wrapper">
       <span class="brand-logo">
         <svg role="img" width="178" height="50" viewBox="0 0 178 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,10 +40,20 @@
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
           <h1 class="card-title fw-normal mb-3">Welcome to Eclipse Scheduling! </h1>
           <p class="card-text mb-4">Please sign into your account to start exploring.</p>
-          <form class="login-form" method="POST" action="">
+
+          {{-- Show auth errors --}}
+
+          @if($errors->has('loginError'))
+          <p class='mt-2 text-sm text-red-600'>{{$errors->first('loginError')}}</p>
+          @endif
+
+          <form method="POST" action="{{ route('tenant.login') }}">
+            @csrf
             <div class="mb-3">
               <label class="form-label" for="email">Email</label>
               <input class="form-control" id="email" type="text" name="email" placeholder="Email address" aria-describedby="email" autofocus="" tabindex="1" />
+              <x-form.input-error for="email" />
+
             </div>
             <div class="mb-3">
               <div class="d-flex justify-content-between">
@@ -90,16 +78,6 @@
           </form>
         </div>
       </div>
-      <!-- /Login-->
-    </div>
-    <!-- END: Content-->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <script src="js/app.js"></script>
-  </body>
-</html>
       <!-- /Login-->
  
 @endsection
