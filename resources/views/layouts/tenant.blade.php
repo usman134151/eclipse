@@ -9,8 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Eclipse Scheduling') }}</title>
-
+    <link rel="stylesheet" href="/tenant/css/all.min.css"/>
+    <link rel="stylesheet" href="/tenant/css/font-awesome.min.css" type="text/css"/>
     <link rel="stylesheet" href="/tenant/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tenant/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/tenant/css/chosen.min.css">
     <link rel="stylesheet" href="/tenant/css/colors.css">
     <link rel="stylesheet" href="/tenant/css/components.css">
     <link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
@@ -41,7 +44,10 @@
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
+    <script src="tenant/js/jquery-3.6.3.min.js"></script>
     <script type="text/javascript" src="tenant/js/bootstrap.bundle.min.js"></script>
+    <script src="tenant/js/perfect-scrollbar.min.js"></script>
+    <script src="tenant/js/chosen.jquery.min.js"></script>
     <script src="tenant/js/app.js"></script>
     @livewireScripts
   </body>
