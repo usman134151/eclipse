@@ -4,7 +4,7 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
- @livewire('app.dashboard')
+ @livewire('app.common.specialization')
     </div>
     <!-- End: Content-->
 @endsection

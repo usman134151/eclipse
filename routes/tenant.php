@@ -28,6 +28,10 @@ Route::group([
 
         Route::view('/dashboard', 'tenant/dashboard/index');
         
+        //admin setting routes
+        Route::view('/admin/specialization', 'tenant/common/specialization');
+        //end of admin setting routes
+
         Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
         Route::get('/posts/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
