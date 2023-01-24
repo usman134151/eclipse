@@ -14,59 +14,41 @@ class AssignmentController extends ApiController
      */
     public function index(Request $request)
     {
-        try {
-            $validate = $this->vallidateApi(
-                $request,
-                [
-                    'assignment_type' => 'required',
-                ]
-            );
-            if($validate   !== true )
-            {
-                return $validate;
-            }   
+        if($request->assignment_type == 'upcomming')
+        {
+            $assignmentData = [
+                
+                    'today_assignment'  =>  
+                    [
+                        $this->assignmentsDataMap(1),
+                        $this->assignmentsDataMap(2),
+                    ],
 
-
-            if($request->assignment_type == 'upcomming')
-            {
+                    'upcomming_assignment'  =>  
+                    [
+                        $this->assignmentsDataMap(3),
+                        $this->assignmentsDataMap(4),
+                    ]                            
+            
+                ];
+            }else{
                 $assignmentData = [
-                    
-                        'today_assignment'  =>  
+                
+                        'assignment_invitation'  =>  
                         [
                             $this->assignmentsDataMap(1),
                             $this->assignmentsDataMap(2),
                         ],
 
-                        'upcomming_assignment'  =>  
+                        'unassign_assignment'  =>  
                         [
                             $this->assignmentsDataMap(3),
                             $this->assignmentsDataMap(4),
                         ]                            
                 
                     ];
-                }else{
-                    $assignmentData = [
-                    
-                            'assignment_invitation'  =>  
-                            [
-                                $this->assignmentsDataMap(1),
-                                $this->assignmentsDataMap(2),
-                            ],
-
-                            'unassign_assignment'  =>  
-                            [
-                                $this->assignmentsDataMap(3),
-                                $this->assignmentsDataMap(4),
-                            ]                            
-                    
-                        ];
-                }        
-            return $this->response($assignmentData,200);
-        } catch (\Throwable $th) {
-            return $this->response([
-                'errors' => $th->getMessage(),
-            ],500);
-        }        
+            }        
+        return $this->response($assignmentData,200);
     }
 
     /**
@@ -98,24 +80,7 @@ class AssignmentController extends ApiController
      */
     public function show(Request $request)
     {
-        try {
-            $validate = $this->vallidateApi(
-                $request,
-                [
-                    'assignment_id' => 'required',
-                    'assignment_times' => 'required',
-                ]
-            );
-            if($validate   !== true )
-            {
-                return $validate;
-            } 
-            return $this->response($this->assignmentsDataMap($request->id),200);
-        } catch (\Throwable $th) {
-            return $this->response([
-                'errors' => $th->getMessage(),
-            ],500);
-        }    
+        return $this->response($this->assignmentsDataMap($request->id),200);
     }
 
     /**
@@ -151,39 +116,4 @@ class AssignmentController extends ApiController
     {
         //
     }
-
-
-    /**
-     * Update Start Time Of Assignment.
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update_time(Request $request)
-    {
-        try {
-            $validate = $this->vallidateApi(
-                $request,
-                [
-                    'assignment_id' => 'required',
-                    'assignment_times' => 'required',
-                ]
-            );
-            if($validate   !== true )
-            {
-                return $validate;
-            }  
-
-            //Todo Update Work
-
-            $result =  $this->assignmentsDataMap($request->assignment_id);
-            return $this->response($result,tr);
-            
-        } catch (\Throwable $th) {
-            return $this->response([
-                'errors' => $th->getMessage(),
-            ],500);
-        }
-    }
-    
 }
