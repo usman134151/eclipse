@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Tenant\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Tenant\Helper\Helper;
 use App\Http\Controllers\Tenant\Models\UserOtpVerification;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -62,7 +61,6 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
            // if (Auth::user()->status == 1) {
-            if(!Helper::checkUserSavedBrowser()){
                 $expOTP = UserOtpVerification::where(['otp_status' => 'pending'])->where('otp_valid_upto', '<', date('Y-m-d H:i:s'));
                 
                 if ($expOTP->count()) {
@@ -71,9 +69,6 @@ class LoginController extends Controller
                 OtpController::send_otp();
                 return redirect('otpverify');
                 die();
-            }else{
-                return redirect('home');
-            }  
            // } else {
              //   Auth::logout();
                // return redirect("login")->withErrors(['loginError' => __('auth.notActiveError')]);
