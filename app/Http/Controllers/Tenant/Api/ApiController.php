@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Tenant\Api;
 
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Tenant\Models\ApiNotifications;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tenant\Models\User;
+use App\Models\Notifications;
+use App\Models\User;
 
 class ApiController extends Controller
 {
     public function response( $data = [] , $status_code = 200 )
     {
-        $notification = ApiNotifications::find($status_code);
+        $notification = Notifications::find($status_code);
         $response['message'] = $notification->message;
         $response['title'] = $notification->title;
         $response['message'] = $notification->message;
@@ -94,7 +93,7 @@ class ApiController extends Controller
                     'accommondation'        =>  'Sign Language Interpreting Services',
                     'service'               =>  'American Sign Language Interpreting',
                     'specialization'        =>  'Tester',
-                    'address'               =>  'National Library of Australia, attraction, Canberra, Australia',
+                    'address'               =>   'National Library of Australia, attraction, Canberra, Australia',
                     'latitude'              =>  '-35.29648635',
                     'longitude'             =>  '149.12951134999997',
                     'city'                  =>  'Australia',
@@ -108,23 +107,5 @@ class ApiController extends Controller
                 ];
         return $bookingData;
     }
-    
 
-    /**
-     *  Api Validation
-     *   
-     */
-
-    public function vallidateApi(Request $request,$rules = [])
-    {
-        $validateUser = Validator::make($request->all(),$rules);
-
-        if($validateUser->fails()){
-            return $this->response([
-                'errors' => $validateUser->errors(),
-            ],401);
-        }
-
-        return true;
-    }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Tenant\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 #######API SETTING CHANGES (Sakhawat)########
-class ApiNotifications extends Model
+class Notifications extends Model
 {
     use HasFactory;
 }
