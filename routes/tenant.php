@@ -26,7 +26,7 @@ Route::group([
     Route::middleware(['auth','otpcheck', CheckSubscription::class])->group(function () {
         Route::redirect('/home', '/dashboard')->name('home');
 
-        Route::view('*/dashboard', 'tenant/dashboard/index');
+        Route::view('/dashboard', 'tenant/dashboard/index');
         
         Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
