@@ -43,7 +43,6 @@
     <!-- END: Footer-->
     <script type="text/javascript" src="tenant/js/bootstrap.bundle.min.js"></script>
     <script src="tenant/js/app.js"></script>
-    @include('layouts/savebrowserpopup')
     @livewireScripts
   </body>
 </html>

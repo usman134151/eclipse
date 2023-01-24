@@ -14,6 +14,8 @@ Route::group([
     'as' => 'tenant.',
 ], function () {
 
+    Route::redirect('/', '/home');
+
     Route::get('/impersonate/{token}', function ($token) {
         return UserImpersonation::makeResponse($token);
     })->name('impersonate');
@@ -24,7 +26,7 @@ Route::group([
     Route::middleware(['auth','otpcheck', CheckSubscription::class])->group(function () {
         Route::redirect('/home', '/dashboard')->name('home');
 
-        Route::view('*/dashboard', 'tenant/dashboard/index');
+        Route::view('/dashboard', 'tenant/dashboard/index');
         
         Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
@@ -39,8 +41,6 @@ Route::group([
             Route::post('/settings/application/configuration', [Controllers\ApplicationSettingsController::class, 'storeConfiguration'])->name('settings.application.configuration');
             Route::get('/settings/application/invoice/{id}/download', Controllers\DownloadInvoiceController::class)->name('invoice.download');
         });
-
-        Route::post('/saveBrowser', 'Helper@saveUserBrowser'); // savebrowser 
     });
 
     Route::namespace('App\\Http\\Controllers\\Tenant')->group(function () {
