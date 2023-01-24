@@ -103,7 +103,6 @@ class AssignmentController extends ApiController
                 $request,
                 [
                     'assignment_id' => 'required',
-                    'assignment_times' => 'required',
                 ]
             );
             if($validate   !== true )
