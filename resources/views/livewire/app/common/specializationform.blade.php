@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-12 justify-content-center form-actions d-flex">
                           <button type="submit" class="btn btn-primary rounded mx-2">Submit</button>
-                          <button class="btn btn-outline-dark rounded mx-2" wire:click="showList" >Back</button>
+                          <button class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList" >Back</button>
                         </div>
                       </div>
                     </form>

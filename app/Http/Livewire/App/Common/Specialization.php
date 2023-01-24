@@ -15,7 +15,8 @@ class Specialization extends Component
     }
     public function mount()
     {
-        $this->showForm=false;
+       
+       
     }
 
     function showForm(){

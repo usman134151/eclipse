@@ -29,13 +29,12 @@ Route::group([
         Route::view('/dashboard', 'tenant/dashboard/index');
         
         //admin setting routes
-        Route::view('/admin/specialization', 'tenant/common/specialization');
+        Route::view('/admin/specialization', 'tenant/common/specialization',["showForm"=>false]);
+        Route::view('/admin/specialization/create', 'tenant/common/specialization',["showForm"=>true]);
         //end of admin setting routes
 
-        Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-        Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
-        Route::get('/posts/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
+        //default view 
         Route::get('/settings/user', [Controllers\UserSettingsController::class, 'show'])->name('settings.user');
         Route::post('/settings/user/personal', [Controllers\UserSettingsController::class, 'personal'])->name('settings.user.personal');
         Route::post('/settings/user/password', [Controllers\UserSettingsController::class, 'password'])->name('settings.user.password');
