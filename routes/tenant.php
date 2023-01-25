@@ -28,13 +28,22 @@ Route::group([
 
         Route::view('/dashboard', 'tenant/dashboard/index');
         
-        //admin setting routes
+        // Admin Setting Routes
         Route::view('/admin/specialization', 'tenant/common/specialization', ["showForm"=>false]);
         Route::view('/admin/specialization/create', 'tenant/common/specialization', ["showForm"=>true]);
 
         Route::view('/admin/industry', 'tenant/common/industry', ["showForm"=>false]);
         Route::view('/admin/industry/create', 'tenant/common/industry', ["showForm"=>true]);
-        //end of admin setting routes
+
+        Route::view('/admin/accommodation', 'tenant/common/accommodation', ["showForm"=>false]);
+        Route::view('/admin/accommodation/create', 'tenant/common/accommodation', ["showForm"=>true]);
+        
+        Route::view('/admin/coupon', 'tenant/common/coupon', ["showForm"=>false]);
+        Route::view('/admin/coupon/create', 'tenant/common/coupon', ["showForm"=>true]);
+
+        Route::view('/admin/saved-forms', 'tenant/common/saved-forms', ["showForm"=>false]);
+        Route::view('/admin/saved-forms/create', 'tenant/common/saved-forms', ["showForm"=>true]);
+        // End of Admin Setting Routes
 
 
         //default view 
