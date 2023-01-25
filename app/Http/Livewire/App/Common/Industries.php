@@ -4,10 +4,15 @@ namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 
-class Specialization extends Component
+class Industries extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
+
+    public function render()
+    {
+        return view('livewire.app.common.industries');
+    }
 
     public function mount()
     {
@@ -15,18 +20,13 @@ class Specialization extends Component
        
     }
 
-    function showForm(){
-       
-        $this->showForm=true;
+    function showForm()
+    {     
+       $this->showForm=true;
     }
     public function resetForm()
     {
         $this->showForm=false;
     }
 
-    public function render()
-    {
-       
-        return view('livewire.app.common.specialization');
-    }
 }
