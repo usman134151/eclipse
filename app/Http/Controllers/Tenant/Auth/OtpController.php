@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Tenant\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
-use App\Http\Controllers\Tenant\Models\UserOtpVerification;
+use App\Models\Tenant\UserOtpVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;

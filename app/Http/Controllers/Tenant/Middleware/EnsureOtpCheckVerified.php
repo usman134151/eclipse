@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Tenant\Middleware;
 
-use App\Http\Controllers\Tenant\Models\UserOtpVerification;
+use App\Models\Tenant\UserOtpVerification;;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
