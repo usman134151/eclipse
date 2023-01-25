@@ -27,5 +27,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(TemplateSeeder::class);
       $this->call(PlansTableSeeder::class);
       $this->call(PlanPermissionSeeder::class);
+      #### Add Custome Seeder For ApiReponse By Sakhawat #####
+      $this->call(NotificationResponse::class);
     }
 }

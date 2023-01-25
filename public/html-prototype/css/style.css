@@ -214,4 +214,56 @@ a {
   top: 0.5rem;
   right: 0.5rem; }
 
+.cursor-pointer {
+  cursor: pointer; }
+
+.daterangepicker {
+  background-color: #F5F5F5;
+  border-radius: 0.5rem; }
+  .daterangepicker .calendar-table {
+    background-color: #F5F5F5; }
+    .daterangepicker .calendar-table table {
+      border-spacing: 2px;
+      border-collapse: separate; }
+  .daterangepicker select.monthselect, .daterangepicker select.yearselect, .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.ampmselect {
+    border: 1px solid #fff;
+    border-radius: 0.25rem;
+    padding: 6.6px 1px;
+    background-color: #ffffff; }
+    .daterangepicker select.monthselect:hover, .daterangepicker select.yearselect:hover, .daterangepicker select.hourselect:hover, .daterangepicker select.minuteselect:hover, .daterangepicker select.ampmselect:hover {
+      border-color: #0A1E46; }
+  .daterangepicker td.month {
+    background-color: #F5F5F5; }
+  .daterangepicker td.available, .daterangepicker th.available {
+    transition: all 0.15s ease-in-out;
+    background-color: #ffffff;
+    border: 1px solid #fff; }
+    .daterangepicker td.available:hover, .daterangepicker th.available:hover {
+      background-color: #ffffff; }
+  .daterangepicker td.available {
+    border: 1px solid #fff; }
+    .daterangepicker td.available:hover {
+      border-color: #0A1E46; }
+  .daterangepicker td.off.ends {
+    background-color: #F5F5F5; }
+  .daterangepicker th.prev.available, .daterangepicker th.next.available {
+    border-radius: 100px;
+    border: 1px solid #fff; }
+    .daterangepicker th.prev.available:hover, .daterangepicker th.next.available:hover {
+      border-color: #0A1E46; }
+    .daterangepicker th.prev.available.prev.available span, .daterangepicker th.next.available.prev.available span {
+      margin-left: 3px; }
+    .daterangepicker th.prev.available.next.available span, .daterangepicker th.next.available.next.available span {
+      margin-right: 3px; }
+  .daterangepicker td.active {
+    transition: none;
+    border-color: transparent;
+    background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+    color: #fff; }
+    .daterangepicker td.active:hover {
+      background: #204387;
+      border-color: #204387; }
+  .daterangepicker .drp-buttons .btn:hover {
+    border-color: #0A1E46; }
+
 /*# sourceMappingURL=style.css.map */

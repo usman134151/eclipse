@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Tenant\Api;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Tenant\Models\ApiNotifications;
 use Illuminate\Http\Request;
-use App\Models\Notifications;
-use App\Models\User;
+use App\Http\Controllers\Tenant\Models\User;
 
 class ApiController extends Controller
 {
     public function response( $data = [] , $status_code = 200 )
     {
-        $notification = Notifications::find($status_code);
+        $notification = ApiNotifications::find($status_code);
         $response['message'] = $notification->message;
         $response['title'] = $notification->title;
         $response['message'] = $notification->message;
@@ -86,6 +87,7 @@ class ApiController extends Controller
                     'assignment_id'         =>  $bookingId,
                     'assignment_no'         =>  '101787-'.$bookingId,
                     'assignment_start_date' =>  '01/15/2023',
+                    'assignment_type' => ($bookingId % 2 == 0)?'virtual':'in-person',
                     'assignment_start_time' =>  '11:15 AM',
                     'assignment_end_date' =>  '01/15/2023',
                     'assignment_end_time' =>  '1:15 PM',
@@ -93,19 +95,37 @@ class ApiController extends Controller
                     'accommondation'        =>  'Sign Language Interpreting Services',
                     'service'               =>  'American Sign Language Interpreting',
                     'specialization'        =>  'Tester',
-                    'address'               =>   'National Library of Australia, attraction, Canberra, Australia',
+                    'address'               =>  'National Library of Australia, attraction, Canberra, Australia',
                     'latitude'              =>  '-35.29648635',
                     'longitude'             =>  '149.12951134999997',
                     'city'                  =>  'Australia',
-                    'state'                 =>  'Australia',
+                    'province'                 =>  'Australia',
                     'country'               =>  'Australia',
                     'customer'              =>  'Alex John',
                     'company'               =>  'New Microsoft',
-                    'meeting_link'          =>  'https://meet.google.com/gdo-qgdjfjf-test',
+                    'meeting_link'          =>  ($bookingId % 2 == 0)?'https://meet.google.com/gdo-qgdjfjf-test':null,
                     'status'                =>  'pending',
                     'no_of_provider'        =>  5,
                 ];
         return $bookingData;
     }
+    
 
+    /**
+     *  Api Validation
+     *   
+     */
+
+    public function vallidateApi(Request $request,$rules = [])
+    {
+        $validateUser = Validator::make($request->all(),$rules);
+
+        if($validateUser->fails()){
+            return $this->response([
+                'errors' => $validateUser->errors(),
+            ],401);
+        }
+
+        return true;
+    }
 }
