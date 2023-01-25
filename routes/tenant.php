@@ -29,8 +29,11 @@ Route::group([
         Route::view('/dashboard', 'tenant/dashboard/index');
         
         //admin setting routes
-        Route::view('/admin/specialization', 'tenant/common/specialization',["showForm"=>false]);
-        Route::view('/admin/specialization/create', 'tenant/common/specialization',["showForm"=>true]);
+        Route::view('/admin/specialization', 'tenant/common/specialization', ["showForm"=>false]);
+        Route::view('/admin/specialization/create', 'tenant/common/specialization', ["showForm"=>true]);
+
+        Route::view('/admin/industry', 'tenant/common/industry', ["showForm"=>false]);
+        Route::view('/admin/industry/create', 'tenant/common/industry', ["showForm"=>true]);
         //end of admin setting routes
 
 
