@@ -135,17 +135,11 @@ pre code {
 
 .card .table {
   margin-bottom: 0;
-  border-bottom-left-radius: 0.357rem;
-  border-bottom-right-radius: 0.357rem; }
+}
 
 .card .table tbody tr:last-child > * {
   border-bottom-width: 0; }
 
-.card .table tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 0.357rem; }
-
-.card .table tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 0.357rem; }
 
 .table.table-flush-spacing thead tr > td:first-child,
 .table.table-flush-spacing tbody tr > td:first-child {
