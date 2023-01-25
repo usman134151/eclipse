@@ -111,6 +111,61 @@ class ApiController extends Controller
     }
     
 
+
+    /**
+     * get invoice information into array.
+     *
+     * @param  int  $invoiceId
+     * @return array
+     */
+    public function invoiceDataMap($invoiceId = 0)
+    {
+       
+        $invoiceData = [
+                    'invoice_id'         =>  $invoiceId,
+                    'invoice_no'         =>  'R-10178'.$invoiceId,
+                    'total' =>  '$300',
+                    'issued_at' => date('d/m/Y h:iA'),
+                    'scheduled_payment_date' =>   date('d/m/Y h:iA'),
+                    'paied_at' =>  date('d/m/Y h:iA'),
+                    'payment_method' =>  'Mail a check',
+                    'status'             =>  'Paid',
+                ];
+        return $invoiceData;
+    }
+
+    /**
+     * get reimbursement information into array.
+     *
+     * @param  int  $reimbursementId
+     * @return array
+     */
+    public function reimbursementDataMap($reimbursementId = 0)
+    {
+       
+        $reimbursementData = [
+            'reimbursement_id'         =>  $reimbursementId,
+            'assignment_id'         =>  $reimbursementId,
+            'assignment_no'         =>  '101787-'.$reimbursementId,
+            'reason' => 'reimbursement',
+            'document' => [
+                'document_id'    =>     1,
+                'document_title'    =>  'Reimbursement',
+                'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
+                'expiration_date'   =>  '2022-05-27 00:00:00',
+                'status'            =>  '1',
+            ],
+            'amount' =>  '$300',
+            'issued_at' => date('d/m/Y h:iA'),
+            'payment_method' =>  'Cash',
+            'payment_status' =>  'Approved',
+            'payment_is_done'   => 'Not Yet',
+            'status'             =>  'Approved'
+        ];
+        return $reimbursementData;
+    }
+    
+
     /**
      *  Api Validation
      *   
