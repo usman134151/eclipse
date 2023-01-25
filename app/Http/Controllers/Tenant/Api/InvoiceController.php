@@ -14,117 +14,36 @@ class InvoiceController extends ApiController
      */
     public function index()
     {
-        $invoiceData = [
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ],
-            [
-                'invoice_id'        =>  1,
-                'invoice_no'        =>  '0001',
-                'total_pay'         => '$ 758',
-                'issued_date'       =>  '12/20/2022',
-                'scheduled_payement_date'=> '12/20/2022',
-                'paid_at'           => '12/20/2022',
-                'payment_method'    =>  'credit_card',
-                'payment_status'    =>  'pending',
-                'created_at'        => '12/18/2022',
-                'updated_at'        => '12/20/2022'
-            ]
-        ];
-        return $this->response($invoiceData,200);
+        try {
+           
+
+            //Todo Update Work
+            $result['reimbursement'] = [
+                $this->reimbursementDataMap(1),
+                $this->reimbursementDataMap(2),
+            ];
+            
+            $result['remittance'] = [
+                $this->invoiceDataMap(1),
+                $this->invoiceDataMap(2),
+            ];
+
+            $result['payment_preferences'] = 'direct_deposit_method';
+
+            $result['refferals'] = [
+                'refferal_code' => 'KYLATAB',
+                'amount' => '$20',
+                'status' => 'Approved',
+                'issued_on' => date('d/m/Y h:sA'),
+            ];
+
+            return $this->response($result,200);
+            
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
         
     }
 
@@ -192,141 +111,5 @@ class InvoiceController extends ApiController
     public function destroy($id)
     {
         //
-    }
-
-    /***
-     * List of Reimbursements Of Provider
-     * 
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function reimbursements(Request $request)
-    {
-        $reimbursementData = [
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ],
-            [
-                'reimburs_id'    =>  1,
-                'reimburs_no'    =>  '1',
-                'booking_number'=>  '101787-2',
-                'reason'        =>  'This is test recode for reason description',
-                'document'      =>  'https://production-qa.eclipsescheduling.com/storage/uploads/pdf/fa581e80-c430-4bc9-9e57-5c6d5d3bea98.pdf',
-                'amount'        =>  '$ 840.00',
-                'status'        =>  'Pending',
-                'payment_status'=>  'Underreview',
-                'issued'        =>  '12/20/2022',
-                'paid'          =>  'Yes',
-                'payment_method'=>  'cridet_card',
-                'created_at'    =>  '12/16/2022',
-                'updated_at'    =>  '12/16/2022'
-            ]
-              
-        ];       
-        return $this->response($reimbursementData,200);
     }
 }
