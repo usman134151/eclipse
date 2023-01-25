@@ -1,16 +1,15 @@
 
 <div>
-<div id="loader-section" class="loader-section" wire:loading>
-  <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-    <div class="spinner-border" role="status" aria-live="polite">
-        <span class="visually-hidden">Loading...</span>
+  <div id="loader-section" class="loader-section" wire:loading>
+    <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+      <div class="spinner-border" role="status" aria-live="polite">
+          <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   </div>
-</div>
-@if($showForm)
-  @livewire('app.common.specializationform')
-<!--show add/edit form-->
-@else
+  @if($showForm)
+    @livewire('app.common.specializationform') <!--show add/edit form-->
+  @else
           <section id="multiple-column-form">
             <div class="row">
               <div class="col-12">
@@ -296,8 +295,6 @@
           </section>
 
     <!-- end of list -->
- 
-
-    @endif
+  @endif
 </div>
    
