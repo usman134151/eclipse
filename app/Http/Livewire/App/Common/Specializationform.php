@@ -11,8 +11,8 @@ class Specializationform extends Component
         return view('livewire.app.common.specializationform');
     }
     public function showList()
-{
-   // save data
-   $this->emit('showList');
-}
+    {
+        // save data
+        $this->emit('showList');
+    }
 }
