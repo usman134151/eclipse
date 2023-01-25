@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\App\Common\Forms;
+namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 
-class IndustriesForm extends Component
+class SavedForms extends Component
 {
+    // public $showForm;
+
     public function showList()
     {
         $this->emit('showList');
@@ -16,6 +18,6 @@ class IndustriesForm extends Component
 
     public function render()
     {
-        return view('livewire.app.common.forms.industries-form');
+        return view('livewire.app.common.saved-forms');
     }
 }
