@@ -3968,7 +3968,7 @@ div#DraftInvoiceTable .col-md-6.text-left {
     cursor: pointer;
 }
 .table > :not(caption) > * > * {
-  padding: 0.72rem 1rem !important;
+  padding: 0.72rem 1rem;
 }
 .table p {
   margin: 0;
