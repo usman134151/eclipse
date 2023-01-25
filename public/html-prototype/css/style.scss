@@ -344,3 +344,25 @@ a {
 		border-color: $primary;
 	}
 }
+
+.icon-arrow-right {
+	width: 1rem;
+}
+
+div[data-bs-toggle="collapse"] {
+	.icon-arrow-right {
+		transition: all 0.2s ease-in-out;
+	}
+	&[aria-expanded="true"] .icon-arrow-right {
+		transform: rotate(90deg);
+	}
+}
+
+.accordion-button {
+	padding-right: 3rem;
+	cursor: pointer;
+	&::after {
+		position: absolute;
+		right: 1rem;
+	}
+}

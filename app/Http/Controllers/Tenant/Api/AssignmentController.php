@@ -184,5 +184,42 @@ class AssignmentController extends ApiController
             ],500);
         }
     }
+
+    /**
+     * Get Check In Details Of Assignment.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function checkInDetails(Request $request)
+    {
+        try {
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'assignment_id' => 'required'
+                ]
+            );
+            if($validate   !== true )
+            {
+                return $validate;
+            }  
+
+            //Todo Update Work
+
+            $result =  $this->assignmentsDataMap($request->assignment_id);
+            $result['check_in_date'] = date('d/m/Y h:sA');
+            $result['check_in_status'] = 1 ;
+            $result['check_out_date'] = date('d/m/Y h:sA');
+            $result['check_out_status'] = 1 ;
+            $result['location_verified'] =  0;
+            return $this->response($result,200);
+            
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
     
 }

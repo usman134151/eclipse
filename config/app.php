@@ -181,8 +181,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\TenancyServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
-        OwenIt\Auditing\AuditingServiceProvider::class,
         \ESolution\DBEncryption\Providers\DBEncryptionServiceProvider::class,
     ],
 
