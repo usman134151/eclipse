@@ -1,0 +1,32 @@
+<?php
+
+namespace [namespace];
+
+use Livewire\Component;
+
+class [class] extends Component
+{
+    public $showForm;
+    protected $listeners = ['showList' => 'resetForm'];
+
+    public function render()
+    {
+        return view('[view]');
+    }
+
+    public function mount()
+    {
+       
+       
+    }
+
+    function showForm()
+    {     
+       $this->showForm=true;
+    }
+    public function resetForm()
+    {
+        $this->showForm=false;
+    }
+
+}
