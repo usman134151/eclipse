@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/tenant/css/colors.css">
     <link rel="stylesheet" href="/tenant/css/components.css">
     <link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
+    <link rel="stylesheet" href="/tenant/css/vertical-menu.css">
     <link rel="stylesheet" href="/tenant/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

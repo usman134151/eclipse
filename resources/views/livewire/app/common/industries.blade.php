@@ -7,7 +7,7 @@
     </div>
   </div>
   @if($showForm)
-    @livewire('app.common.forms.industriesform') <!--show add/edit form-->
+    @livewire('app.common.forms.industries-form') <!--show add/edit form-->
   @else
        <!-- Basic multiple Column Form section start -->
        <section id="multiple-column-form">

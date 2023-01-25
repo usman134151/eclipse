@@ -14,24 +14,6 @@
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
-.vertical-layout.vertical-menu-modern .main-menu .navigation li a {
-  align-items: center;
-}
-.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg,
-.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i {
-  height: 20px;
-  width: 20px;
-  font-size: 1.45rem;
-  margin-right: 1.1rem;
-  flex-shrink: 0;
-}
-.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a svg,
-.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a i {
-  margin-right: 0.5rem;
-  font-size: 11px;
-  height: 17px;
-  width: 17px;
-}
 .vertical-layout.vertical-menu-modern.menu-expanded .main-menu {
   width: 260px;
 }
@@ -169,10 +151,6 @@
 .vertical-layout.vertical-menu-modern .toggle-icon:focus,
 .vertical-layout.vertical-menu-modern .collapse-toggle-icon:focus {
   outline: none;
-}
-
-.main-menu.menu-light .navigation li a svg {
-  fill: #6E6B7B !important;
 }
 
 .main-menu.menu-light .navigation li a svg.fill-none {
