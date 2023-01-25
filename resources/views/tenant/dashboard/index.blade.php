@@ -4,7 +4,7 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
- @livewire('dashboard')
+ @livewire('app.dashboard')
     </div>
     <!-- End: Content-->
 @endsection

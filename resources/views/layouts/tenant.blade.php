@@ -25,10 +25,14 @@
     @livewireStyles
 </head>
 <body class="pace-done vertical-layout vertical-menu-modern navbar-floating footer-static menu-expanded">
-@include('partials/header')
+            @include('partials/header')
+
             @include('partials/sidebar')
- 
+                <!-- BEGIN: Content-->
+
             @yield('content')
+
+    <!-- End: Content-->
             <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
     <!-- BEGIN: Footer-->
@@ -44,11 +48,11 @@
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
-    <script src="tenant/js/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="tenant/js/bootstrap.bundle.min.js"></script>
-    <script src="tenant/js/perfect-scrollbar.min.js"></script>
-    <script src="tenant/js/chosen.jquery.min.js"></script>
-    <script src="tenant/js/app.js"></script>
+    <script src="/tenant/js/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="/tenant/js/bootstrap.bundle.min.js"></script>
+    <script src="/tenant/js/perfect-scrollbar.min.js"></script>
+    <script src="/tenant/js/chosen.jquery.min.js"></script>
+    <script src="/tenant/js/app.js"></script>
     @livewireScripts
   </body>
 </html>
