@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "elgibor-solution/laravel-database-encryption": "^1.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/cashier": "^13.8",
         "laravel/framework": "^9.5",
@@ -18,6 +19,9 @@
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^2.0",
+        "owen-it/laravel-auditing": "^13.0",
+        "spatie/laravel-medialibrary": "^10.7",
+        "spatie/laravel-permission": "^5.8",
         "stancl/tenancy": "^3.5",
         "tightenco/nova-stripe": "^1.0",
         "twilio/sdk": "^6.44"
@@ -66,7 +70,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

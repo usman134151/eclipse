@@ -16,7 +16,7 @@ class NotificationResponse extends Seeder
     public function __construct()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('notifications')->truncate();
+        DB::table('api_notifications')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
     /**
@@ -26,7 +26,7 @@ class NotificationResponse extends Seeder
      */
     public function run()
     {
-        DB::table('notifications')->insert([
+        DB::table('api_notifications')->insert([
             'id'    =>  200,
             'message' =>    'Result found successfully.',
             'title'    => 'Result Found!',
@@ -37,7 +37,8 @@ class NotificationResponse extends Seeder
             'created_at'   => now(),
             'updated_at'   => now()
         ]);
-        DB::table('notifications')->insert([
+       
+        DB::table('api_notifications')->insert([
             'id'    =>  300,
             'message' =>    'User logged in successfully',
             'title'    => 'Login Success!',
@@ -48,7 +49,7 @@ class NotificationResponse extends Seeder
             'created_at'   => now(),
             'updated_at'   => now()
         ]);
-        DB::table('notifications')->insert([
+        DB::table('api_notifications')->insert([
             'id'    =>  301,
             'message' =>    'User register successfuly.',
             'title'    => 'Register Success!',
@@ -59,7 +60,40 @@ class NotificationResponse extends Seeder
             'created_at'   => now(),
             'updated_at'   => now()
         ]);
-        DB::table('notifications')->insert([
+        DB::table('api_notifications')->insert([
+            'id'    =>  302,
+            'message' =>    'User logout successfuly.',
+            'title'    => 'Logout Success!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  303,
+            'message' =>    'We have send you email please enter code.',
+            'title'    => 'Reset Password Code',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  304,
+            'message' =>    'User App setting change successfuly.',
+            'title'    => 'Change App Setting!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
             'id'    =>  401,
             'message' =>    'Validation error',
             'title'    => 'Validation Error',
@@ -70,13 +104,25 @@ class NotificationResponse extends Seeder
             'created_at'   => now(),
             'updated_at'   => now()
         ]);
-        DB::table('notifications')->insert([
+        DB::table('api_notifications')->insert([
             'id'    =>  500,
             'message' =>    'Please contact to eclipse team.',
             'title'    => 'Server Error',
             'btn_cancel'  =>   '',
             'btn_link'  =>   '',
             'base_code' =>   500,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        ##### Assignment Response ########
+        DB::table('api_notifications')->insert([
+            'id'    =>  600,
+            'message' =>    'Time of asssignment is updated.',
+            'title'    => 'Time Update!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
             'type' =>   'response' ,
             'created_at'   => now(),
             'updated_at'   => now()

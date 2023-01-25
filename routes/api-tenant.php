@@ -35,19 +35,28 @@ Route::group([
     Route::controller(AuthController::class)->prefix('auth')->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
+        Route::post('change/password', 'changePassword');
     });
-    Route::middleware('auth:sanctum')->controller(UsersController::class)->prefix('user')->group(function () {
+    //middleware('auth:sanctum')
+    Route::controller(UsersController::class)->prefix('user')->group(function () {
         Route::get('details', 'authUser');
     });
+
+  
 
     Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('provider')->group(function () {
         Route::controller(AssignmentController::class)->group(function () {
             Route::post('assignments', 'index');
             Route::post('assignment', 'show');
+            Route::post('assignment/update_time', 'updateTime');
         });
         Route::controller(InvoiceController::class)->group(function () {
             Route::post('invoices', 'index');
             Route::post('reimbursement','reimbursements');
+        });
+        Route::controller(SettingController::class)->group(function () {
+            Route::get('settings', 'index');
+            Route::post('change/settings', 'update');
         });
     });
 
