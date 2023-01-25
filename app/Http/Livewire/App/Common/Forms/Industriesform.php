@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class Industriesform extends Component
 {
-    public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+   
+
 
     public function render()
     {
@@ -19,14 +19,12 @@ class Industriesform extends Component
        
        
     }
-
-    function showForm()
-    {     
-       $this->showForm=true;
-    }
-    public function resetForm()
+    public function showList()
     {
-        $this->showForm=false;
+        // save data
+        $this->emit('showList');
     }
+
+
 
 }
