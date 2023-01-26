@@ -1,4 +1,4 @@
-@extends('layouts.central')
+@extends('layouts.central-login')
 
 @section('content')
  <!-- BEGIN: Content-->
@@ -34,7 +34,7 @@
         <lottie-player src="video/video.json" background="transparent" speed="1" class="w-75 h-75" loop autoplay></lottie-player>
       </div>
       <!-- /Left Text-->
-
+   
       <!-- ...register login form ...(start) -->
       <div class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5">
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
@@ -47,7 +47,7 @@
             </p>
             <form class="login-form" action="{{ route('central.tenants.register.submit') }}" method="POST">
                 @csrf
-
+ 
                 <!--companey-->
                 <div class="mb-3">
                     <x-form.label class="form-label" for="company" value="Company"/>
@@ -65,16 +65,16 @@
                 </div>
 
                 <!-- domain  -->
-                <div class="mb-3">
-                    <x-form.label class="form-label" for="domain" value="Domain"/>
-                    <div class="mt-1 flex rounded-md shadow-sm">
-                        <x-form.input-addon addon_text=".{{ config('tenancy.central_domains')[0] }}" autocomplete="off" value="{{ old('domain', '') }}" name="domain" id="domain" type="text" required autofocus/>
-                    </div>
-                    <p class="card-text mb-4">You'll be able to add a custom branded domain after you sign up.</p>
+                <div>
+                <x-form.label class="form-label" for="domain" value="Domain"/>
+                <div class="input-group mb-3">
+                <x-form.input-addon class="form-control" addon_text=".{{ config('tenancy.central_domains')[0] }}" autocomplete="off" value="{{ old('domain', '') }}" name="domain" id="domain" type="text" required autofocus/>
+                <p class="card-text mb-4">You'll be able to add a custom branded domain after you sign up.</p>
                     <x-form.input-error for="domain" />
+                   </div>
                 </div>
 
-                <!-- email -->
+               <!-- email -->
                 <div class="mb-3">
                     <x-form.label class="form-label" for="email" value="Email address"/>                    
                     <x-form.input class="form-control" autocomplete="off" value="{{ old('email', '') }}" name="email" placeholder="Email address" id="email" type="email" required/>

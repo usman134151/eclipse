@@ -1,4 +1,4 @@
-@extends('layouts.central')
+@extends('layouts.central-login')
 
 @section('content')
 
@@ -30,12 +30,14 @@
         </svg>
       </span>
       <!-- /Brand logo-->
+     
       <!-- Left Text-->
       <div class="d-none d-lg-flex col-lg-8 align-items-center justify-content-center p-5">
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> 
         <lottie-player src="video/video.json" background="transparent" speed="1" class="w-75 h-75" loop autoplay></lottie-player>
       </div>
       <!-- /Left Text-->
+      
       <!-- Login-->
       <div class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5">
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
@@ -58,6 +60,7 @@
         </div>
       </div>
       <!-- /Login-->
+      
       </div>
        <!-- END: Content-->
 
