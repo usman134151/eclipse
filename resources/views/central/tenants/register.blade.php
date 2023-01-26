@@ -38,8 +38,8 @@
       <!-- ...register login form ...(start) -->
       <div class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5">
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
-            <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">Create a new account </h2>
-            <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
+            <h1 class="card-title fw-normal mb-3">Create a new account </h1>
+            <p class="card-text mb-4">
                 Or
                 <a href="{{ route('central.tenants.login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                     sign in to your account
@@ -49,7 +49,7 @@
                 @csrf
  
                 <!--companey-->
-                <div class="mb-3">
+                <div class="mb-4">
                     <x-form.label class="form-label" for="company" value="Company"/>
                     <!-- <div class="mt-1 rounded-md shadow-sm"> -->
                     <x-form.input class="form-control" autocomplete="off" value="{{ old('company', '') }}" name="company" placeholder="Enter Companey" id="company" type="text" required autofocus />
@@ -58,44 +58,44 @@
                 </div>
 
                 <!-- name  -->
-                <div class="mb-3">
+                <div class="mb-4">
                     <x-form.label class="form-label" for="name" value="Full name"/>
                     <x-form.input class="form-control" autocomplete="off" value="{{ old('name', '') }}" name="name" placeholder="Enter Name" id="name" type="text" required autofocus />
                     <x-form.input-error for="name" />
                 </div>
 
                 <!-- domain  -->
-                <div>
+                <div  class="mb-4">
                 <x-form.label class="form-label" for="domain" value="Domain"/>
-                <div class="input-group mb-3">
+                <div class="input-group">
                 <x-form.input-addon class="form-control" addon_text=".{{ config('tenancy.central_domains')[0] }}" autocomplete="off" value="{{ old('domain', '') }}" name="domain" id="domain" type="text" required autofocus/>
-                <p class="card-text mb-4">You'll be able to add a custom branded domain after you sign up.</p>
+                <small class="card-text mt-2">You'll be able to add a custom branded domain after you sign up.</small>
                     <x-form.input-error for="domain" />
                    </div>
                 </div>
 
                <!-- email -->
-                <div class="mb-3">
+                <div class="mb-4">
                     <x-form.label class="form-label" for="email" value="Email address"/>                    
                     <x-form.input class="form-control" autocomplete="off" value="{{ old('email', '') }}" name="email" placeholder="Email address" id="email" type="email" required/>
                     <x-form.input-error for="email" />
                 </div>
 
                 <!-- password -->
-                <div class="mb-3">
+                <div class="mb-4">
                 <x-form.label class="form-label" for="password" value="Password"/>
                     <x-form.input class="form-control" autocomplete="off" value="{{ old('password', '') }}" name="password" placeholder="Enter Password" id="password" type="password" required/>
                 <x-form.input-error for="password" />
             </div>
 
                 <!-- confirm password -->
-                <div class="mb-3">
+                <div class="mb-4">
                     <x-form.label class="form-label" for="password_confirmation" value="Confirm Password"/>
                         <x-form.input class="form-control" autocomplete="off" value="{{ old('password_confirmation', '') }}" name="password_confirmation" placeholder="Confirm Password" id="password_confirmation" type="password" required/>
                 </div>
 
                 <!-- register button  -->
-                <div class="mb-3">
+                <div class="mb-4">
                     <x-button class="btn btn-primary w-100 mb-1" type="submit">Register</x-button>
 
                 </div>
