@@ -41,8 +41,8 @@ Route::group([
         Route::view('/admin/coupon', 'tenant/common/coupon', ["showForm"=>false]);
         Route::view('/admin/coupon/create', 'tenant/common/coupon', ["showForm"=>true]);
 
-        Route::view('/admin/saved-forms', 'tenant/common/saved-forms', ["showForm"=>false]);
-        Route::view('/admin/saved-forms/create', 'tenant/common/saved-forms', ["showForm"=>true]);
+        Route::view('/admin/customize-form', 'tenant/common/saved-forms', ["showForm"=>false]);
+        Route::view('/admin/customize-form/create', 'tenant/common/saved-forms', ["showForm"=>true]);
         // End of Admin Setting Routes
 
 

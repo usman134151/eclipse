@@ -6,18 +6,24 @@ use Livewire\Component;
 
 class Accommodation extends Component
 {
-    // public $showForm;
+	public $showForm;
+	protected $listeners = ['showList'=>'resetForm'];
 
-    public function showList()
-    {
-        $this->emit('showList');
-    }
+	function showForm()
+	{
+		$this->showForm=true;
+	}
 
-    public function mount()
-    {}
+	public function resetForm()
+	{
+		$this->showForm=false;
+	}
 
-    public function render()
-    {
-        return view('livewire.app.common.accommodation');
-    }
+	public function mount()
+	{}
+
+	public function render()
+	{
+		return view('livewire.app.common.accommodation');
+	}
 }

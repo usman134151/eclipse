@@ -84,5 +84,128 @@ class UsersController extends ApiController
     {
         //
     }
-   
+    /**
+     *  Desc: Provider Rates Api Call
+     *  Dev:  Sakhawat Kamran
+     *  @param int $provider_id
+     *  @return \Illuminate\Http\Response
+     */
+    public function providerRates(Request $request)
+    {
+        try {
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'provider_id' => 'required',
+                ]
+            );
+            if($validate !== true )
+            {
+                return $validate;
+            }   
+            
+            $result = [
+                'accommodations' => 
+                [
+                    [
+                        'accommodation_id'  =>  1,
+                        'accommodation_name' => 'Sign And Language Interpreting Services',
+                        'status' => 1,
+                    ],
+                    [
+                        'accommodation_id'  =>  1,
+                        'accommodation_name' => 'Sign And Language Interpreting Services',
+                        'status' => 1,
+                    ],
+                    [
+                        'accommodation_id'  =>  1,
+                        'accommodation_name' => 'Sign And Language Interpreting Services',
+                        'status' => 1,
+                    ]
+                ],    
+                'rate_service_wise' => 
+                [
+                    [
+                        'service_id'    =>  1,
+                        'service_name'  =>  'Both Day Rate (New)',
+                        'standerd_rates' => [
+                            [
+                                'rate_type' => 'in-person',
+                                'day_rate_price' => '$500.00',
+                                'expedited_rate_hours' => 1,
+                                'expedited_rate_price' => '$5.00',
+                            ],
+                            [
+                                'rate_type' => 'virtual',
+                                'day_rate_price' => '$500.00',
+                                'expedited_rate_hours' => 1,
+                                'expedited_rate_price' => '$5.00',
+                            ]
+                        ],
+                        'specialization_rates'  =>  
+                        [
+                            [
+                                'specialization_id'     =>  1,
+                                'specialization_type'   =>  'Medical',
+                                'in_person_rate'        =>  '$40',
+                                'virtual_rate'          =>  '$20',
+                            ],
+                            [
+                                'specialization_id'     =>  2,
+                                'specialization_type'   =>  'Legal',
+                                'in_person_rate'        =>  '$30',
+                                'virtual_rate'          =>  '$20',
+                            ]   
+                        ]
+                    ],
+                    [
+                        'service_id'    =>  2,
+                        'service_name'  =>  'Services For Testing Video',
+                        'standerd_rates' => [
+                            [
+                                'rate_type' => 'in-person',
+                                'day_rate_price' => '$500.00',
+                                'expedited_rate_hours' => 1,
+                                'expedited_rate_price' => '$5.00',
+                            ],
+                            [
+                                'rate_type' => 'virtual',
+                                'day_rate_price' => '$500.00',
+                                'expedited_rate_hours' => 1,
+                                'expedited_rate_price' => '$5.00',
+                            ]
+                        ],
+                        'specialization_rates'  =>  
+                        [
+                            [
+                                'specialization_id'     =>  1,
+                                'specialization_type'   =>  'Medical',
+                                'in_person_rate'        =>  '$40',
+                                'virtual_rate'          =>  '$20',
+                            ],
+                            [
+                                'specialization_id'     =>  2,
+                                'specialization_type'   =>  'Legal',
+                                'in_person_rate'        =>  '$30',
+                                'virtual_rate'          =>  '$20',
+                            ],
+                            [
+                                'specialization_id'     =>  2,
+                                'specialization_type'   =>  'Conferance',
+                                'in_person_rate'        =>  '$30',
+                                'virtual_rate'          =>  '$20',
+                            ]      
+                        ]
+                    ]
+
+                ]
+            ];
+            return $this->response($result, 200);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
 }
