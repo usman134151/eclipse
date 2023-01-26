@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Tenant\Api;
 
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Tenant\Api\ApiController;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Artisan;
 
 class TestController extends ApiController
 {
@@ -12,8 +13,7 @@ class TestController extends ApiController
     {
         try {
             $user = Auth::user();
-
-            return $this->response( $user->toArray(),200);
+            return $this->response( [],200);
 
         } catch (\Throwable $th) {
             return response()->json([
