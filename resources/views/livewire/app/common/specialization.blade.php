@@ -10,6 +10,7 @@
   @if($showForm)
     @livewire('app.common.specializationform') <!--show add/edit form-->
   @else
+  @livewire('app.common.lists.specializations') <!--show add/edit form-->
           <section id="multiple-column-form">
             <div class="row">
               <div class="col-12">

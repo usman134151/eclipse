@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Tenant\Api;
 
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Tenant\Models\ApiNotifications;
+use App\Models\Tenant\ApiNotifications;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tenant\Models\User;
+use App\Models\Tenant\User;
 
 class ApiController extends Controller
 {
