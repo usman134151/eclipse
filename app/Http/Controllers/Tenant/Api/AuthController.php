@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Tenant\Api;
 
-use App\Models\User;
+use App\Models\Tenant\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Tenant\Api\ApiController;
 use Illuminate\Support\Facades\Auth;
