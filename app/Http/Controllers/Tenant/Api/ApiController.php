@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Tenant\Api;
 
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Tenant\Models\ApiNotifications;
+use App\Models\Tenant\ApiNotifications;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tenant\Models\User;
+use App\Models\Tenant\User;
 
 class ApiController extends Controller
 {
@@ -103,6 +103,7 @@ class ApiController extends Controller
                     'country'               =>  'Australia',
                     'customer'              =>  'Alex John',
                     'company'               =>  'New Microsoft',
+                    'meeting_name'          =>  'Language Interpreting',
                     'meeting_link'          =>  ($bookingId % 2 == 0)?'https://meet.google.com/gdo-qgdjfjf-test':null,
                     'status'                =>  'pending',
                     'no_of_provider'        =>  5,

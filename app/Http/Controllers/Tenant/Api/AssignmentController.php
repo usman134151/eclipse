@@ -109,7 +109,7 @@ class AssignmentController extends ApiController
             {
                 return $validate;
             } 
-            return $this->response($this->assignmentsDataMap($request->id),200);
+            return $this->response($this->assignmentsDataMap($request->assignment_id),200);
         } catch (\Throwable $th) {
             return $this->response([
                 'errors' => $th->getMessage(),
@@ -208,11 +208,13 @@ class AssignmentController extends ApiController
             //Todo Update Work
 
             $result =  $this->assignmentsDataMap($request->assignment_id);
-            $result['check_in_date'] = date('d/m/Y h:sA');
-            $result['check_in_status'] = 1 ;
-            $result['check_out_date'] = date('d/m/Y h:sA');
-            $result['check_out_status'] = 1 ;
+            $result['check_in_date'] = null;
+            $result['check_in_status'] = 0 ;
+            $result['check_out_date'] = null;
+            $result['check_out_status'] = 0 ;
             $result['location_verified'] =  0;
+            $result['sample_timesheet'] = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+            $result['uploaded_timeseet_link'] = null;
             return $this->response($result,200);
             
         } catch (\Throwable $th) {

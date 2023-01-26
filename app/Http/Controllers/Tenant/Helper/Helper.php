@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Tenant\Helper;
 
 use App\Http\Controllers\Tenant\Jobs\sendEmail;
 use App\Http\Controllers\Tenant\Jobs\sendSms;
-use App\Http\Controllers\Tenant\Models\LoginAddress;
+use App\Models\Tenant\LoginAddress;
 use Illuminate\Support\Facades\Log;
 
 class Helper {
