@@ -111,7 +111,28 @@ class ApiController extends Controller
         return $bookingData;
     }
     
-
+    
+    /**
+     * get notification information into array.
+     *
+     * @param  int  $notificationId
+     * @return array
+     */
+    public function notificationMapData($notificationId = 0)
+    {
+       
+        $notificationData = [
+                    'notification_id'         =>  $notificationId,
+                    'notification_title'         =>  'Assignment Invite',
+                    'notification_message' =>  'John invited you for assignment 38892-9',
+                    'record_id' => $notificationId,
+                    'record_type' =>  'assignment_invite',
+                    'is_seen' =>  0,
+                    'created_at' =>  time(),
+                ];
+        return $notificationData;
+    }
+    
 
     /**
      * get invoice information into array.
@@ -166,6 +187,24 @@ class ApiController extends Controller
         return $reimbursementData;
     }
     
+     /**
+     * get invitation information into array.
+     *
+     * @param  int  $invitationId
+     * @return array
+     */
+    public function invitationDataMap($invitationId)
+    {
+        $invitationData = [
+            'invitation_id' =>  $invitationId,
+            'record_id'     =>  $invitationId,
+            'record_type'   => 'assignment_invite',
+            'sender_id'     => 1,
+            'receiver_id'   => 2,
+            'status'        => 'accepted',
+        ];
+        return $invitationData;
+    }
 
     /**
      *  Api Validation

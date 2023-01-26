@@ -208,4 +208,30 @@ class UsersController extends ApiController
             ],500);
         }
     }
+
+    /**
+     *  Desc: Notification List Api Call
+     *  Dev:  Sakhawat Kamran
+     *  @return \Illuminate\Http\Response
+     */
+    public function notifications()
+    {
+        try{
+
+            $result = [
+                $this->notificationMapData(1),
+                $this->notificationMapData(2),
+                $this->notificationMapData(3),
+                $this->notificationMapData(4),
+                $this->notificationMapData(5),
+                $this->notificationMapData(6),
+            ];
+            return $this->response($result, 200);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
 }
