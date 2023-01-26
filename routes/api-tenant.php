@@ -29,6 +29,9 @@ Route::group([
         Route::prefix('user')->group(function () {
             Route::get('details', 'authUser');
         });
+        Route::prefix('users')->group(function () {
+            Route::get('notifications', 'notifications');
+        });
         Route::prefix('provider')->group(function () {
             Route::post('rates', 'providerRates');
         });
@@ -46,6 +49,13 @@ Route::group([
         });
         Route::controller(InvoiceController::class)->group(function () {
             Route::get('invoices', 'index');
+        });
+        Route::controller(InviteController::class)->group(function () {
+            Route::post('invite/update', 'update');
+        });
+        Route::controller(ReimbursementController::class)->prefix('reimbursement')->group(function () {
+            Route::get('create', 'create');
+            Route::post('store', 'store');
         });
         Route::controller(SettingController::class)->group(function () {
             Route::get('settings', 'index');
