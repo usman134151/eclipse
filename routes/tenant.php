@@ -43,6 +43,14 @@ Route::group([
 
         Route::view('/admin/customize-form', 'tenant/common/saved-forms', ["showForm"=>false]);
         Route::view('/admin/customize-form/create', 'tenant/common/saved-forms', ["showForm"=>true]);
+
+        Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false]);
+        Route::view('/admin/provider/create', 'tenant/common/provider', ["showForm"=>true]);
+
+        Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false]);
+        Route::view('/admin/customer/create', 'tenant/common/customer', ["showForm"=>true]);
+
+        Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
         // End of Admin Setting Routes
 
 
