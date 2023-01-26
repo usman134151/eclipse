@@ -103,6 +103,7 @@ class ApiController extends Controller
                     'country'               =>  'Australia',
                     'customer'              =>  'Alex John',
                     'company'               =>  'New Microsoft',
+                    'meeting_name'          =>  'Language Interpreting',
                     'meeting_link'          =>  ($bookingId % 2 == 0)?'https://meet.google.com/gdo-qgdjfjf-test':null,
                     'status'                =>  'pending',
                     'no_of_provider'        =>  5,
