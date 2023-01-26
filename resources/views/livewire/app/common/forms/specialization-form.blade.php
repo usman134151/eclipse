@@ -12,15 +12,17 @@
                           <div class="row">
                             <div class="col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="specialization-name">Specialization Name 
+                                <label class="form-label" for="specialization-name" >Specialization Name 
                                   <span class="text-danger">*</span> </label>
                                 <input
                                   type="text"
-                                  id="specialization-name"
+                                  id="specialization.name"
                                   class="form-control"
-                                  name="specialization-name"
+                                  name="specialization.name"
                                   placeholder="Enter specialization name"
+                                  wire:model="specialization.name"
                                   />
+                                  @error('specialization.name') <span class="error">{{ $message }}</span> @enderror
                               </div>
                             </div>
                             <div class="col-12">
@@ -38,7 +40,7 @@
                         </div>                        
                         </div>
                         <div class="col-12 justify-content-center form-actions d-flex">
-                          <button type="submit" class="btn btn-primary rounded mx-2">Submit</button>
+                          <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save">Submit</button>
                           <button class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList" >Back</button>
                         </div>
                       </div>
