@@ -1,6 +1,6 @@
-// Initialize the plugin
-const jsMainMenu = document.querySelector('.jsMainMenu');
-const ps = new PerfectScrollbar(jsMainMenu);
+// // Initialize the plugin
+// const jsMainMenu = document.querySelector('.jsMainMenu');
+// const ps = new PerfectScrollbar(jsMainMenu);
 
 // Handle size change
 // document.querySelector('#resize').addEventListener('click', () => {
@@ -25,3 +25,54 @@ var config = {
 for (var selector in config) {
   $(selector).chosen(config[selector]);
 }
+
+// $(function() {
+//   $('.js-single-date').daterangepicker({
+//     singleDatePicker: true,
+//     showDropdowns: true,
+//     autoApply: true
+//   });
+//   $('.js-single-date').val('');
+//   $('.js-single-date').attr("placeholder","MM/DD/YYYY");
+// });
+
+// $(function() {
+//   $('.js-select-day').daterangepicker({
+//     singleDatePicker: true,
+//     showDropdowns: true,
+//     autoApply: true
+//   });
+//   $('.js-select-day').val('');
+//   $('.js-select-day').attr("placeholder","Select Day");
+// });
+
+
+// $(function() {
+//   $('.js-timepciker-start-time').daterangepicker({
+//       timePicker: true,
+//       singleDatePicker:true,
+//       locale: {
+//           format: 'hh:mm A'
+//       }
+//   }).on('show.daterangepicker', function (ev, picker) {
+//       picker.container.find(".calendar-table").hide();
+//   });
+//   $('.js-timepciker-start-time').val('');
+//   $('.js-timepciker-start-time').attr("placeholder","Select Start Time");
+// });
+
+// $(function() {
+//   $('.js-timepciker-end-time').daterangepicker({
+//       timePicker: true,
+//       singleDatePicker:true,
+//       locale: {
+//           format: 'hh:mm A'
+//       }
+//   }).on('show.daterangepicker', function (ev, picker) {
+//       picker.container.find(".calendar-table").hide();
+//   });
+//   $('.js-timepciker-end-time').val('');
+//   $('.js-timepciker-end-time').attr("placeholder","Select End Time");
+// });
+
+
