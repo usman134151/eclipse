@@ -25,7 +25,7 @@
     @stack('head')
     @livewireStyles
 </head>
-<body class="pace-done vertical-layout vertical-menu-modern navbar-floating footer-static menu-expanded">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
             @include('partials/header')
 
             @include('partials/sidebar')
