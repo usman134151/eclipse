@@ -38,8 +38,11 @@ Route::group([
 
     });
 
-  
-
+    Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('run')->group(function () {
+        Route::controller(TestController::class)->group(function () {
+            Route::get('test', 'test');
+        });
+    });    
     Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('provider')->group(function () {
         Route::controller(AssignmentController::class)->group(function () {
             Route::post('assignments', 'index');
