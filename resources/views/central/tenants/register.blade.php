@@ -93,6 +93,12 @@
                     <x-form.label class="form-label" for="password_confirmation" value="Confirm Password"/>
                         <x-form.input class="form-control" autocomplete="off" value="{{ old('password_confirmation', '') }}" name="password_confirmation" placeholder="Confirm Password" id="password_confirmation" type="password" required/>
                 </div>
+
+                <!-- register button  -->
+                <div class="mb-3">
+                    <x-button class="btn btn-primary w-100 mb-1" type="submit">Register</x-button>
+
+                </div>
                
             </form>
         </div>
