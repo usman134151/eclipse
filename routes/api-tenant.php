@@ -24,8 +24,7 @@ Route::group([
         Route::post('login', 'login');
         Route::post('change/password', 'changePassword');
     });
-    //middleware('auth:sanctum')
-    Route::namespace('App\Http\Controllers\Tenant\Api')->controller(UsersController::class)->group(function () {
+    Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->controller(UsersController::class)->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('details', 'authUser');
         });
@@ -38,12 +37,12 @@ Route::group([
 
     });
 
-    Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('run')->group(function () {
+    Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->prefix('run')->group(function () {
         Route::controller(TestController::class)->group(function () {
             Route::get('test', 'test');
         });
     });    
-    Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('provider')->group(function () {
+    Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->prefix('provider')->group(function () {
         Route::controller(AssignmentController::class)->group(function () {
             Route::post('assignments', 'index');
             Route::post('assignment', 'show');
