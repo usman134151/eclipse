@@ -25,8 +25,7 @@ class AuthController extends ApiController
                             [
                                 'name' => 'required',
                                 'email' => 'required|email|unique:users,email',
-                                'password' => 'required',
-                                'device_name' => 'required',
+                                'password' => 'required'
                             ]
                         );
             if($validate   !== true )
@@ -64,8 +63,7 @@ class AuthController extends ApiController
                 $request,
                 [
                     'email' => 'required|email',
-                    'password' => 'required',
-                    'device_name' => 'required',
+                    'password' => 'required'
                 ]
             );
             if($validate !== true )
@@ -81,7 +79,7 @@ class AuthController extends ApiController
 
             $user = User::where('email', $request->email)->first();
             $result = $this->usersDataMap($user->id);
-            $result['token'] = $user->createToken($request->device_name)->plainTextToken;
+            $result['token'] = $user->createToken($request->email)->plainTextToken;
             return $this->response($result, 300);
 
         } catch (\Throwable $th) {
@@ -127,8 +125,7 @@ class AuthController extends ApiController
             $validate = $this->vallidateApi(
                 $request,
                 [
-                    'email' => 'required|email',
-                    'device_name' => 'required',
+                    'email' => 'required|email'
                 ]
             );
             if($validate !== true )
