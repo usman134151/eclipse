@@ -77,7 +77,7 @@
                           </div>
                         </div> 
                     </div>
-                    </div>                        
+                    </div>
                     </div>
                     <div class="col-12  form-actions d-flex">
                       <button type="submit" class="btn btn-primary rounded mx-2">Change Password</button>

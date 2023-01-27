@@ -7,21 +7,12 @@ use Livewire\Component;
 class ChangePassword extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList'=>'resetForm'];
 
-    public function render()
-    {
-        return view('livewire.app.common.forms.change-password');
-    }
-
-    public function mount()
-    {
-       
-       
-    }
+    public function mount() {}
 
     function showForm()
-    {     
+    {
        $this->showForm=true;
     }
     public function resetForm()
@@ -29,4 +20,8 @@ class ChangePassword extends Component
         $this->showForm=false;
     }
 
+    public function render()
+    {
+        return view('livewire.app.common.forms.change-password');
+    }
 }
