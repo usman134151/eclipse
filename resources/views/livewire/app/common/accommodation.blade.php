@@ -20,7 +20,7 @@
                             <h1>Accommodations</h1>
                           </div>
                           <div class="col-md-3 ms-auto text-end">
-                            <a href="#" wire:click="showForm" class="btn btn-primary">Add Accommodation</a>
+                            <a href="javascript:void(0)" wire:click="showForm" class="btn btn-primary">Add Accommodation</a>
                           </div>
                           </div>
                           <div class="row">
