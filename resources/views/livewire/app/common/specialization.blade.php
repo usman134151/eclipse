@@ -7,6 +7,9 @@
       </div>
     </div>
   </div>
+  @if($confirmationMessage)
+    <div>{{$confirmationMessage}}</div>
+  @endif
   @if($showForm)
     @livewire('app.common.forms.specialization-form') <!--show add/edit form-->
   @else
