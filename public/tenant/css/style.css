@@ -5,10 +5,6 @@
 .btn-sm {
   padding: 0.25rem 1rem; }
 
-
-.btn-sm {
-  padding: 0.25rem 1rem; }
-
 html, body {
   height: 100%; }
 
@@ -135,7 +131,6 @@ a {
   width: 2rem;
   height: 2rem;
   background-color: #0A1E46;
-  margin: 0;
   width: 10rem; }
 .choose-portal-colors .choosen-color {
   border-radius: 100px;
@@ -265,5 +260,49 @@ a {
       border-color: #204387; }
   .daterangepicker .drp-buttons .btn:hover {
     border-color: #0A1E46; }
+
+.icon-arrow-right {
+  width: 1rem; }
+
+div[data-bs-toggle="collapse"] .icon-arrow-right {
+  transition: all 0.2s ease-in-out; }
+div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
+  transform: rotate(90deg); }
+
+.accordion-button {
+  padding-right: 3rem;
+  cursor: pointer; }
+  .accordion-button::after {
+    position: absolute;
+    right: 1rem; }
+
+.tab-pane {
+  animation-duration: 0.45s;
+  -webkit-animation-duration: 0.45s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn; }
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0; }
+  100% {
+    transform: translateY(0rem);
+    opacity: 1; }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0; } }
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0; }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1; }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0; } }
 
 /*# sourceMappingURL=style.css.map */
