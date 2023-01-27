@@ -223,5 +223,46 @@ class AssignmentController extends ApiController
             ],500);
         }
     }
+
+    /**
+    * Store Check in And Out Provider Of Assignment.
+    *
+    * @param  Request $request
+    * @return \Illuminate\Http\Response
+    */
+    public function storeCheckInOut(Request $request)
+    {
+        try {
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'assignment_id' => 'required',
+                    'check_in_time' => 'required',
+                    'check_in_status' => 'required',
+                    'check_out_time' => 'required',
+                    'check_out_status' => 'required',
+                    'signater_type' => 'required',
+                    'timesheet_file' => 'required',
+                ]
+            );
+            if($validate   !== true )
+            {
+                return $validate;
+            } 
+            $result = array();
+            $result['check_in_date'] = date('d/m/Y h:iA');
+            $result['check_in_status'] = 1 ;
+            $result['check_out_date'] = date('d/m/Y h:iA');
+            $result['check_out_status'] = 1 ;
+            $result['location_verified'] =  1;
+            $result['sample_timesheet'] = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+            $result['uploaded_timeseet_link'] = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+            return $this->response($result,601); 
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }    
+    }
     
 }
