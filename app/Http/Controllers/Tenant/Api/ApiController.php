@@ -71,7 +71,8 @@ class ApiController extends Controller
                                         'status'            =>  '1',
                                     ]
                                 ],
-                    'profile_pic' => $user->gravatar_url,            
+                    'profile_pic' => $user->gravatar_url,
+                    'payment_preferences' => 'direct_deposit_method',            
                     'created_at' => $user->created_at,
                 ];
         return $userData;

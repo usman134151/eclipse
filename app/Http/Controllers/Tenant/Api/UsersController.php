@@ -234,4 +234,62 @@ class UsersController extends ApiController
             ],500);
         }
     }
+
+     /**
+     *  Desc: Users Profile Image Store or Update Api Call
+     *  Dev:  Sakhawat Kamran
+     *  @return \Illuminate\Http\Response
+     */
+    public function storeOrUpdateProfileImage(Request $request)
+    {
+        try{
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'profile_photo' => 'required',
+                ]
+            );
+            if($validate !== true )
+            {
+                return $validate;
+            }   
+
+            $result = $this->usersDataMap(Auth::user()->id);
+            return $this->response($result, 200);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
+
+    /**
+     *  Desc: Store or Update Payment Preferences Api Call
+     *  Dev:  Sakhawat Kamran
+     *  @return \Illuminate\Http\Response
+     */
+    public function providerPaymentMethod(Request $request)
+    {
+        try{
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'payment_method' => 'required',
+                ]
+            );
+            if($validate !== true )
+            {
+                return $validate;
+            }   
+
+            $result = $this->usersDataMap(Auth::user()->id);
+            return $this->response($result, 305);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
 }
