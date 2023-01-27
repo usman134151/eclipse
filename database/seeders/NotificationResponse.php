@@ -73,8 +73,8 @@ class NotificationResponse extends Seeder
         ]);
         DB::table('api_notifications')->insert([
             'id'    =>  303,
-            'message' =>    'We have send you email please enter code.',
-            'title'    => 'Reset Password Code',
+            'message' =>    'We have send you email, visit link and change password.',
+            'title'    => 'Reset Password Email Send',
             'btn_cancel'  =>   '',
             'btn_link'  =>   '',
             'base_code' =>   200,
@@ -86,6 +86,17 @@ class NotificationResponse extends Seeder
             'id'    =>  304,
             'message' =>    'User App setting change successfuly.',
             'title'    => 'Change App Setting!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  305,
+            'message' =>    'Your payment preferences setting change successfuly.',
+            'title'    => 'Payment Preferences Changed!',
             'btn_cancel'  =>   '',
             'btn_link'  =>   '',
             'base_code' =>   200,
@@ -120,6 +131,17 @@ class NotificationResponse extends Seeder
             'id'    =>  600,
             'message' =>    'Time of asssignment is updated.',
             'title'    => 'Time Update!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  601,
+            'message' =>    'Assignment check in-out is sucessfuly completed.',
+            'title'    => 'Done Check In-Out!',
             'btn_cancel'  =>   '',
             'btn_link'  =>   '',
             'base_code' =>   200,

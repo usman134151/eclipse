@@ -79,7 +79,7 @@ class AuthController extends ApiController
 
             $user = User::where('email', $request->email)->first();
             $result = $this->usersDataMap($user->id);
-            $result['token'] = $user->createToken($request->device_name)->plainTextToken;
+            $result['token'] = $user->createToken($request->email)->plainTextToken;
             return $this->response($result, 300);
 
         } catch (\Throwable $th) {
