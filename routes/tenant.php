@@ -51,6 +51,11 @@ Route::group([
         Route::view('/admin/customer/create', 'tenant/common/customer', ["showForm"=>true]);
 
         Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
+
+        Route::view('/admin/admin-staff', 'tenant/common/customer', ["showForm"=>false]);
+        Route::view('/admin/admin-staff/create', 'tenant/common/customer', ["showForm"=>true]);
+
+        Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
         // End of Admin Setting Routes
 
 
