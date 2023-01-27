@@ -127,5 +127,28 @@ class NotificationResponse extends Seeder
             'created_at'   => now(),
             'updated_at'   => now()
         ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  660,
+            'message' =>    'Reimbursement create successfuly!.',
+            'title'    => 'Reimbursement Done!',
+            'btn_cancel'  =>   'Ok',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        ##### Invitation Response ########
+        DB::table('api_notifications')->insert([
+            'id'    =>  700,
+            'message' =>    'Invitation accepted successfuly!.',
+            'title'    => 'Invite Accepted!',
+            'btn_cancel'  =>   'Ok',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
     }
 }

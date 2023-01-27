@@ -28,13 +28,35 @@ Route::group([
 
         Route::view('/dashboard', 'tenant/dashboard/index');
         
-        //admin setting routes
+        // Admin Setting Routes
         Route::view('/admin/specialization', 'tenant/common/specialization', ["showForm"=>false]);
         Route::view('/admin/specialization/create', 'tenant/common/specialization', ["showForm"=>true]);
 
         Route::view('/admin/industry', 'tenant/common/industry', ["showForm"=>false]);
         Route::view('/admin/industry/create', 'tenant/common/industry', ["showForm"=>true]);
-        //end of admin setting routes
+
+        Route::view('/admin/accommodation', 'tenant/common/accommodation', ["showForm"=>false]);
+        Route::view('/admin/accommodation/create', 'tenant/common/accommodation', ["showForm"=>true]);
+        
+        Route::view('/admin/coupon', 'tenant/common/coupon', ["showForm"=>false]);
+        Route::view('/admin/coupon/create', 'tenant/common/coupon', ["showForm"=>true]);
+
+        Route::view('/admin/customize-form', 'tenant/common/saved-forms', ["showForm"=>false]);
+        Route::view('/admin/customize-form/create', 'tenant/common/saved-forms', ["showForm"=>true]);
+
+        Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false]);
+        Route::view('/admin/provider/create', 'tenant/common/provider', ["showForm"=>true]);
+
+        Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false]);
+        Route::view('/admin/customer/create', 'tenant/common/customer', ["showForm"=>true]);
+
+        Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
+
+        Route::view('/admin/admin-staff', 'tenant/common/customer', ["showForm"=>false]);
+        Route::view('/admin/admin-staff/create', 'tenant/common/customer', ["showForm"=>true]);
+
+        Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
+        // End of Admin Setting Routes
 
 
         //default view 

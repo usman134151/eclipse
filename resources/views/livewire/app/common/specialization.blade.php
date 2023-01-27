@@ -7,9 +7,13 @@
       </div>
     </div>
   </div>
+  @if($confirmationMessage)
+    <div>{{$confirmationMessage}}</div>
+  @endif
   @if($showForm)
-    @livewire('app.common.specializationform') <!--show add/edit form-->
+    @livewire('app.common.forms.specialization-form') <!--show add/edit form-->
   @else
+  @livewire('app.common.lists.specializations') <!--show add/edit form-->
           <section id="multiple-column-form">
             <div class="row">
               <div class="col-12">

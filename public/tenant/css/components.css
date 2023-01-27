@@ -703,6 +703,14 @@ footer.footer-border {
 .main-menu.menu-light .navigation li.has-sub > a {
   transition: all 0.5s ease, background 0s, color 0s; }
 
+.main-menu.menu-light .navigation li a {
+  color: #5E5873;
+  padding: 10px 15px 10px 15px;
+  line-height: 1.45; }
+
+.main-menu.menu-light .navigation li a svg {
+    fill: #6E6B7B !important;
+  }
   .main-menu.menu-light .navigation li a svg.fill-none {
     stroke: #6E6B7B !important;
   }
@@ -722,6 +730,8 @@ footer.footer-border {
 .main-menu.menu-light .navigation li a span.menu-sub-title {
   color: #bdbbc4; }
 
+.main-menu.menu-light .navigation li a > * {
+  transition: transform 0.25s ease; }
 
 .main-menu.menu-light .navigation li.nav-item a:hover > * {
   transition: transform 0.25s ease;
@@ -731,9 +741,20 @@ footer.footer-border {
   transition: transform 0.25s ease;
   transform: translateX(5px); }
 
+.main-menu.menu-light .navigation > li > a {
+  margin: 0 15px; }
+
 .main-menu.menu-light .navigation > li > a .label {
   margin-top: 4px;
   margin-right: 5px; }
+
+.main-menu.menu-light .navigation > li > a i,
+.main-menu.menu-light .navigation > li > a svg {
+  position: relative;
+  top: 0; }
+
+.main-menu.menu-light .navigation > li > ul li:first-of-type {
+  margin-top: 7px !important; }
 
 .main-menu.menu-light .navigation > li > ul li:not(.has-sub) {
   margin: 0; }
@@ -752,6 +773,9 @@ footer.footer-border {
   background: whitesmoke;
   border-radius: 6px; }
 
+.main-menu.menu-light .navigation > li:not(.open) > ul {
+  display: none; }
+
 .main-menu.menu-light .navigation > li:not(.open) > ul .active {
   background: transparent;
   box-shadow: none; }
@@ -769,21 +793,36 @@ footer.footer-border {
   fill: #fff;
 }
 
+.main-menu.menu-light .navigation > li .active {
+  background: #f0f0f0; }
+
+.main-menu.menu-light .navigation > li .active > a {
+  color: #0A1E46;
+  margin-bottom: 0; }
 
 .main-menu.menu-light .navigation > li .active .hover > a,
 .main-menu.menu-light .navigation > li .active :hover > a {
   background: whitesmoke; }
+
+.main-menu.menu-light .navigation > li ul {
+  padding: 0;
+  margin: 0 15px; }
 
 .main-menu.menu-light .navigation > li ul li {
   color: #6e6b7b;
   background: transparent; }
 
 .main-menu.menu-light .navigation > li ul li > a {
+      padding: 10px 20px 10px 55px;
+    font-size: 0.9375rem;
     white-space: normal; }
 
 .main-menu.menu-light .navigation > li ul li ul a {
+  padding: 10px 15px 10px 55px;
   white-space: normal; }
 
+.main-menu.menu-light .navigation > li ul .has-sub:not(.open) > ul {
+  display: none; }
 
 .main-menu.menu-light .navigation > li ul .has-sub:not(.open) > ul .active {
   background: transparent;
@@ -1018,7 +1057,7 @@ footer.footer-border {
 .main-menu .navbar-header {
   height: 100%;
   width: 260px;
-  height: 4.45rem;
+  height: 3.5rem;
   position: relative;
   padding: 0.35rem 1rem 0.3rem 1.64rem;
   transition: 300ms ease all, background 0s; }
@@ -1034,7 +1073,7 @@ footer.footer-border {
 
 .main-menu .navbar-header .navbar-brand .brand-text {
   color: #0A1E46;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   margin-bottom: 0;
   font-weight: 600;
   letter-spacing: 0.01rem;
@@ -1050,6 +1089,11 @@ footer.footer-border {
 
 .main-menu .main-menu-content .ps__rail-y {
   z-index: 3; }
+
+  .main-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
 
 .main-menu ul.navigation-main {
   overflow-x: hidden;
@@ -3968,7 +4012,7 @@ div#DraftInvoiceTable .col-md-6.text-left {
     cursor: pointer;
 }
 .table > :not(caption) > * > * {
-  padding: 0.72rem 1rem !important;
+  padding: 0.72rem 1rem;
 }
 .table p {
   margin: 0;

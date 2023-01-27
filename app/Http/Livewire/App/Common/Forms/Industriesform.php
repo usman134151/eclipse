@@ -4,27 +4,18 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 
-class Industriesform extends Component
+class IndustriesForm extends Component
 {
-   
-
-
-    public function render()
-    {
-        return view('livewire.app.common.forms.industriesform');
-    }
-
-    public function mount()
-    {
-       
-       
-    }
     public function showList()
     {
-        // save data
         $this->emit('showList');
     }
 
+    public function mount()
+    {}
 
-
+    public function render()
+    {
+        return view('livewire.app.common.forms.industries-form');
+    }
 }

@@ -1,12 +1,5 @@
 <?php
-
-use App\Http\Controllers\Tenant\Api\AssignmentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Tenant\Api\AuthController;
-use App\Http\Controllers\Tenant\Api\TestController;
-use App\Http\Controllers\Tenant\Api\UsersController;
-use App\Models\User;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
@@ -20,44 +13,58 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |
 */
 
-###### middleware('auth:sanctum')######
-// Route::middleware('auth:sanctum')->controller(TestController::class)->group(function () {
-//     Route::get('test', 'test');
-// });
-
-
 Route::group([
     'middleware' => ['tenant', PreventAccessFromCentralDomains::class], // See the middleware group in Http Kernel
     'as' => 'tenant.',
 ], function () {
     
 
-    Route::controller(AuthController::class)->prefix('auth')->group(function () {
+    Route::namespace('App\Http\Controllers\Tenant\Api')->controller(AuthController::class)->prefix('auth')->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
         Route::post('change/password', 'changePassword');
     });
     //middleware('auth:sanctum')
-    Route::controller(UsersController::class)->prefix('user')->group(function () {
-        Route::get('details', 'authUser');
+    Route::namespace('App\Http\Controllers\Tenant\Api')->controller(UsersController::class)->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('details', 'authUser');
+        });
+        Route::prefix('users')->group(function () {
+            Route::get('notifications', 'notifications');
+        });
+        Route::prefix('provider')->group(function () {
+            Route::post('rates', 'providerRates');
+        });
+
     });
 
-  
-
+    Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('run')->group(function () {
+        Route::controller(TestController::class)->group(function () {
+            Route::get('test', 'test');
+        });
+    });    
     Route::namespace('App\Http\Controllers\Tenant\Api')->prefix('provider')->group(function () {
         Route::controller(AssignmentController::class)->group(function () {
             Route::post('assignments', 'index');
             Route::post('assignment', 'show');
             Route::post('assignment/update_time', 'updateTime');
+            Route::post('assignment/check_in_details', 'checkInDetails');
         });
         Route::controller(InvoiceController::class)->group(function () {
-            Route::post('invoices', 'index');
-            Route::post('reimbursement','reimbursements');
+            Route::get('invoices', 'index');
+        });
+        Route::controller(InviteController::class)->group(function () {
+            Route::post('invite/update', 'update');
+        });
+        Route::controller(ReimbursementController::class)->prefix('reimbursement')->group(function () {
+            Route::get('create', 'create');
+            Route::post('store', 'store');
         });
         Route::controller(SettingController::class)->group(function () {
             Route::get('settings', 'index');
             Route::post('change/settings', 'update');
         });
+
     });
 
 });

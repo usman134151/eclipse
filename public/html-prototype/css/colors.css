@@ -1945,13 +1945,17 @@ h2 {
   color: var(--bs-table-hover-color);
 }
 
+.table-hover > tbody > tr:hover svg {
+  stroke: var(--bs-table-hover-color);
+}
+
 .table-hover .collapse tr:hover th,
 .table-hover .collapse tr:hover td,
 .table-hover .collapse tr:hover td .form-group label,
 .table-hover .collapse tr:hover td b,
 .table-hover .collapse tr:hover td span,
 .table-hover .collapse tr:hover td p {
-  color: #6e6b7b !important;
+/*  color: #6e6b7b !important;*/
 }
 
 .table-hover .collapse tr:hover tr:hover th,

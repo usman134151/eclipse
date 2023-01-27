@@ -1,4 +1,4 @@
-@extends('layouts.tenant', ['title'=>'Coupon'])
+@extends('layouts.tenant', ['title'=>'Coupons'])
 
 @section('content')
     {{-- BEGIN: Content --}}

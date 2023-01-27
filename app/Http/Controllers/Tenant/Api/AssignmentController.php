@@ -109,7 +109,7 @@ class AssignmentController extends ApiController
             {
                 return $validate;
             } 
-            return $this->response($this->assignmentsDataMap($request->id),200);
+            return $this->response($this->assignmentsDataMap($request->assignment_id),200);
         } catch (\Throwable $th) {
             return $this->response([
                 'errors' => $th->getMessage(),
@@ -177,6 +177,45 @@ class AssignmentController extends ApiController
 
             $result =  $this->assignmentsDataMap($request->assignment_id);
             return $this->response($result,600);
+            
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
+
+    /**
+     * Get Check In Details Of Assignment.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function checkInDetails(Request $request)
+    {
+        try {
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'assignment_id' => 'required'
+                ]
+            );
+            if($validate   !== true )
+            {
+                return $validate;
+            }  
+
+            //Todo Update Work
+
+            $result =  $this->assignmentsDataMap($request->assignment_id);
+            $result['check_in_date'] = null;
+            $result['check_in_status'] = 0 ;
+            $result['check_out_date'] = null;
+            $result['check_out_status'] = 0 ;
+            $result['location_verified'] =  0;
+            $result['sample_timesheet'] = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+            $result['uploaded_timeseet_link'] = null;
+            return $this->response($result,200);
             
         } catch (\Throwable $th) {
             return $this->response([

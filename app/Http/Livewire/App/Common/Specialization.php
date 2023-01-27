@@ -7,6 +7,7 @@ use Livewire\Component;
 class Specialization extends Component
 {
     public $showForm;
+    public $confirmationMessage;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function mount()
@@ -19,8 +20,9 @@ class Specialization extends Component
        
         $this->showForm=true;
     }
-    public function resetForm()
+    public function resetForm($message)
     {
+        $this->confirmationMessage=$message;
         $this->showForm=false;
     }
 

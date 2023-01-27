@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Tenant\Api;
 
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Tenant\Models\ApiNotifications;
+use App\Models\Tenant\ApiNotifications;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tenant\Models\User;
+use App\Models\Tenant\User;
 
 class ApiController extends Controller
 {
@@ -103,6 +103,7 @@ class ApiController extends Controller
                     'country'               =>  'Australia',
                     'customer'              =>  'Alex John',
                     'company'               =>  'New Microsoft',
+                    'meeting_name'          =>  'Language Interpreting',
                     'meeting_link'          =>  ($bookingId % 2 == 0)?'https://meet.google.com/gdo-qgdjfjf-test':null,
                     'status'                =>  'pending',
                     'no_of_provider'        =>  5,
@@ -110,6 +111,100 @@ class ApiController extends Controller
         return $bookingData;
     }
     
+    
+    /**
+     * get notification information into array.
+     *
+     * @param  int  $notificationId
+     * @return array
+     */
+    public function notificationMapData($notificationId = 0)
+    {
+       
+        $notificationData = [
+                    'notification_id'         =>  $notificationId,
+                    'notification_title'         =>  'Assignment Invite',
+                    'notification_message' =>  'John invited you for assignment 38892-9',
+                    'record_id' => $notificationId,
+                    'record_type' =>  'assignment_invite',
+                    'is_seen' =>  0,
+                    'created_at' =>  time(),
+                ];
+        return $notificationData;
+    }
+    
+
+    /**
+     * get invoice information into array.
+     *
+     * @param  int  $invoiceId
+     * @return array
+     */
+    public function invoiceDataMap($invoiceId = 0)
+    {
+       
+        $invoiceData = [
+                    'invoice_id'         =>  $invoiceId,
+                    'invoice_no'         =>  'R-10178'.$invoiceId,
+                    'total' =>  '$300',
+                    'issued_at' => date('d/m/Y h:iA'),
+                    'scheduled_payment_date' =>   date('d/m/Y h:iA'),
+                    'paied_at' =>  date('d/m/Y h:iA'),
+                    'payment_method' =>  'Mail a check',
+                    'status'             =>  'Paid',
+                ];
+        return $invoiceData;
+    }
+
+    /**
+     * get reimbursement information into array.
+     *
+     * @param  int  $reimbursementId
+     * @return array
+     */
+    public function reimbursementDataMap($reimbursementId = 0)
+    {
+       
+        $reimbursementData = [
+            'reimbursement_id'         =>  $reimbursementId,
+            'assignment_id'         =>  $reimbursementId,
+            'assignment_no'         =>  '101787-'.$reimbursementId,
+            'reason' => 'reimbursement',
+            'document' => [
+                'document_id'    =>     1,
+                'document_title'    =>  'Reimbursement',
+                'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
+                'expiration_date'   =>  '2022-05-27 00:00:00',
+                'status'            =>  '1',
+            ],
+            'amount' =>  '$300',
+            'issued_at' => date('d/m/Y h:iA'),
+            'payment_method' =>  'Cash',
+            'payment_status' =>  'Approved',
+            'payment_is_done'   => 'Not Yet',
+            'status'             =>  'Approved'
+        ];
+        return $reimbursementData;
+    }
+    
+     /**
+     * get invitation information into array.
+     *
+     * @param  int  $invitationId
+     * @return array
+     */
+    public function invitationDataMap($invitationId)
+    {
+        $invitationData = [
+            'invitation_id' =>  $invitationId,
+            'record_id'     =>  $invitationId,
+            'record_type'   => 'assignment_invite',
+            'sender_id'     => 1,
+            'receiver_id'   => 2,
+            'status'        => 'accepted',
+        ];
+        return $invitationData;
+    }
 
     /**
      *  Api Validation
