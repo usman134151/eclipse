@@ -50,7 +50,10 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
     <script src="/tenant/js/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="/tenant/js/bootstrap.bundle.min.js"></script>
+    <script src="/tenant/js/alpinejs-3.11.1.js"></script>
+    <script src="/tenant/js/bootstrap.bundle.min.js"></script>
+    <script src="/tenant/js/moment.min.js"></script>
+    <script src="/tenant/js/daterangepicker.min.js"></script>
     <script src="/tenant/js/unison-js.min.js"></script>
     <script src="/tenant/js/perfect-scrollbar.min.js"></script>
     <script src="/tenant/js/feather-icons.min.js"></script>

@@ -38,6 +38,8 @@ class ApiController extends Controller
                     'first_name'    =>  $user->first_name,
                     'last_name'     =>  $user->last_name,
                     'status'        =>  $user->status,
+                    'is_certified'  =>  1,
+                    'provider_id'   =>  'WE-37272',
                     'phone'         =>  '(923)023-9663',
                     'referral_code' => 'ABCDERT',
                     'gender'        => 'Male',
@@ -53,22 +55,23 @@ class ApiController extends Controller
                     'accommodation' => 'Spoken Language Interpreting Services',
                     'industry'      =>   'Language Translater',
                     'certificates'  => [
-                                            [
-                                                'document_id'    =>     1,
-                                                'document_title'    =>  'Certification',
-                                                'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
-                                                'expiration_date'   =>  '2022-05-27 00:00:00',
-                                                'status'            =>  '1',
-                                            ],
-                                            [
-                                                
-                                                'document_id'    =>     2,
-                                                'document_title'    =>  'Certification',
-                                                'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
-                                                'expiration_date'   =>  '2022-05-27 00:00:00',
-                                                'status'            =>  '1',
-                                            ]
-                                        ],
+                                    [
+                                        'document_id'    =>     1,
+                                        'document_title'    =>  'Certification',
+                                        'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
+                                        'expiration_date'   =>  '2022-05-27 00:00:00',
+                                        'status'            =>  '1',
+                                    ],
+                                    [
+                                        
+                                        'document_id'    =>     2,
+                                        'document_title'    =>  'Certification',
+                                        'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
+                                        'expiration_date'   =>  '2022-05-27 00:00:00',
+                                        'status'            =>  '1',
+                                    ]
+                                ],
+                    'profile_pic' => $user->gravatar_url,            
                     'created_at' => $user->created_at,
                 ];
         return $userData;
