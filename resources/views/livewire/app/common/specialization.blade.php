@@ -13,7 +13,7 @@
   @if($showForm)
     @livewire('app.common.forms.specialization-form') <!--show add/edit form-->
   @else
-  @livewire('app.common.lists.specializations') <!--show add/edit form-->
+ <!--show add/edit form-->
           <section id="multiple-column-form">
             <div class="row">
               <div class="col-12">
@@ -32,7 +32,9 @@
                         </div>
                         </div>    
                         </div>
+                        @livewire('app.common.lists.specializations') 
                         <div class="d-flex justify-content-between mb-2">
+                          
                           <div class="d-inline-flex align-items-center gap-4">
                             <label for="show_records_number" class="form-label">Show</label>
                             <select class="form-select" id="show_records_number">
