@@ -44,20 +44,56 @@ Route::group([
         Route::view('/admin/customize-form', 'tenant/common/saved-forms', ["showForm"=>false]);
         Route::view('/admin/customize-form/create', 'tenant/common/saved-forms', ["showForm"=>true]);
 
+        // Admin Provider Routes
         Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false]);
         Route::view('/admin/provider/create', 'tenant/common/provider', ["showForm"=>true]);
+        Route::view('/admin/teams', 'tenant/admin/teams', ["showForm"=>false]);
+        Route::view('/admin/reimbursement', 'tenant/admin/reimbursement', ["showForm"=>false]);
+        Route::view('/admin/provider/remittances', 'tenant/admin/provider/remittances', ["showForm"=>false]);
+        Route::view('/admin/provider/pending-payments', 'tenant/admin/provider/pending-payments', ["showForm"=>false]);
+        Route::view('/admin/deactivated-provider', 'tenant/admin/deactivated-provider', ["showForm"=>false]);
+        Route::view('/admin/provider-applications', 'tenant/admin/provider-applications', ["showForm"=>false]);
+        Route::view('/admin/provider-screenings', 'tenant/admin/provider-screenings', ["showForm"=>false]);
+        // End of  Admin Provider Routes
 
+        // Customer Routes
         Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false]);
         Route::view('/admin/customer/create', 'tenant/common/customer', ["showForm"=>true]);
+        Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
+        Route::view('/admin/deactivated-customer', 'tenant/admin/deactivated-customer', ["showForm"=>false]);
+        Route::view('/admin/draft-invoices', 'tenant/admin/draft-invoices', ["showForm"=>false]);
+        Route::view('/admin/customer-invoices', 'tenant/admin/customer-invoices', ["showForm"=>false]);
+        // End of Customer Routes
 
+        // Admin Staff Routes
+        Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false]);
+        Route::view('/admin/admin-staff/create', 'tenant/admin/staff/admin-staff', ["showForm"=>true]);
+        // End of Admin Staff Routes
+
+        // Admin Setting Routes
+        Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
+        Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
+        Route::view('/admin/templates', 'tenant/settings/templates', ["showForm"=>false]);
+        Route::view('/admin/sms-templates', 'tenant/settings/sms-templates', ["showForm"=>false]);
         Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
 
-        Route::view('/admin/admin-staff', 'tenant/common/customer', ["showForm"=>false]);
-        Route::view('/admin/admin-staff/create', 'tenant/common/customer', ["showForm"=>true]);
+        Route::view('/admin/dashboard', 'tenant/admin/dashboard', ["showForm"=>false]);
+        Route::view('/admin/tenants', 'tenant/admin/tenants', ["showForm"=>false]);
+        Route::view('/admin/chat', 'tenant/admin/chat', ["showForm"=>false]);
 
-        Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
+        // Admin Bookings Routes
+        Route::view('/admin/booknow/create', 'tenant/admin/bookings/booknow', ["showForm"=>true]);
+        Route::view('/admin/bookings/today', 'tenant/admin/bookings/today', ["showForm"=>false]);
+        Route::view('/admin/bookings/upcoming', 'tenant/admin/bookings/upcoming', ["showForm"=>false]);
+        Route::view('/admin/bookings/past', 'tenant/admin/bookings/past', ["showForm"=>false]);
+        Route::view('/admin/bookings/pending-approval', 'tenant/admin/bookings/pending-approval', ["showForm"=>false]);
+        Route::view('/admin/bookings/drafts', 'tenant/admin/bookings/drafts', ["showForm"=>false]);
+        Route::view('/admin/bookings/unassigned', 'tenant/admin/bookings/unassigned', ["showForm"=>false]);
+        Route::view('/admin/bookings/invitations', 'tenant/admin/bookings/invitations', ["showForm"=>false]);
+
+        // Admin Reports
+        Route::view('/admin/reports', 'tenant/admin/reports', ["showForm"=>false]);
         // End of Admin Setting Routes
-
 
         //default view 
         Route::get('/settings/user', [Controllers\UserSettingsController::class, 'show'])->name('settings.user');
