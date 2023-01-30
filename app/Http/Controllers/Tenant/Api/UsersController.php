@@ -132,12 +132,15 @@ class UsersController extends ApiController
                             [
                                 'rate_type' => 'in-person',
                                 'day_rate_price' => '$500.00',
+                                'after_hour_rate_price' => null,
                                 'expedited_rate_hours' => 1,
                                 'expedited_rate_price' => '$5.00',
+
                             ],
                             [
                                 'rate_type' => 'virtual',
                                 'day_rate_price' => '$500.00',
+                                'after_hour_rate_price' => null,
                                 'expedited_rate_hours' => 1,
                                 'expedited_rate_price' => '$5.00',
                             ]
@@ -165,12 +168,14 @@ class UsersController extends ApiController
                             [
                                 'rate_type' => 'in-person',
                                 'day_rate_price' => '$500.00',
+                                'after_hour_rate_price' => '$101.00',
                                 'expedited_rate_hours' => 1,
                                 'expedited_rate_price' => '$5.00',
                             ],
                             [
                                 'rate_type' => 'virtual',
                                 'day_rate_price' => '$500.00',
+                                'after_hour_rate_price' => '$101.00',
                                 'expedited_rate_hours' => 1,
                                 'expedited_rate_price' => '$5.00',
                             ]
@@ -180,19 +185,19 @@ class UsersController extends ApiController
                             [
                                 'specialization_id'     =>  1,
                                 'specialization_type'   =>  'Medical',
-                                'in_person_rate'        =>  '$40',
+                                'in_person_rate'        =>  null,
                                 'virtual_rate'          =>  '$20',
                             ],
                             [
                                 'specialization_id'     =>  2,
                                 'specialization_type'   =>  'Legal',
-                                'in_person_rate'        =>  '$30',
+                                'in_person_rate'        =>  null,
                                 'virtual_rate'          =>  '$20',
                             ],
                             [
                                 'specialization_id'     =>  2,
                                 'specialization_type'   =>  'Conferance',
-                                'in_person_rate'        =>  '$30',
+                                'in_person_rate'        =>  null,
                                 'virtual_rate'          =>  '$20',
                             ]      
                         ]
