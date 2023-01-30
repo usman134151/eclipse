@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\App\Common;
+namespace App\Http\Livewire\App\Admin\Staff;
 
 use Livewire\Component;
 
-class Customer extends Component
+class TeamInfo extends Component
 {
 	public $showForm;
 	protected $listeners = ['showList'=>'resetForm'];
@@ -19,10 +19,11 @@ class Customer extends Component
 		$this->showForm=false;
 	}
 
-	public function mount() {}
+	public function mount()
+	{}
 
 	public function render()
 	{
-		return view('livewire.app.common.customer');
+		return view('livewire.app.admin.staff.team-info');
 	}
 }
