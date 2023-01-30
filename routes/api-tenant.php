@@ -23,16 +23,19 @@ Route::group([
         Route::post('register', 'register');
         Route::post('login', 'login');
         Route::post('change/password', 'changePassword');
+        Route::middleware('auth:sanctum')->get('logout','logout');
     });
     Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->controller(UsersController::class)->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('details', 'authUser');
+            Route::post('profile_image_store','storeOrUpdateProfileImage');
         });
         Route::prefix('users')->group(function () {
             Route::get('notifications', 'notifications');
         });
         Route::prefix('provider')->group(function () {
             Route::post('rates', 'providerRates');
+            Route::post('payment_method', 'providerPaymentMethod');
         });
 
     });
@@ -48,6 +51,8 @@ Route::group([
             Route::post('assignment', 'show');
             Route::post('assignment/update_time', 'updateTime');
             Route::post('assignment/check_in_details', 'checkInDetails');
+            Route::post('assignment/check_in_out', 'storeCheckInOut');
+            
         });
         Route::controller(InvoiceController::class)->group(function () {
             Route::get('invoices', 'index');

@@ -375,6 +375,7 @@ div[data-bs-toggle="collapse"] {
     -webkit-animation-name: slideIn;
     animation-name: slideIn;
 }
+
 @keyframes slideIn {
     0% {
         transform: translateY(1rem);
@@ -400,6 +401,44 @@ div[data-bs-toggle="collapse"] {
     }
     0% {
         -webkit-transform: translateY(1rem);
+        -webkit-opacity: 0;
+    }
+}
+
+.offcanvas {
+    animation-duration: 0.45s;
+    -webkit-animation-duration: 0.45s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-name: slideInRight;
+    animation-name: slideInRight;
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform:translateX(0rem);
+        opacity: 1;
+    }
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+@-webkit-keyframes slideInRight {
+    0% {
+        -webkit-transform: translateX(100%);
+        -webkit-opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        -webkit-opacity: 1;
+    }
+    0% {
+        -webkit-transform: translateX(100%);
         -webkit-opacity: 0;
     }
 }
