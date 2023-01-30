@@ -3,8 +3,7 @@
 @section('content')
 	{{-- BEGIN: Content --}}
 	<div class="app-content content">
-        Add <b>Livewire</b> component here
-		{{-- @livewire('app.common.forms.change-password', ['showForm'=>$showForm]) --}}
+		@livewire('app.common.forms.business-setup', ['showForm'=>$showForm])
 	</div>
 	{{-- End: Content --}}
 @endsection
