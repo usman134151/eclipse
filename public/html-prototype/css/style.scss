@@ -442,3 +442,45 @@ div[data-bs-toggle="collapse"] {
         -webkit-opacity: 0;
     }
 }
+
+[x-cloak] {
+  display: none;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #333;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
+
+
+.btn-outline-dark {
+	.fill-current {
+		fill: black;
+	}
+}
+
+.form-select {
+	padding: .7625rem 2.25rem .7625rem .75rem;
+	    background-size: 32px 32px;
+}
+
+.form-control {
+	padding: .7625rem 0.75rem;
+}
+
+.multi-select-dropdown {
+	.options-container {
+		max-height: 16rem;
+	}
+}
