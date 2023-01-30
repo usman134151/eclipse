@@ -1,15 +1,10 @@
 @extends('layouts.central')
 
 @section('content')
-
 <div class="preloader-wrapper">
 <div class="preloader"></div>
 </div>
-
-<!-- main one start  -->
 <div class="wrapper d-xl-flex">
-
-    <!-- ...two start.... -->
 <div class="navigation js-navigation col-xl-4 nav nav-tabs d-xl-flex" id="myTab">
 <svg class="d-block d-xl-none js-close-navigation close-navigation" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M3.72753 0.613618L12.5 9.38609L21.227 0.659071C21.4198 0.45389 21.652 0.289752 21.9097 0.1765C22.1675 0.0632477 22.4455 0.00321432 22.727 0C23.3297 0 23.9078 0.23944 24.334 0.665647C24.7602 1.09185 24.9996 1.66991 24.9996 2.27266C25.0049 2.55129 24.9532 2.82807 24.8477 3.086C24.7422 3.34394 24.5851 3.57759 24.386 3.77262L15.5454 12.4996L24.386 21.3403C24.7606 21.7067 24.9802 22.203 24.9996 22.7266C24.9996 23.3293 24.7602 23.9074 24.334 24.3336C23.9078 24.7598 23.3297 24.9993 22.727 24.9993C22.4373 25.0113 22.1484 24.9629 21.8784 24.8573C21.6084 24.7517 21.3634 24.591 21.1588 24.3856L12.5 15.6132L3.75026 24.3629C3.55823 24.5613 3.32883 24.7196 3.07528 24.8288C2.82174 24.938 2.54908 24.996 2.27303 24.9993C1.67028 24.9993 1.09222 24.7598 0.666016 24.3336C0.23981 23.9074 0.000369777 23.3293 0.000369777 22.7266C-0.00492892 22.448 0.0467671 22.1712 0.152286 21.9133C0.257804 21.6553 0.414919 21.4217 0.613988 21.2266L9.45463 12.4996L0.613988 3.65898C0.239419 3.29254 0.0197774 2.79631 0.000369777 2.27266C0.000369777 1.66991 0.23981 1.09185 0.666016 0.665647C1.09222 0.23944 1.67028 0 2.27303 0C2.81847 0.00681798 3.34118 0.227266 3.72753 0.613618Z" fill="white" />
@@ -224,9 +219,6 @@
 </a>
 <img src="images/img-tab.png" alt="img-tab" class="js-img-bottom img-bottom">
 </div>
-<!-- .... two end...  -->
-
-<!-- ...three start...  -->
 <div class="content js-content-wrapper col-xl-8 px-3 px-xl-5 pt-4">
 <div class="row mb-4 mb-xl-0">
 <div class="align-self-center col-2 col-md-1 pe-0 d-flex d-xl-none mobile-nav-toggle js-mobile-nav-toggle">
@@ -265,16 +257,13 @@
 </svg>
 </div>
 </div>
-
-<!-- ...page content (start).. -->
 <div class="tab-content js-content px-lg-0 mb-5 mb-lg-0">
 <div class="tab-pane fade show active" id="about-us" role="tabpanel" aria-labelledby="about-us-tab" tabindex="0">
 <h2>About Eclipse</h2>
 <p>Our intuitive, secure system improves the efficiency by which your staff, customers, and providers manage language interpreting and accommodation services. Eclipse Scheduling was envisioned, designed, and developed by a team of professional interpreters and accommodation professionals with more than 50-years of industry experience.</p>
 <div class="d-flex mb-4">
-<img src="{{asset('images/img-content-1.jpg')}}" alt="img-content-1" class="w-25">
-<img src="{{asset('images/img-content-2.jpg')}}" alt="img-content-2" class="w-25">
-
+<img src="images/img-content-1.jpg" alt="img-content-1" class="w-25">
+<img src="images/img-content-2.jpg" alt="img-content-2" class="w-25 ms-lg-3">
 </div>
 <p>After years of the industry feeling pressure to accommodate out-dated and overly-restrictive scheduling platforms, the Eclipse Scheduling team recognized how operations could be improved through innovations that can only be recognized by professionals actively working in the field.</p>
 <p>Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs. Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs</p>
@@ -447,33 +436,18 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </div>
 </div>
 </div>
-<!-- ...page content (end).. -->
-
 <img src="images/img-small-screen.jpg" alt="img-small-screen" class="w-75 d-block d-xl-none">
 </div>
-<!-- ....two end...  -->
-
 </div>
-<!-- main one end  -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollToPlugin.min.js"></script>
+<script src="https://unpkg.com/gsap@3.11.4/dist/Flip.min.js"></script>
 
-
-<!-- old  start -->
-<!-- <div class="flex">
-<div class="lg:w-5/12">
-    <img src="{{asset('images/img-content-1.jpg')}}" alt="img-content-1" class="w-full">
-</div>
-<div class="lg:w-7/12 lg:pl-10">
-    <h1 class="font-medium text-4xl mb-4">About Eclipse</h1>
-    <p class="leading-normal mb-4">Our intuitive, secure system improves the efficiency by which your staff, customers, and providers manage language interpreting and accommodation services. Eclipse Scheduling was envisioned, designed, and developed by a team of professional interpreters and accommodation professionals with more than 50-years of industry experience.</p>
-    <p class="leading-normal mb-4">After years of the industry feeling pressure to accommodate out-dated and overly-restrictive scheduling platforms, the Eclipse Scheduling team recognized how operations could be improved through innovations that can only be recognized by professionals actively working in the field.</p>
-    <p class="leading-normal">Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs. Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs</p>
-    <div class="flex mt-4">
-        <x-button as="a" href="{{ route('central.tenants.login') }}">Login</x-button>
-        <x-button class="ml-2" as="a" href="{{ route('central.tenants.register') }}">Register</x-button>
-    </div>
-    
-</div>
-
-</div> -->
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="js/app.js"></script>
 @endsection

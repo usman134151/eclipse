@@ -13,9 +13,8 @@
         <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
 
         <link rel="stylesheet" href="/css/style.css">        
-        <link rel="stylesheet" href="/css/app.css">        
-        <link rel="stylesheet" href="/css/css2">        
-        <link rel="stylesheet" href="/css/css2(1)">        
+        <!-- <link rel="stylesheet" href="/css/app.css">         -->
+         
         </head>
 
 <body class="bg-gray-100 h-screen antialiased font-sans">
@@ -62,23 +61,24 @@
             </main>
         </div>
   </div> -->
+  @yield('content')
+  @livewireScripts
 
-  <script data-cfasync="false" src="/js/email-decode.min.js"></script>
-<script src="/js/jquery-2.2.4.min.js"></script>
-<script src="/js/gsap.min.js"></script>
-<script src="/js/MotionPathPlugin.min.js"></script>
-<script src="/js/TweenMax.min.js"></script>
-<script src="/js/ScrollTrigger.min.js"></script>
-<script src="/js/ScrollToPlugin.min.js"></script>
-<script src="/js/Flip.min.js"></script>
+  <script data-cfasync="false" src="js/email-decode.min.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/gsap.min.js"></script>
+<script src="js/MotionPathPlugin.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/ScrollToPlugin.min.js"></script>
+<script src="js/Flip.min.js"></script>
 
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/swiper-bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/swiper-bundle.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/app-static-site.js"></script>
-  @yield('content')
 </body>   
-    @livewireScripts
+   
 </html>
 
 
