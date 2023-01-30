@@ -1,38 +1,24 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <title>All-in-One Interpreting &amp; Accommodations Management Software - Eclipse Scheduling</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+        
+        <link href="/landing-page-asserts/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/landing-page-asserts/css/swiper-bundle.min.css" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Eclipse Scheduling') }}</title>
-
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
-    
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="/central/css/all.min.css"/>
-    <link rel="stylesheet" href="/central/css/font-awesome.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/central/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/central/css/perfect-scrollbar.css">
-    <link rel="stylesheet" href="/central/css/chosen.min.css">
-    <link rel="stylesheet" href="/central/css/colors.css">
-    <link rel="stylesheet" href="/central/css/components.css">
-    <link rel="stylesheet" href="/central/css/bootstrap-extended.css">
-    <link rel="stylesheet" href="/central/css/vertical-menu.css">
-    <link rel="stylesheet" href="/central/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-</head>
+        <link rel="stylesheet" href="/landing-page-asserts/css/style.css">        
+        <!-- <link rel="stylesheet" href="/css/app.css">         -->
+         
+        </head>
 
 <body class="bg-gray-100 h-screen antialiased font-sans">
-    <nav class="bg-white py-2">
+    <!-- <nav class="bg-white py-2">
         <div class="container mx-auto flex justify-between">
             <div>
                 <a href="/" class="block py-2 px-4 text-white font-medium">
@@ -74,10 +60,25 @@
                 </div>
             </main>
         </div>
-  </div>
+  </div> -->
+  @yield('content')
+  @livewireScripts
 
-  
-    @livewireScripts
+  <script data-cfasync="false" src="/landing-page-asserts/js/email-decode.min.js"></script>
+<script src="/landing-page-asserts/js/jquery-2.2.4.min.js"></script>
+<script src="/landing-page-asserts/js/gsap.min.js"></script>
+<script src="/landing-page-asserts/js/MotionPathPlugin.min.js"></script>
+<script src="/landing-page-asserts/js/TweenMax.min.js"></script>
+<script src="/landing-page-asserts/js/ScrollTrigger.min.js"></script>
+<script src="/landing-page-asserts/js/ScrollToPlugin.min.js"></script>
+<script src="/landing-page-asserts/js/Flip.min.js"></script>
+
+<script src="/landing-page-asserts/js/bootstrap.bundle.min.js"></script>
+<script src="/landing-page-asserts/js/swiper-bundle.min.js"></script>
+<script src="/landing-page-asserts/js/app.js"></script>
+<script src="/landing-page-asserts/js/app-static-site.js"></script>
+</body>   
+   
 </html>
 
 
