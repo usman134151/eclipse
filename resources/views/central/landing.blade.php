@@ -217,7 +217,7 @@
 </svg>
 <div class="text">Contact</div>
 </a>
-<img src="images/img-tab.png" alt="img-tab" class="js-img-bottom img-bottom">
+<img src="/landing-page-asserts/images/img-tab.png" alt="img-tab" class="js-img-bottom img-bottom">
 </div>
 <div class="content js-content-wrapper col-xl-8 px-3 px-xl-5 pt-4">
 <div class="row mb-4 mb-xl-0">
@@ -262,8 +262,8 @@
 <h2>About Eclipse</h2>
 <p>Our intuitive, secure system improves the efficiency by which your staff, customers, and providers manage language interpreting and accommodation services. Eclipse Scheduling was envisioned, designed, and developed by a team of professional interpreters and accommodation professionals with more than 50-years of industry experience.</p>
 <div class="d-flex mb-4">
-<img src="images/img-content-1.jpg" alt="img-content-1" class="w-25">
-<img src="images/img-content-2.jpg" alt="img-content-2" class="w-25 ms-lg-3">
+<img src="/landing-page-asserts/images/img-content-1.jpg" alt="img-content-1" class="w-25">
+<img src="/landing-page-asserts/images/img-content-2.jpg" alt="img-content-2" class="w-25 ms-lg-3">
 </div>
 <p>After years of the industry feeling pressure to accommodate out-dated and overly-restrictive scheduling platforms, the Eclipse Scheduling team recognized how operations could be improved through innovations that can only be recognized by professionals actively working in the field.</p>
 <p>Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs. Our friendly software curators lead you through an in-depth demo of Eclipse's comprehensive management system, specially customized around your agency's operation needs</p>
@@ -306,31 +306,31 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 <div class="swiper mySwiper">
 <div class="swiper-wrapper">
 <div class="swiper-slide">
-<img src="images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-2.png" alt="img-software-features-1" class="w-100">
 </div>
 <div class="swiper-slide">
-<img src="images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
+<img src="/landing-page-asserts/images/img-software-features-1.png" alt="img-software-features-1" class="w-100">
 </div>
 </div>
 </div>
@@ -359,7 +359,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </div>
 </div>
 <div class="col-lg-4 mb-5">
-<img src="images/img-member-login.jpg" alt="img-member-login" class="w-100">
+<img src="/landing-page-asserts/images/img-member-login.jpg" alt="img-member-login" class="w-100">
 </div>
 </div>
 </div>
@@ -436,7 +436,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </div>
 </div>
 </div>
-<img src="images/img-small-screen.jpg" alt="img-small-screen" class="w-75 d-block d-xl-none">
+<img src="/landing-page-asserts/images/img-small-screen.jpg" alt="img-small-screen" class="w-75 d-block d-xl-none">
 </div>
 </div>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
