@@ -85,7 +85,9 @@ final class Specializations extends PowerGridComponent
     */
     public function addColumns(): PowerGridEloquent
     {
-        return PowerGrid::eloquent();
+        return PowerGrid::eloquent()->addColumn('status', function (Specialization $model) {
+            return ($model->status ? 'Activated' : 'Deactivated');
+          });
     }
 
     /*
@@ -105,8 +107,9 @@ final class Specializations extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Name', 'name', ''),
-            Column::make('Status', 'status', '')
+            Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable(),
+            Column::make('Status', 'status', '')->makeBooleanFilter('status', '0', '1')
+            ->toggleable(1, '1', '0'),
         ]
 ;
     }
