@@ -4,24 +4,13 @@ namespace App\Http\Controllers\Tenant\Api;
 
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-use App\Models\Tenant\ApiNotifications;
 use Illuminate\Http\Request;
 use App\Models\Tenant\User;
+use App\Traits\Tenant\ApiResponse;
 
 class ApiController extends Controller
 {
-    public function response( $data = [] , $status_code = 200 )
-    {
-        $notification = ApiNotifications::find($status_code);
-        $response['message'] = $notification->message;
-        $response['title'] = $notification->title;
-        $response['message'] = $notification->message;
-        $response['btn_link'] = $notification->btn_link;
-        $response['btn_cancel'] = $notification->btn_cancel;
-        $response['status_code']  =   $status_code = ($notification->base_code) ? $notification->base_code : $status_code ;
-        $response['result'] = $data;
-        return response()->json($response , $status_code );
-    }
+    use ApiResponse;
      /**
      * get user information into array.
      *

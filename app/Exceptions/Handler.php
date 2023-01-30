@@ -7,10 +7,13 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Stancl\Tenancy\Contracts\TenantCouldNotBeIdentifiedException;
 use Stancl\Tenancy\Exceptions\TenantDatabaseDoesNotExistException;
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
+use App\Traits\Tenant\ApiResponse;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -69,4 +72,19 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $exception);
     }
+
+    /**
+     * Convert an authentication exception into a response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+                    ? $this->response([],402)
+                    : redirect()->guest($exception->redirectTo() ?? route('login'));
+    }
+
 }
