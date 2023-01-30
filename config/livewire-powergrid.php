@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'alpinejs_cdn'  => null,
+    'alpinejs_cdn'  => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
     
 
     /*
