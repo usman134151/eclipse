@@ -20,6 +20,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <!-- END: Head-->
 <!-- BEGIN: Body-->
@@ -193,8 +195,8 @@
         </div>
     </nav>
     <!-- END: Header-->
-     <!-- BEGIN: Main Menu-->
-     <div role="navigation" aria-label="Main Menu" class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <!-- BEGIN: Main Menu-->
+    <div role="navigation" aria-label="Main Menu" class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
           <li class="nav-item me-auto">
@@ -1713,7 +1715,7 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                          <div class="tab-pane fade" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
+                          <div class="tab-pane fade show active" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
                               <div class="row">
                                 <div class="col-lg-12">
                                     <h2>Configuration Setting</h2>
@@ -1721,12 +1723,12 @@
                                       <div class="col-lg-6 mb-4">
                                         <h3>Choose Portal Default Colours</h3>
                                         <div class="row gap-0 row-gap-3">
-                                          <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                          <div class="choose-portal-colors d-flex gap-3 align-items-center">
                                             <label>Default Colour</label>
                                             <div class="choosen-color choosen-default-color"></div>
                                             <a href="" class="btn btn-primary btn-sm rounded">Choose Colour</a>
                                           </div>
-                                          <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                          <div class="choose-portal-colors d-flex gap-3 align-items-center">
                                               <label>Foreground Color</label>
                                               <div class="choosen-color choosen-foreground-color"></div>
                                               <a href="" class="btn btn-primary btn-sm rounded">Choose Colour</a>
@@ -1738,7 +1740,7 @@
                                 <div class="row">
                                   <div class="col-lg-6 mb-4">
                                     <h3>Choose URL for Users to Access the Portal</h3>
-                                      <div class="d-lg-flex gap-3 align-items-center">
+                                      <div class="d-flex gap-3 align-items-center">
                                         <input type="" name="" class="form-control w-auto" placeholder="Name">
                                         <label>.eclipsescheduling.com</label>
                                         <div class="option">
@@ -1786,8 +1788,9 @@
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-lg-8 mb-4 d-lg-flex gap-3">
+                                  <div class="col-lg-8 d-lg-flex gap-3">
                                       <div class="col-lg-4">
+                                        <div class="mb-4">
                                           <h3>Audience:</h3>
                                           <div class="form-check">
                                             <input class="form-check-input" id="DisplayToProviders" name="DisplayToProviders" type="checkbox" tabindex="" />
@@ -1801,8 +1804,10 @@
                                             <input class="form-check-input" id="DisplayToAdminUsers" name="DisplayToAdminUsers" type="checkbox" tabindex="" />
                                             <label class="form-check-label" for="DisplayToAdminUsers"> Display to Admin-users</label>
                                           </div>
+                                        </div>
                                       </div>
                                       <div class="col-lg-4">
+                                        <div class="mb-4">
                                           <h3>Display:</h3>
                                           <div class="form-check">
                                             <input class="form-check-input" id="DisplayOnLoginScreen" name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
@@ -1812,12 +1817,15 @@
                                             <input class="form-check-input" id="DisplayOnDashboard" name="DisplayOnDashboard" type="checkbox" tabindex="" />
                                             <label class="form-check-label" for="DisplayOnDashboard"> Display On Dashboard</label>
                                           </div>
+                                        </div>
                                       </div>
                                       <div class="col-lg-4">
+                                        <div class="mb-4">
                                           <h3>Duration:</h3>
                                           <label class="form-label-sm" for="DisplayToProviders"> Days</label>
                                           <input class="form-control text-center" id="DisplayToProviders" name="DisplayToProviders" value="5" type="" tabindex="" />
                                       </div>
+                                    </div>
                                   </div>
                                   <div class="col-lg-8">
                                     <a href="" class="btn btn-primary btn-sm rounded">Apply</a>
@@ -1831,77 +1839,85 @@
                             </div>
                             </div>
                           
-                          <div class="tab-pane fade show active" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
+                          <div class="tab-pane fade" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
                             <div class="row mb-4">
                                 <div class="col-lg-12">
                                   <h2>Business Hours Setup</h2>
                                   <p>Your set hours determine when "Business hours" and "After-hours" rates are in effect for customer billing and Provider payroll and prevents services from being scheduled during your "closed" hours.You can also set the times which you are closed and not providing services; this will restrict customers from scheduling.</p>
                               </div>
                             </div>
-                            <div class="row mb-4">
+                            <div class="row">
                                 <div class="col-lg-12">
                                     <h3>Time Configuration</h3>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <label class="form-label">Set Business Time Zone</label>
-                                            <input type="" name="" class="form-control" placeholder="Select Time Zone">
+                                            <div class="mb-4">
+                                                <label class="form-label">Set Business Time Zone</label>
+                                                <input type="" name="" class="form-control" placeholder="Select Time Zone">
+                                            </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label class="form-label">Set Time Format</label>
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
-                                              <label class="form-check-label" for="12Hrs1">
-                                                12 Hrs
-                                              </label>
-                                            </div>
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="radio" name="Hrs" id="24Hrs">
-                                              <label class="form-check-label" for="24Hrs">
-                                                24 Hrs
-                                              </label>
+                                            <div class="mb-4">
+                                                <label class="form-label">Set Time Format</label>
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                  <label class="form-check-label" for="12Hrs1">
+                                                    12 Hrs
+                                                  </label>
+                                                </div>
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="radio" name="Hrs" id="24Hrs">
+                                                  <label class="form-check-label" for="24Hrs">
+                                                    24 Hrs
+                                                  </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-4">
+                            <div class="row">
                                 <div class="col-lg-12">
                                     <h3>Add Hours Slot In Schedule</h3>
                                     <div class="row mb-2">
                                         <div class="col-lg-6">
-                                            <label class="form-label">Type Of Slot</label>
-                                            <div>
-                                                <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="HoursSlot" id="BusinessHours" checked>
-                                                  <label class="form-check-label" for="BusinessHours">
-                                                    Business Hours
-                                                  </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="HoursSlot" id="AfterBusinessHours">
-                                                  <label class="form-check-label" for="AfterBusinessHours">
-                                                    After Business Hours
-                                                  </label>
+                                            <div class="mb-4">
+                                                <label class="form-label">Type Of Slot</label>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                      <input class="form-check-input" type="radio" name="HoursSlot" id="BusinessHours" checked>
+                                                      <label class="form-check-label" for="BusinessHours">
+                                                        Business Hours
+                                                      </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                      <input class="form-check-input" type="radio" name="HoursSlot" id="AfterBusinessHours">
+                                                      <label class="form-check-label" for="AfterBusinessHours">
+                                                        After Business Hours
+                                                      </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row">
                                         <div class="col-lg-12">
-                                            <label class="form-label">Select Days & Time</label>
-                                            <div class="d-lg-flex gap-3 align-items-center mb-3">
-                                                <input type="" name="" class="form-control w-auto js-select-day" placeholder="Select Day">
-                                                <label class="form-label-sm">Choose Time</label>
-                                                <div class="input-group w-auto">
-                                                  <input type="text" class="form-control w-auto js-timepciker-start-time" placeholder="Start Time" aria-label="Start Time" aria-describedby="start-time">
-                                                  <button class="btn btn-primary btn-sm">Start Time</button>
+                                            <div class="mb-4">
+                                                <label class="form-label">Select Days & Time</label>
+                                                <div class="d-lg-flex gap-3 align-items-center mb-3">
+                                                    <input type="" name="" class="form-control w-auto js-select-day mb-3 mb-lg-0" placeholder="Select Day">
+                                                    <label class="form-label-sm">Choose Time</label>
+                                                    <div class="input-group w-auto mb-3 mb-lg-0">
+                                                      <input type="text" class="form-control w-auto js-timepciker-start-time" placeholder="Start Time" aria-label="Start Time" aria-describedby="start-time">
+                                                      <button class="btn btn-primary btn-sm">Start Time</button>
+                                                    </div>
+                                                    <div class="input-group w-auto">
+                                                      <input type="text" class="form-control w-auto js-timepciker-end-time" placeholder="End Time" aria-label="End Time" aria-describedby="end-time">
+                                                      <button class="btn btn-primary btn-sm">End Time</button>
+                                                    </div>
                                                 </div>
-                                                <div class="input-group w-auto">
-                                                  <input type="text" class="form-control w-auto js-timepciker-end-time" placeholder="End Time" aria-label="End Time" aria-describedby="end-time">
-                                                  <button class="btn btn-primary btn-sm">End Time</button>
-                                                </div>
+                                                <button class="btn btn-primary btn-sm rounded">Submit</button>
                                             </div>
-                                            <button class="btn btn-primary btn-sm rounded">Submit</button>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
@@ -1919,7 +1935,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div class="table-responsive">
                                                 <table class="table table-bordered table-schedule">
                                                     <thead>
                                                         <th>
@@ -2053,7 +2069,7 @@
                                     <div class="row mb-4">
                                         <div class="col-12">
                                             <h3>Add Holidays / Days Closed</h3>
-                                            <div class="d-lg-flex gap-3 mb-3">
+                                            <div class="d-flex gap-3 mb-3">
                                                 <div>
                                                     <label class="form-label">Select Days / Holidays </label>
                                                     <div class="position-relative">
@@ -2194,7 +2210,7 @@
                                         <div class="col-lg-12">
                                             <div class="mb-5">
                                             <h3>Provider Payments & Preferences</h3>
-                                            <div class="row mb-4">
+                                            <div class="row">
                                                 <div class="col-lg-12 mb-1">
                                                     <div class="form-check form-switch">
                                                         <input class="form-check-input" type="checkbox" role="switch" id="providerPayroll" checked>
@@ -2202,20 +2218,24 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="form-label" for="directDepositFormUpload">
-                                                        Direct Deposit Form Upload
-                                                    </label>
-                                                    <input class="form-control" type="file" id="directDepositFormUpload">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="directDepositFormUpload">
+                                                            Direct Deposit Form Upload
+                                                        </label>
+                                                        <input class="form-control" type="file" id="directDepositFormUpload">
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="form-label" for="paymentSchedule">
-                                                        Payment Schedule
-                                                    </label>
-                                                    <div class="position-relative">
-                                                        <input type="" name="" class="form-control" placeholder="Select Date" id="paymentSchedule">
-                                                        <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-                                                        </svg>
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="paymentSchedule">
+                                                            Payment Schedule
+                                                        </label>
+                                                        <div class="position-relative">
+                                                            <input type="" name="" class="form-control" placeholder="Select Date" id="paymentSchedule">
+                                                            <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+                                                            </svg>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2228,28 +2248,32 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row mb-4">
+                                            <div class="row">
                                                 <div class="col-lg-6">
-                                                    <div class="d-lg-flex justify-content-between">
-                                                        <label class="form-label" for="reimburseProviders">
-                                                            Rate Per Mile to Reimburse Providers
-                                                        </label>
-                                                        <a href="">
-                                                            KM <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path> </svg>
-                                                        </a>
+                                                    <div class="mb-4">
+                                                        <div class="d-lg-flex justify-content-between">
+                                                            <label class="form-label" for="reimburseProviders">
+                                                                Rate Per Mile to Reimburse Providers
+                                                            </label>
+                                                            <a href="">
+                                                                KM <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path> </svg>
+                                                            </a>
+                                                        </div>
+                                                        <input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
                                                     </div>
-                                                    <input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="form-label" for="selectCurrency">
-                                                        Select Currency
-                                                    </label>
-                                                    <select class="form-select">
-                                                        <option>Select Currency</option>
-                                                    </select>
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="selectCurrency">
+                                                            Select Currency
+                                                        </label>
+                                                        <select class="form-select">
+                                                            <option>Select Currency</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row mb-4">
+                                            <div class="row">
                                                 <div class="col-lg-12 mb-1">
                                                     <div class="form-check form-switch">
                                                         <input class="form-check-input" type="checkbox" role="switch" id="customerBilling" checked>
@@ -2257,29 +2281,35 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="form-label" for="billingSchedule">
-                                                        Billing Schedule (Days After Invoice)
-                                                    </label>
-                                                    <input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="billingSchedule">
+                                                            Billing Schedule (Days After Invoice)
+                                                        </label>
+                                                        <input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
+                                                    </div>
                                                 </div>
                                             </div>
                                             </div>
                                             <div class="mb-5">
-                                            <div class="row mb-4">
+                                            <div class="row">
                                                 <div class="col-lg-12">
                                                     <h3>Service Agreements / Terms of Service</h3>
                                                     <div class="row">
                                                         <div class="col-lg-6">
-                                                            <label class="form-label" for="serviceAgreementsUpload">
-                                                                Upload File
-                                                            </label>
-                                                            <input class="form-control" type="file" id="serviceAgreementsUpload">
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="serviceAgreementsUpload">
+                                                                    Upload File
+                                                                </label>
+                                                                <input class="form-control" type="file" id="serviceAgreementsUpload">
+                                                            </div>
                                                         </div>
                                                         <div class="col-lg-6">
-                                                            <label class="form-label" for="serviceAgreementsURL">
-                                                                URL Link
-                                                            </label>
-                                                            <input type="" name="" class="form-control" placeholder="Enter URL link" id="serviceAgreementsURL">
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="serviceAgreementsURL">
+                                                                    URL Link
+                                                                </label>
+                                                                <input type="" name="" class="form-control" placeholder="Enter URL link" id="serviceAgreementsURL">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2299,21 +2329,25 @@
                                             </div>
                                             </div>
                                             <div class="mb-5">
-                                            <div class="row mb-4">
+                                            <div class="row">
                                                 <div class="col-lg-12">
                                                     <h3>Privacy Policy</h3>
                                                     <div class="row">
                                                         <div class="col-lg-6">
-                                                            <label class="form-label" for="privacyPolicyUpload">
-                                                                Upload File
-                                                            </label>
-                                                            <input class="form-control" type="file" id="privacyPolicyUpload">
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="privacyPolicyUpload">
+                                                                    Upload File
+                                                                </label>
+                                                                <input class="form-control" type="file" id="privacyPolicyUpload">
+                                                            </div>
                                                         </div>
                                                         <div class="col-lg-6">
-                                                            <label class="form-label" for="privacyPolicyURL">
-                                                                URL Link
-                                                            </label>
-                                                            <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="privacyPolicyURL">
+                                                                    URL Link
+                                                                </label>
+                                                                <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2342,22 +2376,26 @@
                                             </div>
                                             <!-- Duplicate Block -->
                                             <div>
-                                                <div class="row mb-4">
+                                                <div class="row mb-3">
                                                     <div class="col-lg-12">
                                                         <h3>Additional Policies</h3>
                                                         <h3 class="text-primary">Policy 1</h3>
-                                                        <div class="row mb-3">
+                                                        <div class="row">
                                                             <div class="col-lg-6">
-                                                                <label class="form-label" for="privacyPolicyUpload">
-                                                                    Upload File
-                                                                </label>
-                                                                <input class="form-control" type="file" id="privacyPolicyUpload">
+                                                                <div class="mb-4">
+                                                                    <label class="form-label" for="privacyPolicyUpload">
+                                                                        Upload File
+                                                                    </label>
+                                                                    <input class="form-control" type="file" id="privacyPolicyUpload">
+                                                                </div>
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <label class="form-label" for="privacyPolicyURL">
-                                                                    URL Link
-                                                                </label>
-                                                                <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
+                                                                <div class="mb-4">
+                                                                    <label class="form-label" for="privacyPolicyURL">
+                                                                        URL Link
+                                                                    </label>
+                                                                    <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -2424,7 +2462,7 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
     <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="js/alpinejs-3.11.1.js"></script>
+    <script src="js/alpine-ie11.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/daterangepicker.min.js"></script>

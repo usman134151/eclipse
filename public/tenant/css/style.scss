@@ -198,8 +198,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-label-sm {
+	font-family: 'Poppins', sans-serif;
 	font-size: 0.875rem;
 	color: #000;
+}
+
+.form-label-base {
+	font-family: 'Poppins', sans-serif;
+	font-size: 1rem;
+	color: #000;
+	display: flex;
+	align-self: center;
+	gap: 0.25rem;
 }
 
 .form-check-label {
@@ -231,6 +241,7 @@ h1, h2, h3, h4, h5, h6 {
 		color: #6e6b7b;
 		font-weight: 400;
 		font-size: 1.125rem;
+		margin-bottom: 1rem;
 		.number {
 			font-family: 'Poppins', sans-serif;
 				background-color: #f7f7f8;
