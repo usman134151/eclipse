@@ -3505,8 +3505,8 @@ tr.group {
 
 .btn.btn-sm.btn-hs-icon {
   padding: 0;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.875rem;
+  height: 1.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
