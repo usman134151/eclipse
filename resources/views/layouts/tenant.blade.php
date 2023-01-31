@@ -31,11 +31,15 @@
             @include('partials/header')
 
             @include('partials/sidebar')
-                <!-- BEGIN: Content-->
-
-            @yield('content')
-
-    <!-- End: Content-->
+            <!-- BEGIN: Content-->
+            <div class="app-content content ">
+                <div class="content-overlay"></div>
+                <div class="header-navbar-shadow"></div>
+                <div class="content-wrapper container-xxl p-0">
+                    @yield('content')
+                </div>
+            </div>
+            <!-- End: Content-->
             <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
     <!-- BEGIN: Footer-->
