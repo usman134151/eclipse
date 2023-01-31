@@ -22,6 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     @stack('head')
     @livewireStyles
 </head>
@@ -50,7 +52,7 @@
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
     <script src="/tenant/js/jquery-3.6.3.min.js"></script>
-   
+    <script defer src="/tenant/js/alpinejs-3.11.1.js"></script>
     <script src="/tenant/js/bootstrap.bundle.min.js"></script>
     <script src="/tenant/js/moment.min.js"></script>
     <script src="/tenant/js/daterangepicker.min.js"></script>
