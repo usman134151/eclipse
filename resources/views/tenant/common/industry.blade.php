@@ -2,8 +2,6 @@
 
 @section('content')
     {{-- BEGIN: Content --}}
-    <div class="app-content content">
-        @livewire('app.common.industries', ['showForm'=>$showForm])
-    </div>
+    @livewire('app.common.industries', ['showForm'=>$showForm])
     {{-- End: Content --}}
 @endsection

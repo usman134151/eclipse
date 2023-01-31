@@ -3,8 +3,6 @@
 @section('content')
 
 <!-- BEGIN: Content-->
- <div class="app-content content ">
-  @livewire('app.admin.reimbursement')
-  </div>
+@livewire('app.admin.reimbursement')
  <!-- End: Content-->
 @endsection
