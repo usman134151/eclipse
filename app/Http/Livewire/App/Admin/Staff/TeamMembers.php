@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\App\Common;
+namespace App\Http\Livewire\App\Admin\Staff;
 
 use Livewire\Component;
 
-class SavedForms extends Component
+class TeamMembers extends Component
 {
 	public $showForm;
 	protected $listeners = ['showList'=>'resetForm'];
@@ -24,6 +24,6 @@ class SavedForms extends Component
 
 	public function render()
 	{
-		return view('livewire.app.common.saved-forms');
+		return view('livewire.app.admin.staff.team-members');
 	}
 }

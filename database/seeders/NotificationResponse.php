@@ -116,6 +116,18 @@ class NotificationResponse extends Seeder
             'updated_at'   => now()
         ]);
         DB::table('api_notifications')->insert([
+            'id'    =>  402,
+            'message' =>    'Unauthenticated access error.',
+            'title'    => 'Unauthenticated',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   401,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        
+        DB::table('api_notifications')->insert([
             'id'    =>  500,
             'message' =>    'Please contact to eclipse team.',
             'title'    => 'Server Error',
