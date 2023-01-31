@@ -9,11 +9,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
         
-        <link href="/landing-page-asserts/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/landing-page-asserts/css/swiper-bundle.min.css" />
+        <link href="/landing-page-assets/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/landing-page-assets/css/swiper-bundle.min.css" />
 
-        <link rel="stylesheet" href="/landing-page-asserts/css/style.css">        
-        <!-- <link rel="stylesheet" href="/css/app.css">         -->
+        <link rel="stylesheet" href="/landing-page-assets/css/style.css">        
          
         </head>
 
@@ -64,19 +63,20 @@
   @yield('content')
   @livewireScripts
 
-  <script data-cfasync="false" src="/landing-page-asserts/js/email-decode.min.js"></script>
-<script src="/landing-page-asserts/js/jquery-2.2.4.min.js"></script>
-<script src="/landing-page-asserts/js/gsap.min.js"></script>
-<script src="/landing-page-asserts/js/MotionPathPlugin.min.js"></script>
-<script src="/landing-page-asserts/js/TweenMax.min.js"></script>
-<script src="/landing-page-asserts/js/ScrollTrigger.min.js"></script>
-<script src="/landing-page-asserts/js/ScrollToPlugin.min.js"></script>
-<script src="/landing-page-asserts/js/Flip.min.js"></script>
+  <script data-cfasync="false" src="/landing-page-assets/js/email-decode.min.js"></script>
+<script src="/landing-page-assets/js/jquery-2.2.4.min.js"></script>
+<script src="/landing-page-assets/js/gsap.min.js"></script>
+<script src="/landing-page-assets/js/MotionPathPlugin.min.js"></script>
+<script src="/landing-page-assets/js/TweenMax.min.js"></script>
+<script src="/landing-page-assets/js/ScrollTrigger.min.js"></script>
+<script src="/landing-page-assets/js/ScrollToPlugin.min.js"></script>
+<script src="/landing-page-assets/js/Flip.min.js"></script>
 
-<script src="/landing-page-asserts/js/bootstrap.bundle.min.js"></script>
-<script src="/landing-page-asserts/js/swiper-bundle.min.js"></script>
-<script src="/landing-page-asserts/js/app.js"></script>
-<script src="/landing-page-asserts/js/app-static-site.js"></script>
+<script src="/landing-page-assets/js/bootstrap.bundle.min.js"></script>
+<script src="/landing-page-assets/js/swiper-bundle.min.js"></script>
+<script src="/landing-page-assets/js/app.js"></script>
+<script src="/landing-page-assets/js/app-static-site.js"></script>
+
 </body>   
    
 </html>
