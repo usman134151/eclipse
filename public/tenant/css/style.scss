@@ -201,6 +201,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Poppins', sans-serif;
 	font-size: 0.875rem;
 	color: #000;
+	margin-bottom: 0.25rem;
 }
 
 .form-label-base {
@@ -555,4 +556,36 @@ div[data-bs-toggle="collapse"] {
 	.form-check-input {
 		margin: 0 auto;
 	}
+}
+
+.dashborad-block {
+	background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+	border: 1px solid transparent;
+	border-radius: 0.5rem;
+	color: #fff;
+	padding: 2rem;
+	cursor: pointer;
+	stroke: #fff !important;
+	height: 12.3675rem;
+	.block-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 1.375rem;
+		font-weight: 500;
+	}
+	.block-number {
+		font-family: 'Inter', sans-serif;
+		font-size: 1.125rem;
+		font-weight: 500;
+	}
+	&:hover {
+		border-color: $primary;
+		background: none;
+		color: $primary;
+		fill: $primary !important;
+		stroke: $primary !important;
+	}
+}
+
+.grid-cols-6 {
+   grid-template-columns: repeat(6,minmax(0,1fr));
 }
