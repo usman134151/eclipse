@@ -5,7 +5,7 @@ namespace App\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserAuthSetting extends Model
+class AssignmentInvitations extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,6 @@ class UserAuthSetting extends Model
      * @var array
      */
     protected $fillable = [
-        'change_length', 'user_id'
+        'assignment_id', 'provider_id', 'status' , 'added_by' ,
     ];
 }

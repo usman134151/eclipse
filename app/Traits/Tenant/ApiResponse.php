@@ -1,14 +1,15 @@
 <?php
 namespace App\Traits\Tenant;
-/**
- *  Des: Api Response 
- *  Dev: Sakhawat Kamran
- */
 
 use App\Models\Tenant\ApiNotifications;
 
 trait ApiResponse
 {
+    /**
+    *  Des: Api Response 
+    *  Dev: Sakhawat Kamran
+    */
+
     public function response( $data = [] , $status_code = 200 )
     {
         $notification = ApiNotifications::find($status_code);
