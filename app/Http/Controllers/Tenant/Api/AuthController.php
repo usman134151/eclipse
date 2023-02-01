@@ -74,7 +74,7 @@ class AuthController extends ApiController
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return  $this->response([
                     'errors' => 'Email & Password does not match with our record.',
-                ], 401);
+                ], 403);
             }
 
             $user = User::with('role')->where('email', $request->email)->first();
@@ -82,7 +82,7 @@ class AuthController extends ApiController
             {
                 return  $this->response([
                     'errors' => 'Email & Password does not match with our record.',
-                ], 401);
+                ], 403);
             }
             $result = $this->usersDataMap( $user->id );
             $result[ 'token' ] = $user->createToken( $request->email )->plainTextToken;
