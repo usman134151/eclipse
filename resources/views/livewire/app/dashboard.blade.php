@@ -1,7 +1,4 @@
 <div>
-<!-- BEGIN: Header-->
-<div class="header-navbar-shadow"></div>
-<div class="content-wrapper container-xxl p-0">
   <div class="content-header row">
     <div class="content-header-left col-md-9 col-12 mb-2">
       <div class="row breadcrumbs-top">
@@ -103,7 +100,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="">
     <h3>Calender</h3>
     <div class="d-flex justify-content-start mb-4">
       <div class="d-inline-flex align-items-center gap-4">
