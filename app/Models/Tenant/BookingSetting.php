@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class BookingSetting extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'auto_notify',
+    ];
 }
