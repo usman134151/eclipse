@@ -42,7 +42,7 @@
 				  <label class="form-label">
 					Lead Admin(s) <span class="mandatory" aria-hidden="true">*</span>
 				  </label>
-				  <select class="select2 form-select" aria-label="Select Lead Admin" name="lead-admin" required aria-required="true">
+				  <select class="form-select select2" aria-label="Select Lead Admin" name="lead-admin" id="lead-admin" required aria-required="true">
 					<option>Enter Lead Admin</option>
 					<option>Wade Dave</option>
 					<option>Dori Griffiths</option>
@@ -110,10 +110,10 @@
 			  </div>
 			</div>
 		  </div>
-		  <div class="d-flex justify-content-center gap-2 col-12 mt-5 form-actions">
+		  <div class="d-flex justify-content-center gap-2 col-12 form-actions">
 			<a
 				href="javascript:void(0);"
-				class="btn btn-secondary rounded px-4"
+				class="btn btn-outline-dark rounded px-4"
 				role="button"
 			>
 			Back</a>
@@ -122,3 +122,32 @@
 		</div>
 	  </form>
 </div>
+@push('scripts')
+	<script>
+		document.addEventListener("livewire:load", () => {
+			let el = $('.select2')
+			initSelect()
+
+			Livewire.hook('message.processed', (message, component) => {
+				initSelect()
+			})
+
+			// Only needed if doing save without redirect
+			/* Livewire.on('setCategoriesSelect', values => {
+				el.val(values).trigger('change.select2')
+			})*/
+
+			// Will come into play if and when wire:model is applied
+			// el.on('change', function (e) {
+			// 	@this.set('productCategories', el.select2("val"))
+			// })
+
+			function initSelect () {
+				el.select2({
+					placeholder: '{{__('Select your option')}}',
+					allowClear: !el.attr('required'),
+				})
+			}
+		})
+	</script>
+@endpush
