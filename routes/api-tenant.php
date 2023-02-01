@@ -29,6 +29,8 @@ Route::group([
         Route::prefix('user')->group(function () {
             Route::get('details', 'authUser');
             Route::post('profile_image_store','storeOrUpdateProfileImage');
+            Route::post('calendar','authUserCalander');
+            
         });
         Route::prefix('users')->group(function () {
             Route::get('notifications', 'notifications');
