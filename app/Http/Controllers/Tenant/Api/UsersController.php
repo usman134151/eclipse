@@ -297,4 +297,35 @@ class UsersController extends ApiController
             ],500);
         }
     }
+
+
+    /**
+     *  Desc: Users Calander Api Call according to month wise
+     *  Dev:  Sakhawat Kamran
+     *  @return \Illuminate\Http\Response
+     */
+    public function authUserCalander(Request $request)
+    {
+        try{
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'selected_calendar_month' => 'required',
+                    'selected_calendar_year' => 'required',
+                ]
+            );
+            if($validate !== true )
+            {
+                return $validate;
+            }   
+
+            $result = $this->calendarEventDataMap($request->selected_calendar_month, $request->selected_calendar_year, Auth::user()->id);
+            return $this->response($result, 200);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
 }
