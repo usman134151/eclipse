@@ -9,17 +9,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
         
-<<<<<<< HEAD
-        <link href="/landing-page-assets/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/landing-page-assets/css/swiper-bundle.min.css" />
-
-        <link rel="stylesheet" href="/landing-page-assets/css/style.css">        
-=======
         <link href="/landing-page-asserts/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/landing-page-asserts/css/swiper-bundle.min.css" />
 
         <link rel="stylesheet" href="/landing-page-asserts/css/style.css">        
->>>>>>> 68a3ce0a0bb4c516bf1cd1b53f1bc560cbba84d1
         <!-- <link rel="stylesheet" href="/css/app.css">         -->
          
         </head>
@@ -71,21 +64,6 @@
   @yield('content')
   @livewireScripts
 
-<<<<<<< HEAD
-  <script data-cfasync="false" src="/landing-page-assets/js/email-decode.min.js"></script>
-<script src="/landing-page-assets/js/jquery-2.2.4.min.js"></script>
-<script src="/landing-page-assets/js/gsap.min.js"></script>
-<script src="/landing-page-assets/js/MotionPathPlugin.min.js"></script>
-<script src="/landing-page-assets/js/TweenMax.min.js"></script>
-<script src="/landing-page-assets/js/ScrollTrigger.min.js"></script>
-<script src="/landing-page-assets/js/ScrollToPlugin.min.js"></script>
-<script src="/landing-page-assets/js/Flip.min.js"></script>
-
-<script src="/landing-page-assets/js/bootstrap.bundle.min.js"></script>
-<script src="/landing-page-assets/js/swiper-bundle.min.js"></script>
-<script src="/landing-page-assets/js/app.js"></script>
-<script src="/landing-page-assets/js/app-static-site.js"></script>
-=======
   <script data-cfasync="false" src="/landing-page-asserts/js/email-decode.min.js"></script>
 <script src="/landing-page-asserts/js/jquery-2.2.4.min.js"></script>
 <script src="/landing-page-asserts/js/gsap.min.js"></script>
@@ -99,7 +77,6 @@
 <script src="/landing-page-asserts/js/swiper-bundle.min.js"></script>
 <script src="/landing-page-asserts/js/app.js"></script>
 <script src="/landing-page-asserts/js/app-static-site.js"></script>
->>>>>>> 68a3ce0a0bb4c516bf1cd1b53f1bc560cbba84d1
 </body>   
    
 </html>
