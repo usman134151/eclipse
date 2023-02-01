@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
     <link rel="stylesheet" href="/tenant/css/vertical-menu.css">
     <link rel="stylesheet" href="/tenant/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,7 +34,7 @@
 
             @include('partials/sidebar')
             <!-- BEGIN: Content-->
-            <div class="app-content content ">
+            <div class="app-content content">
                 <div class="content-overlay"></div>
                 <div class="header-navbar-shadow"></div>
                 <div class="content-wrapper container-xxl p-0">
@@ -67,6 +69,8 @@
     <script src="/tenant/js/app.js"></script>
     <script src="/tenant/js/app-menu.js"></script>
     <script src="/tenant/js/app-new.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     @livewireScripts
+    @stack('scripts')
   </body>
 </html>
