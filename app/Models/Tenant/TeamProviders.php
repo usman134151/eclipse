@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class TeamProviders extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'team_id', 'provider_id', 'status'
+    ];
 }
