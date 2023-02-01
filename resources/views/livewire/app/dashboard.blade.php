@@ -100,7 +100,7 @@
       </div>
     </div>
   </div>
-  <div class="">
+  <div class="row">
     <h3>Calender</h3>
     <div class="d-flex justify-content-start mb-4">
       <div class="d-inline-flex align-items-center gap-4">
