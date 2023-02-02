@@ -1,4 +1,11 @@
 <div>
+<div id="loader-section" class="loader-section" wire:loading>
+    <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+      <div class="spinner-border" role="status" aria-live="polite">
+          <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div> 
 <!-- BEGIN: Header-->
 <div class="header-navbar-shadow"></div>
 <div class="content-wrapper container-xxl p-0">
@@ -30,7 +37,7 @@
   <div>
     <div class="row mb-5">
       <div class="d-grid grid-cols-6 gap-3">
-        <div class="dashborad-block">
+        <a class="dashborad-block" role="link" tabindex="0">
             <div class="text-center block-text">Calendar</div>
           <div class="text-center mb-3">
             <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,8 +48,8 @@
           <div>
             <div class="text-center block-number">50</div>
           </div>
-        </div>
-        <div class="dashborad-block">
+</a>
+        <a class="dashborad-block" role="link" tabindex="0">
           <div class="text-center block-text">Assignments</div>
           <div class="text-center mb-3">
             <svg width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,8 +59,8 @@
           <div>
             <div class="text-center block-number">200</div>
           </div>
-        </div>
-        <div class="dashborad-block">
+</a>
+        <a class="dashborad-block" role="link" tabindex="0">
           <div class="text-center block-text">Availability</div>
           <div class="text-center mb-3">
             <svg width="55" height="55" viewBox="0 0 57 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,8 +70,8 @@
           <div>
             <div class="text-center block-number">50</div>
           </div>
-        </div>
-        <div class="dashborad-block">
+</a>
+        <a class="dashborad-block" role="link" tabindex="0">
           <div class="text-center block-text">Map</div>
           <div class="text-center mb-3">
             <svg width="55" height="55" viewBox="0 0 60 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,8 +83,8 @@
           <div>
             <div class="text-center block-number">15</div>
           </div>
-        </div>
-        <div class="dashborad-block">
+</a>
+        <a class="dashborad-block" role="link" tabindex="0">
           <div class="text-center block-text">Notifications</div>
           <div class="text-center mb-3">
             <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,8 +94,8 @@
           <div>
             <div class="text-center block-text">50</div>
           </div>
-        </div>
-        <div class="dashborad-block">
+</a>
+        <a class="dashborad-block" role="link" tabindex="0">
           <div class="text-center block-text">Navigator</div>
           <div class="text-center mb-3">
             <svg width="55" height="55" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +106,7 @@
           <div>
             <div class="text-center block-number">50</div>
           </div>
-        </div>
+</a>
       </div>
     </div>
   </div>
@@ -112,13 +119,18 @@
         <!-- End : it will be replaced with livewire module -->
       </div>
       <div class="d-inline-flex align-items-center gap-4 mx-4">
-        <select class="form-select  bg-dark text-white"id="show_status">
+        <select class="form-select  bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
           <option>Advance Filter</option>
         </select>
       </div>
       <div class="d-inline-flex align-items-center gap-4">
         <button type="button" class="btn btn-outline-dark rounded">Clear all</button>
       </div>
+      <!-- Begin : show button on conditional basis -->
+      <!-- <div class="d-inline-flex align-items-center ms-auto text-end gap-4">
+        <button type="button" class="btn btn btn-primary rounded">Calendar Sync</button>
+      </div> -->
+      <!-- End : show button on conditional basis -->
     </div>
   </div>
   <div>
