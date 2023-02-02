@@ -34,9 +34,11 @@
 
             @include('partials/sidebar')
             <!-- BEGIN: Content-->
-           
+            <div class="app-content content ">
+                <div class="content-wrapper container-xxl p-0">           
                     @yield('content')
-\
+                  </div>
+                </div>
             <!-- End: Content-->
             <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
