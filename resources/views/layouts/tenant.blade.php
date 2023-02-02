@@ -34,6 +34,8 @@
 
             @include('partials/sidebar')
             <!-- BEGIN: Content-->
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
             <div class="app-content content ">
                 <div class="content-wrapper container-xxl p-0">           
                     @yield('content')
@@ -68,6 +70,7 @@
     <script src="/tenant/js/app-menu.js"></script>
     <script src="/tenant/js/app-new.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @livewireScripts
     @stack('scripts')
   </body>

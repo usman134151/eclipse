@@ -471,7 +471,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 <div class="col-lg-4 col-md mb-4 text-lg-center">
 <span class="title-contact text-primary">General Inquiry</span>
 <div class="mb-3">
-<a class="btn btn-outline-primary" href=""><span class="__cf_email__" data-cfemail="fb92959d94bb9e9897928b889e8898939e9f8e9792959cd5989496">[email&#160;protected]</span></a>
+<a class="btn btn-outline-primary" href="">info@eclipsescheduling.com</a>
 </div>
 <div>
 <a class="btn btn-outline-primary">(609) 948-0000 +4</a>
@@ -480,7 +480,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 <div class="col-lg-4 col-md mb-4 text-lg-center">
 <span class="title-contact text-primary">Help Desk</span>
 <div class="mb-3">
-<a class="btn btn-outline-primary" href=""><span class="__cf_email__" data-cfemail="c093b5b0b0afb2b480a5a3aca9b0b3a5b3a3a8a5a4b5aca9aea7eea3afad">[email&#160;protected]</span></a>
+<a class="btn btn-outline-primary" href=""><span class="__cf_email__" data-cfemail="c093b5b0b0afb2b480a5a3aca9b0b3a5b3a3a8a5a4b5aca9aea7eea3afad">Support@eclipsescheduling.com</span></a>
 </div>
 <div>
 <a class="btn btn-outline-primary">(609) 948-0000 +2</a>
@@ -489,7 +489,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 <div class="col-lg-4 col-md text-lg-center">
 <span class="title-contact text-primary">Sales Support</span>
 <div class="mb-3">
-<a class="btn btn-outline-primary" href=""><span class="__cf_email__" data-cfemail="b8ebd9d4ddcbf8dddbd4d1c8cbddcbdbd0dddccdd4d1d6df96dbd7d5">[email&#160;protected]</span></a>
+<a class="btn btn-outline-primary" href="">Sales@eclipsescheduling.com</a>
 </div>
 <div>
 <a class="btn btn-outline-primary">(609) 948-0000 +1</a>

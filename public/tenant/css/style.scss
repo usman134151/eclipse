@@ -558,31 +558,99 @@ div[data-bs-toggle="collapse"] {
 	}
 }
 
-.dashborad-block {
+.dashborad-block, a.dashborad-block {
 	background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
-	border: 1px solid transparent;
+	border: 2px solid transparent;
 	border-radius: 0.5rem;
 	color: #fff;
-	padding: 2rem;
+	padding: 2rem 0;
 	cursor: pointer;
-	stroke: #fff !important;
 	height: 12.3675rem;
+	position: relative;
+	overflow: hidden;
+		-webkit-transition: all 0.1s linear;  
+    -moz-transition: all 0.1s linear;  
+    -o-transition: all 0.1s linear;  
+    transition: all 0.1s linear;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #ffffff;
+		border-radius: 0.5rem;
+		opacity: 0;
+		-webkit-transition: all 0.1s linear;  
+    -moz-transition: all 0.1s linear;  
+    -o-transition: all 0.1s linear;  
+    transition: all 0.1s linear;
+	}
+	svg {
+		-webkit-transition: all 0.1s linear;  
+    -moz-transition: all 0.1s linear;  
+    -o-transition: all 0.1s linear;  
+    transition: all 0.1s linear;
+    &.icon-availability {
+    	    width: 22rem;
+		    height: 18rem;
+		    left: -3rem;
+		    top: -4rem;
+		    margin: -6.8rem;
+    	}
+		&.stroke {
+			stroke: #fff !important;
+		}
+		&.fill {
+			fill: #fff !important;
+		}
+	}
 	.block-text {
+		position: relative;
+		z-index: 1;
 		font-family: 'Inter', sans-serif;
 		font-size: 1.375rem;
+		line-height: 1;
 		font-weight: 500;
+		margin-bottom: 1rem;
+		-webkit-transition: all 0.1s linear;  
+    -moz-transition: all 0.1s linear;  
+    -o-transition: all 0.1s linear;  
+    transition: all 0.1s linear;
+	}
+	.block-icon {
+		position: relative;
+		z-index: 1;
+		margin-bottom: 1rem;
 	}
 	.block-number {
+		position: relative;
+		z-index: 1;
 		font-family: 'Inter', sans-serif;
 		font-size: 1.125rem;
+		line-height: 1;
 		font-weight: 500;
+		-webkit-transition: all 0.1s linear;  
+    -moz-transition: all 0.1s linear;  
+    -o-transition: all 0.1s linear;  
+    transition: all 0.1s linear;
 	}
 	&:hover {
 		border-color: $primary;
-		background: none;
 		color: $primary;
-		fill: $primary !important;
-		stroke: $primary !important;
+		&:before {
+			opacity: 1;
+		}
+		svg {
+			&.stroke {
+				stroke: $primary !important;
+			}
+			&.fill {
+				fill: $primary !important;
+			}
+		}
 	}
 }
 
