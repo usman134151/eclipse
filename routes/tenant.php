@@ -72,6 +72,7 @@ Route::group([
         // Admin Staff Routes
         Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false]);
         Route::view('/admin/admin-staff/create', 'tenant/admin/staff/admin-staff', ["showForm"=>true]);
+        Route::view('/admin/deactivated-admin-staff', 'tenant/admin/staff/deactivated-admin-staff', ["showForm"=>true]);
         // End of Admin Staff Routes
 
         // Admin Setting Routes
@@ -103,6 +104,15 @@ Route::group([
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
         Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
+
+        Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
+
+        Route::view('/admin/quickbook', 'tenant/admin/quickbook', ["showForm"=>false]);
+        Route::view('/admin/quickbook-setup', 'tenant/admin/quickbook', ["showForm"=>false]);
+
+        Route::view('/admin/stripe-setup', 'tenant/admin/stripe-setup', ["showForm"=>false]);
+
+        Route::view('/admin/jira-status', 'tenant/admin/jira-status', ["showForm"=>false]);
         // End of All Admin Routes
 
         //default view 
