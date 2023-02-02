@@ -26,7 +26,7 @@ Route::group([
     Route::middleware(['auth','otpcheck', CheckSubscription::class])->group(function () {
         Route::redirect('/home', '/dashboard')->name('home');
 
-        Route::view('/dashboard', 'tenant/dashboard/index');
+        Route::view('/admin/dashboard', 'tenant/dashboard/index');
         
         // All Admin Routes
         Route::view('/admin/tenants', 'tenant/admin/tenants', ["showForm"=>false]);
@@ -95,6 +95,9 @@ Route::group([
 
         // Admin Reports
         Route::view('/admin/reports', 'tenant/admin/reports', ["showForm"=>false]);
+
+        Route::view('/admin/leads', 'tenant/admin/lead', ["showForm"=>false]);
+        Route::view('/admin/quotes', 'tenant/admin/quote', ["showForm"=>false]);
         // End of All Admin Routes
 
         //default view 
