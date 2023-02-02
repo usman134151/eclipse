@@ -1,35 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<<<<<<< HEAD
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Profile - Eclipse Scheduling</title>
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/perfect-scrollbar.css">
-  <link rel="stylesheet" href="css/chosen.min.css">
-  <link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
-  <link rel="stylesheet" href="css/colors.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/bootstrap-extended.css">
-  <link rel="stylesheet" href="css/vertical-menu.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<!-- END: Head-->
-<!-- BEGIN: Body-->
-
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
-  data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
-  <!-- BEGIN: Content-->
-  <div class="app-content content">
-    <div class="content-wrapper container-xxl p-0">
+<div>
+<div class="content-wrapper container-xxl p-0">
       <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
@@ -93,7 +63,7 @@
                     <div class="row mb-4">
                       <div class="col-12 text-center mb-4">
                         <div class="d-inline-block position-relative">
-                          <img src="images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle"
+                          <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle"
                             alt="Profile Image of Admin Staff Team" />
                           <!-- <div>
                                       <input class="position-absolute form-control" type="file" />
@@ -1863,26 +1833,4 @@
         </div>
       </div>
     </div>
-  </div>
-
-  </div>
-  <!-- End: Content-->
-  
-  <script src="js/jquery-3.6.3.min.js"></script>
-  <script src="js/alpinejs-3.11.1.js"></script>
-  <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="js/moment.min.js"></script>
-  <script type="text/javascript" src="js/daterangepicker.min.js"></script>
-  <script src="js/unison-js.min.js"></script>
-  <script src="js/perfect-scrollbar.min.js"></script>
-  <script src="js/feather-icons.min.js"></script>
-  <script src="js/chosen.jquery.min.js"></script>
-  <script src="js/app-menu.js"></script>
-  <script src="js/app-new.js"></script>
-  <script src="js/app.js"></script>
-=======
-    
->>>>>>> 68a3ce0a0bb4c516bf1cd1b53f1bc560cbba84d1
-</body>
-
-</html>
+</div>
