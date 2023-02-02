@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 
-class MyProfileForm extends Component
+class Profile extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.my-profile-form');
+        return view('livewire.app.common.forms.profile');
     }
 
     public function mount()
