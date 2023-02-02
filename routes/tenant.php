@@ -77,7 +77,7 @@ Route::group([
         // Admin Setting Routes
         Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
         Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
-        Route::view('/admin/templates', 'tenant/settings/templates', ["showForm"=>false]);
+        Route::view('/admin/templates', 'tenant/settings/email-templates', ["showForm"=>false]);
         Route::view('/admin/sms-templates', 'tenant/settings/sms-templates', ["showForm"=>false]);
         Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
         // End of Admin Setting Routes
@@ -98,6 +98,11 @@ Route::group([
 
         Route::view('/admin/leads', 'tenant/admin/lead', ["showForm"=>false]);
         Route::view('/admin/quotes', 'tenant/admin/quote', ["showForm"=>false]);
+
+        Route::view('/admin/system-logs', 'tenant/admin/system-logs', ["showForm"=>false]);
+        Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
+
+        Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
         // End of All Admin Routes
 
         //default view 
