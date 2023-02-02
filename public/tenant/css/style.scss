@@ -567,6 +567,7 @@ div[data-bs-toggle="collapse"] {
 	cursor: pointer;
 	height: 12.3675rem;
 	position: relative;
+	overflow: hidden;
 		-webkit-transition: all 0.1s linear;  
     -moz-transition: all 0.1s linear;  
     -o-transition: all 0.1s linear;  
@@ -592,6 +593,13 @@ div[data-bs-toggle="collapse"] {
     -moz-transition: all 0.1s linear;  
     -o-transition: all 0.1s linear;  
     transition: all 0.1s linear;
+    &.icon-availability {
+    	    width: 22rem;
+		    height: 18rem;
+		    left: -3rem;
+		    top: -4rem;
+		    margin: -6.8rem;
+    	}
 		&.stroke {
 			stroke: #fff !important;
 		}
