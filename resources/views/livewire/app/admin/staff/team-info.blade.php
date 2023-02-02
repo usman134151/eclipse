@@ -115,6 +115,7 @@
 				href="javascript:void(0);"
 				class="btn btn-outline-dark rounded px-4"
 				role="button"
+				wire:click.prevent="showList"
 			>
 			Back</a>
 			<button type="submit" class="btn btn-primary rounded px-4">Next</button>
@@ -123,31 +124,31 @@
 	  </form>
 </div>
 @push('scripts')
-	<script>
-		document.addEventListener("livewire:load", () => {
-			let el = $('.select2')
+<script>
+	document.addEventListener("livewire:load", () => {
+		let el = $('.select2')
+		initSelect()
+
+		Livewire.hook('message.processed', (message, component) => {
 			initSelect()
-
-			Livewire.hook('message.processed', (message, component) => {
-				initSelect()
-			})
-
-			// Only needed if doing save without redirect
-			/* Livewire.on('setCategoriesSelect', values => {
-				el.val(values).trigger('change.select2')
-			})*/
-
-			// Will come into play if and when wire:model is applied
-			// el.on('change', function (e) {
-			// 	@this.set('productCategories', el.select2("val"))
-			// })
-
-			function initSelect () {
-				el.select2({
-					placeholder: '{{__('Select your option')}}',
-					allowClear: !el.attr('required'),
-				})
-			}
 		})
-	</script>
+
+		// Only needed if doing save without redirect
+		/* Livewire.on('setCategoriesSelect', values => {
+			el.val(values).trigger('change.select2')
+		})*/
+
+		// Will come into play if and when wire:model is applied
+		// el.on('change', function (e) {
+		// 	@this.set('productCategories', el.select2("val"))
+		// })
+
+		function initSelect () {
+			el.select2({
+				placeholder: '{{__('Select your option')}}',
+				allowClear: !el.attr('required'),
+			})
+		}
+	})
+</script>
 @endpush
