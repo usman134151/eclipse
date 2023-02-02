@@ -126,7 +126,18 @@ class NotificationResponse extends Seeder
             'created_at'   => now(),
             'updated_at'   => now()
         ]);
-        
+        DB::table('api_notifications')->insert([
+            'id'    =>  403,
+            'message' =>    'Email & Password does not match with our record.',
+            'title'    => 'Result Not Found!',
+         
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   401,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
         DB::table('api_notifications')->insert([
             'id'    =>  500,
             'message' =>    'Please contact to eclipse team.',
