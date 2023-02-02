@@ -2,7 +2,7 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-        <p>livewire component</p>
-		@livewire('app.common.profile', ['showForm'=>$showForm])
+	
+		@livewire('app.common.forms.profile', ['showForm'=>$showForm])
 	{{-- End: Content --}}
 @endsection
