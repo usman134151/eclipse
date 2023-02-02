@@ -6,21 +6,10 @@ use Livewire\Component;
 
 class TeamInfo extends Component
 {
-	public $showForm;
-	protected $listeners = ['showList'=>'resetForm'];
-
-	function showForm()
+	public function showList()
 	{
-		$this->showForm=true;
+		$this->emit('showList');
 	}
-
-	public function resetForm()
-	{
-		$this->showForm=false;
-	}
-
-	public function mount()
-	{}
 
 	public function render()
 	{
