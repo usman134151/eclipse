@@ -200,6 +200,65 @@ class ApiController extends Controller
     }
 
     /**
+     * get Calendar Event information into array.
+     *
+     * @param  int  $month
+     * @param  int  $year
+     * @param  int  $userId
+     * @return array
+     */
+    public function calendarEventDataMap( $month = 0 , $year = 0 , $userId = 0 )
+    {
+
+        $current_month_year = strtotime('01/'.$month.'/'.$year);
+        $date = date('Y-m-d',$current_month_year);
+
+        while (strtotime($date) <= strtotime(date('Y-m') . '-' . date('t', strtotime($date)))) {
+
+            $calenderEventData[$date] = [
+                [
+                    'calendar_event_id' => rand(999,100000),
+                    'calendar_event_title' => rand(999,100000).'-ABC',
+                    'calendar_record_id'    => date('d',strtotime($date)),
+                    'calendar_record_type' => 'assignment_event',
+                    'calendar_event_description' => 'English to Arabic Translater services',
+                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
+                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
+                ],
+                [
+                    'calendar_event_id' => rand(999,100000),
+                    'calendar_event_title' => rand(999,100000).'-ABC',
+                    'calendar_record_id'    => date('d',strtotime($date)),
+                    'calendar_record_type' => 'assignment_event',
+                    'calendar_event_description' => 'English to Arabic Translater services',
+                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
+                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
+                ],
+                [
+                    'calendar_event_id' => rand(999,100000),
+                    'calendar_event_title' => rand(999,100000).'-ABC',
+                    'calendar_record_id'    => date('d',strtotime($date)),
+                    'calendar_record_type' => 'assignment_event',
+                    'calendar_event_description' => 'English to Arabic Translater services',
+                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
+                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
+                ],
+                [
+                    'calendar_event_id' => rand(999,100000),
+                    'calendar_event_title' => rand(999,100000).'-ABC',
+                    'calendar_record_id'    => date('d',strtotime($date)),
+                    'calendar_record_type' => 'assignment_event',
+                    'calendar_event_description' => 'English to Arabic Translater services',
+                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
+                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
+                ]    
+            ];
+            $date = date("Y-m-d", strtotime("+1 day", strtotime($date)));
+        }
+        return $calenderEventData;
+    }
+    
+    /**
      *  Api Validation
      *   
      */
@@ -216,4 +275,5 @@ class ApiController extends Controller
 
         return true;
     }
+
 }
