@@ -9,7 +9,7 @@
 	@if($showForm)
 	@livewire('app.common.forms.provider-form') {{-- Show Add / Edit Form --}}
 	@else
-
+<!-- Begin : Header Section  -->
 <div class="header-navbar-shadow"></div>
 <div class="content-wrapper container-xxl p-0">
   <div class="content-header row">
@@ -43,8 +43,9 @@
     </div>
   </div>
   <div>
+	<!-- End : Header Section  -->
 
-	  <!-- provider section start -->
+	<!-- Begin : Provider List -->
 	  <section id="multiple-column-form">
 					<div class="row">
 					  <div class="col-12">
@@ -81,7 +82,7 @@ Add Provider</a>
 	  <input type="search" class="form-control text-center" id="advance-search" aria-label="Advance Search" name="search" placeholder="Advance Search" autocomplete="on"/>
     </div>
   </div>
-								 <!-- Hoverable rows start -->
+ <!-- Hoverable rows start -->
 <div class="row" id="table-hover-row">
   <div class="col-12">
     <div class="card">
@@ -441,9 +442,7 @@ Add Provider</a>
 											
 										</div>
 										</div>
-									</div>
-
-                   
+									</div>                  
                 </div>
               </td>
             </tr>
@@ -455,12 +454,36 @@ Add Provider</a>
 </div>
 <!-- Hoverable rows end -->
 							</form>
+							<div class="d-flex justify-content-between">
+  <div>
+    <p class="fw-semibold">Showing 1 to 5 of 100 entries</p>
+  </div>
+  <nav aria-label="Page Navigation">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item active"><a class="page-link" href="#">4</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 						  </div>
 						</div>
 					  </div>
 					</div>
 				  </section>
-				  <!--Saved Forms section end -->
+ <!--End : Provider List -->
+ 
 	   
 
 
