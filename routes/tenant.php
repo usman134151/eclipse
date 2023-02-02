@@ -24,7 +24,7 @@ Route::group([
     Route::post('/ploi/webhook/certificateRevoked', [Controllers\PloiWebhookController::class, 'certificateRevoked'])->name('ploi.certificate.revoked');
 
     Route::middleware(['auth','otpcheck', CheckSubscription::class])->group(function () {
-        Route::redirect('/home', '/dashboard')->name('home');
+        Route::redirect('/home', '/admin/dashboard')->name('home');
 
         Route::view('/admin/dashboard', 'tenant/dashboard/index');
         
