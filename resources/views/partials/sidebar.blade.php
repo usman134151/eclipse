@@ -256,6 +256,25 @@
                   <span class="menu-item">All Companies</span>
                 </a>
               </li>
+              <li class="nav-item has-sub">
+                <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
+                  <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.3636 13.0909H18V14.7273H0V13.0909H1.63636V0.818182C1.63636 0.601186 1.72256 0.393079 1.876 0.23964C2.02944 0.086201 2.23755 0 2.45455 0H10.6364C10.8534 0 11.0615 0.086201 11.2149 0.23964C11.3683 0.393079 11.4545 0.601186 11.4545 0.818182V13.0909H14.7273V6.54545H13.0909V4.90909H15.5455C15.7624 4.90909 15.9706 4.99529 16.124 5.14873C16.2774 5.30217 16.3636 5.51028 16.3636 5.72727V13.0909ZM3.27273 1.63636V13.0909H9.81818V1.63636H3.27273ZM4.90909 6.54545H8.18182V8.18182H4.90909V6.54545ZM4.90909 3.27273H8.18182V4.90909H4.90909V3.27273Z" fill="#6E6B7B"/>
+                  </svg>
+                  <span class="menu-item">Departments</span>
+                </a>
+                <ul role="menu" class="menu-content  " id="">
+                  <li role="menuitem" class="nav-item ">
+                    <a class="nav-link" href="/admin">
+                      <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.9258 10.0742C11.4316 10.0742 13.4629 8.04287 13.4629 5.5371C13.4629 3.03133 11.4316 1 8.9258 1C6.42003 1 4.3887 3.03133 4.3887 5.5371C4.3887 8.04287 6.42003 10.0742 8.9258 10.0742Z" stroke-width="2"/>
+                        <path d="M13.4629 19.1482H2.81524C2.55787 19.1483 2.30345 19.0936 2.06883 18.9878C1.83422 18.882 1.62479 18.7275 1.45445 18.5346C1.2841 18.3417 1.15673 18.1148 1.0808 17.8689C1.00486 17.623 0.982094 17.3637 1.01401 17.1083L1.3679 14.2736C1.4502 13.615 1.77026 13.0091 2.26791 12.57C2.76555 12.1308 3.40649 11.8886 4.0702 11.8889H4.3887M15.2777 10.9814V16.426M12.5555 13.7037H18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span class="menu-item">Sub Menu Option</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li class="nav-item  ">
                 <a class="nav-link" href="/admin/deactivated-customer">
                   <svg class="fill-none" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -394,25 +413,6 @@
                     </a>
                   </li>
                 </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-sub">
-            <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-              <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.3636 13.0909H18V14.7273H0V13.0909H1.63636V0.818182C1.63636 0.601186 1.72256 0.393079 1.876 0.23964C2.02944 0.086201 2.23755 0 2.45455 0H10.6364C10.8534 0 11.0615 0.086201 11.2149 0.23964C11.3683 0.393079 11.4545 0.601186 11.4545 0.818182V13.0909H14.7273V6.54545H13.0909V4.90909H15.5455C15.7624 4.90909 15.9706 4.99529 16.124 5.14873C16.2774 5.30217 16.3636 5.51028 16.3636 5.72727V13.0909ZM3.27273 1.63636V13.0909H9.81818V1.63636H3.27273ZM4.90909 6.54545H8.18182V8.18182H4.90909V6.54545ZM4.90909 3.27273H8.18182V4.90909H4.90909V3.27273Z" fill="#6E6B7B"/>
-              </svg>
-              <span class="menu-item">Departments</span>
-            </a>
-            <ul role="menu" class="menu-content  " id="">
-              <li role="menuitem" class="nav-item ">
-                <a class="nav-link" href="/admin">
-                  <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.9258 10.0742C11.4316 10.0742 13.4629 8.04287 13.4629 5.5371C13.4629 3.03133 11.4316 1 8.9258 1C6.42003 1 4.3887 3.03133 4.3887 5.5371C4.3887 8.04287 6.42003 10.0742 8.9258 10.0742Z" stroke-width="2"/>
-                    <path d="M13.4629 19.1482H2.81524C2.55787 19.1483 2.30345 19.0936 2.06883 18.9878C1.83422 18.882 1.62479 18.7275 1.45445 18.5346C1.2841 18.3417 1.15673 18.1148 1.0808 17.8689C1.00486 17.623 0.982094 17.3637 1.01401 17.1083L1.3679 14.2736C1.4502 13.615 1.77026 13.0091 2.26791 12.57C2.76555 12.1308 3.40649 11.8886 4.0702 11.8889H4.3887M15.2777 10.9814V16.426M12.5555 13.7037H18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <span class="menu-item">Sub Menu Option</span>
-                </a>
               </li>
             </ul>
           </li>
