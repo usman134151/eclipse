@@ -214,45 +214,32 @@ class ApiController extends Controller
         $date = date('Y-m-d',$current_month_year);
 
         while (strtotime($date) <= strtotime(date('Y-m') . '-' . date('t', strtotime($date)))) {
-
-            $calenderEventData[$date] = [
-                [
-                    'calendar_event_id' => rand(999,100000),
-                    'calendar_event_title' => rand(999,100000).'-ABC',
-                    'calendar_record_id'    => date('d',strtotime($date)),
-                    'calendar_record_type' => 'assignment_event',
-                    'calendar_event_description' => 'English to Arabic Translater services',
-                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
-                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
-                ],
-                [
-                    'calendar_event_id' => rand(999,100000),
-                    'calendar_event_title' => rand(999,100000).'-ABC',
-                    'calendar_record_id'    => date('d',strtotime($date)),
-                    'calendar_record_type' => 'assignment_event',
-                    'calendar_event_description' => 'English to Arabic Translater services',
-                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
-                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
-                ],
-                [
-                    'calendar_event_id' => rand(999,100000),
-                    'calendar_event_title' => rand(999,100000).'-ABC',
-                    'calendar_record_id'    => date('d',strtotime($date)),
-                    'calendar_record_type' => 'assignment_event',
-                    'calendar_event_description' => 'English to Arabic Translater services',
-                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
-                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
-                ],
-                [
-                    'calendar_event_id' => rand(999,100000),
-                    'calendar_event_title' => rand(999,100000).'-ABC',
-                    'calendar_record_id'    => date('d',strtotime($date)),
-                    'calendar_record_type' => 'assignment_event',
-                    'calendar_event_description' => 'English to Arabic Translater services',
-                    'calendar_event_start_date' => strtotime(date('Y-m-d h:i a')),
-                    'calendar_event_end_date' => strtotime(date('Y-m-d h:i a')),
-                ]    
-            ];
+            if(strtotime($date) > strtotime(date('Y-m-d')) && strtotime($date) < strtotime('+2 weeks')){
+                $calenderEventData[$date] = [
+                    [
+                        'assignment_id'         =>  date('d',strtotime($date)),
+                        'assignment_no'         =>  '101787-'.date('d',strtotime($date)),
+                        'assignment_start_date' =>  date('d/m/Y',strtotime($date)),
+                        'assignment_type' => (date('d',strtotime($date)) % 2 == 0)?'virtual':'in-person',
+                        'assignment_start_time' =>  '11:15 AM',
+                        'assignment_end_date' =>  date('d/m/Y',strtotime($date)),
+                        'assignment_end_time' =>  '1:15 PM',
+                        'accommondation'        =>  'Sign Language Interpreting Services',
+                        'service'               =>  'American Sign Language Interpreting',
+                    ],
+                    [
+                        'assignment_id'         =>  date('d',strtotime($date)),
+                        'assignment_no'         =>  '101787-'.date('d',strtotime($date)),
+                        'assignment_start_date' =>  date('d/m/Y',strtotime($date)),
+                        'assignment_type' => (date('d',strtotime($date)) % 2 == 0)?'virtual':'in-person',
+                        'assignment_start_time' =>  '11:15 AM',
+                        'assignment_end_date' =>  date('d/m/Y',strtotime($date)),
+                        'assignment_end_time' =>  '1:15 PM',
+                        'accommondation'        =>  'Sign Language Interpreting Services',
+                        'service'               =>  'American Sign Language Interpreting',
+                    ]    
+                ];
+            }
             $date = date("Y-m-d", strtotime("+1 day", strtotime($date)));
         }
         return $calenderEventData;
