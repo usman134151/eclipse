@@ -2984,7 +2984,7 @@ body:after {
   background-size: 18px 14px, 18px 14px;
   background-repeat: no-repeat;
   height: 1rem;
-  /* padding-right: 1.5rem; */
+  padding-right: 1.5rem;
   margin-left: 0;
   margin-top: 0;
   left: -8px;
@@ -3052,15 +3052,15 @@ body:after {
 
 .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove,
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  /* float: right; */
-  /* margin-left: 0.7rem; */
-  /* margin-right: 0.5rem; */
+  float: right;
+  margin-left: 0.7rem;
+  margin-right: 0.5rem;
   font-size: 0px;
   display: inline-block;
   position: relative;
-  /* line-height: 1rem; */ }
+  line-height: 1rem; }
 
-/* .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:before,
+.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:before,
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:before {
   content: '';
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-x'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
@@ -3069,7 +3069,7 @@ body:after {
   width: 0.85rem;
   position: absolute;
   top: 22%;
-  left: -4px; } */
+  left: -4px; }
 
 .select2-container--classic .select2-selection--multiple i,
 .select2-container--classic .select2-selection--multiple svg,
