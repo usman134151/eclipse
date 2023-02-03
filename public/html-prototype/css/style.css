@@ -166,7 +166,8 @@ h1, h2, h3, h4, h5, h6 {
 .form-label-sm {
   font-family: 'Poppins', sans-serif;
   font-size: 0.875rem;
-  color: #000; }
+  color: #000;
+  margin-bottom: 0.25rem; }
 
 .form-label-base {
   font-family: 'Poppins', sans-serif;
@@ -420,5 +421,92 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
   padding: 0; }
   .form-switch-column .form-check-input {
     margin: 0 auto; }
+
+.dashborad-block, a.dashborad-block {
+  background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  color: #fff;
+  padding: 2rem 0;
+  cursor: pointer;
+  height: 12.3675rem;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear; }
+  .dashborad-block:before, a.dashborad-block:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    opacity: 0;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+  .dashborad-block svg, a.dashborad-block svg {
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+    .dashborad-block svg.icon-availability, a.dashborad-block svg.icon-availability {
+      width: 22rem;
+      height: 18rem;
+      left: -3rem;
+      top: -4rem;
+      margin: -6.8rem; }
+    .dashborad-block svg.stroke, a.dashborad-block svg.stroke {
+      stroke: #fff !important; }
+    .dashborad-block svg.fill, a.dashborad-block svg.fill {
+      fill: #fff !important; }
+  .dashborad-block .block-text, a.dashborad-block .block-text {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.375rem;
+    line-height: 1;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+  .dashborad-block .block-icon, a.dashborad-block .block-icon {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem; }
+  .dashborad-block .block-number, a.dashborad-block .block-number {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1;
+    font-weight: 500;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+  .dashborad-block:hover, a.dashborad-block:hover {
+    border-color: #0A1E46;
+    color: #0A1E46; }
+    .dashborad-block:hover:before, a.dashborad-block:hover:before {
+      opacity: 1; }
+    .dashborad-block:hover svg.stroke, a.dashborad-block:hover svg.stroke {
+      stroke: #0A1E46 !important; }
+    .dashborad-block:hover svg.fill, a.dashborad-block:hover svg.fill {
+      fill: #0A1E46 !important; }
+
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+.text-primary {
+  color: #023DB0 !important; }
 
 /*# sourceMappingURL=style.css.map */
