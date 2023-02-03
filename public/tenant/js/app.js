@@ -27,112 +27,135 @@ for (var selector in config) {
 }
 
 $(function() {
-  $('.js-single-date').daterangepicker({
-    singleDatePicker: true,
-    showDropdowns: true,
-    autoApply: true
-  });
-  $('.js-single-date').val('');
-  $('.js-single-date').attr("placeholder","MM/DD/YYYY");
+    // Single date start
+    $('.js-single-date').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        autoApply: true
+    });
+    $('.js-single-date').val('');
+    $('.js-single-date').attr("placeholder","MM/DD/YYYY");
+    // Single date end
+
+    // Select day start
+    $('.js-select-day').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        autoApply: true
+    });
+    $('.js-select-day').val('');
+    $('.js-select-day').attr("placeholder","Select Day");
+    // Select day end
+
+    // Time picker start time
+    $('.js-timepciker-start-time').daterangepicker({
+        timePicker: true,
+        singleDatePicker:true,
+        locale: {
+            format: 'hh:mm A'
+        }
+    }).on('show.daterangepicker', function (ev, picker) {
+        picker.container.find(".calendar-table").hide();
+    });
+    $('.js-timepciker-start-time').val('');
+    $('.js-timepciker-start-time').attr("placeholder","Select Start Time");
+    // Time picker start time end
+
+    // Time picker end time start
+    $('.js-timepciker-end-time').daterangepicker({
+        timePicker: true,
+        singleDatePicker:true,
+        locale: {
+            format: 'hh:mm A'
+        }
+    }).on('show.daterangepicker', function (ev, picker) {
+        picker.container.find(".calendar-table").hide();
+    });
+    $('.js-timepciker-end-time').val('');
+    $('.js-timepciker-end-time').attr("placeholder","Select End Time");
+    // Time picker end time
 });
-
-$(function() {
-  $('.js-select-day').daterangepicker({
-    singleDatePicker: true,
-    showDropdowns: true,
-    autoApply: true
-  });
-  $('.js-select-day').val('');
-  $('.js-select-day').attr("placeholder","Select Day");
-});
-
-
-$(function() {
-  $('.js-timepciker-start-time').daterangepicker({
-      timePicker: true,
-      singleDatePicker:true,
-      locale: {
-          format: 'hh:mm A'
-      }
-  }).on('show.daterangepicker', function (ev, picker) {
-      picker.container.find(".calendar-table").hide();
-  });
-  $('.js-timepciker-start-time').val('');
-  $('.js-timepciker-start-time').attr("placeholder","Select Start Time");
-});
-
-$(function() {
-  $('.js-timepciker-end-time').daterangepicker({
-      timePicker: true,
-      singleDatePicker:true,
-      locale: {
-          format: 'hh:mm A'
-      }
-  }).on('show.daterangepicker', function (ev, picker) {
-      picker.container.find(".calendar-table").hide();
-  });
-  $('.js-timepciker-end-time').val('');
-  $('.js-timepciker-end-time').attr("placeholder","Select End Time");
-});
-
-
-
 
 document.addEventListener('alpine:init', () => {
-            Alpine.data('slider', () => ({
-                
-                // set initial tab
-                tab: 0,
-                
-                // slider tabs
-                tabs: [...document.querySelectorAll('nav[role=tablist] a[role=tab]')],
-                
-                init() {
-                    // initialize main function
-                    this.changeSlide()
-                },
-                
-                // main function
-                changeSlide() {
-                    let timeInterval = this.$refs.slider.dataset.interval;
-                    this.tabs[this.tab].setAttribute('class', 'active')
-                    
-                    // set interval to change slide
-                    let startInterval = () => {
-                        this.tab = (this.tab < this.tabs.length - 1)? this.tab + 1 : 0;
-                        this.tabs.forEach( (tab)=> {
-                            (this.tab == this.tabs.indexOf(tab)) ?  tab.setAttribute('class', 'active') : tab.removeAttribute('class') 
-                        })
-                    }
-                    
-                    // start interval to change slide
-                    let slideInterval = setInterval(startInterval, timeInterval);
-                    
-                    // mouse over slider stops slide
-                    this.$refs.slider.onmouseover = () => {
-                        if (slideInterval) { 
-                            clearInterval(slideInterval)
-                            slideInterval = null;
-                        }
-                    }
-                    
-                    // mouse out slider starts again slide
-                    this.$refs.slider.onmouseout = () => {
-                        if (slideInterval === null) { 
-                            slideInterval = setInterval(startInterval, timeInterval);
-                        }
-                    }
-                    
-                    // slider tabs click event 
-                    this.tabs.forEach( (tab)=> {
-                        tab.addEventListener('click', (e)=> {
-                            e.preventDefault()
-                            this.tab = this.tabs.indexOf(e.target)
-                            this.tabs.forEach( (tab)=> {
-                                (this.tab == this.tabs.indexOf(tab)) ?  tab.setAttribute('class', 'active') : tab.removeAttribute('class') 
-                            }) 
-                        })
-                    })
+    Alpine.data('slider', () => ({
+        
+        // set initial tab
+        tab: 0,
+        
+        // slider tabs
+        tabs: [...document.querySelectorAll('nav[role=tablist] a[role=tab]')],
+        
+        init() {
+            // initialize main function
+            this.changeSlide()
+        },
+        
+        // main function
+        changeSlide() {
+            let timeInterval = this.$refs.slider.dataset.interval;
+            this.tabs[this.tab].setAttribute('class', 'active')
+            
+            // set interval to change slide
+            let startInterval = () => {
+                this.tab = (this.tab < this.tabs.length - 1)? this.tab + 1 : 0;
+                this.tabs.forEach( (tab)=> {
+                    (this.tab == this.tabs.indexOf(tab)) ?  tab.setAttribute('class', 'active') : tab.removeAttribute('class') 
+                })
+            }
+            
+            // start interval to change slide
+            let slideInterval = setInterval(startInterval, timeInterval);
+            
+            // mouse over slider stops slide
+            this.$refs.slider.onmouseover = () => {
+                if (slideInterval) { 
+                    clearInterval(slideInterval)
+                    slideInterval = null;
                 }
-            }))
-        })
+            }
+            
+            // mouse out slider starts again slide
+            this.$refs.slider.onmouseout = () => {
+                if (slideInterval === null) { 
+                    slideInterval = setInterval(startInterval, timeInterval);
+                }
+            }
+            
+            // slider tabs click event 
+            this.tabs.forEach( (tab)=> {
+                tab.addEventListener('click', (e)=> {
+                    e.preventDefault()
+                    this.tab = this.tabs.indexOf(e.target)
+                    this.tabs.forEach( (tab)=> {
+                        (this.tab == this.tabs.indexOf(tab)) ?  tab.setAttribute('class', 'active') : tab.removeAttribute('class') 
+                    }) 
+                })
+            })
+        }
+    }))
+})
+
+/* Sweet Alert Dialogs Start */
+window.addEventListener('swal:modal', event => {
+    swal({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.type,
+    });
+});
+
+window.addEventListener('swal:confirm', event => {
+    swal({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.type,
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                window.livewire.emit('delete');
+            }
+        });
+});
+/* Sweet Alert Dialogs End */

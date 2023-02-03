@@ -46,6 +46,7 @@ Route::group([
 
         Route::view('/admin/customize-form', 'tenant/common/saved-forms', ["showForm"=>false]);
         Route::view('/admin/customize-form/create', 'tenant/common/saved-forms', ["showForm"=>true]);
+        
 
         // Admin Provider Routes
         Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false]);
@@ -71,12 +72,13 @@ Route::group([
         // Admin Staff Routes
         Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false]);
         Route::view('/admin/admin-staff/create', 'tenant/admin/staff/admin-staff', ["showForm"=>true]);
+        Route::view('/admin/deactivated-admin-staff', 'tenant/admin/staff/deactivated-admin-staff', ["showForm"=>true]);
         // End of Admin Staff Routes
 
         // Admin Setting Routes
         Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
         Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
-        Route::view('/admin/templates', 'tenant/settings/templates', ["showForm"=>false]);
+        Route::view('/admin/templates', 'tenant/settings/email-templates', ["showForm"=>false]);
         Route::view('/admin/sms-templates', 'tenant/settings/sms-templates', ["showForm"=>false]);
         Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
         // End of Admin Setting Routes
@@ -94,6 +96,23 @@ Route::group([
 
         // Admin Reports
         Route::view('/admin/reports', 'tenant/admin/reports', ["showForm"=>false]);
+
+        Route::view('/admin/leads', 'tenant/admin/lead', ["showForm"=>false]);
+        Route::view('/admin/quotes', 'tenant/admin/quote', ["showForm"=>false]);
+
+        Route::view('/admin/system-logs', 'tenant/admin/system-logs', ["showForm"=>false]);
+        Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
+
+        Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
+
+        Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
+
+        Route::view('/admin/quickbook', 'tenant/admin/quickbook', ["showForm"=>false]);
+        Route::view('/admin/quickbook-setup', 'tenant/admin/quickbook', ["showForm"=>false]);
+
+        Route::view('/admin/stripe-setup', 'tenant/admin/stripe-setup', ["showForm"=>false]);
+
+        Route::view('/admin/jira-status', 'tenant/admin/jira-status', ["showForm"=>false]);
         // End of All Admin Routes
 
         //default view 
