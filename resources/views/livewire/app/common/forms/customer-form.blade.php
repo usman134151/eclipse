@@ -1,7 +1,8 @@
-<div class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  
+" data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
 <div class="content-body">
-	<div class="card">
-		<div class="card-body">
+          <div class="card">
+          <div class="card-body">
             <!-- BEGIN: Steps -->
             <div x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'customer-info' }" id="tab_wrapper">
                   <!-- Nav tabs -->
@@ -70,28 +71,26 @@
                           <div class="row">
 
                             <!-- Industry -->
-							<div class="row">
-								<div class="col-md-12 mb-md-2">
-									<div class="col-md-6 col-12">
-										<div class="mb-4">
-										  <label class="form-label" for="f-name">
-											Industry <span class="mandatory" aria-hidden="true">*</span>
-										  </label>
-										  <input
-											type="text"
-											id="industry-column"
-											class="form-control"
-											name="industry-column"
-											placeholder="Enter Industry"
-											required
-											aria-required="true"
-											/>
-										</div>
-									  </div>
-								</div>
-							</div>	
-                            
-							<!-- Company -->
+                            <div class="row">
+                            <div class="col-md-6 col-12">
+                              <div class="mb-4">
+                                <label class="form-label" for="f-name">
+                                  Industry <span class="mandatory" aria-hidden="true">*</span>
+                                </label>
+                                <input
+                                  type="text"
+                                  id="industry-column"
+                                  class="form-control"
+                                  name="industry-column"
+                                  placeholder="Enter Industry"
+                                  required
+                                  aria-required="true"
+                                  />
+                              </div>
+                            </div>
+                            </div>
+
+                            <!-- Company -->
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
                                 <label class="form-label" for="f-name">
@@ -128,9 +127,7 @@
                             <!-- Role -->
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="role-column">Role
-                                  <span class="mandatory" aria-hidden="true">*</span>
-                                </label>
+                                <label class="form-label" for="role-column">Role</label>
                                 <div class="row">
                                   <div class="col-md-4 col-12">
                                     <div class="form-check mb-2">
@@ -339,7 +336,7 @@
                                   />
                               </div>
                             </div>
-                            <div class="col-md-6 d-flex align-items-center col-12 mb-2 gap-2">
+                            <div class="col-md-6 d-flex align-items-center col-12 mb-4 gap-2">
                                 <div class="col-md-11 col-12">
                                 <form>
                                   <label class="form-label" for="date">Date of Birth</label>
@@ -503,9 +500,10 @@
                             </div>
                             </div>
 
-                            <div class="col-md-6 col-12">
+                      <!-- Button trigger modal | Add Address POPUP-->
+                     <div class="col-md-6 col-12">
                               <div class="mb-4">
-                                <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                            <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
                                     </svg>
@@ -522,14 +520,15 @@
                               </div>
                             </div>
 
+                            <!-- Button trigger modal | Add Address POPUP-->
                             <div class="col-md-3 col-12 text-end">
                               <div class="mb-4">
-                                <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                                <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
                                     </svg>
                                     <span>Add Address</span>
-                                </button>                              
+                                </button>                             
                               </div>
                             </div>
                            
@@ -1819,337 +1818,499 @@
         </div><!-- Basic Floating Label Form section end -->
         </div><!-- ...card-body... -->
          <!-- END: Steps -->
-	</div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- End: Content-->
+
+
+
+
+    <!-- BEGAIN: Model: POPUP | Add Address   -->
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+      <div class="content-body">
+     
+      
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="exampleModalLabel">ADD ADDRESS</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-       <!-- BEGIN: Panel/Offcanvas -->
-	   <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
-		<div class="offcanvas-header">
-		  <h5 class="offcanvas-title" id="offcanvasRightLabel">Customers</h5>
-		  <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
-		</div>
-		<div class="offcanvas-body">
-	  
-		  <div class="d-flex justify-content-between my-2">
-			<div class="d-inline-flex align-items-center gap-4">
-			  <label for="show_records_number" class="form-label mb-0">Show</label>
-			  <select class="form-select" id="show_records_number">
-				<option>10</option>
-				<option>15</option>
-				<option>20</option>
-				<option>25</option>
-			  </select>
-			</div>
-			<div class="d-inline-flex align-items-center gap-4">
-			  <label for="search" class="form-label fw-semibold mb-0">Search</label>
-			  <input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-			</div>
-		  </div>
-		  <table class="table table-hover mb-3">
-			<thead>
-			  <tr>
-				<th>
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</th>
-				<th>
-				  Customer
-				</th>
-			 
-				<th>
-				  Permission
-				</th>
-			  </tr>
-			</thead>
-			<tbody>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			   
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-				
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			  
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>                  </div>
-				  </div>
-				</td>
-				
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			   
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			  
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			 
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-									  </div>
-				  </div>
-				</td>
-			   
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			   
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			 
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			 
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			 
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			  <tr>
-				<td class="align-middle">
-				  <div class="form-check">
-					<input class="form-check-input" id="" name="" type="checkbox" tabindex="">
-				  </div>
-				</td>
-				<td class="align-middle">
-				  <div class="row g-2">
-					<div class="col-2">
-					  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-					</div>
-					<div class="col-10 align-self-center">
-					  Dori Griffiths
-					  <p>dorigriffit@gmail.com</p>
-					</div>
-				  </div>
-				</td>
-			 
-				<td class="align-middle">
-				  <div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
-					<label class="form-check-label" for="CustomerAccessActive">Active</label>
-				  </div>
-				</td>
-			 
-			  </tr>
-			</tbody>
-		  </table>
-		  <div class="d-flex justify-content-between align-items-center px-3 mb-3">
-			<div>
-			  <p class="fw-semibold mb-0">Showing 1 to 5 of 100 entries</p>
-			</div>
-			<nav aria-label="Page Navigation">
-			  <ul class="pagination mb-0">
-				<li class="page-item">
-				  <a class="page-link" href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				  </a>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item active"><a class="page-link" href="#">4</a></li>
-				<li class="page-item">
-				  <a class="page-link" href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				  </a>
-				</li>
-			  </ul>
-			</nav>
-		  </div>
-		</div>
-	  </div>
-	  <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen"></div>
-	  <!-- END: Panel/Offcanvas -->
+<div class="modal-body">
+  <!-- .........  -->
+
+  <!--BEGAIN: Basic multiple Column Form section start | Popup  -->
+  <section id="multiple-column-form">
+    <div class="row">
+      <div class="col-12">
+      <form class="form">
+        <div class="row">
+          <div class="col-md-12 mb-md-2">
+
+            <!-- END: Form-row | Popup  -->
+            <div class="row">
+
+              <!-- Address title | Popup   -->
+              <div class="col-md-12 mb-md-2">
+            <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="address-title">Address Title</label>
+                  <input
+                    type="text"
+                    id="address-title"
+                    class="form-control"
+                    name="address-title"
+                    placeholder="Example “Head Office”"
+                    />
+                </div>
+              </div>
+              </div>
+
+              <!-- Address Line 1 | Popup  -->
+              <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="address-line-1">Address Line 1</label>
+                  <input
+                    type="text"
+                    id="address-line-1"
+                    class="form-control"
+                    name="address-line-1"
+                    placeholder="Enter Address Line 1"
+                    />
+                </div>
+              </div>
+
+              <!-- Address Line 2 | Popup  -->
+              <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="address-line-2">Address Line 2</label>
+                  <input
+                    type="text"
+                    id="address-line-2"
+                    class="form-control"
+                    name="addressLine2"
+                    placeholder="Enter Address Line 2"
+                    />
+                </div>
+              </div>
+
+              <!-- city | Popup  -->
+              <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="city">City</label>
+                  <select class="select2 form-select" id="city">
+                    <option value="select-city">Select City</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- State / Province | Popup -->
+              <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="state">State / Province</label>
+                  <select class="select2 form-select" id="state">
+                    <option value="Al">Select State/Province</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Country | Popup  -->
+              <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="country">Country</label>
+                  <select class="select2 form-select" id="country">
+                    <option value="USA">USA</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Zip Code | Popup  -->
+              <div class="col-md-6 col-12">
+                <div class="mb-4">
+                  <label class="form-label" for="zip-code">Zip Code</label>
+                  <input
+                    type="text"
+                    id="zip-code"
+                    class="form-control"
+                    name="zipCode"
+                    placeholder="Enter Zip Code"
+                    />
+                </div>
+              </div> 
+             <!-- END: Form-row -->
+            </div>
+          
+    
+
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </section><!--END:  Basic multiple Column Form section start  | Popup -->
+</div>
+<div class="modal-footer">
+  <div class="col-md-12 col-12 mb-md-2">
+                    
+    <!-- ....cancel/next (buttons)... -->
+    <div class="col-12 justify-content-center gap-2 d-flex mt-5">
+      <a
+        href="javascript:void(0);"
+        class="btn btn-secondary rounded px-4"
+        role="button"
+      >
+        Cancel</a>
+      <button type="submit" class="btn btn-primary rounded px-4">Add</button>
+    </div>
+    
+  </div>
+</div>
+</div>
+</div>
+</div>
+      </div>
+  </div>
+</div>
+<!-- End: Content-->
+    <!-- END: Model: POPUP | Add Address   -->
+
+
+
+
+        <!-- BEGIN: Panel/Offcanvas -->
+        <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Customers</h5>
+            <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+        
+            <div class="d-flex justify-content-between my-2">
+              <div class="d-inline-flex align-items-center gap-4">
+                <label for="show_records_number" class="form-label mb-0">Show</label>
+                <select class="form-select" id="show_records_number">
+                  <option>10</option>
+                  <option>15</option>
+                  <option>20</option>
+                  <option>25</option>
+                </select>
+              </div>
+              <div class="d-inline-flex align-items-center gap-4">
+                <label for="search" class="form-label fw-semibold mb-0">Search</label>
+                <input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+              </div>
+            </div>
+            <table class="table table-hover mb-3">
+              <thead>
+                <tr>
+                  <th>
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </th>
+                  <th>
+                    Customer
+                  </th>
+               
+                  <th>
+                    Permission
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                 
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+                
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>                  </div>
+                    </div>
+                  </td>
+                  
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+                 
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+               
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                                        </div>
+                    </div>
+                  </td>
+                 
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+                 
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+               
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+               
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+               
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+                <tr>
+                  <td class="align-middle">
+                    <div class="form-check">
+                      <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="row g-2">
+                      <div class="col-2">
+                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                      </div>
+                      <div class="col-10 align-self-center">
+                        Dori Griffiths
+                        <p>dorigriffit@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+               
+                  <td class="align-middle">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessActive" checked>
+                      <label class="form-check-label" for="CustomerAccessActive">Active</label>
+                    </div>
+                  </td>
+               
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-between align-items-center px-3 mb-3">
+              <div>
+                <p class="fw-semibold mb-0">Showing 1 to 5 of 100 entries</p>
+              </div>
+              <nav aria-label="Page Navigation">
+                <ul class="pagination mb-0">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen"></div>
+        <!-- END: Panel/Offcanvas -->
 </div>
 @push('scripts')
 	<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
