@@ -684,7 +684,19 @@ small {
 
 .form-select.bg-secondary {
   background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%),
-linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-linear-gradient(0deg, #E8E8E8, #E8E8E8);
+	linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+	linear-gradient(0deg, #E8E8E8, #E8E8E8);
 color: #ffffff;
+}
+
+.hidden-content {
+	display: none;
+}
+
+.show-hidden-content {
+	&:checked + {
+		.hidden-content {
+			display: block;
+		}
+	}
 }
