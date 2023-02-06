@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>System Logs Livewire component here</b>
+	@livewire('app.common.system-logs', ['showForm'=>$showForm])
 	{{-- End: Content --}}
 @endsection
