@@ -100,7 +100,7 @@ Route::group([
         Route::view('/admin/leads', 'tenant/admin/lead', ["showForm"=>false]);
         Route::view('/admin/quotes', 'tenant/admin/quote', ["showForm"=>false]);
 
-        Route::view('/admin/system-logs', 'tenant/admin/system-logs', ["showForm"=>false]);
+        Route::view('/admin/system-logs', 'tenant/settings/system-logs', ["showForm"=>false]);
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
         Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
