@@ -160,6 +160,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
   font-weight: 500; }
 
+.col-form-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #000000;
+  font-size: 1.25rem; }
+
 .form-check-label {
   font-weight: 600; }
 
@@ -392,6 +398,9 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
 .form-control {
   padding: .7625rem 0.75rem; }
 
+.form-control-sm {
+  padding: 0.25rem 0.5rem; }
+
 .form-control {
   font-family: 'Poppins', sans-serif;
   font-weight: 400; }
@@ -505,5 +514,24 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
 
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.text-primary {
+  color: #023DB0 !important; }
+
+small {
+  font-size: 0.75rem; }
+
+.form-select.bg-secondary {
+  background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, #E8E8E8, #E8E8E8);
+  color: #ffffff; }
+
+.hidden-content {
+  display: none; }
+
+.show-hidden-content:checked + .hidden-content {
+  display: block; }
 
 /*# sourceMappingURL=style.css.map */

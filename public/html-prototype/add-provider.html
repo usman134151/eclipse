@@ -1673,6 +1673,7 @@
               </ul>
 
                <!-- Tab panes -->
+               <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
                       <div class="row mt-2 mb-5">
                           <!-- BEGIN: Profile -->
@@ -1741,7 +1742,9 @@
                                   />
                               </div>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 d-flex align-items-center col-12 mb-4 gap-2">
+                                <div class="col-md-11 col-12">
+                                  <div class="col-md-6 col-12">
                               <div class="mb-4">
                                 <form>
                                   <label class="form-label" for="date">Date</label>
@@ -1753,9 +1756,15 @@
                                       </span>
                                   </div>
                                 </form>
+                                </div>
+                                <div class="col-md-1 col-12">
                                 <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 0C6.54545 0 1.88727 3.52467 0 8.5C1.88727 13.4753 6.54545 17 12 17C17.4545 17 22.1127 13.4753 24 8.5C22.1127 3.52467 17.4545 0 12 0ZM12 14.1667C8.98909 14.1667 6.54545 11.628 6.54545 8.5C6.54545 5.372 8.98909 2.83333 12 2.83333C15.0109 2.83333 17.4545 5.372 17.4545 8.5C17.4545 11.628 15.0109 14.1667 12 14.1667ZM12 5.1C10.1891 5.1 8.72727 6.61867 8.72727 8.5C8.72727 10.3813 10.1891 11.9 12 11.9C13.8109 11.9 15.2727 10.3813 15.2727 8.5C15.2727 6.61867 13.8109 5.1 12 5.1Z" fill="black"/>
                                   </svg>
+                                </div>
+                            </div>
+                           
+                                
                                   
                               </div>
                             </div>
@@ -1774,13 +1783,12 @@
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
                                 <label class="form-label" for="ethnicity-column">Ethnicity</label>
-                               
-                                  
-                                <select class="select2 form-select" id="ethnicity-column">
+                               <select class="select2 form-select" id="ethnicity-column">
                                   <option>Select Ethnicity</option>
                                 </select>
                               </div>
                             </div>
+                            
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
                                 <label class="form-label" for="providerID-column">Provider ID</label>
@@ -1874,18 +1882,8 @@
                                   />
                               </div>
                             </div> 
-                            <div class="col-md-6 col-12">
-                              <div class="mb-4">
-                                <label class="form-label" for="address-line-1">Address Line 1</label>
-                                <input
-                                  type="text"
-                                  id="address-line-1"
-                                  class="form-control"
-                                  name="address-line-1"
-                                  placeholder="Enter Address Line 1"
-                                  />
-                              </div>
-                            </div>
+                           
+                            
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
                                 <label class="form-label" for="address-line-2">Address Line 2</label>
@@ -2031,28 +2029,63 @@
                           
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="associated-tags">Associated Tags</label>
-                                <input
-                                  type="text"
-                                  id="associated-tags"
-                                  class="form-control"
-                                  name="associatedTags"
-                                  placeholder="Enter Associated Tags"
-                                  />
+                                <label class="form-label" for="preferred-language-column">Preferred Language</label>
+                                <select class="select2 form-select" id="preferred-language-column">
+                                  <option value="preferred-language-column">Select Preferred Language</option>
+                                </select>
                               </div>
-                            </div> 
+                            </div>
+
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
-                                <label class="form-label" for="companey-admins">Company-Admin(s)</label>
-                                <input
-                                  type="text"
-                                  id="companey-admins"
-                                  class="form-control"
-                                  name="companeyAdmins"
-                                  placeholder="Add Admins"
-                                  />
+                                <label class="form-label" for="set-time-zone-column">Set Time Zone</label>
+                                <select class="select2 form-select" id="set-time-zone-column">
+                                  <option value="set-time-zone-column">Select Time Zone</option>
+                                </select>
                               </div>
-                            </div> 
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                              <div class="mb-4">
+                                <label class="form-label" for="preferred-colleagues-column">Preferred Colleagues</label>
+                                <select class="select2 form-select" id="preferred-colleagues-column">
+                                  <option value="preferred-colleagues-column">Select Preferred Colleagues</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                              <div class="mb-4">
+                                <label class="form-label" for="disfavored-colleagues-column">Disfavored Colleagues</label>
+                                <select class="select2 form-select" id="disfavored-colleagues-column">
+                                  <option value="disfavored-colleagues-column">Select Disfavored Colleagues</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                              <div class="mb-4">
+                                <label class="form-label" for="experience-column">
+                                  Experience
+                                </label>
+                                <textarea
+                                class="form-control"
+                                rows="3"
+                                cols="3"
+                                placeholder=""
+                                name="experienceColumn"
+                                id="experience-column"
+                                ></textarea>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6 col-12 mb-4">
+                              
+                              <label for="formFile"
+                                  class="form-label">Provider Introduction Media</label>
+                              <input class="form-control" type="file" id="formFile">
+                      
+                      </div>
                             <div class="col-md-6 col-12">
                               <div class="mb-4">
                                 <label class="form-label" for="payment-settings">Payment Settings</label>
@@ -2069,60 +2102,18 @@
                                 </select>
                               </div>
                             </div>
+                            <div class="col-md-6 col-12">
+                              <div class="mb-4">
+                                <h3>Provider Schedule Configuration</h3>
+                              </div>
+                            </div>
                         
                            </div>
 
 <!-- ....input fields end...  -->
                         </div>
                         <div class="col-md-12 col-12 mb-md-2">
-                          <div class="row">
-                            
-                            <div class="col-md-5 col-12">
-                              <div class="mb-4">
-                              <h2>Provider Application Questions</h2>
-                              </div>
-                              <div class="row">
-                                <div class="col-6 mb-1">
-                               
-                                  <div class="mb-4">
-
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="exampleRadios" id="contract-rovider-radio-btn" value="option1" checked>
-                                      <label class="form-check-label" for="contract-provider-radio-btn">
-                                        Contract Provider
-                                      </label>
-                                      <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.5 0.792969C3.3645 0.792969 0 4.15747 0 8.29297C0 12.4285 3.3645 15.793 7.5 15.793C11.6355 15.793 15 12.4285 15 8.29297C15 4.15747 11.6355 0.792969 7.5 0.792969ZM8.25 12.793H6.75V11.293H8.25V12.793ZM8.982 9.12922C8.835 9.24772 8.69325 9.36097 8.58075 9.47347C8.27475 9.77872 8.25075 10.0562 8.25 10.0682V10.168H6.75V10.0427C6.75 9.95422 6.77175 9.15997 7.5195 8.41222C7.66575 8.26597 7.84725 8.11747 8.03775 7.96297C8.58825 7.51672 8.94975 7.19122 8.94975 6.74272C8.94104 6.36383 8.78438 6.00341 8.5133 5.73856C8.24222 5.47371 7.87824 5.32547 7.49926 5.32557C7.12027 5.32567 6.75638 5.47409 6.48543 5.73908C6.21449 6.00407 6.05802 6.36458 6.0495 6.74347H4.5495C4.5495 5.11672 5.87325 3.79297 7.5 3.79297C9.12675 3.79297 10.4505 5.11672 10.4505 6.74347C10.4505 7.94122 9.56625 8.65597 8.982 9.12922Z" fill="#888575"/>
-                                        </svg>
-                                        
-                                    </div>
-                                  </div>
-                                  <div class="mb-4">
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="staff-provider-radio-btn" value="option2">
-                                    <label class="form-check-label" for="staff-provider-radio-btn">
-                                      Staff Provider
-                                    </label>
-                                    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M7.5 0.792969C3.3645 0.792969 0 4.15747 0 8.29297C0 12.4285 3.3645 15.793 7.5 15.793C11.6355 15.793 15 12.4285 15 8.29297C15 4.15747 11.6355 0.792969 7.5 0.792969ZM8.25 12.793H6.75V11.293H8.25V12.793ZM8.982 9.12922C8.835 9.24772 8.69325 9.36097 8.58075 9.47347C8.27475 9.77872 8.25075 10.0562 8.25 10.0682V10.168H6.75V10.0427C6.75 9.95422 6.77175 9.15997 7.5195 8.41222C7.66575 8.26597 7.84725 8.11747 8.03775 7.96297C8.58825 7.51672 8.94975 7.19122 8.94975 6.74272C8.94104 6.36383 8.78438 6.00341 8.5133 5.73856C8.24222 5.47371 7.87824 5.32547 7.49926 5.32557C7.12027 5.32567 6.75638 5.47409 6.48543 5.73908C6.21449 6.00407 6.05802 6.36458 6.0495 6.74347H4.5495C4.5495 5.11672 5.87325 3.79297 7.5 3.79297C9.12675 3.79297 10.4505 5.11672 10.4505 6.74347C10.4505 7.94122 9.56625 8.65597 8.982 9.12922Z" fill="#888575"/>
-                                      </svg>
-                                      
-                                  </div>
-                                  </div>
-                                  <div class="mb-4">
-                                    <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="exampleRadios" id="agency-provider-radio-btn" value="option3" disabled>
-                                      <label class="form-check-label" for="agency-provider-radio-btn">
-                                        Agency Provider (Coming Soon)
-                                      </label>
-                                    </div>
-                                  </div>
-                                  
-                               
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          
                         <!-- ....cancel/next (buttons)... -->
                         <div class="col-12 justify-content-center gap-2 d-flex mt-5">
                           <a

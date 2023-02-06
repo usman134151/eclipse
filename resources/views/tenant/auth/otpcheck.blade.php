@@ -16,7 +16,7 @@
           
         {{-- Display error and success messages --}} 
         @if(session()->has('message'))
-            <div class="alert alert-success mb-1 rounded-0" role="alert">
+            <div class="alert alert-success mb-3 rounded-0" role="alert">
             <div class="alert-body">
                 {{ session()->get('message') }}
             </div>
@@ -24,7 +24,7 @@
         @endif
 
         @if(session()->has('error'))
-            <div class="alert alert-danger mb-1 rounded-0" role="alert">
+            <div class="alert alert-danger mb-3 rounded-0" role="alert">
             <div class="alert-body">
                 {{ session()->get('error') }}
             </div>
@@ -38,7 +38,7 @@
           <form method="POST" action="{{ route('tenant.otpverify') }}">
             @csrf
         
-            <div class="mb-1 otpF">
+            <div class="mb-3 otpF">
                 <label for="password" class="form-label">OTP</label>
                 <input type="text" name="otp" autocomplete="off" class="form-control otp @error('otp') is-invalid @enderror" placeholder="OTP" required>
                 @error('otp')
@@ -48,8 +48,8 @@
                 @enderror
             </div>
             
-            <button class="btn btn-primary w-100 mb-1" name="login" id="login" type="submit" tabindex="4">Login</button>
-            <a href="{{ route('tenant.resendotp') }}" class="btn btn-primary w-100 mb-1 otpF" id="resendOtp" type="button" tabindex="4">Resend OTP</a>
+            <button class="btn btn-primary w-100 mb-3" name="login" id="login" type="submit" tabindex="4">Login</button>
+            <a href="{{ route('tenant.resendotp') }}" class="btn btn-primary w-100 mb-3 otpF" id="resendOtp" type="button" tabindex="4">Resend OTP</a>
             <a class="otpF" href="javascript:void();" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Not you? Log in as a different user</a>
           </form>
         </div>
