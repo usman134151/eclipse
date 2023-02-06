@@ -52,7 +52,7 @@ Route::group([
         Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false]);
         Route::view('/admin/provider/create', 'tenant/common/provider', ["showForm"=>true]);
         Route::view('/admin/teams', 'tenant/admin/teams', ["showForm"=>false]);
-        Route::view('/admin/reimbursement', 'tenant/admin/reimbursement', ["showForm"=>false]);
+        Route::view('/admin/reimbursement', 'tenant/admin/provider/reimbursement', ["showForm"=>false]);
         Route::view('/admin/provider/remittances', 'tenant/admin/provider/remittances', ["showForm"=>false]);
         Route::view('/admin/provider/pending-payments', 'tenant/admin/provider/pending-payments', ["showForm"=>false]);
         Route::view('/admin/deactivated-provider', 'tenant/admin/deactivated-provider', ["showForm"=>false]);
@@ -100,7 +100,7 @@ Route::group([
         Route::view('/admin/leads', 'tenant/admin/lead', ["showForm"=>false]);
         Route::view('/admin/quotes', 'tenant/admin/quote', ["showForm"=>false]);
 
-        Route::view('/admin/system-logs', 'tenant/admin/system-logs', ["showForm"=>false]);
+        Route::view('/admin/system-logs', 'tenant/settings/system-logs', ["showForm"=>false]);
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
         Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
