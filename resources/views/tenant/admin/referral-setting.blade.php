@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Referral Setting Livewire component here</b>
+	@livewire('app.admin.referral-setting')
 	{{-- End: Content --}}
 @endsection

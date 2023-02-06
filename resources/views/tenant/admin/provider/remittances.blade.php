@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Remittances Livewire component here</b>
+	@livewire('app.admin.provider.remittance')
 	{{-- End: Content --}}
 @endsection
