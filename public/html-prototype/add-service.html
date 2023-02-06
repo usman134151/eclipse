@@ -81,7 +81,7 @@
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">
-                <div class="tab-pane fade" id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
+                <div class="tab-pane fade active show" id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
                   <div class="d-lg-flex justify-content-between align-items-center mb-4">
                     <h2 class="mb-lg-0">Basic Service Setup</h2>
                     <div class="form-check form-switch form-switch-column">
@@ -1908,7 +1908,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade active show" id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
+                <div class="tab-pane fade" id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
                   <div class="d-lg-flex justify-content-between align-items-center mb-4">
                     <h2 class="mb-lg-0">Default Time Zone & Booking Procedures</h2>
                   </div>
@@ -2106,628 +2106,478 @@
                     </div>
                   </div>
                   <div class="row mb-4">
-                    <div class="col-lg-6 pe-lg-5">
-                      <div class="mb-5 border p-3 pb-lg-5">
-                        <h2>
-                          Check-In Procedure <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                        </h2>
-                        <div class="d-flex flex-column gap-3">
-                          <div class="form-check">
-                            <input class="form-check-input" id="EnableCheckinButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="EnableCheckinButton">Enable “Check-in” Button</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCheckinforProvidertoInvoice" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCheckinforProvidertoInvoice">Require "Check-in" for Provider to Invoice</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCustomerSignature" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCustomerSignature">Require Customer Signature</label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="AddCustomizedCheckinForm">Add Customized Check-in Form</label>
-                            <input class="form-check-input show-hidden-content" id="AddCustomizedCheckinForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Form</label>
-                              <select class="form-select">
-                                <option>Select Form</option>
-                              </select>
+                    <div class="col-lg-6 pe-lg-5 float-left">
+                      <div class="w-100">
+                        <div class="mb-5 border p-3 pb-lg-5">
+                          <h2>
+                            Check-In Procedure <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+                          </h2>
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" id="EnableCheckinButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="EnableCheckinButton">Enable “Check-in” Button</label>
                             </div>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
-                            <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Customer-Users</label>
-                              <select class="form-select">
-                                <option>Select Customer-Users</option>
-                              </select>
+                            <div class="form-check">
+                              <input class="form-check-input" id="RequireCheckinforProvidertoInvoice" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="RequireCheckinforProvidertoInvoice">Require "Check-in" for Provider to Invoice</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" id="RequireCustomerSignature" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="RequireCustomerSignature">Require Customer Signature</label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="AddCustomizedCheckinForm">Add Customized Check-in Form</label>
+                              <input class="form-check-input show-hidden-content" id="AddCustomizedCheckinForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Form</label>
+                                <select class="form-select">
+                                  <option>Select Form</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
+                              <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Customer-Users</label>
+                                <select class="form-select">
+                                  <option>Select Customer-Users</option>
+                                </select>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div><!-- /Check-In Procedure -->
+                      <div class="w-100">
+                        <div class="mb-5 border p-3 pb-lg-5">
+                          <h2>
+                            Running Late Procedure
+                          </h2>
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <label class="form-check-label" for="EnableRunningLateButton">Enable “Running Late” Button</label>
+                              <input class="form-check-input" id="EnableRunningLateButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NotifyCustomer">Notify Customer</label>
+                              <input class="form-check-input show-hidden-content" id="NotifyCustomer" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Customer</label>
+                                <select class="form-select">
+                                  <option>Select Customer</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NotifyTeamProviders">Notify Team Providers</label>
+                              <input class="form-check-input" id="NotifyTeamProviders" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="AddCustomizedRunningLateForm">Add Customized “Running Late” Form</label>
+                              <input class="form-check-input show-hidden-content" id="AddCustomizedRunningLateForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Form</label>
+                                <select class="form-select">
+                                  <option>Select Form</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
+                              <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Customer-Users</label>
+                                <select class="form-select">
+                                  <option>Select Customer-Users</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /Running Late Procedure -->
+                      <div class="w-100">
+                        <div class="mb-5 border p-3 pb-lg-5">
+                          <h2>
+                            Display to providers prior to being assigned
+                          </h2>
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <label class="form-check-label" for="CompanyName">Company Name</label>
+                              <input class="form-check-input" id="CompanyName" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="FullServiceAddress">Full Service Address</label>
+                              <input class="form-check-input" id="FullServiceAddress" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" id="requester" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="requester">Requester</label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="ServiceConsumer">Service Consumer(s)</label>
+                              <input class="form-check-input" id="ServiceConsumer" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="Participants">Participants</label>
+                              <input class="form-check-input" id="Participants" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="Step2Details">Step 2 Details</label>
+                              <input class="form-check-input" id="Step2Details" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /Display to providers prior to being assigned -->
                     </div>
-                    <div class="col-lg-6 ps-lg-5">
-                      <div class="mb-5 border p-3 pb-lg-5">
-                        <h2>
-                          Authorize & Close-Out Procedure <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                        </h2>
-                        <div class="d-flex flex-column gap-3">
-                          <div class="form-check">
-                            <input class="form-check-input" id="EnableCheckinButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="EnableCheckinButton">Enable “Check-in” Button</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCheckinforProvidertoInvoice" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCheckinforProvidertoInvoice">Require "Check-in" for Provider to Invoice</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCustomerSignature" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCustomerSignature">Require Customer Signature</label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="AddCustomizedCheckinForm">Add Customized Check-in Form</label>
-                            <input class="form-check-input show-hidden-content" id="AddCustomizedCheckinForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Form</label>
-                              <select class="form-select">
-                                <option>Select Form</option>
-                              </select>
+                    <div class="col-lg-6 ps-lg-5 float-right">
+                      <div class="w-100">
+                        <div class="mb-5 border p-3 pb-lg-5">
+                          <h2>
+                            Authorize & Close-Out Procedure <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+                          </h2>
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <input class="form-check-input" id="EnableAuthorizeandCloseButtonforProviders" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="EnableAuthorizeandCloseButtonforProviders">Enable “Authorize and Close” Button for Providers</label>
                             </div>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
-                            <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Customer-Users</label>
-                              <select class="form-select">
-                                <option>Select Customer-Users</option>
-                              </select>
+                            <div class="form-check">
+                              <label class="form-check-label" for="EnableAuthorizeandCloseButtonforCustomers">Enable “Authorize and Close” Button for Customers</label>
+                              <input class="form-check-input show-hidden-content" id="EnableAuthorizeandCloseButtonforCustomers" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Customer-Users</label>
+                                <select class="form-select">
+                                  <option>Select Customer-Users</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="RequireAuthorizeCloseOutforProviderPayment">Require "Authorize & Close-out" for Provider Payment</label>
+                              <input class="form-check-input" id="RequireAuthorizeCloseOutforProviderPayment" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="RequireAuthorizeCloseOutforCustomerInvoicing">Require "Authorize & Close-out" for Customer Invoicing</label>
+                              <input class="form-check-input" id="RequireAuthorizeCloseOutforCustomerInvoicing" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="RequireCustomerSignature">Require Customer Signature</label>
+                              <input class="form-check-input" id="RequireCustomerSignature" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="AddCustomizedCloseOutForm">Add Customized “Close-Out” Form</label>
+                              <input class="form-check-input show-hidden-content" id="AddCustomizedCloseOutForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <label class="form-label-sm">Select Form</label>
+                                <select class="form-select">
+                                  <option>Select Form</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="AutoApproveTimeExtensions">Auto-Approve Time Extensions</label>
+                              <input class="form-check-input" id="AutoApproveTimeExtensions" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="EnableCloseOutStatuses">Enable Close-out Statuses</label>
+                              <input class="form-check-input show-hidden-content" id="EnableCloseOutStatuses" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <div class="d-flex flex-column gap-3 mt-3">
+                                  <div class="form-check">
+                                    <label class="form-check-label" for="EnableCloseOutStatusesCompleted">Completed</label>
+                                    <input class="form-check-input" id="EnableCloseOutStatusesCompleted" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label" for="EnableCloseOutStatusesNoShow">No Show</label>
+                                    <input class="form-check-input show-hidden-content" id="EnableCloseOutStatusesNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                    <div class="hidden-content">
+                                      <div class="d-flex flex-column gap-3 mt-3">
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="SendToInvoiceGeneratorAsNormalNoShow">Send to Invoice Generator as Normal</label>
+                                          <input class="form-check-input" id="SendToInvoiceGeneratorAsNormalNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="BillServiceMinimumNoShow">Bill Service Minimum</label>
+                                          <input class="form-check-input" id="BillServiceMinimumNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="PayProviderServiceMinimumNoShow">Pay Provider Service Minimum</label>
+                                          <input class="form-check-input" id="PayProviderServiceMinimumNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithChargeNoShow">Cancel Booking with Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithChargeNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithoutChargeNoShow">Cancel Booking without Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithoutChargeNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label" for="EnableCloseOutStatusesCancelled">Cancelled</label>
+                                    <input class="form-check-input show-hidden-content" id="EnableCloseOutStatusesCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                    <div class="hidden-content">
+                                      <div class="d-flex flex-column gap-3 mt-3">
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="SendToInvoiceGeneratorAsNormalCancelled">Send to Invoice Generator as Normal</label>
+                                          <input class="form-check-input" id="SendToInvoiceGeneratorAsNormalCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="BillServiceMinimumCancelled">Bill Service Minimum</label>
+                                          <input class="form-check-input" id="BillServiceMinimumCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="PayProviderServiceMinimumCancelled">Pay Provider Service Minimum</label>
+                                          <input class="form-check-input" id="PayProviderServiceMinimumCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithChargeCancelled">Cancel Booking with Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithChargeCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithoutChargeCancelled">Cancel Booking without Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithoutChargeCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div><!-- /Authorize & Close-Out Procedure -->
                     </div>
-                    <div class="col-lg-6 pe-lg-5">
-                      <div class="mb-5 border p-3 pb-lg-5">
-                        <h2>
-                          Running Late Procedure
-                        </h2>
-                        <div class="d-flex flex-column gap-3">
-                          <div class="form-check">
-                            <input class="form-check-input" id="EnableCheckinButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="EnableCheckinButton">Enable “Check-in” Button</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCheckinforProvidertoInvoice" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCheckinforProvidertoInvoice">Require "Check-in" for Provider to Invoice</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCustomerSignature" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCustomerSignature">Require Customer Signature</label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="AddCustomizedCheckinForm">Add Customized Check-in Form</label>
-                            <input class="form-check-input show-hidden-content" id="AddCustomizedCheckinForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Form</label>
-                              <select class="form-select">
-                                <option>Select Form</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
-                            <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Customer-Users</label>
-                              <select class="form-select">
-                                <option>Select Customer-Users</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 ps-lg-5">
-                      <div class="mb-5 border p-3 pb-lg-5">
-                        <h2>
-                          Display to providers prior to being assigned
-                        </h2>
-                        <div class="d-flex flex-column gap-3">
-                          <div class="form-check">
-                            <input class="form-check-input" id="EnableCheckinButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="EnableCheckinButton">Enable “Check-in” Button</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCheckinforProvidertoInvoice" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCheckinforProvidertoInvoice">Require "Check-in" for Provider to Invoice</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" id="RequireCustomerSignature" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <label class="form-check-label" for="RequireCustomerSignature">Require Customer Signature</label>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="AddCustomizedCheckinForm">Add Customized Check-in Form</label>
-                            <input class="form-check-input show-hidden-content" id="AddCustomizedCheckinForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Form</label>
-                              <select class="form-select">
-                                <option>Select Form</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-check">
-                            <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
-                            <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                            <div class="hidden-content">
-                              <label class="form-label-sm">Select Customer-Users</label>
-                              <select class="form-select">
-                                <option>Select Customer-Users</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 justify-content-center form-actions d-flex">
+                      <button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
+                      <button type="submit" class="btn btn-primary rounded">Next</button>
                     </div>
                   </div>
                 </div>
                 <div class="tab-pane fade" id="notification-setting" role="tabpanel" aria-labelledby="notification-setting-tab" tabindex="0">
                   <div class="d-lg-flex justify-content-between align-items-center">
-                    <h2 class="mb-lg-0">Default Notification Settings</h2>
-                    <div class="form-check form-switch form-switch-column">
-                      <input class="form-check-input" type="checkbox" role="switch" id="basicService">
-                      <label class="form-check-label" for="basicService">Active</label>
+                    <h2>Default Notification Settings</h2>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-lg-8">
+                      <h3 class="text-primary">In-Person Services</h3>
+                      <div class="row">
+                        <div class="col-lg-5 mb-4">
+                          <div class="d-flex gap-3">
+                            <label class="form-label-sm">
+                                Broadcast
+                            </label>
+                            <div class="form-check form-switch form-switch-column">
+                              <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast" checked>
+                              <label class="form-check-label" for="AutoNotifyBroadcast">Auto-notify</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-7 mb-4">
+                          <div class="d-flex gap-3">
+                            <label class="form-label-sm">
+                                Assign
+                            </label>
+                            <div class="form-check form-switch form-switch-column">
+                              <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
+                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-7 ms-lg-auto mb-4">
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
+                              <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityAssign">Priority</label>
+                              <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
+                              <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
+                              <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                          <div class="d-lg-flex align-items-center gap-5">
+                            <label class="form-label mb-lg-0">Broadcast via</label>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="emailBroadcastvia">Email</label>
+                              <input class="form-check-input" id="emailBroadcastvia" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="smsBroadcastvia">SMS</label>
+                              <input class="form-check-input" id="smsBroadcastvia" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="pushNotificationBroadcastvia">Push Notification</label>
+                              <input class="form-check-input" id="pushNotificationBroadcastvia" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                          <div class="d-lg-flex align-items-center gap-5">
+                            <label class="form-label mb-lg-0">Variable</label>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="ProviderPriority">Provider Priority</label>
+                              <input class="form-check-input" id="ProviderPriority" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="ProximitytoServiceAddress">Proximity to Service Address</label>
+                              <input class="form-check-input" id="ProximitytoServiceAddress" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                          <div class="d-lg-flex align-items-center gap-5">
+                            <div>
+                              <label class="form-label-sm">Max. Radius</label>
+                              <div class="input-group">
+                                <input type="" name="" class="form-control form-control-sm w-50" placeholder="00">
+                                <select class="form-select form-select-sm">
+                                  <option>Miles</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div>
+                              <label class="form-label-sm">Provider Count</label>
+                              <div class="input-group">
+                                <input type="" name="" class="form-control form-control-sm" placeholder="00">
+                              </div>
+                            </div>
+                            <div>
+                              <label class="form-label-sm">Interval</label>
+                              <div class="input-group">
+                                <input type="" name="" class="form-control form-control-sm w-50" placeholder="00">
+                                <select class="form-select form-select-sm">
+                                  <option>Min</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-lg-8">
+                      <h3 class="text-primary">Virtual Services</h3>
+                      <div class="row">
+                        <div class="col-lg-5 mb-4">
+                          <div class="d-flex gap-3">
+                            <label class="form-label-sm">
+                                Broadcast
+                            </label>
+                            <div class="form-check form-switch form-switch-column">
+                              <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast" checked>
+                              <label class="form-check-label" for="AutoNotifyBroadcast">Auto-notify</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-7 mb-4">
+                          <div class="d-flex gap-3">
+                            <label class="form-label-sm">
+                                Assign
+                            </label>
+                            <div class="form-check form-switch form-switch-column">
+                              <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
+                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-7 ms-lg-auto mb-4">
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
+                              <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityAssign">Priority</label>
+                              <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
+                              <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
+                              <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                          <div class="d-lg-flex align-items-center gap-5">
+                            <label class="form-label mb-lg-0">Broadcast via</label>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="emailBroadcastvia">Email</label>
+                              <input class="form-check-input" id="emailBroadcastvia" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="smsBroadcastvia">SMS</label>
+                              <input class="form-check-input" id="smsBroadcastvia" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="pushNotificationBroadcastvia">Push Notification</label>
+                              <input class="form-check-input" id="pushNotificationBroadcastvia" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                          <div class="d-lg-flex align-items-center gap-5">
+                            <label class="form-label mb-lg-0">Variable</label>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="ProviderPriority">Provider Priority</label>
+                              <input class="form-check-input" id="ProviderPriority" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                            <div class="form-check mb-lg-0">
+                              <label class="form-check-label" for="ProximitytoServiceAddress">Proximity to Service Address</label>
+                              <input class="form-check-input" id="ProximitytoServiceAddress" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 mb-4">
+                          <div class="d-lg-flex align-items-center gap-5">
+                            <div>
+                              <label class="form-label-sm">Max. Radius</label>
+                              <div class="input-group">
+                                <input type="" name="" class="form-control form-control-sm w-50" placeholder="00">
+                                <select class="form-select form-select-sm">
+                                  <option>Miles</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div>
+                              <label class="form-label-sm">Provider Count</label>
+                              <div class="input-group">
+                                <input type="" name="" class="form-control form-control-sm" placeholder="00">
+                              </div>
+                            </div>
+                            <div>
+                              <label class="form-label-sm">Interval</label>
+                              <div class="input-group">
+                                <input type="" name="" class="form-control form-control-sm w-50" placeholder="00">
+                                <select class="form-select form-select-sm">
+                                  <option>Min</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-6">
-                      <div class="mb-4">
-                        <label class="form-label" for="service-name">
-                        Service Name <span class="mandatory">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="service-name"
-                          class="form-control"
-                          name="service-name"
-                          placeholder="Company"
-                          />
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="mb-4">
-                        <label class="form-label" for="service-name">
-                        Service Type <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                        </label>
-                        <div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" id="All" name="All" type="checkbox" tabindex="" />
-                            <label class="form-check-label" for="All">All</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" id="InPerson" name="InPerson" type="checkbox" tabindex="" />
-                            <label class="form-check-label" for="InPerson"> In-Person</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" id="Virtual" name="Virtual" type="checkbox" tabindex="" />
-                            <label class="form-check-label" for="Virtual"> Virtual</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" id="Phone" name="Phone" type="checkbox" tabindex="" />
-                            <label class="form-check-label" for="Phone"> Phone</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" id="Teleconference" name="Teleconference" type="checkbox" tabindex="" />
-                            <label class="form-check-label" for="Teleconference"> Teleconference</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="mb-4">
-                        <label class="form-label" for="description">
-                        Description <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                        </label>
-                        <textarea rows="4" cols="4" id="description"
-                          class="form-control"
-                          name="description"
-                          placeholder=""></textarea>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="mb-4">
-                        <label class="form-label" for="service-name">
-                        Permitted Scheduling Frequencies <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                        </label>
-                        <div class="form-check">
-                          <input class="form-check-input" id="one-time-request" name="one-time-request" type="checkbox" tabindex="" />
-                          <label class="form-check-label" for="one-time-request">One-Time Request</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" id="Daily" name="Daily" type="checkbox" tabindex="" />
-                          <label class="form-check-label" for="Daily"> Daily</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" id="Weekly" name="Weekly" type="checkbox" tabindex="" />
-                          <label class="form-check-label" for="Weekly"> Weekly</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" id="WeekdailyBusinessDays" name="WeekdailyBusinessDays" type="checkbox" tabindex="" />
-                          <label class="form-check-label" for="WeekdailyBusinessDays"> Weekdaily (Business Days)</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" id="Monthly" name="Monthly" type="checkbox" tabindex="" />
-                          <label class="form-check-label" for="Monthly"> Monthly</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="mb-5">
-                        <div class="d-lg-flex gap-4 align-items-center">
-                          <h2 class="mb-lg-0">Enable Billing Rates</h2>
-                          <div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" id="HourlyMinutesRate" name="HourlyMinutesRate" type="radio" tabindex="" />
-                              <label class="form-check-label" for="HourlyMinutesRate">Hourly/Minutes Rate</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" id="DayRate" name="DayRate" type="radio" tabindex="" />
-                              <label class="form-check-label" for="DayRate"> Day Rate</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" id="FixedRate" name="FixedRate" type="radio" tabindex="" />
-                              <label class="form-check-label" for="FixedRate"> Fixed Rate</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-12 mb-5">
-                      <h2>Standard Rates</h2>
-                      <div class="row justify-content-between">
-                        <div class="col-lg-5">
-                          <!-- In-Person Rates -->
-                          <div class="mb-4">
-                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                              <div class="d-lg-flex align-items-center gap-3">
-                                <h3 class="form-label mb-0">
-                                  In-Person Rates
-                                </h3>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" id="MultiplyProvidersInPerson" name="MultiplyProvidersInPerson" type="checkbox" tabindex="" />
-                                  <label class="form-check-label" for="MultiplyProvidersInPerson"> Multiply by No. of Providers</label>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="BusinessHoursperhour">
-                                Business Hours (per hour)
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="BusinessHoursperhour">
-                              </div>
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="AfterHoursperhour">
-                                After-Hours (per hour)
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="AfterHoursperhour">
-                              </div>
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="DayRate">
-                                Day Rate
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="DayRate">
-                              </div>
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="FixedRate">
-                                Fixed Rate
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="FixedRate">
-                              </div>
-                            </div>
-                          </div>
-                          <!-- /In-Person Rates -->
-                        </div>
-                        <div class="col-lg-5">
-                          <!-- Virtual Rates -->
-                          <div class="mb-4">
-                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                              <div class="d-lg-flex align-items-center gap-3">
-                                <label class="form-label mb-0">
-                                Virtual Rates
-                                </label>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" id="MultiplyProvidersVirtual" name="MultiplyProvidersVirtual" type="checkbox" tabindex="" />
-                                  <label class="form-check-label" for="MultiplyProvidersVirtual"> Multiply by No. of Providers</label>
-                                </div>
-                              </div>
-                              <div>
-                                <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"/>
-                                    <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"/>
-                                  </svg>
-                                </a>
-                              </div>
-                            </div>
-                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="BusinessHoursperhour">
-                                Business Hours (per hour)
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="BusinessHoursperhour">
-                              </div>
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="AfterHoursperhour">
-                                After-Hours (per hour)
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="AfterHoursperhour">
-                              </div>
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="DayRate">
-                                Day Rate
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="DayRate">
-                              </div>
-                              <div class="input-group">
-                                <span class="input-group-text bg-secondary pe-5 w-50" id="FixedRate">
-                                Fixed Rate
-                                </span>
-                                <input type="text" class="form-control text-center" placeholder="$" aria-label="" aria-describedby="">
-                                <input type="text" class="form-control text-center" placeholder="00.00" aria-label="" aria-describedby="FixedRate">
-                              </div>
-                            </div>
-                          </div>
-                          <!-- /Virtual Rates -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <h2>Service Capacity & Capabilities</h2>
-                      <div class="row justify-content-between">
-                        <div class="col-lg-5">
-                          <!-- Service Type: In-Person -->
-                          <div class="mb-4">
-                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                              <div class="d-lg-flex align-items-center gap-3">
-                                <h3 class="mb-0">
-                                  Service Type: In-Person
-                                </h3>
-                              </div>
-                            </div>
-                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                              <div class="row justify-content-between">
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Min. Duration <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <div class="d-flex justify-content-around">
-                                      <label class="form-label-sm">Hours</label>
-                                      <label class="form-label-sm">Minutes</label>
-                                    </div>
-                                    <div class="input-group">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Max. Duration <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <div class="d-flex justify-content-around">
-                                      <label class="form-label-sm">Hours</label>
-                                      <label class="form-label-sm">Minutes</label>
-                                    </div>
-                                    <div class="input-group">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Min. Providers <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="1" aria-label="1" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Max. Providers <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="50" aria-label="50" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-4 d-lg-flex">
-                                    <label class="form-label-base w-75">
-                                    Default Providers <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="2" aria-label="2" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-4 d-lg-flex">
-                                    <label class="form-label-base w-75">
-                                    Provider Limit <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="100" aria-label="100" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-4 row">
-                                    <label class="form-label-base w-75 mt-4">
-                                    Provider Return Window <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <div class="">
-                                      <div class="d-flex justify-content-around">
-                                        <label class="form-label-sm">Hours</label>
-                                        <label class="form-label-sm">Minutes</label>
-                                      </div>
-                                      <div class="input-group">
-                                        <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                        <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="ExcludeAfterHours" name="ExcludeAfterHours" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="Exclude After-hours">Exclude After-hours</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="ExcludeClosedHours" name="ExcludeClosedHours" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="ExcludeClosedHours"> Exclude Closed-hours</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="ByRequest" name="ByRequest" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="ByRequest"> By Request</label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- /Service Type: In-Person -->
-                        </div>
-                        <div class="col-lg-5">
-                          <!-- Service Type: Virtual -->
-                          <div class="mb-4">
-                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                              <div class="d-lg-flex align-items-center gap-3">
-                                <h3 class="mb-0">
-                                  Service Type: Virtual
-                                </h3>
-                              </div>
-                              <div>
-                                <div>
-                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"/>
-                                      <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"/>
-                                    </svg>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                              <div class="row justify-content-between">
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Min. Duration <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <div class="d-flex justify-content-around">
-                                      <label class="form-label-sm">Hours</label>
-                                      <label class="form-label-sm">Minutes</label>
-                                    </div>
-                                    <div class="input-group">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Max. Duration <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <div class="d-flex justify-content-around">
-                                      <label class="form-label-sm">Hours</label>
-                                      <label class="form-label-sm">Minutes</label>
-                                    </div>
-                                    <div class="input-group">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                      <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Min. Providers <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="1" aria-label="1" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="mb-4">
-                                    <label class="form-label-base">
-                                    Max. Providers <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="50" aria-label="50" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-4 d-lg-flex">
-                                    <label class="form-label-base w-75">
-                                    Default Providers <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="2" aria-label="2" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-4 d-lg-flex">
-                                    <label class="form-label-base w-75">
-                                    Provider Limit <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <input type="text" class="form-control text-center" placeholder="100" aria-label="100" aria-describedby="">
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="mb-4 row">
-                                    <label class="form-label-base w-75 mt-4">
-                                    Provider Return Window <span class="mandatory">*</span> <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <div class="">
-                                      <div class="d-flex justify-content-around">
-                                        <label class="form-label-sm">Hours</label>
-                                        <label class="form-label-sm">Minutes</label>
-                                      </div>
-                                      <div class="input-group">
-                                        <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                        <input type="text" class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="ExcludeAfterHours" name="ExcludeAfterHours" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="Exclude After-hours">Exclude After-hours</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="ExcludeClosedHours" name="ExcludeClosedHours" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="ExcludeClosedHours"> Exclude Closed-hours</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="ByRequest" name="ByRequest" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="ByRequest"> By Request</label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- /Service Type: Virtual -->
-                        </div>
-                      </div>
-                    </div>
                     <div class="col-12 justify-content-center form-actions d-flex">
                       <button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
-                      <button type="submit" class="btn btn-primary rounded">Next</button>
+                      <button type="submit" class="btn btn-primary rounded">Save</button>
                     </div>
                   </div>
                 </div>
