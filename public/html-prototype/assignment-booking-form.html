@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment Booking Form - Eclipse Scheduling</title>
+    <link rel="stylesheet" href="css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="css/chosen.min.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/bootstrap-extended.css">
+    <link rel="stylesheet" href="css/vertical-menu.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <!-- END: Head-->
+  <!-- BEGIN: Body-->
+  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+          <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+              <div class="col-12">
+                <h1 class="content-header-title float-start mb-0">Booking Form</h1>
+                <div class="breadcrumb-wrapper">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="">
+                      Home
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="javascript:void(0)">
+                      Assignments
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      Booking Form
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-body">
+          <div class="card">
+            <div class="card-body">
+              <!-- BEGIN: Assignment Booking Form -->
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="requester-info-tab" data-bs-toggle="tab" data-bs-target="#requester-info" type="button" role="tab" aria-controls="requester-info" aria-selected="true"><span class="number">1</span> Requester Info</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="request-details-tab" data-bs-toggle="tab" data-bs-target="#request-details" type="button" role="tab" aria-controls="request-details" aria-selected="false"><span class="number">2</span> Request Details</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="payment-info-tab" data-bs-toggle="tab" data-bs-target="#payment-info" type="button" role="tab" aria-controls="payment-info" aria-selected="false"><span class="number">3</span> Payment Info</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="booking-summary-tab" data-bs-toggle="tab" data-bs-target="#booking-summary" type="button" role="tab" aria-controls="booking-summary" aria-selected="false"><span class="number">4</span> Booking Summary</button>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="requester-info" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
+                  <h2>Requester Information</h2>
+                  <div class="mb-4">
+                    <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
+                    <div class="d-flex gap-3 flex-column flex-lg-row">
+                      <div class="form-check form-check-inline form-check-highlighted">
+                        <input class="form-check-input" id="oneTimeRequest" name="PermittedSchedulingFrequencies" type="radio" tabindex="" checked />
+                        <label class="form-check-label" for="oneTimeRequest">One-Time Request</label>
+                      </div>
+                      <div class="form-check form-check-highlighted">
+                        <input class="form-check-input" id="Daily" name="PermittedSchedulingFrequencies" type="radio" tabindex="" />
+                        <label class="form-check-label" for="Daily">Daily</label>
+                      </div>
+                      <div class="form-check form-check-highlighted">
+                        <input class="form-check-input" id="Weekly" name="PermittedSchedulingFrequencies" type="radio" tabindex="" />
+                        <label class="form-check-label" for="Weekly">Weekly</label>
+                      </div>
+                      <div class="form-check form-check-highlighted">
+                        <input class="form-check-input" id="WeekDaily" name="PermittedSchedulingFrequencies" type="radio" tabindex="" />
+                        <label class="form-check-label" for="WeekDaily">WeekDaily</label>
+                      </div>
+                      <div class="form-check form-check-highlighted">
+                        <input class="form-check-input" id="Monthly" name="PermittedSchedulingFrequencies" type="radio" tabindex="" />
+                        <label class="form-check-label" for="Monthly">Monthly</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    
+                  </div>
+                </div>
+                <!-- END: basic-service-setup -->
+                <div class="tab-pane fade" id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
+                </div>
+                <div class="tab-pane fade" id="payment-info" role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
+                </div>
+                <div class="tab-pane fade" id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
+                </div>
+                <div class="tab-pane fade" id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
+                </div>
+                <div class="tab-pane fade" id="notification-setting" role="tabpanel" aria-labelledby="notification-setting-tab" tabindex="0">
+                </div>
+              </div>
+              <!-- END: Assignment Booking Form -->    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End: Content-->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-light  footer-static">
+      <p class="clearfix mb-0">
+        <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
+        <a class="ms-25" href="" target="_blank">Eclipse Scheduling</a>,
+        <span class="d-none d-sm-inline-block">All rights Reserved</span>
+        </span>
+      </p>
+    </footer>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <script src="js/alpine-ie11.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/daterangepicker.min.js"></script>
+    <script src="js/unison-js.min.js"></script>
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script src="js/feather-icons.min.js"></script>
+    <script src="js/chosen.jquery.min.js"></script>
+    <script src="js/app-menu.js"></script>
+    <script src="js/app-new.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
