@@ -97,8 +97,8 @@ Route::group([
         // Admin Reports
         Route::view('/admin/reports', 'tenant/admin/reports', ["showForm"=>false]);
 
-        Route::view('/admin/leads', 'tenant/admin/lead', ["showForm"=>false]);
-        Route::view('/admin/quotes', 'tenant/admin/quote', ["showForm"=>false]);
+        Route::view('/admin/leads', 'tenant/admin/leads', ["showForm"=>false]);
+        Route::view('/admin/quotes', 'tenant/admin/quotes', ["showForm"=>false]);
 
         Route::view('/admin/system-logs', 'tenant/settings/system-logs', ["showForm"=>false]);
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
