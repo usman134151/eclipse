@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Common;
+namespace App\Http\Livewire\App\Admin;
 
 use Livewire\Component;
 
-class EmailTemplates extends Component
+class Quotes extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.common.email-templates');
+        return view('livewire.app.admin.quotes');
     }
 
     public function mount()

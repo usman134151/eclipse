@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Leads Livewire component here</b>
+	@livewire('app.admin.leads')
 	{{-- End: Content --}}
 @endsection

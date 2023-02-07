@@ -153,7 +153,7 @@
                 <th>Name</th>
                 <th>Trigger</th>
                 <th>Trigger Description</th>
-                <th>Subject</th>
+                <th>Body</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
