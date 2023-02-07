@@ -1,5 +1,5 @@
 <!-- BEGIN: Panel/Offcanvas -->
-        <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
+        <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen" x-cloak>
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasRightLabel">Customers</h5>
             <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
@@ -325,5 +325,5 @@
             </div>
           </div>
         </div>
-        <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen"></div>
+        <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen" x-cloak></div>
         <!-- END: Panel/Offcanvas -->
