@@ -43,9 +43,10 @@
 
 .form-label-sm {
 	font-family: 'Poppins', sans-serif;
-	font-size: 0.875rem;
+	font-size: 0.9375rem;
 	color: #000;
 	margin-bottom: 0.25rem;
+	font-weight: 500;
 }
 
 .form-label-base {
@@ -66,7 +67,9 @@
 }
 
 .form-check-label {
-	font-size: 0.875rem;
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.9375rem;
+	font-weight: 500;
 }
 
 .form-check-input[type="radio"], .form-check-input[type="checkbox"] {
@@ -82,8 +85,30 @@
 	}
 }
 
-.form-switch .form-check-input:checked {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e")
+.form-switch {
+  padding-left: 2.5em;
+  .form-check-label {
+  	font-size: 0.8125rem;
+  }
+	.form-check-input {
+		margin-left: -2.5rem;
+		&:checked {
+		    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e")
+		}
+	}
+}
+
+.form-switch-column {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	.form-check-input {
+		margin: 0 auto 0.25rem;
+	}
+	.form-check-label {
+		text-align: center;
+		line-height: 1;
+	}
 }
 
 .form-control {
@@ -118,15 +143,6 @@ color: #ffffff;
 .form-control {
 	font-family: 'Poppins', sans-serif;
 	font-weight: 400;
-}
-
-.form-switch-column {
-	display: flex;
-	flex-direction: column;
-	padding: 0;
-	.form-check-input {
-		margin: 0 auto;
-	}
 }
 
 
