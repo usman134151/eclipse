@@ -250,8 +250,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .icon-date {
 	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
+	top: 1rem;
+	right: 1rem;
 }
 
 .cursor-pointer {
@@ -573,6 +573,10 @@ div[data-bs-toggle="collapse"] {
    grid-template-columns: repeat(6,minmax(0,1fr));
 }
 
+.grid-cols-3 {
+   grid-template-columns: repeat(3,minmax(0,1fr));
+}
+
 .grid-cols-2 {
    grid-template-columns: repeat(2,minmax(0,1fr));
 }
@@ -602,4 +606,36 @@ small {
     height: 1em;
     vertical-align: -0.125em;
     fill: currentcolor;
+<<<<<<< HEAD
 }
+
+.border-dotted {
+	border-style: dotted;
+}
+
+.border-dashed {
+	border-style: dashed;
+	border-width: 1px;
+}
+
+.duplicate-block {
+	border: 1px dashed;
+	padding: 1rem;
+	border-radius: 0.5rem;
+}
+
+.time {
+	.hours, .mins {
+		border: 1px solid $primary;
+		color: $primary;
+		border-radius: 0.25rem;
+		height: 1.6875rem;
+		width: 2.0625rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+=======
+}
+>>>>>>> c234ca7145698f27e22aa21af0e77d2b5fa92916
