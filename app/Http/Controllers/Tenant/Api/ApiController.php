@@ -214,8 +214,8 @@ class ApiController extends Controller
         ####End####
         $date = date('Y-m-d',$current_month_year);
         $calenderEventData = [];
-        while (strtotime($date) <= strtotime(date('Y-m') . '-' . date('t', strtotime($date)))) {
-            if(strtotime($date) > strtotime(date('Y-m-d')) && strtotime($date) < strtotime('+2 weeks')){
+        while (strtotime($date) <= strtotime(date("Y-m-t", $current_month_year))) {
+            if(strtotime($date) >= strtotime(date('Y-m-d')) && strtotime($date) < strtotime('+2 weeks')){
                 $calenderEventData[$date] = [
                     [
                         'assignment_id'         =>  date('d',strtotime($date)),
