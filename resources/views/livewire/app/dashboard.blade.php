@@ -128,6 +128,6 @@
     </div>
   </div>
   <div>
-    <img src="html-prototype/images/temp/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
+    <img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
   </div>
 </div>
