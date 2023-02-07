@@ -209,13 +209,11 @@ class ApiController extends Controller
      */
     public function calendarEventDataMap( $month = 0 , $year = 0 , $userId = 0 )
     {
-        ######START#### Task: Change Date Setting (Sakhawat)  
         $current_month_year = strtotime($month.'/01/'.$year);
-        ####End####
         $date = date('Y-m-d',$current_month_year);
         $calenderEventData = [];
-        while (strtotime($date) <= strtotime(date('Y-m') . '-' . date('t', strtotime($date)))) {
-            if(strtotime($date) > strtotime(date('Y-m-d')) && strtotime($date) < strtotime('+2 weeks')){
+        while (strtotime($date) <= strtotime($year.'-'.$month. '-' . date('t', strtotime($date)))) {
+            if(strtotime($date) >= strtotime(date('Y-m-d')) && strtotime($date) < strtotime('+2 weeks')){
                 $calenderEventData[$date] = [
                     [
                         'assignment_id'         =>  date('d',strtotime($date)),
