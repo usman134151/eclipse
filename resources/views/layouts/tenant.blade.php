@@ -29,7 +29,7 @@
     @stack('head')
     @livewireStyles
 </head>
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
             @include('partials/header')
 
             @include('partials/sidebar')
@@ -57,6 +57,9 @@
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
+    
+    @include('partials/panels')
+
     <script src="/tenant/js/jquery-3.6.3.min.js"></script>
     <script defer src="/tenant/js/alpinejs-3.11.1.js"></script>
     <script src="/tenant/js/bootstrap.bundle.min.js"></script>
