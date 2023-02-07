@@ -527,6 +527,12 @@ div[data-bs-toggle="collapse"] {
 	padding: 0.25rem 0.5rem;
 }
 
+.form-select-sm {
+	padding: 0.25rem 0.5rem;
+	background-size: 16px 16px;
+	background-position: right 0.5rem center;
+}
+
 .form-control {
 	font-family: 'Poppins', sans-serif;
 	font-weight: 400;
@@ -699,4 +705,11 @@ color: #ffffff;
 			display: block;
 		}
 	}
+}
+
+.bi {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    fill: currentcolor;
 }

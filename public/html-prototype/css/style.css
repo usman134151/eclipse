@@ -401,6 +401,11 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
 .form-control-sm {
   padding: 0.25rem 0.5rem; }
 
+.form-select-sm {
+  padding: 0.25rem 0.5rem;
+  background-size: 16px 16px;
+  background-position: right 0.5rem center; }
+
 .form-control {
   font-family: 'Poppins', sans-serif;
   font-weight: 400; }
@@ -533,5 +538,11 @@ small {
 
 .show-hidden-content:checked + .hidden-content {
   display: block; }
+
+.bi {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentcolor; }
 
 /*# sourceMappingURL=style.css.map */
