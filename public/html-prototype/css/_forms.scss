@@ -94,10 +94,25 @@
 	padding: 0.25rem 0.5rem;
 }
 
+.form-select.form-select-sm,
 .form-select-sm {
-	padding: 0.25rem 0.5rem;
+	padding: 0.25rem 1.5rem 0.25rem 0.5rem;
 	background-size: 10px 5px;
 	background-position: right 0.5rem center;
+}
+
+.form-select {
+	background-image: url("data:image/svg+xml,%3Csvg width='21' height='10' viewBox='0 0 21 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0.796875L10.3333 9.98199L20.6665 0.796875L0 0.796875Z' fill='%236E6B7B'/%3E%3C/svg%3E");
+	padding: .7625rem 3.25rem .7625rem .75rem;
+	background-size: 20px 10px;
+	background-position: right 1.5rem center;
+}
+
+.form-select.bg-secondary {
+  background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%),
+	linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+	linear-gradient(0deg, #E8E8E8, #E8E8E8);
+color: #ffffff;
 }
 
 .form-control {
@@ -112,13 +127,6 @@
 	.form-check-input {
 		margin: 0 auto;
 	}
-}
-
-.form-select.bg-secondary {
-  background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%),
-	linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-	linear-gradient(0deg, #E8E8E8, #E8E8E8);
-color: #ffffff;
 }
 
 
@@ -155,5 +163,11 @@ color: #ffffff;
 		&:before {
 			border-color: $primary;
 		}
+	}
+}
+
+.multi-select-dropdown {
+	.options-container {
+		max-height: 16rem;
 	}
 }
