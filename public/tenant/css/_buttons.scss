@@ -1,3 +1,5 @@
+@import 'variables';
+
 .btn {
 	transition: none;
 	padding: 0.5rem 1.5rem;
@@ -10,4 +12,17 @@
 
 .btn-sm {
 	padding: 0.25rem 1rem;
+}
+
+.btn-outline-dark {
+	.fill-current {
+		fill: black;
+	}
+<<<<<<< HEAD
+}
+
+.btn-has-icon {
+	gap: 0.5rem;
+=======
+>>>>>>> c234ca7145698f27e22aa21af0e77d2b5fa92916
 }

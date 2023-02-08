@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Email Templates Livewire component here</b>
+	@livewire('app.common.email-templates', ['showForm'=>$showForm])
 	{{-- End: Content --}}
 @endsection
