@@ -2,6 +2,7 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Notifications component here</b>
+	@livewire('app.common.notifications', ['showForm'=>$showForm])
+
 	{{-- End: Content --}}
 @endsection
