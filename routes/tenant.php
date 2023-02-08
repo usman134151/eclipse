@@ -69,6 +69,11 @@ Route::group([
         Route::view('/admin/customer-invoices', 'tenant/admin/customer-invoices', ["showForm"=>false]);
         // End of Admin Customer Routes
 
+        // Admin Department Routes
+        Route::view('/admin/department', 'tenant/common/department', ["showForm"=>false]);
+        Route::view('/admin/department/create', 'tenant/common/department', ["showForm"=>true]);
+        // End of Admin Department Routes
+
         // Admin Staff Routes
         Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false]);
         Route::view('/admin/admin-staff/create', 'tenant/admin/staff/admin-staff', ["showForm"=>true]);
@@ -104,6 +109,7 @@ Route::group([
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
         Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
+        Route::view('/admin/accommodation/service-category/create/{id}', 'tenant/admin/accommodation/service-category', [["showForm"=>true]]);
 
         Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
 
