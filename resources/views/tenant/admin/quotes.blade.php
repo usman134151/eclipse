@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Quotes Livewire component here</b>
+	@livewire('app.admin.quotes')
 	{{-- End: Content --}}
 @endsection
