@@ -24,17 +24,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    [x-cloak]
+    {
+      display: none !important;
+    }
+    </style>
     @stack('head')
     @livewireStyles
 </head>
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
-  <style>
-    [x-cloak] { 
-      display: none !important;
-    }
-  </style>
             @include('partials/header')
 
             @include('partials/sidebar')
@@ -42,7 +43,7 @@
             <div class="content-overlay"></div>
             <div class="header-navbar-shadow"></div>
             <div class="app-content content ">
-                <div class="content-wrapper container-xxl p-0">           
+                <div class="content-wrapper container-xxl p-0">
                     @yield('content')
                   </div>
                 </div>
