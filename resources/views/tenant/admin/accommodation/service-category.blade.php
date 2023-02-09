@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Service Category Livewire component here</b>
+	@livewire('app.admin.accommodation.service-category', ['showForm'=>$showForm])
 	{{-- End: Content --}}
 @endsection
