@@ -115,7 +115,7 @@ Route::group([
         Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
 
         Route::view('/admin/quickbook', 'tenant/admin/quickbook', ["showForm"=>false]);
-        Route::view('/admin/quickbook-setup', 'tenant/admin/quickbook', ["showForm"=>false]);
+        Route::view('/admin/quickbook-setup', 'tenant/admin/quickbook', ["showForm"=>true]);
 
         Route::view('/admin/stripe-setup', 'tenant/admin/stripe-setup', ["showForm"=>false]);
 
