@@ -1,7 +1,9 @@
 @extends('layouts.tenant', ['title' => 'Quickbook'])
 
 @section('content')
-	{{-- BEGIN: Content --}}
-	<b>Quickbook Livewire component here</b>
-	{{-- End: Content --}}
+	@if($showForm)
+		@livewire('app.admin.quickbook-setup')
+	@else
+		@livewire('app.admin.quickbook')
+	@endif
 @endsection
