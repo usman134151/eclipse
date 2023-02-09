@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Create assignment Livewire component here</b>
+	@livewire('app.admin.bookings.booknow')
 	{{-- End: Content --}}
 @endsection
