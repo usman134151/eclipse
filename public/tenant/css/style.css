@@ -49,6 +49,8 @@
   margin-bottom: 0.5rem; }
   .form-check .form-check-input {
     margin-left: -1.75rem; }
+  .form-check .form-check-label-sm {
+    font-size: 0.8125rem; }
 
 .form-check-label {
   font-family: 'Poppins', sans-serif;
@@ -696,5 +698,16 @@ small {
   border-radius: 0.25rem;
   color: #023DB0;
   font-size: 0.9375rem; }
+
+.leading-none {
+  line-height: 1; }
+
+.dropdown-menu {
+  background: #EDEDED;
+  border-color: #EDEDED; }
+  .dropdown-menu .dropdown-item {
+    color: #0A1E46; }
+    .dropdown-menu .dropdown-item:hover {
+      color: #ffffff; }
 
 /*# sourceMappingURL=style.css.map */
