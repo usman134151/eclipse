@@ -703,3 +703,18 @@ small {
 	color: $actual_blue;
 	font-size: 0.9375rem;
 }
+
+.leading-none {
+	line-height: 1;
+}
+
+.dropdown-menu {
+	background: #EDEDED;
+	border-color: #EDEDED;
+	.dropdown-item {
+		color: $primary;
+		&:hover {
+			color: #ffffff;
+		}
+	}
+}
