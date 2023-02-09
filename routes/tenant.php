@@ -82,6 +82,8 @@ Route::group([
 
         // Admin Setting Routes
         Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
+        Route::view('/admin/settings', 'tenant/settings/notification-configuration', ["showForm"=>false]);
+        Route::view('/admin/settings/create', 'tenant/settings/notification-configuration', ["showForm"=>true]);
         Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
         Route::view('/admin/templates', 'tenant/settings/email-templates', ["showForm"=>false]);
         Route::view('/admin/sms-templates', 'tenant/settings/sms-templates', ["showForm"=>false]);
@@ -109,12 +111,12 @@ Route::group([
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
         Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
-        Route::view('/admin/accommodation/service-category/create/{id}', 'tenant/admin/accommodation/service-category', [["showForm"=>true]]);
+        Route::view('/admin/accommodation/service-category/create/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>true]);
 
         Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
 
         Route::view('/admin/quickbook', 'tenant/admin/quickbook', ["showForm"=>false]);
-        Route::view('/admin/quickbook-setup', 'tenant/admin/quickbook', ["showForm"=>false]);
+        Route::view('/admin/quickbook-setup', 'tenant/admin/quickbook', ["showForm"=>true]);
 
         Route::view('/admin/stripe-setup', 'tenant/admin/stripe-setup', ["showForm"=>false]);
 
