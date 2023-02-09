@@ -62,6 +62,7 @@ class ApiController extends Controller
                                 ],
                     'profile_pic' => $user->gravatar_url,
                     'payment_preferences' => 'direct_deposit_method',            
+                    'availability_url' => url('/settings/user'),            
                     'created_at' => $user->created_at,
                 ];
         return $userData;
@@ -145,6 +146,7 @@ class ApiController extends Controller
                     'paied_at' =>  date('d/m/Y h:iA'),
                     'payment_method' =>  'Mail a check',
                     'status'             =>  'Paid',
+                    'invoice_url' => url('tenant/admin/provider/remittances'),
                 ];
         return $invoiceData;
     }
