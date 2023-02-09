@@ -62,6 +62,9 @@
 	.form-check-input {
 		margin-left: -1.75rem;
 	}
+	.form-check-label-sm {
+		font-size: 0.8125rem;
+	}
 }
 
 .form-check-label {
@@ -111,6 +114,12 @@
 
 .form-control {
 	padding: .7625rem 0.75rem;
+}
+
+.form-control-md {
+	padding: 0.5125rem 0.5rem;
+	font-size: 0.8125rem;
+	line-height: 1;
 }
 
 .form-control-sm {
