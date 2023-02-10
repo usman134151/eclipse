@@ -62,14 +62,6 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a href="/admin/tenants">
-              <svg class="fill-none-tenants-svg-icon" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.5294 1H19V7.35294H10.5294V1ZM10.5294 19V8.41177H19V19H10.5294ZM1 19V12.6471H9.47059V19H1ZM1 11.5882V1H9.47059V11.5882H1ZM2.05882 2.05882V10.5294H8.41177V2.05882H2.05882ZM11.5882 2.05882V6.29412H17.9412V2.05882H11.5882ZM11.5882 9.47059V17.9412H17.9412V9.47059H11.5882ZM2.05882 13.7059V17.9412H8.41177V13.7059H2.05882Z" />
-              </svg>
-              <span class="menu-item">Tenants</span>
-            </a>
-          </li>
-          <li class="nav-item ">
             <a href="/admin/chat">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 1.5H14.25C15.525 1.5 16.5 2.475 16.5 3.75V11.25C16.5 12.525 15.525 13.5 14.25 13.5H5.55L2.775 16.275C2.625 16.425 2.475 16.5 2.25 16.5C2.175 16.5 2.025 16.5 1.95 16.425C1.65 16.35 1.5 16.05 1.5 15.75V3.75C1.5 2.475 2.475 1.5 3.75 1.5ZM14.25 12C14.7 12 15 11.7 15 11.25V3.75C15 3.3 14.7 3 14.25 3H3.75C3.3 3 3 3.3 3 3.75V13.95L4.725 12.225C4.875 12.075 5.025 12 5.25 12H14.25Z"/>
