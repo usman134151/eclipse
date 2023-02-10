@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Jira Status component here</b>
+	@livewire('app.admin.jira-status', ['showForm'=>$showForm])
 	{{-- End: Content --}}
 @endsection
