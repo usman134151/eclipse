@@ -7,6 +7,7 @@ use Livewire\Component;
 class Drafts extends Component
 {
     public $showForm;
+    public $bookingType;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()

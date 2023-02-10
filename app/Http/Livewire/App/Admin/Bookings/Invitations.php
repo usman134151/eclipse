@@ -7,6 +7,7 @@ use Livewire\Component;
 class Invitations extends Component
 {
     public $showForm;
+    public $bookingType;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
