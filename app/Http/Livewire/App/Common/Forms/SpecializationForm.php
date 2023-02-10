@@ -9,11 +9,13 @@ use Livewire\Component;
 class SpecializationForm extends Component
 {
     public $specialization;
-    
+    protected $listeners = ['editRecord' => 'edit'];
+
 
     public function mount(Specialization $specialization){
         $this->specialization=$specialization;
     }
+
     
     // Validation Rules
     public function rules()
@@ -28,15 +30,22 @@ class SpecializationForm extends Component
         $this->emit('showList',$message);
     }
 
+    public function edit(Specialization $specialization){
+       $this->specialization=$specialization;
+       //dd($this->specialization);
+    }
+
     public function save(){
         $this->validate();
         $this->specialization->added_by=1;
         $this->specialization->save();
-        $this->showList("Record created successfully");
+        $this->showList("Record saved successfully");
+        $this->specialization=new Specialization;
     }
 
     public function render()
     {
+        
         return view('livewire.app.common.forms.specialization-form');
     }
 
