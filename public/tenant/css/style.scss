@@ -241,19 +241,24 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-.table.table-schedule {
-	thead th {
-		background-color: #fff !important;
-		color: #212529 !important;
-	}
-	tbody {
-		td {
-			font-size: 0.75rem;
-			padding: 1.5rem 0 3rem !important;
-			.time-slot {
-				padding: 0.5rem;
+.table {
+	&.table-schedule {
+		thead th {
+			background-color: #fff !important;
+			color: #212529 !important;
+		}
+		tbody {
+			td {
+				font-size: 0.75rem;
+				padding: 1.5rem 0 3rem !important;
+				.time-slot {
+					padding: 0.5rem;
+				}
 			}
 		}
+	}
+	th, td {
+		font-size: 0.8125rem;
 	}
 }
 
@@ -287,6 +292,11 @@ h1, h2, h3, h4, h5, h6 {
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
+	&.sm {
+		    width: 0.875rem;
+    top: 0.325rem;
+    right: 0.75rem;
+	}
 }
 
 .cursor-pointer {
@@ -717,4 +727,26 @@ small {
 			color: #ffffff;
 		}
 	}
+}
+
+.fill-warning {
+	fill: 	rgba(255, 193, 7, 1)
+}
+
+.badge.bg-warning {
+	color: #4E4E4E;
+	font-size: 0.75rem;
+		font-family: 'Poppins', sans-serif;
+		font-weight: 400;
+		border: 1px solid #EAC76C;
+		background: linear-gradient(0deg, #EAC76C, #EAC76C),
+linear-gradient(0deg, #FAEA95, #FAEA95);
+}
+
+.time-date {
+	color: #4E4E4E;
+}
+
+.text-sm {
+	font-size: 0.8125rem;
 }
