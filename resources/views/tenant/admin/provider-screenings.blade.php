@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- BEGIN: Content-->
-  <p>livewire component</p>
-  @livewire('app.admin.provider-screenings')
+{{-- @livewire('app.admin.provider-screenings') --}}
+<x-coming-soon></x-coming-soon>
  <!-- End: Content-->
 @endsection

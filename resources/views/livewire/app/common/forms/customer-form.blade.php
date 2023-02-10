@@ -709,7 +709,7 @@
                           <!-- ....cancel/next (buttons)... -->
                             <div class="col-12 justify-content-center form-actions d-flex">
                               <button type="button"
-                                  class="btn btn-outline-dark rounded px-4 py-2 mx-2">Cancel</button>
+                                  class="btn btn-outline-dark rounded px-4 py-2 mx-2" wire:click.prevent="showList">Cancel</button>
                               <button type="submit"
                                   class="btn btn-primary rounded px-4 py-2">Next</button>
     
