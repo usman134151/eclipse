@@ -45,7 +45,7 @@
             <div class="text-center block-number">50</div>
           </div>
         </a>
-        <a class="dashborad-block" role="link" tabindex="0">
+        <a class="dashborad-block" role="link" tabindex="0" href="/admin/bookings/today">
           <div class="text-center block-text">Assignments</div>
           <div class="text-center block-icon">
             <svg class="fill" width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
