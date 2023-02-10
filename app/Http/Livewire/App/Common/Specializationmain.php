@@ -5,7 +5,7 @@ namespace App\Http\Livewire\App\Common;
 use Livewire\Component;
 use App\Models\Tenant\Specialization;
 
-class SpecializationComponent extends Component
+class Specializationmain extends Component
 {
     public $showForm;
     public $confirmationMessage;
@@ -24,7 +24,7 @@ class SpecializationComponent extends Component
             $this->specialization=$specialization;
             $this->emit('editRecord',$specialization);
         }
-
+        
         $this->showForm=true;
     }
     public function resetForm($message)
@@ -37,6 +37,9 @@ class SpecializationComponent extends Component
                 'title' => 'Success',
                 'text' => $message,
             ]);
+
+            
+            
         }
 
         $this->showForm=false;
@@ -46,8 +49,9 @@ class SpecializationComponent extends Component
     }
     public function deleteRecord(){
        
-        //Specialization::delete($this->recordId);
-       
+        Specialization::where('id',$this->recordId)->delete();
+        $this->emitSelf('showList','Record has been deleted');
+              
     }
     public function render()
     {

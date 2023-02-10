@@ -2,6 +2,6 @@
 
 @section('content')
     <!-- BEGIN: Content-->
-    @livewire('app.common.specialization',['showForm'=>$showForm])
+    @livewire('app.common.specializationmain',['showForm'=>$showForm])
     <!-- End: Content-->
 @endsection
