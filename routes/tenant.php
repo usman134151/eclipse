@@ -52,6 +52,7 @@ Route::group([
         Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false]);
         Route::view('/admin/provider/create', 'tenant/common/provider', ["showForm"=>true]);
         Route::view('/admin/teams', 'tenant/admin/teams', ["showForm"=>false]);
+        Route::view('/admin/teams/create', 'tenant/admin/teams', ["showForm"=>true]);
         Route::view('/admin/reimbursement', 'tenant/admin/provider/reimbursement', ["showForm"=>false]);
         Route::view('/admin/provider/remittances', 'tenant/admin/provider/remittances', ["showForm"=>false]);
         Route::view('/admin/provider/pending-payments', 'tenant/admin/provider/pending-payments', ["showForm"=>false]);
@@ -64,6 +65,7 @@ Route::group([
         Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false]);
         Route::view('/admin/customer/create', 'tenant/common/customer', ["showForm"=>true]);
         Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
+        Route::view('/admin/company/create', 'tenant/admin/company', ["showForm"=>true]);
         Route::view('/admin/deactivated-customer', 'tenant/admin/deactivated-customer', ["showForm"=>false]);
         Route::view('/admin/draft-invoices', 'tenant/admin/draft-invoices', ["showForm"=>false]);
         Route::view('/admin/customer-invoices', 'tenant/admin/customer-invoices', ["showForm"=>false]);
@@ -110,7 +112,7 @@ Route::group([
         Route::view('/admin/system-logs', 'tenant/settings/system-logs', ["showForm"=>false]);
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
-        Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false]);
+        Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false])->where('id', '.*');
         Route::view('/admin/accommodation/service-category/create/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>true]);
 
         Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
