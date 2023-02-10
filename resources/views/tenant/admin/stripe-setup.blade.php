@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<b>Stripe Setup Livewire component here</b>
+	<x-coming-soon></x-coming-soon>
 	{{-- End: Content --}}
 @endsection
