@@ -166,6 +166,10 @@
 .multi-select-dropdown .options-container {
   max-height: 16rem; }
 
+select.form-control {
+  padding: .7625rem 3.25rem .7625rem .75rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='21' height='10' viewBox='0 0 21 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0.796875L10.3333 9.98199L20.6665 0.796875L0 0.796875Z' fill='%236E6B7B'/%3E%3C/svg%3E"); }
+
 .btn {
   transition: none;
   padding: 0.5rem 1.5rem;
@@ -428,6 +432,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.1s linear; }
 .table-hover tbody tr:hover svg {
   stroke: none; }
+.table-hover tbody tr:hover .form-control * {
+  color: #000; }
 
 .btn.btn-hs-icon svg {
   width: 1rem; }
@@ -774,5 +780,7 @@ small {
   .power-grid-table th .form-check {
     margin: 0;
     padding: 0; }
+.power-grid-table select.form-control.mb-1 {
+  margin-bottom: 0 !important; }
 
 /*# sourceMappingURL=style.css.map */
