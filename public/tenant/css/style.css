@@ -793,4 +793,7 @@ small {
   font-family: 'Poppins', sans-serif;
   border-radius: 100px; }
 
+.dropdown-menu .dropdown-item:hover * {
+  color: #ffffff !important; }
+
 /*# sourceMappingURL=style.css.map */
