@@ -770,3 +770,7 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	    border-radius: 100px;
 	}
 }
+
+.dropdown-menu .dropdown-item:hover * {
+    color: #ffffff !important;
+}
