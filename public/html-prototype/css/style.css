@@ -780,10 +780,20 @@ small {
 .power-grid-table th {
   color: #ffffff !important;
   vertical-align: middle !important; }
-  .power-grid-table th .form-check {
-    margin: 0;
-    padding: 0; }
+.power-grid-table th .form-check, .power-grid-table td .form-check {
+  margin: 0; }
 .power-grid-table select.form-control.mb-1 {
   margin-bottom: 0 !important; }
+
+.swal-overlay .swal-title {
+  font-family: 'Poppins', sans-serif; }
+.swal-overlay .swal-text {
+  font-family: 'Inter', sans-serif; }
+.swal-overlay button.swal-button {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 100px; }
+
+.dropdown-menu .dropdown-item:hover * {
+  color: #ffffff !important; }
 
 /*# sourceMappingURL=style.css.map */
