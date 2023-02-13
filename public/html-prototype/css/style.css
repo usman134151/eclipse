@@ -200,6 +200,20 @@
   .btn-inactive:hover {
     color: #ffffff; }
 
+.btn-outline-primary {
+  border-color: #023DB0 !important; }
+  .btn-outline-primary.btn-has-icon.dropdown-toggle::after {
+    margin-left: 1em;
+    border-top: 0.5em solid #023DB0;
+    border-right: 0.5em solid transparent;
+    border-bottom: 0;
+    border-left: 0.5em solid transparent; }
+  .btn-outline-primary.btn-has-icon svg {
+    fill: #023DB0 !important; }
+
+.btn-outline-primary.btn-sm.btn-has-icon {
+  padding: 0.5125rem 1rem; }
+
 html, body {
   height: 100%; }
 
