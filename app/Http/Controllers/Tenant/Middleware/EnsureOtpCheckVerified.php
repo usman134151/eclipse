@@ -19,13 +19,20 @@ class EnsureOtpCheckVerified
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()) {
-            $user = Auth::user();
+            if (!$request->session()->has('optverified')) {
+                $user = Auth::user();
             // check if otp status verified for auth user
-            $isotpgeneratd = UserOtpVerification::where('otp_status', 'verified')->where('user_id', $user->id)->first();
+            $isotpgenerated = UserOtpVerification::where('otp_status', 'verified')->where('user_id', $user->id)->first();
 
-            if ($isotpgeneratd == null) {
+            if ($isotpgenerated == null) {
                 return redirect('otpverify');
             }
+            else{
+                //create session variable to make sure query is not running multiple times
+                $request->session()->put('optverified', '1');
+            }
+            }
+            
         }
         return $next($request);
     }
