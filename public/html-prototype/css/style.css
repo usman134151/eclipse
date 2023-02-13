@@ -215,7 +215,7 @@ select.form-control {
   .btn-outline-primary.btn-has-icon svg {
     fill: #023DB0 !important; }
 
-.btn-group-vertical > .btn .btn-outline-primary, .btn-group > .btn .btn-outline-primary {
+.btn-group-vertical > .btn.btn-outline-primary, .btn-group > .btn.btn-outline-primary {
   border-color: #023DB0 !important; }
 
 .btn-outline-primary.btn-sm.btn-has-icon {
