@@ -57,6 +57,12 @@
 	}
 }
 
+.btn-group-vertical>.btn, .btn-group>.btn {
+	.btn-outline-primary {
+		border-color: $actual_blue !important;
+	}
+}
+
 .btn-outline-primary.btn-sm {
 	&.btn-has-icon {
 		padding: 0.5125rem 1rem;
