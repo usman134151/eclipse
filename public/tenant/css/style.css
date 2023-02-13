@@ -785,4 +785,12 @@ small {
 .power-grid-table select.form-control.mb-1 {
   margin-bottom: 0 !important; }
 
+.swal-overlay .swal-title {
+  font-family: 'Poppins', sans-serif; }
+.swal-overlay .swal-text {
+  font-family: 'Inter', sans-serif; }
+.swal-overlay button.swal-button {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 100px; }
+
 /*# sourceMappingURL=style.css.map */
