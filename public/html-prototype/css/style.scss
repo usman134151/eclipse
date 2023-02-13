@@ -281,8 +281,13 @@ h1, h2, h3, h4, h5, h6 {
 		-o-transition: all 0.1s linear;  
 		transition: all 0.1s linear;
 	}
-	&:hover svg {
-		stroke: none;
+	&:hover {
+		svg {
+			stroke: none;
+		}
+		.form-control * {
+			color: #000;
+		}
 	}
 }
 
@@ -746,5 +751,8 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 			margin: 0;
 			padding: 0;
 		}
+	}
+	select.form-control.mb-1 {
+		margin-bottom: 0 !important;
 	}
 }
