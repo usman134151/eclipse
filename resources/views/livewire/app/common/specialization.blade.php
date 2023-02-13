@@ -19,7 +19,7 @@
                   <div class="card-body">
                       <div class="row">
                         <div class="col-md-12 mb-md-2">
-                          <div class="row">
+                          <div class="row mt-3">
                           <div class="col-md-3">
                             <h1>Specializations</h1>
                           </div>

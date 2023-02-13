@@ -18,14 +18,14 @@
                     <form class="form">
                       <div class="row">
                         <div class="col-md-12 mb-md-2">
-                          <div class="row">
+                          <div class="row mt-3">
                           <div class="col-md-3">
                             <h1>Industries</h1>
                           </div>
                           <div class="col-md-3 ms-auto text-end">
                             <a href="#" wire:click="showForm" class="btn btn-primary">Create</a>
                           </div>
-                          <p>Here you can set up "industries" by which to organize your customers and collect appropriate request details in step 2 on the service request form.</p>
+                          <p class="mt-3">Here you can set up "industries" by which to organize your customers and collect appropriate request details in step 2 on the service request form.</p>
                         </div>
                         </div>    
                         </div>

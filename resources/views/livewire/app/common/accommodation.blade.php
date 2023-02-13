@@ -15,7 +15,7 @@
                 <div class="card">
                   <div class="card-body">
                         <div class="page-title">
-                          <div class="row">
+                          <div class="row mt-3">
                           <div class="col-md-3">
                             <h1>Accommodations</h1>
                           </div>
@@ -23,7 +23,7 @@
                             <a href="javascript:void(0)" wire:click="showForm" class="btn btn-primary">Add Accommodation</a>
                           </div>
                           </div>
-                          <div class="row">
+                          <div class="row mt-4">
                             <div class="col-md-12">
                           <p>Create unique categories by which to group your more specific services. You can organize services by setting (Conference Interpreting, Medical Interpreting, Legal Interpreting...), by language modality (Spoken Languages, Signed Languages, Caption Services...), or however you see fit (Spanish Interpreting, French Interpreting, German Interpreting...).</p>
                         </div>
