@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.5rem 0 3rem !important; }
   .table.table-schedule tbody td .time-slot {
     padding: 0.5rem; }
-.table th, .table td {
+.table.table-fs-md th, .table.table-fs-md td {
   font-size: 0.8125rem; }
 
 .table tr.selected {
