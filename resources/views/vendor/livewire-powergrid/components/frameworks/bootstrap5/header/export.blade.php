@@ -1,5 +1,5 @@
 <div class="btn-group">
-    <button class="btn btn-outline-primary btn-sm dropdown-toggle"
+    <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false">
