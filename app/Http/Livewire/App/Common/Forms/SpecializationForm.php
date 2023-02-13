@@ -21,7 +21,8 @@ class SpecializationForm extends Component
     public function rules()
     {
         return [
-                'specialization.name' => 'required'    
+                'specialization.name' => 'required',
+                'specialization.description'=>'' 
             ];
     }
     public function showList($message="")
