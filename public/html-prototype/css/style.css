@@ -754,4 +754,11 @@ small {
 .text-sm {
   font-size: 0.8125rem; }
 
+.power-grid-table th {
+  color: #ffffff !important;
+  vertical-align: middle !important; }
+  .power-grid-table th .form-check {
+    margin: 0;
+    padding: 0; }
+
 /*# sourceMappingURL=style.css.map */

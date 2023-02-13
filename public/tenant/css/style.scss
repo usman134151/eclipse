@@ -737,3 +737,14 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 .text-sm {
 	font-size: 0.8125rem;
 }
+
+.power-grid-table {
+	th {
+		color: #ffffff !important;
+		vertical-align: middle !important;
+		.form-check {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
