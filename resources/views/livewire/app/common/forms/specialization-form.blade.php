@@ -33,7 +33,8 @@
                                 cols="10"
                                 rows="3"
                                 class="form-control"
-                                name="specialization-description"></textarea>
+                                name="specialization-description"
+                                wire:model="specialization.description"></textarea>
                               </div>
                             </div>   
                           </div>

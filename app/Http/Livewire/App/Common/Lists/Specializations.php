@@ -86,7 +86,9 @@ final class Specializations extends PowerGridComponent
     */
     public function addColumns(): PowerGridEloquent
     {
-        return PowerGrid::eloquent()->addColumn('status', function (Specialization $model) {
+        return PowerGrid::eloquent()
+        ->addColumn('name')
+        ->addColumn('status', function (Specialization $model) {
             return ($model->status);
           })
         ->addColumn('edit',function(Specialization $model){
@@ -157,9 +159,9 @@ final class Specializations extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', '0', '1')
-            ->toggleable(1, '1', '0'),
+            Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(1),
+            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
+            ->toggleable(1, 'Deactivated', 'Activated'),
             Column::make('Actions','edit')
         ]
 ;
@@ -185,10 +187,13 @@ final class Specializations extends PowerGridComponent
        
         
     }
-    public function deleteConfirmed(){
-        dd($this->deleteRecordId);
-    }
 
+    public function onUpdatedToggleable(string $id, string $field, string $value): void
+{
+    Specialization::query()->find($id)->update([
+        $field => $value,
+    ]);
+}
     /*
     |--------------------------------------------------------------------------
     | Actions Method
