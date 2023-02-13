@@ -757,3 +757,16 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 		margin-bottom: 0 !important;
 	}
 }
+
+.swal-overlay {
+	.swal-title {
+		font-family: 'Poppins', sans-serif;
+	}
+	.swal-text {
+		font-family: 'Inter', sans-serif;
+	}
+	button.swal-button {
+	    font-family: 'Poppins', sans-serif;
+	    border-radius: 100px;
+	}
+}
