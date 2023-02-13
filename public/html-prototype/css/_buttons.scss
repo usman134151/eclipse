@@ -58,7 +58,7 @@
 }
 
 .btn-group-vertical>.btn, .btn-group>.btn {
-	.btn-outline-primary {
+	&.btn-outline-primary {
 		border-color: $actual_blue !important;
 	}
 }
