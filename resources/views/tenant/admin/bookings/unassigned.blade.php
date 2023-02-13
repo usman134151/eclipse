@@ -3,7 +3,6 @@
 @section('content')
 
 <!-- BEGIN: Content-->
-  <p>livewire component</p>
-  @livewire('app.admin.bookings.unassigned')
+  @livewire('app.admin.bookings.unassigned', ['bookingType'=>$bookingType])
  <!-- End: Content-->
 @endsection

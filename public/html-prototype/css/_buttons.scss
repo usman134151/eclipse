@@ -9,10 +9,21 @@
 }
 
 .btn-sm {
-	padding: 0.25rem 1rem;
+	padding: 0.7rem 1rem;
+	line-height: 1;
+}
+
+.btn-xs {
+	padding: 0.482rem 1.125rem;
+	line-height: 1;
+	font-size: .8125rem;
+	&.btn-outline-dark {
+		padding: 0.432rem 1.125rem;
+	}
 }
 
 .btn-outline-dark {
+	border-width: 2px !important;
 	.fill-current {
 		fill: black;
 	}
@@ -20,4 +31,12 @@
 
 .btn-has-icon {
 	gap: 0.5rem;
+}
+
+.btn-inactive {
+	background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+	color: #ffffff;
+	&:hover {
+		color: #ffffff;
+	}
 }

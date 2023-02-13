@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin\Bookings;
+namespace App\Http\Livewire\App\Admin;
 
 use Livewire\Component;
 
-class PendingApproval extends Component
+class Quickbook extends Component
 {
     public $showForm;
-    public $bookingType;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.admin.bookings.pending-approval');
+        return view('livewire.app.admin.quickbook');
     }
 
     public function mount()
