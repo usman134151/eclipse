@@ -11,7 +11,7 @@
         $field = data_get($inputText, 'dataField') ?? data_get($inputText, 'field');
     @endphp
     @if(filled($inputText))
-        <div class="{{ $theme->baseClass }}" style="{{ $theme->baseStyle }}">
+        <div class="{{ $theme->baseClass }} d-flex gap-2" style="{{ $theme->baseStyle }}">
             <div class="relative">
                 <select class="power_grid {{ $theme->selectClass }} {{ data_get($column, 'headerClass') }}"
                         style="{{ data_get($column, 'headerStyle') }}"
@@ -22,7 +22,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="mt-1">
+            <div class="mt-0">
                 <input
                     data-id="{{ $field }}"
                     @if(isset($enabledFilters[$field]['disabled']) && boolval($enabledFilters[$field]['disabled']) === true) disabled @else
