@@ -3,7 +3,6 @@
 @section('content')
 
 <!-- BEGIN: Content-->
-  <p>livewire component</p>
-  @livewire('app.admin.bookings.past')
+  @livewire('app.admin.bookings.past', ['bookingType'=>$bookingType])
  <!-- End: Content-->
 @endsection

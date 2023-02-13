@@ -5,7 +5,7 @@ namespace App\Http\Livewire\App\Common;
 use Livewire\Component;
 use App\Models\Tenant\Specialization;
 
-class SpecializationComponent extends Component
+class Specializationmain extends Component
 {
     public $showForm;
     public $confirmationMessage;
