@@ -83,9 +83,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @livewireScripts
     @powerGridScripts
-    <?php /*
     <script src="//unpkg.com/alpinejs" defer></script>
-    */ ?>
     @stack('scripts')
   </body>
 </html>
