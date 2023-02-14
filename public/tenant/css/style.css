@@ -79,7 +79,8 @@
 .form-switch-column {
   display: flex;
   flex-direction: column;
-  padding: 0; }
+  padding: 0;
+  min-width: 4rem; }
   .form-switch-column .form-check-input {
     margin: 0 auto 0.25rem; }
   .form-switch-column .form-check-label {
@@ -795,5 +796,15 @@ small {
 
 .dropdown-menu .dropdown-item:hover * {
   color: #ffffff !important; }
+
+.switch-toggle-content {
+  height: 0;
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0; }
+  .switch-toggle-content.show-switch-toggle-content {
+    height: auto;
+    visibility: visible;
+    opacity: 1; }
 
 /*# sourceMappingURL=style.css.map */
