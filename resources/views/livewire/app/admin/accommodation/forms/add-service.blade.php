@@ -677,12 +677,13 @@
                    <div class="col-lg-12 mb-5">
                      <div class="d-lg-flex align-items-center mb-4 gap-3">
                        <div class="form-check form-switch form-switch-column mb-lg-0">
-                         <input class="form-check-input" type="checkbox" role="switch" id="" checked>
-                         <label class="form-check-label" for="">Enable</label>
-                       </div>
+                          <input class="form-check-input js-form-switch-toggle" type="checkbox" role="switch" id="AdditionalServiceCharges">
+                          <label class="form-check-label js-hidden-switch-toggle-content d-none" for="AdditionalServiceCharges">Enable</label>
+                          <label class="form-check-label js-hidden-switch-toggle-content" for="AdditionalServiceCharges">Disable</label>
+                        </div>
                        <h2 class="mb-lg-0">Additional Service Charges</h2>
                      </div>
-                     <div class="row">
+                     <div class="row js-hidden-switch-toggle-content switch-toggle-content">
                        <div class="col-lg-12">
                          <div class="border p-3">
                            <div class="row">
@@ -1033,12 +1034,13 @@
                    <div class="col-lg-12 mb-5">
                      <div class="d-lg-flex align-items-center mb-4 gap-3">
                        <div class="form-check form-switch form-switch-column mb-lg-0">
-                         <input class="form-check-input" type="checkbox" role="switch" id="" checked>
-                         <label class="form-check-label" for="">Enable</label>
+                         <input class="form-check-input js-form-switch-toggle" type="checkbox" role="switch" id="ExpeditedServices">
+                          <label class="form-check-label js-hidden-switch-toggle-content d-none" for="ExpeditedServices">Enable</label>
+                          <label class="form-check-label js-hidden-switch-toggle-content" for="ExpeditedServices">Disable</label>
                        </div>
                        <h2 class="mb-lg-0">Expedited Services</h2>
                      </div>
-                     <div class="row">
+                     <div class="row js-hidden-switch-toggle-content switch-toggle-content">
                        <div class="col-lg-12">
                          <div class="border p-3">
                            <div class="row">
@@ -1269,12 +1271,13 @@
                    <div class="col-lg-12 mb-5">
                      <div class="d-lg-flex align-items-center mb-4 gap-3">
                        <div class="form-check form-switch form-switch-column mb-lg-0">
-                         <input class="form-check-input" type="checkbox" role="switch" id="" checked>
-                         <label class="form-check-label" for="">Enable</label>
+                         <input class="form-check-input js-form-switch-toggle" type="checkbox" role="switch" id="SpecializationRates">
+                          <label class="form-check-label js-hidden-switch-toggle-content d-none" for="SpecializationRates">Enable</label>
+                          <label class="form-check-label js-hidden-switch-toggle-content" for="SpecializationRates">Disable</label>
                        </div>
                        <h2 class="mb-lg-0">Cancellations, Modifications & Rescheduling</h2>
                      </div>
-                     <div class="row">
+                     <div class="row js-hidden-switch-toggle-content switch-toggle-content">
                        <div class="col-lg-12">
                          <div class="border p-3">
                            <div class="row">
@@ -1557,12 +1560,13 @@
                    <div class="col-lg-12 mb-5">
                      <div class="d-lg-flex align-items-center mb-4 gap-3">
                        <div class="form-check form-switch form-switch-column mb-lg-0">
-                         <input class="form-check-input" type="checkbox" role="switch" id="" checked>
-                         <label class="form-check-label" for="">Enable</label>
+                         <input class="form-check-input js-form-switch-toggle" type="checkbox" role="switch" id="SpecializationRates">
+                          <label class="form-check-label js-hidden-switch-toggle-content d-none" for="SpecializationRates">Enable</label>
+                          <label class="form-check-label js-hidden-switch-toggle-content" for="SpecializationRates">Disable</label>
                        </div>
                        <h2 class="mb-lg-0">Specialization Rates</h2>
                      </div>
-                     <div class="row">
+                     <div class="row js-hidden-switch-toggle-content switch-toggle-content">
                        <div class="col-lg-12">
                          <div class="border p-3">
                            <div class="text-lg-end mb-4">
