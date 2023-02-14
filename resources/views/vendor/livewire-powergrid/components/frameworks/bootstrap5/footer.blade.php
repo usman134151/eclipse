@@ -6,7 +6,7 @@
                 @if(data_get($setUp, 'footer.perPage') && count(data_get($setUp, 'footer.perPageValues')) > 1)
                     <div class="d-flex flex-lg-row align-items-center">
                         <label class="w-auto">
-                            <select wire:model.lazy="setUp.footer.perPage" class="form-select">
+                            <select wire:model.lazy="setUp.footer.perPage" class="form-select form-select-sm">
                                 @foreach(data_get($setUp, 'footer.perPageValues') as $value)
                                     <option value="{{$value}}">
                                         @if($value == 0)
