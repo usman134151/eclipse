@@ -147,7 +147,7 @@
                                 <div class="col-lg-4">
                                     <h3>Duration:</h3>
                                     <label class="form-label-sm" for="Days"> Days</label>
-                                    <input class="form-control text-center" id="Days" name="DisplayToProviders" value="5" type="" tabindex="" />
+                                    <input class="form-control form-control-sm text-center w-25" id="Days" name="DisplayToProviders" value="5" type="" tabindex="" />
                                 </div>
                             </div>
                             <div class="col-lg-8">
