@@ -18,9 +18,10 @@
     <link rel="stylesheet" href="/tenant/css/components.css">
     <link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
     <link rel="stylesheet" href="/tenant/css/vertical-menu.css">
-    <link rel="stylesheet" href="/tenant/css/style.css">
+    <link rel="stylesheet" href="/tenant/css/daterangepicker.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
+    <link rel="stylesheet" href="/tenant/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
