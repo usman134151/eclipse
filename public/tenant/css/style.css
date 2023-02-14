@@ -166,6 +166,10 @@
 .multi-select-dropdown .options-container {
   max-height: 16rem; }
 
+select.form-control {
+  padding: .7625rem 3.25rem .7625rem .75rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='21' height='10' viewBox='0 0 21 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0.796875L10.3333 9.98199L20.6665 0.796875L0 0.796875Z' fill='%236E6B7B'/%3E%3C/svg%3E"); }
+
 .btn {
   transition: none;
   padding: 0.5rem 1.5rem;
@@ -199,6 +203,23 @@
   color: #ffffff; }
   .btn-inactive:hover {
     color: #ffffff; }
+
+.btn-outline-primary {
+  border-color: #023DB0 !important; }
+  .btn-outline-primary.btn-has-icon.dropdown-toggle::after {
+    margin-left: 1em;
+    border-top: 0.5em solid #023DB0;
+    border-right: 0.5em solid transparent;
+    border-bottom: 0;
+    border-left: 0.5em solid transparent; }
+  .btn-outline-primary.btn-has-icon svg {
+    fill: #023DB0 !important; }
+
+.btn-group-vertical > .btn.btn-outline-primary, .btn-group > .btn.btn-outline-primary {
+  border-color: #023DB0 !important; }
+
+.btn-outline-primary.btn-sm.btn-has-icon {
+  padding: 0.5125rem 1rem; }
 
 html, body {
   height: 100%; }
@@ -414,6 +435,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.1s linear; }
 .table-hover tbody tr:hover svg {
   stroke: none; }
+.table-hover tbody tr:hover .form-control * {
+  color: #000; }
 
 .btn.btn-hs-icon svg {
   width: 1rem; }
@@ -757,8 +780,20 @@ small {
 .power-grid-table th {
   color: #ffffff !important;
   vertical-align: middle !important; }
-  .power-grid-table th .form-check {
-    margin: 0;
-    padding: 0; }
+.power-grid-table th .form-check, .power-grid-table td .form-check {
+  margin: 0; }
+.power-grid-table select.form-control.mb-1 {
+  margin-bottom: 0 !important; }
+
+.swal-overlay .swal-title {
+  font-family: 'Poppins', sans-serif; }
+.swal-overlay .swal-text {
+  font-family: 'Inter', sans-serif; }
+.swal-overlay button.swal-button {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 100px; }
+
+.dropdown-menu .dropdown-item:hover * {
+  color: #ffffff !important; }
 
 /*# sourceMappingURL=style.css.map */

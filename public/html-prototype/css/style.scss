@@ -281,8 +281,13 @@ h1, h2, h3, h4, h5, h6 {
 		-o-transition: all 0.1s linear;  
 		transition: all 0.1s linear;
 	}
-	&:hover svg {
-		stroke: none;
+	&:hover {
+		svg {
+			stroke: none;
+		}
+		.form-control * {
+			color: #000;
+		}
 	}
 }
 
@@ -742,9 +747,30 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	th {
 		color: #ffffff !important;
 		vertical-align: middle !important;
+	}
+	th, td {
 		.form-check {
 			margin: 0;
-			padding: 0;
 		}
 	}
+	select.form-control.mb-1 {
+		margin-bottom: 0 !important;
+	}
+}
+
+.swal-overlay {
+	.swal-title {
+		font-family: 'Poppins', sans-serif;
+	}
+	.swal-text {
+		font-family: 'Inter', sans-serif;
+	}
+	button.swal-button {
+	    font-family: 'Poppins', sans-serif;
+	    border-radius: 100px;
+	}
+}
+
+.dropdown-menu .dropdown-item:hover * {
+    color: #ffffff !important;
 }
