@@ -48,7 +48,7 @@
 						<p>Here you can manage your providers' reimbursements for each assignment they work. Once approved, reimbursements will appear in the provider's
 payroll in "Remittances."</p>
                        <div class="col-12">
-						<div class="row gap-3">
+						<div class="row gap-3 bg-light p-3 mb-2">
 						<div class="col-3">
 							<label for="search" class="form-label fw-semibold">Search</label>
 							<div class="d-flex align-items-center gap-2">
@@ -75,18 +75,18 @@ payroll in "Remittances."</p>
 							</div>
 							<div class="col-3">
                             <label class="form-label fw-semibold">Data Range</label>
-                            <div class="d-grid grid-cols-3">
+                            <div class="d-grid grid-cols-3 gap-4">
                               <div class="form-check">
-                                <input class="form-check-input" id="inPerson" name="dateRangeGroup" type="radio" tabindex="" />
-                                <label class="form-check-label" for="inPerson">Booking</label>
+                                <input class="form-check-input" id="booking" name="dateRangeGroup" type="radio" tabindex="" />
+                                <label class="form-check-label" for="booking">Booking</label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" id="Virtual" name="dateRangeGroup" type="radio" tabindex="" />
-                                <label class="form-check-label" for="Virtual"> Issued</label>
+                                <input class="form-check-input" id="issued" name="dateRangeGroup" type="radio" tabindex="" />
+                                <label class="form-check-label" for="issued"> Issued</label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" id="Phone" name="dateRangeGroup" type="radio" tabindex="" />
-                                <label class="form-check-label" for="Phone">Paid</label>
+                                <input class="form-check-input" id="paid" name="dateRangeGroup" type="radio" tabindex="" />
+                                <label class="form-check-label" for="paid">Paid</label>
                               </div>
                             </div>
 							<div class="d-inline-flex align-items-center gap-4">
