@@ -161,7 +161,7 @@ window.addEventListener('swal:confirm', event => {
 /* Sweet Alert Dialogs End */
 
 
-$('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
+$(document).ready(function(){
     $('.js-form-switch-toggle').change(function(){
         if($(this).is(":checked")) {
             $(this).parent().parent().next('.js-hidden-switch-toggle-content').addClass("show-switch-toggle-content");
