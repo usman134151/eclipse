@@ -21,7 +21,7 @@
 		<div class="accordion" id="accordionManageUserAccess">
 		  <div class="accordion-item">
 			<div id="headingCompaniesCustomerAccess">
-			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseCompaniesCustomerAccess" aria-expanded="true" aria-controls="collapseCompaniesCustomerAccess">
+			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseCompaniesCustomerAccess" aria-expanded="false" aria-controls="collapseCompaniesCustomerAccess">
 				<div>Companies & Customer Access</div>
 				<a href="#" class="btn btn-primary rounded me-5">
 					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@
 				</a>
 			  </div>
 			</div>
-			<div id="collapseCompaniesCustomerAccess" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
+			<div id="collapseCompaniesCustomerAccess" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
@@ -267,7 +267,7 @@
 		  </div>
 		  <div class="accordion-item">
 			<div id="headingTeamsProvidersAccess">
-			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseTeamsProvidersAccess" aria-expanded="true" aria-controls="collapseTeamsProvidersAccess">
+			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseTeamsProvidersAccess" aria-expanded="false" aria-controls="collapseTeamsProvidersAccess">
 				<div>Teams & Providers Access</div>
 				<a href="#" class="btn btn-primary rounded me-5">
 					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -277,7 +277,7 @@
 				</a>
 			  </div>
 			</div>
-			<div id="collapseTeamsProvidersAccess" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
+			<div id="collapseTeamsProvidersAccess" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
@@ -513,7 +513,7 @@
 		  </div>
 		  <div class="accordion-item">
 			<div id="headingAccommodationServiceAccess">
-			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseAccommodationServiceAccess" aria-expanded="true" aria-controls="collapseAccommodationServiceAccess">
+			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseAccommodationServiceAccess" aria-expanded="false" aria-controls="collapseAccommodationServiceAccess">
 				<div>Accommodation & Service Access</div>
 				<a href="#" class="btn btn-primary rounded me-5">
 					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -523,7 +523,7 @@
 				</a>
 			  </div>
 			</div>
-			<div id="collapseAccommodationServiceAccess" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
+			<div id="collapseAccommodationServiceAccess" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
@@ -750,7 +750,7 @@
 		  </div>
 		  <div class="accordion-item">
 			<div id="headingIndustryAccess">
-			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseIndustryAccess" aria-expanded="true" aria-controls="collapseIndustryAccess">
+			  <div class="accordion-button justify-content-between" data-bs-toggle="collapse" data-bs-target="#collapseIndustryAccess" aria-expanded="false" aria-controls="collapseIndustryAccess">
 				<div>Industry Access</div>
 				<a href="#" class="btn btn-primary rounded me-5">
 					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -760,7 +760,7 @@
 				</a>
 			  </div>
 			</div>
-			<div id="collapseIndustryAccess" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
+			<div id="collapseIndustryAccess" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionManageUserAccess">
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
