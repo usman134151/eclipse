@@ -807,4 +807,23 @@ small {
     visibility: visible;
     opacity: 1; }
 
+.form-control.rounded {
+  border-radius: 100px !important; }
+
+.search-by-keyword .form-control,
+.search-by-no .form-control {
+  border-color: transparent;
+  background-color: #F8F8F8;
+  padding: 0.107rem 1rem 0.107rem 2.5rem;
+  font-size: 0.8125rem;
+  line-height: 1; }
+.search-by-keyword .icon-search-keyword-no,
+.search-by-no .icon-search-keyword-no {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  height: 15px;
+  margin: auto 0; }
+
 /*# sourceMappingURL=style.css.map */

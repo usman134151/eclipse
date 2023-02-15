@@ -2253,73 +2253,121 @@
                              <input class="form-check-input" id="AutoApproveTimeExtensions" name="RequestStartTimeforServices" type="checkbox" tabindex="">
                            </div>
                            <div class="form-check">
-                             <label class="form-check-label" for="EnableCloseOutStatuses">Enable Close-out Statuses</label>
-                             <input class="form-check-input show-hidden-content" id="EnableCloseOutStatuses" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                             <div class="hidden-content">
-                               <div class="d-flex flex-column gap-3 mt-3">
-                                 <div class="form-check">
-                                   <label class="form-check-label" for="EnableCloseOutStatusesCompleted">Completed</label>
-                                   <input class="form-check-input" id="EnableCloseOutStatusesCompleted" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                 </div>
-                                 <div class="form-check">
-                                   <label class="form-check-label" for="EnableCloseOutStatusesNoShow">No Show</label>
-                                   <input class="form-check-input show-hidden-content" id="EnableCloseOutStatusesNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                   <div class="hidden-content">
-                                     <div class="d-flex flex-column gap-3 mt-3">
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="SendToInvoiceGeneratorAsNormalNoShow">Send to Invoice Generator as Normal</label>
-                                         <input class="form-check-input" id="SendToInvoiceGeneratorAsNormalNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="BillServiceMinimumNoShow">Bill Service Minimum</label>
-                                         <input class="form-check-input" id="BillServiceMinimumNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="PayProviderServiceMinimumNoShow">Pay Provider Service Minimum</label>
-                                         <input class="form-check-input" id="PayProviderServiceMinimumNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="CancelBookingWithChargeNoShow">Cancel Booking with Charge</label>
-                                         <input class="form-check-input" id="CancelBookingWithChargeNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="CancelBookingWithoutChargeNoShow">Cancel Booking without Charge</label>
-                                         <input class="form-check-input" id="CancelBookingWithoutChargeNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div>
-                                 <div class="form-check">
-                                   <label class="form-check-label" for="EnableCloseOutStatusesCancelled">Cancelled</label>
-                                   <input class="form-check-input show-hidden-content" id="EnableCloseOutStatusesCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                   <div class="hidden-content">
-                                     <div class="d-flex flex-column gap-3 mt-3">
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="SendToInvoiceGeneratorAsNormalCancelled">Send to Invoice Generator as Normal</label>
-                                         <input class="form-check-input" id="SendToInvoiceGeneratorAsNormalCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="BillServiceMinimumCancelled">Bill Service Minimum</label>
-                                         <input class="form-check-input" id="BillServiceMinimumCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="PayProviderServiceMinimumCancelled">Pay Provider Service Minimum</label>
-                                         <input class="form-check-input" id="PayProviderServiceMinimumCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="CancelBookingWithChargeCancelled">Cancel Booking with Charge</label>
-                                         <input class="form-check-input" id="CancelBookingWithChargeCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                       <div class="form-check">
-                                         <label class="form-check-label" for="CancelBookingWithoutChargeCancelled">Cancel Booking without Charge</label>
-                                         <input class="form-check-input" id="CancelBookingWithoutChargeCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
+                              <label class="form-check-label" for="EnableCloseOutStatuses">Enable Close-out Statuses</label>
+                              <input class="form-check-input show-hidden-content" id="EnableCloseOutStatuses" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                              <div class="hidden-content">
+                                <div class="d-flex flex-column gap-3 mt-3">
+                                  <div class="form-check">
+                                    <label class="form-check-label" for="EnableCloseOutStatusesCompleted">Completed</label>
+                                    <input class="form-check-input" id="EnableCloseOutStatusesCompleted" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label" for="EnableCloseOutStatusesNoShow">No Show</label>
+                                    <input class="form-check-input show-hidden-content" id="EnableCloseOutStatusesNoShow" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                    <div class="hidden-content">
+                                      <div class="d-flex flex-column gap-3 my-3">
+                                        <label class="form-label-sm mb-0">Billing:</label>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="ProcessAsNormalNoShowBilling">Process as Normal</label>
+                                          <input class="form-check-input" id="ProcessAsNormalNoShowBilling" name="EnableCloseoutStatusesNoShowBillingBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="BillServiceMinimumNoShowBilling">Bill Service Minimum</label>
+                                          <input class="form-check-input" id="BillServiceMinimumNoShowBilling" name="EnableCloseoutStatusesNoShowBillingBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="PayProviderServiceMinimumNoShowBilling">Pay Provider Service Minimum</label>
+                                          <input class="form-check-input" id="PayProviderServiceMinimumNoShowBilling" name="EnableCloseoutStatusesNoShowBillingBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithChargeNoShowBilling">Cancel Booking with Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithChargeNoShowBilling" name="EnableCloseoutStatusesNoShowBillingBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithoutChargeNoShowBilling">Cancel Booking without Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithoutChargeNoShowBilling" name="EnableCloseoutStatusesNoShowBilling" type="radio" tabindex="">
+                                        </div>
+                                      </div>
+                                      <div class="d-flex flex-column gap-3 my-3">
+                                        <label class="form-label-sm mb-0">Payment:</label>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="ProcessAsNormalNoShowPayment">Process as Normal</label>
+                                          <input class="form-check-input" id="ProcessAsNormalNoShowPayment" name="EnableCloseoutStatusesNoShowPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="BillServiceMinimumNoShowPayment">Bill Service Minimum</label>
+                                          <input class="form-check-input" id="BillServiceMinimumNoShowPayment" name="EnableCloseoutStatusesNoShowPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="PayProviderServiceMinimumNoShowPayment">Pay Provider Service Minimum</label>
+                                          <input class="form-check-input" id="PayProviderServiceMinimumNoShowPayment" name="EnableCloseoutStatusesNoShowPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithChargeNoShowPayment">Cancel Booking with Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithChargeNoShowPayment" name="EnableCloseoutStatusesNoShowPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithoutChargeNoShowPayment">Cancel Booking without Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithoutChargeNoShowPayment" name="EnableCloseoutStatusesNoShowPayment" type="radio" tabindex="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label" for="EnableCloseOutStatusesCancelled">Cancelled</label>
+                                    <input class="form-check-input show-hidden-content" id="EnableCloseOutStatusesCancelled" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                    <div class="hidden-content">
+                                      <div class="d-flex flex-column gap-3 my-3">
+                                        <label class="form-label-sm mb-0">Billing:</label>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="ProcessAsNormalCancelledBilling">Process as Normal</label>
+                                          <input class="form-check-input" id="ProcessAsNormalCancelledBilling" name="EnableCloseoutStatusesCancelledBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="BillServiceMinimumCancelledBilling">Bill Service Minimum</label>
+                                          <input class="form-check-input" id="BillServiceMinimumCancelledBilling" name="EnableCloseoutStatusesCancelledBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="PayProviderServiceMinimumCancelledBilling">Pay Provider Service Minimum</label>
+                                          <input class="form-check-input" id="PayProviderServiceMinimumCancelledBilling" name="EnableCloseoutStatusesCancelledBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithChargeCancelledBilling">Cancel Booking with Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithChargeCancelledBilling" name="EnableCloseoutStatusesCancelledBilling" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithoutChargeCancelledBilling">Cancel Booking without Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithoutChargeCancelledBilling" name="EnableCloseoutStatusesCancelledBilling" type="radio" tabindex="">
+                                        </div>
+                                      </div>
+                                      <div class="d-flex flex-column gap-3 my-3">
+                                        <label class="form-label-sm mb-0">Payment:</label>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="ProcessAsNormalCancelledPayment">Process as Normal</label>
+                                          <input class="form-check-input" id="ProcessAsNormalCancelledPayment" name="EnableCloseoutStatusesCancelledPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="BillServiceMinimumCancelledPayment">Bill Service Minimum</label>
+                                          <input class="form-check-input" id="BillServiceMinimumCancelledPayment" name="EnableCloseoutStatusesCancelledPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="PayProviderServiceMinimumCancelledPayment">Pay Provider Service Minimum</label>
+                                          <input class="form-check-input" id="PayProviderServiceMinimumCancelledPayment" name="EnableCloseoutStatusesCancelledPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithChargeCancelledPayment">Cancel Booking with Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithChargeCancelledPayment" name="EnableCloseoutStatusesCancelledPayment" type="radio" tabindex="">
+                                        </div>
+                                        <div class="form-check">
+                                          <label class="form-check-label" for="CancelBookingWithoutChargeCancelledPayment">Cancel Booking without Charge</label>
+                                          <input class="form-check-input" id="CancelBookingWithoutChargeCancelledBilling" name="EnableCloseoutStatusesCancelledPayment" type="radio" tabindex="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                          </div>
                        </div>
                      </div><!-- /Authorize & Close-Out Procedure -->
@@ -2566,18 +2614,3 @@
    </div>
    <!-- End: Content-->
 </div>
-<script type="text/javascript">
-  $(document).ready(function(){
-      $('.js-form-switch-toggle').change(function(){
-          if($(this).is(":checked")) {
-              $(this).parent().parent().next('.js-hidden-switch-toggle-content').addClass("show-switch-toggle-content");
-              $(this).next('.js-hidden-switch-toggle-content').removeClass("d-none");
-              $(this).next().next('.js-hidden-switch-toggle-content').addClass("d-none");
-          } else {
-              $(this).parent().parent().next('.js-hidden-switch-toggle-content').removeClass("show-switch-toggle-content");
-              $(this).next('.js-hidden-switch-toggle-content').addClass("d-none");
-              $(this).next().next('.js-hidden-switch-toggle-content').removeClass("d-none");
-          }
-      });
-  });
-</script>
