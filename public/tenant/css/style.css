@@ -835,4 +835,11 @@ small {
   height: 15px;
   margin: auto 0; }
 
+.has-map {
+  position: relative; }
+  .has-map .map {
+    position: absolute;
+    right: 3rem;
+    bottom: 0; }
+
 /*# sourceMappingURL=style.css.map */
