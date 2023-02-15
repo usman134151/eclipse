@@ -79,7 +79,8 @@
 .form-switch-column {
   display: flex;
   flex-direction: column;
-  padding: 0; }
+  padding: 0;
+  min-width: 4rem; }
   .form-switch-column .form-check-input {
     margin: 0 auto 0.25rem; }
   .form-switch-column .form-check-label {
@@ -795,5 +796,34 @@ small {
 
 .dropdown-menu .dropdown-item:hover * {
   color: #ffffff !important; }
+
+.switch-toggle-content {
+  height: 0;
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0; }
+  .switch-toggle-content.show-switch-toggle-content {
+    height: auto;
+    visibility: visible;
+    opacity: 1; }
+
+.form-control.rounded {
+  border-radius: 100px !important; }
+
+.search-by-keyword .form-control,
+.search-by-no .form-control {
+  border-color: transparent;
+  background-color: #F8F8F8;
+  padding: 0.107rem 1rem 0.107rem 2.5rem;
+  font-size: 0.8125rem;
+  line-height: 1; }
+.search-by-keyword .icon-search-keyword-no,
+.search-by-no .icon-search-keyword-no {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  height: 15px;
+  margin: auto 0; }
 
 /*# sourceMappingURL=style.css.map */
