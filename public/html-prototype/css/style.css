@@ -817,6 +817,9 @@ small {
   padding: 0.107rem 1rem 0.107rem 2.5rem;
   font-size: 0.8125rem;
   line-height: 1; }
+  .search-by-keyword .form-control:focus,
+  .search-by-no .form-control:focus {
+    border-color: #0A1E46; }
 .search-by-keyword .icon-search-keyword-no,
 .search-by-no .icon-search-keyword-no {
   position: absolute;
