@@ -120,13 +120,40 @@
       <div class="d-inline-flex align-items-center gap-4">
         <button type="button" class="btn btn-outline-dark rounded">Clear all</button>
       </div>
+      <div class="row ">
+        <div class="d-inline-flex justify-content-end ">
+          <div class="d-inline-flex align-items-center gap-4 ms-4">
+              <a href="#" type="button" class="btn btn-outline-dark rounded">Today</a>
+            </div>
+
+            <div class="d-inline-flex align-items-center gap-4 mx-2">
+              <a href="#" type="button" class="btn btn-outline-dark rounded">Upcoming</a>
+            </div>
+
+            <div class="d-inline-flex align-items-center gap-4 mx-2">
+              <a href="#" type="button" class="btn btn-primary btn-outline-dark rounded">Unassigned</a>
+            </div>
+
+            <div class="d-inline-flex align-items-center gap-4 mx-2">
+              <a href="#" type="button" class="btn btn-outline-dark rounded">Previous</a>
+            </div>
+
+            <div class="d-inline-flex align-items-center gap-4 mx-2">
+              <a href="#" type="button" class="btn btn-outline-dark rounded">Cancelled</a>
+            </div>
+          </div>
+      </div>
+      
       <!-- Begin : show button on conditional basis -->
       <!-- <div class="d-inline-flex align-items-center ms-auto text-end gap-4">
         <button type="button" class="btn btn btn-primary rounded">Calendar Sync</button>
         </div> -->
       <!-- End : show button on conditional basis -->
+    
     </div>
+    @livewire('app.common.assignments-list-dashboard')
   </div>
+ 
   <div>
     <img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
   </div>
