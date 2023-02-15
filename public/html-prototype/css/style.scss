@@ -822,3 +822,13 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 		margin: auto 0;
 	}
 }
+
+
+.has-map {
+	position: relative;
+	.map {
+		position: absolute;
+		right: 3rem;
+		bottom: 0;
+	}
+}
