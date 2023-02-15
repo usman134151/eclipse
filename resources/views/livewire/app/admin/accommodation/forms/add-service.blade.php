@@ -2566,3 +2566,18 @@
    </div>
    <!-- End: Content-->
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.js-form-switch-toggle').change(function(){
+          if($(this).is(":checked")) {
+              $(this).parent().parent().next('.js-hidden-switch-toggle-content').addClass("show-switch-toggle-content");
+              $(this).next('.js-hidden-switch-toggle-content').removeClass("d-none");
+              $(this).next().next('.js-hidden-switch-toggle-content').addClass("d-none");
+          } else {
+              $(this).parent().parent().next('.js-hidden-switch-toggle-content').removeClass("show-switch-toggle-content");
+              $(this).next('.js-hidden-switch-toggle-content').addClass("d-none");
+              $(this).next().next('.js-hidden-switch-toggle-content').removeClass("d-none");
+          }
+      });
+  });
+</script>
