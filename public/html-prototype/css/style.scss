@@ -801,6 +801,9 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 		padding: 0.107rem 1rem 0.107rem 2.5rem;
 		font-size: 0.8125rem;
 		line-height: 1;
+		&:focus {
+			border-color: $primary;
+		}
 	}
 	.icon-search-keyword-no {
 		position: absolute;
