@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin\Staff;
+namespace App\Http\Livewire\App\Admin\Team;
 
 use Livewire\Component;
 
-class TeamMembers extends Component
+class SystemPermissions extends Component
 {
 	public $showForm;
 	protected $listeners = ['showList'=>'resetForm'];
@@ -24,6 +24,6 @@ class TeamMembers extends Component
 
 	public function render()
 	{
-		return view('livewire.app.admin.staff.team-members');
+		return view('livewire.app.admin.team.system-permissions');
 	}
 }

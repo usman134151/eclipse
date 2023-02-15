@@ -9,6 +9,14 @@ class AdminStaff extends Component
 	public $showForm;
 	protected $listeners = ['showList' => 'resetForm', 'delete'];
 
+	public function mount()
+	{}
+
+	public function render()
+	{
+		return view('livewire.app.admin.staff.admin-staff');
+	}
+
 	function showForm()
 	{
 		$this->showForm=true;
@@ -44,13 +52,5 @@ class AdminStaff extends Component
 			'title' => 'Team Deleted Successfully!',
 			'text' => 'This is a sweet alert!',
 		]);
-	}
-
-	public function mount()
-	{}
-
-	public function render()
-	{
-		return view('livewire.app.admin.staff.admin-staff');
 	}
 }

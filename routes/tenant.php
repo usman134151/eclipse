@@ -66,6 +66,7 @@ Route::group([
         Route::view('/admin/customer/create', 'tenant/common/customer', ["showForm"=>true]);
         Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
         Route::view('/admin/company/create', 'tenant/admin/company', ["showForm"=>true]);
+        Route::view('/admin/company/{id}', 'tenant/admin/company', ["showForm"=>false])->where('id', '.*');
         Route::view('/admin/deactivated-customer', 'tenant/admin/deactivated-customer', ["showForm"=>false]);
         Route::view('/admin/draft-invoices', 'tenant/admin/draft-invoices', ["showForm"=>false]);
         Route::view('/admin/customer-invoices', 'tenant/admin/customer-invoices', ["showForm"=>false]);
@@ -79,6 +80,10 @@ Route::group([
         // Admin Staff Routes
         Route::view('/admin/admin-staff', 'tenant/admin/staff/admin-staff', ["showForm"=>false]);
         Route::view('/admin/admin-staff/create', 'tenant/admin/staff/admin-staff', ["showForm"=>true]);
+        Route::view('/admin/admin-team', 'tenant/admin/team/admin-team', ["showForm"=>false]);
+        Route::view('/admin/admin-team/create', 'tenant/admin/team/admin-team', ["showForm"=>true]);
+        Route::view('/admin/role-permission', 'tenant/admin/role-permission', ["showForm"=>false]);
+        Route::view('/admin/role-permission/create', 'tenant/admin/role-permission', ["showForm"=>true]);
         Route::view('/admin/deactivated-admin-staff', 'tenant/admin/staff/deactivated-admin-staff', ["showForm"=>true]);
         // End of Admin Staff Routes
 

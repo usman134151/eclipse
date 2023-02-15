@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin\Staff;
+namespace App\Http\Livewire\App\Admin;
 
 use Livewire\Component;
 
-class SystemPermissions extends Component
+class RolePermission extends Component
 {
 	public $showForm;
-	protected $listeners = ['showList'=>'resetForm'];
+	protected $listeners = ['showList' => 'resetForm'];
 
 	function showForm()
 	{
@@ -21,9 +21,9 @@ class SystemPermissions extends Component
 
 	public function mount()
 	{}
-
+	
 	public function render()
 	{
-		return view('livewire.app.admin.staff.system-permissions');
+		return view('livewire.app.admin.role-permission');
 	}
 }
