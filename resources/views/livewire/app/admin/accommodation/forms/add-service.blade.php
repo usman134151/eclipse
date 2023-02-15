@@ -1271,9 +1271,9 @@
                    <div class="col-lg-12 mb-5">
                      <div class="d-lg-flex align-items-center mb-4 gap-3">
                        <div class="form-check form-switch form-switch-column mb-lg-0">
-                         <input class="form-check-input js-form-switch-toggle" type="checkbox" role="switch" id="SpecializationRates">
-                          <label class="form-check-label js-hidden-switch-toggle-content d-none" for="SpecializationRates">Enable</label>
-                          <label class="form-check-label js-hidden-switch-toggle-content" for="SpecializationRates">Disable</label>
+                         <input class="form-check-input js-form-switch-toggle" type="checkbox" role="switch" id="CancellationsModifications&Rescheduling">
+                          <label class="form-check-label js-hidden-switch-toggle-content d-none" for="CancellationsModifications&Rescheduling">Enable</label>
+                          <label class="form-check-label js-hidden-switch-toggle-content" for="CancellationsModifications&Rescheduling">Disable</label>
                        </div>
                        <h2 class="mb-lg-0">Cancellations, Modifications & Rescheduling</h2>
                      </div>
@@ -2566,3 +2566,18 @@
    </div>
    <!-- End: Content-->
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.js-form-switch-toggle').change(function(){
+          if($(this).is(":checked")) {
+              $(this).parent().parent().next('.js-hidden-switch-toggle-content').addClass("show-switch-toggle-content");
+              $(this).next('.js-hidden-switch-toggle-content').removeClass("d-none");
+              $(this).next().next('.js-hidden-switch-toggle-content').addClass("d-none");
+          } else {
+              $(this).parent().parent().next('.js-hidden-switch-toggle-content').removeClass("show-switch-toggle-content");
+              $(this).next('.js-hidden-switch-toggle-content').addClass("d-none");
+              $(this).next().next('.js-hidden-switch-toggle-content').removeClass("d-none");
+          }
+      });
+  });
+</script>
