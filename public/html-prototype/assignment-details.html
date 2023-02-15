@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment Details - Eclipse Scheduling</title>
+    <link rel="stylesheet" href="css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="css/chosen.min.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/bootstrap-extended.css">
+    <link rel="stylesheet" href="css/vertical-menu.css">
+    <link rel="stylesheet" href="css/daterangepicker.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <!-- END: Head-->
+  <!-- BEGIN: Body-->
+  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+          <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+              <div class="col-12">
+                <h1 class="content-header-title float-start mb-0">Assignment Details</h1>
+                <div class="breadcrumb-wrapper">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="">
+                      Home
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="javascript:void(0)">
+                      Assignments
+                      </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      Assignment Details
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-body">
+          <div class="card">
+            <div class="card-body">
+              <!-- BEGIN: Assignment Booking Form -->
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="booking-details-tab" data-bs-toggle="tab" data-bs-target="#booking-details" type="button" role="tab" aria-controls="booking-details" aria-selected="true">Booking Details</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="assigned-providers-tab" data-bs-toggle="tab" data-bs-target="#assigned-providers" type="button" role="tab" aria-controls="assigned-providers" aria-selected="false">Assigned Providers</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="attachments-tab" data-bs-toggle="tab" data-bs-target="#attachments" type="button" role="tab" aria-controls="attachments" aria-selected="false">Attachments</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="payment-details-tab" data-bs-toggle="tab" data-bs-target="#payment-details" type="button" role="tab" aria-controls="payment-details" aria-selected="false">Payment Details</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="assignment-log-tab" data-bs-toggle="tab" data-bs-target="#assignment-log" type="button" role="tab" aria-controls="assignment-log" aria-selected="false">Assignment Log</button>
+                </li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
+                  <div class="p-4 border border-dark rounded bg-lighter mb-4">
+                    <div class="row">
+                      <div class="col-lg col-12 mb-4">
+                        <div class="mb-4">
+                          <label class="form-label text-primary">Booking Title</label>
+                          <div class="font-family-tertiary value">Language Interpreter</div>
+                        </div>
+                        <div>
+                          <label class="form-label text-primary">Days Pending</label>
+                          <div class="font-family-tertiary value">05 Days</div>
+                        </div>
+                      </div>
+                      <div class="col-lg col-12 mb-4">
+                        <div class="mb-4">
+                          <label class="form-label text-primary">Days Until Service</label>
+                          <div class="font-family-tertiary value">10 Days</div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-center">
+                          <label class="col-form-label text-primary mb-lg-0">Status:</label>
+                          <div>
+                            <select class="form-select form-select-sm">
+                              <option>Pending</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg col-12 mb-4">
+                        <div class="mb-4">
+                          <label class="form-label text-primary">Providers</label>
+                          <div class="d-flex flex-column gap-1">
+                            <div class="font-family-tertiary value">Total Assigned: 03</div>
+                            <div class="font-family-tertiary value">Total Requested: 07</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg col-12 mb-4">
+                        <div class="mb-4">
+                          <label class="form-label text-primary">Pending Details</label>
+                          <div class="d-flex flex-column gap-1">
+                            <div class="font-family-tertiary value">Requests from Users</div>
+                            <div class="font-family-tertiary value">Attachments Missing</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg col-12 mb-4">
+                        <div class="row mb-3">
+                          <div class="col-lg-5">
+                            <label class="form-label-sm">
+                                Broadcast
+                            </label>
+                          </div>
+                          <div class="col-lg-7">
+                            <div class="form-check form-switch js-form-switch-toggle form-switch-column">
+                              <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast">
+                              <label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyBroadcast">Auto-notify</label>
+                              <label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyBroadcast">Manual-assign</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-5">
+                            <label class="form-label-sm">
+                                Assign
+                            </label>
+                          </div>
+                          <div class="col-lg-7">
+                            <div class="form-check form-switch js-form-switch-toggle form-switch-column">
+                              <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
+                              <label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyAssign">Auto-notify</label>
+                              <label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyAssign">Manual-assign</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex gap-3 justify-content-center">
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
+                              <path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
+                            </svg>
+                            Message Providers
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.3431 12.0072C9.26471 12.0072 8.3415 11.6232 7.57353 10.8552C6.80556 10.0873 6.42157 9.16406 6.42157 8.08563C6.42157 7.0072 6.80556 6.084 7.57353 5.31602C8.3415 4.54805 9.26471 4.16406 10.3431 4.16406C11.4216 4.16406 12.3448 4.54805 13.1127 5.31602C13.8807 6.084 14.2647 7.0072 14.2647 8.08563C14.2647 9.16406 13.8807 10.0873 13.1127 10.8552C12.3448 11.6232 11.4216 12.0072 10.3431 12.0072ZM2.5 19.8503V17.1052C2.5 16.566 2.63889 16.0595 2.91667 15.5856C3.19444 15.1118 3.57843 14.7523 4.06863 14.5072C4.90196 14.0824 5.8415 13.7229 6.88725 13.4288C7.93301 13.1347 9.08497 12.9876 10.3431 12.9876H10.6863C10.7843 12.9876 10.8824 13.0039 10.9804 13.0366C10.8497 13.3307 10.7392 13.6373 10.649 13.9562C10.5595 14.2745 10.4902 14.6052 10.4412 14.9484H10.3431C9.18301 14.9484 8.14118 15.0954 7.21765 15.3896C6.29477 15.6837 5.53922 15.9778 4.95098 16.2719C4.80392 16.3536 4.68562 16.468 4.59608 16.615C4.50588 16.7621 4.46078 16.9255 4.46078 17.1052V17.8896H10.6373C10.7353 18.2327 10.866 18.5719 11.0294 18.9072C11.1928 19.2418 11.3725 19.5562 11.5686 19.8503H2.5ZM16.2255 20.8307L15.9314 19.3601C15.7353 19.2784 15.5513 19.1928 15.3794 19.1033C15.2082 19.0131 15.0327 18.9026 14.8529 18.7719L13.4314 19.2131L12.451 17.5464L13.5784 16.566C13.5458 16.3373 13.5294 16.1248 13.5294 15.9288C13.5294 15.7327 13.5458 15.5203 13.5784 15.2915L12.451 14.3111L13.4314 12.6445L14.8529 13.0856C15.0327 12.9549 15.2082 12.8445 15.3794 12.7543C15.5513 12.6647 15.7353 12.5791 15.9314 12.4974L16.2255 11.0268H18.1863L18.4804 12.4974C18.6765 12.5791 18.8605 12.669 19.0324 12.767C19.2036 12.865 19.3791 12.9876 19.5588 13.1347L20.9804 12.6445L21.9608 14.3601L20.8333 15.3405C20.866 15.5366 20.8824 15.7409 20.8824 15.9533C20.8824 16.1657 20.866 16.3699 20.8333 16.566L21.9608 17.5464L20.9804 19.2131L19.5588 18.7719C19.3791 18.9026 19.2036 19.0131 19.0324 19.1033C18.8605 19.1928 18.6765 19.2784 18.4804 19.3601L18.1863 20.8307H16.2255ZM17.2059 17.8896C17.7451 17.8896 18.2069 17.6977 18.5912 17.3141C18.9748 16.9297 19.1667 16.468 19.1667 15.9288C19.1667 15.3896 18.9748 14.9278 18.5912 14.5435C18.2069 14.1598 17.7451 13.968 17.2059 13.968C16.6667 13.968 16.2052 14.1598 15.8216 14.5435C15.4373 14.9278 15.2451 15.3896 15.2451 15.9288C15.2451 16.468 15.4373 16.9297 15.8216 17.3141C16.2052 17.6977 16.6667 17.8896 17.2059 17.8896ZM10.3431 10.0464C10.8824 10.0464 11.3441 9.85426 11.7284 9.46994C12.1121 9.08628 12.3039 8.62485 12.3039 8.08563C12.3039 7.54642 12.1121 7.08498 11.7284 6.70132C11.3441 6.317 10.8824 6.12485 10.3431 6.12485C9.80392 6.12485 9.34248 6.317 8.95882 6.70132C8.57451 7.08498 8.38235 7.54642 8.38235 8.08563C8.38235 8.62485 8.57451 9.08628 8.95882 9.46994C9.34248 9.85426 9.80392 10.0464 10.3431 10.0464Z" fill="white"/>
+                            </svg>
+                            Manage Providers
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M8.93739 10.2322C11.394 10.2322 13.3855 8.24071 13.3855 5.78407C13.3855 3.32744 11.394 1.33594 8.93739 1.33594C6.48076 1.33594 4.48926 3.32744 4.48926 5.78407C4.48926 8.24071 6.48076 10.2322 8.93739 10.2322Z" stroke="white" stroke-width="2"/>
+                              <path d="M13.3855 19.1316H2.94663C2.69432 19.1317 2.44488 19.0781 2.21487 18.9744C1.98486 18.8707 1.77953 18.7192 1.61253 18.5301C1.44552 18.3409 1.32065 18.1185 1.2462 17.8774C1.17176 17.6363 1.14944 17.3821 1.18072 17.1318L1.52768 14.3526C1.60836 13.7069 1.92215 13.1129 2.41004 12.6824C2.89793 12.2519 3.5263 12.0144 4.17699 12.0146H4.48925M15.1648 11.125V16.4628M12.4959 13.7939H17.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Invite Providers
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M8.93739 10.2322C11.394 10.2322 13.3855 8.24071 13.3855 5.78407C13.3855 3.32744 11.394 1.33594 8.93739 1.33594C6.48076 1.33594 4.48926 3.32744 4.48926 5.78407C4.48926 8.24071 6.48076 10.2322 8.93739 10.2322Z" stroke="white" stroke-width="2"/>
+                              <path d="M13.3855 19.1316H2.94663C2.69432 19.1317 2.44488 19.0781 2.21487 18.9744C1.98486 18.8707 1.77953 18.7192 1.61253 18.5301C1.44552 18.3409 1.32065 18.1185 1.2462 17.8774C1.17176 17.6363 1.14944 17.3821 1.18072 17.1318L1.52768 14.3526C1.60836 13.7069 1.92215 13.1129 2.41004 12.6824C2.89793 12.2519 3.5263 12.0144 4.17699 12.0146H4.48925M15.1648 11.125V16.4628M12.4959 13.7939H17.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            View Assigned Admin-staff
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex gap-3 justify-content-center">
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
+                              <path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
+                            </svg>
+                            Message Requester
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.9 18.9969H13.3C14.3479 18.9969 15.2 18.1447 15.2 17.0969V5.69688C15.2 4.64903 14.3479 3.79688 13.3 3.79688H1.9C0.85215 3.79688 0 4.64903 0 5.69688V17.0969C0 18.1447 0.85215 18.9969 1.9 18.9969ZM1.9 5.69688H13.3L13.3019 17.0969H1.9V5.69688Z" fill="url(#paint0_linear_8523_15770)"/>
+                              <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="url(#paint1_linear_8523_15770)"/>
+                              <defs>
+                              <linearGradient id="paint0_linear_8523_15770" x1="7.6" y1="3.79687" x2="13.6982" y2="3.79687" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#213969"/>
+                              <stop offset="1" stop-color="#204387"/>
+                              </linearGradient>
+                              <linearGradient id="paint1_linear_8523_15770" x1="12.3502" y1="0" x2="17.6861" y2="0" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#213969"/>
+                              <stop offset="1" stop-color="#204387"/>
+                              </linearGradient>
+                              </defs>
+                            </svg>
+                            Duplicate
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="white"/>
+                            </svg>
+                            Reschedule
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18.9767 1.02282C18.3217 0.367918 17.4334 0 16.5071 0C15.5809 0 14.6925 0.367918 14.0376 1.02282L1.68403 13.3774C1.32366 13.7376 1.07508 14.1943 0.968237 14.6924L0.0159878 19.1354C-0.00912444 19.2521 -0.00459501 19.3732 0.0291622 19.4877C0.0629195 19.6022 0.124828 19.7064 0.209233 19.7908C0.293637 19.8752 0.397846 19.9371 0.512339 19.9708C0.626832 20.0046 0.747959 20.0091 0.864654 19.984L5.30801 19.0318C5.80596 18.9249 6.26241 18.6763 6.62244 18.3161L18.9774 5.96223C19.6322 5.30722 20 4.419 20 3.49288C20 2.56676 19.6322 1.67854 18.9774 1.02353L18.9767 1.02282ZM15.0477 2.03284C15.4377 1.66036 15.958 1.45529 16.4973 1.46148C17.0366 1.46767 17.5521 1.68464 17.9334 2.06597C18.3148 2.44731 18.5318 2.96273 18.538 3.50198C18.5442 4.04123 18.3391 4.5615 17.9666 4.95149L17.3236 5.59508L14.4047 2.67643L15.0477 2.03284ZM13.3946 3.68717L16.3135 6.6051L5.61304 17.3061C5.44747 17.4716 5.2376 17.5857 5.00869 17.6347L1.64331 18.3561L2.36482 14.9917C2.41382 14.7629 2.52793 14.553 2.69343 14.3874L13.3932 3.68717H13.3946Z" fill="white"/>
+                            </svg>
+                            Edit
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10 0C4.48615 0 0 4.48615 0 10C0 15.5138 4.48615 20 10 20C15.5138 20 20 15.5138 20 10C20 4.48615 15.5138 0 10 0ZM10 1.53846C14.6823 1.53846 18.4615 5.31769 18.4615 10C18.4615 14.6823 14.6823 18.4615 10 18.4615C5.31769 18.4615 1.53846 14.6823 1.53846 10C1.53846 5.31769 5.31769 1.53846 10 1.53846ZM7.09231 5.98462L5.98462 7.09231L8.89538 10L5.98615 12.9077L7.09385 14.0154L10 11.1054L12.9077 14.0131L14.0154 12.9077L11.1054 10L14.0131 7.09231L12.9077 5.98462L10 8.89538L7.09231 5.98615V5.98462Z" fill="white"/>
+                            </svg>
+                            Cancel
+                          </a>
+                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 20L4 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 14H3.17L2.58 14.59L2 15.17V2H18V14ZM9 10H11V12H9V10ZM9 4H11V8H9V4Z" fill="white"/>
+                            </svg>
+                            Review Feedback
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Requester Detail -->
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                          <h2 class="mb-lg-0">Requester Detail </h2>
+                          <div class="d-flex gap-3">
+                            <div>
+                              <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
+                              type="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                                <span>
+                                  <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
+                                  </svg>
+                                </span>
+                              </button>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                              <input type="" name="" class="form-control" placeholder="Enter Email">
+                              <button class="btn btn-primary px-4 rounded">Send</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Assignment No:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">101929</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Booking Title:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Language Interpreter</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Start Time:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">10/25/2022 4:20 PM</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">End Time:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">10/25/2022 8:20 PM</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Duration:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">4 Hours 0 Minutes</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Frequency:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">One Time</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Industry:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Information Technology</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Company:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Software Agency</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Requester:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">
+                                  <a href="#">Mr.Ali Ahmed</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Supervisor:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">
+                                  <a href="#">Mr.Ali Ahmed</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Billing Manager:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">
+                                  <a href="#">Mr.Ali Ahmed</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Point of contact:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">
+                                  Mr.Ali Ahmed
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Phone Number:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">(923) 023-9683</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Requester Detail -->
+                    <!-- Service 1 -->
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                          <h2 class="mb-lg-0">Service 1</h2>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Accommodation:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Spoken Language Interpreting Services</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Service:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">English to French Interpreting</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Specialization:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Legal</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Service Type:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Virtual</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Number of Providers:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">10</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Service Consumer:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">
+                                  <a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> , <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Participants:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">
+                                  <a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> , <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Service 1 -->
+                    <!-- Service 1 Meeting Detail -->
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                          <h2 class="mb-lg-0">Service 1 Meeting Detail</h2>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Meeting Name:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="d-flex align-items-center gap-2">
+                                  <div class="font-family-tertiary">Spoken Language Interpreting Services</div>
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Meeting Link:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="d-flex align-items-center gap-2">
+                                  <div class="font-family-tertiary text-primary">https://meet.google.com/xxxxxxxx</div>                                  
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Meeting Phone Number:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">(923) 023-9683</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Meeting Passcode:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">********</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Status:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Active</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Created:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">10/15/2022 12:20 PM</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Service 1 Meeting Detail -->
+                    <!-- Service 2 Meeting Detail -->
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                          <h2 class="mb-lg-0">Service 2 Meeting Detail</h2>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Location:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="d-flex align-items-center gap-2">
+                                  <div class="font-family-tertiary">Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA</div>
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">City:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                  <div class="font-family-tertiary text-primary">City Name</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">State:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">State Name</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Zip Code:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">129839</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Arrival Notes::</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Active</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Service 2 Meeting Detail -->
+                    <!-- Service Form Detail -->
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                          <h2 class="mb-lg-0">Service Form Detail</h2>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">First Name:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="d-flex align-items-center gap-2">
+                                  <div class="font-family-tertiary">Thomas</div>
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Last Name:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                  <div class="d-flex align-items-center gap-2">
+                                  <div class="font-family-tertiary">Charles</div>
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Phone Number:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                  <div class="d-flex align-items-center gap-2">
+                                  <div class="font-family-tertiary">(923) 023-9683</div>
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+                                    </svg>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-5">
+                                <label class="col-form-label">Severity:</label>
+                              </div>
+                              <div class="col-lg-7 align-self-center">
+                                <div class="font-family-tertiary">Active</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Service Form Detail -->
+                    <!-- Industry Form Detail -->
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <div class="d-lg-flex justify-content-between align-items-center mb-5">
+                          <h2 class="mb-lg-0">Industry Form Detail</h2>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-8 mb-3">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="row">
+                                  <div class="col-lg-3">
+                                    <label class="col-form-label">Req_info:</label>
+                                  </div>
+                                  <div class="col-lg-9">
+                                    <a href="">View Uploaded Document</a>
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+                                    <p class="font-family-secondary"><small>File Name</small></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Industry Form Detail -->
+                    <!-- Notes -->
+                    <div class="row mb-4">
+                      <div class="col-lg-12">
+                        <h2 class="mb-lg-4">Notes</h2>
+                        <div class="row mb-4">
+                          <div class="col-lg-6 mb-4">
+                            <!-- Provider Notes -->
+                            <div class="">
+                              <label class="form-label">
+                                Provider Notes
+                              </label>
+                              <textarea class="form-control" rows="4" cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                            </div>
+                            <!-- /Provider Notes -->
+                          </div>
+                          <div class="col-lg-6 mb-4">
+                            <!-- Customer Notes -->
+                            <div class="">
+                              <label class="form-label">
+                                Customer Notes
+                              </label>
+                              <textarea class="form-control" rows="4" cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                            </div>
+                            <!-- /Customer Notes -->
+                          </div>
+                          <div class="col-lg-6 mb-4">
+                            <!-- Private Notes -->
+                            <div class="">
+                              <label class="form-label">
+                                Private Notes
+                              </label>
+                              <textarea class="form-control" rows="4" cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                            </div>
+                            <!-- /Private Notes -->
+                          </div>
+                          <div class="col-lg-6 mb-4">
+                            <!-- Tags -->
+                            <div class="">
+                              <label class="form-label">
+                                Tags
+                              </label>
+                              <select x-cloak="" id="select">
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                                <option value="4">Option 4</option>
+                                <option value="5">Option 5</option>
+                              </select>
+
+                              <div x-data="dropdown()" x-init="loadOptions()" class="form-control multi-select-dropdown mb-2">
+                                <input name="values" type="hidden" x-bind:value="selectedValues()" value="">
+                                <div class="inline-block position-relative w-100">
+                                  <div class="d-flex flex-column align-items-center position-relative">
+                                    <div x-on:click="open" class="w-100">
+                                      <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-auto flex-wrap gap-2">
+                                          <template x-for="(option,index) in selected" :key="options[option].value">
+                                            <div class="d-flex justify-content-center align-items-center py-1 px-1 bg-white rounded border">
+                                              <div class="text-xs font-normal leading-none max-w-full flex-initial x-model=" options[option]="" x-text="options[option].text"></div>
+                                              <div class="d-flex flex-auto flex-row-reverse">
+                                                <div class="btn btn-hs-icon p-0" x-on:click.stop="remove(index,option)">
+                                                  <svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
+                                                    <path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0 c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183 l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15 C14.817,13.62,14.817,14.38,14.348,14.849z"></path>
+                                                  </svg>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </template>
+                                          <div x-show="selected.length == 0" class="flex-1">
+                                            <input placeholder="Select a option" class="form-control border-0 p-0" x-bind:value="selectedValues()">
+                                          </div>
+                                        </div>
+                                        <div class="svelte-1l8159u d-flex align-items-center">
+
+                                          <button type="button" x-show="isOpen() === true" x-on:click="open" class="btn btn-hs-icon p-0" style="display: none;">
+                                            <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                                              <path d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83 c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z "></path>
+                                            </svg>
+
+                                          </button>
+                                          <button type="button" x-show="isOpen() === false" @click="close" class="btn btn-hs-icon p-0">
+                                            <svg version="1.1" class="fill-current h-4 w-4" viewBox="0 0 20 20">
+                                              <path d="M17.418,6.109c0.272-0.268,0.709-0.268,0.979,0s0.271,0.701,0,0.969l-7.908,7.83 c-0.27,0.268-0.707,0.268-0.979,0l-7.908-7.83c-0.27-0.268-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.979,0L10,13.25 L17.418,6.109z"></path>
+                                            </svg>
+
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="w-100 px-0">
+                                      <div x-show.transition.origin.top="isOpen()" class="position-absolute shadow top-100 bg-white z-40 w-100 left-0 rounded max-h-select" x-on:click.away="close" style="display: none;">
+                                        <div class="d-flex flex-column w-100 overflow-y-auto options-container">
+                                          <template x-for="(option,index) in options" :key="option" class="overflow-auto">
+                                            <div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+                                              <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
+                                                  <div x-show="option.selected">
+                                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                                    </svg>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </template><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+                                              <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 1</div>
+                                                  <div x-show="option.selected" style="display: none;">
+                                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                                    </svg>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+                                              <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 2</div>
+                                                  <div x-show="option.selected" style="display: none;">
+                                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                                    </svg>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+                                              <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 3</div>
+                                                  <div x-show="option.selected" style="display: none;">
+                                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                                    </svg>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+                                              <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 4</div>
+                                                  <div x-show="option.selected" style="display: none;">
+                                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                                    </svg>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+                                              <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+                                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                                  <div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 5</div>
+                                                  <div x-show="option.selected" style="display: none;">
+                                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                                      <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+                                                    </svg>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="d-lg-flex flex-wrap gap-3 mb-3">
+                                <div class="tag">@admin_company</div>
+                                <div class="tag">@booking_start_at</div>
+                                <div class="tag">@consumer</div>
+                                <div class="tag">@booking_end_at</div>
+                                <div class="tag">@booking_duration</div>
+                              </div>
+                              <div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" id="Requester" name="" type="checkbox" tabindex="">
+                                  <label class="form-check-label" for="Requester">Requester</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" id="ServiceConsumers" name="" type="checkbox" tabindex="">
+                                  <label class="form-check-label" for="ServiceConsumers">Service Consumer(s)</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" id="Participants" name="" type="checkbox" tabindex="">
+                                  <label class="form-check-label" for="Participants">Participant(s)</label>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- /Tags -->
+                          </div>
+                          <div class="col-lg-12">
+                            <a href="#" class="btn btn-primary rounded">Save Notes</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- /Notes -->
+                  </div>
+                  <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                    <button type="" class="btn btn-outline-dark rounded">Cancel</button>
+                    <button type="" class="btn btn-primary rounded">Next</button>
+                  </div>
+                </div><!-- END: booking-details-tab -->
+                <div class="tab-pane fade" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
+                </div><!-- END: assigned-providers-tab -->
+                <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
+                </div><!-- END: attachments-tab -->
+                <div class="tab-pane fade" id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
+                </div><!-- END: payment-details-tab -->
+                <div class="tab-pane fade" id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
+                </div><!-- END: assignment-log-tab -->
+              </div>
+              <!-- END: Assignment Booking Form -->    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End: Content-->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-light  footer-static">
+      <p class="clearfix mb-0">
+        <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
+        <a class="ms-25" href="" target="_blank">Eclipse Scheduling</a>,
+        <span class="d-none d-sm-inline-block">All rights Reserved</span>
+        </span>
+      </p>
+    </footer>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/daterangepicker.min.js"></script>
+    <script src="js/unison-js.min.js"></script>
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script src="js/feather-icons.min.js"></script>
+    <script src="js/chosen.jquery.min.js"></script>
+    <script src="js/app-menu.js"></script>
+    <script src="js/app-new.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
