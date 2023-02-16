@@ -35,16 +35,16 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                       <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link" :class="{ 'active': tab === 'customer-info' }" @click.prevent="tab = 'customer-info'; window.location.hash = 'customer-info'" id="customer-info-tab" role="tab" aria-controls="customer-info" aria-selected="true"><span class="number">1</span>Customer Info</a>
+                        <a href="#" class="nav-link" :class="{ 'active': tab === 'customer-info' }" @click.prevent="tab = 'customer-info'; window.location.hash = 'customer-info'" id="customer-info-tab" role="tab" aria-controls="customer-info" aria-selected="true" tabindex="0"><span class="number">1</span>Customer Info</a>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }" @click.prevent="tab = 'permission-configurations'; window.location.hash = 'permission-configurations'" id="permission-configurations-tab" role="tab" aria-controls="permission-configurations" aria-selected="false"><span class="number">2</span>Permission Configurations</a>
+                        <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }" @click.prevent="tab = 'permission-configurations'; window.location.hash = 'permission-configurations'" id="permission-configurations-tab" role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0"><span class="number">2</span>Permission Configurations</a>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'; window.location.hash = 'service-catalog'" id="service-catalog-tab" role="tab" aria-controls="service-catalog" aria-selected="false"><span class="number">3</span> Service Catalog</a>
+                        <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'; window.location.hash = 'service-catalog'" id="service-catalog-tab" role="tab" aria-controls="service-catalog" aria-selected="false" tabindex="0"><span class="number">3</span> Service Catalog</a>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'; window.location.hash = 'drive-documents'" id="drive-documents-tab" role="tab" aria-controls="drive-documents" aria-selected="false"><span class="number">4</span> Drive Documents</a>
+                        <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'; window.location.hash = 'drive-documents'" id="drive-documents-tab" role="tab" aria-controls="drive-documents" aria-selected="false" tabindex="0"><span class="number">4</span> Drive Documents</a>
                       </li>
                     </ul>
                     <!-- Tab panes -->
@@ -104,7 +104,7 @@
                                <div class="col-md-6 col-12">
                                 <div class="mb-4">
                                 <div class="d-flex justify-content-between align-items-center">
-                                <label class="form-label">Department</label>
+                                <label for="department-column" class="form-label">Department</label>
                                 <a href="#" class="fw-bold">
                                   <small>
                                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -315,9 +315,9 @@
               
                                <!-- Service Consumer Introduction Media -->
                               <div class="col-md-6 col-12 mb-4">
-                                <label for="formFile"
+                                <label for="file"
                                   class="form-label">Service Consumer Introduction Media</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="file">
                               </div>
   
                                <!-- Default Billing Address -->
