@@ -32,7 +32,7 @@
                       </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="remittances" class="table table-hover" aria-label="Provider Teams">
+                        <table class="table table-hover" aria-label="Provider Teams">
                           <thead>
                               <tr role="row">                                      
                                   <th scope="col">Team Name</th>
