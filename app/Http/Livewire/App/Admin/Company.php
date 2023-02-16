@@ -6,27 +6,32 @@ use Livewire\Component;
 
 class Company extends Component
 {
-    public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+	public $showForm;
+	public $showProfile;
 
-    public function render()
-    {
-        return view('livewire.app.admin.company');
-    }
+	protected $listeners = ['showList' => 'resetForm'];
 
-    public function mount()
-    {
-       
-       
-    }
+	public function render()
+	{
+		return view('livewire.app.admin.company');
+	}
 
-    function showForm()
-    {     
-       $this->showForm=true;
-    }
-    public function resetForm()
-    {
-        $this->showForm=false;
-    }
+	public function mount()
+	{}
 
+	function showForm()
+	{
+		$this->showForm=true;
+	}
+
+	public function resetForm()
+	{
+		$this->showForm=false;
+		$this->showProfile = false;
+	}
+
+	public function showProfile()
+	{
+		$this->showProfile = true;
+	}
 }
