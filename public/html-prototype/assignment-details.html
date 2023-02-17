@@ -25,7 +25,7 @@
   </head>
   <!-- END: Head-->
   <!-- BEGIN: Body-->
-  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
     <!-- BEGIN: Content-->
     <div class="app-content content ">
       <div class="content-wrapper container-xxl p-0">
@@ -120,7 +120,7 @@
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">
-                <div class="tab-pane fade active show" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
+                <div class="tab-pane fade" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
                   <div class="p-4 border border-dark rounded bg-lighter mb-4">
                     <div class="row">
                       <div class="col-lg col-12 mb-4">
@@ -199,7 +199,7 @@
                     <div class="row">
                       <div class="col-lg-12">
                         <div class="d-lg-flex gap-3 justify-content-center">
-                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                          <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
                               <path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
@@ -264,7 +264,7 @@
                             </svg>
                             Reschedule
                           </a>
-                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                          <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#UnassignModal">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M18.9767 1.02282C18.3217 0.367918 17.4334 0 16.5071 0C15.5809 0 14.6925 0.367918 14.0376 1.02282L1.68403 13.3774C1.32366 13.7376 1.07508 14.1943 0.968237 14.6924L0.0159878 19.1354C-0.00912444 19.2521 -0.00459501 19.3732 0.0291622 19.4877C0.0629195 19.6022 0.124828 19.7064 0.209233 19.7908C0.293637 19.8752 0.397846 19.9371 0.512339 19.9708C0.626832 20.0046 0.747959 20.0091 0.864654 19.984L5.30801 19.0318C5.80596 18.9249 6.26241 18.6763 6.62244 18.3161L18.9774 5.96223C19.6322 5.30722 20 4.419 20 3.49288C20 2.56676 19.6322 1.67854 18.9774 1.02353L18.9767 1.02282ZM15.0477 2.03284C15.4377 1.66036 15.958 1.45529 16.4973 1.46148C17.0366 1.46767 17.5521 1.68464 17.9334 2.06597C18.3148 2.44731 18.5318 2.96273 18.538 3.50198C18.5442 4.04123 18.3391 4.5615 17.9666 4.95149L17.3236 5.59508L14.4047 2.67643L15.0477 2.03284ZM13.3946 3.68717L16.3135 6.6051L5.61304 17.3061C5.44747 17.4716 5.2376 17.5857 5.00869 17.6347L1.64331 18.3561L2.36482 14.9917C2.41382 14.7629 2.52793 14.553 2.69343 14.3874L13.3932 3.68717H13.3946Z" fill="white"/>
                             </svg>
@@ -550,7 +550,7 @@
                               <div class="col-lg-7 align-self-center">
                                 <div class="d-flex align-items-center gap-2">
                                   <div class="font-family-tertiary">Spoken Language Interpreting Services</div>
-                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#MeetingLinksModal">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                                     </svg>
@@ -991,13 +991,13 @@
                     <button type="" class="btn btn-primary rounded">Next</button>
                   </div>
                 </div><!-- END: booking-details-tab -->
-                <div class="tab-pane fade" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
+                <div class="tab-pane fade active show" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
                   <!-- Service 1 Assigned Providers -->
                   <div class="mb-5">
                     <div class="d-lg-flex align-items-center justify-content-between mb-4">
                     <h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
                     <div class="d-flex gap-3">
-                      <a href="" class="btn btn-has-icon btn-outline-dark rounded">
+                      <a class="btn btn-has-icon btn-outline-dark rounded" @click="offcanvasOpen = true">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M9.99995 9.64514C10.8594 9.64629 11.7 9.39247 12.4152 8.9158C13.1304 8.43913 13.6881 7.76102 14.0178 6.96728C14.3476 6.17354 14.4344 5.29983 14.2674 4.45671C14.1005 3.61359 13.6872 2.83894 13.0798 2.23077C12.4725 1.62261 11.6984 1.20826 10.8555 1.04016C10.0126 0.872052 9.13876 0.957746 8.34457 1.28639C7.55039 1.61504 6.87154 2.17188 6.39391 2.88644C5.91627 3.60101 5.66133 4.44119 5.66133 5.30069C5.66133 6.4519 6.11824 7.55605 6.93173 8.37062C7.74521 9.18519 8.84874 9.64359 9.99995 9.64514ZM10.0006 2.4618C10.5614 2.46078 11.1099 2.62621 11.5766 2.93714C12.0434 3.24808 12.4073 3.69053 12.6224 4.20847C12.8375 4.7264 12.8941 5.29652 12.7849 5.84662C12.6758 6.39671 12.4058 6.90204 12.0092 7.2986C11.6127 7.69516 11.1073 7.96512 10.5573 8.07428C10.0072 8.18343 9.43704 8.12689 8.9191 7.9118C8.40117 7.69671 7.95871 7.33275 7.64778 6.86601C7.33684 6.39928 7.17141 5.85077 7.17244 5.28995C7.17381 4.5403 7.47222 3.82175 8.0023 3.29166C8.53238 2.76158 9.25093 2.46318 10.0006 2.4618Z" fill="url(#paint0_linear_8558_41723)" stroke="url(#paint1_linear_8558_41723)" stroke-width="0.4"/>
                           <path d="M15.6953 11.8235C13.9915 10.7504 12.0149 10.1901 10.0014 10.2094C8.52715 10.1724 7.06288 10.4608 5.71279 11.0541C4.36161 11.6478 3.15807 12.5324 2.18797 13.6446L2.18772 13.6444L2.18071 13.6535C2.07992 13.7833 2.02422 13.9424 2.02205 14.1068L2.02203 14.1068V14.1094V17.7126C2.01395 18.0672 2.14632 18.4107 2.39036 18.6681L2.53552 18.5306L2.39036 18.6681C2.635 18.9262 2.97192 19.0769 3.32738 19.0871L3.32737 19.0872H3.33314H10.2165H10.6823L10.3615 18.7495L9.30592 17.6384L9.24763 17.577L9.16301 17.5761L3.53314 17.5171V14.3955C4.36079 13.5426 5.35356 12.8667 6.45116 12.4094C7.57328 11.9418 8.78042 11.7129 9.99581 11.7372L9.99581 11.7373L10.0025 11.7372C11.6671 11.7148 13.3055 12.1531 14.7365 13.0036L14.8781 13.0877L14.9878 12.965L15.7378 12.1261L15.8955 11.9497L15.6953 11.8235Z" fill="url(#paint2_linear_8558_41723)" stroke="url(#paint3_linear_8558_41723)" stroke-width="0.4"/>
@@ -1046,47 +1046,47 @@
                     </div>
                     </div>
                     <div class="mb-4">
-                    <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span>
-                        <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
-                        </svg>
-                      </span>
-                    </button>
+                      <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>
+                          <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
+                          </svg>
+                        </span>
+                      </button>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
-                    <div class="d-inline-flex align-items-center gap-4">
                       <div class="d-inline-flex align-items-center gap-4">
-                        <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                        <select class="form-select form-select-sm" id="show_records_number">
-                          <option>10</option>
-                          <option>15</option>
-                          <option>20</option>
-                          <option>25</option>
-                        </select>
-                      </div>
-                      <div class="d-flex gap-4 align-items-center">
-                        <div class="form-check form-switch mb-lg-0">
-                          <input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked>
-                          <label class="form-check-label" for="autoNotify">Auto-notify</label>
+                        <div class="d-inline-flex align-items-center gap-4">
+                          <label for="show_records_number" class="form-label-sm mb-0">Show</label>
+                          <select class="form-select form-select-sm" id="show_records_number">
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                          </select>
                         </div>
-                        <div class="form-check form-switch mb-lg-0">
-                          <input class="form-check-input" type="checkbox" role="switch" id="autoNotify">
-                          <label class="form-check-label" for="autoNotify">Auto-Assign</label>
+                        <div class="d-flex gap-4 align-items-center">
+                          <div class="form-check form-switch mb-lg-0">
+                            <input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked>
+                            <label class="form-check-label" for="autoNotify">Auto-notify</label>
+                          </div>
+                          <div class="form-check form-switch mb-lg-0">
+                            <input class="form-check-input" type="checkbox" role="switch" id="autoNotify">
+                            <label class="form-check-label" for="autoNotify">Auto-Assign</label>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="d-inline-flex align-items-center gap-4">
-                      <label for="search" class="form-label-sm mb-0">Search</label>
-                      <input type="search" class="form-control form-control-sm" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-                    </div>
+                      <div class="d-inline-flex align-items-center gap-4">
+                        <label for="search" class="form-label-sm mb-0">Search</label>
+                        <input type="search" class="form-control form-control-sm" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+                      </div>
                     </div>
                     <!-- Hoverable rows start -->
                     <div class="row" id="table-hover-row">
                     <div class="col-12">
                       <div class="card">
                         <div class="table-responsive">
-                          <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+                          <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                             <thead>
                               <tr role="row">
                                 <th scope="col" class="text-center">
@@ -1531,7 +1531,7 @@
                     <div class="col-12">
                       <div class="card">
                         <div class="table-responsive">
-                          <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+                          <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                             <thead>
                               <tr role="row">
                                 <th scope="col" class="text-center">
@@ -1890,7 +1890,8 @@
                 <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
                   <h2>Attachments</h2>
                   <div class="col-lg-8 mb-4">
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
+                      <a href="#" @click="offcanvasOpen = true" class="position-absolute w-100 h-100 d-block"></a>
                       <label for="AddDocuments" class="form-label">Add Documents</label>
                       <input class="form-control" type="file" id="AddDocuments">
                     </div>
@@ -2060,7 +2061,7 @@
                       <div class="col-12">
                         <div class="card">
                           <div class="table-responsive">
-                            <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+                            <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                               <thead>
                                 <tr role="row">
                                   <th scope="col" class="text-center">
@@ -2298,7 +2299,7 @@
                       <div class="col-12">
                         <div class="card">
                           <div class="table-responsive">
-                            <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+                            <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                               <thead>
                                 <tr role="row">
                                   <th scope="col" class="text-center">
@@ -2702,7 +2703,7 @@
                       <div class="col-12">
                         <div class="card">
                           <div class="table-responsive">
-                            <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+                            <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
                               <thead>
                                 <tr role="row">
                                   <th scope="col" class="text-center">#</th>
@@ -2829,8 +2830,1083 @@
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
+    <!-- BEGIN: Panel/Offcanvas - Add Document -->
+    <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
+      <div class="offcanvas-header">
+        <h2 class="offcanvas-title" id="offcanvasRightLabel">Add Document</h2>
+        <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="col-lg-8 mb-4">
+              <label class="form-label" for="document-title">
+              Document Title 
+              </label>
+              <input
+                type="text"
+                id="document-title"
+                class="form-control"
+                name="document-title"
+                placeholder="Enter Document Title"
+                required
+                aria-required="true"
+                />
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label" for="notes-column">
+              Note
+              </label>
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder=""
+                name="notesColumn"
+                id="notes-column"
+                ></textarea>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label" or="set_set_date">Upload File</label>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="row">
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.35 23.4921L9.702 35.2381H33.35L40 23.4921H16.35ZM11.73 2.54302L0 23.3237L6.744 35.2342L18.476 14.4535L11.73 2.54302ZM38.89 21.5344L26.698 0H13.208L25.384 21.5344H38.89Z" fill="url(#paint0_linear_2957_105057)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2957_105057" x1="20" y1="0" x2="36.0479" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#213969"/>
+                            <stop offset="1" stop-color="#204387"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Company Drive </p>
+                    </a>
+                  </div>
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.35 23.4921L9.702 35.2381H33.35L40 23.4921H16.35ZM11.73 2.54302L0 23.3237L6.744 35.2342L18.476 14.4535L11.73 2.54302ZM38.89 21.5344L26.698 0H13.208L25.384 21.5344H38.89Z" fill="url(#paint0_linear_2957_105057)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2957_105057" x1="20" y1="0" x2="36.0479" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#213969"/>
+                            <stop offset="1" stop-color="#204387"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Google Drive </p>
+                    </a>
+                  </div>
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32.0833 1.1498e-06H25.5208C25.3274 1.1498e-06 25.142 0.076824 25.0052 0.213569C24.8685 0.350315 24.7917 0.535781 24.7917 0.729168V8.75C24.7917 9.13678 24.638 9.50771 24.3645 9.7812C24.091 10.0547 23.7201 10.2083 23.3333 10.2083H11.7214C11.3429 10.2143 10.9763 10.0765 10.6955 9.82281C10.4147 9.56906 10.2406 9.21824 10.2083 8.84115C10.1959 8.64211 10.2244 8.44263 10.292 8.25504C10.3597 8.06745 10.4652 7.89573 10.6019 7.75051C10.7385 7.60528 10.9036 7.48964 11.0867 7.41072C11.2699 7.3318 11.4672 7.29128 11.6667 7.29167H21.875V0.729168C21.875 0.535781 21.7982 0.350315 21.6614 0.213569C21.5247 0.076824 21.3392 1.1498e-06 21.1458 1.1498e-06H10.8099C10.427 -0.000339916 10.0478 0.0752001 9.69421 0.222257C9.34065 0.369313 9.01973 0.584972 8.75 0.856772L0.856772 8.75C0.584972 9.01973 0.369313 9.34065 0.222257 9.69421C0.0752001 10.0478 -0.000339916 10.427 1.1498e-06 10.8099V32.0833C1.1498e-06 32.8569 0.307292 33.5987 0.854273 34.1457C1.40125 34.6927 2.14312 35 2.91667 35H32.0833C32.8569 35 33.5987 34.6927 34.1457 34.1457C34.6927 33.5987 35 32.8569 35 32.0833V2.91667C35 2.14312 34.6927 1.40125 34.1457 0.854273C33.5987 0.307292 32.8569 1.1498e-06 32.0833 1.1498e-06ZM17.5 26.25C16.4905 26.25 15.5037 25.9506 14.6643 25.3898C13.8249 24.8289 13.1707 24.0318 12.7844 23.0991C12.398 22.1665 12.297 21.1402 12.4939 20.1501C12.6909 19.16 13.177 18.2505 13.8908 17.5366C14.6046 16.8228 15.5141 16.3367 16.5042 16.1397C17.4943 15.9428 18.5206 16.0439 19.4533 16.4302C20.3859 16.8165 21.1831 17.4707 21.744 18.3101C22.3048 19.1495 22.6042 20.1363 22.6042 21.1458C22.5994 22.4981 22.0601 23.7935 21.1039 24.7497C20.1477 25.7059 18.8522 26.2452 17.5 26.25Z" fill="url(#paint0_linear_2957_105064)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2957_105064" x1="17.5" y1="0" x2="31.5419" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#213969"/>
+                            <stop offset="1" stop-color="#204387"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Disk</p>
+                    </a>
+                  </div>
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="42" height="35" viewBox="0 0 42 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.6185 6.57682L10.3093 13.1536L20.6185 19.7305L10.3093 26.3073L0 19.6944L10.3093 13.1176L0 6.57682L10.3093 0L20.6185 6.57682ZM10.2552 28.4232L20.567 21.8464L30.8763 28.4232L20.567 35L10.2552 28.4232ZM20.6185 19.697L30.9278 13.1176L20.6185 6.57682L30.8763 0L41.1856 6.57682L30.8763 13.1536L41.1856 19.7305L30.8763 26.3073L20.6185 19.6944V19.697Z" fill="url(#paint0_linear_7724_170911)"/>
+                        <defs>
+                        <linearGradient id="paint0_linear_7724_170911" x1="20.5928" y1="0" x2="37.1163" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#213969"/>
+                        <stop offset="1" stop-color="#204387"/>
+                        </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Dropbox</p>
+                    </a>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="form-check">
+                <input class="form-check-input" id="AttachtoProviderConfirmation" name="" type="checkbox" tabindex="">
+                <label class="form-check-label" for="AttachtoProviderConfirmation">Attach to Provider Confirmation</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" id="AttachtoCustomerConfirmation" name="" type="checkbox" tabindex="">
+                <label class="form-check-label" for="AttachtoCustomerConfirmation">Attach to Customer Confirmation</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" id="RequestfromUser" name="" type="checkbox" tabindex="">
+                <label class="form-check-label" for="RequestfromUser">Request from User</label>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label">Who would you like to request this information from?</label>
+              <select class="form-select">
+                <option>Select</option>
+              </select>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="d-flex flex-column gap-4">
+                <div>
+                  <label class="form-label">When should they first be notified?</label>
+                  <div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedNow" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedNow">Now</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedLater" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedLater">Later</label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label-sm">Notify</label>
+                  <div class="d-flex gap-2">
+                    <input type="" name="" class="form-control form-control-sm text-center w-25" value="2">
+                    <label class="form-label mb-0">
+                      Day(s)
+                    </label>
+                  </div>
+                  <div><label class="form-label-sm">before the service start-time</label></div>
+                </div>
+                <div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="RepeatNotification" checked>
+                    <label class="form-check-label" for="RepeatNotification">Repeat Notification</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="d-flex flex-column gap-4">
+                <div>
+                  <label class="form-label">How often should they be notified?</label>
+                  <div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="HowoftenshouldtheybenotifiedTime" name="" type="radio" tabindex="">
+                      <label class="form-check-label" for="HowoftenshouldtheybenotifiedTime">Time(s)</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="HowoftenshouldtheybenotifiedEveryDay" name="" type="radio" tabindex="" checked>
+                      <label class="form-check-label" for="HowoftenshouldtheybenotifiedEveryDay">(*) Every ___ Days</label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <input type="" name="" class="form-control form-control-sm text-center w-25" value="10">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label">Message to User</label>
+              <textarea class="form-control" rows="5" cols="5"></textarea>
+            </div>
+          </div>
+          <div class="col-lg-12 justify-content-center gap-2 d-flex mt-5 form-actions">
+            <!-- ....cancel/next (buttons)... -->
+            <a
+              href="javascript:void(0);"
+              class="btn btn-outline-dark rounded"
+              role="button"
+              >
+            Cancel</a>
+            <button type="submit" class="btn btn-primary rounded">Upload</button>
+          </div>
+        </div>
+        <!-- main row end ...  -->
+      </div>
+    </div>
+    <!-- END: Panel/Offcanvas - Add Document -->
+    <!-- BEGIN: Panel/Offcanvas - Assign Provider -->
+    <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">>
+      <div class="offcanvas-header">
+        <h2 class="offcanvas-title" id="offcanvasRightLabel">Assign Provider</h2>
+        <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- BEGIN: Filters -->
+        <div class="accordion mb-4" id="accordionFilters">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFilters">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                <svg class="mr-2" width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.7495 16.8727V31.6456C18.8245 32.208 18.637 32.808 18.2058 33.2016C18.0324 33.3754 17.8264 33.5133 17.5996 33.6074C17.3728 33.7015 17.1296 33.7499 16.8841 33.7499C16.6386 33.7499 16.3955 33.7015 16.1687 33.6074C15.9419 33.5133 15.7359 33.3754 15.5624 33.2016L11.7942 29.4334C11.5897 29.2335 11.4343 28.9891 11.3399 28.7191C11.2456 28.4492 11.215 28.1611 11.2505 27.8774V16.8727H11.1943L0.395772 3.03708C0.0913296 2.64625 -0.0460409 2.15081 0.0136773 1.65901C0.0733955 1.16722 0.325347 0.71905 0.714478 0.412443C1.07068 0.149979 1.46437 0 1.87682 0H28.1232C28.5356 0 28.9293 0.149979 29.2855 0.412443C29.6747 0.71905 29.9266 1.16722 29.9863 1.65901C30.046 2.15081 29.9087 2.64625 29.6042 3.03708L18.8057 16.8727H18.7495Z" fill="url(#paint0_linear_8696_11548)"/>
+                  <defs>
+                  <linearGradient id="paint0_linear_8696_11548" x1="15" y1="0" x2="27.0359" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#213969"/>
+                  <stop offset="1" stop-color="#204387"/>
+                  </linearGradient>
+                  </defs>
+                </svg>
+                Filters
+              </button>
+            </h2>
+            <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="headingFilters" data-bs-parent="#accordionFilters">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-lg-6 mb-4">
+                    <label class="form-label">Accommodation</label>
+                    <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select" tabindex="8">
+                      <option value=""></option>
+                      <option selected>Shelby Sign Language</option>
+                      <option selected>Language Translation Services</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 mb-4">
+                    <label class="form-label">Service</label>
+                    <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select" tabindex="8">
+                      <option value=""></option>
+                      <option selected>Language Translation</option>
+                      <option selected>Real Time Captioning</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 mb-4">
+                    <label class="form-label">Specialization</label>
+                    <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select" tabindex="8">
+                      <option value=""></option>
+                      <option selected>Medical</option>
+                      <option selected>Conference</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 mb-4">
+                    <div class="d-lg-flex justify-content-between align-items-center">
+                      <label class="form-label mb-lg-0">Associated Tags</label>
+                      <div class="form-check">
+                        <input class="form-check-input" id="MatchAll" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label" for="MatchAll"><small>Match All</small></label>
+                      </div>
+                    </div>
+                    <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select" tabindex="8">
+                      <option value=""></option>
+                      <option selected>Medical</option>
+                      <option selected>Conference</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="d-flex justify-content-start gap-2 mb-4">
+                      <div class="mb-4 mb-lg-0">
+                        <button class="btn btn-xs btn-inactive dropdown-toggle bg-secondary rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter" role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">Advance Filter</button>
+                      </div>
+                      <div class="mb-4 mb-lg-0">
+                        <button type="button" class="btn btn-xs btn-outline-dark rounded">Clear all</button>
+                      </div>
+                    </div>
+                    <div class="collapse" id="collapseAdvanceFilter">
+                      <div class="row">
+                        <div class="col-lg-6 mb-4">
+                          <div class="d-lg-flex justify-content-between align-items-center">
+                            <label class="form-label mb-lg-0">Preferred Providers</label>
+                            <div class="form-check">
+                              <input class="form-check-input" id="MatchAllPreferredProviders" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="MatchAllPreferredProviders"><small>Match All</small></label>
+                            </div>
+                          </div>
+                          <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select" tabindex="8">
+                            <option value=""></option>
+                            <option selected>Thomas Charles</option>
+                            <option selected>Paulie Durber</option>
+                          </select>
+                          <div class="mt-2">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" id="Requester" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="Requester"><small>Requester</small></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" id="ServiceConsumers" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="ServiceConsumers"><small>Service Consumer(s)</small></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" id="Participants" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="Participants"><small>Participant(s)</small></label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                          <label class="form-label">Preferred Team Providers</label>
+                          <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select" tabindex="8">
+                            <option value=""></option>
+                            <option selected>Richard Payne</option>
+                            <option selected>Mr. Justin Richardson</option>
+                          </select>
+                          <div class="mt-2">
+                            <div class="form-check">
+                              <input class="form-check-input" id="AssignedProviders" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="AssignedProviders"><small>Assigned Providers</small></label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                          <label class="form-label">Gender</label>
+                          <select class="form-select">
+                            <option>Select Gender</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                          <label class="form-label">Ethnicity</label>
+                          <select class="form-select">
+                            <option>Select Ethnicity</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                          <label class="form-label">Certification</label>
+                          <select class="form-select">
+                            <option>Select Certification</option>
+                          </select>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                          <div class="d-lg-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-lg-0">Distance</label>
+                            <div>
+                              KM
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 12.0837V15H3.91626L12.5173 6.39897L9.60103 3.48271L1 12.0837ZM14.7725 4.14373C15.0758 3.84044 15.0758 3.35051 14.7725 3.04722L12.9528 1.22747C12.6495 0.924177 12.1596 0.924177 11.8563 1.22747L10.4331 2.6506L13.3494 5.56687L14.7725 4.14373Z" fill="#0A1E46"/>
+                              </svg>
+                            </div>
+                          </div>
+                          <select class="form-select">
+                            <option>Select Certification</option>
+                          </select>
+                          <div class="mt-2 d-flex gap-2">
+                            <div class="form-check">
+                              <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Travel Time</small></label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                          <label class="form-label">Search</label>
+                          <input class="form-control" type="" name="" placeholder="Name Search">
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                          <div class="mt-5 d-flex gap-1">
+                            <div class="form-check">
+                              <input class="form-check-input" id="ProviderAvailability" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label text-nowrap" for="ProviderAvailability"><small>Provider Availability</small></label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" id="ProviderServiceRadius" name="" type="checkbox" tabindex="">
+                              <label class="form-check-label text-nowrap" for="ProviderServiceRadius"><small>Provider Service Radius</small></label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- END: Filters -->
+        <!-- BEGIN: Filter Table -->
+        <div class="d-lg-flex justify-content-between align-items-end mb-3">
+          <div>
+            <a href="" class="btn btn-primary rounded">Providers</a>
+            <a href="" class="btn btn-outline-dark rounded">Teams</a>
+          </div>
+          <div>
+            <label class="form-label">Sort Results By</label>
+            <select class="form-select">
+              <option>Tags Match</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-fs-md table-hover" aria-label="">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Additional Provider Payment</th>
+                <th scope="col" width="60%">Total Service Payment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex gap-2 align-items-center">
+                    <div>
+                      <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+                    </div>
+                    <div class="pt-2">
+                      <div class="font-family-secondary leading-none">Dori Griffiths</div>
+                      <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+                      <div class="">599 Miles</div>
+                    </div>
+                  </div>
+                  <div>
+                    <a href="#">Sign Language</a>
+                    <a href="#">Sign</a>
+                    <a href="#">Interpreter</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                        <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.4 3.2H9.6C9.6 2.77565 9.43143 2.36869 9.13137 2.06863C8.83131 1.76857 8.42435 1.6 8 1.6C7.57565 1.6 7.16869 1.76857 6.86863 2.06863C6.56857 2.36869 6.4 2.77565 6.4 3.2ZM4.8 3.2C4.8 2.35131 5.13714 1.53737 5.73726 0.937258C6.33737 0.337142 7.15131 0 8 0C8.84869 0 9.66263 0.337142 10.2627 0.937258C10.8629 1.53737 11.2 2.35131 11.2 3.2H15.2C15.4122 3.2 15.6157 3.28429 15.7657 3.43431C15.9157 3.58434 16 3.78783 16 4C16 4.21217 15.9157 4.41566 15.7657 4.56569C15.6157 4.71571 15.4122 4.8 15.2 4.8H14.4944L13.7856 13.072C13.7175 13.8708 13.352 14.6149 12.7615 15.1571C12.171 15.6993 11.3985 16.0001 10.5968 16H5.4032C4.60153 16.0001 3.82902 15.6993 3.23852 15.1571C2.64802 14.6149 2.28254 13.8708 2.2144 13.072L1.5056 4.8H0.8C0.587827 4.8 0.384344 4.71571 0.234315 4.56569C0.0842854 4.41566 0 4.21217 0 4C0 3.78783 0.0842854 3.58434 0.234315 3.43431C0.384344 3.28429 0.587827 3.2 0.8 3.2H4.8ZM10.4 8C10.4 7.78783 10.3157 7.58434 10.1657 7.43432C10.0157 7.28429 9.81217 7.2 9.6 7.2C9.38783 7.2 9.18434 7.28429 9.03432 7.43432C8.88429 7.58434 8.8 7.78783 8.8 8V11.2C8.8 11.4122 8.88429 11.6157 9.03432 11.7657C9.18434 11.9157 9.38783 12 9.6 12C9.81217 12 10.0157 11.9157 10.1657 11.7657C10.3157 11.6157 10.4 11.4122 10.4 11.2V8ZM6.4 7.2C6.61217 7.2 6.81566 7.28429 6.96569 7.43432C7.11571 7.58434 7.2 7.78783 7.2 8V11.2C7.2 11.4122 7.11571 11.6157 6.96569 11.7657C6.81566 11.9157 6.61217 12 6.4 12C6.18783 12 5.98434 11.9157 5.83432 11.7657C5.68429 11.6157 5.6 11.4122 5.6 11.2V8C5.6 7.78783 5.68429 7.58434 5.83432 7.43432C5.98434 7.28429 6.18783 7.2 6.4 7.2ZM3.808 12.936C3.84208 13.3355 4.02493 13.7077 4.32035 13.9788C4.61577 14.2499 5.00223 14.4002 5.4032 14.4H10.5968C10.9975 14.3998 11.3836 14.2494 11.6786 13.9783C11.9737 13.7072 12.1563 13.3352 12.1904 12.936L12.888 4.8H3.112L3.8096 12.936H3.808Z" fill="#888575"/>
+                        </svg>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ChargetoCustomer"><small>Charge to Customer</small></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-2">
+                    <button class="btn btn-xs btn-has-icon btn-primary rounded">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                      </svg>
+                      Add New
+                    </button>
+                  </div>
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex gap-2 align-items-start">
+                    <div>
+                      <label class="form-label-sm">No of Days/Hours</label>
+                      <div class="input-group">
+                        <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
+                        <div class="input-group-text">
+                          <select class="form-select form-select-sm">
+                            <option>/days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Average Rate</label>
+                      <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <div class="mb-2">
+                        <label class="form-label-sm">Total Service Payment</label>
+                        <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                      </div>
+                      <div class="">
+                        <label class="form-label-sm">Total Booking Payment</label>
+                        $00:00
+                      </div>
+                    </div>
+                    <div>
+                      <a href="#" class="btn btn-sm btn-outline-dark rounded mb-2">Assign</a>
+                      <div class="form-check">
+                        <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ReimburseTravelTime"><small>Assign Partial Coverage</small></label>
+                      </div>
+                      <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+                        Select Booking Range
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex gap-2 align-items-center">
+                    <div>
+                      <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+                    </div>
+                    <div class="pt-2">
+                      <div class="font-family-secondary leading-none">Dori Griffiths</div>
+                      <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+                      <div class="">599 Miles</div>
+                    </div>
+                  </div>
+                  <div>
+                    <a href="#">Sign Language</a>
+                    <a href="#">Sign</a>
+                    <a href="#">Interpreter</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                        <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.4 3.2H9.6C9.6 2.77565 9.43143 2.36869 9.13137 2.06863C8.83131 1.76857 8.42435 1.6 8 1.6C7.57565 1.6 7.16869 1.76857 6.86863 2.06863C6.56857 2.36869 6.4 2.77565 6.4 3.2ZM4.8 3.2C4.8 2.35131 5.13714 1.53737 5.73726 0.937258C6.33737 0.337142 7.15131 0 8 0C8.84869 0 9.66263 0.337142 10.2627 0.937258C10.8629 1.53737 11.2 2.35131 11.2 3.2H15.2C15.4122 3.2 15.6157 3.28429 15.7657 3.43431C15.9157 3.58434 16 3.78783 16 4C16 4.21217 15.9157 4.41566 15.7657 4.56569C15.6157 4.71571 15.4122 4.8 15.2 4.8H14.4944L13.7856 13.072C13.7175 13.8708 13.352 14.6149 12.7615 15.1571C12.171 15.6993 11.3985 16.0001 10.5968 16H5.4032C4.60153 16.0001 3.82902 15.6993 3.23852 15.1571C2.64802 14.6149 2.28254 13.8708 2.2144 13.072L1.5056 4.8H0.8C0.587827 4.8 0.384344 4.71571 0.234315 4.56569C0.0842854 4.41566 0 4.21217 0 4C0 3.78783 0.0842854 3.58434 0.234315 3.43431C0.384344 3.28429 0.587827 3.2 0.8 3.2H4.8ZM10.4 8C10.4 7.78783 10.3157 7.58434 10.1657 7.43432C10.0157 7.28429 9.81217 7.2 9.6 7.2C9.38783 7.2 9.18434 7.28429 9.03432 7.43432C8.88429 7.58434 8.8 7.78783 8.8 8V11.2C8.8 11.4122 8.88429 11.6157 9.03432 11.7657C9.18434 11.9157 9.38783 12 9.6 12C9.81217 12 10.0157 11.9157 10.1657 11.7657C10.3157 11.6157 10.4 11.4122 10.4 11.2V8ZM6.4 7.2C6.61217 7.2 6.81566 7.28429 6.96569 7.43432C7.11571 7.58434 7.2 7.78783 7.2 8V11.2C7.2 11.4122 7.11571 11.6157 6.96569 11.7657C6.81566 11.9157 6.61217 12 6.4 12C6.18783 12 5.98434 11.9157 5.83432 11.7657C5.68429 11.6157 5.6 11.4122 5.6 11.2V8C5.6 7.78783 5.68429 7.58434 5.83432 7.43432C5.98434 7.28429 6.18783 7.2 6.4 7.2ZM3.808 12.936C3.84208 13.3355 4.02493 13.7077 4.32035 13.9788C4.61577 14.2499 5.00223 14.4002 5.4032 14.4H10.5968C10.9975 14.3998 11.3836 14.2494 11.6786 13.9783C11.9737 13.7072 12.1563 13.3352 12.1904 12.936L12.888 4.8H3.112L3.8096 12.936H3.808Z" fill="#888575"/>
+                        </svg>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ChargetoCustomer"><small>Charge to Customer</small></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-2">
+                    <button class="btn btn-xs btn-has-icon btn-primary rounded">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                      </svg>
+                      Add New
+                    </button>
+                  </div>
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex gap-2 align-items-start">
+                    <div>
+                      <label class="form-label-sm">No of Days/Hours</label>
+                      <div class="input-group">
+                        <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
+                        <div class="input-group-text">
+                          <select class="form-select form-select-sm">
+                            <option>/days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Average Rate</label>
+                      <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <div class="mb-2">
+                        <label class="form-label-sm">Total Service Payment</label>
+                        <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                      </div>
+                      <div class="">
+                        <label class="form-label-sm">Total Booking Payment</label>
+                        $00:00
+                      </div>
+                    </div>
+                    <div>
+                      <a href="#" class="btn btn-sm btn-outline-dark rounded mb-2">Assign</a>
+                      <div class="form-check">
+                        <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ReimburseTravelTime"><small>Assign Partial Coverage</small></label>
+                      </div>
+                      <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+                        Select Booking Range
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex gap-2 align-items-center">
+                    <div>
+                      <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+                    </div>
+                    <div class="pt-2">
+                      <div class="font-family-secondary leading-none">Dori Griffiths</div>
+                      <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+                      <div class="">599 Miles</div>
+                    </div>
+                  </div>
+                  <div>
+                    <a href="#">Sign Language</a>
+                    <a href="#">Sign</a>
+                    <a href="#">Interpreter</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                        <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.4 3.2H9.6C9.6 2.77565 9.43143 2.36869 9.13137 2.06863C8.83131 1.76857 8.42435 1.6 8 1.6C7.57565 1.6 7.16869 1.76857 6.86863 2.06863C6.56857 2.36869 6.4 2.77565 6.4 3.2ZM4.8 3.2C4.8 2.35131 5.13714 1.53737 5.73726 0.937258C6.33737 0.337142 7.15131 0 8 0C8.84869 0 9.66263 0.337142 10.2627 0.937258C10.8629 1.53737 11.2 2.35131 11.2 3.2H15.2C15.4122 3.2 15.6157 3.28429 15.7657 3.43431C15.9157 3.58434 16 3.78783 16 4C16 4.21217 15.9157 4.41566 15.7657 4.56569C15.6157 4.71571 15.4122 4.8 15.2 4.8H14.4944L13.7856 13.072C13.7175 13.8708 13.352 14.6149 12.7615 15.1571C12.171 15.6993 11.3985 16.0001 10.5968 16H5.4032C4.60153 16.0001 3.82902 15.6993 3.23852 15.1571C2.64802 14.6149 2.28254 13.8708 2.2144 13.072L1.5056 4.8H0.8C0.587827 4.8 0.384344 4.71571 0.234315 4.56569C0.0842854 4.41566 0 4.21217 0 4C0 3.78783 0.0842854 3.58434 0.234315 3.43431C0.384344 3.28429 0.587827 3.2 0.8 3.2H4.8ZM10.4 8C10.4 7.78783 10.3157 7.58434 10.1657 7.43432C10.0157 7.28429 9.81217 7.2 9.6 7.2C9.38783 7.2 9.18434 7.28429 9.03432 7.43432C8.88429 7.58434 8.8 7.78783 8.8 8V11.2C8.8 11.4122 8.88429 11.6157 9.03432 11.7657C9.18434 11.9157 9.38783 12 9.6 12C9.81217 12 10.0157 11.9157 10.1657 11.7657C10.3157 11.6157 10.4 11.4122 10.4 11.2V8ZM6.4 7.2C6.61217 7.2 6.81566 7.28429 6.96569 7.43432C7.11571 7.58434 7.2 7.78783 7.2 8V11.2C7.2 11.4122 7.11571 11.6157 6.96569 11.7657C6.81566 11.9157 6.61217 12 6.4 12C6.18783 12 5.98434 11.9157 5.83432 11.7657C5.68429 11.6157 5.6 11.4122 5.6 11.2V8C5.6 7.78783 5.68429 7.58434 5.83432 7.43432C5.98434 7.28429 6.18783 7.2 6.4 7.2ZM3.808 12.936C3.84208 13.3355 4.02493 13.7077 4.32035 13.9788C4.61577 14.2499 5.00223 14.4002 5.4032 14.4H10.5968C10.9975 14.3998 11.3836 14.2494 11.6786 13.9783C11.9737 13.7072 12.1563 13.3352 12.1904 12.936L12.888 4.8H3.112L3.8096 12.936H3.808Z" fill="#888575"/>
+                        </svg>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ChargetoCustomer"><small>Charge to Customer</small></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-2">
+                    <button class="btn btn-xs btn-has-icon btn-primary rounded">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                      </svg>
+                      Add New
+                    </button>
+                  </div>
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex gap-2 align-items-start">
+                    <div>
+                      <label class="form-label-sm">No of Days/Hours</label>
+                      <div class="input-group">
+                        <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
+                        <div class="input-group-text">
+                          <select class="form-select form-select-sm">
+                            <option>/days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Average Rate</label>
+                      <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <div class="mb-2">
+                        <label class="form-label-sm">Total Service Payment</label>
+                        <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                      </div>
+                      <div class="">
+                        <label class="form-label-sm">Total Booking Payment</label>
+                        $00:00
+                      </div>
+                    </div>
+                    <div>
+                      <a href="#" class="btn btn-sm btn-outline-dark rounded mb-2">Assign</a>
+                      <div class="form-check">
+                        <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ReimburseTravelTime"><small>Assign Partial Coverage</small></label>
+                      </div>
+                      <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+                        Select Booking Range
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex gap-2 align-items-center">
+                    <div>
+                      <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+                    </div>
+                    <div class="pt-2">
+                      <div class="font-family-secondary leading-none">Dori Griffiths</div>
+                      <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+                      <div class="">599 Miles</div>
+                    </div>
+                  </div>
+                  <div>
+                    <a href="#">Sign Language</a>
+                    <a href="#">Sign</a>
+                    <a href="#">Interpreter</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                        <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.4 3.2H9.6C9.6 2.77565 9.43143 2.36869 9.13137 2.06863C8.83131 1.76857 8.42435 1.6 8 1.6C7.57565 1.6 7.16869 1.76857 6.86863 2.06863C6.56857 2.36869 6.4 2.77565 6.4 3.2ZM4.8 3.2C4.8 2.35131 5.13714 1.53737 5.73726 0.937258C6.33737 0.337142 7.15131 0 8 0C8.84869 0 9.66263 0.337142 10.2627 0.937258C10.8629 1.53737 11.2 2.35131 11.2 3.2H15.2C15.4122 3.2 15.6157 3.28429 15.7657 3.43431C15.9157 3.58434 16 3.78783 16 4C16 4.21217 15.9157 4.41566 15.7657 4.56569C15.6157 4.71571 15.4122 4.8 15.2 4.8H14.4944L13.7856 13.072C13.7175 13.8708 13.352 14.6149 12.7615 15.1571C12.171 15.6993 11.3985 16.0001 10.5968 16H5.4032C4.60153 16.0001 3.82902 15.6993 3.23852 15.1571C2.64802 14.6149 2.28254 13.8708 2.2144 13.072L1.5056 4.8H0.8C0.587827 4.8 0.384344 4.71571 0.234315 4.56569C0.0842854 4.41566 0 4.21217 0 4C0 3.78783 0.0842854 3.58434 0.234315 3.43431C0.384344 3.28429 0.587827 3.2 0.8 3.2H4.8ZM10.4 8C10.4 7.78783 10.3157 7.58434 10.1657 7.43432C10.0157 7.28429 9.81217 7.2 9.6 7.2C9.38783 7.2 9.18434 7.28429 9.03432 7.43432C8.88429 7.58434 8.8 7.78783 8.8 8V11.2C8.8 11.4122 8.88429 11.6157 9.03432 11.7657C9.18434 11.9157 9.38783 12 9.6 12C9.81217 12 10.0157 11.9157 10.1657 11.7657C10.3157 11.6157 10.4 11.4122 10.4 11.2V8ZM6.4 7.2C6.61217 7.2 6.81566 7.28429 6.96569 7.43432C7.11571 7.58434 7.2 7.78783 7.2 8V11.2C7.2 11.4122 7.11571 11.6157 6.96569 11.7657C6.81566 11.9157 6.61217 12 6.4 12C6.18783 12 5.98434 11.9157 5.83432 11.7657C5.68429 11.6157 5.6 11.4122 5.6 11.2V8C5.6 7.78783 5.68429 7.58434 5.83432 7.43432C5.98434 7.28429 6.18783 7.2 6.4 7.2ZM3.808 12.936C3.84208 13.3355 4.02493 13.7077 4.32035 13.9788C4.61577 14.2499 5.00223 14.4002 5.4032 14.4H10.5968C10.9975 14.3998 11.3836 14.2494 11.6786 13.9783C11.9737 13.7072 12.1563 13.3352 12.1904 12.936L12.888 4.8H3.112L3.8096 12.936H3.808Z" fill="#888575"/>
+                        </svg>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ChargetoCustomer"><small>Charge to Customer</small></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-2">
+                    <button class="btn btn-xs btn-has-icon btn-primary rounded">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                      </svg>
+                      Add New
+                    </button>
+                  </div>
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex gap-2 align-items-start">
+                    <div>
+                      <label class="form-label-sm">No of Days/Hours</label>
+                      <div class="input-group">
+                        <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
+                        <div class="input-group-text">
+                          <select class="form-select form-select-sm">
+                            <option>/days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Average Rate</label>
+                      <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <div class="mb-2">
+                        <label class="form-label-sm">Total Service Payment</label>
+                        <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                      </div>
+                      <div class="">
+                        <label class="form-label-sm">Total Booking Payment</label>
+                        $00:00
+                      </div>
+                    </div>
+                    <div>
+                      <a href="#" class="btn btn-sm btn-outline-dark rounded mb-2">Assign</a>
+                      <div class="form-check">
+                        <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ReimburseTravelTime"><small>Assign Partial Coverage</small></label>
+                      </div>
+                      <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+                        Select Booking Range
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex gap-2 align-items-center">
+                    <div>
+                      <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+                    </div>
+                    <div class="pt-2">
+                      <div class="font-family-secondary leading-none">Dori Griffiths</div>
+                      <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+                      <div class="">599 Miles</div>
+                    </div>
+                  </div>
+                  <div>
+                    <a href="#">Sign Language</a>
+                    <a href="#">Sign</a>
+                    <a href="#">Interpreter</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Label</label>
+                      <input type="" name="" class="form-control form-control-sm" placeholder="Payment Label">
+                    </div>
+                    <div>
+                      <label class="form-label-sm text-nowrap">Additional Payment</label>
+                      <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                        <input type="" name="" class="form-control form-control-sm" placeholder="$00:00">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.4 3.2H9.6C9.6 2.77565 9.43143 2.36869 9.13137 2.06863C8.83131 1.76857 8.42435 1.6 8 1.6C7.57565 1.6 7.16869 1.76857 6.86863 2.06863C6.56857 2.36869 6.4 2.77565 6.4 3.2ZM4.8 3.2C4.8 2.35131 5.13714 1.53737 5.73726 0.937258C6.33737 0.337142 7.15131 0 8 0C8.84869 0 9.66263 0.337142 10.2627 0.937258C10.8629 1.53737 11.2 2.35131 11.2 3.2H15.2C15.4122 3.2 15.6157 3.28429 15.7657 3.43431C15.9157 3.58434 16 3.78783 16 4C16 4.21217 15.9157 4.41566 15.7657 4.56569C15.6157 4.71571 15.4122 4.8 15.2 4.8H14.4944L13.7856 13.072C13.7175 13.8708 13.352 14.6149 12.7615 15.1571C12.171 15.6993 11.3985 16.0001 10.5968 16H5.4032C4.60153 16.0001 3.82902 15.6993 3.23852 15.1571C2.64802 14.6149 2.28254 13.8708 2.2144 13.072L1.5056 4.8H0.8C0.587827 4.8 0.384344 4.71571 0.234315 4.56569C0.0842854 4.41566 0 4.21217 0 4C0 3.78783 0.0842854 3.58434 0.234315 3.43431C0.384344 3.28429 0.587827 3.2 0.8 3.2H4.8ZM10.4 8C10.4 7.78783 10.3157 7.58434 10.1657 7.43432C10.0157 7.28429 9.81217 7.2 9.6 7.2C9.38783 7.2 9.18434 7.28429 9.03432 7.43432C8.88429 7.58434 8.8 7.78783 8.8 8V11.2C8.8 11.4122 8.88429 11.6157 9.03432 11.7657C9.18434 11.9157 9.38783 12 9.6 12C9.81217 12 10.0157 11.9157 10.1657 11.7657C10.3157 11.6157 10.4 11.4122 10.4 11.2V8ZM6.4 7.2C6.61217 7.2 6.81566 7.28429 6.96569 7.43432C7.11571 7.58434 7.2 7.78783 7.2 8V11.2C7.2 11.4122 7.11571 11.6157 6.96569 11.7657C6.81566 11.9157 6.61217 12 6.4 12C6.18783 12 5.98434 11.9157 5.83432 11.7657C5.68429 11.6157 5.6 11.4122 5.6 11.2V8C5.6 7.78783 5.68429 7.58434 5.83432 7.43432C5.98434 7.28429 6.18783 7.2 6.4 7.2ZM3.808 12.936C3.84208 13.3355 4.02493 13.7077 4.32035 13.9788C4.61577 14.2499 5.00223 14.4002 5.4032 14.4H10.5968C10.9975 14.3998 11.3836 14.2494 11.6786 13.9783C11.9737 13.7072 12.1563 13.3352 12.1904 12.936L12.888 4.8H3.112L3.8096 12.936H3.808Z" fill="#888575"/>
+                        </svg>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ChargetoCustomer"><small>Charge to Customer</small></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-2">
+                    <button class="btn btn-xs btn-has-icon btn-primary rounded">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                      </svg>
+                      Add New
+                    </button>
+                  </div>
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ChargetoCustomer"><small>Reimburse Mileage</small></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="ReimburseTravelTime"><small>Reimburse Mileage</small></label>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex gap-2 align-items-start">
+                    <div>
+                      <label class="form-label-sm">No of Days/Hours</label>
+                      <div class="input-group">
+                        <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
+                        <div class="input-group-text">
+                          <select class="form-select form-select-sm">
+                            <option>/days</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="form-label-sm">Average Rate</label>
+                      <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                    </div>
+                    <div>
+                      <div class="mb-2">
+                        <label class="form-label-sm">Total Service Payment</label>
+                        <input type="" name="" class="form-control form-control-sm w-auto" placeholder="$00:00">
+                      </div>
+                      <div class="">
+                        <label class="form-label-sm">Total Booking Payment</label>
+                        $00:00
+                      </div>
+                    </div>
+                    <div>
+                      <a href="#" class="btn btn-sm btn-outline-dark rounded mb-2">Assign</a>
+                      <div class="form-check">
+                        <input class="form-check-input" id="ReimburseTravelTime" name="" type="checkbox" tabindex="">
+                        <label class="form-check-label text-nowrap" for="ReimburseTravelTime"><small>Assign Partial Coverage</small></label>
+                      </div>
+                      <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+                        Select Booking Range
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+          <button type="" class="btn btn-outline-dark rounded">Cancel</button>
+          <button type="" class="btn btn-primary rounded">Save</button>
+        </div>
+        <!-- END: Filter Table -->
+      </div>
+    </div>
+    <!-- END: Panel/Offcanvas - Assign Provider -->
+    <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen"></div>
+    <!-- Modal - Provider Message -->
+    <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>
+            <div class="d-flex gap-3 justify-content-center mb-5">
+                <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
+                <a href="#" class="btn btn-sm btn-primary">Approve</a>
+            </div>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+                <a href="#" class="btn rounded btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Provider Message -->
+    <!-- Modal - Provider Message -->
+    <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>
+            <div class="d-flex gap-3 justify-content-center mb-5">
+                <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
+                <a href="#" class="btn btn-sm btn-primary">Approve</a>
+            </div>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+                <a href="#" class="btn rounded btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Provider Message -->
+    <!-- Modal - Meeting Links -->
+    <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="MeetingLinksModalLabel">Meeting Links</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3>Meeting name</h3>
+            <ul class="list-unstyled mb-5 d-flex flex-column gap-3">
+              <li>
+                Sign Language Meeting
+              </li>
+              <li>
+                French Language Meeting
+              </li>
+              <li class="text-primary selected">
+                Language Translation Meeting
+              </li>
+              <li>
+                Sign Language Meeting
+              </li>
+              <li>
+                Sign Language Meeting
+              </li>
+              <li>
+                Sign Language Meeting
+              </li>
+            </ul>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+                <a href="#" class="btn rounded btn-primary">Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Meeting Links -->
+    <!-- Modal - Unassign -->
+    <div class="modal fade" id="UnassignModal" tabindex="-1" aria-labelledby="UnassignModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="UnassignModalLabel">Unassign</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-4">
+              <label class="form-label">Reason for Unassign</label>
+              <textarea class="form-control" rows="5" cols="5"></textarea>
+            </div>
+            <div class="row mb-4">
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="dateunassign">
+                    Date
+                </label>
+                <div class="position-relative">
+                    <input type="" name="" class="form-control" placeholder="Select Date" id="dateunassign">
+                    <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+                    </svg>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex">
+                  <div class="d-flex flex-column justify-content-between">
+                    <label class="form-label" for="set_start_time">Time</label>
+                    <div class="d-flex gap-2 pt-2">
+                      <div class="time d-flex align-items-center gap-2">
+                        <div class="hours">12</div>
+                        <svg width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
+                        </svg>
+                        <div class="mins">59</div>
+                      </div>
+                      <div class="form-check form-switch form-switch-column mb-0">
+                          <input checked class="form-check-input" type="checkbox" role="switch" id="pm">
+                          <label class="form-check-label" for="pm">PM</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Keep Provider</a>
+                <a href="#" class="btn rounded btn-primary">Yes, Unassign Provider</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Unassign -->
     <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="js/alpinejs-3.11.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/daterangepicker.min.js"></script>
