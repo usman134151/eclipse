@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 a {
@@ -202,6 +202,13 @@ h1, h2, h3, h4, h5, h6 {
 					fill: $primary !important;
 				}
 			}
+			&:hover {
+				background-color: $primary;
+				color: #ffffff;
+				svg path {
+					fill: #ffffff !important;
+				}
+			}
 		}
 	}
 	&.nav-steps {
@@ -254,6 +261,13 @@ h1, h2, h3, h4, h5, h6 {
 				}
 				&.active {
 					color: $actual_blue;
+				}
+				&:hover {
+					background-color: transparent;
+					color: #6e6b7b;
+					svg path {
+						fill: #6e6b7b !important;
+					}
 				}
 			}
 			&:has(.nav-link.active) {
@@ -872,4 +886,58 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 		right: 3rem;
 		bottom: 0;
 	}
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+	font-size: 0.75rem;
+	color: #000000;
+	background: none; 
+	padding: 0.419rem 2rem 0.419rem 0.5rem;
+	box-shadow: none;
+	margin: 12.2px 7px 3px 0;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+	background-image: url("data:image/svg+xml,%3Csvg width='17' height='18' viewBox='0 0 17 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='8.50008' cy='9.0026' rx='8.33333' ry='8.66667' fill='%23888575'/%3E%3Cpath d='M11.5297 5.34421L11.5296 5.34417L11.5281 5.34574L8.66902 8.3192C8.57069 8.42146 8.41934 8.41905 8.33273 8.32079L8.33277 8.32076L8.33126 8.3192L5.47217 5.34574C5.33655 5.2047 5.11767 5.20205 4.9895 5.34652C4.85565 5.48654 4.85344 5.71003 4.99097 5.84203L7.84934 8.81474C7.94868 8.91805 7.94646 9.07901 7.85088 9.17012L7.85085 9.17009L7.84934 9.17166L4.98049 12.1553C4.84589 12.2952 4.84343 12.5193 4.98124 12.6516C5.1169 12.7918 5.33519 12.7942 5.46313 12.6501L8.3215 9.67735C8.41983 9.57509 8.57118 9.57749 8.65779 9.67575L8.65775 9.67578L8.65926 9.67735L11.5281 12.661C11.6637 12.802 11.8826 12.8047 12.0108 12.6602C12.1446 12.5202 12.1468 12.2967 12.0094 12.1647L9.16081 9.18193L9.16069 9.18181C9.06136 9.0785 9.06357 8.91754 9.15915 8.82642L9.16069 8.82489L12.0198 5.85143C12.1544 5.71145 12.1569 5.48735 12.019 5.35511C11.8825 5.21393 11.6661 5.21414 11.5297 5.34421Z' fill='white' stroke='white' stroke-width='0.1'/%3E%3C/svg%3E");
+	background-position: 50%;
+	width: 17px;
+	height: 18px;
+	right: 0.5rem;
+	&:hover {
+		background-position: 50%;
+	}
+}
+
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+	font-family: 'Poppins', sans-serif;	
+}
+
+
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+	height: 2.9rem;
+}
+
+.chosen-container-multi .chosen-choices {
+	background: none;
+	padding: 0 8px;
+}
+
+.chosen-container {
+	width: 100% !important;
+}
+
+.btn-inactive.dropdown-toggle::after {
+	border-width: 0.5rem;
+	margin-left: 1.5rem;
+}
+
+.offcanvas.offcanvas-assign-provider {
+	width: 95%;
+}
+
+.input-group-text .form-select {
+	background: none;
+	color: #ffffff;
+	border: 0;
 }

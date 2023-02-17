@@ -56,7 +56,7 @@
     <footer
       class="footer footer-light  footer-static">
       <p class="clearfix mb-0">
-        <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
+        <span class="float-md-start d-block d-md-inline-block mt-25">Copyright &copy;
         <a class="ms-25" href=""
           target="_blank">Eclipse Scheduling</a>,
         <span class="d-none d-sm-inline-block">All rights Reserved</span>

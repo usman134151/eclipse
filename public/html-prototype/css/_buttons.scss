@@ -13,6 +13,7 @@
 	line-height: 1;
 }
 
+.accordion .btn-xs[data-bs-toggle='collapse'],
 .btn-xs {
 	padding: 0.482rem 1.125rem;
 	line-height: 1;
@@ -36,8 +37,8 @@
 .btn-inactive {
 	background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
 	color: #ffffff;
-	&:hover {
-		color: #ffffff;
+	&:active, &:hover {
+		color: #ffffff !important;
 	}
 }
 
