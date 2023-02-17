@@ -226,13 +226,13 @@
                                     </div></td>
                                     <td>
                                       <div class="d-flex actions">
-                                        <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                           <x-icon name="round-arrow"/>
                                             
                                         </a>
                                           
-                                        <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                           <x-icon name="dollar-assignment"/>
                                             
                                         </a>
@@ -243,7 +243,7 @@
                                                 
                                             </a>
                                             <!-- <div class="tablediv dropdown-menu">
-                                              <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                              <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                               <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                              
                                             </div> -->
@@ -283,13 +283,13 @@
                                     </div></td>
                                     <td>
                                       <div class="d-flex actions">
-                                        <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                           <x-icon name="round-arrow"/>
                                             
                                         </a>
                                           
-                                        <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                           <x-icon name="dollar-assignment"/>
                                             
                                         </a>
@@ -300,7 +300,7 @@
                                                 
                                             </a>
                                             <!-- <div class="tablediv dropdown-menu">
-                                              <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                              <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                               <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                              
                                             </div> -->
@@ -341,13 +341,13 @@
                                     </div></td>
                                     <td>
                                       <div class="d-flex actions">
-                                        <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 
                                           <x-icon name="round-arrow"/>
                                             
                                         </a>
                                           
-                                        <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                           <x-icon name="dollar-assignment"/>
                                             
                                         </a>
@@ -358,7 +358,7 @@
                                                 
                                             </a>
                                             <!-- <div class="tablediv dropdown-menu">
-                                              <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                              <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                               <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                              
                                             </div> -->
@@ -398,13 +398,13 @@
                                       </div></td>
                                       <td>
                                         <div class="d-flex actions">
-                                          <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
   
                                             <x-icon name="round-arrow"/>
                                               
                                           </a>
                                             
-                                          <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                             <x-icon name="dollar-assignment"/>
                                               
                                           </a>
@@ -415,7 +415,7 @@
                                                   
                                               </a>
                                               <!-- <div class="tablediv dropdown-menu">
-                                                <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                 <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                
                                               </div> -->
@@ -456,13 +456,13 @@
                                         </div></td>
                                         <td>
                                           <div class="d-flex actions">
-                                            <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
     
                                               <x-icon name="round-arrow"/>
                                                 
                                             </a>
                                               
-                                            <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                               <x-icon name="dollar-assignment"/>
                                                 
                                             </a>
@@ -473,7 +473,7 @@
                                                     
                                                 </a>
                                                 <!-- <div class="tablediv dropdown-menu">
-                                                  <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                   <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                  
                                                 </div> -->
@@ -513,13 +513,13 @@
                                         </div></td>
                                         <td>
                                           <div class="d-flex actions">
-                                            <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
     
                                               <x-icon name="round-arrow"/>
                                                 
                                             </a>
                                               
-                                            <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                               <x-icon name="dollar-assignment"/>
                                                 
                                             </a>
@@ -530,7 +530,7 @@
                                                     
                                                 </a>
                                                 <!-- <div class="tablediv dropdown-menu">
-                                                  <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                   <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                  
                                                 </div> -->
@@ -570,13 +570,13 @@
                                           </div></td>
                                           <td>
                                             <div class="d-flex actions">
-                                              <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
       
                                                 <x-icon name="round-arrow"/>
                                                   
                                               </a>
                                                 
-                                              <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <x-icon name="dollar-assignment"/>
                                                   
                                               </a>
@@ -587,7 +587,7 @@
                                                       
                                                   </a>
                                                   <!-- <div class="tablediv dropdown-menu">
-                                                    <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                     <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                    
                                                   </div> -->
@@ -628,13 +628,13 @@
                                             </div></td>
                                             <td>
                                               <div class="d-flex actions">
-                                                <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
         
                                                   <x-icon name="round-arrow"/>
                                                     
                                                 </a>
                                                   
-                                                <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                   <x-icon name="dollar-assignment"/>
                                                     
                                                 </a>
@@ -645,7 +645,7 @@
                                                         
                                                     </a>
                                                     <!-- <div class="tablediv dropdown-menu">
-                                                      <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                      <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                       <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                      
                                                     </div> -->
@@ -685,13 +685,13 @@
                                             </div></td>
                                             <td>
                                               <div class="d-flex actions">
-                                                <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
         
                                                   <x-icon name="round-arrow"/>
                                                     
                                                 </a>
                                                   
-                                                <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                   <x-icon name="dollar-assignment"/>
                                                     
                                                 </a>
@@ -702,7 +702,7 @@
                                                         
                                                     </a>
                                                     <!-- <div class="tablediv dropdown-menu">
-                                                      <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                      <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                       <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                      
                                                     </div> -->
@@ -742,13 +742,13 @@
                                               </div></td>
                                               <td>
                                                 <div class="d-flex actions">
-                                                  <a href="" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                  <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
           
                                                     <x-icon name="round-arrow"/>
                                                       
                                                   </a>
                                                     
-                                                  <a href="" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                  <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                     <x-icon name="dollar-assignment"/>
                                                       
                                                   </a>
@@ -759,7 +759,7 @@
                                                           
                                                       </a>
                                                       <!-- <div class="tablediv dropdown-menu">
-                                                        <a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                        <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                         <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
                                                        
                                                       </div> -->
