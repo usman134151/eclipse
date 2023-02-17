@@ -84,7 +84,7 @@
 								<td>Paid</td>
 								<td> 
 									<div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
@@ -104,7 +104,7 @@
 								<td>Mail a Check</td>
 								<td>Paid</td>
 								<td><div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
@@ -124,7 +124,7 @@
 								<td>Mail a Check</td>
 								<td>Paid</td>
 								<td><div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
@@ -144,7 +144,7 @@
 								<td>Mail a Check</td>
 								<td>Paid</td>
 								<td><div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
@@ -164,7 +164,7 @@
 								<td>Mail a Check</td>
 								<td>Paid</td>
 								<td><div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
@@ -184,7 +184,7 @@
 								<td>Mail a Check</td>
 								<td>Paid</td>
 								<td><div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
@@ -204,16 +204,15 @@
 								<td>Mail a Check</td>
 								<td>Paid</td>
 								<td><div class="d-flex actions">
-									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="viewAssignment">
+									<a href="javascript:void(0)" title="View Assignment" aria-label="View Assignment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 										<x-icon name="view"/>
 									</a>
 								</div>
-									</td>
-								</tr>
-								
-							</tbody>
-							</table>                         
-					</div>                      
+							</td>
+						</tr>
+					</tbody>
+						</table>
+					</div>
 					<div class="d-flex justify-content-between">
 					<div>
 						<p class="fw-semibold">Showing 1 to 5 of 30 entries</p>

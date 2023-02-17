@@ -115,10 +115,10 @@
 				  <td class="text-center">5</td>
 				  <td>
 					<div class="d-flex actions">
-					  <a href="" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="pencil"/>
 					  </a>
-					  <a href=""  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" >
+					  <a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" >
 						<x-icon name="view"/>
 					  </a>
 					  <div class="d-flex actions">
@@ -127,11 +127,11 @@
 												<x-icon name="dropdown"/>
 											</a>
 											<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
-											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Chat with Provider</a> 
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
+											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href="#"><i class="fa fa-comment"></i>Chat with Provider</a> 
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
 												<a href="javascript:void(0)" aria-label="Activate" title="Activate" class="dropdown-item"><i class="fa fa-check"></i>
 	Activate</a>
 												
@@ -164,10 +164,10 @@
 				  <td class="text-center">5</td>
 				  <td>
 					<div class="d-flex actions">
-					  <a href="" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="pencil"/>
 					  </a>
-					  <a href="" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="view"/>
 					  </a>
 					  <div class="d-flex actions">
@@ -176,11 +176,11 @@
 												<x-icon name="dropdown"/>
 											</a>
 											<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
-											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Chat with Provider</a> 
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
+											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href="#"><i class="fa fa-comment"></i>Chat with Provider</a> 
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
 												<a href="javascript:void(0)" aria-label="Activate" title="Activate" class="dropdown-item"><i class="fa fa-check"></i>Activate</a>
 												
 											</div>
@@ -212,10 +212,10 @@
 				  <td class="text-center">5</td>
 				  <td>
 					<div class="d-flex actions">
-					  <a href="" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="pencil"/>
 					  </a>
-					  <a href="" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="view"/>
 					  </a>
 					  <div class="d-flex actions">
@@ -224,11 +224,11 @@
 												<x-icon name="dropdown"/>
 											</a>
 											<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
-											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Chat with Provider</a> 
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
+											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href="#"><i class="fa fa-comment"></i>Chat with Provider</a> 
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
 												<a href="javascript:void(0)" aria-label="Activate" title="Activate" class="dropdown-item"><i class="fa fa-check"></i>Activate</a>
 												
 											</div>
@@ -260,10 +260,10 @@
 				  <td class="text-center">5</td>
 				  <td>
 					<div class="d-flex actions">
-					  <a href="" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="pencil"/>
 					  </a>
-					  <a href="" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="view"/>
 					  </a>
 					  <div class="d-flex actions">
@@ -272,11 +272,11 @@
 												<x-icon name="dropdown"/>
 											</a>
 											<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
-											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Chat with Provider</a> 
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
+											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href="#"><i class="fa fa-comment"></i>Chat with Provider</a> 
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
 												<a href="javascript:void(0)" aria-label="Activate" title="Activate" class="dropdown-item"><i class="fa fa-check"></i>Activate</a>
 												
 											</div>
@@ -308,10 +308,10 @@
 				  <td class="text-center">5</td>
 				  <td>
 					<div class="d-flex actions">
-					  <a href="" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="pencil"/>
 					  </a>
-					  <a href="" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="view"/>
 					  </a>
 					  <div class="d-flex actions">
@@ -320,11 +320,11 @@
 												<x-icon name="dropdown"/>
 											</a>
 											<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
-											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Chat with Provider</a> 
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
+											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href="#"><i class="fa fa-comment"></i>Chat with Provider</a> 
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
 												<a href="javascript:void(0)" aria-label="Activate" title="Activate" class="dropdown-item"><i class="fa fa-check"></i>Activate</a>
 												
 											</div>
@@ -356,10 +356,10 @@
 				  <td class="text-center">5</td>
 				  <td>
 					<div class="d-flex actions">
-					  <a href="" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="pencil"/>
 					  </a>
-					  <a href="" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					  <a href="#" aria-label="View Provider"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
 						<x-icon name="view"/>
 					  </a>
 					  <div class="d-flex actions">
@@ -368,11 +368,11 @@
 												<x-icon name="dropdown"/>
 											</a>
 											<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
-											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href=""><i class="fa fa-comment"></i>Chat with Provider</a> 
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Profile</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Schedule</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View Payment</a>
+											<a title="Message Customer" aria-label="Message Customer" class="dropdown-item" href="#"><i class="fa fa-comment"></i>Chat with Provider</a> 
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit Provider</a>
 												<a href="javascript:void(0)" aria-label="Activate" title="Activate" class="dropdown-item"><i class="fa fa-check"></i>Activate</a>
 												
 											</div>
