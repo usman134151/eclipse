@@ -39,13 +39,13 @@
 				  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
-					  <a href="" class="nav-link" :class="{ 'active': tab === 'department-info' }" @click.prevent="tab = 'department-info'; window.location.hash = 'department-info'" id="department-info-tab" role="tab" aria-controls="department-info" aria-selected="true"><span class="number">1</span>Department Info</a>
+					  <a href="#" class="nav-link" :class="{ 'active': tab === 'department-info' }" @click.prevent="tab = 'department-info'; window.location.hash = 'department-info'" id="department-info-tab" role="tab" aria-controls="department-info" aria-selected="true"><span class="number">1</span>Department Info</a>
 					</li>
 					<li class="nav-item" role="presentation">
-					  <a href="" class="nav-link" :class="{ 'active': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'; window.location.hash = 'service-catalog'" id="service-catalog-tab" role="tab" aria-controls="service-catalog" aria-selected="false"><span class="number">2</span> Service Catalog</a>
+					  <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'; window.location.hash = 'service-catalog'" id="service-catalog-tab" role="tab" aria-controls="service-catalog" aria-selected="false"><span class="number">2</span> Service Catalog</a>
 					</li>
 					<li class="nav-item" role="presentation">
-					  <a href="" class="nav-link" :class="{ 'active': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'; window.location.hash = 'drive-documents'" id="drive-documents-tab" role="tab" aria-controls="drive-documents" aria-selected="false"><span class="number">3</span> Drive Documents</a>
+					  <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'; window.location.hash = 'drive-documents'" id="drive-documents-tab" role="tab" aria-controls="drive-documents" aria-selected="false"><span class="number">3</span> Drive Documents</a>
 					</li>
 				  </ul>
 				  <!-- Tab panes -->
@@ -668,7 +668,7 @@
 											  <div class="d-flex actions">
 
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
@@ -706,7 +706,7 @@
 													</svg>
 												
 											  </a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -761,7 +761,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -798,7 +798,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -853,7 +853,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -890,7 +890,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -945,7 +945,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -982,7 +982,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -1037,7 +1037,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -1074,7 +1074,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -1129,7 +1129,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -1166,7 +1166,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -1221,7 +1221,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -1258,7 +1258,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -1313,7 +1313,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -1350,7 +1350,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">
@@ -1405,7 +1405,7 @@
 											<td>
 											  <div class="d-flex actions">
 												<!-- OFF Canvas | Customers  -->
-												<a @click="offcanvasOpen = true" href="" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a @click="offcanvasOpen = true" href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71432)">
 													<circle cx="15" cy="15" r="15" fill="url(#paint0_linear_1998_71432)"/>
@@ -1442,7 +1442,7 @@
 													</svg>
 													
 												</a>
-												<a href="" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 												  
 												  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<g clip-path="url(#clip0_1998_71446)">

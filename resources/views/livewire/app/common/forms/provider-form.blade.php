@@ -43,13 +43,13 @@
 					{{-- Nav tabs --}}
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
-							<a href="" class="nav-link" :class="{ 'active': tab === 'profile' }" @click.prevent="tab = 'profile'; window.location.hash = 'profile'" id="user-profile-tab" role="tab" aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider info</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'profile' }" @click.prevent="tab = 'profile'; window.location.hash = 'profile'" id="user-profile-tab" role="tab" aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider info</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="" class="nav-link" :class="{ 'active': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'; window.location.hash = 'provider-service'" id="provider-service-tab" role="tab" aria-controls="provider-service" aria-selected="false"><span class="number">2</span>Provider Serivce Profile</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'; window.location.hash = 'provider-service'" id="provider-service-tab" role="tab" aria-controls="provider-service" aria-selected="false"><span class="number">2</span>Provider Serivce Profile</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="" class="nav-link" :class="{ 'active': tab === 'upload-document' }" @click.prevent="tab = 'upload-document'; window.location.hash = 'upload-document'" id="upload-document-tab" role="tab" aria-controls="upload-document" aria-selected="false"><span class="number">3</span> Upload Document</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'upload-document' }" @click.prevent="tab = 'upload-document'; window.location.hash = 'upload-document'" id="upload-document-tab" role="tab" aria-controls="upload-document" aria-selected="false"><span class="number">3</span> Upload Document</a>
 						</li>
 					</ul>
 					{{-- Tab panes --}}
@@ -556,7 +556,7 @@
 																	<select class="form-select w-auto" id="copy_provider">
 																		<option>Select Provider</option>
 																	</select>
-																	<a href="" class="btn btn-primary rounded">Apply</a>
+																	<a href="#" class="btn btn-primary rounded">Apply</a>
 																</div>
 															</div>
 															<div class="row mb-4">
@@ -791,7 +791,7 @@
 																								</label>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -830,7 +830,7 @@
 																								<label class="form-check-label" for="virtual-checkbox">Multiply by Assignment Duration</label>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -876,7 +876,7 @@
 																								<label class="form-check-label" for="phone-checkbox">Multiply by Assignment Duration</label>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -915,7 +915,7 @@
 																								<label class="form-check-label" for="teleconference-checkbox">Multiply by Assignment Duration</label>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -983,7 +983,7 @@
 																								</div>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1036,7 +1036,7 @@
 																								</div>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1096,7 +1096,7 @@
 																								</div>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1149,7 +1149,7 @@
 																								</div>
 																							</div>
 																							<div class="text-end">
-																								<a href="" class="fw-bold">
+																								<a href="#" class="fw-bold">
 																									<small>
 																										Add Additional Service Charges 
 																										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1215,7 +1215,7 @@
 																				</div>
 																			</div>
 																			<div class="text-end">
-																				<a href="" class="fw-bold">
+																				<a href="#" class="fw-bold">
 																					<small>
 																						Add Additional Specialization 
 																						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1461,7 +1461,7 @@
 																							<label class="form-check-label" for="in-person-checkbox">Multiply by Assignment Duration</label>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1500,7 +1500,7 @@
 																							<label class="form-check-label" for="virtual-checkbox-2">Multiply by Assignment Duration</label>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1546,7 +1546,7 @@
 																							<label class="form-check-label" for="phone-checkbox-2">Multiply by Assignment Duration</label>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1585,7 +1585,7 @@
 																							<label class="form-check-label" for="teleconference-checkbox-2">Multiply by Assignment Duration</label>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1653,7 +1653,7 @@
 																							</div>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1706,7 +1706,7 @@
 																							</div>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1766,7 +1766,7 @@
 																							</div>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1819,7 +1819,7 @@
 																							</div>
 																						</div>
 																						<div class="text-end">
-																							<a href="" class="fw-bold">
+																							<a href="#" class="fw-bold">
 																								<small>
 																									Add Additional Service Charges 
 																									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1885,7 +1885,7 @@
 																			</div>
 																		</div>
 																		<div class="text-end">
-																			<a href="" class="fw-bold">
+																			<a href="#" class="fw-bold">
 																				<small>
 																					Add Additional Specialization 
 																					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1946,13 +1946,13 @@
 																			<h3 class="mb-0">Document 1</h3>
 																		</div>
 																		<div class="col-lg-7 d-lg-flex justify-content-end gap-3 mb-4">
-																			<a href="" class="btn btn-primary rounded">
+																			<a href="#" class="btn btn-primary rounded">
 																				<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																					<path d="M2 10.4062L8.66667 17.4062L22 2.40625" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																				</svg>
 																				Add Manually
 																			</a>
-																			<a href="" class="btn btn-primary rounded">
+																			<a href="#" class="btn btn-primary rounded">
 																				Request from User
 																			</a>
 																		</div>

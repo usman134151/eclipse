@@ -492,7 +492,7 @@
 							<div class="col-lg-7 align-self-center">
 							  <div class="d-flex align-items-center gap-2">
 								<div class="font-family-tertiary">Spoken Language Interpreting Services</div>
-								<a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
 								  </svg>
@@ -509,7 +509,7 @@
 							<div class="col-lg-7 align-self-center">
 							  <div class="d-flex align-items-center gap-2">
 								<div class="font-family-tertiary text-primary">https://meet.google.com/xxxxxxxx</div>
-								<a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
 								  </svg>
@@ -576,7 +576,7 @@
 							<div class="col-lg-7 align-self-center">
 							  <div class="d-flex gap-2">
 								<div class="font-family-tertiary">Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA</div>
-								<a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
 								  </svg>
@@ -646,7 +646,7 @@
 							<div class="col-lg-7 align-self-center">
 							  <div class="d-flex align-items-center gap-2">
 								<div class="font-family-tertiary">Thomas</div>
-								<a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
 								  </svg>
@@ -663,7 +663,7 @@
 							<div class="col-lg-7 align-self-center">
 								<div class="d-flex align-items-center gap-2">
 								<div class="font-family-tertiary">Charles</div>
-								<a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
 								  </svg>
@@ -680,7 +680,7 @@
 							<div class="col-lg-7 align-self-center">
 								<div class="d-flex align-items-center gap-2">
 								<div class="font-family-tertiary">(923) 023-9683</div>
-								<a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
 								  </svg>
@@ -717,7 +717,7 @@
 								  <label class="col-form-label">Req_info:</label>
 								</div>
 								<div class="col-lg-9">
-								  <a href="">View Uploaded Document</a>
+								  <a href="#">View Uploaded Document</a>
 								</div>
 								<div class="col-lg-3">
 								  <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
@@ -939,7 +939,7 @@
 				  <div class="d-lg-flex align-items-center justify-content-between mb-4">
 				  <h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
 				  <div class="d-flex gap-3">
-					<a href="" class="btn btn-has-icon btn-outline-dark rounded">
+					<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
 					  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M9.99995 9.64514C10.8594 9.64629 11.7 9.39247 12.4152 8.9158C13.1304 8.43913 13.6881 7.76102 14.0178 6.96728C14.3476 6.17354 14.4344 5.29983 14.2674 4.45671C14.1005 3.61359 13.6872 2.83894 13.0798 2.23077C12.4725 1.62261 11.6984 1.20826 10.8555 1.04016C10.0126 0.872052 9.13876 0.957746 8.34457 1.28639C7.55039 1.61504 6.87154 2.17188 6.39391 2.88644C5.91627 3.60101 5.66133 4.44119 5.66133 5.30069C5.66133 6.4519 6.11824 7.55605 6.93173 8.37062C7.74521 9.18519 8.84874 9.64359 9.99995 9.64514ZM10.0006 2.4618C10.5614 2.46078 11.1099 2.62621 11.5766 2.93714C12.0434 3.24808 12.4073 3.69053 12.6224 4.20847C12.8375 4.7264 12.8941 5.29652 12.7849 5.84662C12.6758 6.39671 12.4058 6.90204 12.0092 7.2986C11.6127 7.69516 11.1073 7.96512 10.5573 8.07428C10.0072 8.18343 9.43704 8.12689 8.9191 7.9118C8.40117 7.69671 7.95871 7.33275 7.64778 6.86601C7.33684 6.39928 7.17141 5.85077 7.17244 5.28995C7.17381 4.5403 7.47222 3.82175 8.0023 3.29166C8.53238 2.76158 9.25093 2.46318 10.0006 2.4618Z" fill="url(#paint0_linear_8558_41723)" stroke="url(#paint1_linear_8558_41723)" stroke-width="0.4"/>
 						<path d="M15.6953 11.8235C13.9915 10.7504 12.0149 10.1901 10.0014 10.2094C8.52715 10.1724 7.06288 10.4608 5.71279 11.0541C4.36161 11.6478 3.15807 12.5324 2.18797 13.6446L2.18772 13.6444L2.18071 13.6535C2.07992 13.7833 2.02422 13.9424 2.02205 14.1068L2.02203 14.1068V14.1094V17.7126C2.01395 18.0672 2.14632 18.4107 2.39036 18.6681L2.53552 18.5306L2.39036 18.6681C2.635 18.9262 2.97192 19.0769 3.32738 19.0871L3.32737 19.0872H3.33314H10.2165H10.6823L10.3615 18.7495L9.30592 17.6384L9.24763 17.577L9.16301 17.5761L3.53314 17.5171V14.3955C4.36079 13.5426 5.35356 12.8667 6.45116 12.4094C7.57328 11.9418 8.78042 11.7129 9.99581 11.7372L9.99581 11.7373L10.0025 11.7372C11.6671 11.7148 13.3055 12.1531 14.7365 13.0036L14.8781 13.0877L14.9878 12.965L15.7378 12.1261L15.8955 11.9497L15.6953 11.8235Z" fill="url(#paint2_linear_8558_41723)" stroke="url(#paint3_linear_8558_41723)" stroke-width="0.4"/>
@@ -978,7 +978,7 @@
 					  </svg>
 					  Assign Providers
 					</a>
-					<a href="" class="btn btn-has-icon btn-primary rounded">
+					<a href="#" class="btn btn-has-icon btn-primary rounded">
 					  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="white"/>
 						<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="white"/>
@@ -1054,7 +1054,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1070,27 +1070,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1115,7 +1115,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1131,27 +1131,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1176,7 +1176,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1192,27 +1192,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1237,7 +1237,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1253,27 +1253,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1298,7 +1298,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1314,27 +1314,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1384,7 +1384,7 @@
 				  <div class="d-lg-flex align-items-center justify-content-between mb-4">
 				  <h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
 				  <div class="d-flex gap-3">
-					<a href="" class="btn btn-has-icon btn-outline-dark rounded">
+					<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
 					  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M9.99995 9.64514C10.8594 9.64629 11.7 9.39247 12.4152 8.9158C13.1304 8.43913 13.6881 7.76102 14.0178 6.96728C14.3476 6.17354 14.4344 5.29983 14.2674 4.45671C14.1005 3.61359 13.6872 2.83894 13.0798 2.23077C12.4725 1.62261 11.6984 1.20826 10.8555 1.04016C10.0126 0.872052 9.13876 0.957746 8.34457 1.28639C7.55039 1.61504 6.87154 2.17188 6.39391 2.88644C5.91627 3.60101 5.66133 4.44119 5.66133 5.30069C5.66133 6.4519 6.11824 7.55605 6.93173 8.37062C7.74521 9.18519 8.84874 9.64359 9.99995 9.64514ZM10.0006 2.4618C10.5614 2.46078 11.1099 2.62621 11.5766 2.93714C12.0434 3.24808 12.4073 3.69053 12.6224 4.20847C12.8375 4.7264 12.8941 5.29652 12.7849 5.84662C12.6758 6.39671 12.4058 6.90204 12.0092 7.2986C11.6127 7.69516 11.1073 7.96512 10.5573 8.07428C10.0072 8.18343 9.43704 8.12689 8.9191 7.9118C8.40117 7.69671 7.95871 7.33275 7.64778 6.86601C7.33684 6.39928 7.17141 5.85077 7.17244 5.28995C7.17381 4.5403 7.47222 3.82175 8.0023 3.29166C8.53238 2.76158 9.25093 2.46318 10.0006 2.4618Z" fill="url(#paint0_linear_8558_41723)" stroke="url(#paint1_linear_8558_41723)" stroke-width="0.4"/>
 						<path d="M15.6953 11.8235C13.9915 10.7504 12.0149 10.1901 10.0014 10.2094C8.52715 10.1724 7.06288 10.4608 5.71279 11.0541C4.36161 11.6478 3.15807 12.5324 2.18797 13.6446L2.18772 13.6444L2.18071 13.6535C2.07992 13.7833 2.02422 13.9424 2.02205 14.1068L2.02203 14.1068V14.1094V17.7126C2.01395 18.0672 2.14632 18.4107 2.39036 18.6681L2.53552 18.5306L2.39036 18.6681C2.635 18.9262 2.97192 19.0769 3.32738 19.0871L3.32737 19.0872H3.33314H10.2165H10.6823L10.3615 18.7495L9.30592 17.6384L9.24763 17.577L9.16301 17.5761L3.53314 17.5171V14.3955C4.36079 13.5426 5.35356 12.8667 6.45116 12.4094C7.57328 11.9418 8.78042 11.7129 9.99581 11.7372L9.99581 11.7373L10.0025 11.7372C11.6671 11.7148 13.3055 12.1531 14.7365 13.0036L14.8781 13.0877L14.9878 12.965L15.7378 12.1261L15.8955 11.9497L15.6953 11.8235Z" fill="url(#paint2_linear_8558_41723)" stroke="url(#paint3_linear_8558_41723)" stroke-width="0.4"/>
@@ -1423,7 +1423,7 @@
 					  </svg>
 					  Assign Providers
 					</a>
-					<a href="" class="btn btn-has-icon btn-primary rounded">
+					<a href="#" class="btn btn-has-icon btn-primary rounded">
 					  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="white"/>
 						<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="white"/>
@@ -1499,7 +1499,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1515,27 +1515,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1560,7 +1560,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1576,27 +1576,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1621,7 +1621,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1637,27 +1637,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1682,7 +1682,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1698,27 +1698,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -1743,7 +1743,7 @@
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
-									<a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									<a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 								  </div>
 								</div>
 							  </td>
@@ -1759,27 +1759,27 @@
 							  <td class="text-center align-middle">$00:00</td>
 							  <td class="align-middle">
 								<div class="d-flex actions justify-content-center">
-								  <a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M9.00065 9.9974C11.3018 9.9974 13.1673 8.13192 13.1673 5.83073C13.1673 3.52954 11.3018 1.66406 9.00065 1.66406C6.69946 1.66406 4.83398 3.52954 4.83398 5.83073C4.83398 8.13192 6.69946 9.9974 9.00065 9.9974Z" stroke="black" stroke-width="2"/>
 									  <path d="M13.167 18.3307H3.38871C3.15236 18.3308 2.9187 18.2806 2.70325 18.1834C2.48779 18.0863 2.29546 17.9444 2.13902 17.7672C1.98258 17.5901 1.86562 17.3816 1.79588 17.1558C1.72614 16.93 1.70524 16.6919 1.73454 16.4574L2.05954 13.8541C2.13512 13.2492 2.42906 12.6929 2.88607 12.2896C3.34308 11.8863 3.93169 11.6638 4.54121 11.6641H4.83371" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 									  <path d="M17.3337 15.8307L13.167 11.6641M17.3337 11.6641L13.167 15.8307" stroke="black" stroke-width="2" stroke-linecap="round"/>
 									</svg>
 								  </a>
-								  <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M14.286 17.1462C15.075 17.1462 15.7146 16.5066 15.7146 15.7176C15.7146 14.9287 15.075 14.2891 14.286 14.2891C13.497 14.2891 12.8574 14.9287 12.8574 15.7176C12.8574 16.5066 13.497 17.1462 14.286 17.1462Z" fill="black"/>
 									  <path d="M19.8406 15.341C19.3992 14.2167 18.6376 13.2465 17.6502 12.5509C16.6628 11.8552 15.4929 11.4646 14.2856 11.4275C13.0783 11.4646 11.9084 11.8552 10.9209 12.5509C9.9335 13.2465 9.17192 14.2167 8.73057 15.341L8.57129 15.7132L8.73057 16.0853C9.17192 17.2097 9.9335 18.1798 10.9209 18.8755C11.9084 19.5711 13.0783 19.9618 14.2856 19.9989C15.4929 19.9618 16.6628 19.5711 17.6502 18.8755C18.6376 18.1798 19.3992 17.2097 19.8406 16.0853L19.9999 15.7132L19.8406 15.341ZM14.2856 18.5703C13.7205 18.5703 13.1681 18.4027 12.6982 18.0888C12.2284 17.7749 11.8622 17.3286 11.6459 16.8066C11.4297 16.2845 11.3731 15.71 11.4833 15.1558C11.5936 14.6015 11.8657 14.0924 12.2653 13.6929C12.6648 13.2933 13.1739 13.0212 13.7282 12.9109C14.2824 12.8007 14.8569 12.8573 15.379 13.0735C15.901 13.2898 16.3473 13.656 16.6612 14.1258C16.9751 14.5957 17.1427 15.1481 17.1427 15.7132C17.1418 16.4706 16.8404 17.1968 16.3048 17.7324C15.7692 18.268 15.043 18.5694 14.2856 18.5703V18.5703ZM3.57129 10.7132H7.14272V12.1417H3.57129V10.7132ZM3.57129 7.14174H12.1427V8.57031H3.57129V7.14174ZM3.57129 3.57031H12.1427V4.99888H3.57129V3.57031Z" fill="black"/>
 									  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0V0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black"/>
 									  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black"/>
 									</svg>
 								  </a>
-								  <a href="" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								  <a href="#" title="Feedback" aria-label="Feedback" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 									  <mask id="mask0_8558_148040" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="21">
 									  <path d="M1 1H21V20.2377H1V1Z" fill="white" stroke="white" stroke-width="0.5"/>
@@ -2026,7 +2026,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2039,7 +2039,7 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M12.9213 9.69332H17.1285C17.1285 9.12793 16.9069 8.58569 16.5124 8.1859C16.1179 7.78611 15.5828 7.56151 15.0249 7.56151C14.467 7.56151 13.932 7.78611 13.5374 8.1859C13.1429 8.58569 12.9213 9.12793 12.9213 9.69332ZM10.8177 9.69332C10.8177 8.56254 11.261 7.47806 12.05 6.67848C12.839 5.87889 13.9091 5.42969 15.0249 5.42969C16.1408 5.42969 17.2109 5.87889 17.9999 6.67848C18.7889 7.47806 19.2322 8.56254 19.2322 9.69332H24.4912C24.7702 9.69332 25.0377 9.80562 25.235 10.0055C25.4322 10.2054 25.543 10.4765 25.543 10.7592C25.543 11.0419 25.4322 11.313 25.235 11.5129C25.0377 11.7128 24.7702 11.8251 24.4912 11.8251H23.5635L22.6316 22.8466C22.542 23.9109 22.0615 24.9023 21.2851 25.6248C20.5088 26.3472 19.4931 26.748 18.4391 26.7479H11.6108C10.5567 26.748 9.54109 26.3472 8.76472 25.6248C7.98835 24.9023 7.50784 23.9109 7.41824 22.8466L6.48634 11.8251H5.55865C5.27969 11.8251 5.01216 11.7128 4.8149 11.5129C4.61765 11.313 4.50684 11.0419 4.50684 10.7592C4.50684 10.4765 4.61765 10.2054 4.8149 10.0055C5.01216 9.80562 5.27969 9.69332 5.55865 9.69332H10.8177ZM18.1804 16.0888C18.1804 15.8061 18.0695 15.535 17.8723 15.3351C17.675 15.1352 17.4075 15.0229 17.1285 15.0229C16.8496 15.0229 16.5821 15.1352 16.3848 15.3351C16.1876 15.535 16.0767 15.8061 16.0767 16.0888V20.3524C16.0767 20.6351 16.1876 20.9062 16.3848 21.1061C16.5821 21.306 16.8496 21.4183 17.1285 21.4183C17.4075 21.4183 17.675 21.306 17.8723 21.1061C18.0695 20.9062 18.1804 20.6351 18.1804 20.3524V16.0888ZM12.9213 15.0229C13.2003 15.0229 13.4678 15.1352 13.6651 15.3351C13.8623 15.535 13.9731 15.8061 13.9731 16.0888V20.3524C13.9731 20.6351 13.8623 20.9062 13.6651 21.1061C13.4678 21.306 13.2003 21.4183 12.9213 21.4183C12.6424 21.4183 12.3748 21.306 12.1776 21.1061C11.9803 20.9062 11.8695 20.6351 11.8695 20.3524V16.0888C11.8695 15.8061 11.9803 15.535 12.1776 15.3351C12.3748 15.1352 12.6424 15.0229 12.9213 15.0229ZM9.51345 22.6654C9.55826 23.1978 9.79867 23.6936 10.1871 24.0549C10.5755 24.4161 11.0836 24.6164 11.6108 24.6161H18.4391C18.9659 24.6158 19.4735 24.4153 19.8615 24.0541C20.2494 23.693 20.4895 23.1974 20.5343 22.6654L21.4515 11.8251H8.59837L9.51555 22.6654H9.51345Z" fill="black"/>
 									  </svg>
@@ -2058,7 +2058,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2071,7 +2071,7 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M12.9213 9.69332H17.1285C17.1285 9.12793 16.9069 8.58569 16.5124 8.1859C16.1179 7.78611 15.5828 7.56151 15.0249 7.56151C14.467 7.56151 13.932 7.78611 13.5374 8.1859C13.1429 8.58569 12.9213 9.12793 12.9213 9.69332ZM10.8177 9.69332C10.8177 8.56254 11.261 7.47806 12.05 6.67848C12.839 5.87889 13.9091 5.42969 15.0249 5.42969C16.1408 5.42969 17.2109 5.87889 17.9999 6.67848C18.7889 7.47806 19.2322 8.56254 19.2322 9.69332H24.4912C24.7702 9.69332 25.0377 9.80562 25.235 10.0055C25.4322 10.2054 25.543 10.4765 25.543 10.7592C25.543 11.0419 25.4322 11.313 25.235 11.5129C25.0377 11.7128 24.7702 11.8251 24.4912 11.8251H23.5635L22.6316 22.8466C22.542 23.9109 22.0615 24.9023 21.2851 25.6248C20.5088 26.3472 19.4931 26.748 18.4391 26.7479H11.6108C10.5567 26.748 9.54109 26.3472 8.76472 25.6248C7.98835 24.9023 7.50784 23.9109 7.41824 22.8466L6.48634 11.8251H5.55865C5.27969 11.8251 5.01216 11.7128 4.8149 11.5129C4.61765 11.313 4.50684 11.0419 4.50684 10.7592C4.50684 10.4765 4.61765 10.2054 4.8149 10.0055C5.01216 9.80562 5.27969 9.69332 5.55865 9.69332H10.8177ZM18.1804 16.0888C18.1804 15.8061 18.0695 15.535 17.8723 15.3351C17.675 15.1352 17.4075 15.0229 17.1285 15.0229C16.8496 15.0229 16.5821 15.1352 16.3848 15.3351C16.1876 15.535 16.0767 15.8061 16.0767 16.0888V20.3524C16.0767 20.6351 16.1876 20.9062 16.3848 21.1061C16.5821 21.306 16.8496 21.4183 17.1285 21.4183C17.4075 21.4183 17.675 21.306 17.8723 21.1061C18.0695 20.9062 18.1804 20.6351 18.1804 20.3524V16.0888ZM12.9213 15.0229C13.2003 15.0229 13.4678 15.1352 13.6651 15.3351C13.8623 15.535 13.9731 15.8061 13.9731 16.0888V20.3524C13.9731 20.6351 13.8623 20.9062 13.6651 21.1061C13.4678 21.306 13.2003 21.4183 12.9213 21.4183C12.6424 21.4183 12.3748 21.306 12.1776 21.1061C11.9803 20.9062 11.8695 20.6351 11.8695 20.3524V16.0888C11.8695 15.8061 11.9803 15.535 12.1776 15.3351C12.3748 15.1352 12.6424 15.0229 12.9213 15.0229ZM9.51345 22.6654C9.55826 23.1978 9.79867 23.6936 10.1871 24.0549C10.5755 24.4161 11.0836 24.6164 11.6108 24.6161H18.4391C18.9659 24.6158 19.4735 24.4153 19.8615 24.0541C20.2494 23.693 20.4895 23.1974 20.5343 22.6654L21.4515 11.8251H8.59837L9.51555 22.6654H9.51345Z" fill="black"/>
 									  </svg>
@@ -2090,7 +2090,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2103,7 +2103,7 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M12.9213 9.69332H17.1285C17.1285 9.12793 16.9069 8.58569 16.5124 8.1859C16.1179 7.78611 15.5828 7.56151 15.0249 7.56151C14.467 7.56151 13.932 7.78611 13.5374 8.1859C13.1429 8.58569 12.9213 9.12793 12.9213 9.69332ZM10.8177 9.69332C10.8177 8.56254 11.261 7.47806 12.05 6.67848C12.839 5.87889 13.9091 5.42969 15.0249 5.42969C16.1408 5.42969 17.2109 5.87889 17.9999 6.67848C18.7889 7.47806 19.2322 8.56254 19.2322 9.69332H24.4912C24.7702 9.69332 25.0377 9.80562 25.235 10.0055C25.4322 10.2054 25.543 10.4765 25.543 10.7592C25.543 11.0419 25.4322 11.313 25.235 11.5129C25.0377 11.7128 24.7702 11.8251 24.4912 11.8251H23.5635L22.6316 22.8466C22.542 23.9109 22.0615 24.9023 21.2851 25.6248C20.5088 26.3472 19.4931 26.748 18.4391 26.7479H11.6108C10.5567 26.748 9.54109 26.3472 8.76472 25.6248C7.98835 24.9023 7.50784 23.9109 7.41824 22.8466L6.48634 11.8251H5.55865C5.27969 11.8251 5.01216 11.7128 4.8149 11.5129C4.61765 11.313 4.50684 11.0419 4.50684 10.7592C4.50684 10.4765 4.61765 10.2054 4.8149 10.0055C5.01216 9.80562 5.27969 9.69332 5.55865 9.69332H10.8177ZM18.1804 16.0888C18.1804 15.8061 18.0695 15.535 17.8723 15.3351C17.675 15.1352 17.4075 15.0229 17.1285 15.0229C16.8496 15.0229 16.5821 15.1352 16.3848 15.3351C16.1876 15.535 16.0767 15.8061 16.0767 16.0888V20.3524C16.0767 20.6351 16.1876 20.9062 16.3848 21.1061C16.5821 21.306 16.8496 21.4183 17.1285 21.4183C17.4075 21.4183 17.675 21.306 17.8723 21.1061C18.0695 20.9062 18.1804 20.6351 18.1804 20.3524V16.0888ZM12.9213 15.0229C13.2003 15.0229 13.4678 15.1352 13.6651 15.3351C13.8623 15.535 13.9731 15.8061 13.9731 16.0888V20.3524C13.9731 20.6351 13.8623 20.9062 13.6651 21.1061C13.4678 21.306 13.2003 21.4183 12.9213 21.4183C12.6424 21.4183 12.3748 21.306 12.1776 21.1061C11.9803 20.9062 11.8695 20.6351 11.8695 20.3524V16.0888C11.8695 15.8061 11.9803 15.535 12.1776 15.3351C12.3748 15.1352 12.6424 15.0229 12.9213 15.0229ZM9.51345 22.6654C9.55826 23.1978 9.79867 23.6936 10.1871 24.0549C10.5755 24.4161 11.0836 24.6164 11.6108 24.6161H18.4391C18.9659 24.6158 19.4735 24.4153 19.8615 24.0541C20.2494 23.693 20.4895 23.1974 20.5343 22.6654L21.4515 11.8251H8.59837L9.51555 22.6654H9.51345Z" fill="black"/>
 									  </svg>
@@ -2122,7 +2122,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2135,7 +2135,7 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M12.9213 9.69332H17.1285C17.1285 9.12793 16.9069 8.58569 16.5124 8.1859C16.1179 7.78611 15.5828 7.56151 15.0249 7.56151C14.467 7.56151 13.932 7.78611 13.5374 8.1859C13.1429 8.58569 12.9213 9.12793 12.9213 9.69332ZM10.8177 9.69332C10.8177 8.56254 11.261 7.47806 12.05 6.67848C12.839 5.87889 13.9091 5.42969 15.0249 5.42969C16.1408 5.42969 17.2109 5.87889 17.9999 6.67848C18.7889 7.47806 19.2322 8.56254 19.2322 9.69332H24.4912C24.7702 9.69332 25.0377 9.80562 25.235 10.0055C25.4322 10.2054 25.543 10.4765 25.543 10.7592C25.543 11.0419 25.4322 11.313 25.235 11.5129C25.0377 11.7128 24.7702 11.8251 24.4912 11.8251H23.5635L22.6316 22.8466C22.542 23.9109 22.0615 24.9023 21.2851 25.6248C20.5088 26.3472 19.4931 26.748 18.4391 26.7479H11.6108C10.5567 26.748 9.54109 26.3472 8.76472 25.6248C7.98835 24.9023 7.50784 23.9109 7.41824 22.8466L6.48634 11.8251H5.55865C5.27969 11.8251 5.01216 11.7128 4.8149 11.5129C4.61765 11.313 4.50684 11.0419 4.50684 10.7592C4.50684 10.4765 4.61765 10.2054 4.8149 10.0055C5.01216 9.80562 5.27969 9.69332 5.55865 9.69332H10.8177ZM18.1804 16.0888C18.1804 15.8061 18.0695 15.535 17.8723 15.3351C17.675 15.1352 17.4075 15.0229 17.1285 15.0229C16.8496 15.0229 16.5821 15.1352 16.3848 15.3351C16.1876 15.535 16.0767 15.8061 16.0767 16.0888V20.3524C16.0767 20.6351 16.1876 20.9062 16.3848 21.1061C16.5821 21.306 16.8496 21.4183 17.1285 21.4183C17.4075 21.4183 17.675 21.306 17.8723 21.1061C18.0695 20.9062 18.1804 20.6351 18.1804 20.3524V16.0888ZM12.9213 15.0229C13.2003 15.0229 13.4678 15.1352 13.6651 15.3351C13.8623 15.535 13.9731 15.8061 13.9731 16.0888V20.3524C13.9731 20.6351 13.8623 20.9062 13.6651 21.1061C13.4678 21.306 13.2003 21.4183 12.9213 21.4183C12.6424 21.4183 12.3748 21.306 12.1776 21.1061C11.9803 20.9062 11.8695 20.6351 11.8695 20.3524V16.0888C11.8695 15.8061 11.9803 15.535 12.1776 15.3351C12.3748 15.1352 12.6424 15.0229 12.9213 15.0229ZM9.51345 22.6654C9.55826 23.1978 9.79867 23.6936 10.1871 24.0549C10.5755 24.4161 11.0836 24.6164 11.6108 24.6161H18.4391C18.9659 24.6158 19.4735 24.4153 19.8615 24.0541C20.2494 23.693 20.4895 23.1974 20.5343 22.6654L21.4515 11.8251H8.59837L9.51555 22.6654H9.51345Z" fill="black"/>
 									  </svg>
@@ -2154,7 +2154,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2167,7 +2167,7 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Revoke" aria-label="Revoke" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M12.9213 9.69332H17.1285C17.1285 9.12793 16.9069 8.58569 16.5124 8.1859C16.1179 7.78611 15.5828 7.56151 15.0249 7.56151C14.467 7.56151 13.932 7.78611 13.5374 8.1859C13.1429 8.58569 12.9213 9.12793 12.9213 9.69332ZM10.8177 9.69332C10.8177 8.56254 11.261 7.47806 12.05 6.67848C12.839 5.87889 13.9091 5.42969 15.0249 5.42969C16.1408 5.42969 17.2109 5.87889 17.9999 6.67848C18.7889 7.47806 19.2322 8.56254 19.2322 9.69332H24.4912C24.7702 9.69332 25.0377 9.80562 25.235 10.0055C25.4322 10.2054 25.543 10.4765 25.543 10.7592C25.543 11.0419 25.4322 11.313 25.235 11.5129C25.0377 11.7128 24.7702 11.8251 24.4912 11.8251H23.5635L22.6316 22.8466C22.542 23.9109 22.0615 24.9023 21.2851 25.6248C20.5088 26.3472 19.4931 26.748 18.4391 26.7479H11.6108C10.5567 26.748 9.54109 26.3472 8.76472 25.6248C7.98835 24.9023 7.50784 23.9109 7.41824 22.8466L6.48634 11.8251H5.55865C5.27969 11.8251 5.01216 11.7128 4.8149 11.5129C4.61765 11.313 4.50684 11.0419 4.50684 10.7592C4.50684 10.4765 4.61765 10.2054 4.8149 10.0055C5.01216 9.80562 5.27969 9.69332 5.55865 9.69332H10.8177ZM18.1804 16.0888C18.1804 15.8061 18.0695 15.535 17.8723 15.3351C17.675 15.1352 17.4075 15.0229 17.1285 15.0229C16.8496 15.0229 16.5821 15.1352 16.3848 15.3351C16.1876 15.535 16.0767 15.8061 16.0767 16.0888V20.3524C16.0767 20.6351 16.1876 20.9062 16.3848 21.1061C16.5821 21.306 16.8496 21.4183 17.1285 21.4183C17.4075 21.4183 17.675 21.306 17.8723 21.1061C18.0695 20.9062 18.1804 20.6351 18.1804 20.3524V16.0888ZM12.9213 15.0229C13.2003 15.0229 13.4678 15.1352 13.6651 15.3351C13.8623 15.535 13.9731 15.8061 13.9731 16.0888V20.3524C13.9731 20.6351 13.8623 20.9062 13.6651 21.1061C13.4678 21.306 13.2003 21.4183 12.9213 21.4183C12.6424 21.4183 12.3748 21.306 12.1776 21.1061C11.9803 20.9062 11.8695 20.6351 11.8695 20.3524V16.0888C11.8695 15.8061 11.9803 15.535 12.1776 15.3351C12.3748 15.1352 12.6424 15.0229 12.9213 15.0229ZM9.51345 22.6654C9.55826 23.1978 9.79867 23.6936 10.1871 24.0549C10.5755 24.4161 11.0836 24.6164 11.6108 24.6161H18.4391C18.9659 24.6158 19.4735 24.4153 19.8615 24.0541C20.2494 23.693 20.4895 23.1974 20.5343 22.6654L21.4515 11.8251H8.59837L9.51555 22.6654H9.51345Z" fill="black"/>
 									  </svg>
@@ -2267,7 +2267,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2293,31 +2293,31 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M14.3116 17.4978C15.1006 17.4978 15.7402 16.8582 15.7402 16.0692C15.7402 15.2802 15.1006 14.6406 14.3116 14.6406C13.5226 14.6406 12.8831 15.2802 12.8831 16.0692C12.8831 16.8582 13.5226 17.4978 14.3116 17.4978Z" fill="black"/>
 										<path d="M19.8665 15.6926C19.4251 14.5682 18.6635 13.5981 17.6761 12.9024C16.6886 12.2068 15.5188 11.8161 14.3115 11.779C13.1041 11.8161 11.9343 12.2068 10.9468 12.9024C9.95938 13.5981 9.19779 14.5682 8.75645 15.6926L8.59717 16.0647L8.75645 16.4369C9.19779 17.5612 9.95938 18.5314 10.9468 19.227C11.9343 19.9227 13.1041 20.3133 14.3115 20.3504C15.5188 20.3133 16.6886 19.9227 17.6761 19.227C18.6635 18.5314 19.4251 17.5612 19.8665 16.4369L20.0257 16.0647L19.8665 15.6926ZM14.3115 18.9219C13.7464 18.9219 13.194 18.7543 12.7241 18.4404C12.2543 18.1264 11.888 17.6802 11.6718 17.1581C11.4555 16.636 11.399 16.0616 11.5092 15.5073C11.6195 14.9531 11.8916 14.444 12.2911 14.0444C12.6907 13.6448 13.1998 13.3727 13.7541 13.2625C14.3083 13.1522 14.8828 13.2088 15.4048 13.4251C15.9269 13.6413 16.3731 14.0075 16.6871 14.4774C17.001 14.9472 17.1686 15.4996 17.1686 16.0647C17.1677 16.8222 16.8663 17.5484 16.3307 18.084C15.7951 18.6196 15.0689 18.9209 14.3115 18.9219ZM3.59717 11.0647H7.1686V12.4933H3.59717V11.0647ZM3.59717 7.4933H12.1686V8.92188H3.59717V7.4933ZM3.59717 3.92188H12.1686V5.35045H3.59717V3.92188Z" fill="black"/>
 										<path d="M14.3116 0.351562H1.45445C1.07592 0.352693 0.713211 0.503566 0.445547 0.77123C0.177882 1.03889 0.0270094 1.4016 0.0258789 1.78013V18.923C0.0270094 19.3015 0.177882 19.6642 0.445547 19.9319C0.713211 20.1996 1.07592 20.3504 1.45445 20.3516H7.16874V18.923H1.45445V1.78013H14.3116V9.63728H15.7402V1.78013C15.739 1.4016 15.5882 1.03889 15.3205 0.77123C15.0528 0.503566 14.6901 0.352693 14.3116 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M3.02588 16.3516V20.1176L4.54088 19.2086L9.30288 16.3516H14.0259C15.1289 16.3516 16.0259 15.4546 16.0259 14.3516V6.35156C16.0259 5.24856 15.1289 4.35156 14.0259 4.35156H2.02588C0.922879 4.35156 0.0258789 5.24856 0.0258789 6.35156V14.3516C0.0258789 15.4546 0.922879 16.3516 2.02588 16.3516H3.02588ZM2.02588 6.35156H14.0259V14.3516H8.74888L5.02588 16.5856V14.3516H2.02588V6.35156Z" fill="black"/>
 										<path d="M18.0259 0.351562H6.02588C4.92288 0.351562 4.02588 1.24856 4.02588 2.35156H16.0259C17.1289 2.35156 18.0259 3.24856 18.0259 4.35156V12.3516C19.1289 12.3516 20.0259 11.4546 20.0259 10.3516V2.35156C20.0259 1.24856 19.1289 0.351562 18.0259 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M0.0258789 0.351562V20.3516H16.0259V5.42849L15.7859 5.19772L10.9859 0.582332L10.7459 0.351562H0.0258789ZM1.62588 1.89002H9.62588V6.50541H14.4259V18.8131H1.62588V1.89002ZM11.2259 2.96695L13.3059 4.96695H11.2259V2.96695ZM7.22588 8.04387V11.89H4.82588L8.02588 14.9669L11.2259 11.89H8.82588V8.04387H7.22588ZM4.82588 15.7362V17.2746H11.2259V15.7362H4.82588Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M4.09766 9.69937C4.12034 9.43545 4.23016 9.20178 4.39182 8.98899C4.9607 8.239 6.23564 7.89515 7.12785 8.44855C7.65316 8.7744 8.07442 9.19386 8.42511 9.69001C8.7164 10.1023 8.97959 10.535 9.26295 10.9704C9.46062 10.6888 9.66009 10.3993 9.8646 10.1134C11.622 7.6586 13.5512 5.35391 15.7889 3.3225C17.1618 2.07636 18.737 1.15067 20.4317 0.418683C20.7245 0.291945 20.9689 0.341272 21.2203 0.595829C21.105 0.703484 20.9905 0.810059 20.8771 0.917714C19.397 2.32011 17.9488 3.75492 16.6343 5.31502C15.8818 6.20759 15.1844 7.14661 14.4668 8.06834C13.0215 9.92404 11.9399 12.012 10.7118 14.0063C10.2376 14.7765 9.76811 15.5495 9.2932 16.3189C9.10453 16.625 8.8561 16.6206 8.66671 16.3081C8.05246 15.2935 7.56819 14.2155 7.11057 13.1231C6.72819 12.2114 6.29901 11.3218 5.75353 10.4933C5.48385 10.0835 5.16593 9.74618 4.64349 9.70153C4.46743 9.68677 4.28776 9.69937 4.09766 9.69937Z" fill="black"/>
 										<path d="M17.3886 6.52771L15.9488 7.97223C16.3647 8.89324 16.5954 9.91615 16.5954 10.9931C16.5954 15.049 13.319 18.3367 9.27668 18.3367C5.23438 18.3367 1.95792 15.049 1.95792 10.9931C1.95792 6.93708 5.23438 3.64945 9.27668 3.64945C10.2873 3.64945 11.2494 3.8554 12.1243 4.22662L13.5746 2.77129C12.2907 2.09403 10.8278 1.71094 9.27668 1.71094C4.16755 1.71094 0.0258789 5.86665 0.0258789 10.9931C0.0258789 16.1195 4.16755 20.2748 9.27668 20.2748C14.3858 20.2748 18.5275 16.1191 18.5275 10.9927C18.5275 9.37463 18.1145 7.85233 17.3886 6.52771Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Decline" aria-label="Decline" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Decline" aria-label="Decline" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M19.5352 8.09924C20.7704 13.4734 17.4618 18.843 12.1459 20.0905C6.82965 21.3381 1.51928 17.9938 0.284427 12.6208C-0.950424 7.24779 2.35671 1.87888 7.67296 0.63025C10.3689 -0.00246286 13.4814 0.41076 15.6374 2.19318L14.1234 3.72961C13.9049 3.58739 13.6801 3.45637 13.4487 3.33692C13.2169 3.21747 12.9804 3.10996 12.7383 3.0144C12.4959 2.91921 12.2498 2.83597 11.9993 2.76542C11.7492 2.69487 11.4958 2.63739 11.2398 2.59259C10.9838 2.5478 10.7259 2.51607 10.4666 2.4974C10.2077 2.47837 9.948 2.47314 9.68832 2.48061C9.42864 2.48807 9.1697 2.50898 8.91185 2.54257C8.65438 2.57654 8.39874 2.6232 8.14567 2.6833C3.95041 3.66802 1.3404 7.90364 2.31484 12.1438C3.28928 16.3839 7.4794 19.023 11.675 18.0375C15.8707 17.052 18.4792 12.8183 17.5059 8.5763C17.3549 7.91708 16.9112 6.80396 16.6166 6.23097L18.066 4.71507C18.4131 5.22796 18.7102 5.76885 18.957 6.33773C19.2042 6.90661 19.3967 7.49415 19.5352 8.09924ZM12.0658 10.0638L20.0259 1.9274C19.9697 1.87066 19.9109 1.81654 19.8492 1.76577C19.7879 1.71463 19.724 1.66685 19.6578 1.62243C19.5917 1.57764 19.5234 1.53658 19.4533 1.49888C19.3831 1.4608 19.3115 1.42683 19.2377 1.39585C19.1642 1.36524 19.0896 1.33837 19.0132 1.31522C18.9372 1.29208 18.8601 1.27267 18.7822 1.25736C18.704 1.24169 18.6254 1.23011 18.5464 1.22265C18.4671 1.21481 18.3877 1.21108 18.308 1.21145C18.2287 1.21145 18.1494 1.21593 18.0704 1.22377C17.9911 1.23198 17.9125 1.2443 17.8346 1.25998C17.7567 1.27603 17.6796 1.29581 17.6036 1.3197C17.5279 1.34322 17.453 1.37047 17.3799 1.40182C17.3064 1.43281 17.2348 1.46752 17.1646 1.5056C17.0949 1.54404 17.0269 1.58548 16.9612 1.63064C16.895 1.67544 16.8315 1.72359 16.7705 1.7751C16.7092 1.82662 16.6508 1.88074 16.5946 1.93786L10.3458 8.33366L8.3352 6.30115C8.279 6.24441 8.21987 6.19028 8.15853 6.13914C8.09682 6.08837 8.03291 6.04022 7.9668 5.9958C7.90032 5.95101 7.832 5.90957 7.76185 5.87187C7.69169 5.8338 7.6197 5.79946 7.54625 5.76847C7.47242 5.73786 7.39749 5.71061 7.32146 5.68747C7.24506 5.66395 7.16793 5.64454 7.0897 5.62887C7.01183 5.61319 6.93286 5.60124 6.85389 5.5934C6.77456 5.58556 6.69485 5.58146 6.61515 5.58146C6.53581 5.58146 6.45611 5.58556 6.37677 5.5934C6.29781 5.60124 6.21884 5.61319 6.14097 5.62887C6.06274 5.64454 5.9856 5.66395 5.9092 5.68747C5.83317 5.71061 5.75825 5.73786 5.68442 5.76847C5.61096 5.79946 5.53897 5.8338 5.46882 5.87187C5.39866 5.90957 5.33035 5.95101 5.26386 5.9958C5.19775 6.04022 5.13384 6.08837 5.07214 6.13914C5.0108 6.19028 4.95166 6.24441 4.89547 6.30115L8.6272 10.0739L4.89547 13.9071C4.95166 13.9639 5.01043 14.018 5.07177 14.0688C5.13347 14.1199 5.19738 14.1677 5.2635 14.2125C5.32961 14.2569 5.39756 14.2983 5.46771 14.336C5.53824 14.3737 5.60986 14.4081 5.68332 14.4387C5.75714 14.4693 5.83171 14.4962 5.9081 14.5197C5.98413 14.5428 6.06127 14.5622 6.13913 14.5775C6.21737 14.5932 6.29597 14.6048 6.37494 14.6123C6.45427 14.6201 6.53361 14.6238 6.61295 14.6235C6.69265 14.6235 6.77198 14.6194 6.85095 14.6111C6.93029 14.6029 7.00889 14.591 7.08676 14.5749C7.16462 14.5589 7.24176 14.5391 7.31779 14.5156C7.39382 14.4921 7.46838 14.4644 7.54184 14.4335C7.6153 14.4025 7.68692 14.3678 7.75671 14.3293C7.82686 14.2912 7.89481 14.2498 7.96056 14.2046C8.02667 14.1598 8.09021 14.1113 8.15118 14.0602C8.21252 14.0087 8.27092 13.9545 8.32712 13.8974L10.3572 11.8224L12.403 13.8907C12.4592 13.9474 12.5183 14.0016 12.5797 14.0523C12.6414 14.1035 12.7049 14.1513 12.7714 14.1961C12.8375 14.2405 12.9058 14.2819 12.976 14.3196C13.0461 14.3577 13.1181 14.392 13.1916 14.4226C13.2651 14.4532 13.34 14.4805 13.416 14.5036C13.4924 14.5268 13.5695 14.5462 13.6474 14.5619C13.7256 14.5775 13.8042 14.5891 13.8836 14.5966C13.9625 14.6044 14.0423 14.6082 14.1216 14.6082C14.2013 14.6078 14.2806 14.6037 14.36 14.5958C14.4389 14.5876 14.5175 14.5757 14.5954 14.5596C14.6736 14.544 14.7508 14.5242 14.8268 14.5003C14.9028 14.4768 14.9774 14.4495 15.0508 14.4185C15.1243 14.3875 15.1963 14.3528 15.2661 14.3148C15.3362 14.2763 15.4042 14.2349 15.4703 14.1901C15.536 14.1449 15.6 14.0968 15.6613 14.0456C15.7226 13.9941 15.781 13.94 15.8372 13.8829L12.0658 10.0638Z" fill="black"/>
 									  </svg>
@@ -2336,7 +2336,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2362,20 +2362,20 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M14.3116 17.4978C15.1006 17.4978 15.7402 16.8582 15.7402 16.0692C15.7402 15.2802 15.1006 14.6406 14.3116 14.6406C13.5226 14.6406 12.8831 15.2802 12.8831 16.0692C12.8831 16.8582 13.5226 17.4978 14.3116 17.4978Z" fill="black"/>
 										<path d="M19.8665 15.6926C19.4251 14.5682 18.6635 13.5981 17.6761 12.9024C16.6886 12.2068 15.5188 11.8161 14.3115 11.779C13.1041 11.8161 11.9343 12.2068 10.9468 12.9024C9.95938 13.5981 9.19779 14.5682 8.75645 15.6926L8.59717 16.0647L8.75645 16.4369C9.19779 17.5612 9.95938 18.5314 10.9468 19.227C11.9343 19.9227 13.1041 20.3133 14.3115 20.3504C15.5188 20.3133 16.6886 19.9227 17.6761 19.227C18.6635 18.5314 19.4251 17.5612 19.8665 16.4369L20.0257 16.0647L19.8665 15.6926ZM14.3115 18.9219C13.7464 18.9219 13.194 18.7543 12.7241 18.4404C12.2543 18.1264 11.888 17.6802 11.6718 17.1581C11.4555 16.636 11.399 16.0616 11.5092 15.5073C11.6195 14.9531 11.8916 14.444 12.2911 14.0444C12.6907 13.6448 13.1998 13.3727 13.7541 13.2625C14.3083 13.1522 14.8828 13.2088 15.4048 13.4251C15.9269 13.6413 16.3731 14.0075 16.6871 14.4774C17.001 14.9472 17.1686 15.4996 17.1686 16.0647C17.1677 16.8222 16.8663 17.5484 16.3307 18.084C15.7951 18.6196 15.0689 18.9209 14.3115 18.9219ZM3.59717 11.0647H7.1686V12.4933H3.59717V11.0647ZM3.59717 7.4933H12.1686V8.92188H3.59717V7.4933ZM3.59717 3.92188H12.1686V5.35045H3.59717V3.92188Z" fill="black"/>
 										<path d="M14.3116 0.351562H1.45445C1.07592 0.352693 0.713211 0.503566 0.445547 0.77123C0.177882 1.03889 0.0270094 1.4016 0.0258789 1.78013V18.923C0.0270094 19.3015 0.177882 19.6642 0.445547 19.9319C0.713211 20.1996 1.07592 20.3504 1.45445 20.3516H7.16874V18.923H1.45445V1.78013H14.3116V9.63728H15.7402V1.78013C15.739 1.4016 15.5882 1.03889 15.3205 0.77123C15.0528 0.503566 14.6901 0.352693 14.3116 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M3.02588 16.3516V20.1176L4.54088 19.2086L9.30288 16.3516H14.0259C15.1289 16.3516 16.0259 15.4546 16.0259 14.3516V6.35156C16.0259 5.24856 15.1289 4.35156 14.0259 4.35156H2.02588C0.922879 4.35156 0.0258789 5.24856 0.0258789 6.35156V14.3516C0.0258789 15.4546 0.922879 16.3516 2.02588 16.3516H3.02588ZM2.02588 6.35156H14.0259V14.3516H8.74888L5.02588 16.5856V14.3516H2.02588V6.35156Z" fill="black"/>
 										<path d="M18.0259 0.351562H6.02588C4.92288 0.351562 4.02588 1.24856 4.02588 2.35156H16.0259C17.1289 2.35156 18.0259 3.24856 18.0259 4.35156V12.3516C19.1289 12.3516 20.0259 11.4546 20.0259 10.3516V2.35156C20.0259 1.24856 19.1289 0.351562 18.0259 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M0.0258789 0.351562V20.3516H16.0259V5.42849L15.7859 5.19772L10.9859 0.582332L10.7459 0.351562H0.0258789ZM1.62588 1.89002H9.62588V6.50541H14.4259V18.8131H1.62588V1.89002ZM11.2259 2.96695L13.3059 4.96695H11.2259V2.96695ZM7.22588 8.04387V11.89H4.82588L8.02588 14.9669L11.2259 11.89H8.82588V8.04387H7.22588ZM4.82588 15.7362V17.2746H11.2259V15.7362H4.82588Z" fill="black"/>
 									  </svg>
@@ -2394,7 +2394,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2420,31 +2420,31 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M14.3116 17.4978C15.1006 17.4978 15.7402 16.8582 15.7402 16.0692C15.7402 15.2802 15.1006 14.6406 14.3116 14.6406C13.5226 14.6406 12.8831 15.2802 12.8831 16.0692C12.8831 16.8582 13.5226 17.4978 14.3116 17.4978Z" fill="black"/>
 										<path d="M19.8665 15.6926C19.4251 14.5682 18.6635 13.5981 17.6761 12.9024C16.6886 12.2068 15.5188 11.8161 14.3115 11.779C13.1041 11.8161 11.9343 12.2068 10.9468 12.9024C9.95938 13.5981 9.19779 14.5682 8.75645 15.6926L8.59717 16.0647L8.75645 16.4369C9.19779 17.5612 9.95938 18.5314 10.9468 19.227C11.9343 19.9227 13.1041 20.3133 14.3115 20.3504C15.5188 20.3133 16.6886 19.9227 17.6761 19.227C18.6635 18.5314 19.4251 17.5612 19.8665 16.4369L20.0257 16.0647L19.8665 15.6926ZM14.3115 18.9219C13.7464 18.9219 13.194 18.7543 12.7241 18.4404C12.2543 18.1264 11.888 17.6802 11.6718 17.1581C11.4555 16.636 11.399 16.0616 11.5092 15.5073C11.6195 14.9531 11.8916 14.444 12.2911 14.0444C12.6907 13.6448 13.1998 13.3727 13.7541 13.2625C14.3083 13.1522 14.8828 13.2088 15.4048 13.4251C15.9269 13.6413 16.3731 14.0075 16.6871 14.4774C17.001 14.9472 17.1686 15.4996 17.1686 16.0647C17.1677 16.8222 16.8663 17.5484 16.3307 18.084C15.7951 18.6196 15.0689 18.9209 14.3115 18.9219ZM3.59717 11.0647H7.1686V12.4933H3.59717V11.0647ZM3.59717 7.4933H12.1686V8.92188H3.59717V7.4933ZM3.59717 3.92188H12.1686V5.35045H3.59717V3.92188Z" fill="black"/>
 										<path d="M14.3116 0.351562H1.45445C1.07592 0.352693 0.713211 0.503566 0.445547 0.77123C0.177882 1.03889 0.0270094 1.4016 0.0258789 1.78013V18.923C0.0270094 19.3015 0.177882 19.6642 0.445547 19.9319C0.713211 20.1996 1.07592 20.3504 1.45445 20.3516H7.16874V18.923H1.45445V1.78013H14.3116V9.63728H15.7402V1.78013C15.739 1.4016 15.5882 1.03889 15.3205 0.77123C15.0528 0.503566 14.6901 0.352693 14.3116 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M3.02588 16.3516V20.1176L4.54088 19.2086L9.30288 16.3516H14.0259C15.1289 16.3516 16.0259 15.4546 16.0259 14.3516V6.35156C16.0259 5.24856 15.1289 4.35156 14.0259 4.35156H2.02588C0.922879 4.35156 0.0258789 5.24856 0.0258789 6.35156V14.3516C0.0258789 15.4546 0.922879 16.3516 2.02588 16.3516H3.02588ZM2.02588 6.35156H14.0259V14.3516H8.74888L5.02588 16.5856V14.3516H2.02588V6.35156Z" fill="black"/>
 										<path d="M18.0259 0.351562H6.02588C4.92288 0.351562 4.02588 1.24856 4.02588 2.35156H16.0259C17.1289 2.35156 18.0259 3.24856 18.0259 4.35156V12.3516C19.1289 12.3516 20.0259 11.4546 20.0259 10.3516V2.35156C20.0259 1.24856 19.1289 0.351562 18.0259 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M0.0258789 0.351562V20.3516H16.0259V5.42849L15.7859 5.19772L10.9859 0.582332L10.7459 0.351562H0.0258789ZM1.62588 1.89002H9.62588V6.50541H14.4259V18.8131H1.62588V1.89002ZM11.2259 2.96695L13.3059 4.96695H11.2259V2.96695ZM7.22588 8.04387V11.89H4.82588L8.02588 14.9669L11.2259 11.89H8.82588V8.04387H7.22588ZM4.82588 15.7362V17.2746H11.2259V15.7362H4.82588Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M4.09766 9.69937C4.12034 9.43545 4.23016 9.20178 4.39182 8.98899C4.9607 8.239 6.23564 7.89515 7.12785 8.44855C7.65316 8.7744 8.07442 9.19386 8.42511 9.69001C8.7164 10.1023 8.97959 10.535 9.26295 10.9704C9.46062 10.6888 9.66009 10.3993 9.8646 10.1134C11.622 7.6586 13.5512 5.35391 15.7889 3.3225C17.1618 2.07636 18.737 1.15067 20.4317 0.418683C20.7245 0.291945 20.9689 0.341272 21.2203 0.595829C21.105 0.703484 20.9905 0.810059 20.8771 0.917714C19.397 2.32011 17.9488 3.75492 16.6343 5.31502C15.8818 6.20759 15.1844 7.14661 14.4668 8.06834C13.0215 9.92404 11.9399 12.012 10.7118 14.0063C10.2376 14.7765 9.76811 15.5495 9.2932 16.3189C9.10453 16.625 8.8561 16.6206 8.66671 16.3081C8.05246 15.2935 7.56819 14.2155 7.11057 13.1231C6.72819 12.2114 6.29901 11.3218 5.75353 10.4933C5.48385 10.0835 5.16593 9.74618 4.64349 9.70153C4.46743 9.68677 4.28776 9.69937 4.09766 9.69937Z" fill="black"/>
 										<path d="M17.3886 6.52771L15.9488 7.97223C16.3647 8.89324 16.5954 9.91615 16.5954 10.9931C16.5954 15.049 13.319 18.3367 9.27668 18.3367C5.23438 18.3367 1.95792 15.049 1.95792 10.9931C1.95792 6.93708 5.23438 3.64945 9.27668 3.64945C10.2873 3.64945 11.2494 3.8554 12.1243 4.22662L13.5746 2.77129C12.2907 2.09403 10.8278 1.71094 9.27668 1.71094C4.16755 1.71094 0.0258789 5.86665 0.0258789 10.9931C0.0258789 16.1195 4.16755 20.2748 9.27668 20.2748C14.3858 20.2748 18.5275 16.1191 18.5275 10.9927C18.5275 9.37463 18.1145 7.85233 17.3886 6.52771Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Decline" aria-label="Decline" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Decline" aria-label="Decline" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M19.5352 8.09924C20.7704 13.4734 17.4618 18.843 12.1459 20.0905C6.82965 21.3381 1.51928 17.9938 0.284427 12.6208C-0.950424 7.24779 2.35671 1.87888 7.67296 0.63025C10.3689 -0.00246286 13.4814 0.41076 15.6374 2.19318L14.1234 3.72961C13.9049 3.58739 13.6801 3.45637 13.4487 3.33692C13.2169 3.21747 12.9804 3.10996 12.7383 3.0144C12.4959 2.91921 12.2498 2.83597 11.9993 2.76542C11.7492 2.69487 11.4958 2.63739 11.2398 2.59259C10.9838 2.5478 10.7259 2.51607 10.4666 2.4974C10.2077 2.47837 9.948 2.47314 9.68832 2.48061C9.42864 2.48807 9.1697 2.50898 8.91185 2.54257C8.65438 2.57654 8.39874 2.6232 8.14567 2.6833C3.95041 3.66802 1.3404 7.90364 2.31484 12.1438C3.28928 16.3839 7.4794 19.023 11.675 18.0375C15.8707 17.052 18.4792 12.8183 17.5059 8.5763C17.3549 7.91708 16.9112 6.80396 16.6166 6.23097L18.066 4.71507C18.4131 5.22796 18.7102 5.76885 18.957 6.33773C19.2042 6.90661 19.3967 7.49415 19.5352 8.09924ZM12.0658 10.0638L20.0259 1.9274C19.9697 1.87066 19.9109 1.81654 19.8492 1.76577C19.7879 1.71463 19.724 1.66685 19.6578 1.62243C19.5917 1.57764 19.5234 1.53658 19.4533 1.49888C19.3831 1.4608 19.3115 1.42683 19.2377 1.39585C19.1642 1.36524 19.0896 1.33837 19.0132 1.31522C18.9372 1.29208 18.8601 1.27267 18.7822 1.25736C18.704 1.24169 18.6254 1.23011 18.5464 1.22265C18.4671 1.21481 18.3877 1.21108 18.308 1.21145C18.2287 1.21145 18.1494 1.21593 18.0704 1.22377C17.9911 1.23198 17.9125 1.2443 17.8346 1.25998C17.7567 1.27603 17.6796 1.29581 17.6036 1.3197C17.5279 1.34322 17.453 1.37047 17.3799 1.40182C17.3064 1.43281 17.2348 1.46752 17.1646 1.5056C17.0949 1.54404 17.0269 1.58548 16.9612 1.63064C16.895 1.67544 16.8315 1.72359 16.7705 1.7751C16.7092 1.82662 16.6508 1.88074 16.5946 1.93786L10.3458 8.33366L8.3352 6.30115C8.279 6.24441 8.21987 6.19028 8.15853 6.13914C8.09682 6.08837 8.03291 6.04022 7.9668 5.9958C7.90032 5.95101 7.832 5.90957 7.76185 5.87187C7.69169 5.8338 7.6197 5.79946 7.54625 5.76847C7.47242 5.73786 7.39749 5.71061 7.32146 5.68747C7.24506 5.66395 7.16793 5.64454 7.0897 5.62887C7.01183 5.61319 6.93286 5.60124 6.85389 5.5934C6.77456 5.58556 6.69485 5.58146 6.61515 5.58146C6.53581 5.58146 6.45611 5.58556 6.37677 5.5934C6.29781 5.60124 6.21884 5.61319 6.14097 5.62887C6.06274 5.64454 5.9856 5.66395 5.9092 5.68747C5.83317 5.71061 5.75825 5.73786 5.68442 5.76847C5.61096 5.79946 5.53897 5.8338 5.46882 5.87187C5.39866 5.90957 5.33035 5.95101 5.26386 5.9958C5.19775 6.04022 5.13384 6.08837 5.07214 6.13914C5.0108 6.19028 4.95166 6.24441 4.89547 6.30115L8.6272 10.0739L4.89547 13.9071C4.95166 13.9639 5.01043 14.018 5.07177 14.0688C5.13347 14.1199 5.19738 14.1677 5.2635 14.2125C5.32961 14.2569 5.39756 14.2983 5.46771 14.336C5.53824 14.3737 5.60986 14.4081 5.68332 14.4387C5.75714 14.4693 5.83171 14.4962 5.9081 14.5197C5.98413 14.5428 6.06127 14.5622 6.13913 14.5775C6.21737 14.5932 6.29597 14.6048 6.37494 14.6123C6.45427 14.6201 6.53361 14.6238 6.61295 14.6235C6.69265 14.6235 6.77198 14.6194 6.85095 14.6111C6.93029 14.6029 7.00889 14.591 7.08676 14.5749C7.16462 14.5589 7.24176 14.5391 7.31779 14.5156C7.39382 14.4921 7.46838 14.4644 7.54184 14.4335C7.6153 14.4025 7.68692 14.3678 7.75671 14.3293C7.82686 14.2912 7.89481 14.2498 7.96056 14.2046C8.02667 14.1598 8.09021 14.1113 8.15118 14.0602C8.21252 14.0087 8.27092 13.9545 8.32712 13.8974L10.3572 11.8224L12.403 13.8907C12.4592 13.9474 12.5183 14.0016 12.5797 14.0523C12.6414 14.1035 12.7049 14.1513 12.7714 14.1961C12.8375 14.2405 12.9058 14.2819 12.976 14.3196C13.0461 14.3577 13.1181 14.392 13.1916 14.4226C13.2651 14.4532 13.34 14.4805 13.416 14.5036C13.4924 14.5268 13.5695 14.5462 13.6474 14.5619C13.7256 14.5775 13.8042 14.5891 13.8836 14.5966C13.9625 14.6044 14.0423 14.6082 14.1216 14.6082C14.2013 14.6078 14.2806 14.6037 14.36 14.5958C14.4389 14.5876 14.5175 14.5757 14.5954 14.5596C14.6736 14.544 14.7508 14.5242 14.8268 14.5003C14.9028 14.4768 14.9774 14.4495 15.0508 14.4185C15.1243 14.3875 15.1963 14.3528 15.2661 14.3148C15.3362 14.2763 15.4042 14.2349 15.4703 14.1901C15.536 14.1449 15.6 14.0968 15.6613 14.0456C15.7226 13.9941 15.781 13.94 15.8372 13.8829L12.0658 10.0638Z" fill="black"/>
 									  </svg>
@@ -2463,7 +2463,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2489,20 +2489,20 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M14.3116 17.4978C15.1006 17.4978 15.7402 16.8582 15.7402 16.0692C15.7402 15.2802 15.1006 14.6406 14.3116 14.6406C13.5226 14.6406 12.8831 15.2802 12.8831 16.0692C12.8831 16.8582 13.5226 17.4978 14.3116 17.4978Z" fill="black"/>
 										<path d="M19.8665 15.6926C19.4251 14.5682 18.6635 13.5981 17.6761 12.9024C16.6886 12.2068 15.5188 11.8161 14.3115 11.779C13.1041 11.8161 11.9343 12.2068 10.9468 12.9024C9.95938 13.5981 9.19779 14.5682 8.75645 15.6926L8.59717 16.0647L8.75645 16.4369C9.19779 17.5612 9.95938 18.5314 10.9468 19.227C11.9343 19.9227 13.1041 20.3133 14.3115 20.3504C15.5188 20.3133 16.6886 19.9227 17.6761 19.227C18.6635 18.5314 19.4251 17.5612 19.8665 16.4369L20.0257 16.0647L19.8665 15.6926ZM14.3115 18.9219C13.7464 18.9219 13.194 18.7543 12.7241 18.4404C12.2543 18.1264 11.888 17.6802 11.6718 17.1581C11.4555 16.636 11.399 16.0616 11.5092 15.5073C11.6195 14.9531 11.8916 14.444 12.2911 14.0444C12.6907 13.6448 13.1998 13.3727 13.7541 13.2625C14.3083 13.1522 14.8828 13.2088 15.4048 13.4251C15.9269 13.6413 16.3731 14.0075 16.6871 14.4774C17.001 14.9472 17.1686 15.4996 17.1686 16.0647C17.1677 16.8222 16.8663 17.5484 16.3307 18.084C15.7951 18.6196 15.0689 18.9209 14.3115 18.9219ZM3.59717 11.0647H7.1686V12.4933H3.59717V11.0647ZM3.59717 7.4933H12.1686V8.92188H3.59717V7.4933ZM3.59717 3.92188H12.1686V5.35045H3.59717V3.92188Z" fill="black"/>
 										<path d="M14.3116 0.351562H1.45445C1.07592 0.352693 0.713211 0.503566 0.445547 0.77123C0.177882 1.03889 0.0270094 1.4016 0.0258789 1.78013V18.923C0.0270094 19.3015 0.177882 19.6642 0.445547 19.9319C0.713211 20.1996 1.07592 20.3504 1.45445 20.3516H7.16874V18.923H1.45445V1.78013H14.3116V9.63728H15.7402V1.78013C15.739 1.4016 15.5882 1.03889 15.3205 0.77123C15.0528 0.503566 14.6901 0.352693 14.3116 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M3.02588 16.3516V20.1176L4.54088 19.2086L9.30288 16.3516H14.0259C15.1289 16.3516 16.0259 15.4546 16.0259 14.3516V6.35156C16.0259 5.24856 15.1289 4.35156 14.0259 4.35156H2.02588C0.922879 4.35156 0.0258789 5.24856 0.0258789 6.35156V14.3516C0.0258789 15.4546 0.922879 16.3516 2.02588 16.3516H3.02588ZM2.02588 6.35156H14.0259V14.3516H8.74888L5.02588 16.5856V14.3516H2.02588V6.35156Z" fill="black"/>
 										<path d="M18.0259 0.351562H6.02588C4.92288 0.351562 4.02588 1.24856 4.02588 2.35156H16.0259C17.1289 2.35156 18.0259 3.24856 18.0259 4.35156V12.3516C19.1289 12.3516 20.0259 11.4546 20.0259 10.3516V2.35156C20.0259 1.24856 19.1289 0.351562 18.0259 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M0.0258789 0.351562V20.3516H16.0259V5.42849L15.7859 5.19772L10.9859 0.582332L10.7459 0.351562H0.0258789ZM1.62588 1.89002H9.62588V6.50541H14.4259V18.8131H1.62588V1.89002ZM11.2259 2.96695L13.3059 4.96695H11.2259V2.96695ZM7.22588 8.04387V11.89H4.82588L8.02588 14.9669L11.2259 11.89H8.82588V8.04387H7.22588ZM4.82588 15.7362V17.2746H11.2259V15.7362H4.82588Z" fill="black"/>
 									  </svg>
@@ -2521,7 +2521,7 @@
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
-									  <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+									  <a href="#" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
 									</div>
 								  </div>
 								</td>
@@ -2547,31 +2547,31 @@
 								</td>
 								<td class="align-middle">
 								  <div class="d-flex actions justify-content-center">
-									<a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M14.3116 17.4978C15.1006 17.4978 15.7402 16.8582 15.7402 16.0692C15.7402 15.2802 15.1006 14.6406 14.3116 14.6406C13.5226 14.6406 12.8831 15.2802 12.8831 16.0692C12.8831 16.8582 13.5226 17.4978 14.3116 17.4978Z" fill="black"/>
 										<path d="M19.8665 15.6926C19.4251 14.5682 18.6635 13.5981 17.6761 12.9024C16.6886 12.2068 15.5188 11.8161 14.3115 11.779C13.1041 11.8161 11.9343 12.2068 10.9468 12.9024C9.95938 13.5981 9.19779 14.5682 8.75645 15.6926L8.59717 16.0647L8.75645 16.4369C9.19779 17.5612 9.95938 18.5314 10.9468 19.227C11.9343 19.9227 13.1041 20.3133 14.3115 20.3504C15.5188 20.3133 16.6886 19.9227 17.6761 19.227C18.6635 18.5314 19.4251 17.5612 19.8665 16.4369L20.0257 16.0647L19.8665 15.6926ZM14.3115 18.9219C13.7464 18.9219 13.194 18.7543 12.7241 18.4404C12.2543 18.1264 11.888 17.6802 11.6718 17.1581C11.4555 16.636 11.399 16.0616 11.5092 15.5073C11.6195 14.9531 11.8916 14.444 12.2911 14.0444C12.6907 13.6448 13.1998 13.3727 13.7541 13.2625C14.3083 13.1522 14.8828 13.2088 15.4048 13.4251C15.9269 13.6413 16.3731 14.0075 16.6871 14.4774C17.001 14.9472 17.1686 15.4996 17.1686 16.0647C17.1677 16.8222 16.8663 17.5484 16.3307 18.084C15.7951 18.6196 15.0689 18.9209 14.3115 18.9219ZM3.59717 11.0647H7.1686V12.4933H3.59717V11.0647ZM3.59717 7.4933H12.1686V8.92188H3.59717V7.4933ZM3.59717 3.92188H12.1686V5.35045H3.59717V3.92188Z" fill="black"/>
 										<path d="M14.3116 0.351562H1.45445C1.07592 0.352693 0.713211 0.503566 0.445547 0.77123C0.177882 1.03889 0.0270094 1.4016 0.0258789 1.78013V18.923C0.0270094 19.3015 0.177882 19.6642 0.445547 19.9319C0.713211 20.1996 1.07592 20.3504 1.45445 20.3516H7.16874V18.923H1.45445V1.78013H14.3116V9.63728H15.7402V1.78013C15.739 1.4016 15.5882 1.03889 15.3205 0.77123C15.0528 0.503566 14.6901 0.352693 14.3116 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M3.02588 16.3516V20.1176L4.54088 19.2086L9.30288 16.3516H14.0259C15.1289 16.3516 16.0259 15.4546 16.0259 14.3516V6.35156C16.0259 5.24856 15.1289 4.35156 14.0259 4.35156H2.02588C0.922879 4.35156 0.0258789 5.24856 0.0258789 6.35156V14.3516C0.0258789 15.4546 0.922879 16.3516 2.02588 16.3516H3.02588ZM2.02588 6.35156H14.0259V14.3516H8.74888L5.02588 16.5856V14.3516H2.02588V6.35156Z" fill="black"/>
 										<path d="M18.0259 0.351562H6.02588C4.92288 0.351562 4.02588 1.24856 4.02588 2.35156H16.0259C17.1289 2.35156 18.0259 3.24856 18.0259 4.35156V12.3516C19.1289 12.3516 20.0259 11.4546 20.0259 10.3516V2.35156C20.0259 1.24856 19.1289 0.351562 18.0259 0.351562Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M0.0258789 0.351562V20.3516H16.0259V5.42849L15.7859 5.19772L10.9859 0.582332L10.7459 0.351562H0.0258789ZM1.62588 1.89002H9.62588V6.50541H14.4259V18.8131H1.62588V1.89002ZM11.2259 2.96695L13.3059 4.96695H11.2259V2.96695ZM7.22588 8.04387V11.89H4.82588L8.02588 14.9669L11.2259 11.89H8.82588V8.04387H7.22588ZM4.82588 15.7362V17.2746H11.2259V15.7362H4.82588Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M4.09766 9.69937C4.12034 9.43545 4.23016 9.20178 4.39182 8.98899C4.9607 8.239 6.23564 7.89515 7.12785 8.44855C7.65316 8.7744 8.07442 9.19386 8.42511 9.69001C8.7164 10.1023 8.97959 10.535 9.26295 10.9704C9.46062 10.6888 9.66009 10.3993 9.8646 10.1134C11.622 7.6586 13.5512 5.35391 15.7889 3.3225C17.1618 2.07636 18.737 1.15067 20.4317 0.418683C20.7245 0.291945 20.9689 0.341272 21.2203 0.595829C21.105 0.703484 20.9905 0.810059 20.8771 0.917714C19.397 2.32011 17.9488 3.75492 16.6343 5.31502C15.8818 6.20759 15.1844 7.14661 14.4668 8.06834C13.0215 9.92404 11.9399 12.012 10.7118 14.0063C10.2376 14.7765 9.76811 15.5495 9.2932 16.3189C9.10453 16.625 8.8561 16.6206 8.66671 16.3081C8.05246 15.2935 7.56819 14.2155 7.11057 13.1231C6.72819 12.2114 6.29901 11.3218 5.75353 10.4933C5.48385 10.0835 5.16593 9.74618 4.64349 9.70153C4.46743 9.68677 4.28776 9.69937 4.09766 9.69937Z" fill="black"/>
 										<path d="M17.3886 6.52771L15.9488 7.97223C16.3647 8.89324 16.5954 9.91615 16.5954 10.9931C16.5954 15.049 13.319 18.3367 9.27668 18.3367C5.23438 18.3367 1.95792 15.049 1.95792 10.9931C1.95792 6.93708 5.23438 3.64945 9.27668 3.64945C10.2873 3.64945 11.2494 3.8554 12.1243 4.22662L13.5746 2.77129C12.2907 2.09403 10.8278 1.71094 9.27668 1.71094C4.16755 1.71094 0.0258789 5.86665 0.0258789 10.9931C0.0258789 16.1195 4.16755 20.2748 9.27668 20.2748C14.3858 20.2748 18.5275 16.1191 18.5275 10.9927C18.5275 9.37463 18.1145 7.85233 17.3886 6.52771Z" fill="black"/>
 									  </svg>
 									</a>
-									<a href="" title="Decline" aria-label="Decline" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									<a href="#" title="Decline" aria-label="Decline" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path d="M19.5352 8.09924C20.7704 13.4734 17.4618 18.843 12.1459 20.0905C6.82965 21.3381 1.51928 17.9938 0.284427 12.6208C-0.950424 7.24779 2.35671 1.87888 7.67296 0.63025C10.3689 -0.00246286 13.4814 0.41076 15.6374 2.19318L14.1234 3.72961C13.9049 3.58739 13.6801 3.45637 13.4487 3.33692C13.2169 3.21747 12.9804 3.10996 12.7383 3.0144C12.4959 2.91921 12.2498 2.83597 11.9993 2.76542C11.7492 2.69487 11.4958 2.63739 11.2398 2.59259C10.9838 2.5478 10.7259 2.51607 10.4666 2.4974C10.2077 2.47837 9.948 2.47314 9.68832 2.48061C9.42864 2.48807 9.1697 2.50898 8.91185 2.54257C8.65438 2.57654 8.39874 2.6232 8.14567 2.6833C3.95041 3.66802 1.3404 7.90364 2.31484 12.1438C3.28928 16.3839 7.4794 19.023 11.675 18.0375C15.8707 17.052 18.4792 12.8183 17.5059 8.5763C17.3549 7.91708 16.9112 6.80396 16.6166 6.23097L18.066 4.71507C18.4131 5.22796 18.7102 5.76885 18.957 6.33773C19.2042 6.90661 19.3967 7.49415 19.5352 8.09924ZM12.0658 10.0638L20.0259 1.9274C19.9697 1.87066 19.9109 1.81654 19.8492 1.76577C19.7879 1.71463 19.724 1.66685 19.6578 1.62243C19.5917 1.57764 19.5234 1.53658 19.4533 1.49888C19.3831 1.4608 19.3115 1.42683 19.2377 1.39585C19.1642 1.36524 19.0896 1.33837 19.0132 1.31522C18.9372 1.29208 18.8601 1.27267 18.7822 1.25736C18.704 1.24169 18.6254 1.23011 18.5464 1.22265C18.4671 1.21481 18.3877 1.21108 18.308 1.21145C18.2287 1.21145 18.1494 1.21593 18.0704 1.22377C17.9911 1.23198 17.9125 1.2443 17.8346 1.25998C17.7567 1.27603 17.6796 1.29581 17.6036 1.3197C17.5279 1.34322 17.453 1.37047 17.3799 1.40182C17.3064 1.43281 17.2348 1.46752 17.1646 1.5056C17.0949 1.54404 17.0269 1.58548 16.9612 1.63064C16.895 1.67544 16.8315 1.72359 16.7705 1.7751C16.7092 1.82662 16.6508 1.88074 16.5946 1.93786L10.3458 8.33366L8.3352 6.30115C8.279 6.24441 8.21987 6.19028 8.15853 6.13914C8.09682 6.08837 8.03291 6.04022 7.9668 5.9958C7.90032 5.95101 7.832 5.90957 7.76185 5.87187C7.69169 5.8338 7.6197 5.79946 7.54625 5.76847C7.47242 5.73786 7.39749 5.71061 7.32146 5.68747C7.24506 5.66395 7.16793 5.64454 7.0897 5.62887C7.01183 5.61319 6.93286 5.60124 6.85389 5.5934C6.77456 5.58556 6.69485 5.58146 6.61515 5.58146C6.53581 5.58146 6.45611 5.58556 6.37677 5.5934C6.29781 5.60124 6.21884 5.61319 6.14097 5.62887C6.06274 5.64454 5.9856 5.66395 5.9092 5.68747C5.83317 5.71061 5.75825 5.73786 5.68442 5.76847C5.61096 5.79946 5.53897 5.8338 5.46882 5.87187C5.39866 5.90957 5.33035 5.95101 5.26386 5.9958C5.19775 6.04022 5.13384 6.08837 5.07214 6.13914C5.0108 6.19028 4.95166 6.24441 4.89547 6.30115L8.6272 10.0739L4.89547 13.9071C4.95166 13.9639 5.01043 14.018 5.07177 14.0688C5.13347 14.1199 5.19738 14.1677 5.2635 14.2125C5.32961 14.2569 5.39756 14.2983 5.46771 14.336C5.53824 14.3737 5.60986 14.4081 5.68332 14.4387C5.75714 14.4693 5.83171 14.4962 5.9081 14.5197C5.98413 14.5428 6.06127 14.5622 6.13913 14.5775C6.21737 14.5932 6.29597 14.6048 6.37494 14.6123C6.45427 14.6201 6.53361 14.6238 6.61295 14.6235C6.69265 14.6235 6.77198 14.6194 6.85095 14.6111C6.93029 14.6029 7.00889 14.591 7.08676 14.5749C7.16462 14.5589 7.24176 14.5391 7.31779 14.5156C7.39382 14.4921 7.46838 14.4644 7.54184 14.4335C7.6153 14.4025 7.68692 14.3678 7.75671 14.3293C7.82686 14.2912 7.89481 14.2498 7.96056 14.2046C8.02667 14.1598 8.09021 14.1113 8.15118 14.0602C8.21252 14.0087 8.27092 13.9545 8.32712 13.8974L10.3572 11.8224L12.403 13.8907C12.4592 13.9474 12.5183 14.0016 12.5797 14.0523C12.6414 14.1035 12.7049 14.1513 12.7714 14.1961C12.8375 14.2405 12.9058 14.2819 12.976 14.3196C13.0461 14.3577 13.1181 14.392 13.1916 14.4226C13.2651 14.4532 13.34 14.4805 13.416 14.5036C13.4924 14.5268 13.5695 14.5462 13.6474 14.5619C13.7256 14.5775 13.8042 14.5891 13.8836 14.5966C13.9625 14.6044 14.0423 14.6082 14.1216 14.6082C14.2013 14.6078 14.2806 14.6037 14.36 14.5958C14.4389 14.5876 14.5175 14.5757 14.5954 14.5596C14.6736 14.544 14.7508 14.5242 14.8268 14.5003C14.9028 14.4768 14.9774 14.4495 15.0508 14.4185C15.1243 14.3875 15.1963 14.3528 15.2661 14.3148C15.3362 14.2763 15.4042 14.2349 15.4703 14.1901C15.536 14.1449 15.6 14.0968 15.6613 14.0456C15.7226 13.9941 15.781 13.94 15.8372 13.8829L12.0658 10.0638Z" fill="black"/>
 									  </svg>
