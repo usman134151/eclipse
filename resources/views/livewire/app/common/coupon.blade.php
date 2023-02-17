@@ -60,7 +60,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 											
 										</div>
@@ -85,7 +85,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 											
 										</div>
@@ -110,7 +110,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 											
 										</div>
@@ -135,7 +135,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 										</div>
 										</div>
@@ -159,7 +159,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 										</div>
 										</div>
@@ -183,7 +183,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 										</div>
 										</div>
@@ -207,7 +207,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 										</div>
 										</div>
@@ -231,7 +231,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 										</div>
 										</div>
@@ -255,7 +255,7 @@
 											</svg>
 										</a>
 										<div class="tablediv dropdown-menu">
-											<a title="Edit" aria-label="Edit" href="" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
+											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
 										</div>
 										</div>

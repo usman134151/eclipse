@@ -8,7 +8,7 @@
                <div class="breadcrumb-wrapper">
                  <ol class="breadcrumb">
                    <li class="breadcrumb-item">
-                     <a href="">
+                     <a href="#">
                      Home
                      </a>
                    </li>
@@ -228,7 +228,7 @@
                                </div>
                              </div>
                              <div>
-                               <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                               <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                    <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"/>
                                    <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"/>
@@ -399,7 +399,7 @@
                              </div>
                              <div>
                                <div>
-                                 <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                 <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                      <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"/>
                                      <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"/>
@@ -717,7 +717,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -755,7 +755,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -800,7 +800,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -838,7 +838,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -890,7 +890,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -928,7 +928,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -973,7 +973,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1011,7 +1011,7 @@
                                          </div>
                                        </div>
                                        <div class="text-end">
-                                         <a href="" class="fw-bold">
+                                         <a href="#" class="fw-bold">
                                            <small>
                                              Add Additional Service Charges 
                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1083,7 +1083,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1136,7 +1136,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1196,7 +1196,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1249,7 +1249,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1333,7 +1333,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1399,7 +1399,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1472,7 +1472,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1538,7 +1538,7 @@
                                        </div>
                                      </div>
                                      <div class="text-end">
-                                       <a href="" class="fw-bold">
+                                       <a href="#" class="fw-bold">
                                          <small>
                                            Add Additional Service Charges 
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1570,7 +1570,7 @@
                        <div class="col-lg-12">
                          <div class="border p-3">
                            <div class="text-lg-end mb-4">
-                             <a href="" class="btn btn-primary">Create New Specialization</a>
+                             <a href="#" class="btn btn-primary">Create New Specialization</a>
                            </div>
                            <div class="d-flex flex-column gap-3">
                              
@@ -1626,7 +1626,7 @@
                                </div>
                              </div>
                              <div class="text-end">
-                               <a href="" class="fw-bold">
+                               <a href="#" class="fw-bold">
                                  <small>
                                    Add Additional Specialization 
                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1662,7 +1662,7 @@
                          </select>
                        </div>
                        <div class="text-end">
-                         <a href="" class="fw-bold">
+                         <a href="#" class="fw-bold">
                            <small>
                              Add New Form
                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1684,7 +1684,7 @@
                          </select>
                        </div>
                        <div class="text-end">
-                         <a href="" class="fw-bold">
+                         <a href="#" class="fw-bold">
                            <small>
                              Add New Template Form
                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1706,7 +1706,7 @@
                          </select>
                        </div>
                        <div class="text-end">
-                         <a href="" class="fw-bold">
+                         <a href="#" class="fw-bold">
                            <small>
                              Add New Template Form
                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1728,7 +1728,7 @@
                          </select>
                        </div>
                        <div class="text-end">
-                         <a href="" class="fw-bold">
+                         <a href="#" class="fw-bold">
                            <small>
                              Add New Template Form
                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1750,7 +1750,7 @@
                          </select>
                        </div>
                        <div class="text-end">
-                         <a href="" class="fw-bold">
+                         <a href="#" class="fw-bold">
                            <small>
                              Add new Template Form
                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

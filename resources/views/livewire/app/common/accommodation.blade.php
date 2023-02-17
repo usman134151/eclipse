@@ -78,11 +78,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -111,11 +111,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -144,11 +144,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -177,11 +177,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -210,11 +210,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -243,11 +243,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -276,11 +276,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -309,11 +309,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
@@ -342,11 +342,11 @@
                                             </svg>
                                           </a>
                                           <div class="tablediv dropdown-menu fadeIn">
-                                            <a title="View" aria-label="View" href="" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
+                                            <a title="View" aria-label="View" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
                                             <a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item"><i class="fa fa-pencil-square-o"></i>Edit</a>
                                             <a title="Add Service" aria-label="Add Service" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-plus"></i>Add Service
                                             <a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)"><i class="fa fa-times-circle"></i>Deactivate</a>
-                                            <a title="Duplicate" aria-label="Duplicate" href="" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
+                                            <a title="Duplicate" aria-label="Duplicate" href="#" class="dropdown-item"><i class="fa fa-clone"></i>Duplicate</a>
                                           </div>
                                         </div>
                                       </div>
