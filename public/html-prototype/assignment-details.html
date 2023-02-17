@@ -25,7 +25,7 @@
   </head>
   <!-- END: Head-->
   <!-- BEGIN: Body-->
-  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
     <!-- BEGIN: Content-->
     <div class="app-content content ">
       <div class="content-wrapper container-xxl p-0">
@@ -199,7 +199,7 @@
                     <div class="row">
                       <div class="col-lg-12">
                         <div class="d-lg-flex gap-3 justify-content-center">
-                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                          <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
                               <path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
@@ -264,7 +264,7 @@
                             </svg>
                             Reschedule
                           </a>
-                          <a href="#" class="btn btn-has-icon btn-primary rounded">
+                          <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#UnassignModal">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M18.9767 1.02282C18.3217 0.367918 17.4334 0 16.5071 0C15.5809 0 14.6925 0.367918 14.0376 1.02282L1.68403 13.3774C1.32366 13.7376 1.07508 14.1943 0.968237 14.6924L0.0159878 19.1354C-0.00912444 19.2521 -0.00459501 19.3732 0.0291622 19.4877C0.0629195 19.6022 0.124828 19.7064 0.209233 19.7908C0.293637 19.8752 0.397846 19.9371 0.512339 19.9708C0.626832 20.0046 0.747959 20.0091 0.864654 19.984L5.30801 19.0318C5.80596 18.9249 6.26241 18.6763 6.62244 18.3161L18.9774 5.96223C19.6322 5.30722 20 4.419 20 3.49288C20 2.56676 19.6322 1.67854 18.9774 1.02353L18.9767 1.02282ZM15.0477 2.03284C15.4377 1.66036 15.958 1.45529 16.4973 1.46148C17.0366 1.46767 17.5521 1.68464 17.9334 2.06597C18.3148 2.44731 18.5318 2.96273 18.538 3.50198C18.5442 4.04123 18.3391 4.5615 17.9666 4.95149L17.3236 5.59508L14.4047 2.67643L15.0477 2.03284ZM13.3946 3.68717L16.3135 6.6051L5.61304 17.3061C5.44747 17.4716 5.2376 17.5857 5.00869 17.6347L1.64331 18.3561L2.36482 14.9917C2.41382 14.7629 2.52793 14.553 2.69343 14.3874L13.3932 3.68717H13.3946Z" fill="white"/>
                             </svg>
@@ -550,7 +550,7 @@
                               <div class="col-lg-7 align-self-center">
                                 <div class="d-flex align-items-center gap-2">
                                   <div class="font-family-tertiary">Spoken Language Interpreting Services</div>
-                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <a href="" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#MeetingLinksModal">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
                                     </svg>
@@ -1890,7 +1890,8 @@
                 <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
                   <h2>Attachments</h2>
                   <div class="col-lg-8 mb-4">
-                    <div class="mb-3">
+                    <div class="mb-3 position-relative">
+                      <a href="#" @click="offcanvasOpen = true" class="position-absolute w-100 h-100 d-block"></a>
                       <label for="AddDocuments" class="form-label">Add Documents</label>
                       <input class="form-control" type="file" id="AddDocuments">
                     </div>
@@ -2829,8 +2830,317 @@
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
+    <!-- BEGIN: Panel/Offcanvas -->
+    <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
+      <div class="offcanvas-header">
+        <h2 class="offcanvas-title" id="offcanvasRightLabel">Add Document</h2>
+        <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="col-lg-8 mb-4">
+              <label class="form-label" for="document-title">
+              Document Title 
+              </label>
+              <input
+                type="text"
+                id="document-title"
+                class="form-control"
+                name="document-title"
+                placeholder="Enter Document Title"
+                required
+                aria-required="true"
+                />
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label" for="notes-column">
+              Note
+              </label>
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder=""
+                name="notesColumn"
+                id="notes-column"
+                ></textarea>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label" or="set_set_date">Upload File</label>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="row">
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.35 23.4921L9.702 35.2381H33.35L40 23.4921H16.35ZM11.73 2.54302L0 23.3237L6.744 35.2342L18.476 14.4535L11.73 2.54302ZM38.89 21.5344L26.698 0H13.208L25.384 21.5344H38.89Z" fill="url(#paint0_linear_2957_105057)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2957_105057" x1="20" y1="0" x2="36.0479" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#213969"/>
+                            <stop offset="1" stop-color="#204387"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Company Drive </p>
+                    </a>
+                  </div>
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.35 23.4921L9.702 35.2381H33.35L40 23.4921H16.35ZM11.73 2.54302L0 23.3237L6.744 35.2342L18.476 14.4535L11.73 2.54302ZM38.89 21.5344L26.698 0H13.208L25.384 21.5344H38.89Z" fill="url(#paint0_linear_2957_105057)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2957_105057" x1="20" y1="0" x2="36.0479" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#213969"/>
+                            <stop offset="1" stop-color="#204387"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Google Drive </p>
+                    </a>
+                  </div>
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32.0833 1.1498e-06H25.5208C25.3274 1.1498e-06 25.142 0.076824 25.0052 0.213569C24.8685 0.350315 24.7917 0.535781 24.7917 0.729168V8.75C24.7917 9.13678 24.638 9.50771 24.3645 9.7812C24.091 10.0547 23.7201 10.2083 23.3333 10.2083H11.7214C11.3429 10.2143 10.9763 10.0765 10.6955 9.82281C10.4147 9.56906 10.2406 9.21824 10.2083 8.84115C10.1959 8.64211 10.2244 8.44263 10.292 8.25504C10.3597 8.06745 10.4652 7.89573 10.6019 7.75051C10.7385 7.60528 10.9036 7.48964 11.0867 7.41072C11.2699 7.3318 11.4672 7.29128 11.6667 7.29167H21.875V0.729168C21.875 0.535781 21.7982 0.350315 21.6614 0.213569C21.5247 0.076824 21.3392 1.1498e-06 21.1458 1.1498e-06H10.8099C10.427 -0.000339916 10.0478 0.0752001 9.69421 0.222257C9.34065 0.369313 9.01973 0.584972 8.75 0.856772L0.856772 8.75C0.584972 9.01973 0.369313 9.34065 0.222257 9.69421C0.0752001 10.0478 -0.000339916 10.427 1.1498e-06 10.8099V32.0833C1.1498e-06 32.8569 0.307292 33.5987 0.854273 34.1457C1.40125 34.6927 2.14312 35 2.91667 35H32.0833C32.8569 35 33.5987 34.6927 34.1457 34.1457C34.6927 33.5987 35 32.8569 35 32.0833V2.91667C35 2.14312 34.6927 1.40125 34.1457 0.854273C33.5987 0.307292 32.8569 1.1498e-06 32.0833 1.1498e-06ZM17.5 26.25C16.4905 26.25 15.5037 25.9506 14.6643 25.3898C13.8249 24.8289 13.1707 24.0318 12.7844 23.0991C12.398 22.1665 12.297 21.1402 12.4939 20.1501C12.6909 19.16 13.177 18.2505 13.8908 17.5366C14.6046 16.8228 15.5141 16.3367 16.5042 16.1397C17.4943 15.9428 18.5206 16.0439 19.4533 16.4302C20.3859 16.8165 21.1831 17.4707 21.744 18.3101C22.3048 19.1495 22.6042 20.1363 22.6042 21.1458C22.5994 22.4981 22.0601 23.7935 21.1039 24.7497C20.1477 25.7059 18.8522 26.2452 17.5 26.25Z" fill="url(#paint0_linear_2957_105064)"/>
+                        <defs>
+                          <linearGradient id="paint0_linear_2957_105064" x1="17.5" y1="0" x2="31.5419" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#213969"/>
+                            <stop offset="1" stop-color="#204387"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Disk</p>
+                    </a>
+                  </div>
+                  <div class="text-center col-lg-3 d-flex">
+                    <a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+                      <svg class="mb-2" width="42" height="35" viewBox="0 0 42 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.6185 6.57682L10.3093 13.1536L20.6185 19.7305L10.3093 26.3073L0 19.6944L10.3093 13.1176L0 6.57682L10.3093 0L20.6185 6.57682ZM10.2552 28.4232L20.567 21.8464L30.8763 28.4232L20.567 35L10.2552 28.4232ZM20.6185 19.697L30.9278 13.1176L20.6185 6.57682L30.8763 0L41.1856 6.57682L30.8763 13.1536L41.1856 19.7305L30.8763 26.3073L20.6185 19.6944V19.697Z" fill="url(#paint0_linear_7724_170911)"/>
+                        <defs>
+                        <linearGradient id="paint0_linear_7724_170911" x1="20.5928" y1="0" x2="37.1163" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#213969"/>
+                        <stop offset="1" stop-color="#204387"/>
+                        </linearGradient>
+                        </defs>
+                      </svg>
+                      <p class="text-primary mb-0 fw-medium">Attach from Dropbox</p>
+                    </a>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="form-check">
+                <input class="form-check-input" id="AttachtoProviderConfirmation" name="" type="checkbox" tabindex="">
+                <label class="form-check-label" for="AttachtoProviderConfirmation">Attach to Provider Confirmation</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" id="AttachtoCustomerConfirmation" name="" type="checkbox" tabindex="">
+                <label class="form-check-label" for="AttachtoCustomerConfirmation">Attach to Customer Confirmation</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" id="RequestfromUser" name="" type="checkbox" tabindex="">
+                <label class="form-check-label" for="RequestfromUser">Request from User</label>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label">Who would you like to request this information from?</label>
+              <select class="form-select">
+                <option>Select</option>
+              </select>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="d-flex flex-column gap-4">
+                <div>
+                  <label class="form-label">When should they first be notified?</label>
+                  <div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedNow" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedNow">Now</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="WhenshouldtheyfirstbenotifiedLater" name="" type="checkbox" tabindex="">
+                      <label class="form-check-label" for="WhenshouldtheyfirstbenotifiedLater">Later</label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label-sm">Notify</label>
+                  <div class="d-flex gap-2">
+                    <input type="" name="" class="form-control form-control-sm text-center w-25" value="2">
+                    <label class="form-label mb-0">
+                      Day(s)
+                    </label>
+                  </div>
+                  <div><label class="form-label-sm">before the service start-time</label></div>
+                </div>
+                <div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="RepeatNotification" checked>
+                    <label class="form-check-label" for="RepeatNotification">Repeat Notification</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <div class="d-flex flex-column gap-4">
+                <div>
+                  <label class="form-label">How often should they be notified?</label>
+                  <div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="HowoftenshouldtheybenotifiedTime" name="" type="radio" tabindex="">
+                      <label class="form-check-label" for="HowoftenshouldtheybenotifiedTime">Time(s)</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" id="HowoftenshouldtheybenotifiedEveryDay" name="" type="radio" tabindex="" checked>
+                      <label class="form-check-label" for="HowoftenshouldtheybenotifiedEveryDay">(*) Every ___ Days</label>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <input type="" name="" class="form-control form-control-sm text-center w-25" value="10">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 mb-4">
+              <label class="form-label">Message to User</label>
+              <textarea class="form-control" rows="5" cols="5"></textarea>
+            </div>
+          </div>
+          <div class="col-lg-12 justify-content-center gap-2 d-flex mt-5 form-actions">
+            <!-- ....cancel/next (buttons)... -->
+            <a
+              href="javascript:void(0);"
+              class="btn btn-outline-dark rounded"
+              role="button"
+              >
+            Cancel</a>
+            <button type="submit" class="btn btn-primary rounded">Upload</button>
+          </div>
+        </div>
+        <!-- main row end ...  -->
+      </div>
+    </div>
+    <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen"></div>
+    <!-- END: Panel/Offcanvas -->
+    <!-- Modal - Provider Message -->
+    <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>
+            <div class="d-flex gap-3 justify-content-center mb-5">
+                <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
+                <a href="#" class="btn btn-sm btn-primary">Approve</a>
+            </div>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+                <a href="#" class="btn rounded btn-primary">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Provider Message -->
+    <!-- Modal - Meeting Links -->
+    <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="MeetingLinksModalLabel">Meeting Links</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3>Meeting name</h3>
+            <ul class="list-unstyled mb-5 d-flex flex-column gap-3">
+              <li>
+                Sign Language Meeting
+              </li>
+              <li>
+                French Language Meeting
+              </li>
+              <li class="text-primary selected">
+                Language Translation Meeting
+              </li>
+              <li>
+                Sign Language Meeting
+              </li>
+              <li>
+                Sign Language Meeting
+              </li>
+              <li>
+                Sign Language Meeting
+              </li>
+            </ul>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+                <a href="#" class="btn rounded btn-primary">Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Meeting Links -->
+    <!-- Modal - Unassign -->
+    <div class="modal fade" id="UnassignModal" tabindex="-1" aria-labelledby="UnassignModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="UnassignModalLabel">Unassign</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-4">
+              <label class="form-label">Reason for Unassign</label>
+              <textarea class="form-control" rows="5" cols="5"></textarea>
+            </div>
+            <div class="row mb-4">
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="dateunassign">
+                    Date
+                </label>
+                <div class="position-relative">
+                    <input type="" name="" class="form-control" placeholder="Select Date" id="dateunassign">
+                    <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+                    </svg>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex">
+                  <div class="d-flex flex-column justify-content-between">
+                    <label class="form-label" for="set_start_time">Time</label>
+                    <div class="d-flex gap-2 pt-2">
+                      <div class="time d-flex align-items-center gap-2">
+                        <div class="hours">12</div>
+                        <svg width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
+                        </svg>
+                        <div class="mins">59</div>
+                      </div>
+                      <div class="form-check form-switch form-switch-column mb-0">
+                          <input checked class="form-check-input" type="checkbox" role="switch" id="pm">
+                          <label class="form-check-label" for="pm">PM</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-3 justify-content-center mb-3">
+                <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Keep Provider</a>
+                <a href="#" class="btn rounded btn-primary">Yes, Unassign Provider</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal - Unassign -->
     <script src="js/jquery-3.6.3.min.js"></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="js/alpinejs-3.11.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/daterangepicker.min.js"></script>
