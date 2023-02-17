@@ -120,7 +120,7 @@
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">
-                <div class="tab-pane fade" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
+                <div class="tab-pane fade active show" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
                   <div class="p-4 border border-dark rounded bg-lighter mb-4">
                     <div class="row">
                       <div class="col-lg col-12 mb-4">
@@ -991,7 +991,7 @@
                     <button type="" class="btn btn-primary rounded">Next</button>
                   </div>
                 </div><!-- END: booking-details-tab -->
-                <div class="tab-pane fade active show" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
+                <div class="tab-pane fade" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
                   <!-- Service 1 Assigned Providers -->
                   <div class="mb-5">
                     <div class="d-lg-flex align-items-center justify-content-between mb-4">
@@ -3022,7 +3022,7 @@
     </div>
     <!-- END: Panel/Offcanvas - Add Document -->
     <!-- BEGIN: Panel/Offcanvas - Assign Provider -->
-    <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">>
+    <div class="offcanvas offcanvas-end offcanvas-assign-provider" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
       <div class="offcanvas-header">
         <h2 class="offcanvas-title" id="offcanvasRightLabel">Assign Provider</h2>
         <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
@@ -3299,7 +3299,7 @@
                       <label class="form-label-sm">No of Days/Hours</label>
                       <div class="input-group">
                         <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
-                        <div class="input-group-text">
+                        <div class="input-group-text p-0">
                           <select class="form-select form-select-sm">
                             <option>/days</option>
                           </select>
@@ -3404,7 +3404,7 @@
                       <label class="form-label-sm">No of Days/Hours</label>
                       <div class="input-group">
                         <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
-                        <div class="input-group-text">
+                        <div class="input-group-text p-0">
                           <select class="form-select form-select-sm">
                             <option>/days</option>
                           </select>
@@ -3509,7 +3509,7 @@
                       <label class="form-label-sm">No of Days/Hours</label>
                       <div class="input-group">
                         <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
-                        <div class="input-group-text">
+                        <div class="input-group-text p-0">
                           <select class="form-select form-select-sm">
                             <option>/days</option>
                           </select>
@@ -3614,7 +3614,7 @@
                       <label class="form-label-sm">No of Days/Hours</label>
                       <div class="input-group">
                         <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
-                        <div class="input-group-text">
+                        <div class="input-group-text p-0">
                           <select class="form-select form-select-sm">
                             <option>/days</option>
                           </select>
@@ -3719,7 +3719,7 @@
                       <label class="form-label-sm">No of Days/Hours</label>
                       <div class="input-group">
                         <input type="" name="" class="form-control form-control-sm text-center w-au" placeholder="0">
-                        <div class="input-group-text">
+                        <div class="input-group-text p-0">
                           <select class="form-select form-select-sm">
                             <option>/days</option>
                           </select>
