@@ -37,7 +37,7 @@
     @livewireStyles
     @powerGridStyles
 </head>
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false, remittanceDetails: false}">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false, remittanceDetails: false, addDocuments: false, assignProvider: false}">
             @include('partials/header')
 
             @include('partials/sidebar')

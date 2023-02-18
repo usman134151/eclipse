@@ -60,601 +60,662 @@
 						</button>
 					</li>
 				</ul>
-				{{-- Tab panes --}}
 				<div class="tab-content">
 					<div class="tab-pane fade active show" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
 						<div class="p-4 border border-dark rounded bg-lighter mb-4">
 							<div class="row">
-					<div class="col-lg col-12 mb-4">
-					  <div class="mb-4">
-						<label class="form-label text-primary">Booking Title</label>
-						<div class="font-family-tertiary value">Language Interpreter</div>
-					  </div>
-					  <div>
-						<label class="form-label text-primary">Days Pending</label>
-						<div class="font-family-tertiary value">05 Days</div>
-					  </div>
-					</div>
-					<div class="col-lg col-12 mb-4">
-					  <div class="mb-4">
-						<label class="form-label text-primary">Days Until Service</label>
-						<div class="font-family-tertiary value">10 Days</div>
-					  </div>
-					  <div class="d-flex gap-3 align-items-center">
-						<label class="col-form-label text-primary mb-lg-0">Status:</label>
+								<div class="col-lg col-12 mb-4">
+									<div class="mb-4">
+										<label class="form-label text-primary">Booking Title</label>
+										<div class="font-family-tertiary value">
+											Language Interpreter
+										</div>
+									</div>
+									<div>
+										<label class="form-label text-primary">Days Pending</label>
+										<div class="font-family-tertiary value">05 Days</div>
+									</div>
+								</div>
+								<div class="col-lg col-12 mb-4">
+									<div class="mb-4">
+										<label class="form-label text-primary">Days Until Service</label>
+										<div class="font-family-tertiary value">10 Days</div>
+									</div>
+									<div class="d-flex gap-3 align-items-center">
+										<label class="col-form-label text-primary mb-lg-0">
+											Status:
+										</label>
+										<div>
+											<select class="form-select form-select-sm">
+												<option>Pending</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg col-12 mb-4">
+									<div class="mb-4">
+										<label class="form-label text-primary">Providers</label>
+										<div class="d-flex flex-column gap-1">
+											<div class="font-family-tertiary value">
+												Total Assigned: 03
+											</div>
+											<div class="font-family-tertiary value">
+												Total Requested: 07
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg col-12 mb-4">
+									<div class="mb-4">
+										<label class="form-label text-primary">Pending Details</label>
+										<div class="d-flex flex-column gap-1">
+											<div class="font-family-tertiary value">
+												Requests from Users
+											</div>
+											<div class="font-family-tertiary value">
+												Attachments Missing
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg col-12 mb-4">
+									<div class="row mb-3">
+										<div class="col-lg-5">
+											<label class="form-label-sm">
+												Broadcast
+											</label>
+										</div>
+										<div class="col-lg-7">
+											<div class="form-check form-switch js-form-switch-toggle form-switch-column">
+												<input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast">
+												<label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyBroadcast">
+													Auto-notify
+												</label>
+												<label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyBroadcast">
+													Manual-assign
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-5">
+											<label class="form-label-sm">
+												Assign
+											</label>
+										</div>
+										<div class="col-lg-7">
+											<div class="form-check form-switch js-form-switch-toggle form-switch-column">
+												<input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
+												<label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyAssign">
+													Auto-notify
+												</label>
+												<label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyAssign">
+													Manual-assign
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="d-lg-flex gap-3 justify-content-center">
+										<a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#ProviderMessageModal">
+											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
+												<path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
+											</svg>
+											Message Providers
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10.3431 12.0072C9.26471 12.0072 8.3415 11.6232 7.57353 10.8552C6.80556 10.0873 6.42157 9.16406 6.42157 8.08563C6.42157 7.0072 6.80556 6.084 7.57353 5.31602C8.3415 4.54805 9.26471 4.16406 10.3431 4.16406C11.4216 4.16406 12.3448 4.54805 13.1127 5.31602C13.8807 6.084 14.2647 7.0072 14.2647 8.08563C14.2647 9.16406 13.8807 10.0873 13.1127 10.8552C12.3448 11.6232 11.4216 12.0072 10.3431 12.0072ZM2.5 19.8503V17.1052C2.5 16.566 2.63889 16.0595 2.91667 15.5856C3.19444 15.1118 3.57843 14.7523 4.06863 14.5072C4.90196 14.0824 5.8415 13.7229 6.88725 13.4288C7.93301 13.1347 9.08497 12.9876 10.3431 12.9876H10.6863C10.7843 12.9876 10.8824 13.0039 10.9804 13.0366C10.8497 13.3307 10.7392 13.6373 10.649 13.9562C10.5595 14.2745 10.4902 14.6052 10.4412 14.9484H10.3431C9.18301 14.9484 8.14118 15.0954 7.21765 15.3896C6.29477 15.6837 5.53922 15.9778 4.95098 16.2719C4.80392 16.3536 4.68562 16.468 4.59608 16.615C4.50588 16.7621 4.46078 16.9255 4.46078 17.1052V17.8896H10.6373C10.7353 18.2327 10.866 18.5719 11.0294 18.9072C11.1928 19.2418 11.3725 19.5562 11.5686 19.8503H2.5ZM16.2255 20.8307L15.9314 19.3601C15.7353 19.2784 15.5513 19.1928 15.3794 19.1033C15.2082 19.0131 15.0327 18.9026 14.8529 18.7719L13.4314 19.2131L12.451 17.5464L13.5784 16.566C13.5458 16.3373 13.5294 16.1248 13.5294 15.9288C13.5294 15.7327 13.5458 15.5203 13.5784 15.2915L12.451 14.3111L13.4314 12.6445L14.8529 13.0856C15.0327 12.9549 15.2082 12.8445 15.3794 12.7543C15.5513 12.6647 15.7353 12.5791 15.9314 12.4974L16.2255 11.0268H18.1863L18.4804 12.4974C18.6765 12.5791 18.8605 12.669 19.0324 12.767C19.2036 12.865 19.3791 12.9876 19.5588 13.1347L20.9804 12.6445L21.9608 14.3601L20.8333 15.3405C20.866 15.5366 20.8824 15.7409 20.8824 15.9533C20.8824 16.1657 20.866 16.3699 20.8333 16.566L21.9608 17.5464L20.9804 19.2131L19.5588 18.7719C19.3791 18.9026 19.2036 19.0131 19.0324 19.1033C18.8605 19.1928 18.6765 19.2784 18.4804 19.3601L18.1863 20.8307H16.2255ZM17.2059 17.8896C17.7451 17.8896 18.2069 17.6977 18.5912 17.3141C18.9748 16.9297 19.1667 16.468 19.1667 15.9288C19.1667 15.3896 18.9748 14.9278 18.5912 14.5435C18.2069 14.1598 17.7451 13.968 17.2059 13.968C16.6667 13.968 16.2052 14.1598 15.8216 14.5435C15.4373 14.9278 15.2451 15.3896 15.2451 15.9288C15.2451 16.468 15.4373 16.9297 15.8216 17.3141C16.2052 17.6977 16.6667 17.8896 17.2059 17.8896ZM10.3431 10.0464C10.8824 10.0464 11.3441 9.85426 11.7284 9.46994C12.1121 9.08628 12.3039 8.62485 12.3039 8.08563C12.3039 7.54642 12.1121 7.08498 11.7284 6.70132C11.3441 6.317 10.8824 6.12485 10.3431 6.12485C9.80392 6.12485 9.34248 6.317 8.95882 6.70132C8.57451 7.08498 8.38235 7.54642 8.38235 8.08563C8.38235 8.62485 8.57451 9.08628 8.95882 9.46994C9.34248 9.85426 9.80392 10.0464 10.3431 10.0464Z" fill="white"/>
+											</svg>
+											Manage Providers
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M8.93739 10.2322C11.394 10.2322 13.3855 8.24071 13.3855 5.78407C13.3855 3.32744 11.394 1.33594 8.93739 1.33594C6.48076 1.33594 4.48926 3.32744 4.48926 5.78407C4.48926 8.24071 6.48076 10.2322 8.93739 10.2322Z" stroke="white" stroke-width="2"/>
+												<path d="M13.3855 19.1316H2.94663C2.69432 19.1317 2.44488 19.0781 2.21487 18.9744C1.98486 18.8707 1.77953 18.7192 1.61253 18.5301C1.44552 18.3409 1.32065 18.1185 1.2462 17.8774C1.17176 17.6363 1.14944 17.3821 1.18072 17.1318L1.52768 14.3526C1.60836 13.7069 1.92215 13.1129 2.41004 12.6824C2.89793 12.2519 3.5263 12.0144 4.17699 12.0146H4.48925M15.1648 11.125V16.4628M12.4959 13.7939H17.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+											Invite Providers
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M8.93739 10.2322C11.394 10.2322 13.3855 8.24071 13.3855 5.78407C13.3855 3.32744 11.394 1.33594 8.93739 1.33594C6.48076 1.33594 4.48926 3.32744 4.48926 5.78407C4.48926 8.24071 6.48076 10.2322 8.93739 10.2322Z" stroke="white" stroke-width="2"/>
+												<path d="M13.3855 19.1316H2.94663C2.69432 19.1317 2.44488 19.0781 2.21487 18.9744C1.98486 18.8707 1.77953 18.7192 1.61253 18.5301C1.44552 18.3409 1.32065 18.1185 1.2462 17.8774C1.17176 17.6363 1.14944 17.3821 1.18072 17.1318L1.52768 14.3526C1.60836 13.7069 1.92215 13.1129 2.41004 12.6824C2.89793 12.2519 3.5263 12.0144 4.17699 12.0146H4.48925M15.1648 11.125V16.4628M12.4959 13.7939H17.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+											View Assigned Admin-staff
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div>
-						  <select class="form-select form-select-sm">
-							<option>Pending</option>
-						  </select>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg col-12 mb-4">
-					  <div class="mb-4">
-						<label class="form-label text-primary">Providers</label>
-						<div class="d-flex flex-column gap-1">
-						  <div class="font-family-tertiary value">Total Assigned: 03</div>
-						  <div class="font-family-tertiary value">Total Requested: 07</div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg col-12 mb-4">
-					  <div class="mb-4">
-						<label class="form-label text-primary">Pending Details</label>
-						<div class="d-flex flex-column gap-1">
-						  <div class="font-family-tertiary value">Requests from Users</div>
-						  <div class="font-family-tertiary value">Attachments Missing</div>
-						</div>
-					  </div>
-					</div>
-					<div class="col-lg col-12 mb-4">
-					  <div class="row mb-3">
-						<div class="col-lg-5">
-						  <label class="form-label-sm">
-							  Broadcast
-						  </label>
-						</div>
-						<div class="col-lg-7">
-						  <div class="form-check form-switch js-form-switch-toggle form-switch-column">
-							<input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast">
-							<label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyBroadcast">Auto-notify</label>
-							<label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyBroadcast">Manual-assign</label>
-						  </div>
-						</div>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-5">
-						  <label class="form-label-sm">
-							  Assign
-						  </label>
-						</div>
-						<div class="col-lg-7">
-						  <div class="form-check form-switch js-form-switch-toggle form-switch-column">
-							<input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
-							<label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyAssign">Auto-notify</label>
-							<label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyAssign">Manual-assign</label>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div>
-				  <div class="row">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex gap-3 justify-content-center">
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
-							<path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
-						  </svg>
-						  Message Providers
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M10.3431 12.0072C9.26471 12.0072 8.3415 11.6232 7.57353 10.8552C6.80556 10.0873 6.42157 9.16406 6.42157 8.08563C6.42157 7.0072 6.80556 6.084 7.57353 5.31602C8.3415 4.54805 9.26471 4.16406 10.3431 4.16406C11.4216 4.16406 12.3448 4.54805 13.1127 5.31602C13.8807 6.084 14.2647 7.0072 14.2647 8.08563C14.2647 9.16406 13.8807 10.0873 13.1127 10.8552C12.3448 11.6232 11.4216 12.0072 10.3431 12.0072ZM2.5 19.8503V17.1052C2.5 16.566 2.63889 16.0595 2.91667 15.5856C3.19444 15.1118 3.57843 14.7523 4.06863 14.5072C4.90196 14.0824 5.8415 13.7229 6.88725 13.4288C7.93301 13.1347 9.08497 12.9876 10.3431 12.9876H10.6863C10.7843 12.9876 10.8824 13.0039 10.9804 13.0366C10.8497 13.3307 10.7392 13.6373 10.649 13.9562C10.5595 14.2745 10.4902 14.6052 10.4412 14.9484H10.3431C9.18301 14.9484 8.14118 15.0954 7.21765 15.3896C6.29477 15.6837 5.53922 15.9778 4.95098 16.2719C4.80392 16.3536 4.68562 16.468 4.59608 16.615C4.50588 16.7621 4.46078 16.9255 4.46078 17.1052V17.8896H10.6373C10.7353 18.2327 10.866 18.5719 11.0294 18.9072C11.1928 19.2418 11.3725 19.5562 11.5686 19.8503H2.5ZM16.2255 20.8307L15.9314 19.3601C15.7353 19.2784 15.5513 19.1928 15.3794 19.1033C15.2082 19.0131 15.0327 18.9026 14.8529 18.7719L13.4314 19.2131L12.451 17.5464L13.5784 16.566C13.5458 16.3373 13.5294 16.1248 13.5294 15.9288C13.5294 15.7327 13.5458 15.5203 13.5784 15.2915L12.451 14.3111L13.4314 12.6445L14.8529 13.0856C15.0327 12.9549 15.2082 12.8445 15.3794 12.7543C15.5513 12.6647 15.7353 12.5791 15.9314 12.4974L16.2255 11.0268H18.1863L18.4804 12.4974C18.6765 12.5791 18.8605 12.669 19.0324 12.767C19.2036 12.865 19.3791 12.9876 19.5588 13.1347L20.9804 12.6445L21.9608 14.3601L20.8333 15.3405C20.866 15.5366 20.8824 15.7409 20.8824 15.9533C20.8824 16.1657 20.866 16.3699 20.8333 16.566L21.9608 17.5464L20.9804 19.2131L19.5588 18.7719C19.3791 18.9026 19.2036 19.0131 19.0324 19.1033C18.8605 19.1928 18.6765 19.2784 18.4804 19.3601L18.1863 20.8307H16.2255ZM17.2059 17.8896C17.7451 17.8896 18.2069 17.6977 18.5912 17.3141C18.9748 16.9297 19.1667 16.468 19.1667 15.9288C19.1667 15.3896 18.9748 14.9278 18.5912 14.5435C18.2069 14.1598 17.7451 13.968 17.2059 13.968C16.6667 13.968 16.2052 14.1598 15.8216 14.5435C15.4373 14.9278 15.2451 15.3896 15.2451 15.9288C15.2451 16.468 15.4373 16.9297 15.8216 17.3141C16.2052 17.6977 16.6667 17.8896 17.2059 17.8896ZM10.3431 10.0464C10.8824 10.0464 11.3441 9.85426 11.7284 9.46994C12.1121 9.08628 12.3039 8.62485 12.3039 8.08563C12.3039 7.54642 12.1121 7.08498 11.7284 6.70132C11.3441 6.317 10.8824 6.12485 10.3431 6.12485C9.80392 6.12485 9.34248 6.317 8.95882 6.70132C8.57451 7.08498 8.38235 7.54642 8.38235 8.08563C8.38235 8.62485 8.57451 9.08628 8.95882 9.46994C9.34248 9.85426 9.80392 10.0464 10.3431 10.0464Z" fill="white"/>
-						  </svg>
-						  Manage Providers
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8.93739 10.2322C11.394 10.2322 13.3855 8.24071 13.3855 5.78407C13.3855 3.32744 11.394 1.33594 8.93739 1.33594C6.48076 1.33594 4.48926 3.32744 4.48926 5.78407C4.48926 8.24071 6.48076 10.2322 8.93739 10.2322Z" stroke="white" stroke-width="2"/>
-							<path d="M13.3855 19.1316H2.94663C2.69432 19.1317 2.44488 19.0781 2.21487 18.9744C1.98486 18.8707 1.77953 18.7192 1.61253 18.5301C1.44552 18.3409 1.32065 18.1185 1.2462 17.8774C1.17176 17.6363 1.14944 17.3821 1.18072 17.1318L1.52768 14.3526C1.60836 13.7069 1.92215 13.1129 2.41004 12.6824C2.89793 12.2519 3.5263 12.0144 4.17699 12.0146H4.48925M15.1648 11.125V16.4628M12.4959 13.7939H17.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						  </svg>
-						  Invite Providers
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8.93739 10.2322C11.394 10.2322 13.3855 8.24071 13.3855 5.78407C13.3855 3.32744 11.394 1.33594 8.93739 1.33594C6.48076 1.33594 4.48926 3.32744 4.48926 5.78407C4.48926 8.24071 6.48076 10.2322 8.93739 10.2322Z" stroke="white" stroke-width="2"/>
-							<path d="M13.3855 19.1316H2.94663C2.69432 19.1317 2.44488 19.0781 2.21487 18.9744C1.98486 18.8707 1.77953 18.7192 1.61253 18.5301C1.44552 18.3409 1.32065 18.1185 1.2462 17.8774C1.17176 17.6363 1.14944 17.3821 1.18072 17.1318L1.52768 14.3526C1.60836 13.7069 1.92215 13.1129 2.41004 12.6824C2.89793 12.2519 3.5263 12.0144 4.17699 12.0146H4.48925M15.1648 11.125V16.4628M12.4959 13.7939H17.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						  </svg>
-						  View Assigned Admin-staff
-						</a>
-					  </div>
-					</div>
-				  </div>
-				</div>
-				<div>
-				  <div class="row mb-4">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex gap-3 justify-content-center">
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
-							<path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
-						  </svg>
-						  Message Requester
-						</a>
-						<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
-						  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M1.9 18.9969H13.3C14.3479 18.9969 15.2 18.1447 15.2 17.0969V5.69688C15.2 4.64903 14.3479 3.79688 13.3 3.79688H1.9C0.85215 3.79688 0 4.64903 0 5.69688V17.0969C0 18.1447 0.85215 18.9969 1.9 18.9969ZM1.9 5.69688H13.3L13.3019 17.0969H1.9V5.69688Z" fill="url(#paint0_linear_8523_15770)"/>
-							<path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="url(#paint1_linear_8523_15770)"/>
-							<defs>
-							<linearGradient id="paint0_linear_8523_15770" x1="7.6" y1="3.79687" x2="13.6982" y2="3.79687" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#213969"/>
-							<stop offset="1" stop-color="#204387"/>
-							</linearGradient>
-							<linearGradient id="paint1_linear_8523_15770" x1="12.3502" y1="0" x2="17.6861" y2="0" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#213969"/>
-							<stop offset="1" stop-color="#204387"/>
-							</linearGradient>
-							</defs>
-						  </svg>
-						  Duplicate
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="white"/>
-						  </svg>
-						  Reschedule
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M18.9767 1.02282C18.3217 0.367918 17.4334 0 16.5071 0C15.5809 0 14.6925 0.367918 14.0376 1.02282L1.68403 13.3774C1.32366 13.7376 1.07508 14.1943 0.968237 14.6924L0.0159878 19.1354C-0.00912444 19.2521 -0.00459501 19.3732 0.0291622 19.4877C0.0629195 19.6022 0.124828 19.7064 0.209233 19.7908C0.293637 19.8752 0.397846 19.9371 0.512339 19.9708C0.626832 20.0046 0.747959 20.0091 0.864654 19.984L5.30801 19.0318C5.80596 18.9249 6.26241 18.6763 6.62244 18.3161L18.9774 5.96223C19.6322 5.30722 20 4.419 20 3.49288C20 2.56676 19.6322 1.67854 18.9774 1.02353L18.9767 1.02282ZM15.0477 2.03284C15.4377 1.66036 15.958 1.45529 16.4973 1.46148C17.0366 1.46767 17.5521 1.68464 17.9334 2.06597C18.3148 2.44731 18.5318 2.96273 18.538 3.50198C18.5442 4.04123 18.3391 4.5615 17.9666 4.95149L17.3236 5.59508L14.4047 2.67643L15.0477 2.03284ZM13.3946 3.68717L16.3135 6.6051L5.61304 17.3061C5.44747 17.4716 5.2376 17.5857 5.00869 17.6347L1.64331 18.3561L2.36482 14.9917C2.41382 14.7629 2.52793 14.553 2.69343 14.3874L13.3932 3.68717H13.3946Z" fill="white"/>
-						  </svg>
-						  Edit
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M10 0C4.48615 0 0 4.48615 0 10C0 15.5138 4.48615 20 10 20C15.5138 20 20 15.5138 20 10C20 4.48615 15.5138 0 10 0ZM10 1.53846C14.6823 1.53846 18.4615 5.31769 18.4615 10C18.4615 14.6823 14.6823 18.4615 10 18.4615C5.31769 18.4615 1.53846 14.6823 1.53846 10C1.53846 5.31769 5.31769 1.53846 10 1.53846ZM7.09231 5.98462L5.98462 7.09231L8.89538 10L5.98615 12.9077L7.09385 14.0154L10 11.1054L12.9077 14.0131L14.0154 12.9077L11.1054 10L14.0131 7.09231L12.9077 5.98462L10 8.89538L7.09231 5.98615V5.98462Z" fill="white"/>
-						  </svg>
-						  Cancel
-						</a>
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
-						  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 20L4 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 14H3.17L2.58 14.59L2 15.17V2H18V14ZM9 10H11V12H9V10ZM9 4H11V8H9V4Z" fill="white"/>
-						  </svg>
-						  Review Feedback
-						</a>
-					  </div>
-					</div>
-				  </div>
-				  <!-- Requester Detail -->
-				  <div class="row mb-4">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex justify-content-between align-items-center mb-5">
-						<h2 class="mb-lg-0">Requester Detail </h2>
-						<div class="d-flex gap-3">
-						  <div>
-							<button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
-							type="button"
-							data-bs-toggle="dropdown"
-							aria-expanded="false">
-							  <span>
-								<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
-								</svg>
-							  </span>
-							</button>
-						  </div>
-						  <div class="d-flex gap-2 align-items-center">
-							<input type="" name="" class="form-control" placeholder="Enter Email">
-							<button class="btn btn-primary px-4 rounded">Send</button>
-						  </div>
-						</div>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Assignment No:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">101929</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Booking Title:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Language Interpreter</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Start Time:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">10/25/2022 4:20 PM</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">End Time:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">10/25/2022 8:20 PM</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Duration:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">4 Hours 0 Minutes</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Frequency:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">One Time</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Industry:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Information Technology</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Company:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Software Agency</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Requester:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">
-								<a href="#">Mr.Ali Ahmed</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Supervisor:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">
-								<a href="#">Mr.Ali Ahmed</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Billing Manager:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">
-								<a href="#">Mr.Ali Ahmed</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Point of contact:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">
-								Mr.Ali Ahmed
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-6 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Phone Number:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">(923) 023-9683</div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div><!-- /Requester Detail -->
-				  <!-- Service 1 -->
-				  <div class="row">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex justify-content-between align-items-center mb-5">
-						<h2 class="mb-lg-0">Service 1</h2>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Accommodation:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Spoken Language Interpreting Services</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Service:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">English to French Interpreting</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Specialization:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Legal</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Service Type:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Virtual</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Number of Providers:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">10</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Service Consumer:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">
-								<a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> , <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Participants:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">
-								<a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> , <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div><!-- /Service 1 -->
-				  <!-- Service 1 Meeting Detail -->
-				  <div class="row mb-4">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex justify-content-between align-items-center mb-5">
-						<h2 class="mb-lg-0">Service 1 Meeting Detail</h2>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Meeting Name:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="d-flex align-items-center gap-2">
-								<div class="font-family-tertiary">Spoken Language Interpreting Services</div>
-								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
-								  </svg>
-								</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Meeting Link:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="d-flex align-items-center gap-2">
-								<div class="font-family-tertiary text-primary">https://meet.google.com/xxxxxxxx</div>
-								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
-								  </svg>
-								</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Meeting Phone Number:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">(923) 023-9683</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Meeting Passcode:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">********</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Status:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Active</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Created:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">10/15/2022 12:20 PM</div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div><!-- /Service 1 Meeting Detail -->
-				  <!-- Service 2 Meeting Detail -->
-				  <div class="row mb-4 has-map">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex justify-content-between align-items-center mb-5">
-						<h2 class="mb-lg-0">Service 2 Meeting Detail</h2>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-10 mb-3">
-						  <div class="row">
-							<div class="col-lg-4">
-							  <label class="col-form-label">Location:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="d-flex gap-2">
-								<div class="font-family-tertiary">Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA</div>
-								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
-								  </svg>
-								</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-10 mb-3">
-						  <div class="row">
-							<div class="col-lg-4">
-							  <label class="col-form-label">City:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-								<div class="font-family-tertiary">City Name</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-10 mb-3">
-						  <div class="row">
-							<div class="col-lg-4">
-							  <label class="col-form-label">State:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">State Name</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-10 mb-3">
-						  <div class="row">
-							<div class="col-lg-4">
-							  <label class="col-form-label">Zip Code:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">129839</div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-10 mb-3">
-						  <div class="row">
-							<div class="col-lg-4">
-							  <label class="col-form-label">Arrival Notes::</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Active</div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					  <!-- Map -->
-					  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" width="304" height="228" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-					  <!-- /Map -->
-					</div>
-				  </div><!-- /Service 2 Meeting Detail -->
-				  <!-- Service Form Detail -->
-				  <div class="row mb-4">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex justify-content-between align-items-center mb-5">
-						<h2 class="mb-lg-0">Service Form Detail</h2>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">First Name:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="d-flex align-items-center gap-2">
-								<div class="font-family-tertiary">Thomas</div>
-								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
-								  </svg>
-								</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
+							<div class="row mb-4">
+								<div class="col-lg-12">
+									<div class="d-lg-flex gap-3 justify-content-center">
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M2.66699 13.5V16.6383L3.92949 15.8808L7.89783 13.5H11.8337C12.7528 13.5 13.5003 12.7525 13.5003 11.8333V5.16667C13.5003 4.2475 12.7528 3.5 11.8337 3.5H1.83366C0.914492 3.5 0.166992 4.2475 0.166992 5.16667V11.8333C0.166992 12.7525 0.914492 13.5 1.83366 13.5H2.66699ZM1.83366 5.16667H11.8337V11.8333H7.43616L4.33366 13.695V11.8333H1.83366V5.16667Z" fill="white"/>
+												<path d="M15.1667 0.164062H5.16667C4.2475 0.164062 3.5 0.911562 3.5 1.83073H13.5C14.4192 1.83073 15.1667 2.57823 15.1667 3.4974V10.1641C16.0858 10.1641 16.8333 9.41656 16.8333 8.4974V1.83073C16.8333 0.911562 16.0858 0.164062 15.1667 0.164062Z" fill="white"/>
+											</svg>
+											Message Requester
+										</a>
+										<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+											<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M1.9 18.9969H13.3C14.3479 18.9969 15.2 18.1447 15.2 17.0969V5.69688C15.2 4.64903 14.3479 3.79688 13.3 3.79688H1.9C0.85215 3.79688 0 4.64903 0 5.69688V17.0969C0 18.1447 0.85215 18.9969 1.9 18.9969ZM1.9 5.69688H13.3L13.3019 17.0969H1.9V5.69688Z" fill="url(#paint0_linear_8523_15770)"/>
+												<path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="url(#paint1_linear_8523_15770)"/>
+												<defs>
+													<linearGradient id="paint0_linear_8523_15770" x1="7.6" y1="3.79687" x2="13.6982" y2="3.79687" gradientUnits="userSpaceOnUse">
+														<stop stop-color="#213969"/>
+														<stop offset="1" stop-color="#204387"/>
+													</linearGradient>
+													<linearGradient id="paint1_linear_8523_15770" x1="12.3502" y1="0" x2="17.6861" y2="0" gradientUnits="userSpaceOnUse">
+														<stop stop-color="#213969"/>
+														<stop offset="1" stop-color="#204387"/>
+													</linearGradient>
+												</defs>
+											</svg>
+											Duplicate
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="white"/>
+											</svg>
+											Reschedule
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal" data-bs-target="#UnassignModal">
+											<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M18.9767 1.02282C18.3217 0.367918 17.4334 0 16.5071 0C15.5809 0 14.6925 0.367918 14.0376 1.02282L1.68403 13.3774C1.32366 13.7376 1.07508 14.1943 0.968237 14.6924L0.0159878 19.1354C-0.00912444 19.2521 -0.00459501 19.3732 0.0291622 19.4877C0.0629195 19.6022 0.124828 19.7064 0.209233 19.7908C0.293637 19.8752 0.397846 19.9371 0.512339 19.9708C0.626832 20.0046 0.747959 20.0091 0.864654 19.984L5.30801 19.0318C5.80596 18.9249 6.26241 18.6763 6.62244 18.3161L18.9774 5.96223C19.6322 5.30722 20 4.419 20 3.49288C20 2.56676 19.6322 1.67854 18.9774 1.02353L18.9767 1.02282ZM15.0477 2.03284C15.4377 1.66036 15.958 1.45529 16.4973 1.46148C17.0366 1.46767 17.5521 1.68464 17.9334 2.06597C18.3148 2.44731 18.5318 2.96273 18.538 3.50198C18.5442 4.04123 18.3391 4.5615 17.9666 4.95149L17.3236 5.59508L14.4047 2.67643L15.0477 2.03284ZM13.3946 3.68717L16.3135 6.6051L5.61304 17.3061C5.44747 17.4716 5.2376 17.5857 5.00869 17.6347L1.64331 18.3561L2.36482 14.9917C2.41382 14.7629 2.52793 14.553 2.69343 14.3874L13.3932 3.68717H13.3946Z" fill="white"/>
+											</svg>
+											Edit
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10 0C4.48615 0 0 4.48615 0 10C0 15.5138 4.48615 20 10 20C15.5138 20 20 15.5138 20 10C20 4.48615 15.5138 0 10 0ZM10 1.53846C14.6823 1.53846 18.4615 5.31769 18.4615 10C18.4615 14.6823 14.6823 18.4615 10 18.4615C5.31769 18.4615 1.53846 14.6823 1.53846 10C1.53846 5.31769 5.31769 1.53846 10 1.53846ZM7.09231 5.98462L5.98462 7.09231L8.89538 10L5.98615 12.9077L7.09385 14.0154L10 11.1054L12.9077 14.0131L14.0154 12.9077L11.1054 10L14.0131 7.09231L12.9077 5.98462L10 8.89538L7.09231 5.98615V5.98462Z" fill="white"/>
+											</svg>
+											Cancel
+										</a>
+										<a href="#" class="btn btn-has-icon btn-primary rounded">
+											<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 20L4 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 14H3.17L2.58 14.59L2 15.17V2H18V14ZM9 10H11V12H9V10ZM9 4H11V8H9V4Z" fill="white"/>
+											</svg>
+											Review Feedback
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="row mb-4">
+								<div class="col-lg-12">
+									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+										<h2 class="mb-lg-0">Requester Detail </h2>
+										<div class="d-flex gap-3">
+											<div>
+												<button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+													<span>
+														<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
+														</svg>
+													</span>
+												</button>
+											</div>
+											<div class="d-flex gap-2 align-items-center">
+												<input type="" name="" class="form-control" placeholder="Enter Email">
+												<button class="btn btn-primary px-4 rounded">
+													Send
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Assignment No:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">101929</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Booking Title:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														Language Interpreter
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Start Time:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														10/25/2022 4:20 PM
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">End Time:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														10/25/2022 8:20 PM
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Duration:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														4 Hours 0 Minutes
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Frequency:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">One Time</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Industry:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														Information Technology
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Company:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														Software Agency
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Requester:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														<a href="#">Mr. Ali Ahmed</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Supervisor:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														<a href="#">Mr. Ali Ahmed</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Billing Manager:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														<a href="#">Mr. Ali Ahmed</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Point of contact:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														Mr. Ali Ahmed
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Phone Number:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														(923) 023-9683
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Requester Detail -->
+							<!-- Service 1 -->
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+										<h2 class="mb-lg-0">Service 1</h2>
+									</div>
+									<div class="row">
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Accommodation:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														Spoken Language Interpreting Services
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Service:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														English to French Interpreting
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Specialization:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">Legal</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Service Type:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">Virtual</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Number of Providers:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">10</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Service Consumer:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														<a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> , <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Participants:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														<a href="#">Thomas Charles</a> , <a href="#">Richard Payne</a> , <a href="#">Jennifer Summers</a> , <a href="#">Lori Wells</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Service 1 -->
+							<!-- Service 1 Meeting Detail -->
+							<div class="row mb-4">
+								<div class="col-lg-12">
+									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+										<h2 class="mb-lg-0">Service 1 Meeting Detail</h2>
+									</div>
+									<div class="row">
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Meeting Name:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="d-flex align-items-center gap-2">
+														<div class="font-family-tertiary">
+															Spoken Language Interpreting Services
+														</div>
+														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#MeetingLinksModal">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Meeting Link:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="d-flex align-items-center gap-2">
+														<div class="font-family-tertiary text-primary">https://meet.google.com/xxxxxxxx</div>
+														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Meeting Phone Number:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														(923) 023-9683
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">
+														Meeting Passcode:
+													</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">********</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Status:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">Active</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Created:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">
+														10/15/2022 12:20 PM
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Service 1 Meeting Detail -->
+							<!-- Service 2 Meeting Detail -->
+							<div class="row mb-4 has-map">
+								<div class="col-lg-12">
+									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+										<h2 class="mb-lg-0">Service 2 Meeting Detail</h2>
+									</div>
+									<div class="row">
+										<div class="col-lg-10 mb-3">
+											<div class="row">
+												<div class="col-lg-4">
+													<label class="col-form-label">Location:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="d-flex gap-2">
+														<div class="font-family-tertiary">
+															Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA
+														</div>
+														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-10 mb-3">
+											<div class="row">
+												<div class="col-lg-4">
+													<label class="col-form-label">City:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">City Name</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-10 mb-3">
+											<div class="row">
+												<div class="col-lg-4">
+													<label class="col-form-label">State:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">State Name</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-10 mb-3">
+											<div class="row">
+												<div class="col-lg-4">
+													<label class="col-form-label">Zip Code:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">129839</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-10 mb-3">
+											<div class="row">
+												<div class="col-lg-4">
+													<label class="col-form-label">Arrival Notes::</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">Active</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Map -->
+									<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d96779.59535015929!2d-74.00126600000002!3d40.710039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1676478925644!5m2!1sen!2sus" width="304" height="228" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+									<!-- /Map -->
+								</div>
+							</div>
+							<!-- /Service 2 Meeting Detail -->
+							<!-- Service Form Detail -->
+							<div class="row mb-4">
+								<div class="col-lg-12">
+									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+										<h2 class="mb-lg-0">Service Form Detail</h2>
+									</div>
+									<div class="row">
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">First Name:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="d-flex align-items-center gap-2">
+														<div class="font-family-tertiary">Thomas</div>
+														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
 						<div class="col-lg-8 mb-3">
 						  <div class="row">
 							<div class="col-lg-5">
@@ -720,7 +781,7 @@
 								  <a href="#">View Uploaded Document</a>
 								</div>
 								<div class="col-lg-3">
-								  <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+								  <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
 								  <p class="font-family-secondary"><small>File Name</small></p>
 								</div>
 							  </div>
@@ -929,7 +990,7 @@
 				  </div><!-- /Notes -->
 				</div>
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
+				  <button type="" class="btn btn-outline-dark rounded">Cancel</button>
 				  <button type="" class="btn btn-primary rounded">Next</button>
 				</div>
 			  </div><!-- END: booking-details-tab -->
@@ -939,7 +1000,7 @@
 				  <div class="d-lg-flex align-items-center justify-content-between mb-4">
 				  <h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
 				  <div class="d-flex gap-3">
-					<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+					<a class="btn btn-has-icon btn-outline-dark rounded" @click="assignProvider = true">
 					  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M9.99995 9.64514C10.8594 9.64629 11.7 9.39247 12.4152 8.9158C13.1304 8.43913 13.6881 7.76102 14.0178 6.96728C14.3476 6.17354 14.4344 5.29983 14.2674 4.45671C14.1005 3.61359 13.6872 2.83894 13.0798 2.23077C12.4725 1.62261 11.6984 1.20826 10.8555 1.04016C10.0126 0.872052 9.13876 0.957746 8.34457 1.28639C7.55039 1.61504 6.87154 2.17188 6.39391 2.88644C5.91627 3.60101 5.66133 4.44119 5.66133 5.30069C5.66133 6.4519 6.11824 7.55605 6.93173 8.37062C7.74521 9.18519 8.84874 9.64359 9.99995 9.64514ZM10.0006 2.4618C10.5614 2.46078 11.1099 2.62621 11.5766 2.93714C12.0434 3.24808 12.4073 3.69053 12.6224 4.20847C12.8375 4.7264 12.8941 5.29652 12.7849 5.84662C12.6758 6.39671 12.4058 6.90204 12.0092 7.2986C11.6127 7.69516 11.1073 7.96512 10.5573 8.07428C10.0072 8.18343 9.43704 8.12689 8.9191 7.9118C8.40117 7.69671 7.95871 7.33275 7.64778 6.86601C7.33684 6.39928 7.17141 5.85077 7.17244 5.28995C7.17381 4.5403 7.47222 3.82175 8.0023 3.29166C8.53238 2.76158 9.25093 2.46318 10.0006 2.4618Z" fill="url(#paint0_linear_8558_41723)" stroke="url(#paint1_linear_8558_41723)" stroke-width="0.4"/>
 						<path d="M15.6953 11.8235C13.9915 10.7504 12.0149 10.1901 10.0014 10.2094C8.52715 10.1724 7.06288 10.4608 5.71279 11.0541C4.36161 11.6478 3.15807 12.5324 2.18797 13.6446L2.18772 13.6444L2.18071 13.6535C2.07992 13.7833 2.02422 13.9424 2.02205 14.1068L2.02203 14.1068V14.1094V17.7126C2.01395 18.0672 2.14632 18.4107 2.39036 18.6681L2.53552 18.5306L2.39036 18.6681C2.635 18.9262 2.97192 19.0769 3.32738 19.0871L3.32737 19.0872H3.33314H10.2165H10.6823L10.3615 18.7495L9.30592 17.6384L9.24763 17.577L9.16301 17.5761L3.53314 17.5171V14.3955C4.36079 13.5426 5.35356 12.8667 6.45116 12.4094C7.57328 11.9418 8.78042 11.7129 9.99581 11.7372L9.99581 11.7373L10.0025 11.7372C11.6671 11.7148 13.3055 12.1531 14.7365 13.0036L14.8781 13.0877L14.9878 12.965L15.7378 12.1261L15.8955 11.9497L15.6953 11.8235Z" fill="url(#paint2_linear_8558_41723)" stroke="url(#paint3_linear_8558_41723)" stroke-width="0.4"/>
@@ -988,47 +1049,47 @@
 				  </div>
 				  </div>
 				  <div class="mb-4">
-				  <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<span>
-					  <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-						  <path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
-					  </svg>
-					</span>
-				  </button>
+					<button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  <span>
+						<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M10.001 0.5V8.625C10.001 9.12228 10.1985 9.5992 10.5501 9.95083C10.9018 10.3025 11.3787 10.5 11.876 10.5H20.001V17.6963L18.3847 16.08C18.2686 15.9639 18.1307 15.8719 17.979 15.8091C17.8273 15.7463 17.6647 15.7141 17.5005 15.7141C17.3363 15.7142 17.1738 15.7466 17.0221 15.8095C16.8705 15.8723 16.7327 15.9645 16.6166 16.0806C16.5005 16.1968 16.4085 16.3346 16.3457 16.4863C16.2829 16.638 16.2507 16.8006 16.2507 16.9648C16.2508 17.129 16.2832 17.2916 16.3461 17.4432C16.4089 17.5949 16.5011 17.7327 16.6172 17.8488L18.0185 19.25H12.501C12.1695 19.25 11.8515 19.3817 11.6171 19.6161C11.3827 19.8505 11.251 20.1685 11.251 20.5C11.251 20.8315 11.3827 21.1495 11.6171 21.3839C11.8515 21.6183 12.1695 21.75 12.501 21.75H18.0185L16.6172 23.1513C16.3827 23.3856 16.2508 23.7036 16.2507 24.0352C16.2506 24.3668 16.3822 24.6848 16.6166 24.9194C16.851 25.1539 17.1689 25.2858 17.5005 25.2859C17.8321 25.286 18.1502 25.1544 18.3847 24.92L19.9797 23.3238C19.9011 23.9256 19.6063 24.4783 19.1502 24.8787C18.6941 25.2791 18.1079 25.5 17.501 25.5H2.50098C1.83794 25.5 1.20205 25.2366 0.733209 24.7678C0.264369 24.2989 0.000976563 23.663 0.000976562 23V3C0.000976562 2.33696 0.264369 1.70107 0.733209 1.23223C1.20205 0.763392 1.83794 0.5 2.50098 0.5H10.001ZM20.001 17.6963L21.9197 19.6163C22.1541 19.8507 22.2857 20.1685 22.2857 20.5C22.2857 20.8315 22.1541 21.1493 21.9197 21.3838L20.001 23.3038V17.6963ZM12.501 0.55375C12.9746 0.654194 13.4088 0.889989 13.751 1.2325L19.2685 6.75C19.611 7.09216 19.8468 7.5264 19.9472 8H12.501V0.55375Z"></path>
+						</svg>
+					  </span>
+					</button>
 				  </div>
 				  <div class="d-flex justify-content-between mb-2">
-				  <div class="d-inline-flex align-items-center gap-4">
 					<div class="d-inline-flex align-items-center gap-4">
-					  <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-					  <select class="form-select form-select-sm" id="show_records_number">
-						<option>10</option>
-						<option>15</option>
-						<option>20</option>
-						<option>25</option>
-					  </select>
-					</div>
-					<div class="d-flex gap-4 align-items-center">
-					  <div class="form-check form-switch mb-lg-0">
-						<input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked>
-						<label class="form-check-label" for="autoNotify">Auto-notify</label>
+					  <div class="d-inline-flex align-items-center gap-4">
+						<label for="show_records_number" class="form-label-sm mb-0">Show</label>
+						<select class="form-select form-select-sm" id="show_records_number">
+						  <option>10</option>
+						  <option>15</option>
+						  <option>20</option>
+						  <option>25</option>
+						</select>
 					  </div>
-					  <div class="form-check form-switch mb-lg-0">
-						<input class="form-check-input" type="checkbox" role="switch" id="autoNotify">
-						<label class="form-check-label" for="autoNotify">Auto-Assign</label>
+					  <div class="d-flex gap-4 align-items-center">
+						<div class="form-check form-switch mb-lg-0">
+						  <input class="form-check-input" type="checkbox" role="switch" id="autoNotify" checked>
+						  <label class="form-check-label" for="autoNotify">Auto-notify</label>
+						</div>
+						<div class="form-check form-switch mb-lg-0">
+						  <input class="form-check-input" type="checkbox" role="switch" id="autoNotify">
+						  <label class="form-check-label" for="autoNotify">Auto-Assign</label>
+						</div>
 					  </div>
 					</div>
-				  </div>
-				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label-sm mb-0">Search</label>
-					<input type="search" class="form-control form-control-sm" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-				  </div>
+					<div class="d-inline-flex align-items-center gap-4">
+					  <label for="search" class="form-label-sm mb-0">Search</label>
+					  <input type="search" class="form-control form-control-sm" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+					</div>
 				  </div>
 				  <!-- Hoverable rows start -->
 				  <div class="row" id="table-hover-row">
 				  <div class="col-12">
 					<div class="card">
 					  <div class="table-responsive">
-						<table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+						<table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
 						  <thead>
 							<tr role="row">
 							  <th scope="col" class="text-center">
@@ -1050,7 +1111,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1111,7 +1172,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1172,7 +1233,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1233,7 +1294,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1294,7 +1355,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1473,7 +1534,7 @@
 				  <div class="col-12">
 					<div class="card">
 					  <div class="table-responsive">
-						<table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+						<table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
 						  <thead>
 							<tr role="row">
 							  <th scope="col" class="text-center">
@@ -1495,7 +1556,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1556,7 +1617,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1617,7 +1678,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1678,7 +1739,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1739,7 +1800,7 @@
 							  <td class="align-middle">
 								<div class="d-flex gap-2 align-items-center">
 								  <div>
-									<img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									<img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 								  </div>
 								  <div class="pt-2">
 									<div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -1832,17 +1893,18 @@
 			  <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
 				<h2>Attachments</h2>
 				<div class="col-lg-8 mb-4">
-				  <div class="mb-3">
+				  <div class="mb-3 position-relative">
+					<a href="#" @click="addDocuments = true" class="position-absolute w-100 h-100 d-block"></a>
 					<label for="AddDocuments" class="form-label">Add Documents</label>
 					<input class="form-control" type="file" id="AddDocuments">
 				  </div>
 				  <div class="row mb-4">
 					<div class="col-lg-3">
-					  <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+					  <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
 					  <p class="font-family-secondary"><small>File Name</small></p>
 					</div>
 					<div class="col-lg-3">
-					  <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+					  <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
 					  <p class="font-family-secondary"><small>File Name</small></p>
 					</div>
 				  </div>
@@ -2002,7 +2064,7 @@
 					<div class="col-12">
 					  <div class="card">
 						<div class="table-responsive">
-						  <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+						  <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
 							<thead>
 							  <tr role="row">
 								<th scope="col" class="text-center">
@@ -2022,7 +2084,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
@@ -2054,7 +2116,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
@@ -2086,7 +2148,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
@@ -2118,7 +2180,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
@@ -2150,7 +2212,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths (Admin)</div>
@@ -2240,7 +2302,7 @@
 					<div class="col-12">
 					  <div class="card">
 						<div class="table-responsive">
-						  <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+						  <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
 							<thead>
 							  <tr role="row">
 								<th scope="col" class="text-center">
@@ -2263,7 +2325,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -2332,7 +2394,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -2390,7 +2452,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -2459,7 +2521,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -2517,7 +2579,7 @@
 								<td class="align-middle">
 								  <div class="d-flex gap-2 align-items-center">
 									<div>
-									  <img width="50" height="50" src="images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+									  <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
 									</div>
 									<div class="pt-2">
 									  <div class="font-family-secondary leading-none">Dori Griffiths</div>
@@ -2644,7 +2706,7 @@
 					<div class="col-12">
 					  <div class="card">
 						<div class="table-responsive">
-						  <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="Admin Staff Teams Table">
+						  <table id="unassigned_data" class="table table-fs-md table-hover" aria-label="">
 							<thead>
 							  <tr role="row">
 								<th scope="col" class="text-center">#</th>
@@ -2755,4 +2817,144 @@
 		  </div>
 		</div>
 	  </div>
+	  <!-- Modal - Provider Message -->
+	  <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>
+			  <div class="d-flex gap-3 justify-content-center mb-5">
+				  <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
+				  <a href="#" class="btn btn-sm btn-primary">Approve</a>
+			  </div>
+			  <div class="d-flex gap-3 justify-content-center mb-3">
+				  <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+				  <a href="#" class="btn rounded btn-primary">Submit</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <!-- /Modal - Provider Message -->
+	  <!-- Modal - Provider Message -->
+	  <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h2 class="modal-title fs-5" id="ProviderMessageModalLabel">Provider Message</h2>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>
+			  <div class="d-flex gap-3 justify-content-center mb-5">
+				  <a href="#" class="btn btn-sm btn-outline-dark">Deny</a>
+				  <a href="#" class="btn btn-sm btn-primary">Approve</a>
+			  </div>
+			  <div class="d-flex gap-3 justify-content-center mb-3">
+				  <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+				  <a href="#" class="btn rounded btn-primary">Submit</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <!-- /Modal - Provider Message -->
+	  <!-- Modal - Meeting Links -->
+	  <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h2 class="modal-title fs-5" id="MeetingLinksModalLabel">Meeting Links</h2>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <h3>Meeting name</h3>
+			  <ul class="list-unstyled mb-5 d-flex flex-column gap-3">
+				<li>
+				  Sign Language Meeting
+				</li>
+				<li>
+				  French Language Meeting
+				</li>
+				<li class="text-primary selected">
+				  Language Translation Meeting
+				</li>
+				<li>
+				  Sign Language Meeting
+				</li>
+				<li>
+				  Sign Language Meeting
+				</li>
+				<li>
+				  Sign Language Meeting
+				</li>
+			  </ul>
+			  <div class="d-flex gap-3 justify-content-center mb-3">
+				  <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Cancel</a>
+				  <a href="#" class="btn rounded btn-primary">Add</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <!-- /Modal - Meeting Links -->
+	  <!-- Modal - Unassign -->
+	  <div class="modal fade" id="UnassignModal" tabindex="-1" aria-labelledby="UnassignModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-md">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h2 class="modal-title fs-5" id="UnassignModalLabel">Unassign</h2>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <div class="mb-4">
+				<label class="form-label">Reason for Unassign</label>
+				<textarea class="form-control" rows="5" cols="5"></textarea>
+			  </div>
+			  <div class="row mb-4">
+				<div class="col-lg-6 mb-4">
+				  <label class="form-label" for="dateunassign">
+					  Date
+				  </label>
+				  <div class="position-relative">
+					  <input type="" name="" class="form-control" placeholder="Select Date" id="dateunassign">
+					  <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						  <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+					  </svg>
+				  </div>
+				</div>
+				<div class="col-lg-6">
+				  <div class="d-flex">
+					<div class="d-flex flex-column justify-content-between">
+					  <label class="form-label" for="set_start_time">Time</label>
+					  <div class="d-flex gap-2 pt-2">
+						<div class="time d-flex align-items-center gap-2">
+						  <div class="hours">12</div>
+						  <svg width="5" height="19" viewBox="0 0 5 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0.652588 16.6132C0.652588 16.1098 0.807878 15.6868 1.11846 15.3441C1.43975 14.9907 1.90026 14.814 2.5 14.814C3.09974 14.814 3.5549 14.9907 3.86548 15.3441C4.18677 15.6868 4.34741 16.1098 4.34741 16.6132C4.34741 17.1058 4.18677 17.5235 3.86548 17.8662C3.5549 18.2089 3.09974 18.3803 2.5 18.3803C1.90026 18.3803 1.43975 18.2089 1.11846 17.8662C0.807878 17.5235 0.652588 17.1058 0.652588 16.6132ZM0.668652 2.42827C0.668652 1.92492 0.823942 1.50189 1.13452 1.15918C1.45581 0.805761 1.91632 0.629052 2.51606 0.629052C3.1158 0.629052 3.57096 0.805761 3.88154 1.15918C4.20283 1.50189 4.36348 1.92492 4.36348 2.42827C4.36348 2.92091 4.20283 3.33859 3.88154 3.6813C3.57096 4.02401 3.1158 4.19536 2.51606 4.19536C1.91632 4.19536 1.45581 4.02401 1.13452 3.6813C0.823942 3.33859 0.668652 2.92091 0.668652 2.42827Z" fill="black"/>
+						  </svg>
+						  <div class="mins">59</div>
+						</div>
+						<div class="form-check form-switch form-switch-column mb-0">
+							<input checked class="form-check-input" type="checkbox" role="switch" id="pm">
+							<label class="form-check-label" for="pm">PM</label>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  <div class="d-flex gap-3 justify-content-center mb-3">
+				  <a href="#" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">Keep Provider</a>
+				  <a href="#" class="btn rounded btn-primary">Yes, Unassign Provider</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <!-- /Modal - Unassign -->
 </div>
