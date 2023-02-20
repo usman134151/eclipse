@@ -1,4 +1,4 @@
-<div>
+<div x-data="{addDocuments: false, assignProvider: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -2957,4 +2957,7 @@
 		</div>
 	  </div>
 	  <!-- /Modal - Unassign -->
+	  @include('panels.booking-details.assign-providers')
+
+	  @include('panels.booking-details.add-documents')
 </div>
