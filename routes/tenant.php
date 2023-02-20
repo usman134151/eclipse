@@ -116,7 +116,7 @@ Route::group([
         Route::view('/admin/system-logs', 'tenant/settings/system-logs', ["showForm"=>false]);
         Route::view('/admin/notifications', 'tenant/common/notifications', ["showForm"=>false]);
 
-        Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false])->where('id', '.*');
+        Route::view('/admin/accommodation/service-category/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>false])->where('id', '[^//]+');
         Route::view('/admin/accommodation/service-category/create/{id}', 'tenant/admin/accommodation/service-category', ["showForm"=>true]);
 
         Route::view('/admin/referral-setting', 'tenant/admin/referral-setting', ["showForm"=>false]);
