@@ -22,7 +22,10 @@ Route::group([
     Route::namespace('App\Http\Controllers\Tenant\Api')->controller(AuthController::class)->prefix('auth')->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
+        Route::post('forget/password', 'forgetPassword');
         Route::post('change/password', 'changePassword');
+        Route::middleware('auth:sanctum')->get('opt/resend', 'optSend');
+        Route::middleware('auth:sanctum')->post('opt/confirmed', 'optConfirmed');
         Route::middleware('auth:sanctum')->get('logout','logout');
     });
     Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->controller(UsersController::class)->group(function () {
