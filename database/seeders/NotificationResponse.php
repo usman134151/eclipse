@@ -105,6 +105,39 @@ class NotificationResponse extends Seeder
             'updated_at'   => now()
         ]);
         DB::table('api_notifications')->insert([
+            'id'    =>  306,
+            'message' =>    'Opt code is send on your mail.',
+            'title'    => 'OPT Code Send!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  307,
+            'message' =>    'Opt code is invaild.',
+            'title'    => 'In-vaild OPT!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   401,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  308,
+            'message' =>    'Opt code mathed.',
+            'title'    => 'OPT Matched!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
             'id'    =>  401,
             'message' =>    'Validation error',
             'title'    => 'Validation Error',
