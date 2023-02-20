@@ -39,8 +39,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="card">
-                    
-                  <div class="card-body">
+                    <div class="card-body">
           <!-- BEGAIN: Provider Details ................... -->
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -55,346 +54,356 @@
                   <path d="M21.2305 19.7656H22.3389V24.7895H21.2305V19.7656Z" fill="#979797"/>
                   <path d="M16.8945 22.4219H18.0035V24.757H16.8945V22.4219Z" fill="#979797"/>
                   <path d="M25.6055 19.7656H26.7144V24.7895H25.6055V19.7656Z" fill="#979797"/>
-                  </svg>
-                  
+                  </svg>  
                 <span>Dashboard</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-panel" aria-selected="false">Profile</button>
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-panel" aria-selected="false">
+                <x-icon name="gray-user"/>
+								<span>Profile</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-panel" aria-selected="false">Schedule</button>
+              <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-panel" aria-selected="false">
+                <x-icon name="gray-calendar"/>
+								<span>Schedule</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="service-requests-tab" data-bs-toggle="tab" data-bs-target="#service-requests-tab-pane" type="button" role="tab" aria-controls="service-requests-tab-panel" aria-selected="false">Service Requests</button>
+              <button class="nav-link" id="service-requests-tab" data-bs-toggle="tab" data-bs-target="#service-requests-tab-pane" type="button" role="tab" aria-controls="service-requests-tab-panel" aria-selected="false">
+                <x-icon name="gray-journal"></x-icon>
+              <span> Service Requests </span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="permission-tab" data-bs-toggle="tab" data-bs-target="#permission-tab-pane" type="button" role="tab" aria-controls="permission-tab-panel" aria-selected="false">Permission</button>
+              <button class="nav-link" id="permission-tab" data-bs-toggle="tab" data-bs-target="#permission-tab-pane" type="button" role="tab" aria-controls="permission-tab-panel" aria-selected="false">
+                <svg width="21" height="27" viewBox="0 0 21 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.2074 22.4751C12.2905 22.7494 12.0711 23.0242 11.7985 23.0242H9.30735C9.03256 23.0242 8.81316 22.7494 8.89626 22.4751L9.71843 19.2479C9.03256 18.9182 8.54057 18.2349 8.54057 17.4132C8.54057 16.3189 9.44364 15.4141 10.538 15.4141C11.6349 15.4141 12.5376 16.3189 12.5376 17.4132C12.5376 18.2349 12.0434 18.9182 11.3601 19.2479L12.2074 22.4751ZM17.9314 11.4738H7.25235V6.62913C7.25235 5.39851 8.26578 4.38552 9.49904 4.38552H11.5514C12.7825 4.38552 13.7959 5.39851 13.7959 6.62913C13.7959 7.56165 14.5627 8.32755 15.493 8.32755C16.4233 8.32755 17.1901 7.56165 17.1901 6.62913C17.1901 3.51059 14.6458 0.992188 11.5514 0.992188H9.49904C6.37698 0.992188 3.85814 3.53828 3.85814 6.62913V11.4461H3.14677C1.74995 11.4461 0.62793 12.5703 0.62793 13.9645V24.4738C0.62793 25.8702 1.74995 26.9922 3.14677 26.9922H17.9314C19.326 26.9922 20.448 25.8702 20.448 24.4738V13.9645C20.448 12.5958 19.326 11.4738 17.9314 11.4738Z" fill="#979797"/>
+                  </svg>
+                  <span>Permission</span></button>
             </li> <li class="nav-item" role="presentation">
-              <button class="nav-link" id="management-tab" data-bs-toggle="tab" data-bs-target="#management-tab-pane" type="button" role="tab" aria-controls="management-tab-panel" aria-selected="false">Management</button>
+              <button class="nav-link" id="management-tab" data-bs-toggle="tab" data-bs-target="#management-tab-pane" type="button" role="tab" aria-controls="management-tab-panel" aria-selected="false">
+                <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M27.6379 18.2532H30.5V13.7312H27.6379C27.4799 12.8776 27.2335 12.0541 26.908 11.2701C26.5774 10.4707 26.1644 9.71414 25.68 9.00913L27.7049 6.98429L24.5079 3.7873L22.4831 5.81214C21.7781 5.32783 21.0215 4.91479 20.2221 4.58418C19.4381 4.25873 18.6146 4.01228 17.761 3.85428V0.992188H13.239V3.85428C12.3854 4.01228 11.5619 4.25873 10.7779 4.58418C9.97847 4.91479 9.22195 5.32783 8.51694 5.81214L6.4921 3.7873L3.29511 6.98429L5.31996 9.00913C4.8365 9.71414 4.42346 10.4707 4.092 11.2701C3.7674 12.0541 3.52095 12.8776 3.36209 13.7312H0.5V18.2532H3.36209C3.52009 19.1067 3.76654 19.9302 4.092 20.7143C4.4226 21.5137 4.83564 22.2702 5.31996 22.9752L3.29511 25.0001L6.4921 28.1971L6.82356 27.8656L8.5178 26.1722C9.22195 26.6557 9.97847 27.0687 10.7779 27.4002C11.5619 27.7248 12.3854 27.9712 13.239 28.1301V30.9922H17.761V28.1301C18.6146 27.9721 19.4381 27.7256 20.2221 27.4002C21.0215 27.0696 21.7781 26.6565 22.4831 26.1722L24.5079 28.1971L24.8394 27.8656L27.7057 25.0001L27.3734 24.6686L25.68 22.9752C26.1644 22.2702 26.5774 21.5137 26.908 20.7143C27.2335 19.9302 27.4799 19.1067 27.6379 18.2532ZM11.805 11.3835C11.6306 9.71242 12.3331 8.60382 13.3738 8.01131C13.9723 7.67126 14.6808 7.51068 15.3944 7.52012C16.102 7.52871 16.8173 7.70475 17.4347 8.03621C18.5819 8.65191 19.3994 9.78884 19.2483 11.3826C20.1783 12.7772 18.9761 14.2842 18.6403 14.6603C18.5141 15.0708 18.3681 15.4203 18.2084 15.7191C18.0315 16.0514 17.8374 16.3219 17.6365 16.5409L17.6382 16.5426C17.5352 16.6551 15.9448 17.288 15.6872 17.4005V17.4013C15.5515 17.4614 15.403 17.4503 15.281 17.3867C14.9659 17.2485 13.5284 16.6886 13.3773 16.498C13.1883 16.2842 13.0046 16.0222 12.8354 15.7019C12.6808 15.4091 12.5383 15.0656 12.4138 14.6603C12.078 14.2842 10.8767 12.778 11.805 11.3835ZM8.34692 19.4665L8.37182 19.4081L8.39673 19.3506L8.4242 19.2931L8.43107 19.2776L8.43708 19.2647L8.4388 19.2622L8.44567 19.2467L8.46113 19.2158L8.46542 19.2081L8.46886 19.2003L8.47659 19.1849L8.48002 19.1797L8.48088 19.1772L8.48517 19.1694L8.48861 19.1617L8.4929 19.154L8.49376 19.1514L8.52382 19.0947L8.53927 19.0672L8.57104 19.0114L8.5865 18.9839L8.60196 18.9582H8.60282V18.9573L8.60367 18.9565L8.61999 18.9298L8.63631 18.9024L8.63717 18.9015V18.9006H8.63802V18.8989H8.63888L8.65176 18.8783L8.65262 18.8766V18.8757H8.65348L8.67151 18.8483L8.68869 18.8216L8.72475 18.7693L8.72647 18.7675L8.74365 18.7418L8.7445 18.7409L8.76082 18.7186L8.76168 18.7177V18.7169L8.76254 18.716L8.78143 18.6911V18.6894L8.79173 18.6765C8.92483 18.4996 9.06137 18.3528 9.21937 18.2214C9.35419 18.1089 9.50275 18.0076 9.66504 17.9226V17.9217H9.6659L9.67621 17.9166L9.67535 17.9157H9.67621L9.67707 17.9148L9.68737 17.9097H9.68909V17.9088L12.6345 16.6749C12.7513 16.8535 12.8792 17.0235 13.0175 17.1892C13.1136 17.3043 13.2321 17.397 13.3695 17.4563C13.944 17.707 14.5185 17.9561 15.0938 18.2068C15.3429 18.3159 15.6211 18.333 15.8744 18.2223C16.4171 17.9853 17.7704 17.4829 17.9843 17.2493C18.2204 16.9917 18.2427 16.9479 18.4067 16.6972L18.9065 16.9737L21.1168 17.8015L21.3358 17.9217L21.3367 17.9226H21.3375V17.9234H21.3392V17.9243H21.3401L21.341 17.9251H21.3418V17.926H21.3435V17.9269H21.3453V17.9277H21.347L21.3478 17.9286V17.9294H21.3496V17.9303H21.3513V17.9312H21.3521L21.353 17.932H21.3538V17.9329H21.3556V17.9337H21.3564C21.9936 18.2755 22.3972 18.8534 22.6531 19.4665C22.897 20.0496 23.0043 20.6653 23.0507 21.1153H23.0524C23.079 21.3729 22.8918 21.6039 22.6342 21.6305C22.617 21.6322 22.6007 21.6331 22.5835 21.6331H8.4139L8.40274 21.6322H8.389L8.38041 21.6314H8.37698L8.36753 21.6305H8.36495L8.35465 21.6288L8.34348 21.6271H8.34263L8.33232 21.6262L8.33146 21.6253H8.32975L8.3203 21.6236H8.31944L8.30914 21.6211L8.30742 21.6202L8.29711 21.6185V21.6176L8.28681 21.615H8.28509L8.27565 21.6125L8.27479 21.6116C8.26792 21.6099 8.26191 21.6073 8.25504 21.6047L8.25332 21.6039H8.2516L8.24216 21.6004L8.23271 21.5961L8.23185 21.5953L8.22241 21.5919H8.22155L8.2121 21.5867H8.21038L8.20094 21.5816L8.20008 21.5807L8.19063 21.5764L8.18978 21.5755L8.18205 21.5712L8.18033 21.5704C8.17432 21.567 8.16831 21.5635 8.16316 21.5601L8.16144 21.5584L8.15972 21.5575L8.15285 21.5532L8.15199 21.5524L8.1434 21.5463L8.14255 21.5455L8.13482 21.5403L8.13396 21.5395L8.11679 21.5257H8.11593L8.10906 21.5197L8.10734 21.518H8.10648L8.09961 21.512V21.5111L8.09789 21.5103L8.08329 21.4957C8.07728 21.4897 8.07213 21.4845 8.06784 21.4794L8.06097 21.4725L8.06011 21.4708L8.05925 21.4699L8.05324 21.463L8.05152 21.4613L8.04551 21.4536L8.0395 21.445L8.03692 21.4424L8.03263 21.4364L8.03177 21.4356L8.02834 21.4304L8.02576 21.4261L8.0249 21.4253L8.02404 21.4235C7.97424 21.3497 7.9459 21.2604 7.9459 21.1642C7.9459 21.135 7.94848 21.1067 7.95363 21.0801C8.00172 20.6327 8.10991 20.0341 8.34692 19.4665Z" fill="#979797"/>
+                  </svg>
+                 <span>Management</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes</button>
+              <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">
+                <x-icon name="gray-note"/>
+                <span>Notes</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-tab-pane" type="button" role="tab" aria-controls="reports-tab-panel" aria-selected="false">Reports</button>
+              <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-tab-pane" type="button" role="tab" aria-controls="reports-tab-panel" aria-selected="false">
+                <x-icon name="gray-bar-chart"/>
+							<span>Reports</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications-tab-pane" type="button" role="tab" aria-controls="notifications-tab-panel" aria-selected="false">Notifications</button>
+              <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications-tab-pane" type="button" role="tab" aria-controls="notifications-tab-panel" aria-selected="false">
+                <x-icon name="gray-bell"/>
+								<span>Notifications</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="log-tab" data-bs-toggle="tab" data-bs-target="#log-tab-pane" type="button" role="tab" aria-controls="log-tab-panel" aria-selected="false">Log</button>
+              <button class="nav-link" id="log-tab" data-bs-toggle="tab" data-bs-target="#log-tab-pane" type="button" role="tab" aria-controls="log-tab-panel" aria-selected="false">
+                <x-icon name="gray-log"/>
+								<span>Log</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-tab-pane" type="button" role="tab" aria-controls="settings-tab-panel" aria-selected="false">Settings</button>
+              <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-tab-pane" type="button" role="tab" aria-controls="settings-tab-panel" aria-selected="false">
+                <x-icon name="gray-cog"/>
+                <span>Settings</span></button>
             </li>
             
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="dashboard-tab-pane" role="tabpanel" aria-labelledby="dashboard-tab" tabindex="0">
               <div class="col-md-12 mb-md-2 mt-5">
-                <!-- main row  (s)-->
                 <div class="row mt-2 mb-5">
-                  <!-- left-col  -->
-                <div class="col-md-5 me-5">
-                  <div class="mb-4">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="d-inline-block position-relative">
-                        <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
-                     </div>
-  
-                      <!-- here.... CUSTOM STYLE is added for giving nrgative margin temproarity ...... -->
-                      <div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">
-                        <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0 0H133L156 32H0V0Z" fill="url(#paint0_linear_2265_83025)"/>
-                          <defs>
-                          <linearGradient id="paint0_linear_2265_83025" x1="78" y1="0" x2="140.587" y2="0" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#213969"/>
-                          <stop offset="1" stop-color="#204387"/>
-                          </linearGradient>
-                          </defs>
-                          </svg>
-                          <div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
-                            <label class="text-white form-label-sm ps-2" for="">Sydney, Australia</label>
-  
-                        </div>
-                      </div>
-                    </div>
-  
-                    <div class="col-md-7 ms-4">
-                      <h3>James Mary (He)</h3>
-                      <div class="row mb-4">
-                        <div class="col-md-12">
-                        <div class="row mb-1">
-                            <div class="col-md-12 d-flex">
-                            <div class="col-md-6"><label for=""><b>Admin Company:</b></label></div>
-                            <div class="col-md-7"><p>Example Comapny</p></div>
-                            </div>
+                  <div class="col-md-5 me-5">
+                    <div class="mb-4">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="d-inline-block position-relative">
+                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
                           </div>
-                          <div class="row">
-                            <div class="col-md-12 d-flex gap-1">
-                            <div class="col-md-3"><label for=""><b>Position</b></label></div>
-                            <div class="col-md-9"><p>Supervisor</p></div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12 d-flex">
-                            <div class="col-md-6"><label for=""><b>Phone Number:</b></label></div>
-                            <div class="col-md-5"><p>(987) 653-5875 </p></div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12 d-flex gap-1">
-                            <div class="col-md-2"><label for=""><b>Email:</b></label></div>
-                            <div class="col-md-9"><p>jamesmary@gmail.com</p></div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12 d-flex gap-1">
-                            <div class="col-md-7"><label for=""><b>Primary Language:</b></label></div>
-                            <div class="col-md-4"><p> English</p></div>
+                          <div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">
+                            <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0 0H133L156 32H0V0Z" fill="url(#paint0_linear_2265_83025)"/>
+                              <defs>
+                                <linearGradient id="paint0_linear_2265_83025" x1="78" y1="0" x2="140.587" y2="0" gradientUnits="userSpaceOnUse">
+                                  <stop stop-color="#213969"/>
+                                  <stop offset="1" stop-color="#204387"/>
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                            <div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
+                              <label class="text-white form-label-sm ps-2" for="">
+                                Sydney, Australia
+                              </label> 
                             </div>
                           </div>
                         </div>
+
+                        <div class="col-md-7 ms-4">
+                          <h3 class="font-family-tertiary fw-medium">
+                            James Mary (He)
+                          </h3>
+                          <div class="row mb-4">
+                            <div class="col-md-12">
+                              <div class="row mb-1">
+                                <div class="col-md-12">
+                                  <p class="font-family-tertiary">
+                                   <b>Admin Company:</b> Example Company
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <p class="font-family-tertiary">
+                                    <b>Position:</b> Supervisor
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <p class="font-family-tertiary">
+                                   <b>Phone Number:</b> (987) 653-5875
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <p class="text-">
+                                      <b>Email:</b> jamesmary@gmail.com 
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <p class="">
+                                      <b>Primary Language:</b> English
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                        
                     </div>
                     
+                    <div class="row mb-4">
+                     
+                    </div>
                   </div>
-                </div>
-                
-  
-                  <div class="row mb-4">
-                   
-                  </div>
-                </div>
-                
-                <!-- right-col  -->
-                <div class="col-md-6">
-                  <!-- ..... table s  -->
-                  <div class="row" id="table-hover-row">
-                    <div class="col-12">
-                      <div class="mb-2">
-                        <h2>Assigned Teams</h2>
-                      </div>
-                      <div class="card">
-                        <div class="table-responsive">
-                          <!-- table one  -->
-                          <table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
-                            <thead>
-                              <tr role="row">
-                                <th scope="col">#</th>
-                                <th scope="col">Team</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr role="row" class="odd">
-                                <td>1</td>
-                                <td>
-                                  <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                  <div class="col-md-6">
+                    <div class="row" id="table-hover-row">
+                      <div class="col-12">
+                        <div class="mb-2">
+                          <h2>Assigned Teams</h2>
+                        </div>
+                        <div class="card">
+                          <div class="table-responsive">
+                            <!-- table one  -->
+                            <table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
+                              <thead>
+                                <tr role="row">
+                                  <th scope="col">#</th>
+                                  <th scope="col">Team</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr role="row" class="odd">
+                                  <td>1</td>
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                      </div>
+                                      <div class="col-md-10">
+                                        <h6 class="fw-semibold">Langauge Translation</h6>
+                                        <p>langaugetranslation@gmail.com</p>
+                                      </div>
                                     </div>
-                                    <div class="col-md-10">
-                                      <h6 class="fw-semibold">Langauge Translation</h6>
-                                      <p>langaugetranslation@gmail.com</p>
+                                  </td>
+                                  <td>
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
+                                       <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
+                                       <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
+                                       <defs>
+                                      <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                          <stop offset="0.0150376" stop-color="#C4C4C4"/>
+                                           <stop offset="1" stop-color="white" stop-opacity="0.01"/>
+                                        </linearGradient>
+                                          <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
+                                            <stop offset="1" stop-opacity="0.01"/>
+                                      </linearGradient>
+                                           </defs>
+                                    </svg>
+                                   </td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                  <td>2</td>
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                      </div>
+                                      <div class="col-md-10">
+                                        <h6 class="fw-semibold">Langauge Translation</h6>
+                                        <p>langaugetranslation@gmail.com</p>
+                                      </div>
                                     </div>
-                                  </div>
-                                </td>
+                                  </td>
                                 <td>
-                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-  <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-  <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-  <defs>
-  <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0150376" stop-color="#C4C4C4"/>
-  <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-  </linearGradient>
-  <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-  <stop offset="1" stop-opacity="0.01"/>
-  </linearGradient>
-  </defs>
-  </svg>
-  
-                                </td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <td>2</td>
-                                <td>
-                                  <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
+                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
+                                     <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
+                                     <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
+                                     <defs>
+                                    <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0.0150376" stop-color="#C4C4C4"/>
+                                         <stop offset="1" stop-color="white" stop-opacity="0.01"/>
+                                      </linearGradient>
+                                        <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                          <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
+                                          <stop offset="1" stop-opacity="0.01"/>
+                                    </linearGradient>
+                                         </defs>
+                                  </svg>
+                                 </td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                  <td>3</td>
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                      </div>
+                                      <div class="col-md-10">
+                                        <h6 class="fw-semibold">Langauge Translation</h6>
+                                        <p>langaugetranslation@gmail.com</p>
+                                      </div>
                                     </div>
-                                    <div class="col-md-10">
-                                      <h6 class="fw-semibold">Langauge Translation</h6>
-                                      <p>langaugetranslation@gmail.com</p>
+                                  </td>
+                                  <td>
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
+                                       <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
+                                       <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
+                                       <defs>
+                                      <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                          <stop offset="0.0150376" stop-color="#C4C4C4"/>
+                                           <stop offset="1" stop-color="white" stop-opacity="0.01"/>
+                                        </linearGradient>
+                                          <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
+                                            <stop offset="1" stop-opacity="0.01"/>
+                                      </linearGradient>
+                                           </defs>
+                                    </svg>
+                                   </td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                  <td>4</td>
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                      </div>
+                                      <div class="col-md-10">
+                                        <h6 class="fw-semibold">Langauge Translation</h6>
+                                        <p>langaugetranslation@gmail.com</p>
+                                      </div>
                                     </div>
-                                  </div>
-                                </td>
-                                <td>
-                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-  <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-  <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-  <defs>
-  <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0150376" stop-color="#C4C4C4"/>
-  <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-  </linearGradient>
-  <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-  <stop offset="1" stop-opacity="0.01"/>
-  </linearGradient>
-  </defs>
-  </svg>
-  
-                                </td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <td>3</td>
-                                <td>
-                                  <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                  </td>
+                                  <td>
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
+                                       <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
+                                       <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
+                                       <defs>
+                                      <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                          <stop offset="0.0150376" stop-color="#C4C4C4"/>
+                                           <stop offset="1" stop-color="white" stop-opacity="0.01"/>
+                                        </linearGradient>
+                                          <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
+                                            <stop offset="1" stop-opacity="0.01"/>
+                                      </linearGradient>
+                                           </defs>
+                                    </svg>
+                                   </td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                  <td>5</td>
+                                  <td>
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                      </div>
+                                      <div class="col-md-10">
+                                        <h6 class="fw-semibold">Langauge Translation</h6>
+                                        <p>langaugetranslation@gmail.com</p>
+                                      </div>
                                     </div>
-                                    <div class="col-md-10">
-                                      <h6 class="fw-semibold">Langauge Translation</h6>
-                                      <p>langaugetranslation@gmail.com</p>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-  <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-  <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-  <defs>
-  <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0150376" stop-color="#C4C4C4"/>
-  <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-  </linearGradient>
-  <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-  <stop offset="1" stop-opacity="0.01"/>
-  </linearGradient>
-  </defs>
-  </svg>
-  
-                                </td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <td>4</td>
-                                <td>
-                                  <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-                                    </div>
-                                    <div class="col-md-10">
-                                      <h6 class="fw-semibold">Langauge Translation</h6>
-                                      <p>langaugetranslation@gmail.com</p>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-  <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-  <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-  <defs>
-  <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0150376" stop-color="#C4C4C4"/>
-  <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-  </linearGradient>
-  <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-  <stop offset="1" stop-opacity="0.01"/>
-  </linearGradient>
-  </defs>
-  </svg>
-  
-                                </td>
-                              </tr>
-                              <tr role="row" class="odd">
-                                <td>5</td>
-                                <td>
-                                  <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
-                                    </div>
-                                    <div class="col-md-10">
-                                      <h6 class="fw-semibold">Langauge Translation</h6>
-                                      <p>langaugetranslation@gmail.com</p>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td>
-                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-  <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-  <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-  <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-  <defs>
-  <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0150376" stop-color="#C4C4C4"/>
-  <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-  </linearGradient>
-  <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-  <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-  <stop offset="1" stop-opacity="0.01"/>
-  </linearGradient>
-  </defs>
-  </svg>
-  
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                                  </td>
+                                  <td>
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
+                                       <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
+                                       <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
+                                       <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
+                                       <defs>
+                                      <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                          <stop offset="0.0150376" stop-color="#C4C4C4"/>
+                                           <stop offset="1" stop-color="white" stop-opacity="0.01"/>
+                                        </linearGradient>
+                                          <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
+                                            <stop offset="1" stop-opacity="0.01"/>
+                                      </linearGradient>
+                                           </defs>
+                                    </svg>
+                                   </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>                        
-                  <!-- ..... table e  -->
+                    </div> 
+                  </div>
+
+                  <div class="col-md-12 mb-md-2 text-center gap-2 mt-5">
+                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                   
+                        <span>Deactivate</span>
+                    </button> 
+                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                     
+                        <span>Message</span>
+                    </button> 
+                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                     
+                        <span>Reset Password</span>
+                    </button> 
+                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                      
+                        <span>Lock Account</span>
+                    </button>
+                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                      
+                        <span>Navigate</span>
+                    </button> 
+                  </div>
                 </div>
-                
-  
-        <!-- in line / side by side buttons (start) -->
-        <div class="col-md-12 mb-md-2 text-center gap-2 mt-4">
-          <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-         
-              <span>Deactivate</span>
-          </button> 
-          <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-           
-              <span>Message</span>
-          </button> 
-          <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-           
-              <span>Reset Password</span>
-          </button> 
-          <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-            
-              <span>Lock Account</span>
-          </button>
-          <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-            
-              <span>Navigate</span>
-          </button> 
-        </div>
-        <!-- in line / side by side buttons (end) -->
-  
-  
-              </div><!-- main row end  -->
-              </div>
-                  
+              </div>      
             </div>
+          </div>
             <div class="tab-panel fade" id="dashboard-tab-panel" role="tabpanel" aria-labelledby="dashboard-tab" tabindex="0">...</div>
             <div class="tab-panel fade" id="profile-tab-panel" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
             <div class="tab-panel fade" id="schedule-tab-panel" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">...</div>
@@ -406,7 +415,7 @@
             <div class="tab-panel fade" id="notifications-tab-panel" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">...</div>
             <div class="tab-panel fade" id="log-tab-panel" role="tabpanel" aria-labelledby="log-tab" tabindex="0">...</div>
             <div class="tab-panel fade" id="settings-tab-panel" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
-          </div>
+          
           <!-- END: Provider Details ................... -->
           </div>
   
