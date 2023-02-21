@@ -7,9 +7,11 @@
             <div class="breadcrumb-wrapper">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <a href="#">
-                  Home
-                  </a>
+                    <a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
+                        <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.25009 12.5809H2.33343V20.1643C2.33343 21.3592 3.30518 22.3309 4.50009 22.3309H17.5001C18.695 22.3309 19.6668 21.3592 19.6668 20.1643V12.5809H20.7501C20.9643 12.5809 21.1737 12.5173 21.3518 12.3983C21.53 12.2793 21.6688 12.1101 21.7507 11.9122C21.8327 11.7142 21.8542 11.4964 21.8124 11.2863C21.7706 11.0762 21.6675 10.8832 21.516 10.7317L11.766 0.981697C11.6655 0.881006 11.5461 0.801123 11.4147 0.74662C11.2833 0.692117 11.1424 0.664062 11.0001 0.664062C10.8578 0.664063 10.7169 0.692117 10.5855 0.74662C10.4541 0.801123 10.3347 0.881006 10.2342 0.981697L0.484178 10.7317C0.332718 10.8832 0.229577 11.0762 0.187796 11.2863C0.146014 11.4964 0.167468 11.7142 0.249444 11.9122C0.331419 12.1101 0.470237 12.2793 0.648348 12.3983C0.826459 12.5173 1.03587 12.5809 1.25009 12.5809ZM8.83343 20.1643V14.7476H13.1668V20.1643H8.83343ZM11.0001 3.27945L17.5001 9.77945V14.7476L17.5012 20.1643H15.3334V14.7476C15.3334 13.5527 14.3617 12.5809 13.1668 12.5809H8.83343C7.63851 12.5809 6.66676 13.5527 6.66676 14.7476V20.1643H4.50009V9.77945L11.0001 3.27945Z" fill="#0A1E46"/>
+                        </svg>
+                    </a>
                 </li>
                 <li class="breadcrumb-item">
                   <a href="javascript:void(0)">
@@ -53,19 +55,24 @@
                               <h3>Choose Portal Default Colours</h3>
                               <div class="row gap-0 row-gap-3">
                                 <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                  <label>Default Colour</label>
-                                  <div class="choosen-color choosen-default-color"></div>
-                                  <a href="#" class="btn btn-primary btn-sm rounded">Choose Colour</a>
-                                </div>
-                                <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                    <label>Foreground Color</label>
-                                    <div class="choosen-color choosen-foreground-color"></div>
-                                    <a href="#" class="btn btn-primary btn-sm rounded">Choose Colour</a>
-                                 </div>
+                                    <div class="col-3">
+                                        <label>Default Colour</label>
+                                    </div>
+                                    <div class="col-3 choosen-color choosen-default-color">
+  
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="#" class="btn btn-primary btn-sm rounded">Choose Colour</a>
+                                    </div>
+                                  </div>
+                                  <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
+                                      <label>Foreground Color</label>
+                                      <div class="choosen-color choosen-foreground-color"></div>
+                                      <a href="#" class="btn btn-primary btn-sm rounded">Choose Colour</a>
+                                   </div>
                              </div>
                             </div>
                           </div>
-                      
                           <div class="row">
                             <div class="col-lg-6 mb-4">
                               <h3>Choose URL for Users to Access the Portal</h3>
@@ -81,6 +88,41 @@
                                       </div>
                                   </div>
                                 </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <h3 class="mb-3">Company Logo</h3>
+                            <div class="mb-1">
+                                <label class="form-label" for="add-company-logo"> Add Company Logo</label>
+                            </div>
+                                <div class="mb-2">
+                                    <input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control w-auto" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <img src="/html-prototype/images/company/rectangle-logo.png" class="img-fluid" alt="help-desk"/>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <h3 class="mb-3">Login Screen Image</h3>
+                                <div class="mb-1">
+                                    <label class="form-label" for="upload-login-screen-image">Upload Login Screen Image</label>
+                                </div>                             
+                                <div class="mb-2">
+                                  <input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control w-auto" placeholder="Name">
+                            </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <img src="/html-prototype/images/company/help-desk.png" class="img-fluid" alt="help-desk"/>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <h3>Login Screen Welcome Text</h3>
+                                <label class="form-label" for="updated-welcome-text">Updated Welcome Text</label>
+                                  <textarea class="form-control" rows="3" cols="3" placeholder="Enter Text" id="updated-welcome-text"></textarea>
                             </div>
                           </div>
                           <div class="row">
@@ -112,12 +154,23 @@
                           <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <h3>Announcements & Communications</h3>
-                                <label class="form-label" for="AnnouncementsCommunications">Message</label>
+                                <label class="form-label" for="AnnouncementsCommunications">Message 1</label>
                                   <textarea class="form-control" rows="3" cols="3" placeholder="Enter Message" id="AnnouncementsCommunications"></textarea>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-lg-8 mb-4 d-lg-flex gap-3">
+                                <div class="col-lg-4">
+                                    <h3>Display:</h3>
+                                    <div class="form-check">
+                                      <input class="form-check-input" id="DisplayOnLoginScreen" name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
+                                      <label class="form-check-label" for="DisplayOnLoginScreen"> Display On Log-in Screen</label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" id="DisplayOnDashboard" name="DisplayOnDashboard" type="checkbox" tabindex="" />
+                                      <label class="form-check-label" for="DisplayOnDashboard"> Display On Dashboard</label>
+                                    </div>
+                                </div>
                                 <div class="col-lg-4">
                                     <h3>Audience:</h3>
                                     <div class="form-check">
@@ -133,17 +186,8 @@
                                       <label class="form-check-label" for="DisplayToAdminUsers"> Display to Admin-users</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <h3>Display:</h3>
-                                    <div class="form-check">
-                                      <input class="form-check-input" id="DisplayOnLoginScreen" name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
-                                      <label class="form-check-label" for="DisplayOnLoginScreen"> Display On Log-in Screen</label>
-                                    </div>
-                                    <div class="form-check">
-                                      <input class="form-check-input" id="DisplayOnDashboard" name="DisplayOnDashboard" type="checkbox" tabindex="" />
-                                      <label class="form-check-label" for="DisplayOnDashboard"> Display On Dashboard</label>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="row mb-4">
                                 <div class="col-lg-4">
                                     <h3>Duration:</h3>
                                     <label class="form-label-sm" for="Days"> Days</label>
@@ -151,7 +195,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                              <a href="#" class="btn btn-primary btn-sm rounded">Apply</a>
+                              <a href="#" class="btn btn-primary btn-sm rounded"><x-icon name="plus"/> Add Message</a>
                             </div>
                           </div>
                         </div>
@@ -553,75 +597,346 @@
                                 <div class="col-lg-12">
                                     <div class="mb-5">
                                     <h3>Provider Payments & Preferences</h3>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12 mb-1">
+                                    <div class="row mb-2">
+                                        <div class="col-lg-12 mb-4">
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="providerPayroll" checked>
                                                 <label class="form-check-label" >Provider Payroll</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label class="form-label" for="directDepositFormUpload">
-                                                Direct Deposit Form Upload
-                                            </label>
-                                            <input class="form-control" type="file" id="directDepositFormUpload">
-                                        </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 mb-4">
+                                                    <label class="form-label" for="directDepositFormUpload">
+                                                        Direct Deposit Form Upload
+                                                    </label>
+                                                    <input class="form-control" type="file" id="directDepositFormUpload">
+                                                </div>
+                                                <div class="col-lg-12 mb-4">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="enrollDirectDeposit" name="enrollDirectDeposit" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="enrollDirectDeposit">Require Provider to Acknowledge to Enroll in Direct Deposit</label>
+                                                        </div>
+                                                </div>
+                                                    <div class="col-lg-12 mb-4">
+                                                        <div class="d-lg-flex justify-content-between">
+                                                            <label class="form-label" for="reimburseProviders">
+                                                                Rate Per Mile to Reimburse Providers
+                                                            </label>
+                                                            <a href="#">
+                                                                KM <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path> </svg>
+                                                            </a>
+                                                        </div>
+
+                                                        <input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
+                                                    </div>
+                                                    <div class="col-lg-12 mb-4">
+                                                        <label class="form-label" for="selectCurrency">
+                                                            Select Currency
+                                                        </label>
+                                                        <select id="selectCurrency" class="form-select">
+                                                            <option>Select Currency</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-4">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Customer Billing" id="customerBilling" checked>
+                                                            <label class="form-check-label" >Customer Billing</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <label class="form-label" for="billingSchedule">
+                                                            Billing Schedule (Days After Invoice)
+                                                        </label>
+                                                        <p>Net</p>
+                                                        <div class="col-3 d-flex gap-2 align-items-center">
+                                                            <input class="form-control" type="" id="billingSchedule" placeholder="10"> <span>Days</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{-- Begin: Staff Providers --}}
                                         <div class="col-lg-6">
-                                            <label class="form-label" for="paymentSchedule">
-                                                Payment Schedule
+                                            <label class="form-label" for="payment-schedule ">
+                                                Payment Schedule 
                                             </label>
-                                            <div class="position-relative">
-                                                <input type="" name="" class="form-control" placeholder="Select Date" id="paymentSchedule">
-                                                <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-                                                </svg>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="enrollDirectDeposit" name="enrollDirectDeposit" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="enrollDirectDeposit">Staff Providers</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mx-4 mb-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    Every week starting
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>Friday</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>3 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mx-4 mb-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    Every two-weeks starting
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>Friday</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>3 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mx-4 mb-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    Every month starting
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>4th</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>14 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mx-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    On select days of the month
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>4th</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <div class="d-flex gap-1 align-items-center">
+                                                                    <select id="remittance-release" class="form-select">
+                                                                        <option>14th</option>
+                                                                    </select>
+                                                                    <x-icon name="plus"/>
+                                                                    <x-icon name="recycle-bin"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>14 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- End: Staff Providers --}}
+                                                {{-- Begin: Contract Providers --}}
+                                                <div class="col-lg-6">
+                                                    <div class="mb-2">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="contract-providers" name="contract-providers" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="contract-providers">Contract Providers</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mx-4 mb-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    Every week starting
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>Friday</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>3 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mx-4 mb-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    Every two-weeks starting
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>Friday</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>3 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mx-4 mb-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    Every month starting
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>4th</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>14 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mx-4">
+                                                        <div class="mb-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="Hrs" id="12Hrs1" checked>
+                                                                <label class="form-check-label" for="12Hrs1">
+                                                                    On select days of the month
+                                                                </label>
+                                                              </div>
+                                                        </div>
+                                                        <div class="mx-4">
+                                                            <div class="mb-2">
+                                                                <label class="form-label text-sm" for="selectCurrency">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <select id="invoice-submission-day" class="form-select">
+                                                                    <option>4th</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Invoice Submission Day
+                                                                </label>
+                                                                <div class="d-flex gap-1 align-items-center">
+                                                                    <select id="remittance-release" class="form-select">
+                                                                        <option>14th</option>
+                                                                    </select>
+                                                                    <x-icon name="plus"/>
+                                                                    <x-icon name="recycle-bin"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label class="form-label input-sm text-sm" for="remittance-release">
+                                                                    Remittance Release 
+                                                                </label>
+                                                                <select id="remittance-release" class="form-select">
+                                                                    <option>14 Days</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- End: Contract Providers --}}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12">
-                                            <h3>Options:</h3>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="enrollDirectDeposit" name="enrollDirectDeposit" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="enrollDirectDeposit">Require Provider to Acknowledge to Enroll in Direct Deposit</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-6">
-                                            <div class="d-lg-flex justify-content-between">
-                                                <label class="form-label" for="reimburseProviders">
-                                                    Rate Per Mile to Reimburse Providers
-                                                </label>
-                                                <a href="#">
-                                                    KM <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path> </svg>
-                                                </a>
-                                            </div>
-                                            <input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="form-label" for="selectCurrency">
-                                                Select Currency
-                                            </label>
-                                            <select id="selectCurrency" class="form-select">
-                                                <option>Select Currency</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12 mb-1">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Customer Billing" id="customerBilling" checked>
-                                                <label class="form-check-label" >Customer Billing</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="form-label" for="billingSchedule">
-                                                Billing Schedule (Days After Invoice)
-                                            </label>
-                                            <input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
-                                        </div>
-                                    </div>
+                                        {{-- End: Right Column --}}
                                     </div>
                                     <div class="mb-5">
                                     <div class="row mb-4">
@@ -645,7 +960,6 @@
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-lg-12">
-                                            <h3>Options:</h3>
                                             <div class="form-check">
                                                 <input class="form-check-input" id="attachSendQuotes" name="attachSendQuotes" type="checkbox" tabindex="" />
                                                 <label class="form-check-label" for="attachSendQuotes">Attach and Send with Quotes</label>
@@ -679,12 +993,11 @@
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-lg-12">
-                                            <h3>Options:</h3>
                                             <div class="form-check">
                                                 <input class="form-check-input" id="add-to-customer-drive" name="customerDrive" type="checkbox" tabindex="" />
                                                 <label class="form-check-label" for="add-to-customer-drive" >Add to Customer Drive</label>
                                             </div>
-                                            <div class="form-check">
+                                            <div class="form-check mx-4">
                                                 <input class="form-check-input" id="acknowledge-Initial-Logincustomer-Drive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
                                                 <label class="form-check-label" for="acknowledge-Initial-Logincustomer-Drive">Require Customer to Acknowledge on Initial Login</label>
                                             </div>
@@ -692,7 +1005,7 @@
                                                 <input class="form-check-input" id="provider-Drive" name="providerDrive" type="checkbox" tabindex="" />
                                                 <label class="form-check-label" for="provider-Drive">Add to Provider Drive</label>
                                             </div>
-                                            <div class="form-check">
+                                            <div class="form-check mx-4">
                                                 <input class="form-check-input" id="acknowledge-Initial-Loginprovider-Drive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
                                                 <label class="form-check-label" for="acknowledge-Initial-Loginprovider-Drive">Require Customer to Acknowledge on Initial Login</label>
                                             </div>
@@ -702,10 +1015,18 @@
                                     <!-- Duplicate Block -->
                                     <div>
                                         <div class="row mb-4">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-12 mb-2">
                                                 <h3>Additional Policies</h3>
                                                 <h3 class="text-primary">Policy 1</h3>
                                                 <div class="row mb-3">
+                                                    <div class="row mb-2">
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label" for="privacyPolicyURL">
+                                                                Policy Title
+                                                            </label>
+                                                            <input type="" name="" class="form-control" placeholder="Enter Title" id="privacyPolicyURL">
+                                                        </div>
+                                                    </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label" for="privacyPolicyUpload">
                                                             Upload File
@@ -719,35 +1040,55 @@
                                                         <input type="" name="" class="form-control" placeholder="Enter URL link" id="privacyPolicyURL">
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" />
+                                                        <label class="form-check-label" for="customerDrive">Add to Customer Drive</label>
+                                                    </div>
+                                                    <div class="form-check mx-4">
+                                                        <input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
+                                                        <label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Require Customer to Acknowledge on Initial Login</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" />
+                                                        <label class="form-check-label" for="providerDrive">Add to Provider Drive</label>
+                                                    </div>
+                                                    <div class="form-check mx-4">
+                                                        <input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
+                                                        <label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Require Customer to Acknowledge on Initial Login</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
                                                     <div class="col-lg-12 text-lg-end">
                                                         <button type="button" class="btn btn-primary btn rounded"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Policy
                                                         </button>
                                                     </div>
                                                 </div>
+
+                                                <div class="row mb-4">
+                                                   <h3>Request Feedback</h3>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="customerDrive">Provider about consumer</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Provider about team providers</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="providerDrive">Consumer about provider</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
+                                                            <label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Requester about provider</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
-                                        <div class="col-lg-12">
-                                            <h3>Options:</h3>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="customerDrive">Add to Customer Drive</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Require Customer to Acknowledge on Initial Login</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="providerDrive">Add to Provider Drive</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Require Customer to Acknowledge on Initial Login</label>
-                                            </div>
-                                        </div>
-                                    </div>
                                     </div><!-- /Duplicate Block -->
                                     <!-- Form Actions -->
                                     <div class="col-12 justify-content-center form-actions d-flex">
