@@ -3,6 +3,6 @@
 @section('content')
 
 <!-- BEGIN: Content-->
-  @livewire('app.admin.bookings.drafts', ['bookingType'=>$bookingType])
+  @livewire('app.common.bookings.pending-approval', ['bookingType'=>$bookingType])
  <!-- End: Content-->
 @endsection

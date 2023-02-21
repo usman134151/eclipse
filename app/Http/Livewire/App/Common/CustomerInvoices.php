@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin\Bookings;
+namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 
-class Upcoming extends Component
+class CustomerInvoices extends Component
 {
     public $showForm;
-    public $bookingType;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.admin.bookings.upcoming');
+        return view('livewire.app.common.customer-invoices');
     }
 
     public function mount()
