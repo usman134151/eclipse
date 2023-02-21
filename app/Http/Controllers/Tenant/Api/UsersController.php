@@ -111,99 +111,262 @@ class UsersController extends ApiController
                         'accommodation_id'  =>  1,
                         'accommodation_name' => 'Sign And Language Interpreting Services',
                         'status' => 1,
+                        'rate_service_wise' => 
+                        [
+                            [
+                                'service_id'    =>  1,
+                                'service_name'  =>  'Both Day Rate (New)',
+                                'standerd_rates' => [
+                                    [
+                                        'rate_type' => 'in-person',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+        
+                                    ],
+                                    [
+                                        'rate_type' => 'virtual',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ]
+                                ],
+                                'specialization_rates'  =>  
+                                [
+                                    [
+                                        'specialization_id'     =>  1,
+                                        'specialization_type'   =>  'Medical',
+                                        'in_person_rate'        =>  '$40',
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Legal',
+                                        'in_person_rate'        =>  '$30',
+                                        'virtual_rate'          =>  '$20',
+                                    ]   
+                                ]
+                            ],
+                            [
+                                'service_id'    =>  2,
+                                'service_name'  =>  'Services For Testing Video',
+                                'standerd_rates' => [
+                                    [
+                                        'rate_type' => 'in-person',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => '$101.00',
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'virtual',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => '$101.00',
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ]
+                                ],
+                                'specialization_rates'  =>  
+                                [
+                                    [
+                                        'specialization_id'     =>  1,
+                                        'specialization_type'   =>  'Medical',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Legal',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Conferance',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ]      
+                                ]
+                            ]
+        
+                        ]
                     ],
                     [
                         'accommodation_id'  =>  1,
                         'accommodation_name' => 'Sign And Language Interpreting Services',
                         'status' => 1,
+                        'rate_service_wise' => 
+                        [
+                            [
+                                'service_id'    =>  1,
+                                'service_name'  =>  'Both Day Rate (New)',
+                                'standerd_rates' => [
+                                    [
+                                        'rate_type' => 'in-person',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+        
+                                    ],
+                                    [
+                                        'rate_type' => 'virtual',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ]
+                                ],
+                                'specialization_rates'  =>  
+                                [
+                                    [
+                                        'specialization_id'     =>  1,
+                                        'specialization_type'   =>  'Medical',
+                                        'in_person_rate'        =>  '$40',
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Legal',
+                                        'in_person_rate'        =>  '$30',
+                                        'virtual_rate'          =>  '$20',
+                                    ]   
+                                ]
+                            ],
+                            [
+                                'service_id'    =>  2,
+                                'service_name'  =>  'Services For Testing Video',
+                                'standerd_rates' => [
+                                    [
+                                        'rate_type' => 'in-person',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => '$101.00',
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'virtual',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => '$101.00',
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ]
+                                ],
+                                'specialization_rates'  =>  
+                                [
+                                    [
+                                        'specialization_id'     =>  1,
+                                        'specialization_type'   =>  'Medical',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Legal',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Conferance',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ]      
+                                ]
+                            ]
+        
+                        ]
                     ],
                     [
                         'accommodation_id'  =>  1,
                         'accommodation_name' => 'Sign And Language Interpreting Services',
                         'status' => 1,
-                    ]
-                ],    
-                'rate_service_wise' => 
-                [
-                    [
-                        'service_id'    =>  1,
-                        'service_name'  =>  'Both Day Rate (New)',
-                        'standerd_rates' => [
-                            [
-                                'rate_type' => 'in-person',
-                                'day_rate_price' => '$500.00',
-                                'after_hour_rate_price' => null,
-                                'expedited_rate_hours' => 1,
-                                'expedited_rate_price' => '$5.00',
-
-                            ],
-                            [
-                                'rate_type' => 'virtual',
-                                'day_rate_price' => '$500.00',
-                                'after_hour_rate_price' => null,
-                                'expedited_rate_hours' => 1,
-                                'expedited_rate_price' => '$5.00',
-                            ]
-                        ],
-                        'specialization_rates'  =>  
+                        'rate_service_wise' => 
                         [
                             [
-                                'specialization_id'     =>  1,
-                                'specialization_type'   =>  'Medical',
-                                'in_person_rate'        =>  '$40',
-                                'virtual_rate'          =>  '$20',
+                                'service_id'    =>  1,
+                                'service_name'  =>  'Both Day Rate (New)',
+                                'standerd_rates' => [
+                                    [
+                                        'rate_type' => 'in-person',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+        
+                                    ],
+                                    [
+                                        'rate_type' => 'virtual',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ]
+                                ],
+                                'specialization_rates'  =>  
+                                [
+                                    [
+                                        'specialization_id'     =>  1,
+                                        'specialization_type'   =>  'Medical',
+                                        'in_person_rate'        =>  '$40',
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Legal',
+                                        'in_person_rate'        =>  '$30',
+                                        'virtual_rate'          =>  '$20',
+                                    ]   
+                                ]
                             ],
                             [
-                                'specialization_id'     =>  2,
-                                'specialization_type'   =>  'Legal',
-                                'in_person_rate'        =>  '$30',
-                                'virtual_rate'          =>  '$20',
-                            ]   
-                        ]
-                    ],
-                    [
-                        'service_id'    =>  2,
-                        'service_name'  =>  'Services For Testing Video',
-                        'standerd_rates' => [
-                            [
-                                'rate_type' => 'in-person',
-                                'day_rate_price' => '$500.00',
-                                'after_hour_rate_price' => '$101.00',
-                                'expedited_rate_hours' => 1,
-                                'expedited_rate_price' => '$5.00',
-                            ],
-                            [
-                                'rate_type' => 'virtual',
-                                'day_rate_price' => '$500.00',
-                                'after_hour_rate_price' => '$101.00',
-                                'expedited_rate_hours' => 1,
-                                'expedited_rate_price' => '$5.00',
+                                'service_id'    =>  2,
+                                'service_name'  =>  'Services For Testing Video',
+                                'standerd_rates' => [
+                                    [
+                                        'rate_type' => 'in-person',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => '$101.00',
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'virtual',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => '$101.00',
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ]
+                                ],
+                                'specialization_rates'  =>  
+                                [
+                                    [
+                                        'specialization_id'     =>  1,
+                                        'specialization_type'   =>  'Medical',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Legal',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ],
+                                    [
+                                        'specialization_id'     =>  2,
+                                        'specialization_type'   =>  'Conferance',
+                                        'in_person_rate'        =>  null,
+                                        'virtual_rate'          =>  '$20',
+                                    ]      
+                                ]
                             ]
-                        ],
-                        'specialization_rates'  =>  
-                        [
-                            [
-                                'specialization_id'     =>  1,
-                                'specialization_type'   =>  'Medical',
-                                'in_person_rate'        =>  null,
-                                'virtual_rate'          =>  '$20',
-                            ],
-                            [
-                                'specialization_id'     =>  2,
-                                'specialization_type'   =>  'Legal',
-                                'in_person_rate'        =>  null,
-                                'virtual_rate'          =>  '$20',
-                            ],
-                            [
-                                'specialization_id'     =>  2,
-                                'specialization_type'   =>  'Conferance',
-                                'in_person_rate'        =>  null,
-                                'virtual_rate'          =>  '$20',
-                            ]      
+        
                         ]
                     ]
-
-                ]
+                ]   
+               
             ];
             return $this->response($result, 200);
 
