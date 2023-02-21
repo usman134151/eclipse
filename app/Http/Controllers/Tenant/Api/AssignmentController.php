@@ -4,9 +4,21 @@ namespace App\Http\Controllers\Tenant\Api;
 
 use App\Http\Controllers\Tenant\Api\ApiController;
 use Illuminate\Http\Request;
+use App\Services\AssignmentService;
 
 class AssignmentController extends ApiController
 {
+
+    protected $assignmentService;
+
+    /**
+     *  Initialize services for this controller.
+     *
+     */
+    public function __construct(AssignmentService $assignmentService)
+    {
+        $this->assignmentService = $assignmentService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,14 +45,14 @@ class AssignmentController extends ApiController
                     
                         'today_assignment'  =>  
                         [
-                            $this->assignmentsDataMap(1),
-                            $this->assignmentsDataMap(2),
+                            $this->assignmentService->getContent( ['id' => 1 ] ),
+                            $this->assignmentService->getContent( ['id' => 2 ] ),
                         ],
 
                         'upcomming_assignment'  =>  
                         [
-                            $this->assignmentsDataMap(3),
-                            $this->assignmentsDataMap(4),
+                            $this->assignmentService->getContent( ['id' => 3 ] ),
+                            $this->assignmentService->getContent( ['id' => 4 ] ),
                         ]                            
                 
                     ];
@@ -49,14 +61,14 @@ class AssignmentController extends ApiController
                     
                             'assignment_invitation'  =>  
                             [
-                                $this->assignmentsDataMap(1),
-                                $this->assignmentsDataMap(2),
+                                $this->assignmentService->getContent( ['id' => 5 ] ),
+                                $this->assignmentService->getContent( ['id' => 6 ] ),
                             ],
 
                             'unassign_assignment'  =>  
                             [
-                                $this->assignmentsDataMap(3),
-                                $this->assignmentsDataMap(4),
+                                $this->assignmentService->getContent( ['id' => 7 ] ),
+                                $this->assignmentService->getContent( ['id' => 8 ] ),
                             ]                            
                     
                         ];
@@ -108,8 +120,54 @@ class AssignmentController extends ApiController
             if($validate   !== true )
             {
                 return $validate;
-            } 
-            return $this->response($this->assignmentsDataMap($request->assignment_id),200);
+            }
+            $data['id'] =$request->assignment_id;
+            
+            $result = [
+                'booking_details' => $this->assignmentService->getAllContent($data),
+                'payment_details' => $this->assignmentService->paymentDetails( $data ),
+                'attachments' => [
+                                    [
+                                        'document_id'    =>     1,
+                                        'document_title'    =>  'Assignment Doc',
+                                        'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
+                                        'expiration_date'   =>  '2022-05-27 00:00:00',
+                                        'status'            =>  '1',
+                                    ],
+                                    [
+                                        
+                                        'document_id'    =>     2,
+                                        'document_title'    =>  'Assignment Doc',
+                                        'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
+                                        'expiration_date'   =>  '2022-05-27 00:00:00',
+                                        'status'            =>  '1',
+                                    ]
+                               ],
+                'providers' => [
+                    [
+                        'uid' => $this->usersDataMap(1)['uid'],
+                        'user_name' => $this->usersDataMap(1)['user_name'],
+                        'phone' => $this->usersDataMap(1)['phone'],
+                        'email' => $this->usersDataMap(1)['email'],
+                        'profile_pic' => $this->usersDataMap(1)['profile_pic'],
+                    ],
+                    [
+                        'uid' => $this->usersDataMap(2)['uid'],
+                        'user_name' => $this->usersDataMap(2)['user_name'],
+                        'phone' => $this->usersDataMap(2)['phone'],
+                        'email' => $this->usersDataMap(2)['email'],
+                        'profile_pic' => $this->usersDataMap(2)['profile_pic'],
+                    ],
+                    [
+                        'uid' => $this->usersDataMap(3)['uid'],
+                        'user_name' => $this->usersDataMap(3)['user_name'],
+                        'phone' => $this->usersDataMap(3)['phone'],
+                        'email' => $this->usersDataMap(3)['email'],
+                        'profile_pic' => $this->usersDataMap(3)['profile_pic'],
+                    ]
+                ]
+            ];
+            return $this->response( $result ,200);
         } catch (\Throwable $th) {
             return $this->response([
                 'errors' => $th->getMessage(),
@@ -264,5 +322,37 @@ class AssignmentController extends ApiController
             ],500);
         }    
     }
+
+
+    
+     /**
+    * Store Check in And Out Provider Of Assignment.
+    *
+    * @param  Request $request
+    * @return \Illuminate\Http\Response
+    */
+    public function storeAvailability(Request $request)
+    {
+        try {
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'assignment_id' => 'required',
+                    'availability_status' => 'required',
+                ]
+            );
+            if($validate   !== true )
+            {
+                return $validate;
+            } 
+            
+            return $this->response([],661);
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }    
+    }
+
     
 }

@@ -57,6 +57,7 @@ Route::group([
             Route::post('assignment/update_time', 'updateTime');
             Route::post('assignment/check_in_details', 'checkInDetails');
             Route::post('assignment/check_in_out', 'storeCheckInOut');
+            Route::post('assignment/set_availability', 'storeAvailability');
             
         });
         Route::controller(InvoiceController::class)->group(function () {
