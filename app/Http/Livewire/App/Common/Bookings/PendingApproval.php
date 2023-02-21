@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin\Bookings;
+namespace App\Http\Livewire\App\Common\Bookings;
 
 use Livewire\Component;
 
-class Past extends Component
+class PendingApproval extends Component
 {
     public $showForm;
     public $bookingType;
@@ -12,7 +12,7 @@ class Past extends Component
 
     public function render()
     {
-        return view('livewire.app.admin.bookings.past');
+        return view('livewire.app.common.bookings.pending-approval');
     }
 
     public function mount()
