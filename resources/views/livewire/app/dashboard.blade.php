@@ -829,7 +829,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -867,7 +867,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -905,7 +905,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -943,7 +943,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -981,7 +981,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -1019,7 +1019,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -1057,7 +1057,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
@@ -1095,7 +1095,7 @@
                 <td>
                   <div class="row">
                     <div class="col-lg-1">
-                      <img src="/html-prototype/images/temp/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
+                      <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="w-100 rounded-circle">
                     </div>
                     <div class="col-lg-11 align-self-center ps-0">
                       Akmal Shah Consumer has cancelled their upcoming services
