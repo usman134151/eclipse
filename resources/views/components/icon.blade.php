@@ -186,4 +186,48 @@
 	<path d="M16.6667 17.7168V17.7779H14.9167L13.9167 18.889H16.6667C16.9654 18.8803 17.2488 18.7551 17.4564 18.5402C17.664 18.3254 17.7794 18.0378 17.7778 17.739V14.5557L16.6667 15.7946V17.7168Z" fill="black"/>
 	<path d="M19.3111 10.3447C19.2013 10.2469 19.0571 10.1967 18.9103 10.205C18.7634 10.2133 18.6259 10.2795 18.5278 10.3891L12.0722 17.6114L9.18336 14.5058C9.13594 14.4504 9.07806 14.4048 9.01303 14.3717C8.948 14.3386 8.87709 14.3187 8.80435 14.313C8.73161 14.3073 8.65846 14.316 8.58909 14.3386C8.51971 14.3612 8.45547 14.3973 8.40003 14.4447C8.34571 14.4941 8.30173 14.5538 8.27063 14.6203C8.23953 14.6868 8.22192 14.7588 8.21882 14.8322C8.21572 14.9055 8.22719 14.9788 8.25257 15.0477C8.27795 15.1166 8.31674 15.1798 8.36669 15.2336L12.0834 19.2336L19.3556 11.1114C19.4483 11.0024 19.4954 10.8619 19.4872 10.7191C19.4789 10.5763 19.4158 10.4422 19.3111 10.3447Z" fill="black"/>
 </svg>
+
+@elseif($name === 'plus')
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+</svg>
+
+@elseif($name === 'chain')
+<svg width="60" height="41" viewBox="0 0 60 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<g filter="url(#filter0_d_8928_13966)">
+		<rect x="11" y="7" width="38" height="19" rx="5" fill="#888575"/>
+	</g>
+	<g filter="url(#filter1_d_8928_13966)">
+		<rect x="11" y="7" width="38" height="19" rx="5" fill="#888575"/>
+	</g>
+	<path d="M27.75 16H32.25M32.25 11.5H33C34.1935 11.5 35.3381 11.9741 36.182 12.818C37.0259 13.6619 37.5 14.8065 37.5 16C37.5 17.1935 37.0259 18.3381 36.182 19.182C35.3381 20.0259 34.1935 20.5 33 20.5H32.25M27.75 20.5H27C25.8065 20.5 24.6619 20.0259 23.818 19.182C22.9741 18.3381 22.5 17.1935 22.5 16C22.5 14.8065 22.9741 13.6619 23.818 12.818C24.6619 11.9741 25.8065 11.5 27 11.5H27.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	<defs>
+		<filter id="filter0_d_8928_13966" x="0" y="0" width="60" height="41" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dy="4"/>
+			<feGaussianBlur stdDeviation="5.5"/>
+			<feComposite in2="hardAlpha" operator="out"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_8928_13966"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_8928_13966" result="shape"/>
+		</filter>
+		<filter id="filter1_d_8928_13966" x="0" y="0" width="60" height="41" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dy="4"/>
+			<feGaussianBlur stdDeviation="5.5"/>
+			<feComposite in2="hardAlpha" operator="out"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_8928_13966"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_8928_13966" result="shape"/>
+		</filter>
+	</defs>
+</svg>
+
+@elseif($name === 'duplicate')
+<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M1.9 18.9998H13.3C14.3479 18.9998 15.2 18.1477 15.2 17.0998V5.6998C15.2 4.65195 14.3479 3.7998 13.3 3.7998H1.9C0.85215 3.7998 0 4.65195 0 5.6998V17.0998C0 18.1477 0.85215 18.9998 1.9 18.9998ZM1.9 5.6998H13.3L13.3019 17.0998H1.9V5.6998Z" fill="black"/>
+	<path d="M17.1001 0H5.7001V1.9H17.1001V13.3H19.0001V1.9C19.0001 0.85215 18.148 0 17.1001 0Z" fill="black"/>
+</svg>
 @endif
