@@ -137,6 +137,13 @@
     color: #ffffff;
     line-height: 1; }
 
+.form-select.form-select-md,
+.form-select-md {
+  padding: 0.435rem 1.5rem 0.435rem 0.5rem;
+  background-size: 10px 5px;
+  background-position: right 0.5rem center;
+  font-size: 0.9375rem; }
+
 .form-control, .form-select {
   font-family: 'Poppins', sans-serif;
   font-weight: 400; }
@@ -492,6 +499,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 0.875rem;
     top: 0.325rem;
     right: 0.75rem; }
+  .icon-date.md {
+    width: 0.9375rem;
+    top: 0.5rem;
+    right: 2rem; }
 
 .cursor-pointer {
   cursor: pointer; }
@@ -652,7 +663,9 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
   color: #fff;
   padding: 2rem 0;
   cursor: pointer;
-  height: 12.3675rem;
+  height: 13.9375rem;
+  max-width: 11.5625rem;
+  width: 100%;
   position: relative;
   overflow: hidden;
   -webkit-transition: all 0.1s linear;
@@ -694,7 +707,7 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
     z-index: 1;
     font-family: 'Inter', sans-serif;
     font-size: 1.375rem;
-    line-height: 1;
+    line-height: 1.2;
     font-weight: 500;
     margin-bottom: 1rem;
     -webkit-transition: all 0.1s linear;
@@ -716,18 +729,106 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
     -moz-transition: all 0.1s linear;
     -o-transition: all 0.1s linear;
     transition: all 0.1s linear; }
-  .dashborad-block:hover, a.dashborad-block:hover {
+  .dashborad-block:hover, .dashborad-block.active, a.dashborad-block:hover, a.dashborad-block.active {
     border-color: #0A1E46;
     color: #0A1E46; }
-    .dashborad-block:hover:before, a.dashborad-block:hover:before {
+    .dashborad-block:hover:before, .dashborad-block.active:before, a.dashborad-block:hover:before, a.dashborad-block.active:before {
       opacity: 1; }
-    .dashborad-block:hover svg.stroke, a.dashborad-block:hover svg.stroke {
+    .dashborad-block:hover svg.stroke, .dashborad-block.active svg.stroke, a.dashborad-block:hover svg.stroke, a.dashborad-block.active svg.stroke {
       stroke: #0A1E46 !important; }
-    .dashborad-block:hover svg.fill, a.dashborad-block:hover svg.fill {
+    .dashborad-block:hover svg.fill, .dashborad-block.active svg.fill, a.dashborad-block:hover svg.fill, a.dashborad-block.active svg.fill {
+      fill: #0A1E46 !important; }
+
+.dashborad-navigator-block, a.dashborad-navigator-block {
+  background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  color: #fff;
+  padding: 2rem 0;
+  cursor: pointer;
+  height: 13.9375rem;
+  max-width: 11.5625rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear; }
+  .dashborad-navigator-block:before, a.dashborad-navigator-block:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    opacity: 0;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+  .dashborad-navigator-block svg, a.dashborad-navigator-block svg {
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+    .dashborad-navigator-block svg.icon-availability, a.dashborad-navigator-block svg.icon-availability {
+      width: 22rem;
+      height: 18rem;
+      left: -3rem;
+      top: -4rem;
+      margin: -6.8rem; }
+    .dashborad-navigator-block svg.stroke, a.dashborad-navigator-block svg.stroke {
+      stroke: #fff !important; }
+    .dashborad-navigator-block svg.fill, a.dashborad-navigator-block svg.fill {
+      fill: #fff !important; }
+  .dashborad-navigator-block .block-text, a.dashborad-navigator-block .block-text {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+    padding: 0 2rem;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+  .dashborad-navigator-block .block-icon, a.dashborad-navigator-block .block-icon {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem; }
+  .dashborad-navigator-block .block-number, a.dashborad-navigator-block .block-number {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1;
+    font-weight: 500;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear; }
+  .dashborad-navigator-block:hover, .dashborad-navigator-block.active, a.dashborad-navigator-block:hover, a.dashborad-navigator-block.active {
+    border-color: #0A1E46;
+    color: #0A1E46; }
+    .dashborad-navigator-block:hover:before, .dashborad-navigator-block.active:before, a.dashborad-navigator-block:hover:before, a.dashborad-navigator-block.active:before {
+      opacity: 1; }
+    .dashborad-navigator-block:hover svg.stroke, .dashborad-navigator-block.active svg.stroke, a.dashborad-navigator-block:hover svg.stroke, a.dashborad-navigator-block.active svg.stroke {
+      stroke: #0A1E46 !important; }
+    .dashborad-navigator-block:hover svg.fill, .dashborad-navigator-block.active svg.fill, a.dashborad-navigator-block:hover svg.fill, a.dashborad-navigator-block.active svg.fill {
       fill: #0A1E46 !important; }
 
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -926,5 +1027,11 @@ small {
   background: none;
   color: #ffffff;
   border: 0; }
+
+.form-control-date {
+  padding-right: 2rem; }
+
+.-mt-5 {
+  margin-top: -1.5rem; }
 
 /*# sourceMappingURL=style.css.map */

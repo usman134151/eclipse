@@ -350,9 +350,14 @@ h1, h2, h3, h4, h5, h6 {
 	top: 1rem;
 	right: 1rem;
 	&.sm {
-		    width: 0.875rem;
-    top: 0.325rem;
-    right: 0.75rem;
+	    width: 0.875rem;
+	    top: 0.325rem;
+	    right: 0.75rem;
+	}
+	&.md {
+	    width: 0.9375rem;
+	    top: 0.5rem;
+	    right: 2rem;
 	}
 }
 
@@ -576,7 +581,9 @@ div[data-bs-toggle="collapse"] {
 	color: #fff;
 	padding: 2rem 0;
 	cursor: pointer;
-	height: 12.3675rem;
+	height: 13.9375rem;
+	max-width: 11.5625rem;
+	width: 100%;
 	position: relative;
 	overflow: hidden;
 	-webkit-transition: all 0.1s linear;  
@@ -595,15 +602,15 @@ div[data-bs-toggle="collapse"] {
 		border-radius: 0.5rem;
 		opacity: 0;
 		-webkit-transition: all 0.1s linear;  
-    -moz-transition: all 0.1s linear;  
-    -o-transition: all 0.1s linear;  
-    transition: all 0.1s linear;
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
 	}
 	svg {
 		-webkit-transition: all 0.1s linear;  
-    -moz-transition: all 0.1s linear;  
-    -o-transition: all 0.1s linear;  
-    transition: all 0.1s linear;
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
     &.icon-availability {
     	    width: 22rem;
 		    height: 18rem;
@@ -623,13 +630,13 @@ div[data-bs-toggle="collapse"] {
 		z-index: 1;
 		font-family: 'Inter', sans-serif;
 		font-size: 1.375rem;
-		line-height: 1;
+		line-height: 1.2;
 		font-weight: 500;
 		margin-bottom: 1rem;
 		-webkit-transition: all 0.1s linear;  
-    -moz-transition: all 0.1s linear;  
-    -o-transition: all 0.1s linear;  
-    transition: all 0.1s linear;
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
 	}
 	.block-icon {
 		position: relative;
@@ -644,11 +651,111 @@ div[data-bs-toggle="collapse"] {
 		line-height: 1;
 		font-weight: 500;
 		-webkit-transition: all 0.1s linear;  
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
+	}
+	&:hover, &.active {
+		border-color: $primary;
+		color: $primary;
+		&:before {
+			opacity: 1;
+		}
+		svg {
+			&.stroke {
+				stroke: $primary !important;
+			}
+			&.fill {
+				fill: $primary !important;
+			}
+		}
+	}
+}
+
+.dashborad-navigator-block, a.dashborad-navigator-block {
+	background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+	border: 2px solid transparent;
+	border-radius: 0.5rem;
+	color: #fff;
+	padding: 2rem 0;
+	cursor: pointer;
+	height: 13.9375rem;
+	max-width: 11.5625rem;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	-webkit-transition: all 0.1s linear;  
     -moz-transition: all 0.1s linear;  
     -o-transition: all 0.1s linear;  
     transition: all 0.1s linear;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #ffffff;
+		border-radius: 0.5rem;
+		opacity: 0;
+		-webkit-transition: all 0.1s linear;  
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
 	}
-	&:hover {
+	svg {
+		-webkit-transition: all 0.1s linear;  
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
+    &.icon-availability {
+    	    width: 22rem;
+		    height: 18rem;
+		    left: -3rem;
+		    top: -4rem;
+		    margin: -6.8rem;
+    	}
+		&.stroke {
+			stroke: #fff !important;
+		}
+		&.fill {
+			fill: #fff !important;
+		}
+	}
+	.block-text {
+		position: relative;
+		z-index: 1;
+		font-family: 'Inter', sans-serif;
+		font-size: 1.375rem;
+		line-height: 1.2;
+		font-weight: 500;
+		margin-bottom: 1rem;
+		text-align: center;
+		padding: 0 2rem;
+		-webkit-transition: all 0.1s linear;  
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
+	}
+	.block-icon {
+		position: relative;
+		z-index: 1;
+		margin-bottom: 1rem;
+	}
+	.block-number {
+		position: relative;
+		z-index: 1;
+		font-family: 'Inter', sans-serif;
+		font-size: 1.125rem;
+		line-height: 1;
+		font-weight: 500;
+		-webkit-transition: all 0.1s linear;  
+    	-moz-transition: all 0.1s linear;  
+    	-o-transition: all 0.1s linear;  
+    	transition: all 0.1s linear;
+	}
+	&:hover, &.active {
 		border-color: $primary;
 		color: $primary;
 		&:before {
@@ -667,6 +774,10 @@ div[data-bs-toggle="collapse"] {
 
 .grid-cols-6 {
    grid-template-columns: repeat(6,minmax(0,1fr));
+}
+
+.grid-cols-5 {
+   grid-template-columns: repeat(5,minmax(0,1fr));
 }
 
 .grid-cols-3 {
@@ -949,4 +1060,12 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	background: none;
 	color: #ffffff;
 	border: 0;
+}
+
+.form-control-date {
+	padding-right: 2rem;
+}
+
+.-mt-5 {
+	margin-top: -1.5rem;
 }
