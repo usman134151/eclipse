@@ -465,6 +465,15 @@ div[data-bs-toggle="collapse"] {
     animation-name: slideIn;
 }
 
+.switch-toggle-content {
+    animation-duration: 0.45s;
+    -webkit-animation-duration: 0.45s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+}
+
 @keyframes slideIn {
     0% {
         transform: translateY(1rem);
@@ -838,17 +847,17 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
     color: #ffffff !important;
 }
 
-.switch-toggle-content {
-	height: 0;
-	transition: all 0.3s ease-in-out;
-	visibility: hidden;
-	opacity: 0;
-	&.show-switch-toggle-content {
-		height: auto;
-		visibility: visible;
-		opacity: 1;
-	}
-}
+// .switch-toggle-content {
+// 	height: 0;
+// 	transition: all 0.3s ease-in-out;
+// 	visibility: hidden;
+// 	opacity: 0;
+// 	&.show-switch-toggle-content {
+// 		height: auto;
+// 		visibility: visible;
+// 		opacity: 1;
+// 	}
+// }
 
 
 
