@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin;
+namespace App\Http\Livewire\App\Common\Bookings;
 
 use Livewire\Component;
 
-class CustomerInvoices extends Component
+class Past extends Component
 {
     public $showForm;
+    public $bookingType;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.admin.customer-invoices');
+        return view('livewire.app.common.bookings.past');
     }
 
     public function mount()

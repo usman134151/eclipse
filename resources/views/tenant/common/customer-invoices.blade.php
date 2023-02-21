@@ -3,6 +3,6 @@
 @section('content')
 
 <!-- BEGIN: Content-->
-  @livewire('app.admin.bookings.invitations', ['bookingType'=>$bookingType])
+@livewire('app.common.customer-invoices')
  <!-- End: Content-->
 @endsection

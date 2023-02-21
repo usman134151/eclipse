@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	@livewire('app.admin.bookings.booknow')
+	@livewire('app.common.bookings.booknow')
 	{{-- End: Content --}}
 @endsection

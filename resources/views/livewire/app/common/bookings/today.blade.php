@@ -7,7 +7,7 @@
 		</div>
 	</div>
 	@if ($showBookingDetails)
-		@livewire('app.admin.bookings.booking-details')
+		@livewire('app.common.bookings.booking-details')
 	@else
 	{{-- BEGIN: Content --}}
 	<div class="content-header row">
