@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin\Bookings;
+namespace App\Http\Livewire\App\Common\Bookings;
 
 use Livewire\Component;
 
@@ -12,7 +12,7 @@ class Today extends Component
 
 	public function render()
 	{
-		return view('livewire.app.admin.bookings.today');
+		return view('livewire.app.common.bookings.today');
 	}
 
 	public function mount()
