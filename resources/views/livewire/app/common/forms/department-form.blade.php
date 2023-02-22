@@ -507,9 +507,11 @@
 			  </div>
 			  </div>
 						  <!-- ....cancel/next (buttons)... -->
-							<div class="col-12 justify-content-center form-actions d-flex">
+							<div class="col-12 justify-content-center form-actions d-flex gap-2">
 							  <button type="button"
-								  class="btn btn-outline-dark rounded px-4 py-2 mx-2" wire:click.prevent="showList">Cancel</button>
+								  class="btn btn-outline-dark rounded px-4 py-2" wire:click.prevent="showList">Cancel</button>
+								  <button type="submit"
+								  class="btn btn-primary rounded px-4 py-2">Save & Exit</button>
 							  <button type="submit"
 								  class="btn btn-primary rounded px-4 py-2">Next</button>
 	
@@ -1498,9 +1500,11 @@
 			   
 		
 				  </div>
-				  <div class="col-12 justify-content-center form-actions d-flex">
+				  <div class="col-12 justify-content-center form-actions d-flex gap-2">
 					<button type="button"
-						class="btn btn-outline-dark rounded px-4 py-2 mx-2">Back</button>
+						class="btn btn-outline-dark rounded px-4 py-2">Back</button>
+					<button type="submit"
+						class="btn btn-primary rounded px-4 py-2">Save & Exit</button>
 					<button type="submit"
 						class="btn btn-primary rounded px-4 py-2">Next</button>
 		
@@ -1618,11 +1622,13 @@
 			  </div>
 
 			  
-		  <div class="col-12 justify-content-center form-actions d-flex">
+		  <div class="col-12 justify-content-center form-actions d-flex gap-2">
 			<button type="button"
-				class="btn btn-outline-dark rounded px-4 py-2 mx-2">Back</button>
+				class="btn btn-outline-dark rounded px-4 py-2">Back</button>
 			<button type="submit"
 				class="btn btn-primary rounded px-4 py-2">Submit</button>
+			<button type="submit"
+				class="btn btn-primary rounded px-4 py-2">Next</button>
 
 	</div>
 			  </div>
