@@ -58,7 +58,7 @@
                           <div class="row mt-2 mb-5">
                             <div class="col-12 text-center">
                               <div class="d-inline-block position-relative">
-                                <img src="tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+                                <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
                                 <div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
                                   <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="28.5" cy="28.5" r="28" fill="#0A1E46" stroke="white"/>
