@@ -566,10 +566,10 @@
                                 Supervising
                               </button>
                               <div class="uploaded-data d-flex align-items-center">
-                                <img src="images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <img src="images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <img src="images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <img src="images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
                                 <div class="more">
                                   <span class="value">8</span> more
                                 </div>
