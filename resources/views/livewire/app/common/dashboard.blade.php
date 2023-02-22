@@ -140,7 +140,7 @@
         </div>
         <!-- /Filters -->
         <div>
-          <img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
+          <img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="w-100" alt="Dashboard Calender"/>
         </div>
       </div>
       <div class="tab-pane fade" id="assignments-tab-pane" role="tabpanel" aria-labelledby="assignments-tab" tabindex="0">
@@ -724,7 +724,7 @@
         </div>
         <!-- /Filters -->
         <div>
-          <img src="/html-prototype/images/temp/img-placeholder-availability.jpg" class="img-fluid" alt="Dashboard Calender"/>
+          <img src="/html-prototype/images/temp/img-placeholder-availability.jpg" class="w-100" alt="Dashboard Calender"/>
         </div>
       </div>
       <div class="tab-pane fade" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">
