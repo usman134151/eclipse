@@ -48,11 +48,11 @@
             <form class="login-form" action="{{ route('central.tenants.register.submit') }}" method="POST">
                 @csrf
  
-                <!--companey-->
+                <!--company-->
                 <div class="mb-4">
                     <x-form.label class="form-label" for="company" value="Company"/>
                     <!-- <div class="mt-1 rounded-md shadow-sm"> -->
-                    <x-form.input class="form-control" autocomplete="off" value="{{ old('company', '') }}" name="company" placeholder="Enter Companey" id="company" type="text" required autofocus />
+                    <x-form.input class="form-control" autocomplete="off" value="{{ old('company', '') }}" name="company" placeholder="Enter Company" id="company" type="text" required autofocus />
                     <!-- </div> -->
                     <x-form.input-error for="company" />
                 </div>
