@@ -7,7 +7,9 @@
 		</div>
 	</div>
 	@if($showForm)
-	@livewire('app.common.forms.provider-form') {{-- Show Add / Edit Form --}}
+		@livewire('app.common.forms.provider-form') {{-- Show Add / Edit Form --}}
+	@elseif($showProfile)
+		@livewire('app.common.provider-details')
 	@else
 	<!-- Begin : Header Section -->
 	<div class="content-wrapper container-xxl p-0">
@@ -126,7 +128,7 @@
 																		<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																			<x-icon name='pencil'/>	
 																		</a>
-																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<a href="#" aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 																			<x-icon name='view'/>
 																		</a>
 																		<div class="d-flex actions">
@@ -170,7 +172,7 @@
 																		<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																			<x-icon name='pencil'/>	
 																		</a>
-																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 																			<x-icon name='view'/>
 																		</a>
 																		<div class="d-flex actions">
@@ -214,7 +216,7 @@
 																		<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																			<x-icon name='pencil'/>	
 																		</a>
-																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 																			<x-icon name='view'/>
 																		</a>
 																		<div class="d-flex actions">
@@ -258,7 +260,7 @@
 																		<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																			<x-icon name='pencil'/>	
 																		</a>
-																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 																			<x-icon name='view'/>
 																		</a>
 																		<div class="d-flex actions">
@@ -302,7 +304,7 @@
 																		<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																			<x-icon name='pencil'/>	
 																		</a>
-																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<a href="#" aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 																			<x-icon name='view'/>
 																		</a>
 																		<div class="d-flex actions">
@@ -346,7 +348,7 @@
 																		<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																			<x-icon name='pencil'/>	
 																		</a>
-																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<a href="#"  aria-label="View Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 																			<x-icon name='view'/>
 																		</a>
 																		<div class="d-flex actions">
