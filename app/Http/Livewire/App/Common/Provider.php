@@ -7,7 +7,16 @@ use Livewire\Component;
 class Provider extends Component
 {
 	public $showForm;
+	public $showProfile;
+
 	protected $listeners = ['showList'=>'resetForm'];
+
+	public function render()
+	{
+		return view('livewire.app.common.provider');
+	}
+
+	public function mount() {}
 
 	function showForm()
 	{
@@ -17,12 +26,11 @@ class Provider extends Component
 	public function resetForm()
 	{
 		$this->showForm=false;
+		$this->showProfile = false;
 	}
 
-	public function mount() {}
-
-	public function render()
+	public function showProfile()
 	{
-		return view('livewire.app.common.provider');
+		$this->showProfile = true;
 	}
 }
