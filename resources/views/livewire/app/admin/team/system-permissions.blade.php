@@ -983,6 +983,7 @@
 	</div>
 	<div class="d-flex justify-content-center col-12 form-actions">
 		<button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
+		<button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
 		<button type="submit" class="btn btn-primary rounded">Next</button>
 	</div>
 </div>
