@@ -110,8 +110,8 @@
 										<a href="javascript:void(0)" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="editTeam">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										</a>
 										<a href="javascript:void(0)" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="deleteConfirm">
 											<x-icon name="recycle-bin"/>
@@ -150,8 +150,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										</a>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
@@ -190,8 +190,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										</a>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
@@ -230,9 +230,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										</a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
@@ -270,9 +269,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										</a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
@@ -310,9 +308,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										</a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
@@ -350,9 +347,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										</a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
@@ -390,9 +386,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										</a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
@@ -430,9 +425,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										</a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
@@ -470,9 +464,8 @@
 										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="person"/>
-										  </a>
+										<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="view"/>
 										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>

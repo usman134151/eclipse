@@ -108,6 +108,19 @@
 				  ></textarea>
 				</div>
 			  </div>
+			  <div class="col-md-6 col-12">
+				<div class="mb-4">
+				  <label class="form-label" for="tags">
+					Tags
+				  </label>
+				  <textarea
+				  class="form-control"
+				  placeholder="Enter Tags"
+				  name="tags"
+				  id="tags"
+				  ></textarea>
+				</div>
+			  </div>
 			</div>
 		  </div>
 		  <div class="d-flex justify-content-center gap-2 col-12 form-actions">
@@ -118,6 +131,7 @@
 				wire:click.prevent="showList"
 			>
 			Back</a>
+			<button type="submit" class="btn btn-primary rounded px-4">Save & Exit</button>
 			<button type="submit" class="btn btn-primary rounded px-4">Next</button>
 		  </div>
 		</div>
