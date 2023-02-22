@@ -3,6 +3,6 @@
 @section('content')
 
     <!-- BEGIN: Content-->
- @livewire('app.dashboard')
+ @livewire('app.common.dashboard')
     <!-- End: Content-->
 @endsection
