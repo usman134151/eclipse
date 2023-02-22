@@ -30,6 +30,7 @@
 	<div class="content-body">
 		<div class="card">
 			<div class="card-body">
+				{{--
 				<!-- BEGIN: Steps -->
 				<div x-data="{ tab: 'profile' }" id="tab_wrapper">
 					<!-- Nav tabs -->
@@ -39,6 +40,7 @@
 								Profile
 							</a>
 						</li>
+						 
 						<li class="nav-item" role="presentation">
 							<a href="#" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">2</span> 
 								System Permissions
@@ -48,13 +50,14 @@
 							<a href="#" class="nav-link" :class="{ 'active': tab === 'user-access' }" @click.prevent="tab = 'user-access'" id="user-access-tab" role="tab" aria-controls="user-access" aria-selected="false"><span class="number">3</span> 
 								User Access
 							</a>
-						</li>
+						</li>  
 					</ul>
 	
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<!-- BEGIN: Profile -->
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
+							--}}
 							<form class="form">
 								<div class="row mb-4">
 									<div class="col-12 text-center">
@@ -254,7 +257,7 @@
 										<div class="mb-4">
 											<label class="form-label" for="country">Country</label>
 											<select class="select2 form-select" id="country">
-												<option value="USA">USA</option>
+												<option value="USA">Select Country</option>
 											</select>
 										</div>
 									</div>
@@ -262,7 +265,7 @@
 										<div class="mb-4">
 											<label class="form-label" for="state">State / Province</label>
 											<select class="form-select" id="state">
-												<option value="Al">Alabama</option>
+												<option value="Al">Select State/Province</option>
 											</select>
 										</div>
 									</div>
@@ -284,8 +287,32 @@
 										<div class="mb-4">
 											<label class="form-label" for="set_time_zone">Set Time Zone</label>
 											<select class="form-select" id="set_time_zone">
-												<option>Select City</option>
+												<option>Select Time Zone</option>
 											</select>
+										</div>
+									</div>
+									<div class="col-md-6 col-12">
+										<div class="mb-4">
+										  <label class="form-label" for="tags">
+											Tags
+										  </label>
+										  <textarea
+										  class="form-control"
+										  placeholder=""
+										  name="tags"
+										  id="tags"
+										  ></textarea>
+										</div>
+									  </div>
+
+									<div class="row mt-3">
+										<h2>Roles and Permissions</h2>
+										<div class="col-md-6 col-12">
+											<div class="mb-4">
+												<select class="form-select" id="roles-permissions">
+													<option>Select Roles and Permissions</option>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -293,14 +320,15 @@
 									<button type="button" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">
 										Cancel
 									</button>
+									<button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
 									<button type="submit" class="btn btn-primary rounded">Next</button>
 								</div>
 							</form>
 						</div><!-- END: Profile -->
-	
+	{{-- 
 						<!-- BEGIN: System Permissions -->
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'system-permissions' }" id="system-permissions" role="tabpanel" aria-labelledby="system-permissions-tab" tabindex="0" x-show="tab === 'system-permissions'">
-							{{-- <div class="row mb-4">
+							 <div class="row mb-4">
 								<div class="col-lg-12">
 									<h2>Manage User Permissions</h2>
 									<p>Choose from predefined set of permissions for the user. You can customize permissions
@@ -317,8 +345,7 @@
 							</div>
 							<div class="row mb-4">
 								<div class="col-lg-12 mb-4">
-									<p class="mb-0">Choose from predefined set of permissions for the user. You can
-										customize permissions as well.</p>
+									<p class="mb-0">Copy permissions from another user</p>
 								</div>
 								<div class="col-lg-12 d-lg-flex gap-3 mb-3">
 									<select class="form-select w-auto">
@@ -1076,7 +1103,8 @@
 							<div class="col-12 justify-content-center form-actions d-flex">
 								<button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
 								<button type="submit" class="btn btn-primary rounded">Next</button>
-							</div><!-- /Form Actions --> --}}
+							</div><!-- /Form Actions -->   
+
 						</div><!-- END: System Permissions -->
 	
 						<!-- BEGIN: User Access -->
@@ -2464,10 +2492,11 @@
 							</div>
 							<div class="col-12 justify-content-center form-actions d-flex">
 								<button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
+								<button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
 								<button type="submit" class="btn btn-primary rounded">Next</button>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					{{-- END: User Access --}}
 				</div>
 			</div>

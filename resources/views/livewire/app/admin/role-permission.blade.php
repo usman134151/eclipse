@@ -7,7 +7,7 @@
 		</div>
 	</div>
 	@if ($showForm)
-		Add New Role Form
+	@livewire('app.admin.forms.role-permission-form')
 	@else
 	<section id="multiple-column-form">
 		<div class="content-header row  mb-3">
@@ -47,7 +47,7 @@
 						  <h2>List of Roles and Permissions</h2>
 						</div>
 						<div class="col-md-3 ms-auto text-end">
-						  <a href="/admin/teams/create" class="btn btn-primary rounded">
+						  <a href="/admin/role-permission/create" class="btn btn-primary rounded">
 							<x-icon name="plus"/>
 							<span class="ms-2">Add New Role</span></a>
 						</div>
