@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Tenant\Auth;
 
+####Task:OPT Add Services (Sakhawat Kamran) ####
+use App\Services\OptService;
+//use App\Models\Tenant\UserOtpVerification;
+####END-OPT####
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Tenant\Helper\Helper;
-use App\Models\Tenant\UserOtpVerification;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,12 +66,19 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
            // if (Auth::user()->status == 1) {
             if(!Helper::checkUserSavedBrowser()){
-                $expOTP = UserOtpVerification::where(['otp_status' => 'pending'])->where('otp_valid_upto', '<', date('Y-m-d H:i:s'));
                 
-                if ($expOTP->count()) {
-                    $expOTP->update(array('otp_status' => 'expired'));
-                }
-                OtpController::send_otp();
+                ####Task:OPT Add Services (Sakhawat Kamran) ####
+                OptService::optExpired();
+                OptService::optSend();
+                
+                // $expOTP = UserOtpVerification::where(['otp_status' => 'pending'])->where('otp_valid_upto', '<', date('Y-m-d H:i:s'));
+                
+                // if ($expOTP->count()) {
+                //     $expOTP->update(array('otp_status' => 'expired'));
+                // }
+                // OtpController::send_otp();
+
+                ####END-OPT####
                 return redirect('otpverify');
                 die();
             }else{

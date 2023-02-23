@@ -28,15 +28,6 @@ class InvoiceController extends ApiController
                 $this->invoiceDataMap(2),
             ];
 
-            $result['payment_preferences'] = 'direct_deposit_method';
-
-            $result['refferals'] = [
-                'refferal_code' => 'KYLATAB',
-                'amount' => '$20',
-                'status' => 'Approved',
-                'issued_on' => date('d/m/Y h:sA'),
-            ];
-
             return $this->response($result,200);
             
         } catch (\Throwable $th) {
