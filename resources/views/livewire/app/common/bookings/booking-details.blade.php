@@ -2959,5 +2959,5 @@
 	  <!-- /Modal - Unassign -->
 	  @include('panels.booking-details.assign-providers')
 
-	  @include('panels.booking-details.add-documents')
+	  @include('panels.common.add-documents')
 </div>

@@ -11,7 +11,7 @@
 					<div class="row">
 					  <div class="col-md-12 mb-md-2">
 						<div class="row">
-						  <h1 class="text-secondary">Leads</h1>
+						  <h1 class="text-secondary">Quotes</h1>
 
 						<div class="col-12 d-flex align-items-center gap-2 mb-4">
 						  <div class="text-secondary h5">
