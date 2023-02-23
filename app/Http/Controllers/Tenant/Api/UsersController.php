@@ -132,7 +132,22 @@ class UsersController extends ApiController
                                         'after_hour_rate_price' => null,
                                         'expedited_rate_hours' => 1,
                                         'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'phone',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'teleconference',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
                                     ]
+                                    
                                 ],
                                 'specialization_rates'  =>  
                                 [
@@ -141,12 +156,16 @@ class UsersController extends ApiController
                                         'specialization_type'   =>  'Medical',
                                         'in_person_rate'        =>  '$40',
                                         'virtual_rate'          =>  '$20',
+                                        'phone_rate'          =>  '$15',
+                                        'teleconference_rate'          =>  '$10',
                                     ],
                                     [
                                         'specialization_id'     =>  2,
                                         'specialization_type'   =>  'Legal',
                                         'in_person_rate'        =>  '$30',
                                         'virtual_rate'          =>  '$20',
+                                        'phone_rate'          =>  '$15',
+                                        'teleconference_rate'          =>  '$10',
                                     ]   
                                 ]
                             ],
@@ -167,6 +186,20 @@ class UsersController extends ApiController
                                         'after_hour_rate_price' => '$101.00',
                                         'expedited_rate_hours' => 1,
                                         'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'phone',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
+                                    ],
+                                    [
+                                        'rate_type' => 'teleconference',
+                                        'day_rate_price' => '$500.00',
+                                        'after_hour_rate_price' => null,
+                                        'expedited_rate_hours' => 1,
+                                        'expedited_rate_price' => '$5.00',
                                     ]
                                 ],
                                 'specialization_rates'  =>  
@@ -176,18 +209,24 @@ class UsersController extends ApiController
                                         'specialization_type'   =>  'Medical',
                                         'in_person_rate'        =>  null,
                                         'virtual_rate'          =>  '$20',
+                                        'phone_rate'          =>  '$15',
+                                        'teleconference_rate'          =>  '$10',
                                     ],
                                     [
                                         'specialization_id'     =>  2,
                                         'specialization_type'   =>  'Legal',
                                         'in_person_rate'        =>  null,
                                         'virtual_rate'          =>  '$20',
+                                        'phone_rate'          =>  '$15',
+                                        'teleconference_rate'          =>  '$10',
                                     ],
                                     [
                                         'specialization_id'     =>  2,
                                         'specialization_type'   =>  'Conferance',
                                         'in_person_rate'        =>  null,
                                         'virtual_rate'          =>  '$20',
+                                        'phone_rate'          =>  '$15',
+                                        'teleconference_rate'          =>  '$10',
                                     ]      
                                 ]
                             ]
@@ -396,6 +435,22 @@ class UsersController extends ApiController
                 $this->notificationMapData(6),
             ];
             return $this->response($result, 200);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
+
+
+    public function readAllNotification()
+    {
+        try{
+
+            $result = [
+            ];
+            return $this->response($result, 662);
 
         } catch (\Throwable $th) {
             return $this->response([

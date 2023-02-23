@@ -27,14 +27,8 @@ class ReimbursementController extends ApiController
         try {
             $result = array();
             $result['provider'] = [
-                    [
                         'user_id'   =>  1,
                         'user_name' =>  'Thamous Charly',
-                    ],
-                    [
-                        'user_id'   =>  2,
-                        'user_name' =>  'Gray Henery',
-                    ]
                 ];
 
             $result['assignments'] = [
