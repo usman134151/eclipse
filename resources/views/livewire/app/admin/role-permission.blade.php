@@ -47,7 +47,7 @@
 						  <h2>List of Roles and Permissions</h2>
 						</div>
 						<div class="col-md-3 ms-auto text-end">
-						  <a href="/admin/role-permission/create" class="btn btn-primary rounded">
+						  <a href="javascript:void(0)" class="btn btn-primary rounded" wire:click="showForm">
 							<x-icon name="plus"/>
 							<span class="ms-2">Add New Role</span></a>
 						</div>
