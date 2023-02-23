@@ -133,6 +133,7 @@ class ApiController extends Controller
                     'assignment_no'         =>  '101787-'.$notificationId,
                     'record_type' =>  'assignment_invite',
                     'is_seen' => $notificationId%2,
+                    'is_read' => $notificationId%2,
                     'created_at' =>  time(),
                 ];
         return $notificationData;

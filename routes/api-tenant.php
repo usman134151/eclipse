@@ -37,6 +37,7 @@ Route::group([
         });
         Route::prefix('users')->group(function () {
             Route::get('notifications', 'notifications');
+            Route::get('read_all_notifications', 'readAllNotification');
         });
         Route::prefix('provider')->group(function () {
             Route::post('rates', 'providerRates');

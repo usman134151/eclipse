@@ -42,17 +42,22 @@ class AssignmentController extends ApiController
             if($request->assignment_type == 'upcomming')
             {
                 $assignmentData = [
-                    
+                        'active_assignment'  =>  
+                        [
+                            $this->assignmentService->getContent( ['id' => 1 ],$type = 'active' ),
+                            $this->assignmentService->getContent( ['id' => 2 ],$type = 'active' ),
+                        ],
+
                         'today_assignment'  =>  
                         [
-                            $this->assignmentService->getContent( ['id' => 1 ] ),
-                            $this->assignmentService->getContent( ['id' => 2 ] ),
+                            $this->assignmentService->getContent( ['id' => 1 ],$type = 'today' ),
+                            $this->assignmentService->getContent( ['id' => 2 ],$type = 'today' ),
                         ],
 
                         'upcomming_assignment'  =>  
                         [
-                            $this->assignmentService->getContent( ['id' => 3 ] ),
-                            $this->assignmentService->getContent( ['id' => 4 ] ),
+                            $this->assignmentService->getContent( ['id' => 3 ], $type = 'upcomming'  ),
+                            $this->assignmentService->getContent( ['id' => 4 ], $type = 'upcomming'  ),
                         ]                            
                 
                     ];
