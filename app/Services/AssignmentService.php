@@ -19,7 +19,7 @@ class AssignmentService
         return [
             'assignment_id'         =>  $data['id'],
             'assignment_no'         =>  '101787-'.$data['id'],
-            'assignment_start_date' =>  '01/15/2023 11:15 AM',
+            'assignment_start_date' =>  api_date_formate(date('d-m-Y h:i a')),
             'assignment_type' => ($data['id'] % 2 == 0)?'virtual':'in-person',
             'accommondation'        =>  'Sign Language Interpreting Services',
             'service'               =>  'American Sign Language Interpreting',
@@ -36,9 +36,9 @@ class AssignmentService
         return [
             'assignment_id'         =>  $data['id'],
             'assignment_no'         =>  '101787-'.$data['id'],
-            'assignment_start_date' =>  '01/15/2023 11:15 AM',
+            'assignment_start_date' =>  api_date_formate(date('d-m-Y h:i a')),
             'assignment_start_time' =>  '11:15 AM',
-            'assignment_end_date' =>  '01/15/2023 1:15 PM',
+            'assignment_end_date' =>  api_date_formate(date('d-m-Y h:i a')),
             'assignment_end_time' =>  '1:15 PM',
             'assignment_type' => ($data['id'] % 2 == 0)?'virtual':'in-person',
             'industory'             =>  'Religion',
