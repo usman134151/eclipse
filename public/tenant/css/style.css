@@ -139,9 +139,9 @@
 
 .form-select.form-select-md,
 .form-select-md {
-  padding: 0.435rem 1.5rem 0.435rem 0.5rem;
+  padding: 0.435rem 2rem 0.435rem 1rem;
   background-size: 10px 5px;
-  background-position: right 0.5rem center;
+  background-position: right 1rem center;
   font-size: 0.9375rem; }
 
 .form-control, .form-select {
@@ -401,8 +401,9 @@ h1, h2, h3, h4, h5, h6 {
       .nav-tabs li.nav-item .nav-link:hover svg path {
         fill: #ffffff !important; }
   .nav-tabs.nav-steps {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem; }
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    padding-top: 0.5rem; }
     .nav-tabs.nav-steps li.nav-item {
       margin-right: 1rem; }
       .nav-tabs.nav-steps li.nav-item:after {
@@ -427,7 +428,7 @@ h1, h2, h3, h4, h5, h6 {
         color: #6e6b7b;
         font-weight: 400;
         font-size: 1.125rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
         margin-right: 0;
         line-height: 1.5; }
         .nav-tabs.nav-steps li.nav-item .nav-link .number {
@@ -1087,5 +1088,8 @@ small {
 
 .max-h-56 {
   max-height: 30rem; }
+
+.bg-muted {
+  background: #E8E8E8; }
 
 /*# sourceMappingURL=style.css.map */
