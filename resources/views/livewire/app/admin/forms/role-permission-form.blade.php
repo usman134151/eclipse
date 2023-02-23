@@ -2081,7 +2081,7 @@
 							</div>
 							<!-- Form Actions -->
 							<div class="col-12 justify-content-center form-actions d-flex">
-								<button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
+								<button type="button" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Back</button>
 								<button type="submit" class="btn btn-primary rounded mx-2">Add</button>
 								<button type="submit" class="btn btn-primary rounded">Next</button>
 							</div><!-- /Form Actions --> 
