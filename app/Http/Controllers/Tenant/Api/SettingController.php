@@ -19,7 +19,8 @@ class SettingController extends ApiController
             'availability_status'   => 0,
             'allow_notification'   => 0,
         ];
-        $result['payment_preferences'] = 'direct_deposit_method';
+        ###mail_in_check,
+        $result['payment_method'] = 'mail_in_check';
 
         $result['refferals'] = [
             'refferal_code' => 'KYLATAB',
@@ -90,6 +91,7 @@ class SettingController extends ApiController
                     'background_status' => 'required',
                     'availability_status' => 'required',
                     'allow_notification' => 'required',
+                    'payment_method'    =>  'required'
                 ]
             );
             if($validate   !== true )
@@ -103,6 +105,7 @@ class SettingController extends ApiController
                 'background_status'     => 1,
                 'availability_status'   => 1,
                 'allow_notification'   => 1,
+                'payment_method' => 'mail_in_check',
             ];
             return $this->response($result, 304);
         } catch (\Throwable $th) {
