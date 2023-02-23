@@ -19,6 +19,15 @@ class SettingController extends ApiController
             'availability_status'   => 0,
             'allow_notification'   => 0,
         ];
+        $result['payment_preferences'] = 'direct_deposit_method';
+
+        $result['refferals'] = [
+            'refferal_code' => 'KYLATAB',
+            'amount' => '$20',
+            'status' => 'Approved',
+            'issued_on' => api_date_formate(date('d/m/Y h:sA')),
+        ];
+        
         return $this->response($result, 200);
     }
 

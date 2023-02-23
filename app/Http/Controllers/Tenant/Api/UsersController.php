@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Tenant\Api;
 
-use App\Http\Controllers\Tenant\Api\ApiController;
 use Illuminate\Http\Request;
+use App\Services\FileService;
+use App\Models\Tenant\UserDetail AS Profile;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Tenant\Api\ApiController;
 class UsersController extends ApiController
 {
     /**
@@ -421,7 +422,18 @@ class UsersController extends ApiController
             {
                 return $validate;
             }   
-
+           
+            $user = Auth::user();
+            $request->merge([ 'document_title' => 'Other', 'no_expiration_date' => 1 , 'title'=>str_replace(' ','_',$user->first_name.' '.$user->last_name), 'record_id'=>$user->id ]);
+            $document = FileService::upload( $request , 'profile_photo' , 'uploads\profile');
+            $url = FileService::url($document->document_name);
+           
+            $profile = Profile::where('user_id',$user->id)->first();
+            if(is_null($profile))
+            $profile = new Profile();
+            $profile->user_id = $user->id;
+            $profile->profile_pic = $document->document_name;
+            $profile->save();
             $result = $this->usersDataMap(Auth::user()->id);
             return $this->response($result, 200);
 

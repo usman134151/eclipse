@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Tenant\Api;
 
 use App\Models\Tenant\User;
+use Illuminate\Support\Str;
+use App\Services\OptService;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Tenant\Api\ApiController;
-use App\Models\Tenant\UserOtpVerification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\Tenant\ForgetPasswordMail;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Tenant\Auth\OtpController;
+use App\Http\Controllers\Tenant\Api\ApiController;
 
 class AuthController extends ApiController
 {
+    use ForgetPasswordMail;
     /**
      * Create User
      * @param Request $request
@@ -79,18 +81,19 @@ class AuthController extends ApiController
                 ], 403);
             }
 
-            $user = User::with('role')->where('email', $request->email)->first();
-            if( $user->role->id != 2 )
+            #####ONLY-PROVIDER####
+
+            if(! $user = $this->checkProvider($request->email) )
             {
                 return  $this->response([
                     'errors' => 'Email & Password does not match with our record.',
                 ], 403);
             }
-            $expOTP = UserOtpVerification::where(['otp_status' => 'pending'])->where('otp_valid_upto', '<', date('Y-m-d H:i:s'));
-            if ($expOTP->count()) {
-                $expOTP->update(array('otp_status' => 'expired'));
-            }
-            OtpController::send_otp();
+
+            #####END-ONLY-PROVIDER#####
+            OptService::optExpired();
+            OptService::optSend();
+            
             $result = $this->usersDataMap( $user->id );
             $result[ 'token' ] = $user->createToken( $request->email )->plainTextToken;
             return $this->response($result, 300);
@@ -174,6 +177,20 @@ class AuthController extends ApiController
             {
                 return $validate;
             }   
+          
+            if(! $user = $this->checkProvider($request->email) )
+            {
+                return  $this->response([
+                    'errors' => 'Email does not match with our record.',
+                ], 403);
+            }
+
+            ##### FOR-GET-PASSWORD-MAIL #######
+            $newSecurityToken = Str::random(32);
+            $user->remember_token = $newSecurityToken;
+            $user->save();
+            $this->sendForgetPasswordMail($user);
+            #### END FOR-GET-PASSWORD-MAIL#####
             
             $result = [];
             return $this->response($result, 303);
@@ -193,8 +210,12 @@ class AuthController extends ApiController
     public function optSend()
     {
         try {
+            
             $user = Auth::user();
-            OtpController::send_otp();
+            
+            OptService::optExpired();
+            OptService::optSend();
+            
             $result = $this->usersDataMap( $user->id );
             return $this->response($result, 306);
         } catch (\Throwable $th) {
@@ -221,13 +242,13 @@ class AuthController extends ApiController
             if($validate !== true )
             {
                 return $validate;
-            }   
-            $matchOtp = UserOtpVerification::where(['user_id' => auth()->user()->id, 'otp' => $request->opt_code, 'otp_status' => 'pending']);
-            if ($matchOtp->count()) {
-                $matchOtp->update(array('otp_status' => 'verified'));
+            } 
+
+            if (OptService::optConfirmed($request->opt_code)) {
                 $result = $this->usersDataMap( auth()->user()->id );
                 return $this->response($result, 308);
             }    
+            
             $result = [];
             return $this->response($result, 307);
 
@@ -236,6 +257,16 @@ class AuthController extends ApiController
                 'errors' => $th->getMessage(),
             ],500);
         }
+    }
+
+    protected function checkProvider($email)
+    {
+        $user = User::with('role')->where('email', $email)->first();
+        if( $user && $user->role->id != 2 )
+        {
+            return false;
+        }
+        return $user;
     }
     
     
