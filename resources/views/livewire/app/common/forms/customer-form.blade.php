@@ -1,1269 +1,1168 @@
 <div>
-  <div class="content-wrapper container-xxl p-0">
-  
-  <div class="content-header row">
-  <div class="content-header-left col-md-9 col-12 mb-2">
-  <div class="row breadcrumbs-top">
-  <div class="col-12">
-  <h1 class="content-header-title float-start mb-0">Add Customer</h1>
-  <div class="breadcrumb-wrapper">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-    <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1.25009 12.5809H2.33343V20.1643C2.33343 21.3592 3.30518 22.3309 4.50009 22.3309H17.5001C18.695 22.3309 19.6668 21.3592 19.6668 20.1643V12.5809H20.7501C20.9643 12.5809 21.1737 12.5173 21.3518 12.3983C21.53 12.2793 21.6688 12.1101 21.7507 11.9122C21.8327 11.7142 21.8542 11.4964 21.8124 11.2863C21.7706 11.0762 21.6675 10.8832 21.516 10.7317L11.766 0.981697C11.6655 0.881006 11.5461 0.801123 11.4147 0.74662C11.2833 0.692117 11.1424 0.664062 11.0001 0.664062C10.8578 0.664063 10.7169 0.692117 10.5855 0.74662C10.4541 0.801123 10.3347 0.881006 10.2342 0.981697L0.484178 10.7317C0.332718 10.8832 0.229577 11.0762 0.187796 11.2863C0.146014 11.4964 0.167468 11.7142 0.249444 11.9122C0.331419 12.1101 0.470237 12.2793 0.648348 12.3983C0.826459 12.5173 1.03587 12.5809 1.25009 12.5809ZM8.83343 20.1643V14.7476H13.1668V20.1643H8.83343ZM11.0001 3.27945L17.5001 9.77945V14.7476L17.5012 20.1643H15.3334V14.7476C15.3334 13.5527 14.3617 12.5809 13.1668 12.5809H8.83343C7.63851 12.5809 6.66676 13.5527 6.66676 14.7476V20.1643H4.50009V9.77945L11.0001 3.27945Z" fill="#0A1E46"/>
-      </svg>
-    </a>
-  </li>
-  <li class="breadcrumb-item">
-  Customers
-  </li>
-  <li class="breadcrumb-item">
-  Add Customer
-   </li>
-  </ol>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-    <div class="content-body">
-          <div class="card">
-            <div class="card-body">
-              <!-- BEGIN: Steps -->
-              <div x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'customer-info' }" id="tab_wrapper">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <a href="#" class="nav-link" :class="{ 'active': tab === 'customer-info' }" @click.prevent="tab = 'customer-info'; window.location.hash = 'customer-info'" id="customer-info-tab" role="tab" aria-controls="customer-info" aria-selected="true" tabindex="0"><span class="number">1</span>Customer Info</a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }" @click.prevent="tab = 'permission-configurations'; window.location.hash = 'permission-configurations'" id="permission-configurations-tab" role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0"><span class="number">2</span>Permission Configurations</a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'; window.location.hash = 'service-catalog'" id="service-catalog-tab" role="tab" aria-controls="service-catalog" aria-selected="false" tabindex="0"><span class="number">3</span> Service Catalog</a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'; window.location.hash = 'drive-documents'" id="drive-documents-tab" role="tab" aria-controls="drive-documents" aria-selected="false" tabindex="0"><span class="number">4</span> Drive Documents</a>
-                  </li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                  <!-- BEGIN: Customer Info -->
-                  <div class="tab-pane fade" :class="{ 'active show': tab === 'customer-info' }" @click.prevent="tab = 'customer-info'; window.location.hash = 'customer-info'" id="customer-info" role="tabpanel" aria-labelledby="customer-info-tab" tabindex="0" x-show="tab === 'customer-info'">
-                    <!-- Basic multiple Column Form section start -->
-                    <section id="multiple-column-form">
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="row mt-2 mb-5">
-                            <div class="col-12 text-center">
-                              <div class="d-inline-block position-relative">
-                                <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
-                                <div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                  <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="28.5" cy="28.5" r="28" fill="#0A1E46" stroke="white"/>
-                                    <path d="M42.9375 37.625C42.9375 38.172 42.7202 38.6966 42.3334 39.0834C41.9466 39.4702 41.422 39.6875 40.875 39.6875H16.125C15.578 39.6875 15.0534 39.4702 14.6666 39.0834C14.2798 38.6966 14.0625 38.172 14.0625 37.625V25.25C14.0625 24.703 14.2798 24.1784 14.6666 23.7916C15.0534 23.4048 15.578 23.1875 16.125 23.1875H18.5422C20.1824 23.1866 21.7551 22.5345 22.9147 21.3746L24.6266 19.6668C25.0123 19.281 25.5352 19.0637 26.0807 19.0625H30.9152C31.4622 19.0626 31.9867 19.28 32.3734 19.6668L34.0811 21.3746C34.6558 21.9494 35.3381 22.4054 36.0891 22.7165C36.84 23.0275 37.6449 23.1876 38.4578 23.1875H40.875C41.422 23.1875 41.9466 23.4048 42.3334 23.7916C42.7202 24.1784 42.9375 24.703 42.9375 25.25V37.625ZM16.125 21.125C15.031 21.125 13.9818 21.5596 13.2082 22.3332C12.4346 23.1068 12 24.156 12 25.25V37.625C12 38.719 12.4346 39.7682 13.2082 40.5418C13.9818 41.3154 15.031 41.75 16.125 41.75H40.875C41.969 41.75 43.0182 41.3154 43.7918 40.5418C44.5654 39.7682 45 38.719 45 37.625V25.25C45 24.156 44.5654 23.1068 43.7918 22.3332C43.0182 21.5596 41.969 21.125 40.875 21.125H38.4578C37.3638 21.1248 36.3148 20.69 35.5414 19.9164L33.8336 18.2086C33.0602 17.435 32.0112 17.0002 30.9172 17H26.0828C24.9888 17.0002 23.9398 17.435 23.1664 18.2086L21.4586 19.9164C20.6852 20.69 19.6362 21.1248 18.5422 21.125H16.125Z" fill="white"/>
-                                    <path d="M28.5 35.5625C27.1325 35.5625 25.821 35.0193 24.854 34.0523C23.887 33.0853 23.3438 31.7738 23.3438 30.4063C23.3438 29.0387 23.887 27.7272 24.854 26.7602C25.821 25.7932 27.1325 25.25 28.5 25.25C29.8675 25.25 31.179 25.7932 32.146 26.7602C33.113 27.7272 33.6562 29.0387 33.6562 30.4063C33.6562 31.7738 33.113 33.0853 32.146 34.0523C31.179 35.0193 29.8675 35.5625 28.5 35.5625ZM28.5 37.625C30.4145 37.625 32.2506 36.8645 33.6044 35.5107C34.9582 34.1569 35.7188 32.3208 35.7188 30.4063C35.7188 28.4917 34.9582 26.6556 33.6044 25.3018C32.2506 23.948 30.4145 23.1875 28.5 23.1875C26.5855 23.1875 24.7494 23.948 23.3956 25.3018C22.0418 26.6556 21.2812 28.4917 21.2812 30.4063C21.2812 32.3208 22.0418 34.1569 23.3956 35.5107C24.7494 36.8645 26.5855 37.625 28.5 37.625ZM18.1875 26.2813C18.1875 26.5548 18.0789 26.8171 17.8855 27.0105C17.6921 27.2039 17.4298 27.3125 17.1562 27.3125C16.8827 27.3125 16.6204 27.2039 16.427 27.0105C16.2336 26.8171 16.125 26.5548 16.125 26.2813C16.125 26.0077 16.2336 25.7454 16.427 25.552C16.6204 25.3586 16.8827 25.25 17.1562 25.25C17.4298 25.25 17.6921 25.3586 17.8855 25.552C18.0789 25.7454 18.1875 26.0077 18.1875 26.2813Z" fill="white"/>
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-12 mb-4">
-                              <h2>Customer Information</h2>
-                            </div>
-                            <!-- Company -->
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <label class="form-label" for="company-column">Company<span class="mandatory" aria-hidden="true">*</span></label>
-                              <select class="select2 form-select" id="company-column">
-                                <option>Select Company</option>
-                              </select>
-                            </div>
-                            <!-- Industry -->
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label class="form-label" for="industry-column">Industry<span class="mandatory" aria-hidden="true">*</span></label>
-                              <div>
-                                <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
-                                  <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                      <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"/>
-                                    </mask>
-                                    <g mask="url(#mask0_9008_3896)">
-                                      <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"/>
-                                    </g>
-                                    <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                      <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"/>
-                                    </mask>
-                                    <g mask="url(#mask1_9008_3896)">
-                                      <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"/>
-                                    </g>
-                                  </svg>
-                                  Select Industry
-                                </button>
-                              </div>
-                            </div>
-                            <!-- Department -->
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <label for="department-column" class="form-label">Department</label>
-                                <a href="#" class="fw-bold">
-                                  <small>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
-                                    </svg>
-                                    Add Department
-                                  </small>
-                                </a>
-                              </div>
-                              <div class="mb-1">
-                                <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
-                                  <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                      <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"/>
-                                    </mask>
-                                    <g mask="url(#mask0_9008_3896)">
-                                      <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"/>
-                                    </g>
-                                    <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                      <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"/>
-                                    </mask>
-                                    <g mask="url(#mask1_9008_3896)">
-                                      <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"/>
-                                    </g>
-                                  </svg>
-                                  Select Department
-                                </button>
-                              </div>
-                              <div>
-                                Assign as Department Supervisor
-                              </div>
-                              <!-- <input class="form-check-input" type="checkbox" value="" id="assign-as-department-supervisor">
-                                </div> -->
-                            </div>
-                            <!-- Position -->
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label class="form-label" for="position-column">Position</label>
-                              <input
-                                type="text"
-                                id="position-column"
-                                class="form-control"
-                                name="positionColumn"
-                                placeholder="Enter Position"
-                                />
-                            </div>
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <label class="form-label" for="f-name">
-                              First Name <span class="mandatory" aria-hidden="true">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                id="f-name"
-                                class="form-control"
-                                name="f-name"
-                                placeholder="Enter First Name"
-                                required
-                                aria-required="true"
-                                />
-                            </div>
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label class="form-label" for="l-name">
-                              Last Name <span class="mandatory" aria-hidden="true">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                id="l-name"
-                                class="form-control"
-                                name="l-name"
-                                placeholder="Enter Last Name"
-                                required
-                                aria-required="true"
-                                />
-                            </div>
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <label class="form-label" for="pronouns-column">Pronouns</label>
-                              <input
-                                type="text"
-                                id="pronouns-column"
-                                class="form-control"
-                                placeholder="Enter Pronouns"
-                                name="pronouns"
-                                />
-                            </div>
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label class="form-label" for="">Date of Birth</label>
-                              <div class="d-flex align-items-center w-100">
-                                <div class="position-relative flex-grow-1">
-                                  <input type="text" class="form-control js-single-date" placeholder="Select Date of Birth" aria-label="" aria-describedby="">
-                                  <svg class="icon-date" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z" fill="black"/>
-                                  </svg>
-                                </div>
-                                <button type="button" class="btn px-2">
-                                  <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 0C6.54545 0 1.88727 3.52467 0 8.5C1.88727 13.4753 6.54545 17 12 17C17.4545 17 22.1127 13.4753 24 8.5C22.1127 3.52467 17.4545 0 12 0ZM12 14.1667C8.98909 14.1667 6.54545 11.628 6.54545 8.5C6.54545 5.372 8.98909 2.83333 12 2.83333C15.0109 2.83333 17.4545 5.372 17.4545 8.5C17.4545 11.628 15.0109 14.1667 12 14.1667ZM12 5.1C10.1891 5.1 8.72727 6.61867 8.72727 8.5C8.72727 10.3813 10.1891 11.9 12 11.9C13.8109 11.9 15.2727 10.3813 15.2727 8.5C15.2727 6.61867 13.8109 5.1 12 5.1Z" fill="black"/>
-                                  </svg>
-                                </button>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <div class="d-flex justify-content-between align-items-center">
-                                <label class="form-label" for="gender-column">Gender</label>
-                                <a href="#" class="fw-bold">
-                                  <small>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
-                                    </svg>
-                                    Add New
-                                  </small>
-                                </a>
-                              </div>
-                              <select class="select2 form-select" id="gender-column">
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Others</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <div class="d-flex justify-content-between align-items-center">
-                              <label class="form-label" for="ethnicity-column">Ethnicity</label>
-                              <a href="#" class="fw-bold">
-                                <small>
-                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
-                                  </svg>
-                                  Add New
-                                </small>
-                              </a>
-                              </div>
-                              <select class="select2 form-select" id="ethnicity-column">
-                              <option>Select Ethnicity</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <label class="form-label" for="email">
-                              Email <span class="mandatory" aria-hidden="true">*</span>
-                              </label>
-                              <input
-                                type="text"
-                                id="email"
-                                class="form-control"
-                                name="email"
-                                placeholder="Enter Email"
-                                required
-                                aria-required="true"
-                                />
-                            </div>
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label class="form-label" for="phone">Phone Number</label>
-                              <input
-                                type="text"
-                                id="phone"
-                                class="form-control"
-                                name="phone"
-                                placeholder="Enter Phone Number"
-                                />
-                            </div>
-                            <!-- Preferred Language -->
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <label class="form-label" for="preferred-language">Preferred Language</label>
-                              <select class="select2 form-select" id="preferred-language">
-                              <option>English</option>
-                              </select>
-                            </div>
-                            <!-- Time Zone -->
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label class="form-label" for="time-zone">Time Zone</label>
-                              <select class="select2 form-select" id="time-zone">
-                              <option>Select Time Zone</option>
-                              </select>
-                            </div>
-                            <!-- Service Consumer Introduction -->
-                            <div class="col-lg-6 pe-lg-5 mb-4">
-                              <label class="form-label" for="service-consumer-introduction-column">
-                              Service Consumer Introduction
-                              </label>
-                              <textarea
-                                class="form-control"
-                                rows="3"
-                                cols="3"
-                                placeholder=""
-                                name="service-consumer-introduction-column"
-                                id="service-consumer-introduction-column"
-                                ></textarea>
-                            </div>
-                            <!-- Service Consumer Introduction Media -->
-                            <div class="col-lg-6 ps-lg-5 mb-4">
-                              <label for="file"
-                                class="form-label">Service Consumer Introduction Media</label>
-                              <input class="form-control" type="file" id="file">
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                              <div class="row">
-                                <div class="col-lg-6 pe-lg-5">
-                                  <label class="form-label">Tags</label>
-                                  <select data-placeholder="" multiple class="form-select chosen-select" tabindex="">
-                                    <option value=""></option>
-                                    <option selected>Admin staff</option>
-                                    <option selected>Customers</option>
-                                  </select>
-                                </div>
-                              </div>
-                              
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                              <div class="row">
-                                <!-- Default Billing Address -->
-                                <div class="col-lg-6 mb-4">
-                                  <h2>Default Billing Address</h2>
-                                  <!-- Button trigger modal | Add Address POPUP-->
-                                  <button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
-                                    </svg>
-                                    <span>Add Address</span>
-                                  </button>
-                                  <table class="table table-hover border">
-                                    <thead>
-                                      <th>#</th>
-                                      <th>Address</th>
-                                      <th></th>
-                                    </thead>
-                                    <tbody>
-                                      <tr class="odd">
-                                        <td>
-                                          1
-                                        </td>
-                                        <td>
-                                          <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
-                                        </td>
-                                        <!-- for active class row integrated with JS  -->
-                                        <td class="align-middle">
-                                          <svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                        </td>
-                                      </tr>
-                                      <tr class="even selected">
-                                        <td>
-                                          2
-                                        </td>
-                                        <td>
-                                          <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
-                                        </td>
-                                        <!-- for active class row integrated with JS  -->
-                                        <td class="align-middle">
-                                          <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                        </td>
-                                      </tr>
-                                      <tr class="odd">
-                                        <td>
-                                          3
-                                        </td>
-                                        <td>
-                                          <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
-                                        </td>
-                                        <!-- for active class row integrated with JS  -->
-                                        <td class="align-middle">
-                                          <svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div><!-- /Default Billing Address -->
-                                <!-- Default Service Address -->
-                                <div class="col-lg-6 mb-4">
-                                  <h2>Default Service Address</h2>
-                                  <div class="d-lg-flex justify-content-between align-items-center mb-lg-4">
-                                    <div class="form-check mb-lg-0">
-                                      <input class="form-check-input" type="checkbox" value="" id="same-as-billing-address-checkbox">
-                                      <label class="form-check-label" for="same-as-billing-address-checkbox">
-                                        Same as Billing Address
-                                      </label>
-                                    </div>
-                                    <!-- Button trigger modal | Add Address POPUP-->
-                                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
-                                      </svg>
-                                      <span>Add Address</span>
-                                    </button>
-                                  </div>
-                                  <table class="table table-hover border">
-                                    <thead>
-                                      <th>#</th>
-                                      <th>Address</th>
-                                      <th></th>
-                                    </thead>
-                                    <tbody>
-                                      <tr class="odd">
-                                        <td>
-                                          1
-                                        </td>
-                                        <td>
-                                          <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
-                                        </td>
-                                        <!-- for active class row integrated with JS  -->
-                                        <td class="align-middle">
-                                          <svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                        </td>
-                                      </tr>
-                                      <tr class="even selected">
-                                        <td>
-                                          2
-                                        </td>
-                                        <td>
-                                          <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
-                                        </td>
-                                        <!-- for active class row integrated with JS  -->
-                                        <td class="align-middle">
-                                          <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                        </td>
-                                      </tr>
-                                      <tr class="odd">
-                                        <td>
-                                          3
-                                        </td>
-                                        <td>
-                                          <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
-                                        </td>
-                                        <!-- for active class row integrated with JS  -->
-                                        <td class="align-middle">
-                                          <svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                          </svg>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div><!-- /Default Service Address -->
-                              </div>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="HideDepartmentfromProvider">
-                                <label class="form-check-label" for="HideDepartmentfromProvider">
-                                  Hide Department from Provider
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-lg-12 d-lg-flex gap-5 justify-content-center">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" id="HideUsersDetailsfromProvider">
-                                <label class="form-check-label" for="HideUsersDetailsfromProvider">
-                                  Hide User's Details from Providers
-                                </label>
-                              </div>
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="SendInvitationEmailtotheCustomer">
-                                <label class="form-check-label" for="SendInvitationEmailtotheCustomer">
-                                  Send Invitation Email to the Customer
-                                </label>
-                              </div>
-                            </div>
-                            <!-- Dev Note:
-                              Reminder that companies, depts, and customers should allow for multiple industries to be assigned. If multiple, one MUST be selected as default/primary. Allow users to choose another assigned industry in the Booking Form when creating a booking. -->
-                            <!-- ....cancel/next (buttons)... -->
-                            <div class="col-12 justify-content-center form-actions d-flex gap-3">
-                              <button type="button"
-                                class="btn btn-outline-dark rounded" wire:click.prevent="showList">Cancel</button>
-                                <button type="submit"
-                                class="btn btn-primary rounded">Save & Exit</button>
-                              <button type="submit"
-                                class="btn btn-primary rounded">Next</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                </div>
-                <!-- end Customer Info  -->
-                <!--BEGIN: Permission Configurations -->
-                <div class="tab-pane fade" :class="{ 'active show': tab === 'permission-configurations' }" @click.prevent="tab = 'permission-configurations'; window.location.hash = 'permission-configurations'" id="permission-configurations" role="tabpanel" aria-labelledby="permission-configurations-tab" tabindex="0" x-show="tab === 'permission-configurations'">
-                  <section id="multiple-column-form">
-                    <div class="row">
-                      <div class="card-body">
-                        <div class="d-lg-flex justify-content-between mb-lg-0 mb-4">
-                          <h2>Permission Configurations</h2>
-                          <div class="d-flex flex-column justify-content-center align-items-center gap-1">
-                            <label class="form-label-sm">Copy permissions from another user</label>
-                            <a href="#" class="btn btn-primary w-75">Select User</a>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-12 mb-4">
-                            <label class="form-label">Roles & Relationships</label>
-                            <p>Select which roles this user will play in the company. If the user is not a Supervisor and or Billing Manager then you can select other users as Supervisor of this user and or Billing Manager of the user.</p>
-                          </div>
-                          <div class="col-lg-12 mb-4">
-                            <label class="form-label">Assigned Supervisor(s)</label>
-                            <div>
-                              <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
-                                <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                    <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask0_9008_3896)">
-                                    <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                  <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                    <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask1_9008_3896)">
-                                    <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                </svg>
-                                Assigned Supervisor(s)
-                              </button>
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="AssignSameUser">
-                                <label class="form-check-label" for="AssignSameUser">
-                                  Assign Same User
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mb-5">
-                            <div class="col-lg-12 mb-4">
-                              <label class="form-label text-primary">Select Role</label>
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                                <label class="form-check-label" for="CompanyAdmin">
-                                  Company Admin
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="Supervisor" checked>
-                                <label class="form-check-label" for="Supervisor">
-                                  Supervisor
-                                </label>
-                              </div>
-                              <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
-                                <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                    <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask0_9008_3896)">
-                                    <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                  <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                    <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask1_9008_3896)">
-                                    <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                </svg>
-                                Supervising
-                              </button>
-                              <div class="uploaded-data d-flex align-items-center">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
-                                <div class="more">
-                                  <span class="value">8</span> more
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-12 mb-4 d-lg-flex gap-5">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="Requester" checked>
-                                <label class="form-check-label" for="Requester">
-                                  Requester
-                                </label>
-                              </div>
-                              <div>
-                                <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
-                                  <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                      <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"></path>
-                                    </mask>
-                                    <g mask="url(#mask0_9008_3896)">
-                                      <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"></path>
-                                    </g>
-                                    <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                      <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"></path>
-                                    </mask>
-                                    <g mask="url(#mask1_9008_3896)">
-                                      <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"></path>
-                                    </g>
-                                  </svg>
-                                  Assigned Billing Manager
-                                </button>
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="checkbox" value="" id="AssignSameUser">
-                                  <label class="form-check-label" for="AssignSameUser">
-                                    Assign Same User
-                                  </label>
-                                </div>
-                                
-                              </div>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
-                                <label class="form-check-label" for="ServiceConsumer">
-                                  Service Consumer
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
-                                <label class="form-check-label" for="ServiceConsumer">
-                                  Participant
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
-                              <div class="form-check mb-lg-0">
-                                <input class="form-check-input" type="checkbox" value="" id="BillingManager" checked>
-                                <label class="form-check-label" for="BillingManager">
-                                  Billing Manager
-                                </label>
-                              </div>
-                              <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
-                                <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                    <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask0_9008_3896)">
-                                    <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                  <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                    <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask1_9008_3896)">
-                                    <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                </svg>
-                                Billing Manager
-                              </button>
-                            </div>
-                          </div>
-                          <div class="row mb-5">
-                            <div class="col-lg-6 mb-4 pe-lg-5">
-                              <label class="form-label">Preferred Providers</label>
-                              <select class="form-select">
-                                <option>Select Preferred Providers</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-6 mb-4 ps-lg-5">
-                              <label class="form-label">Disfavored Providers</label>
-                              <select class="form-select">
-                                <option>Select Disfavored Providers</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-6 mb-4 pe-lg-5">
-                              <label class="form-label">Grant Access to User(s)' Schedules?</label>
-                              <div class="d-flex gap-3">
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="radio" name="GrantAccesstoUserSchedules" value="" id="GrantAccesstoUserSchedulesYes" checked>
-                                  <label class="form-check-label" for="GrantAccesstoUserSchedulesYes">
-                                    Yes
-                                  </label>
-                                </div>
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="radio" name="GrantAccesstoUserSchedules" value="" id="GrantAccesstoUserSchedulesNo">
-                                  <label class="form-check-label" for="GrantAccesstoUserSchedulesNo">
-                                    No
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 mb-4 ps-lg-5">
-                              <label class="form-label">Grant Access to User(s)' Schedules</label>
-                              <select class="form-select">
-                                <option>Select</option>
-                              </select>
-                            </div>
-                            <div class="col-lg-6 mb-4 pe-lg-5">
-                              <label class="form-label">Require Service Request Approval from Assigned Supervisor <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
-                              <div class="d-flex gap-3">
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="radio" name="RequireServiceRequestApprovalfromAssignedSupervisor" value="" id="RequireServiceRequestApprovalfromAssignedSupervisorYes" checked>
-                                  <label class="form-check-label" for="RequireServiceRequestApprovalfromAssignedSupervisorYes">
-                                    Yes
-                                  </label>
-                                </div>
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="radio" name="RequireServiceRequestApprovalfromAssignedSupervisor" value="" id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
-                                  <label class="form-check-label" for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
-                                    No
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 mb-4 ps-lg-5">
-                              <label class="form-label">Hide Billing Information from User</label>
-                              <div class="d-flex gap-3">
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="radio" name="HideBillingInformationfromUser" value="" id="HideBillingInformationfromUserYes" checked>
-                                  <label class="form-check-label" for="HideBillingInformationfromUserYes">
-                                    Yes
-                                  </label>
-                                </div>
-                                <div class="form-check mb-lg-0">
-                                  <input class="form-check-input" type="radio" name="HideBillingInformationfromUser" value="" id="HideBillingInformationfromUserNo">
-                                  <label class="form-check-label" for="HideBillingInformationfromUserNo">
-                                    No
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-12 mb-4">
-                            <label class="form-label" for="industry-column">Assigned Admin-Staff</label>
-                            <div>
-                              <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
-                                <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <mask id="mask0_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="15" height="18">
-                                    <path d="M0 0.882812H14.989V17.1164H0V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask0_9008_3896)">
-                                    <path d="M6.80372 0.941406H1.09069L0 1.02722L7.99841 8.98759L0 16.9475L1.09069 17.0507H6.80372L14.9061 8.98759L6.80372 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                  <mask id="mask1_9008_3896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="0" width="15" height="18">
-                                    <path d="M10.0117 0.882812H25.0007V17.1164H10.0117V0.882812Z" fill="white"></path>
-                                  </mask>
-                                  <g mask="url(#mask1_9008_3896)">
-                                    <path d="M16.8975 0.941406H11.1844L10.0938 1.02722L18.0922 8.98759L10.0938 16.9475L11.1844 17.0507H16.8975L24.9999 8.98759L16.8975 0.941406Z" fill="#0A1E46"></path>
-                                  </g>
-                                </svg>
-                                Assigned Admin-Staff
-                              </button>
-                            </div>
-                          </div>
+	<div class="content-header row">
+		<div class="content-header-left col-md-9 col-12 mb-2">
+			<div class="row breadcrumbs-top">
+				<div class="col-12">
+					<h1 class="content-header-title float-start mb-0">
+						Add Customer
+					</h1>
+					<div class="breadcrumb-wrapper">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
+									<x-icon name="home"/>
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								Customers
+							</li>
+							<li class="breadcrumb-item">
+								Add Customer
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content-body">
+		<div class="card">
+			<div class="card-body">
+				{{-- BEGIN: Steps --}}
+				<div x-data="{ tab: 'customer-info' }" id="tab_wrapper">
+					{{-- Nav tabs --}}
+					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
+						<li class="nav-item" role="presentation">
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'customer-info' }" @click.prevent="tab = 'customer-info'" id="customer-info-tab" role="tab" aria-controls="customer-info" aria-selected="true" tabindex="0">
+								<span class="number">1</span>
+								Customer Info
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }" @click.prevent="tab = 'permission-configurations'" id="permission-configurations-tab" role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0">
+								<span class="number">2</span>
+								Permission Configurations
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab" aria-controls="service-catalog" aria-selected="false" tabindex="0">
+								<span class="number">3</span>
+								Service Catalog
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab" aria-controls="drive-documents" aria-selected="false" tabindex="0">
+								<span class="number">4</span>
+								Drive Documents
+							</a>
+						</li>
+					</ul>
 
-                        </div>
-                      </div>
-                      <!-- ....cancel/next (buttons)... -->
-                      <div class="col-12 justify-content-center form-actions d-flex gap-3">
-                        <button type="button"
-                          class="btn btn-outline-dark rounded" wire:click.prevent="showList">Cancel</button>
-                          <button type="submit"
-                          class="btn btn-primary rounded">Save & Exit</button>
-                        <button type="submit"
-                          class="btn btn-primary rounded">Next</button>
-                      </div>
-                    </div>
-                  </section>
+					{{-- Tab panes --}}
+					<div class="tab-content">
 
-                </div>
-                <!--END: Permission Configurations -->
-                <!--BEGIN: Service Catalog-->
-                <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }" @click.prevent="tab = 'service-catalog'; window.location.hash = 'service-catalog'" id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0" x-show="tab === 'service-catalog'">
-                  <section id="multiple-column-form">
-                    <div class="row">
-                      <div class="card-body">
-                          <div class="col-md-8 mb-md-2">
-                            <div class="mb-5">
-                              <h2>Service Catalog</h2>
-                            </div>
-                          </div>
-                          <!-- ........  -->
-                          <div class="col-md-12 mb-md-2">
-                            <div class="row">
-                              <!-- BEGAIN: left column  (Filter By Accommodation)-->
-                              <div class="col-lg-5">
-                                <div class="mb-3">
-                                  <p class="fs-5">Filter By Accommodation</p>
-                                </div>
-                                <!-- start left card  -->
-                                <div class="content-body">
-                                  <div class="card">
-                                    <div class="card-body shadow-sm">
-                        <!-- left column | scroll bar start  -->
-                        <input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
-                        <div class="overflow-y-auto max-h-56">
-                        <!-- left column table (start)-->
-                        <table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
-                        <tbody>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Shelby Sign Language</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Language Translation Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Real Time Captioning Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Real Time Captioning Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Real Time Captioning Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Real Time Captioning Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p> Sign Language Interpreting Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p> Spoken Language Interpreting Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p> Spoken Language Interpreting Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p> Spoken Language Interpreting Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p> Spoken Language Interpreting Services</p>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p> Spoken Language Interpreting Services</p>
-                        </td>
-                        </tr>
-                        </tbody>
-                        </table>
-                        <!-- left column table (end)-->
-                        </div><!-- left column | scroll bar ends  -->
-                        </div>
-                        </div>
-                        </div><!-- end left card  -->
-                        </div>
-                        <!-- END: left column  -->
-                        <!-- ....................................................  -->
-                        <!-- BEGAIN: right column  -->
-                        <div class="col-lg-7 ps-lg-5">
-                        <div class="mb-3"><p class="fs-5">Select Service</p></div>
-                        <!-- start right card  -->
-                        <div class="card">
-                        <div class="card-body shadow-sm">
-                        <!-- right column | scroll bar start  -->
-                        <input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
-                        <div class="overflow-y-auto max-h-56">
-                        <!-- right column table (start)-->
-                        <table id="" class="table table-hover" aria-label="Select Service Table">
-                        <tbody>
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Language interpreting</p> 
-                        </td>
-                        <td>
-                          <div class="form-check form-switch mb-0">
-                            <input class="form-check-input" type="checkbox" role="switch" id="Languageinterpreting">
-                            <label class="form-check-label text-nowrap" for="Languageinterpreting">In-Active</label>
-                            <label class="form-check-label text-nowrap" for="Languageinterpreting">Active</label>
-                          </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>New service capacity and capabilities</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Shelby test two service</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>CART Captioning</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Transcript Services</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Transcript Services</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Transcript Services</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Transcript Services</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        <tr role="row" class="odd">
-                        <td class="text-start">
-                        <p>Transcript Services</p>
-                        </td>
-                        <td>
-                        <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
-                        <label class="form-check-label">In-Active</label>
-                        <label class="form-check-label">
-                        Active
-                        </label>
-                        </div>
-                        </td>
-                        <td width="5%">
-                        <div class="d-flex actions">
-                        <!-- OFF Canvas | Customers  -->
-                        <a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.6277 12.4357C11.3262 11.9009 10.9183 11.4337 10.4291 11.0628C9.93983 10.692 9.3797 10.4255 8.78334 10.2798C8.22378 10.1119 7.65588 9.97319 7.08195 9.86418V3.97424C8.22299 4.09664 9.31159 4.51774 10.238 5.19509C10.3019 5.2518 10.3764 5.29536 10.4572 5.32328C10.538 5.35119 10.6235 5.36292 10.7088 5.3578C10.7942 5.35267 10.8776 5.33079 10.9545 5.2934C11.0314 5.25602 11.1001 5.20385 11.1568 5.13989C11.2136 5.07593 11.2571 5.00143 11.285 4.92064C11.3129 4.83985 11.3247 4.75435 11.3196 4.66902C11.3144 4.58369 11.2925 4.50021 11.2552 4.42334C11.2178 4.34647 11.1656 4.27772 11.1016 4.22101C9.93942 3.3259 8.54381 2.78479 7.08195 2.66248V0.649386C7.08195 0.477158 7.01353 0.311984 6.89175 0.190201C6.76996 0.0684173 6.60479 0 6.43256 0C6.26033 0 6.09516 0.0684173 5.97337 0.190201C5.85159 0.311984 5.78317 0.477158 5.78317 0.649386V2.59755C2.92587 2.66248 1.34786 4.08464 0.867318 5.31198C0.546739 6.10231 0.516282 6.98061 0.781345 7.79125C1.04641 8.60189 1.58988 9.29253 2.31545 9.7408C3.37161 10.3846 4.55459 10.7922 5.78317 10.9357V16.884C4.08783 16.7987 2.46376 16.1755 1.14655 15.1047C1.08777 15.0348 1.01489 14.978 0.932665 14.9382C0.850443 14.8983 0.760735 14.8762 0.669405 14.8734C0.578074 14.8706 0.487178 14.8871 0.402656 14.9218C0.318134 14.9565 0.241891 15.0087 0.178909 15.0749C0.115926 15.1411 0.0676236 15.2198 0.0371581 15.306C0.00669255 15.3921 -0.00525017 15.4837 0.00211048 15.5748C0.00947114 15.6659 0.0359699 15.7544 0.0798739 15.8345C0.123778 15.9146 0.184099 15.9846 0.256894 16.0398C1.81018 17.3476 3.75433 18.1015 5.78317 18.1828V20.131C5.78317 20.3032 5.85159 20.4684 5.97337 20.5902C6.09516 20.7119 6.26033 20.7804 6.43256 20.7804C6.60479 20.7804 6.76996 20.7119 6.89175 20.5902C7.01353 20.4684 7.08195 20.3032 7.08195 20.131V18.1828C8.91322 18.0594 11.0237 17.475 11.8225 15.0917C11.967 14.6581 12.0242 14.2001 11.9907 13.7443C11.9573 13.2884 11.8339 12.8437 11.6277 12.4357ZM3.04926 8.64983C2.57507 8.36756 2.21713 7.92541 2.03977 7.40285C1.86241 6.88029 1.87726 6.3116 2.08167 5.79902C2.1531 5.6042 2.88042 3.97424 5.78317 3.89632V9.61092C4.81445 9.48626 3.88288 9.15878 3.04926 8.64983ZM10.5886 14.6502C10.1211 16.0398 9.08206 16.7087 7.08195 16.8581V11.1889C7.49755 11.2798 7.92615 11.3837 8.38072 11.5201C8.81013 11.6176 9.21521 11.8015 9.57133 12.0605C9.92745 12.3195 10.2272 12.6482 10.4523 13.0267C10.707 13.5296 10.7559 14.1118 10.5886 14.6502Z" fill="black"/>
-                          </svg>
-                        </a>
-                        </div>
-                        </td>
-                        </tr>
-                        <!-- ......  -->
-                        </tbody>
-                        </table><!-- right column table (end)-->
-                        </div><!-- right column | scroll bar ends  -->
+						{{-- BEGIN: Customer Info --}}
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'customer-info' }" id="customer-info" role="tabpanel" aria-labelledby="customer-info-tab" tabindex="0" x-show="tab === 'customer-info'">
+							<section id="multiple-column-form">
+								<div class="row">
+									<div class="col-12">
+										<div class="row mt-2 mb-5">
+											<div class="col-12 text-center">
+												<div class="d-inline-block position-relative">
+													<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+													<div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
+														<x-icon name="camera"/>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12 mb-4">
+												<h2>Customer Information</h2>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<label class="form-label" for="company-column">
+													Company
+													<span class="mandatory" aria-hidden="true">
+														*
+													</span>
+												</label>
+												<select class="select2 form-select" id="company-column">
+													<option>Select Company</option>
+												</select>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label class="form-label" for="industry-column">
+													Industry
+													<span class="mandatory" aria-hidden="true">
+														*
+													</span>
+												</label>
+												<div>
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
+														<x-icon name="right-color-arrow"/>
+														Select Industry
+													</button>
+												</div>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<div class="d-flex justify-content-between align-items-center">
+													<label for="department-column" class="form-label">Department</label>
+													<a href="#" class="fw-bold">
+														<small>
+															<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
+															</svg>
+															Add Department
+														</small>
+													</a>
+												</div>
+												<div class="mb-1">
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
+														<x-icon name="right-color-arrow"/>
+														Select Department
+													</button>
+												</div>
+												<div>
+													Assign as Department Supervisor
+												</div>
+												{{-- <input class="form-check-input" type="checkbox" value="" id="assign-as-department-supervisor"> --}}
+											</div>
 
-                        </div>
-                        </div><!-- end card  -->
-                        </div>
-                        <!-- END: right column  -->
-                        </div>
-                        </div>            
-                      </div>
-                      <!-- ....cancel/next (buttons)... -->
-                      <div class="col-12 justify-content-center form-actions d-flex gap-3">
-                        <button type="button"
-                          class="btn btn-outline-dark rounded" wire:click.prevent="showList">Cancel</button>
-                          <button type="submit"
-                          class="btn btn-primary rounded">Save & Exit</button>
-                        <button type="submit"
-                          class="btn btn-primary rounded">Next</button>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-                <!--End: Service Catalog-->
-                <!--BEGIN: Drive Documents Pane-->
-                <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }" @click.prevent="tab = 'drive-documents'; window.location.hash = 'drive-documents'" id="drive-documents" role="tabpanel" aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
-                  <section id="multiple-column-form">
-                    <div class="row">
-                      <div class="col-12">
-                        <form class="form">
-                          <div class="col-md-8 mb-md-2">
-                            <h2>Drive Documents</h2>
-                          </div>
-                          <div class="col-md-12 mb-md-2">
-                            <div class="row">
-                              <div class="col-md-12 mb-md-2">
-                                <div class="row justify-content-center">
-                                  <div class="col-lg-8">
-                                    <div class="d-flex flex-column align-items-center justify-content-center mb-3">
-                                      <label for="formFile" class="form-label">Upload Document</label>
-                                      <input class="form-control" type="file" id="formFile">
-                                    </div>
-                                    
-                                  </div>
-                                </div>
-                                <div class="d-flex justify-content-center gap-3 mt-4">
-                                  <div>
-                                    <svg width="164" height="207" viewBox="0 0 164 207" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                      <rect width="164" height="207" fill="url(#pattern0)"/>
-                                      <defs>
-                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                          <use xlink:href="#image0_1998_71597" transform="matrix(0.000906504 0 0 0.000718196 -0.176829 -0.0772947)"/>
-                                        </pattern>
-                                        <image id="image0_1998_71597" width="1500" height="1500" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABdwAAAXcCAIAAAC3V9szAAAgAElEQVR4nOzdaVMbB6K2YSQhNpvNeMHjJY5zMvP+/38z44zxlhgcQCDJCLSeD6pKzXvGC2bR0926rm/O1k91pUrippfawfHpAgAAAACzVU8PAAAAAJhHogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASI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AAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAI/A8beRt7vKNl/wAAAABJRU5ErkJggg=="/>
-                                      </defs>
-                                    </svg>
-                                    <p>File Name</p>
-                                  </div>
-                                  <div>
-                                    <svg width="164" height="207" viewBox="0 0 164 207" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                      <rect width="164" height="207" fill="url(#pattern0)"/>
-                                      <defs>
-                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                          <use xlink:href="#image0_1998_71597" transform="matrix(0.000906504 0 0 0.000718196 -0.176829 -0.0772947)"/>
-                                        </pattern>
-                                        <image id="image0_1998_71597" width="1500" height="1500" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABdwAAAXcCAIAAAC3V9szAAAgAElEQVR4nOzdaVMbB6K2YSQhNpvNeMHjJY5zMvP+/38z44zxlhgcQCDJCLSeD6pKzXvGC2bR0926rm/O1k91pUrippfawfHpAgAAAACzVU8PAAAAAJhHogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAwGJ6AACFMxqNznu93vl5/+Li4uJiMBgMh8PxeDwajdLTAEqs0Wg0FhcXG42lpaWlpaWVlZWV1dWVlZVarZaeBkCGKAPAwsLCwng87nY6nU6n2+2en5+n5wBU0Gg0Go1G/YWFs7Ozv/5irVZbW1u7u76+vr6+trYm0ADMldrB8Wl6AwAx4/G4fXp6cnLSbrcnk0l6DsBcazQaW1tb29vbd+7eTW8BYBZEGYA5dXFxcXR4eHx87KYkgKJZXl7e2dm5t7PTaDTSWwC4RaIMwNzp9XqfDg5OTk7SQwD4lnq9fv/+/QcPHy4ueuYAQDWJMgBzpN/v73/82Gq10kMAuKx6vf7g4cOHDx/W616cClA1ogzAXJhMJgcHB58ODjw4BqCMms3m35482draSg8B4CaJMgDVd/b587v37y+8Uwmg5DY3N588fdpsNtNDALgZogxAlU0mk08HB/v7++khANyMxcXFZ8+ebWxupocAcANEGYDKGg6Hb9++7XY66SEA3LCHDx/uPn5cq9XSQwC4Fg9yB6im815vb2+v3++nhwBw8z59+tTr9X568cI7swFKzSPcASqo2+n89ttvigxAhXU6nd9evRoMBukhAFydKANQNe12+/Xr16PRKD0EgNt1fn7+26tXEjxAeYkyAJXSbrf3Xr/23muAOdHv93UZgPISZQCqo9vpvNnbS68AYKYGg8G///1v9zEBlJEoA1AR573emzdvXCMDMIf6Fxd7r1+Px+P0EAB+jCgDUAXD4fD13p7nyADMrV6v9+7t2/QKAH6MKANQepPJ5O3bNwMPFACYb6enpwcHB+kVAPwAUQag9A4ODrqdbnoFAHn7Hz9+7vpEACgNUQag3M4+fz7Y30+vAKAo3r59625WgLIQZQBKbDKZvHv3Lr0CgAIZDAYf//gjvQKASxFlAErs4ODg4uIivQKAYjk6OnITE0ApiDIAZdXv9z95oCMAX/L7779PJpP0CgC+Q5QBKKuPf/zhCzcAX9Tr9VqtVnoFAN8hygCUUq/XOzk5Sa8AoLj29/fH43F6BQDfIsoAlNKBG5cA+KZBv986Pk6vAOBbRBmA8rm4uDh1mQwA3/Ppzz/d6ApQZKIMQPkcHh6mJwBQAv2Li067nV4BwFeJMgAlMx6PXY4OwCUdHR2lJwDwVaIMQMmcnp6ORqP0CgDKod1uDwaD9AoAvkyUASiZE684BeBHeAwZQGGJMgBlMhqNOp1OegUAZXIiygAUlSgDUCbdbtd7NAD4IZ8/f3bfK0AxiTIAZeIlGgBcQddVlgCFJMoAlEn38+f0BADKx8cHQDEtpgcAcFnD4fDi/Dw4YHl5eXFxsVavBTcAlNF4PBn0+8G3IH3udlOHBuAbRBmA0jjv9SLHXV5efvDgwcbmZrPZjAwAqIbz8/NWq3V0eDj7J7ycn59PJpNaTVUHKBZRBqA0zhOXyTx89Gh3d9f3eIDrW1lZefz48f3799+/ezfjV+lNJpOLi4uVlZVZHhSA7/JMGYDSuLi4mPERnz579vjxY0UG4AY1m82fX77c3t6e8XFn/yECwHeJMgClcdHvz/Jwjx492tnZmeURAeZErVZ79vz5nTt3ZnnQ/mw/RAC4DFEGoDQGM/w+vby8/Gh3d2aHA5g30y4zy0sRg48ZBuBrRBmA0pjlgyEfPHzoriWAW7W8vLy5uTmzw42Gw5kdC4BLEmUASmM4w+/Ts/w5AWBubW5tzexYs3/lEwDfJcoAlMZkMpnNgZaXlxcXvZ4P4NbN8rEyo7EoA1A4ogxAOcysyCwsLDSbzZkdC2CeKeAAc06UASiH8Xg8u4N5mAzATHh6F8CcE2UAAAAAAkQZAAAAgABRBgAAACBAlAEAAAAIEGUAAAAAAkQZAAAAgABRBgAAACBAlAEAAAAIEGUAAAAAAkQZAAAAgABRBgAAACBAlAEAAAAIEGUAAAAAAkQZAAAAgABRBgAAACBAlAEAAAAIEGUAAAAAAkQZAAAAgABRBgAAACBAlAEAAAAIEGUAAAAAAkQZAAAAgABRBgAAACBAlAEAAAAIEGUAAAAAAhbTAwCgEEajUb/fHwwGw+FwNByORqPxZPLX363XavVGY3FxcXFxsdlsLi0tNRqN4FoAACpAlAFgTg0Gg8+fP5+dnfV6vfNebzgc/tC/vri4uLK6urq6ura2dufOWrO5dEs7AQCoKlEGgDkyHo+73W6n3W632/1+/zr/qeFw2O10up3O9I9LS0sbGxvr6+t319frdXcHAwDwfaIMANU3mUw67fbJycnp6el4PL6NQ/T7/cPDw8PDw3q9vrm5ubW1tb6xUavVbuNYAABUgygDQJUNBv2jw6Pj4+PBYDCbI47H41ar1Wq1ms3m9r179+/vuLMJAIAvEmUAqKZer/fnn3+etFqT/3he7ywNBoNPBwd/fvq0tbX14OHD1dXVyAwAAApLlAGgai4uLvY/fjw5OUkPWVhYWJhMJtMLZ7a2tnYfP15eXk4vAgCgKEQZAKpjNBzu7+8fHR2lro75hpOTk5OTk/v37z/a3V1c9PkLAIAoA0BVHB8f//H776PRKD3kWw4PD1ut1t+ePLl37156CwAAYaIMAKXX7/ffv3//19upC240Gr1/967VOn727PnSkmcAAwDMr3p6AABcy0mr9a9//rMsReYv3U73X//8Z6vVSg8BACDGlTIAlNVkMvnw4cPx0VF6yBWNRqN3b992u90nT57U635NAgAwd0QZAEppMBi82ds7OztLD7mu46Oj817vxc8vmk23MgEAzBe/lwOgfHq93qt//asCRWbq7Ozs1b9e9Xq99BAAAGZKlAGgZLrd7m+vXg0Gg/SQmzQYDH579ap0T8YBAOA6RBkAyqTdbr/+97/H43F6yM0bj8evX79ut9vpIQAAzIgoA0BptNvtN3t7k8kkPeS2TCaTPV0GAGBuiDIAlEO32612kfnLm7099zEBAMwDUQaAEuj1enuvX89DkVmYXi+zt+e5vwAAlSfKAFB0g8Fg7/XrSj5H5mvG4/He69eDQT89BACAWyTKAFBok8nkzd5exd61dBmDwWBv781cpSgAgHkjygBQaB8+fDg7O0uvyOidnf3+4UN6BQAAt0WUAaC4Wq3W8dFRekXS8fFxq9VKrwAA4FaIMgAUVL/fd53IwsLCh/fv+30PlwEAqCBRBoCCev/+3Wg0Sq/IG4/H79+9S68AAODmiTIAFNHx8XG3002vKIputzvnt3EBAFSSKANA4QyHwz9+/z29olj++OOP4XCYXgEAwE0SZQAonIP9fTcu/R+j0ehgfz+9AgCAmyTKAFAsFxcXh4eH6RVFdHh4eH5+nl4BAMCNEWUAKJaPHz+mJxTXvotlAAAqRJQBoEB6vd7pyUl6RXGdnpz0er30CgAAboYoA0CB/PnpU3pC0X1yigAAqkKUAaAo+v3+ictkvuf05KTf76dXAABwA0QZAIri6OhoMpmkVxTdZDI58iBkAIBKEGUAKITJZHJ8dJReUQ7Hx8fqFQBABYgyABRCp90eDofpFeUwHA7b7XZ6BQAA1yXKAFAIrVYrPaFMTpwuAIDyE2UAyBuPxy79+CHtdns8HqdXAABwLaIMAHndTkdi+CHj8bjT6aRXAABwLaIMAHkuk7mCjpMGAFByogwAeW0Xffw4JQsAoOxEGQDC+v3+oN9PryifwWDQd94AAMpMlAEg7OzsLD2hrM4+f05PAADg6kQZAMKUhSvTswAASk2UASCsd95LTyirXs+pAwAoMVEGgLDembJwRaLMPGu322/fvp1MJukhAMDVLaYHADDXRqPRaDRKryir0Wg0Gg4biz7N50673X6ztzeZTCbj8U8vXtRqtfQiAOAqXCkDQJL3B11TfzBIT2DW/ioyCwsLp6enb9+8cb0MAJSUKANAkpdhX5OqNW/+s8hM6TIAUF6iDABJw+EwPaHcRk7gPPnvIjOlywBASYkyACQNPVDmepzA+fG1IjOlywBAGYkyACS50OOanMA58e0iM6XLAEDpiDIAJPnx8ZqcwHlwmSIzpcsAQLmIMgAk+enxmibjcXoCt+vyRWZKlwGAEhFlAAAK6keLzJQuAwBlIcoAkFSr1dITyq1W91FeWVcrMlO6DACUgm9yACRJMtfkBFbVdYrMlC4DAMUnygCQ1FhcTE8oNyewkq5fZKZ0GQAoOFEGgKTFRiM9odycwOq5qSIzpcsAQJGJMgAkLbrQ43pcKVMxN1tkpnQZACgsUQaApObSUnpCuS05gRVyG0VmSpcBgGISZQBI0hSuaanZTE/gZtxekZnSZQCggEQZAJIajYY7mK6s0Wi4fakabrvITOkyAFA0ogwAYSurK+kJZbW6upqewA2YTZGZ0mUAoFBEGQDCVlfX0hPKSpSpgFkWmSldBgCKQ5QBIGxtTZS5orU7d9ITuJbZF5kpXQYACkKUASDszh1R5or0rFJLFZkpXQYAikCUASCs2VzyDqYraC45byWWLTJTugwAxIkyAOStb2ykJ5TPxvp6egJXVIQiM6XLAECWKANAnr5wBRtKVjkVp8hM6TIAECTKAJB3d329XveR9APq9fpdJauEilZkpnQZAEjxDRiAvHq9vrG5mV5RJhsbGzJW6RSzyEzpMgAQ4fscAIWwvbWVnlAmW9vb6Qn8mCIXmSldBgBmT5QBoBDWNzaazWZ6RTksLi56oEy5FL/ITOkyADBjogwAhVCr1e7du5deUQ73dnZqtVp6BZdVliIzpcsAwCyJMgAUxc59reH7arXazs5OegWXVa4iM6XLAMDMiDIAFEWzueRRKd+1tbW1tLSUXsGllLHITOkyADAbogwABfLgwYP0hKJ78PBhegKXUt4iM6XLAMAMiDIAFMjq6qqLZb5hc2trdXU1vYLvK3uRmdJlAOC2iTIAFMvu7q4ny3zN48eP0xP4vmoUmSldBgBulSgDQLEsLy97kO0X3b9/f3l5Ob2C76hSkZnSZQDg9ogyABTO7uPHjUYjvaJYGo3Go93d9Aq+o3pFZkqXAYBbIsoAUDiNRuPJkyfpFcXytydPFhcX0yv4lqoWmSldBgBugygDQBFt37u3vr6eXlEUd9fv3rt3L72Cb6l2kZnSZQDgxokyABTU02fP3MS0sLDQaDSePXueXsG3zEORmdJlAOBmiTIAFNTS0tLTZ8/SK/KePn26tLSUXsFXzU+RmdJlAOAGiTIAFNfW1tacv4lpZ2dna3s7vYKvmrciM6XLAMBNEWUAKLQnT5+ura2lV2Ssra09efo0vYKvms8iM6XLAMCNEGUAKLRarfbi55+bzWZ6yKw1m80XP/9cq9XSQ/iyeS4yU7oMAFyfKANA0TWbzZ9fvqzX5+gzq16v//zy5RymqLJQZKZ0GQC4pjn6ggtAea2urv788uWcXDZSq9V+fvlydXU1PYQvU2T+ky4DANchygBQDnfv3p2H23mmt2vdvXs3PYQvU2T+my4DAFcmygBQGhsbG9XuMtMis7GxkR7ClykyX6PLAMDViDIAlMnGxsbLX36p5PNl6vX6y19+UWQKS5H5Nl0GAK6ggl9qAai2u3fv/vrrrxV7CG6z2fyfX39111JhKTKXocsAwI8SZQAon5XV1V///ve1tbX0kJuxtrb269//7sm+haXIXJ4uAwA/RJQBoJSml5bs7Oykh1zXzs7O/1Tuwp8qUWR+lC4DAJcnygBQVrVa7emzZz+9eNFoNNJbrqLRaPz04sXTZ88q/OjislNkrkaXAYBLEmUAKLetra1//L9/rK+vp4f8mPX19b//4x9bW1vpIXyVInMdugwAXIYoA0DpNZtLL3/55flPz0txyUyj0Xj+/PnLX35ZWlpKb+GrFJnr02UA4LsW0wMA4GZsb9/b2Ng82N8/PDws5s+BtVpt5/793d3dUsSjeabI3JRpl/npxQv36AHAF4kyAFRHo9H425MnO/fvH+zvt1qt9Jz/z/b29qPd3eXl5fQQvkORuVm6DAB8gygDQNUsLy8//+mnR48effr0qdVqZX+6rtVq29vbDx4+XCO4MyoAAB3PSURBVFlZCc7gkhSZ26DLAMDXiDIAVNPyysqz5893Hz8+Ojo6PjoaDAYzHtBsNu/t7Ozs7HjddVkoMrdHlwGALxJlAKiyZrO5u7v76NGjTqdz0mqdnp6Ox+NbPWK9Xt/c3Nza3l5fX/fzZ4koMrdNlwGA/ybKAFB9tVptY2NjY2NjPB53u91Ou93pdC4uLm7wEEtLSxsbG+sbG3fv3q3XvdywZBSZ2dBlAOD/EGUAmCP1en1aZxYWFgaDwdnZ2dnnz73z8/Ne70fvb2o2mysrK6urq2tra2t37rhHqbwUmVnSZQDgP4kyAMypZrO5ubm5ubk5/eN4PO73+4PBYDgYDEej8Xg8Go3++ocbjUa9Xl9sNBabzWazubS05HKYalBkZk+XAYC/iDIAsLCwsFCv11dWVrwjaa4oMim6DABM+S0fADCPFJmsaZdx/gGYc6IMADB3FJki0GUAQJQBAOaLIlMcugwAc06UAQDmiCJTNLoMAPNMlAEA5oUiU0y6DABzS5QBAOaCIlNkugwA80mUAQCqT5EpPl0GgDkkygAAFafIlIUuA8C8EWUAgCpTZMpFlwFgrogyAEBlKTJlpMsAMD9EGQCgmhSZ8tJlAJgTogwAUEGKTNnpMgDMA1EGAKgaRaYadBkAKk+UAQAqRZGpEl0GgGoTZQCA6lBkqkeXAaDCRBkAoCIUmarSZQCoKlEGAKgCRabadBkAKkmUAQBKT5GZB7oMANUjygAA5abIzA9dBoCKEWUAgBJTZOaNLgNAlYgyAEBZKTLzSZcBoDJEGQCglBSZeabLAFANogwAUD6KDLoMABUgygAAJaPIMKXLAFB2ogwAUCaKDP9JlwGg1EQZAKA0FBn+my4DQHmJMgBAOSgyfI0uA0BJiTIAQAkoMnybLgNAGYkyAEDRKTJchi4DQOmIMgBAoSkyXJ4uA0C5iDIAQHEpMvwoXQaAEhFlAICCUmS4Gl0GgLIQZQCAIlJkuA5dBoBSEGUAgMJRZLg+XQaA4hNlAKAQDvb3+/1+ekUhKDLclNPT0zd7e+PxOD0EAL5MlAGAvN8/fNjf3//t1StdRpHhZk3/j9JlACgmUQYAwn7/8OHw8HBhYWEwGMx5l1FkuA2dTkeXAaCYRBkASPqryEzNc5dRZLg9ugwAxSTKAEDM/ykyU/PZZRQZbpsuA0ABiTIAkPHFIjM1b11GkWE2dBkAikaUAYCAbxSZqfnpMooMs6TLAFAoogwAzNp3i8zUPHQZRYbZ02UAKA5RBgBm6pJFZqraXUaRIUWXAaAgRBkAmJ0fKjJTVe0yigxZugwARSDKAMCMXKHITFWvyygyFIEuA0CcKAMAs3DlIjNVpS6jyFAcugwAWaIMANy6axaZqWp0GUWGotFlAAgSZQDgdt1IkZkqe5dRZCgmXQaAFFEGAG7RDRaZqfJ2GUWGItNlAIgQZQDgttx4kZkqY5dRZCg+XQaA2RNlAOBW3FKRmSpXl1FkKAtdBoAZE2UA4ObdapGZKkuXUWQoF10GgFkSZQDghs2gyEwVv8soMpRRp9PpdrvpFQDMBVEGAG7SzIrMVJG7jCIDAPBtogwA3JgZF5mpYnYZRQYA4LtEGf63vfvbbuo+0DBsS7YxtowNpE5Na6DT5v5vp3PQmSYkWSRtwPzLIhbYc6CudqaTBANG797S89zA7zva0nq19xYA1yMpMgtD6zKKDADAVYgyAHANwiKzMJwuo8gAAFyRKAMAHysvMgtD6DKKDADA1YkyAPBRBlJkFtouo8gAALwXUQYAPtygisxC1WUUGQCA9yXKAMAHGmCRWVh+l1FkAAA+gCgDAB9isEVmYZldRpEBAPgwogwAvLeBF5mF5XQZRQYA4IOJMgDwfkZRZBY+dZdRZAAAPoYoAwDvYURFZuHTdRlFBgDgI4kyAHBVoysyC5+iyygyAAAfT5QBgCsZaZFZuN4uo8gAAFwLUQYA3m3URWbhurqMIgMAcF1EGQB4hxUoMgsf32UUGQCAayTKAMCvWZkis/AxXUaRAQC4XqIMAPyiFSsyCx/WZRQZAIBrJ8oAwM9bySKz8L5d5vmzZ4oMAMC1E2UA4GescJFZuHqXOTs7+29FBgDgExBlAODfrXyRWbhKlzk7O/vyr39d2iQAgLUiygDA/7EmRWbh17uMIgMA8EmJMgDwL2tVZBZ+qcsoMgAAn5ooAwD/sIZFZuH/dxlFBgBgCUQZANjYWOMis/C/u4wiAwCwHFv1AADorXmRWVh0md8cH3/7zTf1FgCAteBOGQDWnSLzT/P5XJEBAFgaUQaAtabIAABQEWUAWF+KDAAAIVEGgDWlyAAA0BJlAFhHigwAADlRBoC1o8gAADAEogwA60WRAQBgIEQZANaIIgMAwHCIMgCsC0UGAIBBEWUAWAuKDAAAQyPKALD6FBkAAAZIlAFgxSkyAAAMkygDwCpTZAAAGCxRBoCVpcgAADBkogwAq0mRAQBg4EQZAFaQIgMAwPCJMgCsGkUGAIBREGUAWCmKDAAAYyHKALA6FBkAAEZElAFgRSgyAACMiygDwCpQZAAAGB1RBoDRU2QAABgjUQaAcVNkAAAYKVEGgBFTZAAAGC9RBoCxUmQAABg1UQaAUVJkAAAYO1EGgPFRZAAAWAGiDAAjo8gAALAaRBkAxkSRAQBgZYgyAIyGIgMAwCoRZQAYB0UGAIAVI8oAMAKKDAAAq0eUAWDoFBkAAFaSKAPAoCkyAACsKlEGgOFSZAAAWGGiDAADpcgAALDaRBkAhkiRAQBg5YkyAAyOIgMAwDoQZQAYFkUGAIA1IcoAMCCKDAAA60OUAWAoFBkAANaKKAPAICgyAACsG1EGgJ4iAwDAGhJlAIgpMgAArCdRBoDS9999p8gAALCeRBkASj+dn9cTAACgIcoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACW/UAANba6enp6elpvQIAAALulAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGYBym0+nSzrq8uFzaWQDr7OLiop4AQEmUAeDfnZ+f1xMA1sJ8idfbzY3NpZ0FwBWJMgCjMZks6aI9n89fv369nLMA1tmLFy+WdtZkiXdcAnBFogzAaEy3tpZ21tOnT5d2FsDaWubFdkuUARgeUQZgNLaXGGX+/re/zefzpR0HsIaePXv2448/Lu24rSV+iABwRaIMwGhs7+ws7ayLi4tHX311eemNvwCfxHw+//rRo2WeuMwPEQCuSJQBGI0by/0+/eLFC10G4FOYz+f/9Ze/vHnzZpmH7ogyAMPjJkaA0bixu7vkE58+fXp+fn56//6NGzeWfDTAqnr+7NmjR4+WXGQ2NjZcyQEGSJQBGI3dpUeZjY2NV69e/eef/3x4eHh4dLS/v7+1tbW56U9VAd7PxcXFfD5/+eLFkydPlvkemX+aTqfulAEYIFEGYDR2d3c3NzeX/zzR5eXl2dnZ2dnZks8F4Lrs7e3VEwD4Gd4pAzAak8nEt2oAPsD+/n49AYCfIcoAjMlsNqsnADA++z4+AAZJlAEYk4Nbt+oJAIzMZDJxpwzAMIkyAGOyt7c3nU7rFQCMya1bt7yjHWCYRBmAMdnc3Dw6OqpXADAmhz44AIZKlAEYmaPbt+sJAIzGZDK55dFXgKESZQBGZjab7dy4Ua8AYBxu37kzmfjODzBQLtAA4/PZ3bv1BADG4a6PDIABE2UAxufO3bt+9gTgnWYHs5s3b9YrAPhFvtMDjM90Or372Wf1CgCG7vj483oCAL9GlAEYpePjYzfLAPAr9vf3Dw4O6hUA/Bpf6AFGaWtr6zfHx/UKAIbr5OSkngDAO4gyAGN1fHy8vb1drwBgiI6OjvZns3oFAO8gygCM1WQyufe739UrABicyWRycu9evQKAdxNlAEbs6Ojo1q1b9QoAhuXk3r2dnZ16BQDvJsoAjNvvT0+n02m9AoChmM1md+/erVcAcCWiDMC4bW9vn96/X68AYBCm0+n9B/c3NzfrIQBciSgDMHqHh4f+iQmAjY2NBw8ebG97cAlgNEQZgFVwcnIyOzioVwBQOjk5OfCiMYBREWUAVsHm5ubDhw93d3frIQA07ty5c/z55/UKAN6PKAOwIqbT6X/88Y/b29v1EACW7fDw8Penp/UKAN6bKAOwOra3t//0xRe6DMBaOTg4uP/ggZf7AoyRKAOwUnZ2dv70xRc7O97yCLAWbh0ePvzDHyYT3+oBRsnlG2DVLLrMzZs36yEAfFp37tx5+PChIgMwXq7gACto8RzTLf/BAbC6fntycnr/vqeWAEZt87snz+oNAHwq3z1+/Pjx43oFANdpOp3ef/BAeQdYAaIMwIp7+fLlV19+OZ/P6yEAXIPZbHb/wf3tbe8OA1gFogzA6nv79u2333775Icf6iEAfLjJZHJycnL3s888sgSwMkQZgHXx8uXLb77++vXr1/UQAN7b4dHRvXv3/LkewIoRZQDWyOXl5dMnTx4/fuxpJoCx2N/f/+3JyWw2q4cAcP1EGYC1c3Fx8fTJk++///78/LzeAsAv2p/Njo+PvdAXYIWJMgBr6vLy8sXz53//4YcXz5/XWwD4l8lkcvv27Tt37+7t7dVbAPi0RBmAdTefz5+dnZ2dnb169areArC+JpPJwcHB0dHRrcPDyWRSzwFgGUQZAP7h7Zs3L16+fPXq1auXL1+/fn15eVkvAlhxk8lkb29vfzab7e/vz2b+Vglg3YgyAPyMy8vLn16//un8/Pz8fD6fv3nz5uLt27cXb+tdAGO1ubE5mU6n0+nW1tbO9vbOzs6N3V3/pgSw5rbqAQAM0ebm5u7Nm7s3b9ZDAABgZXlaFQAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAI/A8beRt7vKNl/wAAAABJRU5ErkJggg=="/>
-                                      </defs>
-                                    </svg>
-                                    <p>File Name</p>
-                                  </div>
-                                  <div>
-                                    <svg width="164" height="207" viewBox="0 0 164 207" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                      <rect width="164" height="207" fill="url(#pattern0)"/>
-                                      <defs>
-                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                          <use xlink:href="#image0_1998_71597" transform="matrix(0.000906504 0 0 0.000718196 -0.176829 -0.0772947)"/>
-                                        </pattern>
-                                        <image id="image0_1998_71597" width="1500" height="1500" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABdwAAAXcCAIAAAC3V9szAAAgAElEQVR4nOzdaVMbB6K2YSQhNpvNeMHjJY5zMvP+/38z44zxlhgcQCDJCLSeD6pKzXvGC2bR0926rm/O1k91pUrippfawfHpAgAAAACzVU8PAAAAAJhHogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASIMgAAAAABogwAAABAgCgDAAAAECDKAAAAAASI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AAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAIiDIAAAAAAVEGAAAAICDKAAAAAAREGQAAAICAKAMAAAAQEGUAAAAAAqIMAAAAQECUAQAAAAiIMgAAAAABUQYAAAAgIMoAAAAABEQZAAAAgIAoAwAAABAQZQAAAAACogwAAABAQJQBAAAACIgyAAAAAAFRBgAAACAgygAAAAAERBkAAACAgCgDAAAAEBBlAAAAAAKiDAAAAEBAlAEAAAAI/A8beRt7vKNl/wAAAABJRU5ErkJggg=="/>
-                                      </defs>
-                                    </svg>
-                                    <p>File Name</p>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- ....cancel/next (buttons)... -->
-                              <div class="col-12 justify-content-center form-actions d-flex gap-3">
-                                <button type="button"
-                                  class="btn btn-outline-dark rounded" wire:click.prevent="showList">Back</button>
-                                  <button type="submit"
-                                  class="btn btn-primary rounded">Submit</button>
-                                <button type="submit"
-                                  class="btn btn-primary rounded">Next</button>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-                <!--End: Drive Documents Pane-->
-              </div>
-              <!-- tab-content-end    -->
-            </div>
-            <!-- Basic Floating Label Form section end -->
-          </div>
-          <!-- ...card-body... -->
-          <!-- END: Steps -->
-        </div>
-      </div>
-    </div>
-    </div>
-    <!-- End: Content-->
-      <!-- END: Model: POPUP | Add Address   -->
-  
-  <!-- Add Industry Modal -->
-  <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="industryModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /Add Industry Modal -->
-  
-  </div>
-  </div>
-  @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-    <script>
-      document.addEventListener("livewire:load", () => {
-        let el = $('.select2')
-        initSelect()
-  
-        Livewire.hook('message.processed', (message, component) => {
-          initSelect()
-        })
-  
-        // Only needed if doing save without redirect
-        /* Livewire.on('setCategoriesSelect', values => {
-          el.val(values).trigger('change.select2')
-        })*/
-  
-        // Will come into play if and when wire:model is applied
-        // el.on('change', function (e) {
-        // 	@this.set('productCategories', el.select2("val"))
-        // })
-  
-        function initSelect () {
-          el.select2({
-            placeholder: '{{__('Select your option')}}',
-            allowClear: !el.attr('required'),
-          })
-        }
-      })
-      
-      new Pikaday({
-        field: document.getElementById('service_start_date'),
-        format: 'MM/DD/YYYY'
-      })
-    </script>
-  @endpush
-  
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label class="form-label" for="position-column">
+													Position
+												</label>
+												<input type="text" id="position-column" class="form-control" name="positionColumn" placeholder="Enter Position"/>
+											</div>
+
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<label class="form-label" for="f-name">
+													First Name
+													<span class="mandatory" aria-hidden="true">
+														*
+													</span>
+												</label>
+												<input type="text" id="f-name" class="form-control" name="f-name" placeholder="Enter First Name" required aria-required="true"/>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label class="form-label" for="l-name">
+													Last Name
+													<span class="mandatory" aria-hidden="true">
+														*
+													</span>
+												</label>
+												<input type="text" id="l-name" class="form-control" name="l-name" placeholder="Enter Last Name" required aria-required="true"/>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<label class="form-label" for="pronouns-column">
+													Pronouns
+												</label>
+												<input type="text" id="pronouns-column" class="form-control" placeholder="Enter Pronouns" name="pronouns"/>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label class="form-label" for="">
+													Date of Birth
+												</label>
+												<div class="d-flex align-items-center w-100">
+													<div class="position-relative flex-grow-1">
+														<input type="text" class="form-control js-single-date" placeholder="Select Date of Birth" aria-label="" aria-describedby="">
+														<svg class="icon-date" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z" fill="black"/>
+														</svg>
+													</div>
+													<button type="button" class="btn px-2">
+														<svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M12 0C6.54545 0 1.88727 3.52467 0 8.5C1.88727 13.4753 6.54545 17 12 17C17.4545 17 22.1127 13.4753 24 8.5C22.1127 3.52467 17.4545 0 12 0ZM12 14.1667C8.98909 14.1667 6.54545 11.628 6.54545 8.5C6.54545 5.372 8.98909 2.83333 12 2.83333C15.0109 2.83333 17.4545 5.372 17.4545 8.5C17.4545 11.628 15.0109 14.1667 12 14.1667ZM12 5.1C10.1891 5.1 8.72727 6.61867 8.72727 8.5C8.72727 10.3813 10.1891 11.9 12 11.9C13.8109 11.9 15.2727 10.3813 15.2727 8.5C15.2727 6.61867 13.8109 5.1 12 5.1Z" fill="black"/>
+														</svg>
+													</button>
+												</div>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<div class="d-flex justify-content-between align-items-center">
+													<label class="form-label" for="gender-column">
+														Gender
+													</label>
+													<a href="#" class="fw-bold">
+														<small>
+															<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
+															</svg>
+															Add New
+														</small>
+													</a>
+												</div>
+												<select class="select2 form-select" id="gender-column">
+													<option>Male</option>
+													<option>Female</option>
+													<option>Others</option>
+												</select>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<div class="d-flex justify-content-between align-items-center">
+													<label class="form-label" for="ethnicity-column">
+														Ethnicity
+													</label>
+													<a href="#" class="fw-bold">
+														<small>
+															<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
+															</svg>
+															Add New
+														</small>
+													</a>
+												</div>
+												<select class="select2 form-select" id="ethnicity-column">
+													<option>Select Ethnicity</option>
+												</select>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<label class="form-label" for="email">
+													Email
+													<span class="mandatory" aria-hidden="true">
+														*
+													</span>
+												</label>
+												<input type="text" id="email" class="form-control" name="email" placeholder="Enter Email" required aria-required="true"/>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label class="form-label" for="phone">
+													Phone Number
+												</label>
+												<input type="text" id="phone" class="form-control" name="phone" placeholder="Enter Phone Number"/>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<label class="form-label" for="preferred-language">
+													Preferred Language
+												</label>
+												<select class="select2 form-select" id="preferred-language">
+													<option>English</option>
+												</select>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label class="form-label" for="time-zone">
+													Time Zone
+												</label>
+												<select class="select2 form-select" id="time-zone">
+													<option>Select Time Zone</option>
+												</select>
+											</div>
+											
+											<div class="col-lg-6 pe-lg-5 mb-4">
+												<label class="form-label" for="service-consumer-introduction-column">
+													Service Consumer Introduction
+												</label>
+												<textarea class="form-control" rows="3" cols="3" placeholder="" name="service-consumer-introduction-column" id="service-consumer-introduction-column"></textarea>
+											</div>
+											
+											<div class="col-lg-6 ps-lg-5 mb-4">
+												<label for="file" class="form-label">
+													Service Consumer Introduction Media
+												</label>
+												<input class="form-control" type="file" id="file">
+											</div>
+											
+											<div class="col-lg-12 mb-4">
+												<div class="row">
+													<div class="col-lg-6 pe-lg-5">
+														<label class="form-label">Tags</label>
+														<select data-placeholder="" multiple class="form-select chosen-select" tabindex="">
+															<option value=""></option>
+															<option selected>Admin staff</option>
+															<option selected>Customers</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-lg-12 mb-4">
+												<div class="row">
+													<div class="col-lg-6 mb-4">
+														<h2>Default Billing Address</h2>
+														<button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+															</svg>
+															<span>Add Address</span>
+														</button>
+														<table class="table table-hover border">
+															<thead>
+																<th>#</th>
+																<th>Address</th>
+																<th></th>
+															</thead>
+															<tbody>
+																<tr class="odd">
+																	<td>1</td>
+																	<td>
+																		<p>
+																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																		</p>
+																	</td>
+																	<td class="align-middle">
+																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</td>
+																</tr>
+																<tr class="even selected">
+																	<td>2</td>
+																	<td>
+																		<p>
+																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																		</p>
+																	</td>
+																	<td class="align-middle">
+																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</td>
+																</tr>
+																<tr class="odd">
+																	<td>3</td>
+																	<td>
+																		<p>
+																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																		</p>
+																	</td>
+																	<td class="align-middle">
+																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													
+													<div class="col-lg-6 mb-4">
+														<h2>Default Service Address</h2>
+														<div class="d-lg-flex justify-content-between align-items-center mb-lg-4">
+															<div class="form-check mb-lg-0">
+																<input class="form-check-input" type="checkbox" value="" id="same-as-billing-address-checkbox">
+																<label class="form-check-label" for="same-as-billing-address-checkbox">
+																	Same as Billing Address
+																</label>
+															</div>
+															
+															<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+																<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																	<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+																</svg>
+																<span>Add Address</span>
+															</button>
+														</div>
+														<table class="table table-hover border">
+															<thead>
+																<th>#</th>
+																<th>Address</th>
+																<th></th>
+															</thead>
+															<tbody>
+																<tr class="odd">
+																	<td>1</td>
+																	<td>
+																		<p>
+																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																		</p>
+																	</td>
+																	<td class="align-middle">
+																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</td>
+																</tr>
+																<tr class="even selected">
+																	<td>2</td>
+																	<td>
+																		<p>
+																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																		</p>
+																	</td>
+																	<td class="align-middle">
+																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</td>
+																</tr>
+																<tr class="odd">
+																	<td>3</td>
+																	<td>
+																		<p>
+																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																		</p>
+																	</td>
+																	<td class="align-middle">
+																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-lg-12 mb-4">
+												<div class="form-check mb-lg-0">
+													<input class="form-check-input" type="checkbox" value="" id="HideDepartmentfromProvider">
+													<label class="form-check-label" for="HideDepartmentfromProvider">
+														Hide Department from Provider
+													</label>
+												</div>
+											</div>
+											
+											<div class="col-lg-12 d-lg-flex gap-5 justify-content-center">
+												<div class="form-check mb-lg-0">
+													<input class="form-check-input" type="checkbox" id="HideUsersDetailsfromProvider">
+													<label class="form-check-label" for="HideUsersDetailsfromProvider">
+														Hide User's Details from Providers
+													</label>
+												</div>
+												<div class="form-check mb-lg-0">
+													<input class="form-check-input" type="checkbox" value="" id="SendInvitationEmailtotheCustomer">
+													<label class="form-check-label" for="SendInvitationEmailtotheCustomer">
+														Send Invitation Email to the Customer
+													</label>
+												</div>
+											</div>
+											{{-- Action Buttons Start --}}
+											<div class="col-12 justify-content-center form-actions d-flex gap-3">
+												<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+													Cancel
+												</button>
+												<button type="submit" class="btn btn-primary rounded">
+													Save & Exit
+												</button>
+												<button type="submit" class="btn btn-primary rounded">
+													Next
+												</button>
+											</div>
+											{{-- Action Buttons End --}}
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						{{-- END Customer Info --}}
+
+						{{-- BEGIN: Permission Configurations --}}
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'permission-configurations' }" id="permission-configurations" role="tabpanel" aria-labelledby="permission-configurations-tab" tabindex="0" x-show="tab === 'permission-configurations'">
+							<section id="multiple-column-form">
+								<div class="row">
+									<div class="card-body">
+										<div class="d-lg-flex justify-content-between mb-lg-0 mb-4">
+											<h2>Permission Configurations</h2>
+											<div class="d-flex flex-column justify-content-center align-items-center gap-1">
+												<label class="form-label-sm">
+													Copy permissions from another user
+												</label>
+												<a href="#" class="btn btn-primary w-75">
+													Select User
+												</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12 mb-4">
+												<label class="form-label">
+													Roles & Relationships
+												</label>
+												<p>
+													Select which roles this user will play in the company. If the user is not a Supervisor and or Billing Manager then you can select other users as Supervisor of this user and or Billing Manager of the user.
+												</p>
+											</div>
+											<div class="col-lg-12 mb-4">
+												<label class="form-label">
+													Assigned Supervisor(s)
+												</label>
+												<div>
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+														<x-icon name="right-color-arrow"/>
+														Assigned Supervisor(s)
+													</button>
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="AssignSameUser">
+														<label class="form-check-label" for="AssignSameUser">
+															Assign Same User
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="row mb-5">
+												<div class="col-lg-12 mb-4">
+													<label class="form-label text-primary">
+														Select Role
+													</label>
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+														<label class="form-check-label" for="CompanyAdmin">
+															Company Admin
+														</label>
+													</div>
+												</div>
+												<div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="Supervisor" checked>
+														<label class="form-check-label" for="Supervisor">
+															Supervisor
+														</label>
+													</div>
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+														<x-icon name="right-color-arrow"/>
+														Supervising
+													</button>
+													<div class="uploaded-data d-flex align-items-center">
+														<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+														<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+														<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+														<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Image">
+														<div class="more">
+															<span class="value">8</span> more
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 mb-4 d-lg-flex gap-5">
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="Requester" checked>
+														<label class="form-check-label" for="Requester">
+															Requester
+														</label>
+													</div>
+													<div>
+														<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+															<x-icon name="right-color-arrow"/>
+															Assigned Billing Manager
+														</button>
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="checkbox" value="" id="AssignSameUser">
+															<label class="form-check-label" for="AssignSameUser">
+																Assign Same User
+															</label>
+														</div>
+													</div>
+												</div>
+												
+												<div class="col-lg-12 mb-4">
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
+														<label class="form-check-label" for="ServiceConsumer">
+															Service Consumer
+														</label>
+													</div>
+												</div>
+												
+												<div class="col-lg-12 mb-4">
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
+														<label class="form-check-label" for="ServiceConsumer">
+															Participant
+														</label>
+													</div>
+												</div>
+												
+												<div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
+													<div class="form-check mb-lg-0">
+														<input class="form-check-input" type="checkbox" value="" id="BillingManager" checked>
+														<label class="form-check-label" for="BillingManager">
+															Billing Manager
+														</label>
+													</div>
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+														<x-icon name="right-color-arrow"/>
+														Billing Manager
+													</button>
+												</div>
+											</div>
+											
+											<div class="row mb-5">
+												<div class="col-lg-6 mb-4 pe-lg-5">
+													<label class="form-label">
+														Preferred Providers
+													</label>
+													<select class="form-select">
+														<option>Select Preferred Providers</option>
+													</select>
+												</div>
+												<div class="col-lg-6 mb-4 ps-lg-5">
+													<label class="form-label">
+														Disfavored Providers
+													</label>
+													<select class="form-select">
+														<option>Select Disfavored Providers</option>
+													</select>
+												</div>
+												
+												<div class="col-lg-6 mb-4 pe-lg-5">
+													<label class="form-label">
+														Grant Access to User(s)' Schedules?
+													</label>
+													<div class="d-flex gap-3">
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="radio" name="GrantAccesstoUserSchedules" value="" id="GrantAccesstoUserSchedulesYes" checked>
+															<label class="form-check-label" for="GrantAccesstoUserSchedulesYes">
+																Yes
+															</label>
+														</div>
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="radio" name="GrantAccesstoUserSchedules" value="" id="GrantAccesstoUserSchedulesNo">
+															<label class="form-check-label" for="GrantAccesstoUserSchedulesNo">
+																No
+															</label>
+														</div>
+													</div>
+												</div>
+												
+												<div class="col-lg-6 mb-4 ps-lg-5">
+													<label class="form-label">
+														Grant Access to User(s)' Schedules
+													</label>
+													<select class="form-select">
+														<option>Select</option>
+													</select>
+												</div>
+												
+												<div class="col-lg-6 mb-4 pe-lg-5">
+													<label class="form-label">
+														Require Service Request Approval from Assigned Supervisor
+														<i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+													</label>
+													<div class="d-flex gap-3">
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="radio" name="RequireServiceRequestApprovalfromAssignedSupervisor" value="" id="RequireServiceRequestApprovalfromAssignedSupervisorYes" checked>
+															<label class="form-check-label" for="RequireServiceRequestApprovalfromAssignedSupervisorYes">
+																Yes
+															</label>
+														</div>
+														
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="radio" name="RequireServiceRequestApprovalfromAssignedSupervisor" value="" id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
+															<label class="form-check-label" for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
+																No
+															</label>
+														</div>
+													</div>
+												</div>
+												
+												<div class="col-lg-6 mb-4 ps-lg-5">
+													<label class="form-label">
+														Hide Billing Information from User
+													</label>
+													<div class="d-flex gap-3">
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="radio" name="HideBillingInformationfromUser" value="" id="HideBillingInformationfromUserYes" checked>
+															<label class="form-check-label" for="HideBillingInformationfromUserYes">
+																Yes
+															</label>
+														</div>
+														<div class="form-check mb-lg-0">
+															<input class="form-check-input" type="radio" name="HideBillingInformationfromUser" value="" id="HideBillingInformationfromUserNo">
+															<label class="form-check-label" for="HideBillingInformationfromUserNo">
+																No
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-lg-12 mb-4">
+												<label class="form-label" for="industry-column">
+													Assigned Admin-Staff
+												</label>
+												<div>
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
+														<x-icon name="right-color-arrow"/>
+														Assigned Admin-Staff
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									{{-- Action Buttons Start --}}
+									<div class="col-12 justify-content-center form-actions d-flex gap-3">
+										<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+											Cancel
+										</button>
+										<button type="submit" class="btn btn-primary rounded">
+											Save & Exit
+										</button>
+										<button type="submit" class="btn btn-primary rounded">
+											Next
+										</button>
+									</div>
+									{{-- Action Buttons End --}}
+								</div>
+							</section>
+						</div>
+						{{-- END: Permission Configurations --}}
+
+						{{-- BEGIN: Service Catalog --}}
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }" id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0" x-show="tab === 'service-catalog'">
+							<section id="multiple-column-form">
+								<div class="row">
+									<div class="card-body">
+										<div class="col-md-8 mb-md-2">
+											<div class="mb-5">
+												<h2>Service Catalog</h2>
+											</div>
+										</div>
+										
+										<div class="col-md-12 mb-md-2">
+											<div class="row">
+												<div class="col-lg-5 mb-3">
+													<p class="fs-5">Filter By Accommodation</p>
+													<div class="content-body">
+														<div class="card">
+															<div class="card-body shadow-sm">
+																<input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
+																<div class="overflow-y-auto max-h-56">
+																	<table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
+																		<tbody>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p>Shelby Sign Language</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p>Language Translation Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p>Real Time Captioning Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p>Real Time Captioning Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p>Real Time Captioning Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p>Real Time Captioning Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p> Sign Language Interpreting Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p> Spoken Language Interpreting Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p> Spoken Language Interpreting Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p> Spoken Language Interpreting Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p> Spoken Language Interpreting Services</p>
+																				</td>
+																			</tr>
+																			<tr role="row" class="odd">
+																				<td class="text-start">
+																					<p> Spoken Language Interpreting Services</p>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												<div class="col-lg-7 ps-lg-5">
+													<div class="mb-3">
+														<p class="fs-5">Select Service</p>
+													</div>
+													<div class="card">
+														<div class="card-body shadow-sm">
+															<input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
+															<div class="overflow-y-auto max-h-56">
+																<table id="" class="table table-hover" aria-label="Select Service Table">
+																	<tbody>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Language Interpreting</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch mb-0">
+																					<input class="form-check-input" type="checkbox" role="switch" id="Languageinterpreting">
+																					<label class="form-check-label text-nowrap" for="Languageinterpreting">
+																						In-Active
+																					</label>
+																					<label class="form-check-label text-nowrap" for="Languageinterpreting">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>New service capacity and capabilities</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Shelby test two service</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>CART Captioning</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Transcript Services</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Transcript Services</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Transcript Services</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Transcript Services</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																		<tr role="row" class="odd">
+																			<td class="text-start">
+																				<p>Transcript Services</p>
+																			</td>
+																			<td>
+																				<div class="form-check form-switch">
+																					<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status" checked>
+																					<label class="form-check-label">
+																						In-Active
+																					</label>
+																					<label class="form-check-label">
+																						Active
+																					</label>
+																				</div>
+																			</td>
+																			<td width="5%">
+																				<div class="d-flex actions">
+																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																						<x-icon name="dollar-icon"/>
+																					</a>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									{{-- Action Buttons Start --}}
+									<div class="col-12 justify-content-center form-actions d-flex gap-3">
+										<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+											Cancel
+										</button>
+										<button type="submit" class="btn btn-primary rounded">
+											Save & Exit
+										</button>
+										<button type="submit" class="btn btn-primary rounded">
+											Next
+										</button>
+									</div>
+									{{-- Action Buttons End --}}
+								</div>
+							</section>
+						</div>
+						{{-- END: Service Catalog --}}
+
+						{{-- BEGIN: Drive Documents Pane --}}
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }" id="drive-documents" role="tabpanel" aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
+							<section id="multiple-column-form">
+								<div class="row">
+									<div class="col-12">
+										<form class="form">
+											<div class="col-md-8 mb-md-2">
+												<h2>Drive Documents</h2>
+											</div>
+											<div class="col-md-12 mb-md-2">
+												<div class="row">
+													<div class="col-md-12 mb-md-2">
+														<div class="row justify-content-center">
+															<div class="col-lg-8">
+																<div class="d-flex flex-column align-items-center justify-content-center mb-3">
+																	<label for="formFile" class="form-label">
+																		Upload Document
+																	</label>
+																	<input class="form-control" type="file" id="formFile">
+																</div>
+															</div>
+														</div>
+														<div class="d-flex justify-content-center gap-3 mt-4">
+															<div>
+																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<p>File Name</p>
+															</div>
+															<div>
+																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<p>File Name</p>
+															</div>
+															<div>
+																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<p>File Name</p>
+															</div>
+														</div>
+													</div>
+													{{-- Action Buttons Start --}}
+													<div class="col-12 justify-content-center form-actions d-flex gap-3">
+														<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+															Back
+														</button>
+														<button type="submit" class="btn btn-primary rounded">
+															Submit
+														</button>
+														<button type="submit" class="btn btn-primary rounded">
+															Next
+														</button>
+													</div>
+													{{-- Action Buttons End --}}
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</section>
+						</div>
+						{{-- END: Drive Documents Pane --}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{-- Add Industry Modal- Start --}}
+	<div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="industryModalLabel">Modal Title</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+						Close
+					</button>
+					<button type="button" class="btn btn-primary">
+						Save changes
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{{-- Add Industry Modal - End --}}
+</div>
+
+@push('scripts')
+
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script>
+	document.addEventListener("livewire:load", () => {
+		let el = $('.select2')
+		initSelect()
+		
+		Livewire.hook('message.processed', (message, component) => {
+			initSelect()
+		})
+
+		// Only needed if doing save without redirect
+		/* Livewire.on('setCategoriesSelect', values => {
+		  el.val(values).trigger('change.select2')
+		})*/
+
+		// Will come into play if and when wire:model is applied
+		// el.on('change', function (e) {
+		// 	@this.set('productCategories', el.select2("val"))
+		// })
+
+		function initSelect () {
+			el.select2({
+				placeholder: '{{__('Select your option')}}',
+				allowClear: !el.attr('required'),
+			})
+		}
+	})
+
+	new Pikaday({
+		field: document.getElementById('service_start_date'),
+		format: 'MM/DD/YYYY'
+	})
+</script>
+@endpush
