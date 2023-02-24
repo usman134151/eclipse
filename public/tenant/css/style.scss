@@ -1145,3 +1145,38 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 .bg-muted {
 	background: #E8E8E8;
 }
+
+.modal-footer {
+	border-top-color: transparent;
+}
+
+.modal .modal-footer {
+	padding: 1.5rem 1.5rem;
+}
+
+
+.btn.btn-hs-icon {
+	svg {
+		fill: $primary;
+		width: 2rem;
+	}
+	&:hover {
+		svg {
+			fill: #ffffff;
+		}
+	}
+}
+
+.btn.btn-hs-icon.btn-secondary svg {
+	width: 1rem;
+	color: #000000;
+}
+
+.table-hover > tbody > tr:hover {
+	.btn.btn-hs-icon * {
+		fill: #ffffff;
+	}
+	.btn.btn-hs-icon.btn-secondary * {
+		fill: #000000;
+	}
+}

@@ -489,7 +489,7 @@
 													Assigned Supervisor(s)
 												</label>
 												<div>
-													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"  data-bs-toggle="modal" data-bs-target="#assignedSupervisorModal">
 														<x-icon name="right-color-arrow"/>
 														Assigned Supervisor(s)
 													</button>
@@ -520,7 +520,7 @@
 															Supervisor
 														</label>
 													</div>
-													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"  data-bs-toggle="modal" data-bs-target="#supervisingModal">
 														<x-icon name="right-color-arrow"/>
 														Supervising
 													</button>
@@ -542,7 +542,7 @@
 														</label>
 													</div>
 													<div>
-														<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+														<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#assignedBillingManagerModal">
 															<x-icon name="right-color-arrow"/>
 															Assigned Billing Manager
 														</button>
@@ -580,7 +580,7 @@
 															Billing Manager
 														</label>
 													</div>
-													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup">
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#billManagingModal">
 														<x-icon name="right-color-arrow"/>
 														Billing Manager
 													</button>
@@ -682,7 +682,7 @@
 													Assigned Admin-Staff
 												</label>
 												<div>
-													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#adminStaffModal">
 														<x-icon name="right-color-arrow"/>
 														Assigned Admin-Staff
 													</button>
