@@ -121,7 +121,7 @@
 													</a>
 												</div>
 												<div class="mb-1">
-													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
+													<button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#departmentModal">
 														<x-icon name="right-color-arrow"/>
 														Select Department
 													</button>
@@ -291,7 +291,7 @@
 												<div class="row">
 													<div class="col-lg-6 mb-4">
 														<h2>Default Billing Address</h2>
-														<button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+														<button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
 															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 																<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
 															</svg>
@@ -357,7 +357,7 @@
 																</label>
 															</div>
 															
-															<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+															<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
 																<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 																	<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
 																</svg>
@@ -1107,27 +1107,353 @@
 	</div>
 	{{-- Add Industry Modal- Start --}}
 	<div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="industryModalLabel">Modal Title</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-						Close
-					</button>
-					<button type="button" class="btn btn-primary">
-						Save changes
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="industryModalLabel">Select Industry</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <label class="form-label-sm fw-bold mb-0">Select Industry</label>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <label class="form-label-sm fw-bold mb-0">Default <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
+                  </div>
+                </div><!-- END: Row Header -->
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="IndustryNameCheckbox1">
+                      <label class="form-check-label " for="IndustryNameCheckbox1">
+                        <small>Industry Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="IndustryName" id="IndustryName1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="IndustryNameCheckbox2">
+                      <label class="form-check-label " for="IndustryNameCheckbox2">
+                        <small>Industry Name 2</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="IndustryName" id="IndustryName2">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="IndustryNameCheckbox3">
+                      <label class="form-check-label " for="IndustryNameCheckbox3">
+                        <small>Industry Name 3</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="IndustryName" id="IndustryName3">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="IndustryNameCheckbox4">
+                      <label class="form-check-label " for="IndustryNameCheckbox4">
+                        <small>Industry Name 4</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="IndustryName" id="IndustryName4">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="IndustryNameCheckbox5">
+                      <label class="form-check-label " for="IndustryNameCheckbox5">
+                        <small>Industry Name 5</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="IndustryName" id="IndustryName5">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-8 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="IndustryNameCheckbox6">
+                      <label class="form-check-label " for="IndustryNameCheckbox6">
+                        <small>Industry Name 6</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="IndustryName" id="IndustryName6">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row justify-content-center w-100">
+              <div class="col-lg-3">
+                <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+              </div>
+              <div class="col-lg-3">
+                <button type="button" class="btn rounded w-100 btn-primary">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 {{-- Add Industry Modal - End --}}
+{{-- Add Department Modal- Start --}}
+	<div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="departmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="departmentModalLabel">Select Department</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <div class="col-lg-11">
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <label class="form-label-sm fw-bold mb-0">Select Department</label>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <label class="form-label-sm fw-bold mb-0">Default <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <label class="form-label-sm fw-bold mb-0">Supervisor</label>
+                  </div>
+                </div><!-- END: Row Header -->
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                      <label class="form-check-label " for="DepartmentNameCheckbox1">
+                        <small>Department Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                      <label class="form-check-label " for="DepartmentNameCheckbox1">
+                        <small>Department Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                      <label class="form-check-label " for="DepartmentNameCheckbox1">
+                        <small>Department Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                      <label class="form-check-label " for="DepartmentNameCheckbox1">
+                        <small>Department Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                      <label class="form-check-label " for="DepartmentNameCheckbox1">
+                        <small>Department Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+                <div class="row">
+                  <div class="col-lg-6 py-2">
+                    <div class="form-check mb-0">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                      <label class="form-check-label " for="DepartmentNameCheckbox1">
+                        <small>Department Name 1</small>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 text-center py-2">
+                    <div class="form-check mb-0 mx-auto d-inline-block">
+                      <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                    </div>
+                  </div>
+                </div><!-- END: Row Data -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row justify-content-center w-100">
+              <div class="col-lg-3">
+                <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+              </div>
+              <div class="col-lg-3">
+                <button type="button" class="btn rounded w-100 btn-primary">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{{-- Add Department Modal - End --}}
+{{-- Add Department Modal- Start --}}
+	<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="addAddressModalLabel">Add Address</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-6 mb-4">
+                    <label class="form-label" for="address-title">Address Title</label>
+                    <input type="text" id="address-title" class="form-control" name="address-title-column" placeholder="Example “Head Office”">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="address1">Address 1</label>
+                <input type="text" id="address1" class="form-control" name="address1-column" placeholder="Enter Address 1">
+              </div>
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="address2">Address 2</label>
+                <input type="text" id="address2" class="form-control" name="address2-column" placeholder="Enter Address 2">
+              </div>
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="city">City</label>
+                <select class="form-select">
+                  <option>Select City</option>
+                </select>
+              </div>
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="state-province">State / Province</label>
+                <select class="form-select">
+                  <option>Select State / Province</option>
+                </select>
+              </div>
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="country">Country</label>
+                <select class="form-select">
+                  <option>Select Country</option>
+                </select>
+              </div>
+              <div class="col-lg-6 mb-4">
+                <label class="form-label" for="zip-code">Zip Code</label>
+                <input type="text" id="zip-code" class="form-control" name="zip-code-column" placeholder="Enter Zip Code">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row justify-content-center w-100">
+              <div class="col-lg-3">
+                <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+              </div>
+              <div class="col-lg-3">
+                <button type="button" class="btn rounded w-100 btn-primary">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{{-- Add Department Modal - End --}}
 </div>
 
 @push('scripts')
