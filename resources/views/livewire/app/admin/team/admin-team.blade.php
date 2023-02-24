@@ -41,13 +41,13 @@
 				<div x-data="{ tab: 'team-info' }" id="tab_wrapper">
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
-							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'team-info' }" @click.prevent="tab = 'team-info'" id="team-info-tab" role="tab" aria-controls="team-info" aria-selected="true"><span class="number">1</span> Team Info</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'team-info' }" @click.prevent="tab = 'team-info'" id="team-info-tab" role="tab" aria-controls="team-info" aria-selected="true"><span class="number">1</span> Team Info</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'team-members' }" @click.prevent="tab = 'team-members'" id="team-members-tab" role="tab" aria-controls="team-members" aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'team-members' }" @click.prevent="tab = 'team-members'" id="team-members-tab" role="tab" aria-controls="team-members" aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">3</span> System Permissions</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">3</span> System Permissions</a>
 						</li>
 					</ul>
 	
@@ -193,10 +193,10 @@
 								</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="javascript:void(0)" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
 									</div>
