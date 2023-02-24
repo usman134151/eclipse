@@ -7,6 +7,8 @@ use Livewire\Component;
 class AdminStaff extends Component
 {
 	public $showForm;
+	public $showProfile;
+
 	protected $listeners = ['showList' => 'resetForm', 'delete'];
 
 	public function mount()
@@ -25,6 +27,12 @@ class AdminStaff extends Component
 	public function resetForm()
 	{
 		$this->showForm=false;
+		$this->showProfile=false;
+	}
+
+	public function showProfile()
+	{
+		$this->showProfile=true;
 	}
 
 	public function editTeam()
