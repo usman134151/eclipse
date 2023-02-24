@@ -1,4 +1,4 @@
-<div>
+<div x-data="{accommodationServicesAccess: false, teamsProviderAccess: false, companiesCustomers: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 		  <div class="row breadcrumbs-top">
@@ -970,7 +970,7 @@
 				  </div>
 				</td>
 			  </tr>
-{{-- 
+  {{-- 
 			  <tr>
 				<td data-bs-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
 				  <strong>Business Profile & Settings </strong>
@@ -2171,7 +2171,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="companiesCustomers = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2213,7 +2213,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="companiesCustomers = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2256,7 +2256,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="companiesCustomers = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2299,7 +2299,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="companiesCustomers = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2342,7 +2342,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="companiesCustomers = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2384,7 +2384,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="companiesCustomers = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2517,7 +2517,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="teamsProviderAccess = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2559,7 +2559,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="teamsProviderAccess = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2602,7 +2602,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="teamsProviderAccess = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2645,7 +2645,7 @@
 																	</div>
 																</td>
 																<td class="align-middle">
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="teamsProviderAccess = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2688,7 +2688,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="teamsProviderAccess = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2730,7 +2730,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="teamsProviderAccess = true">Example Company</a>
 																</td>
 																<td class="text-center">
 																	3
@@ -2862,7 +2862,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
 	
 	
@@ -2903,7 +2903,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
 	
 	
@@ -2945,7 +2945,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
 	
 	
@@ -2987,7 +2987,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
 	
 	
@@ -3029,7 +3029,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
 	
 	
@@ -3070,7 +3070,7 @@
 																	</div>
 																</td>
 																<td>
-																	<a @click="offcanvasOpen = true">Example Company</a>
+																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
 	
 	
@@ -3484,4 +3484,7 @@
 			{{-- END: Steps --}}
 		</div>
 	</div>
+	@include('panels.user-access.accommodation-service-access')
+	@include('panels.user-access.teams-provider-access')
+	@include('panels.user-access.companies-customer-acess')
 </div>
