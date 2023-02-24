@@ -1439,7 +1439,7 @@
 					                            Upload File
 					                          </label>
 					                          <input class="form-control mb-1" type="file" id="formFile">
-					                          <div class="text-primary">License.PDf</div>
+					                          <div class="text-primary text-sm">License.PDf</div>
 					                        </div>
 					                        <div class="col-lg-6 pe-lg-5 mb-4">
 					                          <label class="form-label" for="notes">
