@@ -1416,12 +1416,14 @@
 					                          </div>
 					                        </div>
 					                        <div class="col-lg-12 mb-4">
-					                          <input class="form-check-input" type="checkbox" value="no-expiration" id="no-expiration">
-					                          <label class="form-check-label" for="no-expiration">
-					                            No Expiration
-					                          </label>
+					                        	<div class="form-check">
+							                        <input class="form-check-input" type="checkbox" value="no-expiration" id="no-expiration">
+							                        <label class="form-check-label" for="no-expiration">
+							                          No Expiration
+							                        </label>
+					                        	</div>
 					                        </div>
-					                        <div class="col-md-6 col-12 mb-4">
+					                        <div class="col-lg-6 pe-lg-5 mb-4">
 					                            <label class="form-label" for="end-date-column">Expiration Date</label>
 					                            <div class="d-flex align-items-center w-100">
 					                              <div class="position-relative flex-grow-1">
@@ -1432,20 +1434,20 @@
 					                              </div>
 					                            </div>
 					                        </div>
-					                        <div class="col-md-6 col-12 mb-4">
+					                        <div class="col-lg-6 ps-lg-5 mb-4">
 					                          <label for="formFile" class="form-label">
 					                            Upload File
 					                          </label>
 					                          <input class="form-control mb-1" type="file" id="formFile">
 					                          <div class="text-primary">License.PDf</div>
 					                        </div>
-					                        <div class="col-md-6 col-12 mb-4">
+					                        <div class="col-lg-6 pe-lg-5 mb-4">
 					                          <label class="form-label" for="notes">
 					                            Note
 					                          </label>
 					                          <textarea class="form-control" rows="4" placeholder="" name="notesColumn" id="notes"></textarea>
 					                        </div>
-					                        <div class="col-md-6 col-12 mb-4">
+					                        <div class="col-lg-6 ps-lg-5 mb-4">
 					                          <label class="form-label">Tags</label>
 					                          <select data-placeholder="" multiple class="form-select chosen-select" tabindex="">
 					                            <option value=""></option>
