@@ -1,4 +1,4 @@
-<div>
+<div x-data="{adminStaffDetails: false}">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -41,13 +41,13 @@
 				<div x-data="{ tab: 'team-info' }" id="tab_wrapper">
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'team-info' }" @click.prevent="tab = 'team-info'" id="team-info-tab" role="tab" aria-controls="team-info" aria-selected="true"><span class="number">1</span> Team Info</a>
+							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'team-info' }" @click.prevent="tab = 'team-info'" id="team-info-tab" role="tab" aria-controls="team-info" aria-selected="true"><span class="number">1</span> Team Info</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'team-members' }" @click.prevent="tab = 'team-members'" id="team-members-tab" role="tab" aria-controls="team-members" aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
+							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'team-members' }" @click.prevent="tab = 'team-members'" id="team-members-tab" role="tab" aria-controls="team-members" aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">3</span> System Permissions</a>
+							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">3</span> System Permissions</a>
 						</li>
 					</ul>
 	
@@ -169,7 +169,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true"  class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 										</div>
@@ -193,10 +193,10 @@
 								</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+										<a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="pencil"/>
 										</a>
-										<a href="#" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+										<a href="javascript:void(0)" title="Delete Team" aria-label="Delete Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 											<x-icon name="recycle-bin"/>
 										</a>
 									</div>
@@ -207,7 +207,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -245,7 +245,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -283,7 +283,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -321,7 +321,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -359,7 +359,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -397,7 +397,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -435,7 +435,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -473,7 +473,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -511,7 +511,7 @@
 									<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 								</td>
 								<td>
-									<div class="row g-2">
+									<div @click="adminStaffDetails = true" class="row g-2">
 										<div class="col-md-2">
 											<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
 										</div>
@@ -582,4 +582,5 @@
 		</nav>
 	</div>
 	@endif
+	@include('panels.common.admin-staff-details')
 </div>
