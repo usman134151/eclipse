@@ -213,8 +213,9 @@ h1, h2, h3, h4, h5, h6 {
 		}
 	}
 	&.nav-steps {
-		margin-bottom: 2rem;
-		padding-bottom: 2rem;
+		margin-bottom: 3rem;
+		padding-bottom: 1.5rem;
+		padding-top: 0.5rem;
 		li.nav-item {
 			margin-right: 1rem;
 			&:after {
@@ -242,7 +243,7 @@ h1, h2, h3, h4, h5, h6 {
 				color: #6e6b7b;
 				font-weight: 400;
 				font-size: 1.125rem;
-				margin-bottom: 1rem;
+				margin-bottom: 0;
 				margin-right: 0;
 				line-height: 1.5;
 				.number {
@@ -1139,4 +1140,8 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 
 .max-h-56 {
 	max-height: 30rem;
+}
+
+.bg-muted {
+	background: #E8E8E8;
 }
