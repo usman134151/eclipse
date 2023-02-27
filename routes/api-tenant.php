@@ -34,7 +34,7 @@ Route::group([
             Route::post('details', 'show');
             Route::post('profile_image_store','storeOrUpdateProfileImage');
             Route::post('calendar','authUserCalander');
-            
+            Route::post('add_user_address','storeUserAddress');
         });
         Route::prefix('users')->group(function () {
             Route::get('notifications', 'notifications');
@@ -46,6 +46,13 @@ Route::group([
         });
 
     });
+
+    Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->controller(DocumentController::class)->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::post('upload_user_document', 'store');
+        });
+    
+    });    
     /**
      *  Chat Module 
      *  Dev: Sakhawat Kamran
@@ -74,8 +81,19 @@ Route::group([
             Route::post('assignments', 'index');
             Route::post('assignment', 'show');
             Route::post('assignment/update_time', 'updateTime');
-            Route::post('assignment/check_in_details', 'checkInDetails');
-            Route::post('assignment/check_in_out', 'storeCheckInOut');
+            Route::post('assignment/check_in_out', 'checkInOutDetails');
+            Route::post('assignment/check_in_detail', 'checkInDetails');
+            Route::post('assignment/check_in_submit', 'checkInStore');
+            #### STEP_1 ####
+            Route::post('assignment/check_out_detail', 'checkOutDetails');
+            #### STEP_2 ####
+            Route::post('assignment/check_out_submit', 'storeCheckIn');
+            #### STEP_3 ####
+            Route::post('assignment/check_out_form_submit', 'storeCheckOutForm');
+            #### STEP_4 ####
+            Route::post('assignment/check_out_submit_note', 'storeCheckOutNotes');
+            #### STEP_5 ####
+            Route::post('assignment/check_out_rating_submit', 'storeCheckOutRating');
             Route::post('assignment/set_availability', 'storeAvailability');
             
         });

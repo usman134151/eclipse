@@ -196,8 +196,52 @@ class NotificationResponse extends Seeder
         ]);
         DB::table('api_notifications')->insert([
             'id'    =>  601,
-            'message' =>    'Assignment check in-out is sucessfuly completed.',
-            'title'    => 'Done Check In-Out!',
+            'message' =>    'Assignment check-in sucessfuly completed.',
+            'title'    => 'Check-In Done!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  602,
+            'message' =>    '1st step of check-out assignment done sucessfuly completed.',
+            'title'    => '1st Check-Out Done!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  603,
+            'message' =>    '2nd step of check-out assignment done sucessfuly completed.',
+            'title'    => '2nd Step Check-Out Done!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  604,
+            'message' =>    '3rd step of check-out assignment done sucessfuly completed.',
+            'title'    => '3rd Step Check-Out Done!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  605,
+            'message' =>    'Check-out assignment done sucessfuly completed.',
+            'title'    => 'Check-Out Done!',
             'btn_cancel'  =>   '',
             'btn_link'  =>   '',
             'base_code' =>   200,

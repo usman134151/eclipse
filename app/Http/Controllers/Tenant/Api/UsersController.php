@@ -523,7 +523,46 @@ class UsersController extends ApiController
             ],500);
         }
     }
+    
+    
+    /**
+     *  Desc: Store or Update User Address Api Call
+     *  Dev:  Sakhawat Kamran
+     *  @return \Illuminate\Http\Response
+     */
+     public function storeUserAddress(Request $request)
+    {
+        try{
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'address_title' => 'required',
+                    'address' => 'required',
+                    'latitude' => 'required',
+                    'longitude' => 'required',
+                    'city' => 'required',
+                    'state' => 'required',
+                    'country' => 'required',
+                    'zip_code' => 'required',
+                ]
+            );
+            if($validate !== true )
+            {
+                return $validate;
+            }   
 
+            $result = $this->usersDataMap(Auth::user()->id);
+            return $this->response($result, 200);
+
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    
+    }
+    
+    
     /**
      *  Desc: Store or Update Payment Preferences Api Call
      *  Dev:  Sakhawat Kamran
