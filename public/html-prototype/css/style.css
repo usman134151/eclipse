@@ -505,6 +505,12 @@ h1, h2, h3, h4, h5, h6 {
     width: 0.9375rem;
     top: 0.5rem;
     right: 2rem; }
+    .icon-date.md.left {
+      left: 0.75rem;
+      right: auto; }
+
+.has-date-icon-left-side .form-control.form-control-md {
+  padding-left: 2.25rem; }
 
 .cursor-pointer {
   cursor: pointer; }
@@ -923,6 +929,9 @@ small {
 .fill-success {
   fill: #198754; }
 
+.fill-danger {
+  fill: #dc3545; }
+
 .badge.bg-warning {
   color: #4E4E4E;
   font-size: 0.75rem;
@@ -1108,9 +1117,45 @@ small {
   width: 1rem;
   color: #000000; }
 
+.btn.btn-hs-icon svg.fill-stroke {
+  stroke: #ffffff;
+  fill: none; }
+
+.btn.btn-hs-icon.btn-secondary svg.fill-stroke {
+  stroke: #000000;
+  fill: transparent; }
+
 .table-hover > tbody > tr:hover .btn.btn-hs-icon * {
   fill: #ffffff; }
 .table-hover > tbody > tr:hover .btn.btn-hs-icon.btn-secondary * {
   fill: #000000; }
+.table-hover > tbody > tr:hover .btn.btn-hs-icon svg.fill-stroke * {
+  stroke: #ffffff;
+  fill: none; }
+.table-hover > tbody > tr:hover .btn.btn-secondary.btn-hs-icon svg.fill-stroke * {
+  fill: transparent;
+  stroke: #000000; }
+
+.form-control.is-search {
+  padding-right: calc(1.5em + 0.75rem); }
+
+.icon-search {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  overflow: hidden;
+  background-color: #888575;
+  border-radius: 100px; }
+  .icon-search.position-absolute {
+    right: 0.5rem;
+    top: 0.75rem; }
+
+.badge.rounded-lg {
+  border-radius: 50px; }
+
+.icon-edit {
+  position: absolute;
+  right: 1rem;
+  top: 1rem; }
 
 /*# sourceMappingURL=style.css.map */
