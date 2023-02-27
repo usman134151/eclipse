@@ -32,7 +32,7 @@ class ApiController extends Controller
                     'phone'         =>  '(923)023-9663',
                     'referral_code' => 'ABCDERT',
                     'gender'        => 'Male',
-                    'date_of_birth' => '23/04/1990',
+                    'date_of_birth' => api_date_formate(date('Y-m-d')),
                     'education' => 'Master',
                     'ethnicity' => 'White',
                     'time_zone' => 'USA(GMT-5)',
@@ -53,7 +53,7 @@ class ApiController extends Controller
                                         'document_id'    =>     1,
                                         'document_title'    =>  'Certification',
                                         'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
-                                        'expiration_date'   =>  '2022-05-27 00:00:00',
+                                        'expiration_date'   =>  api_date_formate(date('Y-m-d')),
                                         'status'            =>  '1',
                                     ],
                                     [
@@ -61,19 +61,18 @@ class ApiController extends Controller
                                         'document_id'    =>     2,
                                         'document_title'    =>  'Certification',
                                         'document'     =>  'https://www.pakainfo.com/wp-content/uploads/2021/09/sample-image-url-for-testing-300x169.jpg',
-                                        'expiration_date'   =>  '2022-05-27 00:00:00',
+                                        'expiration_date'   =>  api_date_formate(date('Y-m-d')),
                                         'status'            =>  '1',
                                     ]
                                 ],
                     'profile_pic' => $user->gravatar_url,
                     'industry' => 'Educations',
-                    'start_date' => '01/01/2023',
-                    'end_date' => '22/02/2023',
+                    'start_date' => api_date_formate(date('Y-m-d')),
+                    'end_date' => api_date_formate(date('Y-m-d')),
                     'industry' => 'Educations',
-                    'profile_pic' => $user->gravatar_url,
                     'payment_preferences' => 'direct_deposit_method',            
                     'availability_url' => url('/settings/user'),            
-                    'created_at' => $user->created_at,
+                    'created_at' => api_date_formate($user->created_at),
                 ];
         return $userData;
     }

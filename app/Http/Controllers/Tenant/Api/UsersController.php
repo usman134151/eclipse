@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Tenant\Api;
 
+use App\Models\Tenant\User;
 use Illuminate\Http\Request;
 use App\Services\FileService;
-use App\Models\Tenant\UserDetail AS Profile;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tenant\UserDetail AS Profile;
 use App\Http\Controllers\Tenant\Api\ApiController;
+
 class UsersController extends ApiController
 {
     /**
@@ -43,12 +45,55 @@ class UsersController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request 
      * @return \Illuminate\Http\Response
      */
-    public function get($id)
+    public function show(Request $request)
     {
-        //
+        $validate = $this->vallidateApi(
+            $request,
+            [
+                'uid' => 'required',
+            ]
+        );
+        if($validate !== true )
+        {
+            return $validate;
+        }   
+        $user_id = $request->uid;
+        $user = User::find($user_id);
+        $result =  [
+            'uid'           =>  $user->id,
+            'email'         =>  $user->email,
+            'user_name'     =>  $user->name,
+            'first_name'    =>  $user->first_name,
+            'last_name'     =>  $user->last_name,
+            'company'       => 'Example Company',
+            'industry'      =>  'Language Translater',
+            'role'          =>  'Supervisor' , 
+            'status'        =>  'active',
+            'is_certified'  =>  1,
+            'phone'         =>  '(923)023-9663',
+            'gender'        => 'Male',
+            'date_of_birth' => api_date_formate('23-04-1990'),
+            'payment_method' => 'mail_in_check',            
+            'education' => 'Master',
+            'pronouns'      => 'He',
+            'preferred_lang'=> 'English',
+            'country'       => 'Australia',
+            'state'         => 'Australia',
+            'city'          => 'Sydeny',
+            'zip_code'      => '84729',
+            'address_line_1'       => 'National Library of Australia, attraction, Canberra, Australia',
+            'address_line_2'       => 'National Library of Australia, attraction, Canberra, Australia',
+            'latitude'      => '-35.29648635',
+            'longitude'     => '149.12951134999997',
+            'accommodation' => 'Spoken Language Interpreting Services',
+            'profile_pic' => $user->gravatar_url,
+            'created_at' => api_date_formate($user->created_at),
+        ];
+
+        return $this->response($result, 200);
     }
 
     /**
@@ -118,36 +163,22 @@ class UsersController extends ApiController
                                 'service_id'    =>  1,
                                 'service_name'  =>  'Both Day Rate (New)',
                                 'standerd_rates' => [
-                                    [
-                                        'rate_type' => 'in-person',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-        
-                                    ],
-                                    [
-                                        'rate_type' => 'virtual',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'phone',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'teleconference',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ]
-                                    
+                                    'day_rate_in_person' => '$101.00',
+                                    'day_rate_virtual' => '$101.00',
+                                    'day_rate_phone' => '$101.00',
+                                    'day_rate_teleconference' => '$101.00',
+                                    'expedited_hurs_inperson'  => '1', 
+                                    'expedited_hurs_inperson_price'  => '$100',
+                                    'expedited_hurs_virtual'  => '1', 
+                                    'expedited_hurs_virtual_price'  => '$100', 
+                                    'expedited_hurs_phone'  => '1', 
+                                    'expedited_hurs_phone_price'  => '$100',
+                                    'expedited_hurs_teleconference'  => '1', 
+                                    'expedited_hurs_teleconference_price'  => '$100',
+                                    'after_hour_in_person_price' => '$300',
+                                    'after_hour_virtual_price' => '$100',
+                                    'after_hour_phone_price' => '$150',
+                                    'after_hour_teleconference_price' => '$250',
                                 ],
                                 'specialization_rates'  =>  
                                 [
@@ -173,34 +204,22 @@ class UsersController extends ApiController
                                 'service_id'    =>  2,
                                 'service_name'  =>  'Services For Testing Video',
                                 'standerd_rates' => [
-                                    [
-                                        'rate_type' => 'in-person',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => '$101.00',
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'virtual',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => '$101.00',
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'phone',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'teleconference',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ]
+                                    'day_rate_in_person' => '$101.00',
+                                    'day_rate_virtual' => '$101.00',
+                                    'day_rate_phone' => '$101.00',
+                                    'day_rate_teleconference' => '$101.00',
+                                    'expedited_hurs_inperson'  => '1', 
+                                    'expedited_hurs_inperson_price'  => '$100',
+                                    'expedited_hurs_virtual'  => '1', 
+                                    'expedited_hurs_virtual_price'  => '$100', 
+                                    'expedited_hurs_phone'  => '1', 
+                                    'expedited_hurs_phone_price'  => '$100',
+                                    'expedited_hurs_teleconference'  => '1', 
+                                    'expedited_hurs_teleconference_price'  => '$100',
+                                    'after_hour_in_person_price' => '$300',
+                                    'after_hour_virtual_price' => '$100',
+                                    'after_hour_phone_price' => '$150',
+                                    'after_hour_teleconference_price' => '$250',
                                 ],
                                 'specialization_rates'  =>  
                                 [
@@ -234,8 +253,8 @@ class UsersController extends ApiController
                         ]
                     ],
                     [
-                        'accommodation_id'  =>  1,
-                        'accommodation_name' => 'Sign And Language Interpreting Services',
+                        'accommodation_id'  =>  2,
+                        'accommodation_name' => 'Accessible Media Services',
                         'status' => 1,
                         'rate_service_wise' => 
                         [
@@ -243,21 +262,22 @@ class UsersController extends ApiController
                                 'service_id'    =>  1,
                                 'service_name'  =>  'Both Day Rate (New)',
                                 'standerd_rates' => [
-                                    [
-                                        'rate_type' => 'in-person',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-        
-                                    ],
-                                    [
-                                        'rate_type' => 'virtual',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ]
+                                    'day_rate_in_person' => '$101.00',
+                                    'day_rate_virtual' => '$101.00',
+                                    'day_rate_phone' => '$101.00',
+                                    'day_rate_teleconference' => '$101.00',
+                                    'expedited_hurs_inperson'  => '1', 
+                                    'expedited_hurs_inperson_price'  => '$100',
+                                    'expedited_hurs_virtual'  => '1', 
+                                    'expedited_hurs_virtual_price'  => '$100', 
+                                    'expedited_hurs_phone'  => '1', 
+                                    'expedited_hurs_phone_price'  => '$100',
+                                    'expedited_hurs_teleconference'  => '1', 
+                                    'expedited_hurs_teleconference_price'  => '$100',
+                                    'after_hour_in_person_price' => null,
+                                    'after_hour_virtual_price' => null,
+                                    'after_hour_phone_price' => null,
+                                    'after_hour_teleconference_price' => null,
                                 ],
                                 'specialization_rates'  =>  
                                 [
@@ -279,20 +299,22 @@ class UsersController extends ApiController
                                 'service_id'    =>  2,
                                 'service_name'  =>  'Services For Testing Video',
                                 'standerd_rates' => [
-                                    [
-                                        'rate_type' => 'in-person',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => '$101.00',
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'virtual',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => '$101.00',
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ]
+                                    'day_rate_in_person' => '$101.00',
+                                    'day_rate_virtual' => '$101.00',
+                                    'day_rate_phone' => '$101.00',
+                                    'day_rate_teleconference' => '$101.00',
+                                    'expedited_hurs_inperson'  => '1', 
+                                    'expedited_hurs_inperson_price'  => '$100',
+                                    'expedited_hurs_virtual'  => '1', 
+                                    'expedited_hurs_virtual_price'  => '$100', 
+                                    'expedited_hurs_phone'  => '1', 
+                                    'expedited_hurs_phone_price'  => '$100',
+                                    'expedited_hurs_teleconference'  => '1', 
+                                    'expedited_hurs_teleconference_price'  => '$100',
+                                    'after_hour_in_person_price' => null,
+                                    'after_hour_virtual_price' => null,
+                                    'after_hour_phone_price' => null,
+                                    'after_hour_teleconference_price' => null,
                                 ],
                                 'specialization_rates'  =>  
                                 [
@@ -320,8 +342,8 @@ class UsersController extends ApiController
                         ]
                     ],
                     [
-                        'accommodation_id'  =>  1,
-                        'accommodation_name' => 'Sign And Language Interpreting Services',
+                        'accommodation_id'  =>  3,
+                        'accommodation_name' => 'Film Production',
                         'status' => 1,
                         'rate_service_wise' => 
                         [
@@ -329,21 +351,22 @@ class UsersController extends ApiController
                                 'service_id'    =>  1,
                                 'service_name'  =>  'Both Day Rate (New)',
                                 'standerd_rates' => [
-                                    [
-                                        'rate_type' => 'in-person',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-        
-                                    ],
-                                    [
-                                        'rate_type' => 'virtual',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => null,
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ]
+                                    'day_rate_in_person' => '$101.00',
+                                    'day_rate_virtual' => '$101.00',
+                                    'day_rate_phone' => '$101.00',
+                                    'day_rate_teleconference' => '$101.00',
+                                    'expedited_hurs_inperson'  => '1', 
+                                    'expedited_hurs_inperson_price'  => '$100',
+                                    'expedited_hurs_virtual'  => '1', 
+                                    'expedited_hurs_virtual_price'  => '$100', 
+                                    'expedited_hurs_phone'  => '1', 
+                                    'expedited_hurs_phone_price'  => '$100',
+                                    'expedited_hurs_teleconference'  => '1', 
+                                    'expedited_hurs_teleconference_price'  => '$100',
+                                    'after_hour_in_person_price' => null,
+                                    'after_hour_virtual_price' => null,
+                                    'after_hour_phone_price' => null,
+                                    'after_hour_teleconference_price' => null,
                                 ],
                                 'specialization_rates'  =>  
                                 [
@@ -365,20 +388,22 @@ class UsersController extends ApiController
                                 'service_id'    =>  2,
                                 'service_name'  =>  'Services For Testing Video',
                                 'standerd_rates' => [
-                                    [
-                                        'rate_type' => 'in-person',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => '$101.00',
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ],
-                                    [
-                                        'rate_type' => 'virtual',
-                                        'day_rate_price' => '$500.00',
-                                        'after_hour_rate_price' => '$101.00',
-                                        'expedited_rate_hours' => 1,
-                                        'expedited_rate_price' => '$5.00',
-                                    ]
+                                    'day_rate_in_person' => '$101.00',
+                                    'day_rate_virtual' => '$101.00',
+                                    'day_rate_phone' => '$101.00',
+                                    'day_rate_teleconference' => '$101.00',
+                                    'expedited_hurs_inperson'  => '1', 
+                                    'expedited_hurs_inperson_price'  => '$100',
+                                    'expedited_hurs_virtual'  => '1', 
+                                    'expedited_hurs_virtual_price'  => '$100', 
+                                    'expedited_hurs_phone'  => '1', 
+                                    'expedited_hurs_phone_price'  => '$100',
+                                    'expedited_hurs_teleconference'  => '1', 
+                                    'expedited_hurs_teleconference_price'  => '$100',
+                                    'after_hour_in_person_price' => null,
+                                    'after_hour_virtual_price' => null,
+                                    'after_hour_phone_price' => null,
+                                    'after_hour_teleconference_price' => null,
                                 ],
                                 'specialization_rates'  =>  
                                 [
