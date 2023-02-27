@@ -31,6 +31,7 @@ Route::group([
     Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->controller(UsersController::class)->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('details', 'authUser');
+            Route::post('details', 'show');
             Route::post('profile_image_store','storeOrUpdateProfileImage');
             Route::post('calendar','authUserCalander');
             
@@ -45,7 +46,24 @@ Route::group([
         });
 
     });
-
+    /**
+     *  Chat Module 
+     *  Dev: Sakhawat Kamran
+     * 
+     **/
+    Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->controller(ChatController::class)->group(function () {
+        Route::prefix('chat')->group(function () {
+            Route::get(
+                'rooms' , 'index'
+            );
+            Route::post(
+                'inbox' , 'inbox'
+            );
+            Route::post(
+                'chat_message_sync' , 'store'
+            );
+        });
+    });        
     Route::middleware('auth:sanctum')->namespace('App\Http\Controllers\Tenant\Api')->prefix('run')->group(function () {
         Route::controller(TestController::class)->group(function () {
             Route::get('test', 'test');
