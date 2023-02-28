@@ -61,8 +61,8 @@ class ReimbursementController extends ApiController
                 [
                     'provider_id' => 'required',
                     'assignment_id' => 'required',
-                    'reason' => 'required',
-                    'amount' => 'required',
+                    'reason_type' => 'required',
+                    'reason_value' => 'required',
                     'document' => 'required',
                 ]
             );

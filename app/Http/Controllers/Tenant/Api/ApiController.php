@@ -154,13 +154,38 @@ class ApiController extends Controller
                     'total' =>  '$300',
                     'issued_at' => api_date_formate(date('d/m/Y h:iA')),
                     'scheduled_payment_date' =>   api_date_formate(date('d/m/Y h:iA')),
-                    'paied_at' =>  date('d/m/Y h:iA'),
+                    'payment_at' =>  date('d/m/Y h:iA'),
                     'payment_method' =>  'Mail a check',
-                    'status'             =>  'Paid',
+                    'payment_status' =>  'Paid',
                     'invoice_url' => url('tenant/admin/provider/remittances'),
                 ];
         return $invoiceData;
     }
+
+    /**
+     * get invoice generator into array.
+     *
+     * @param  int  $assignmentId
+     * @return array
+     */
+    public function invoiceGenerateDataMap($assignmentId = 0)
+    {
+       
+        $invoiceData = [
+                    'assignment_id'         =>  $assignmentId,
+                    'assignment_no'         =>  'R-10178'.$assignmentId,
+                    'total' =>  '$120.00',
+                    'charges' =>  '$10.00',
+                    'service_time' => api_date_formate(date('d/m/Y h:iA')),
+                    'service_title' =>  'American Sign Language Interpreter',
+                    'service_type' =>  'in-person',
+                    'service_id' =>  $assignmentId,
+                    'customer' =>  'Hary Paul',
+                    'customer_id' => $assignmentId,
+                ];
+        return $invoiceData;
+    }
+
 
     /**
      * get reimbursement information into array.
@@ -185,9 +210,9 @@ class ApiController extends Controller
             ],
             'amount' =>  '$300',
             'issued_at' => api_date_formate(date('d/m/Y h:iA')),
+            'payment_at' => api_date_formate(date('d/m/Y h:iA')),
             'payment_method' =>  'Cash',
             'payment_status' =>  'Approved',
-            'payment_is_done'   => 'Not Yet',
             'status'             =>  'Approved'
         ];
         return $reimbursementData;
