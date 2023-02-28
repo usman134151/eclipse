@@ -39,6 +39,7 @@ Route::group([
         Route::prefix('users')->group(function () {
             Route::get('notifications', 'notifications');
             Route::get('read_all_notifications', 'readAllNotification');
+            Route::get('/profile', 'index');
         });
         Route::prefix('provider')->group(function () {
             Route::post('rates', 'providerRates');
@@ -95,10 +96,15 @@ Route::group([
             #### STEP_5 ####
             Route::post('assignment/check_out_rating_submit', 'storeCheckOutRating');
             Route::post('assignment/set_availability', 'storeAvailability');
+            Route::post('assignment/location_status', 'setLocationStatus');
             
         });
         Route::controller(InvoiceController::class)->group(function () {
             Route::get('invoices', 'index');
+            Route::prefix('invoice')->group(function () {
+                Route::post('create', 'create');
+            });
+            Route::post('invoice_submit','store');
         });
         Route::controller(InviteController::class)->group(function () {
             Route::post('invite/update', 'update');

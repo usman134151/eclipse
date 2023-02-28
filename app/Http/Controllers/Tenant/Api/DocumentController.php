@@ -40,7 +40,7 @@ class DocumentController extends ApiController
             $validate = $this->vallidateApi(
                 $request,
                 [
-                    'uid' => 'required',
+                    'assignment_id' => 'required',
                     'document_title' => 'required',
                     'document_note' => 'required',
                     'document_file' => 'required'
