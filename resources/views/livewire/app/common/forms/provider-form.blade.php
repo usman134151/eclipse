@@ -1,4 +1,4 @@
-<div>
+<div x-data="{addDocument: false}">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -37,23 +37,23 @@
 		<div class="card">
 			<div class="card-body">
 				{{-- BEGIN: Steps --}}
-				<div x-data="{ tab: window.location.hash ? window.location.hash.substring(1) : 'profile' }" id="tab_wrapper">
+				<div x-data="{ tab: 'profile' }" id="tab_wrapper">
 					{{-- Nav tabs --}}
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'profile' }" @click.prevent="tab = 'profile'; window.location.hash = 'profile'" id="user-profile-tab" role="tab" aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider info</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'profile' }" @click.prevent="tab = 'profile'"  id="user-profile-tab" role="tab" aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider info</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'; window.location.hash = 'provider-service'" id="provider-service-tab" role="tab" aria-controls="provider-service" aria-selected="false"><span class="number">2</span>Provider Serivce Profile</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab" aria-controls="provider-service" aria-selected="false"><span class="number">2</span>Provider Serivce Profile</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'upload-document' }" @click.prevent="tab = 'upload-document'; window.location.hash = 'upload-document'" id="upload-document-tab" role="tab" aria-controls="upload-document" aria-selected="false"><span class="number">3</span> Upload Document</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'upload-document' }" @click.prevent="tab = 'upload-document'"  id="upload-document-tab" role="tab" aria-controls="upload-document" aria-selected="false"><span class="number">3</span> Upload Document</a>
 						</li>
 					</ul>
 					{{-- Tab panes --}}
 					<div class="tab-content">
 						{{-- BEGIN: Profile --}}
-						<div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" @click.prevent="tab = 'profile'; window.location.hash = 'profile'" id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }"  id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
 							{{-- Tab Panes --}}
 							<div class="row mt-2 mb-5">
 								{{-- BEGIN: Profile --}}
@@ -150,7 +150,7 @@
 				                  <label class="form-label mb-3" for="assign-provider-teams">
 				                    Assign Provider Teams
 				                  </label>
-				                    <div class="d-flex align-items-center gap-1">
+				                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
 				                    <div>
 				                      <x-icon name="right-color-arrow"/>
 				                    </div>
@@ -158,7 +158,7 @@
 				                      Add Provider Teams
 				                    </div>
 				                    
-				                  </div>
+				                  </button>
 				                </div>
 				                <div class="col-lg-6 mb-4 pe-lg-5">
 				                  <label class="form-label" for="email">
@@ -232,7 +232,7 @@
 				                    <label class="form-label" for="education-column">
 				                      Education
 				                    </label>
-				                    <a href="#" class="fw-bold">
+				                    <a @click="addDocument = true" href="#" class="fw-bold">
 				                      <small>
 				                        <svg class="me-1" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 				                            <path d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z" fill="#0A1E46"/>
@@ -257,7 +257,7 @@
 				                          Add New
 				                        </small>
 				                      </a>
-				                      <a href="#" class="fw-bold">
+				                      <a @click="addDocument = true" href="#" class="fw-bold">
 				                        <small>
 				                          <svg class="me-1" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 				                            <path d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z" fill="#0A1E46"/>
@@ -284,7 +284,7 @@
 				                      <label class="form-label" for="education-column">
 				                        Experience
 				                      </label>
-				                      <a href="#" class="fw-bold">
+				                      <a @click="addDocument = true" href="#" class="fw-bold">
 				                        <small>
 				                          <svg class="me-1" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 				                              <path d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z" fill="#0A1E46"/>
@@ -398,7 +398,7 @@
 						{{-- END: Profile --}}
 
 						{{-- BEGIN: Provider Service --}}
-						<div class="tab-pane fade" :class="{ 'active show': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'; window.location.hash = 'provider-service'" id="provider-service" role="tabpanel" aria-labelledby="provider-service-tab" tabindex="0" x-show="tab === 'provider-service'">
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'provider-service' }" id="provider-service" role="tabpanel" aria-labelledby="provider-service-tab" tabindex="0" x-show="tab === 'provider-service'">
 							<!-- Basic multiple Column Form section start -->
 							<section id="multiple-column-form">
 								<div class="row">
@@ -426,20 +426,25 @@
 						                                      </div>
 						                                    </div>
 						                                    <div>
-						                                      <button class="btn btn-outline-primary px-3 py-1 rounded-lg">Availability Schedule</button>
+						                                      <button type="button" class="btn btn-outline-primary px-3 py-1 rounded-lg btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#contractProviderAvailiblityModal">Availability Schedule</button>
 						                                    </div>
 						                                  </div>
 						                                </div>
 						                                <div class="mb-4">
-						                                  <div class="form-check mb-0">
-						                                    <input class="form-check-input" type="radio" name="ProviderType" id="ContractProvider">
-						                                    <label class="form-check-label" for="ContractProvider">
-						                                      Staff Provider
-						                                    </label>
-						                                    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-						                                      <path d="M7.5 0.792969C3.3645 0.792969 0 4.15747 0 8.29297C0 12.4285 3.3645 15.793 7.5 15.793C11.6355 15.793 15 12.4285 15 8.29297C15 4.15747 11.6355 0.792969 7.5 0.792969ZM8.25 12.793H6.75V11.293H8.25V12.793ZM8.982 9.12922C8.835 9.24772 8.69325 9.36097 8.58075 9.47347C8.27475 9.77872 8.25075 10.0562 8.25 10.0682V10.168H6.75V10.0427C6.75 9.95422 6.77175 9.15997 7.5195 8.41222C7.66575 8.26597 7.84725 8.11747 8.03775 7.96297C8.58825 7.51672 8.94975 7.19122 8.94975 6.74272C8.94104 6.36383 8.78438 6.00341 8.5133 5.73856C8.24222 5.47371 7.87824 5.32547 7.49926 5.32557C7.12027 5.32567 6.75638 5.47409 6.48543 5.73908C6.21449 6.00407 6.05802 6.36458 6.0495 6.74347H4.5495C4.5495 5.11672 5.87325 3.79297 7.5 3.79297C9.12675 3.79297 10.4505 5.11672 10.4505 6.74347C10.4505 7.94122 9.56625 8.65597 8.982 9.12922Z" fill="#888575"/>
-						                                    </svg>
-						                                  </div>
+															<div class="d-flex align-items-center gap-4">
+																<div>
+																  <div class="form-check mb-0">
+																	<input class="form-check-input" type="radio" name="ProviderType" id="staffProviderType" checked>
+																	<label class="form-check-label" for="staffProviderType"> Staff Provider</label>
+																	<svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+																	  <path d="M7.5 0.792969C3.3645 0.792969 0 4.15747 0 8.29297C0 12.4285 3.3645 15.793 7.5 15.793C11.6355 15.793 15 12.4285 15 8.29297C15 4.15747 11.6355 0.792969 7.5 0.792969ZM8.25 12.793H6.75V11.293H8.25V12.793ZM8.982 9.12922C8.835 9.24772 8.69325 9.36097 8.58075 9.47347C8.27475 9.77872 8.25075 10.0562 8.25 10.0682V10.168H6.75V10.0427C6.75 9.95422 6.77175 9.15997 7.5195 8.41222C7.66575 8.26597 7.84725 8.11747 8.03775 7.96297C8.58825 7.51672 8.94975 7.19122 8.94975 6.74272C8.94104 6.36383 8.78438 6.00341 8.5133 5.73856C8.24222 5.47371 7.87824 5.32547 7.49926 5.32557C7.12027 5.32567 6.75638 5.47409 6.48543 5.73908C6.21449 6.00407 6.05802 6.36458 6.0495 6.74347H4.5495C4.5495 5.11672 5.87325 3.79297 7.5 3.79297C9.12675 3.79297 10.4505 5.11672 10.4505 6.74347C10.4505 7.94122 9.56625 8.65597 8.982 9.12922Z" fill="#888575"/>
+																	</svg>
+																  </div>
+																</div>
+																<div>
+																  <button type="button" class="btn btn-outline-primary px-3 py-1 rounded-lg btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#staffProviderAvailiblityModal">Availability Schedule</button>
+																</div>
+															  </div>
 						                                </div>
 						                              </div>
 						                            </div>
@@ -1357,7 +1362,7 @@
 						{{-- END: Provider Service --}}
 
 						{{-- BEGIN: Upload Document --}}
-						<div class="tab-pane fade" :class="{ 'active show': tab === 'upload-document' }" @click.prevent="tab = 'upload-document'; window.location.hash = 'provider-serivce'" id="upload-document" role="tabpanel" aria-labelledby="upload-document-tab" tabindex="0" x-show="tab === 'upload-document'">
+						<div class="tab-pane fade" :class="{ 'active show': tab === 'upload-document' }"  id="upload-document" role="tabpanel" aria-labelledby="upload-document-tab" tabindex="0" x-show="tab === 'upload-document'">
 							<!-- Basic multiple Column Form section start -->
 							<section id="multiple-column-form">
 								<div class="row">
@@ -1489,5 +1494,6 @@
 			</div>
 			<!-- End: Content-->	
 		</div>
+		@include('panels.common.add-document')
 	</div>
-</div>
+
