@@ -152,7 +152,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -192,7 +192,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -232,7 +232,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -272,7 +272,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -312,7 +312,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -352,7 +352,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -392,7 +392,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -432,7 +432,7 @@
                               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                             </td>
                             <td class="align-middle">
-                              <a @click="offcanvasOpen = true">INP-89-23-001</a>
+                              <a href="javascript:void(0)" @click="offcanvasOpen = true">INP-89-23-001</a>
                             </td>
                             <td class="text-center align-middle">
                               11/23/2022
@@ -547,8 +547,10 @@
                 
               </div>
               <!-- /Total -->
-              <div class="justify-content-center d-flex mb-2">
-                <a href="" class="btn btn-primary rounded">Issue All Selected Remittances</a>
+              <div class="row justify-content-center mb-2">
+                <div class="col-lg-3">
+                  <a href="" class="btn btn-primary rounded w-100">Add to Remittance</a>
+                </div>
               </div>
               <div class="justify-content-center d-flex mb-4">
                 <div class="form-check mx-auto">
@@ -2202,7 +2204,7 @@
     <!-- BEGIN: Panel/Offcanvas - Invoice ID: IN-1231235 -->
     <div class="offcanvas offcanvas-end assign offcanvas-assign-provider" :class="{ 'show': offcanvasOpen == true }" x-show="offcanvasOpen">
       <div class="offcanvas-header">
-        <h2 class="offcanvas-title" id="offcanvasRightLabel">Invoice ID: IN-1231235</h2>
+        <h2 class="offcanvas-title" id="offcanvasRightLabel">Issue Remittance</h2>
         <button type="button" class="btn-close" x-on:click="offcanvasOpen = !offcanvasOpen" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -2279,23 +2281,23 @@
                 <table id="" class="table table-fs-md table-hover" aria-label="">
                   <thead>
                     <tr role="row">
-                      <th scope="col" class="text-center align-middle">
+                      <th scope="col" class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
                       </th>
-                      <th scope="col" width="25%" class="align-middle">Booking ID</th>
-                      <th scope="col" class="text-center">Company</th>
-                      <th scope="col" class="text-center align-middle">Payment INfo</th>
-                      <th scope="col" class="text-center align-middle">Total pay<br> Total pending</th>
-                      <th scope="col" class="text-center align-middle">Status</th>
+                      <th scope="col" width="25%" class="">Booking ID</th>
+                      <th scope="col">Company</th>
+                      <th scope="col">Payment INfo</th>
+                      <th scope="col" class="">Total pay<br> Total pending</th>
+                      <th scope="col">Status</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr role="row" class="odd">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2309,7 +2311,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2326,7 +2328,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2335,21 +2337,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2365,10 +2368,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="even">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2382,7 +2385,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2399,7 +2402,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2408,21 +2411,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2438,10 +2442,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="odd">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2455,7 +2459,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2472,7 +2476,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2481,21 +2485,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2511,10 +2516,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="even">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2528,7 +2533,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2545,7 +2550,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2554,21 +2559,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2584,10 +2590,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="odd">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2601,7 +2607,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2618,7 +2624,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2627,21 +2633,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2657,10 +2664,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="even">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2674,7 +2681,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2691,7 +2698,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2700,21 +2707,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2730,10 +2738,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="odd">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2747,7 +2755,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2764,7 +2772,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2773,21 +2781,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2803,10 +2812,10 @@
                       </td>
                     </tr>
                     <tr role="row" class="even">
-                      <td class="text-center align-middle">
+                      <td class="text-center">
                         <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="fw-semibold">100995-6</div>
                         <div>
                           <div>08/24/2022</div>
@@ -2820,7 +2829,7 @@
                           Invoice: INP-89-23-001
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="text-sm">
                           Microsoft
                         </div>
@@ -2837,7 +2846,7 @@
                           Service Consumer(s): Tessa
                         </div>
                       </td>
-                      <td class=" align-middle position-relative">
+                      <td class="position-relative">
                         <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon icon-edit">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -2846,21 +2855,22 @@
                         <div class="">Billable Hours: 10</div>
                         <div class="">Hourly Rate: $10</div>
                         <div>Total Service Rate: $100</div>
-                        <div><a href="">Additional Charges:</a></div>
+                        <div class="text-primary"><small>Additional Charges:</small></div>
                         <div>Fuel Charges: $20 <i class="fa fa-check-circle" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></div>
-                        <div><a href=""><small>Charged To Customer</small></a></div>
+                        <div>Fuel Charges: $15</div>
+                        <div class="text-primary"><small class="text-xxs">Charged To Customer</small></div>
                       </td>
-                      <td class="text-center align-middle">
+                      <td class="">
                         <div>$135</div>
                         <div>$15 (Pending)</div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex align-items-center gap-1">
                           <svg class="fill-danger" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512z"></path></svg>
                           Pending
                         </div>
                       </td>
-                      <td class="align-middle">
+                      <td>
                         <div class="d-flex actions justify-content-center">
                           <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg class="fill-stroke" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
