@@ -18,7 +18,29 @@ class UsersController extends ApiController
      */
     public function index()
     {
-        //
+        try{
+            $users = User::all();
+            $result = [];
+            foreach ($users as $user) {
+                $result[] = [
+                    'uid'           =>  $user->id,
+                    'email'         =>  $user->email,
+                    'user_name'     =>  $user->name,
+                    'first_name'    =>  $user->first_name,
+                    'last_name'     =>  $user->last_name,
+                    'role'          =>  'Supervisor' , 
+                    'status'        =>  'active',
+                    'phone'         =>  '(923)023-9663',
+                    'gender'        => 'Male',
+                    'profile_pic' => $user->gravatar_url,
+                ]; 
+            }
+            return $this->response($result, 200);
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
     }
 
     /**

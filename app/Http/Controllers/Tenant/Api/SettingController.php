@@ -19,16 +19,18 @@ class SettingController extends ApiController
             'availability_status'   => 0,
             'allow_notification'   => 0,
         ];
-        ###mail_in_check,
-        $result['payment_method'] = 'mail_in_check';
-
-        $result['refferals'] = [
-            'refferal_code' => 'KYLATAB',
-            'amount' => '$20',
-            'status' => 'Approved',
-            'issued_on' => api_date_formate(date('d/m/Y h:sA')),
-        ];
-        
+        ###mail_in_check,direct_bank_deposit 
+        $result['payment_method'] = 'mail_a_check';
+        $result['profile_address'] = [
+            'id'             => 1,
+            'address_line_1' => 'National Library of Australia, attraction, Canberra, Australia',
+            'latitude'       => '-35.29648635',
+            'longitude'      => '149.12951134999997',
+           ];
+        $result['address'] = null;
+        $result['bank_name'] = null;    
+        $result['routing_number'] = null;    
+        $result['account_number'] = null;    
         return $this->response($result, 200);
     }
 
@@ -98,6 +100,35 @@ class SettingController extends ApiController
             {
                 return $validate;
             }  
+            if($request->payment_method == 'mail_in_check')
+            {
+                $validate = $this->vallidateApi(
+                    $request,
+                    [
+                        'address_id' => 'required',
+                        'address' => 'required',
+                        'latitude' => 'required',
+                        'longitude'    =>  'required'
+                    ]
+                );
+                if($validate   !== true )
+                {
+                    return $validate;
+                }   
+            }else{
+                $validate = $this->vallidateApi(
+                    $request,
+                    [
+                        'bank_number' => 'required',
+                        'routing_number' => 'required',
+                        'account_number' => 'required'
+                    ]
+                );
+                if($validate   !== true )
+                {
+                    return $validate;
+                } 
+            }
 
             //Todo Update Work
             
@@ -105,8 +136,18 @@ class SettingController extends ApiController
                 'background_status'     => 1,
                 'availability_status'   => 1,
                 'allow_notification'   => 1,
-                'payment_method' => 'mail_in_check',
             ];
+            $result['payment_method'] = 'mail_a_check';
+            $result['profile_address'] = [
+                'id'             => 1,
+                'address_line_1' => 'National Library of Australia, attraction, Canberra, Australia',
+                'latitude'       => '-35.29648635',
+                'longitude'      => '149.12951134999997',
+            ];
+            $result['address'] = null;
+            $result['bank_name'] = null;    
+            $result['routing_number'] = null;    
+            $result['account_number'] = null; 
             return $this->response($result, 304);
         } catch (\Throwable $th) {
             return $this->response([
