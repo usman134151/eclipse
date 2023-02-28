@@ -26,7 +26,7 @@
   </head>
   <!-- END: Head-->
   <!-- BEGIN: Body-->
-  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false, offcanvasOpenRGB: false}">
+  <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false, offcanvasOpenRGB: false, offcanvasOpenANP: false}">
     <!-- BEGIN: Content-->
     <div class="app-content content ">
       <div class="content-wrapper container-xxl p-0">
@@ -125,7 +125,7 @@
                   </div>
                 </div>
                 <div class="">
-                  <a href="#" class="btn btn-primary btn-sm px-4 btn-has-icon rounded">
+                  <a href="javascript:void(0)" @click="offcanvasOpenANP = true" class="btn btn-primary btn-sm px-4 btn-has-icon rounded">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"></path>
                     </svg>
@@ -1715,8 +1715,77 @@
       </div>
     </div>
     <!-- END: Panel/Offcanvas - Issue Remittance -->
+    <div class="offcanvas offcanvas-end" :class="{ 'show': offcanvasOpenANP == true }" x-show="offcanvasOpenANP">
+      <div class="offcanvas-header">
+        <h2 class="offcanvas-title" id="offcanvasRightLabel">Add New Payment</h2>
+        <button type="button" class="btn-close" x-on:click="offcanvasOpenANP = !offcanvasOpenANP" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new payment for the team you can split the amount equally in the team or pay the same to each team member.</p>
+        <div>
+          <div class="mb-4">
+            <label class="form-label" for="">
+              Select Providers Or Team <span class="mandatory">*</span>
+            </label>
+            <select class="form-select" aria-label="Select Providers Or Team">
+              <option>Select Providers</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="ReasonforPayment">
+              Reason for Payment
+            </label>
+              <input type="email" class="form-control" id="ReasonforPayment" placeholder="Reason for Payment">
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="Amount">
+              Amount <span class="mandatory">*</span>
+            </label>
+              <input type="email" class="form-control" id="Amount" placeholder="$00.00">
+          </div>
+          <div class="mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="ChargetoCustomer">
+              <label class="form-check-label" for="ChargetoCustomer">
+                Charge to Customer
+              </label>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="PaymentOptions">
+              Payment Options
+            </label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PaymentOptions" id="SplitBetweenProviders">
+              <label class="form-check-label" for="SplitBetweenProviders">
+                Split between providers
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="PaymentOptions" id="MultipleByProviders" checked>
+              <label class="form-check-label" for="MultipleByProviders">
+                Multiple by providers
+              </label>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="TotalSelectedProviders">Total Selected Providers</label>
+            <div>Teams: 1</div>
+            <div>Providers: 10</div>
+            <div>Payable Amount: $00.00</div>
+          </div>
+          <div class="form-actions d-flex gap-3">
+            <button type="button" class="btn btn-outline-dark rounded">CANCEL</button>
+            <button type="submit" class="btn btn-primary rounded">ADD</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BEGIN: Panel/Offcanvas - Add New Payment -->
+    <!-- END: Panel/Offcanvas - Add New Payment -->
     <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpenRGB == true }" x-show="offcanvasOpenRGB"></div>
     <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpen == true }" x-show="offcanvasOpen"></div>
+    <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpenANP == true }" x-show="offcanvasOpenANP"></div>
     <script src="js/jquery-3.6.3.min.js"></script>
     <script src="js/alpinejs-3.11.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
