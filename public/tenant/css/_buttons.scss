@@ -19,7 +19,17 @@
 	line-height: 1;
 	font-size: .8125rem;
 	&.btn-outline-dark {
-		padding: 0.432rem 1.125rem;
+		padding: 0.452rem 1.125rem 0.412rem;
+	}
+}
+
+.btn-xxs {
+	padding: 0.1375rem 0.525rem;
+	line-height: 0.4;
+	font-size: .625rem;
+	font-weight: 400;
+	&.btn-has-icon {
+		gap: 0.25rem;
 	}
 }
 
