@@ -1164,4 +1164,21 @@ small {
   right: 1rem;
   top: 1rem; }
 
+.icon-save {
+  position: absolute;
+  right: 1rem;
+  top: 1rem; }
+
+.btn-xxs {
+  padding: 0.1375rem 0.525rem;
+  line-height: 0.4;
+  font-size: .625rem;
+  font-weight: 400; }
+  .btn-xxs.btn-has-icon {
+    gap: 0.25rem; }
+
+.form-control-xs {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.8125rem; }
+
 /*# sourceMappingURL=style.css.map */
