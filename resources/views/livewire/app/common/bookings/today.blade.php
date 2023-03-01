@@ -87,11 +87,11 @@
 													</th>
 													<th scope="col">Booking ID</th>
 													<th scope="col">Accommodation</th>
-													<th scope="col" class="text-center">Address</th>
+													<th scope="col">Address</th>
 													<th scope="col">Company</th>
 													<th scope="col">Billing</th>
 													<th scope="col">Status</th>
-													<th scope="col">Action</th>
+													<th scope="col" class="text-center">Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -120,10 +120,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>
@@ -192,10 +190,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>
@@ -264,10 +260,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>
@@ -336,10 +330,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>
@@ -408,10 +400,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>
@@ -480,10 +470,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>
@@ -552,10 +540,8 @@
 														<div>292332811 - Code 2131</div>
 													</td>
 													<td>
-														<div class="form-check form-switch">
-															<div>Demo Company</div>
-															<div>No. of Providers: 5</div>
-														</div>
+														<div>Demo Company</div>
+														<div>No. of Providers: 5</div>
 													</td>
 													<td>$100</td>
 													<td>

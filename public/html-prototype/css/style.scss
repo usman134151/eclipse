@@ -1256,8 +1256,56 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	top: 1rem;
 }
 
-.table>:not(caption)> .ivp >*,
-.ivp {
-	background-color: #E3E3E3;
-	border-bottom-color: #575656;
+.table>:not(caption)> {
+	.ivp >* {
+		background-color: #E3E3E3;
+		border-bottom-color: #575656;
+	}
+	.bg-success {
+		.time-date {
+			color: #000000;
+		}
+		>* {
+			background-color: #146c43;
+			color: #000;
+		}
+	}
+	.bg-gray {
+		.time-date {
+			color: #000000;
+		}
+		>* {
+			background-color: #888575;
+			color: #000;
+		}
+	}
+	.bg-warning {
+		.time-date {
+			color: #000000;
+		}
+		>* {
+			background-color: #a76900;
+			color: #000;
+		}
+	}
 }
+
+.table-hover > tbody > tr {
+	&.bg-success {
+		&:hover * {
+			color: #ffffff;
+		}
+	}
+	&.bg-gray {
+		&:hover * {
+			color: #ffffff;
+		}
+	}
+	&.bg-warning {
+		&:hover * {
+			color: #ffffff;
+		}
+	}
+}
+
+
