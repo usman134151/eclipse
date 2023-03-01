@@ -95,7 +95,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr role="row" class="odd">
+												<tr role="row" class="odd bg-success">
 													<td class="text-center">
 														<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 													</td>
@@ -165,7 +165,7 @@
 														</div>
 													</td>
 												</tr>
-												<tr role="row" class="even">
+												<tr role="row" class="even bg-gray">
 													<td class="text-center">
 														<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 													</td>
@@ -235,7 +235,7 @@
 														</div>
 													</td>
 												</tr>
-												<tr role="row" class="odd">
+												<tr role="row" class="odd bg-warning">
 													<td class="text-center">
 														<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 													</td>
