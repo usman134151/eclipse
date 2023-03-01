@@ -94,7 +94,7 @@
             </svg>
           </div>
           <div>
-            <div class="text-center block-text">50</div>
+            <div class="text-center block-number">50</div>
           </div>
         </a>
       </li>
