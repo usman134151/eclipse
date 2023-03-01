@@ -475,4 +475,35 @@
 	@include('panels.remittance.remittance-generator-booking')
 	@include('panels.remittance.issue-remittance')
 	@include('panels.remittance.add-new-payment')
+
+	{{-- Objection - Modal --}}
+	<div class="modal fade" id="objectionModal" tabindex="-1" aria-labelledby="objectionModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title fs-5" id="objectionModalLabel">
+						Objection
+					</h2>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<label class="form-label">
+							Reason For Objection
+						</label>
+						<textarea class="form-control" rows="5" cols="5" placeholder="Enter Text Here"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer d-flex justify-content-center gap-2">
+					<button type="button" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">
+						Cancel
+					</button>
+					<button type="button" class="btn rounded btn-primary">
+						Object
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{-- /Objection - Modal --}}
 </div>
