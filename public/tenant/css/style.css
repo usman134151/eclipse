@@ -1184,9 +1184,30 @@ small {
   right: 1rem;
   top: 1rem; }
 
-.table > :not(caption) > .ivp > *,
-.ivp {
+.table > :not(caption) > .ivp > * {
   background-color: #E3E3E3;
   border-bottom-color: #575656; }
+.table > :not(caption) > .bg-success .time-date {
+  color: #000000; }
+.table > :not(caption) > .bg-success > * {
+  background-color: #146c43;
+  color: #000; }
+.table > :not(caption) > .bg-gray .time-date {
+  color: #000000; }
+.table > :not(caption) > .bg-gray > * {
+  background-color: #888575;
+  color: #000; }
+.table > :not(caption) > .bg-warning .time-date {
+  color: #000000; }
+.table > :not(caption) > .bg-warning > * {
+  background-color: #a76900;
+  color: #000; }
+
+.table-hover > tbody > tr.bg-success:hover * {
+  color: #ffffff; }
+.table-hover > tbody > tr.bg-gray:hover * {
+  color: #ffffff; }
+.table-hover > tbody > tr.bg-warning:hover * {
+  color: #ffffff; }
 
 /*# sourceMappingURL=style.css.map */
