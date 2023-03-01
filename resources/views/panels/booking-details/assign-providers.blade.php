@@ -1,5 +1,5 @@
 {{-- BEGIN: Assign Provider Off Canvas --}}
-<x-off-canvas show="assignProvider">
+<x-off-canvas show="assignProvider" size="fullscreen">
 	<x-slot name="title">Assign Provider</x-slot>
 	{{-- BEGIN: Filters --}}
 	<div class="accordion mb-4" id="accordionFilters">
