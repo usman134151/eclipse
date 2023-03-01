@@ -591,13 +591,16 @@ div[data-bs-toggle="collapse"] {
 	border: 2px solid transparent;
 	border-radius: 0.5rem;
 	color: #fff;
-	padding: 2rem 0;
+	padding: 0;
 	cursor: pointer;
 	height: 13.9375rem;
 	max-width: 11.5625rem;
 	width: 100%;
 	position: relative;
 	overflow: hidden;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
 	-webkit-transition: all 0.1s linear;  
     -moz-transition: all 0.1s linear;  
     -o-transition: all 0.1s linear;  
