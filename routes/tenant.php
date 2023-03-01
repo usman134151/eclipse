@@ -98,13 +98,13 @@ Route::group([
 
         // Admin Booking Routes
         Route::view('/admin/booknow/create', 'tenant/common/bookings/booknow', ["showForm"=>true]);
-        Route::view('/admin/bookings/today', 'tenant/common/bookings/today', ["bookingType"=>"Today's"]);
-        Route::view('/admin/bookings/upcoming', 'tenant/common/bookings/upcoming', ["bookingType"=>"Upcoming"]);
-        Route::view('/admin/bookings/past', 'tenant/common/bookings/past', ["bookingType"=>"Past"]);
-        Route::view('/admin/bookings/pending-approval', 'tenant/common/bookings/pending-approval', ["bookingType"=>"Pending Approval"]);
-        Route::view('/admin/bookings/drafts', 'tenant/common/bookings/drafts', ["bookingType"=>"Draft"]);
-        Route::view('/admin/bookings/unassigned', 'tenant/common/bookings/unassigned', ["bookingType"=>"Unassigned"]);
-        Route::view('/admin/bookings/invitations', 'tenant/common/bookings/invitations', ["bookingType"=>"Invitations"]);
+        Route::view('/admin/bookings/today', 'tenant/common/bookings/booking-list', ["bookingType"=>"Today's"]);
+        Route::view('/admin/bookings/upcoming', 'tenant/common/bookings/booking-list', ["bookingType"=>"Upcoming"]);
+        Route::view('/admin/bookings/past', 'tenant/common/bookings/booking-list', ["bookingType"=>"Past"]);
+        Route::view('/admin/bookings/pending-approval', 'tenant/common/bookings/booking-list', ["bookingType"=>"Pending Approval"]);
+        Route::view('/admin/bookings/drafts', 'tenant/common/bookings/booking-list', ["bookingType"=>"Draft"]);
+        Route::view('/admin/bookings/unassigned', 'tenant/common/bookings/booking-list', ["bookingType"=>"Unassigned"]);
+        Route::view('/admin/bookings/invitations', 'tenant/common/bookings/booking-list', ["bookingType"=>"Invitations"]);
         // End of Admin Booking Routes
 
         // Admin Reports
