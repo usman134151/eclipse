@@ -30,38 +30,38 @@
 			<div class="card-body">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
-						<button class="nav-link active" id="booking-details-tab" data-bs-toggle="tab" data-bs-target="#booking-details" type="button" role="tab" aria-controls="booking-details" aria-selected="true">
+						<button class="nav-link {{ $component == 'booking-details' ? 'active' : '' }}" id="booking-details-tab" data-bs-toggle="tab" data-bs-target="#booking-details" type="button" role="tab" aria-controls="booking-details" aria-selected="true">
 							<x-icon name="tablet"/>
 							<span>Booking Details</span>
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="assigned-providers-tab" data-bs-toggle="tab" data-bs-target="#assigned-providers" type="button" role="tab" aria-controls="assigned-providers" aria-selected="false">
+						<button class="nav-link {{ $component == 'assigned-providers' ? 'active' : '' }}" id="assigned-providers-tab" data-bs-toggle="tab" data-bs-target="#assigned-providers" type="button" role="tab" aria-controls="assigned-providers" aria-selected="false">
 							<x-icon name="gray-user"/>
 							<span>Assigned Providers</span>
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="attachments-tab" data-bs-toggle="tab" data-bs-target="#attachments" type="button" role="tab" aria-controls="attachments" aria-selected="false">
+						<button class="nav-link {{ $component == 'attachments' ? 'active' : '' }}" id="attachments-tab" data-bs-toggle="tab" data-bs-target="#attachments" type="button" role="tab" aria-controls="attachments" aria-selected="false">
 							<x-icon name="gray-drive"/>
 							<span>Attachments</span>
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="payment-details-tab" data-bs-toggle="tab" data-bs-target="#payment-details" type="button" role="tab" aria-controls="payment-details" aria-selected="false">
+						<button class="nav-link {{ $component == 'payment-details' ? 'active' : '' }}" id="payment-details-tab" data-bs-toggle="tab" data-bs-target="#payment-details" type="button" role="tab" aria-controls="payment-details" aria-selected="false">
 							<x-icon name="gray-payment"/>
 							<span>Payment Details</span>
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="assignment-log-tab" data-bs-toggle="tab" data-bs-target="#assignment-log" type="button" role="tab" aria-controls="assignment-log" aria-selected="false">
+						<button class="nav-link {{ $component == 'assignment-log' ? 'active' : '' }}" id="assignment-log-tab" data-bs-toggle="tab" data-bs-target="#assignment-log" type="button" role="tab" aria-controls="assignment-log" aria-selected="false">
 							<x-icon name="gray-journal"/>
 							<span>Assignment Log</span>
 						</button>
 					</li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane fade active show" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
+					<div class="tab-pane fade {{ $component == 'booking-details' ? 'active show' : '' }}" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
 						<div class="p-4 border border-dark rounded bg-lighter mb-4">
 							<div class="row">
 								<div class="col-lg col-12 mb-4">
@@ -990,11 +990,13 @@
 				  </div><!-- /Notes -->
 				</div>
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded">Cancel</button>
-				  <button type="" class="btn btn-primary rounded">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+					Cancel
+				</button>
+				  <button type="button" class="btn btn-primary rounded" wire:click="$emit('switch', 'assigned-providers')">Next</button>
 				</div>
 			  </div><!-- END: booking-details-tab -->
-			  <div class="tab-pane fade" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
+			  <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
 				<!-- Service 1 Assigned Providers -->
 				<div class="mb-5">
 				  <div class="d-lg-flex align-items-center justify-content-between mb-4">
@@ -1445,7 +1447,7 @@
 				  <div class="d-lg-flex align-items-center justify-content-between mb-4">
 				  <h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
 				  <div class="d-flex gap-3">
-					<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
+					<a href="#" class="btn btn-has-icon btn-outline-dark rounded" @click="assignProvider = true">
 					  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M9.99995 9.64514C10.8594 9.64629 11.7 9.39247 12.4152 8.9158C13.1304 8.43913 13.6881 7.76102 14.0178 6.96728C14.3476 6.17354 14.4344 5.29983 14.2674 4.45671C14.1005 3.61359 13.6872 2.83894 13.0798 2.23077C12.4725 1.62261 11.6984 1.20826 10.8555 1.04016C10.0126 0.872052 9.13876 0.957746 8.34457 1.28639C7.55039 1.61504 6.87154 2.17188 6.39391 2.88644C5.91627 3.60101 5.66133 4.44119 5.66133 5.30069C5.66133 6.4519 6.11824 7.55605 6.93173 8.37062C7.74521 9.18519 8.84874 9.64359 9.99995 9.64514ZM10.0006 2.4618C10.5614 2.46078 11.1099 2.62621 11.5766 2.93714C12.0434 3.24808 12.4073 3.69053 12.6224 4.20847C12.8375 4.7264 12.8941 5.29652 12.7849 5.84662C12.6758 6.39671 12.4058 6.90204 12.0092 7.2986C11.6127 7.69516 11.1073 7.96512 10.5573 8.07428C10.0072 8.18343 9.43704 8.12689 8.9191 7.9118C8.40117 7.69671 7.95871 7.33275 7.64778 6.86601C7.33684 6.39928 7.17141 5.85077 7.17244 5.28995C7.17381 4.5403 7.47222 3.82175 8.0023 3.29166C8.53238 2.76158 9.25093 2.46318 10.0006 2.4618Z" fill="url(#paint0_linear_8558_41723)" stroke="url(#paint1_linear_8558_41723)" stroke-width="0.4"/>
 						<path d="M15.6953 11.8235C13.9915 10.7504 12.0149 10.1901 10.0014 10.2094C8.52715 10.1724 7.06288 10.4608 5.71279 11.0541C4.36161 11.6478 3.15807 12.5324 2.18797 13.6446L2.18772 13.6444L2.18071 13.6535C2.07992 13.7833 2.02422 13.9424 2.02205 14.1068L2.02203 14.1068V14.1094V17.7126C2.01395 18.0672 2.14632 18.4107 2.39036 18.6681L2.53552 18.5306L2.39036 18.6681C2.635 18.9262 2.97192 19.0769 3.32738 19.0871L3.32737 19.0872H3.33314H10.2165H10.6823L10.3615 18.7495L9.30592 17.6384L9.24763 17.577L9.16301 17.5761L3.53314 17.5171V14.3955C4.36079 13.5426 5.35356 12.8667 6.45116 12.4094C7.57328 11.9418 8.78042 11.7129 9.99581 11.7372L9.99581 11.7373L10.0025 11.7372C11.6671 11.7148 13.3055 12.1531 14.7365 13.0036L14.8781 13.0877L14.9878 12.965L15.7378 12.1261L15.8955 11.9497L15.6953 11.8235Z" fill="url(#paint2_linear_8558_41723)" stroke="url(#paint3_linear_8558_41723)" stroke-width="0.4"/>
@@ -1886,11 +1888,11 @@
 				  </div>
 				</div><!-- /Service 2 Assigned Providers -->
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded">Back</button>
-				  <button type="" class="btn btn-primary rounded">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'booking-details')">Back</button>
+				  <button type="" class="btn btn-primary rounded" wire:click="$emit('switch', 'attachments')">Next</button>
 				</div>
 			  </div><!-- END: assigned-providers-tab -->
-			  <div class="tab-pane fade" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
+			  <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
 				<h2>Attachments</h2>
 				<div class="col-lg-8 mb-4">
 				  <div class="mb-3 position-relative">
@@ -1910,11 +1912,11 @@
 				  </div>
 				</div>
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded">Back</button>
-				  <button type="" class="btn btn-primary rounded">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'assigned-providers')">Back</button>
+				  <button type="" class="btn btn-primary rounded" wire:click="$emit('switch', 'payment-details')">Next</button>
 				</div>
 			  </div><!-- END: attachments-tab -->
-			  <div class="tab-pane fade" id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
+			  <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}" id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
 				<h2>Payment Detail</h2>
 				<div class="row">
 				  <div class="col-lg-6">
@@ -2019,11 +2021,11 @@
 				  </div>
 				</div>
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded">Back</button>
-				  <button type="" class="btn btn-primary rounded">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'attachments')">Back</button>
+				  <button type="" class="btn btn-primary rounded" wire:click="$emit('switch', 'assignment-log')">Next</button>
 				</div>
 			  </div><!-- END: payment-details-tab -->
-			  <div class="tab-pane fade" id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
+			  <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}" id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
 				<!-- Assignment Discussions -->
 				<div class="mb-4">
 				  <h2>Assignment Discussions</h2>
@@ -2808,8 +2810,8 @@
 				  </div>
 				</div><!-- /Assignment Log -->
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded">Back</button>
-				  <button type="" class="btn btn-primary rounded">Exit</button>
+				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'payment-details')">Back</button>
+				  <button type="" class="btn btn-primary rounded" wire:click.prevent="showList">Exit</button>
 				</div>
 			  </div><!-- END: assignment-log-tab -->
 			</div>
