@@ -993,7 +993,7 @@
 				  <button type="" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
 					Cancel
 				</button>
-				  <button type="button" class="btn btn-primary rounded" wire:click="$emit('switch', 'assigned-providers')">Next</button>
+				  <button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('assigned-providers')">Next</button>
 				</div>
 			  </div><!-- END: booking-details-tab -->
 			  <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
@@ -1888,8 +1888,8 @@
 				  </div>
 				</div><!-- /Service 2 Assigned Providers -->
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'booking-details')">Back</button>
-				  <button type="" class="btn btn-primary rounded" wire:click="$emit('switch', 'attachments')">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('booking-details')">Back</button>
+				  <button type="" class="btn btn-primary rounded" x-on:click="$wire.switch('attachments')">Next</button>
 				</div>
 			  </div><!-- END: assigned-providers-tab -->
 			  <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
@@ -1912,8 +1912,8 @@
 				  </div>
 				</div>
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'assigned-providers')">Back</button>
-				  <button type="" class="btn btn-primary rounded" wire:click="$emit('switch', 'payment-details')">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('assigned-providers')">Back</button>
+				  <button type="" class="btn btn-primary rounded" x-on:click="$wire.switch('payment-details')">Next</button>
 				</div>
 			  </div><!-- END: attachments-tab -->
 			  <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}" id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
@@ -2021,8 +2021,8 @@
 				  </div>
 				</div>
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'attachments')">Back</button>
-				  <button type="" class="btn btn-primary rounded" wire:click="$emit('switch', 'assignment-log')">Next</button>
+				  <button type="" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('attachments')">Back</button>
+				  <button type="" class="btn btn-primary rounded" x-on:click="$wire.switch('assignment-log')">Next</button>
 				</div>
 			  </div><!-- END: payment-details-tab -->
 			  <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}" id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
@@ -2810,7 +2810,7 @@
 				  </div>
 				</div><!-- /Assignment Log -->
 				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded" wire:click="$emit('switch', 'payment-details')">Back</button>
+				  <button type="" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('payment-details')">Back</button>
 				  <button type="" class="btn btn-primary rounded" wire:click.prevent="showList">Exit</button>
 				</div>
 			  </div><!-- END: assignment-log-tab -->
