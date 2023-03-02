@@ -83,7 +83,7 @@ Route::group([
             Route::post('assignment', 'show');
             Route::post('assignment/update_time', 'updateTime');
             Route::post('assignment/check_in_out', 'checkInOutDetails');
-            Route::post('assignment/check_in_detail', 'checkInDetails');
+            Route::post('assignment/check_in_details', 'checkInDetails');
             Route::post('assignment/check_in_submit', 'checkInStore');
             #### STEP_1 ####
             Route::post('assignment/check_out_detail', 'checkOutDetails');
