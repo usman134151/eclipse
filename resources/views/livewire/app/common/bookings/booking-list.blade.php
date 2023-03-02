@@ -14,7 +14,9 @@
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
-					<h1 class="content-header-title float-start mb-0">{{ $bookingType }} Assignments</h1>
+					<h1 class="content-header-title float-start mb-0">
+						{{ $bookingType }} Assignments
+					</h1>
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
@@ -96,8 +98,12 @@
 												</tr>
 											</thead>
 											<tbody>
+												@php
+													$status = ['1', '2', '3'];
+													$statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
+												@endphp
 												@for ($i = 1; $i <= 7; $i++)
-												<tr role="row" class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $colorCode }}">
+												<tr role="row" class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
 													<td class="text-center">
 														<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 													</td>
