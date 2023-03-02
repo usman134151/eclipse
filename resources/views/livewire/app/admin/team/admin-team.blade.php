@@ -50,20 +50,20 @@
 							<a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">3</span> System Permissions</a>
 						</li>
 					</ul>
-	
+
 					<div class="tab-content">
 						{{-- Team Info Start --}}
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'team-info' }" id="team-info" role="tabpanel" aria-labelledby="team-info-tab" tabindex="0" x-show="tab === 'team-info'">
 							@livewire('app.admin.team.team-info', ['showForm'=>$showForm])
 						</div>
 						{{-- Team Info End --}}
-	
+
 						{{-- Admin Staff Start --}}
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'team-members' }" id="team-members" role="tabpanel" aria-labelledby="team-members-tab" tabindex="0" x-show="tab === 'team-members'">
 							@livewire('app.admin.team.team-members', ['showForm'=>$showForm])
 						</div>
 						{{-- Admin Staff End --}}
-	
+
 						{{-- System Permissions Start --}}
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'system-permissions' }" id="system-permissions" role="tabpanel" aria-labelledby="system-permissions-tab" tabindex="0" x-show="tab === 'system-permissions'">
 							@livewire('app.admin.team.system-permissions', ['showForm'=>$showForm])
@@ -550,6 +550,26 @@
 			</div>
 		</div>
 	</div>
+	{{-- Icon Legend Bar Start --}}
+	<div class="d-flex actions gap-3 justify-content-end mb-2">
+		<div class="d-flex gap-2 align-items-center">
+			<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<x-icon name="pencil"/>
+			</a>
+			<span class="text-sm">
+				Edit Admin
+			</span>
+		</div>
+		<div class="d-flex gap-2 align-items-center">
+			<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				<x-icon name="recycle-bin"/>
+			</a>
+			<span class="text-sm">
+				Delete
+			</span>
+		</div>
+	</div>
+	{{-- Icon Legend Bar End --}}
 	<div class="d-flex justify-content-between">
 		<div>
 			<p class="fw-semibold">Showing 1 to 5 of 100 entries</p>

@@ -52,7 +52,7 @@
 							<span class="ms-2">Add New Role</span></a>
 						</div>
 						</div>
-					</div>    
+					</div>
 					</div>
 					<div class="d-flex justify-content-between mb-2">
 					  <div class="d-inline-flex align-items-center gap-4">
@@ -72,17 +72,17 @@
 					<div class="table-responsive">
 						<table id="" class="table table-hover" aria-label="Roles and Permissions">
 						  <thead>
-							  <tr role="row">                                      
+							  <tr role="row">
 								  <th scope="col">Name</th>
-								  <th scope="col" class="text-center">No. of Permissions</th>   
+								  <th scope="col" class="text-center">No. of Permissions</th>
 								  <th scope="col" class="text-center">Users</th>
 								  <th scope="col" class="text-center">Date</th>
 								  <th scope="col">Action</th>
-								
+
 							</tr>
 						  </thead>
 							<tbody>
-							  <tr role="row" class="odd">                                   
+							  <tr role="row" class="odd">
 								<td>Agency Admin</td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -99,7 +99,7 @@
 								</td>
 							  </tr>
 
-							  <tr role="row" class="even">                                   
+							  <tr role="row" class="even">
 								<td>All-Access Service Coordinator </td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -116,7 +116,7 @@
 								</td>
 							  </tr>
 
-							  <tr role="row" class="odd">                                   
+							  <tr role="row" class="odd">
 								<td>Restricted Service Coordinator</td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -133,7 +133,7 @@
 								</td>
 							  </tr>
 
-							  <tr role="row" class="even">                                   
+							  <tr role="row" class="even">
 								<td>All-Access Accounts Payable</td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -150,7 +150,7 @@
 								</td>
 							  </tr>
 
-							  <tr role="row" class="odd">                                   
+							  <tr role="row" class="odd">
 								<td>Restricted Accounts Payable</td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -167,7 +167,7 @@
 								</td>
 							  </tr>
 
-							  <tr role="row" class="even">                                   
+							  <tr role="row" class="even">
 								<td>All-Access Accounts Billable</td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -184,7 +184,7 @@
 								</td>
 							  </tr>
 
-							  <tr role="row" class="odd">                                   
+							  <tr role="row" class="odd">
 								<td>Restricted Accounts Billable</td>
 								<td class="text-center">5</td>
 								<td class="text-center">2</td>
@@ -203,6 +203,26 @@
 							 </tbody>
 							</table>
 						</div>
+                    </div> {{-- icon legend bar start --}}
+                    <div class="d-flex actions gap-3 justify-content-end mb-2">
+                        <div class="d-flex gap-2 align-items-center">
+                            <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <x-icon name="pencil"/>
+                            </a>
+                            <span class="text-sm">
+                            Edit staff
+                            </span>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                               <x-icon name="recycle-bin"/>
+                              </a>
+                            <span class="text-sm">
+                                Delete                                                        </span>
+                        </div>
+
+                        </div>
+                        {{-- icon legend bar end --}}
 				  <div class="d-flex justify-content-between mt-4">
 					<div>
 					  <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
@@ -227,7 +247,7 @@
 					</nav>
 				  </div>
 			  </div>
-			
+
 			</div>
 		  </div>
 		</div>

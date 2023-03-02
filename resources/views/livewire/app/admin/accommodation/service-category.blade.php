@@ -51,7 +51,7 @@
                           <div class="col-md-3 ms-auto text-end">
             <a href="#" wire:click="showForm" class="btn btn-primary rounded">Create Service</a></div>
                       </div>
-                      </div>    
+                      </div>
                       </div>
                       <div class="d-flex justify-content-between mb-2">
                         <div class="d-inline-flex align-items-center gap-4">
@@ -83,28 +83,28 @@
             <th scope="col"></th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
-            
+
           </tr>
         </thead>
       <tbody>
-        
+
        <tr role="row" class="odd">
             <td class="text-center">
               <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
             </td>
             <td>
               <div class="row g-2">
-             
+
                 <div class="col-md-10">
                   <p>Check service duration</p>
                 </div>
-                
+
               </div>
             </td>
             <td>
               <div class="row">
                 <div class="col-md-2">
-                <a href="#"><x-icon name="chain"/></a>  
+                <a href="#"><x-icon name="chain"/></a>
                 </div>
                 <div class="col-md-10">
                   <p>Associate Companies & Customers</p>
@@ -121,14 +121,14 @@
             </td>
             <td>
               <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
                   <x-icon name='pencil'/>
                 </a>
                <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
+                <x-icon name='duplicate'/>
                </a>
             <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
+              <x-icon name='recycle-bin'/>
             </a>
               </div>
             </td>
@@ -147,7 +147,7 @@
             <td>
               <div class="row">
                 <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a>  
+                  <a href="#"><x-icon name="chain"/></a>
                 </div>
                 <div class="col-md-10">
                   <p>Associate Companies & Customers</p>
@@ -164,186 +164,14 @@
             </td>
             <td>
               <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
                   <x-icon name='pencil'/>
                 </a>
                <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
+                <x-icon name='duplicate'/>
                </a>
             <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
-            </a>
-              </div>
-            </td>
-          </tr>
-          <tr role="row" class="odd">
-            <td class="text-center">
-              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-            </td>
-            <td>
-              <div class="row g-2">
-                <div class="col-md-10">
-                  <p>Check service duration</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="row">
-                <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a>  
-                </div>
-                <div class="col-md-10">
-                  <p>Associate Companies & Customers</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
-                <label class="form-check-label">
-                  Activated
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
-                  <x-icon name='pencil'/>
-                </a>
-               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
-               </a>
-            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
-            </a>
-              </div>
-            </td>
-          </tr>
-          <tr role="row" class="even">
-            <td class="text-center">
-              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-            </td>
-            <td>
-              <div class="row g-2">
-                <div class="col-md-10">
-                  <p>Check service duration</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="row">
-                <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a>  
-                </div>
-                <div class="col-md-10">
-                  <p>Associate Companies & Customers</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
-                <label class="form-check-label">
-                  Activated
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
-                  <x-icon name='pencil'/>
-                </a>
-               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
-               </a>
-            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
-            </a>
-              </div>
-            </td>
-          </tr>
-          <tr role="row" class="odd">
-            <td class="text-center">
-              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-            </td>
-            <td>
-              <div class="row g-2">
-                <div class="col-md-10">
-                  <p>Check service duration</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="row">
-                <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a> 
-                </div>
-                <div class="col-md-10">
-                  <p>Associate Companies & Customers</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
-                <label class="form-check-label">
-                  Activated
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
-                  <x-icon name='pencil'/>
-                </a>
-               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
-               </a>
-            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
-            </a>
-              </div>
-            </td>
-          </tr>
-          <tr role="row" class="odd">
-            <td class="text-center">
-              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-            </td>
-            <td>
-              <div class="row g-2">
-                <div class="col-md-10">
-                  <p>Check service duration</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="row">
-                <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a>  
-                </div>
-                <div class="col-md-10">
-                  <p>Associate Companies & Customers</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
-                <label class="form-check-label">
-                  Activated
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
-                  <x-icon name='pencil'/>
-                </a>
-               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
-               </a>
-            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
+              <x-icon name='recycle-bin'/>
             </a>
               </div>
             </td>
@@ -379,14 +207,57 @@
             </td>
             <td>
               <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
                   <x-icon name='pencil'/>
                 </a>
                <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
+                <x-icon name='duplicate'/>
                </a>
             <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
+              <x-icon name='recycle-bin'/>
+            </a>
+              </div>
+            </td>
+          </tr>
+          <tr role="row" class="even">
+            <td class="text-center">
+              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+            </td>
+            <td>
+              <div class="row g-2">
+                <div class="col-md-10">
+                  <p>Check service duration</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-md-2">
+                  <a href="#"><x-icon name="chain"/></a>
+                </div>
+                <div class="col-md-10">
+                  <p>Associate Companies & Customers</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
+                <label class="form-check-label">
+                  Activated
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex actions">
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
+                  <x-icon name='pencil'/>
+                </a>
+               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
+                <x-icon name='duplicate'/>
+               </a>
+            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
+              <x-icon name='recycle-bin'/>
             </a>
               </div>
             </td>
@@ -405,7 +276,7 @@
             <td>
               <div class="row">
                 <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a>  
+                  <a href="#"><x-icon name="chain"/></a>
                 </div>
                 <div class="col-md-10">
                   <p>Associate Companies & Customers</p>
@@ -422,14 +293,14 @@
             </td>
             <td>
               <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
                   <x-icon name='pencil'/>
                 </a>
                <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
+                <x-icon name='duplicate'/>
                </a>
             <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
+              <x-icon name='recycle-bin'/>
             </a>
               </div>
             </td>
@@ -448,7 +319,7 @@
             <td>
               <div class="row">
                 <div class="col-md-2">
-                  <a href="#"><x-icon name="chain"/></a>  
+                  <a href="#"><x-icon name="chain"/></a>
                 </div>
                 <div class="col-md-10">
                   <p>Associate Companies & Customers</p>
@@ -465,28 +336,185 @@
             </td>
             <td>
               <div class="d-flex actions">
-                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team"> 
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
                   <x-icon name='pencil'/>
                 </a>
                <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
-                <x-icon name='duplicate'/>  
+                <x-icon name='duplicate'/>
                </a>
             <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
-              <x-icon name='recycle-bin'/>  
+              <x-icon name='recycle-bin'/>
             </a>
               </div>
             </td>
           </tr>
-          
+          <tr role="row" class="odd">
+            <td class="text-center">
+              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+            </td>
+            <td>
+              <div class="row g-2">
+                <div class="col-md-10">
+                  <p>Check service duration</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-md-2">
+                  <a href="#"><x-icon name="chain"/></a>
+                </div>
+                <div class="col-md-10">
+                  <p>Associate Companies & Customers</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
+                <label class="form-check-label">
+                  Activated
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex actions">
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
+                  <x-icon name='pencil'/>
+                </a>
+               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
+                <x-icon name='duplicate'/>
+               </a>
+            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
+              <x-icon name='recycle-bin'/>
+            </a>
+              </div>
+            </td>
+          </tr>
+          <tr role="row" class="odd">
+            <td class="text-center">
+              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+            </td>
+            <td>
+              <div class="row g-2">
+                <div class="col-md-10">
+                  <p>Check service duration</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-md-2">
+                  <a href="#"><x-icon name="chain"/></a>
+                </div>
+                <div class="col-md-10">
+                  <p>Associate Companies & Customers</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
+                <label class="form-check-label">
+                  Activated
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex actions">
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
+                  <x-icon name='pencil'/>
+                </a>
+               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
+                <x-icon name='duplicate'/>
+               </a>
+            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
+              <x-icon name='recycle-bin'/>
+            </a>
+              </div>
+            </td>
+          </tr>
+          <tr role="row" class="odd">
+            <td class="text-center">
+              <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+            </td>
+            <td>
+              <div class="row g-2">
+                <div class="col-md-10">
+                  <p>Check service duration</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-md-2">
+                  <a href="#"><x-icon name="chain"/></a>
+                </div>
+                <div class="col-md-10">
+                  <p>Associate Companies & Customers</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Team Status">
+                <label class="form-check-label">
+                  Activated
+                </label>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex actions">
+                <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Edit Team" aria-label="Edit Team">
+                  <x-icon name='pencil'/>
+                </a>
+               <a href="#"  class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate List" aria-label="Duplicate List">
+                <x-icon name='duplicate'/>
+               </a>
+            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Delete List" aria-label="Delete List">
+              <x-icon name='recycle-bin'/>
+            </a>
+              </div>
+            </td>
+          </tr>
+
         </tbody>
       </table>
-         
+
     </div>
-    
+
   </div>
-  
+
 </div>
 </div>
+{{-- icon legend bar start --}}
+<div class="d-flex actions gap-3 justify-content-end mb-2">
+    <div class="d-flex gap-2 align-items-center">
+        <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+            <x-icon name="pencil"/>
+        </a>
+        <span class="text-sm">
+        Edit
+        </span>
+    </div>
+
+    <div class="d-flex gap-2 align-items-center">
+        <a href="#" title="Activate" aria-label="Activate" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+          <x-icon name="duplicate"/>
+          </a>
+        <span class="text-sm">
+            Duplicate</span>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+            <x-icon name="recycle-bin"/>
+          </a>
+        <span class="text-sm">
+            Delete                                                        </span>
+    </div>
+
+    </div>
+    {{-- icon legend bar end --}}
 <!-- Hoverable rows end -->
                     <div class="d-flex justify-content-between">
                       <div>
@@ -511,7 +539,7 @@
                         </ul>
                       </nav>
                     </div>
-                    
+
                 </div>
                          <!-- ....Back/next (buttons)... -->
                          <div class="col-12 justify-content-center form-actions d-flex gap-2">
@@ -523,7 +551,7 @@
                               class="btn btn-primary rounded px-4 py-2">Next</button>
 
                   </div>
-              
+
               </div>
             </div>
           </div>

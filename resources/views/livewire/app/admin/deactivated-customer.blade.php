@@ -236,7 +236,7 @@
                                                     </div>
 
                                                     </div>
-                                                   {{-- icon bar start end--}}
+                                                   {{-- icon bar  end--}}
                 <div class="d-flex justify-content-between mt-4">
                   <div>
                     <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>

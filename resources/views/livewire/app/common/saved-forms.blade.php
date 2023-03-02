@@ -35,13 +35,13 @@
 									<thead>
 										<tr role="row">
 											<th scope="col">FORM TYPES</th>
-											<th scope="col">STATUS</th>   
+											<th scope="col">STATUS</th>
 											<th scope="col">Action</th>
 									  </tr>
 									</thead>
 									<tbody>
 									  <tbody>
-										<tr role="row" class="odd"> 
+										<tr role="row" class="odd">
 										  <td>Customer Request Form</td>
 										  <td><button class="btn btn-success btn-sm">Activated</button></td>
 										  <td>
@@ -57,13 +57,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="even"> 
+										<tr role="row" class="even">
 										<td>Customer Request Form</td>
 										  <td><button class="btn btn-warning  btn-sm">Deactivated</button></td>
 										  <td>
@@ -79,13 +79,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="odd"> 
+										<tr role="row" class="odd">
 										  <td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -101,13 +101,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="even"> 
+										<tr role="row" class="even">
 											<td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -123,13 +123,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="odd"> 
+										<tr role="row" class="odd">
 											<td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -145,13 +145,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="even"> 
+										<tr role="row" class="even">
 											<td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -167,13 +167,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="odd"> 
+										<tr role="row" class="odd">
 											<td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -189,13 +189,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="even"> 
+										<tr role="row" class="even">
 											<td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -211,13 +211,13 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
 										  </td>
 										</tr>
-										<tr role="row" class="odd"> 
+										<tr role="row" class="odd">
 											<td>Customer Request Form</td>
 										  <td><button class="btn btn-success  btn-sm">Activated</button></td>
 										  <td>
@@ -233,7 +233,7 @@
 												<div class="tablediv dropdown-menu">
 												  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-eye"></i>View</a>
 												  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-												 
+
 												</div>
 											  </div>
 											</div>
@@ -241,10 +241,30 @@
 										</tr>
 									</tbody>
 									</table>
-							 
-							   
+
+
 							  </div>
 							</form>
+                                                  {{-- icon legend bar start --}}
+                      <div class="d-flex actions gap-3 justify-content-end mb-2">
+                        <div class="d-flex gap-2 align-items-center">
+                            <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <x-icon name="pencil"/>
+                            </a>
+                            <span class="text-sm">
+                            Edit
+                            </span>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <a href="#" title="cross" aria-label="cross " class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <x-icon name="cross"/>
+                            </a>
+                            <span class="text-sm">
+                                    Deactivate                              </span>
+                        </div>
+
+                        </div>
+                        {{-- icon legend bar end --}}
 						  </div>
 						</div>
 					  </div>
