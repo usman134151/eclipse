@@ -43,7 +43,7 @@
 </svg>
 
 @elseif($name === 'round-arrow')
-<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<path d="M9.75 19H14.4375C16.178 19 17.8472 18.2888 19.0779 17.023C20.3086 15.7571 21 14.0402 21 12.25C21 10.4598 20.3086 8.7429 19.0779 7.47703C17.8472 6.21116 16.4905 5.5 14.75 5.5H2.5625M5.375 1L1 5.5L5.375 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 
