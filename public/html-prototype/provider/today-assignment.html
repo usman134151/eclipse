@@ -946,7 +946,7 @@
       </div>
       <div class="offcanvas-body">
         <!-- BEGIN: Step 1 -->
-        <div class="">
+        <div class="js-checkout-step-1-content">
           <label class="form-label mb-0">Check-in Time 10:25AM</label>
           <hr>
           <div class="mb-4">
@@ -1148,13 +1148,13 @@
           <div class="mb-4">
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
               <button type="button" class="btn btn-outline-dark rounded">Back</button>
-              <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Next</button>
+              <button type="submit" class="btn btn-primary rounded js-checkout-go-step-2">Next</button>
             </div>
           </div>
         </div>
         <!-- END: Step 1 -->
         <!-- BEGIN: Step 2 -->
-        <div class="hidden">
+        <div class="hidden js-checkout-step-2-content">
           <label class="form-label mb-0">Check-in Time 10:25AM</label>
           <hr>
           <div class="mb-4">
@@ -1207,13 +1207,13 @@
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
               <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
               <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-              <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Next</button>
+              <button type="submit" class="btn btn-primary rounded js-checkout-go-step-3">Next</button>
             </div>
           </div>
         </div>
         <!-- END: Step 2 -->
         <!-- BEGIN: Step 3 -->
-        <div class="hidden">
+        <div class="hidden js-checkout-step-3-content">
           <label class="form-label mb-0">Check-in Time 10:25AM</label>
           <hr>
           <div class="mb-4">
@@ -1253,13 +1253,13 @@
             <div class="form-actions d-flex gap-3 justify-content-center mt-5">
               <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
               <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-              <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Next</button>
+              <button type="submit" class="btn btn-primary rounded js-checkout-go-step-4">Next</button>
             </div>
           </div>
         </div>
         <!-- END: Step 3 -->
         <!-- BEGIN: Step 4 -->
-        <div class="hidden">
+        <div class="hidden js-checkout-step-4-content">
           <label class="form-label mb-0">Check-in Time 10:25AM</label>
           <hr>
           <div class="mb-4">
