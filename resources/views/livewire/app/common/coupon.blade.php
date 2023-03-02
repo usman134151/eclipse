@@ -27,7 +27,7 @@
 							</div>
 							<p>Here you can create and manage coupon campaigns based on specific services, targeting first-time and repeating customers.</p>
 						</div>
-						</div>    
+						</div>
 						</div>
 						<div class="table-responsive">
 							<table id="coupons" class="table table-hover" aria-label="coupons">
@@ -43,7 +43,7 @@
 							</thead>
 							<tbody>
 								<tbody>
-								<tr role="row" class="odd"> 
+								<tr role="row" class="odd">
 									<td>23En80</td>
 									<td>5%</td>
 									<td>Accessible Media Services</td>
@@ -62,7 +62,7 @@
 										<div class="tablediv dropdown-menu">
 											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-											
+
 										</div>
 										</div>
 									</div>
@@ -83,7 +83,7 @@
 										<div class="tablediv dropdown-menu">
 											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-											
+
 										</div>
 										</div>
 									</div>
@@ -104,7 +104,7 @@
 										<div class="tablediv dropdown-menu">
 											<a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Edit</a>
 											<a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Deactivate</a>
-											
+
 										</div>
 										</div>
 									</div>
@@ -130,7 +130,7 @@
 									</div>
 									</td>
 								</tr>
-								<tr role="row" class="odd"> 
+								<tr role="row" class="odd">
 									<td>23679</td>
 									<td>11%</td>
 									<td>Sign Language Interpreting Services</td>
@@ -234,6 +234,26 @@
 						</table>
 						</div>
 					</form>
+                                          {{-- icon legend bar start --}}
+                                          <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <x-icon name="pencil"/>
+                                                </a>
+                                                <span class="text-sm">
+                                                Edit
+                                                </span>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <a href="#" title="cross" aria-label="cross " class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <x-icon name="cross"/>
+                                                </a>
+                                                <span class="text-sm">
+                                                        Deactivate                              </span>
+                                            </div>
+
+                                            </div>
+                                            {{-- icon legend bar end --}}
 					</div>
 				</div>
 				</div>

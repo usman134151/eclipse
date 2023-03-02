@@ -429,6 +429,21 @@
 				</div>
 			  </div>
 			</div>
+                                    {{-- icon legend bar start --}}
+                                    <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <svg class="fill-stroke" width="12" height="15" class="" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M1 1L5.875 7.5L1 14" stroke="black" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
+                                                  </svg>
+                                            </a>
+                                            <span class="text-sm">
+                                            Booking
+                                            </span>
+                                        </div>
+                                        </div>
+                                        {{-- icon legend bar end --}}
 			<!-- Hoverable rows end -->
 			<div class="d-flex justify-content-between">
 			  <div>
@@ -475,35 +490,4 @@
 	@include('panels.remittance.remittance-generator-booking')
 	@include('panels.remittance.issue-remittance')
 	@include('panels.remittance.add-new-payment')
-
-	{{-- Objection - Modal --}}
-	<div class="modal fade" id="objectionModal" tabindex="-1" aria-labelledby="objectionModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title fs-5" id="objectionModalLabel">
-						Objection
-					</h2>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div>
-						<label class="form-label">
-							Reason For Objection
-						</label>
-						<textarea class="form-control" rows="5" cols="5" placeholder="Enter Text Here"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer d-flex justify-content-center gap-2">
-					<button type="button" class="btn rounded btn-outline-dark" data-bs-dismiss="modal">
-						Cancel
-					</button>
-					<button type="button" class="btn rounded btn-primary">
-						Object
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	{{-- /Objection - Modal --}}
 </div>
