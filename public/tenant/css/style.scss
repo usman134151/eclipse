@@ -591,7 +591,7 @@ div[data-bs-toggle="collapse"] {
 	border: 2px solid transparent;
 	border-radius: 0.5rem;
 	color: #fff;
-	padding: 0;
+	padding: 0 0.5rem;
 	cursor: pointer;
 	height: 13.9375rem;
 	max-width: 11.5625rem;
@@ -933,8 +933,14 @@ small {
 linear-gradient(0deg, #FAEA95, #FAEA95);
 }
 
+.bg-info {
+	background-color: #95B7FA !important;
+	color: #4E4E4E;
+}
+
 .time-date {
 	color: #4E4E4E;
+	font-size: 0.6875rem;
 }
 
 .text-sm {
@@ -1309,3 +1315,19 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 }
 
 
+
+.main-menu.menu-light .navigation > li > a {
+	font-size: 0.9375rem;
+	margin: 0 0.5rem;
+	padding: 10px 12px 10px 12px;
+}
+
+.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg,
+.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i,
+.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a .icon_img {
+	margin-right: 0.7rem;
+}
+
+.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:after {
+	right: 1rem;
+}
