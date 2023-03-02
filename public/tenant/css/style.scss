@@ -1331,3 +1331,26 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 .vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:after {
 	right: 1rem;
 }
+
+
+/* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(226, 232, 240);
+    }
+
+    /* Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: none;
+      border-radius: 5px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-color: rgb(226, 232, 240);
+      border-radius: 1rem;
+      border: 3px solid rgb(226, 232, 240);;
+    }
