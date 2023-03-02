@@ -219,3 +219,20 @@ $(document).ready(function() {
         allowClear: true,
     });
 });
+
+
+
+$('.js-checkout-go-step-2').click(function(){
+  $('.js-checkout-step-1-content').addClass("hidden");
+  $('.js-checkout-step-2-content').removeClass("hidden");
+});
+
+$('.js-checkout-go-step-3').click(function(){
+  $('.js-checkout-step-2-content').addClass("hidden");
+  $('.js-checkout-step-3-content').removeClass("hidden");
+});
+
+$('.js-checkout-go-step-4').click(function(){
+  $('.js-checkout-step-3-content').addClass("hidden");
+  $('.js-checkout-step-4-content').removeClass("hidden");
+});
