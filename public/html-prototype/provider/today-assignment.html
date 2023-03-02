@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Today's Assignment - Eclipse Scheduling</title>
+    <link rel="stylesheet" href="../css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../css/chosen.min.css">
+    <link rel="stylesheet" href="../css/colors.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/bootstrap-extended.css">
+    <link rel="stylesheet" href="../css/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../css/daterangepicker.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <!-- END: Head-->
+  <!-- BEGIN: Body-->
+  <body class="pace-done vertical-layout vertical-menu-modern navbar-floating footer-static menu-expanded">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+    <div class="content-wrapper container-xxl p-0">
+      <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+          <div class="row breadcrumbs-top">
+            <div class="col-12">
+              <h1 class="content-header-title float-start mb-0">Today’s Assignment</h1>
+              <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
+                      <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.25009 12.5809H2.33343V20.1643C2.33343 21.3592 3.30518 22.3309 4.50009 22.3309H17.5001C18.695 22.3309 19.6668 21.3592 19.6668 20.1643V12.5809H20.7501C20.9643 12.5809 21.1737 12.5173 21.3518 12.3983C21.53 12.2793 21.6688 12.1101 21.7507 11.9122C21.8327 11.7142 21.8542 11.4964 21.8124 11.2863C21.7706 11.0762 21.6675 10.8832 21.516 10.7317L11.766 0.981697C11.6655 0.881006 11.5461 0.801123 11.4147 0.74662C11.2833 0.692117 11.1424 0.664062 11.0001 0.664062C10.8578 0.664063 10.7169 0.692117 10.5855 0.74662C10.4541 0.801123 10.3347 0.881006 10.2342 0.981697L0.484178 10.7317C0.332718 10.8832 0.229577 11.0762 0.187796 11.2863C0.146014 11.4964 0.167468 11.7142 0.249444 11.9122C0.331419 12.1101 0.470237 12.2793 0.648348 12.3983C0.826459 12.5173 1.03587 12.5809 1.25009 12.5809ZM8.83343 20.1643V14.7476H13.1668V20.1643H8.83343ZM11.0001 3.27945L17.5001 9.77945V14.7476L17.5012 20.1643H15.3334V14.7476C15.3334 13.5527 14.3617 12.5809 13.1668 12.5809H8.83343C7.63851 12.5809 6.66676 13.5527 6.66676 14.7476V20.1643H4.50009V9.77945L11.0001 3.27945Z" fill="#0A1E46"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">
+                      Assignments
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    Today’s Assignments
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-lg-12">
+          <!-- Filters -->
+          <div class="bg-muted rounded p-4 mb-5">
+            <div class="d-flex gap-5 align-items-center">
+              <div class="mb-4 mb-lg-0">
+                <label class="form-label-sm">Search</label>
+                <div class="d-flex gap-2 align-items-center">
+                  <div class="position-relative">
+                    <input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Provider Name or Email">
+                    <svg class="icon-search position-absolute" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M290 323.515733a25.6 25.6 0 1 1 36.181334-36.181333l408.234666 408.234667a25.6 25.6 0 1 1-36.181333 36.181333l-408.234667-408.234667z" fill="#ffffff" />
+                      <path d="M320.365867 731.7504a25.6 25.6 0 1 1-36.181334-36.181333l408.234667-408.234667a25.6 25.6 0 1 1 36.181333 36.181333l-408.234666 408.234667z" fill="#ffffff" />
+                    </svg>
+                  </div>
+                  <button class="btn btn-secondary rounded btn-sm btn-hs-icon">
+                    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.0043 14.977C18.5005 14.5284 18.01 14.0669 17.5336 13.593C17.1334 13.215 16.8924 12.94 16.8924 12.94L13.88 11.603C15.086 10.3316 15.7517 8.69499 15.752 7C15.752 3.141 12.3738 0 8.22098 0C4.06815 0 0.689941 3.141 0.689941 7C0.689941 10.859 4.06815 14 8.22098 14C10.1177 14 11.8466 13.34 13.1732 12.261L14.6116 15.061C14.6116 15.061 14.9075 15.285 15.3141 15.657C15.7305 16.02 16.2781 16.511 16.8031 17.024L18.2641 18.416L18.914 19.062L21.1959 16.941L20.5009 16.337C20.0931 15.965 19.5487 15.471 19.0043 14.977V14.977ZM8.22098 12C5.25482 12 2.84167 9.757 2.84167 7C2.84167 4.243 5.25482 2 8.22098 2C11.1871 2 13.6003 4.243 13.6003 7C13.6003 9.757 11.1871 12 8.22098 12Z" fill="black"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="mb-4 mb-lg-0">
+                <label class="form-label-sm">Date Range</label>
+                <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
+                  <svg class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+                  </svg>
+                  <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+                </div>
+              </div>
+              <div class="mb-4 mb-lg-0">
+                <label class="form-label-sm">Scheduled Payment</label>
+                <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
+                  <svg class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+                  </svg>
+                  <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+                </div>
+              </div>
+              <div class="d-flex gap-3 align-items-center">
+                <div class="mb-4 mb-lg-0">
+                  <select class="form-select form-select-sm rounded bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
+                    <option>Advance Filter</option>
+                  </select>
+                </div>
+                <div class="mb-4 mb-lg-0">
+                  <button type="button" class="btn btn-xs bg-white btn-outline-dark rounded">Clear all</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Filters -->
+          <!-- Today's Assignment -->
+          <div>
+            <div class="d-flex justify-content-between mb-2">
+              <div class="d-inline-flex align-items-center gap-4">
+                <div class="d-inline-flex align-items-center gap-4">
+                  <label for="show_records_number" class="form-label-sm mb-0">Show</label>
+                  <select class="form-select form-select-sm" id="show_records_number">
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>25</option>
+                  </select>
+                </div>
+                <div>
+                  <div class="form-check mb-0">
+                    <input class="form-check-input" type="checkbox" value="" id="PendingServiceAddressLink">
+                    <label class="form-check-label" for="PendingServiceAddressLink">
+                      Pending Service Address/Link
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="d-inline-flex align-items-center gap-4">
+                <a href="" class="btn btn-success btn-has-icon">
+                  Export
+                  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.534 1.36L13.309 0H3.662C2.966 0 2.697 0.516 2.697 0.919V4.549H4.05V1.653C4.05 1.499 4.18 1.369 4.33 1.369H11.233C11.385 1.369 11.461 1.396 11.461 1.521V6.341H16.374C16.567 6.341 16.642 6.441 16.642 6.587V18.357C16.642 18.603 16.542 18.64 16.392 18.64H4.33C4.25562 18.6382 4.18485 18.6076 4.13261 18.5546C4.08037 18.5016 4.05076 18.4304 4.05 18.356V17.28H2.706V18.975C2.688 19.575 3.008 20 3.662 20H17.06C17.76 20 17.999 19.493 17.999 19.031V5.187L17.649 4.807L14.533 1.361L14.534 1.36ZM12.836 1.52L13.223 1.954L15.819 4.807L15.962 4.98H13.309C13.109 4.98 12.982 4.947 12.929 4.88C12.876 4.815 12.845 4.71 12.836 4.567V1.52ZM11.746 10.667H16.323V12.001H11.745V10.667H11.746ZM11.746 8.001H16.323V9.334H11.745V8L11.746 8.001ZM11.746 13.334H16.323V14.668H11.745V13.334H11.746ZM0 5.626V16.293H10.465V5.626H0ZM5.233 11.83L4.593 12.808H5.233V14H2.016L4.35 10.49L2.282 7.334H4.01L5.234 9.17L6.457 7.334H8.184L6.112 10.49L8.449 14H6.656L5.233 11.83Z" fill="white"/>
+                  </svg>
+                </a>
+                <a href="" class="btn btn-warning btn-has-icon">
+                  Export
+                  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 17.5V5.625L11.25 0H3C2.20435 0 1.44129 0.263392 0.87868 0.732233C0.31607 1.20107 0 1.83696 0 2.5V17.5C0 18.163 0.31607 18.7989 0.87868 19.2678C1.44129 19.7366 2.20435 20 3 20H15C15.7956 20 16.5587 19.7366 17.1213 19.2678C17.6839 18.7989 18 18.163 18 17.5ZM11.25 3.75C11.25 4.24728 11.4871 4.72419 11.909 5.07583C12.331 5.42746 12.9033 5.625 13.5 5.625H16.5V17.5C16.5 17.8315 16.342 18.1495 16.0607 18.3839C15.7794 18.6183 15.3978 18.75 15 18.75H3C2.60218 18.75 2.22064 18.6183 1.93934 18.3839C1.65804 18.1495 1.5 17.8315 1.5 17.5V2.5C1.5 2.16848 1.65804 1.85054 1.93934 1.61612C2.22064 1.3817 2.60218 1.25 3 1.25H11.25V3.75Z" fill="white"/>
+                    <path d="M3.90426 17.6066C3.6119 17.5092 3.37635 17.321 3.24726 17.0816C2.95476 16.5966 3.05226 16.1116 3.36726 15.7041C3.66426 15.3204 4.15626 14.9941 4.71276 14.7204C5.41767 14.3872 6.16279 14.117 6.93576 13.9141C7.53605 13.0149 8.06809 12.0851 8.52876 11.1304C8.25333 10.6088 8.03738 10.0669 7.88376 9.51162C7.75476 9.01162 7.70526 8.51662 7.81476 8.09162C7.92726 7.64912 8.22576 7.25162 8.78976 7.06287C9.07776 6.96662 9.38976 6.91287 9.69276 6.96662C9.84517 6.99366 9.98846 7.04863 10.1122 7.12755C10.236 7.20646 10.3371 7.30734 10.4083 7.42287C10.5403 7.62787 10.5883 7.86787 10.5988 8.09537C10.6093 8.33037 10.5808 8.59037 10.5283 8.86287C10.4023 9.50037 10.1233 10.2804 9.74826 11.1054C10.1621 11.8429 10.654 12.5482 11.2183 13.2129C11.8859 13.1689 12.5574 13.1899 13.2193 13.2754C13.7653 13.3579 14.3203 13.5191 14.6593 13.8566C14.8393 14.0366 14.9488 14.2566 14.9593 14.5041C14.9698 14.7441 14.8888 14.9816 14.7523 15.2079C14.634 15.4175 14.4507 15.5971 14.2213 15.7279C13.9945 15.8512 13.7267 15.9115 13.4563 15.9004C12.9598 15.8829 12.4753 15.6554 12.0568 15.3791C11.5479 15.0285 11.0893 14.63 10.6903 14.1916C9.67589 14.2876 8.67356 14.4574 7.69476 14.6991C7.24653 15.3616 6.73487 15.9928 6.16476 16.5866C5.72676 17.0241 5.25126 17.4066 4.77426 17.5704C4.50019 17.6737 4.18933 17.6866 3.90426 17.6066ZM5.97276 15.2304C5.72376 15.3254 5.49276 15.4254 5.28426 15.5279C4.79226 15.7704 4.47276 16.0066 4.31376 16.2116C4.17276 16.3929 4.16976 16.5241 4.25376 16.6629C4.26876 16.6904 4.28376 16.7079 4.29276 16.7179C4.31066 16.7139 4.3282 16.7089 4.34526 16.7029C4.55076 16.6329 4.87776 16.4091 5.29776 15.9879C5.53663 15.7442 5.76187 15.4914 5.97276 15.2304ZM8.43276 13.5679C8.93365 13.4705 9.43906 13.39 9.94776 13.3266C9.67464 12.9783 9.4194 12.6205 9.18276 12.2541C8.94749 12.6974 8.69739 13.135 8.43276 13.5666V13.5679ZM12.1018 14.1304C12.3268 14.3341 12.5458 14.5054 12.7543 14.6429C13.1143 14.8804 13.3648 14.9591 13.5013 14.9629C13.5378 14.9669 13.5749 14.9602 13.6063 14.9441C13.6687 14.9031 13.7172 14.8492 13.7473 14.7879C13.8006 14.7117 13.831 14.6259 13.8358 14.5379C13.8349 14.5085 13.821 14.4804 13.7968 14.4591C13.7188 14.3816 13.4968 14.2691 13.0198 14.1979C12.7163 14.1556 12.4094 14.1334 12.1018 14.1316V14.1304ZM9.11676 9.74787C9.243 9.40852 9.3432 9.06282 9.41676 8.71287C9.46326 8.47787 9.48126 8.28412 9.47376 8.13162C9.47417 8.04748 9.45796 7.96387 9.42576 7.88412C9.35072 7.89186 9.27745 7.90871 9.20826 7.93412C9.07776 7.97787 8.97126 8.06662 8.91426 8.28787C8.85426 8.52787 8.86926 8.87412 8.98326 9.31537C9.01926 9.45412 9.06426 9.59912 9.11826 9.74787H9.11676Z" fill="white"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- Hoverable rows start -->
+            <div class="row" id="table-hover-row">
+              <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="" class="table table-fs-md table-hover" aria-label="">
+                      <thead>
+                        <tr role="row">
+                          <th scope="col" class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
+                          </th>
+                          <th scope="col">Service Date</th>
+                          <th scope="col">Assignments Details</th>
+                          <th scope="col">Industry</th>
+                          <th scope="col">Accommodation</th>
+                          <th scope="col">Location</th>
+                          <th>No. of provider</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr role="row" class="odd bg-success">
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Map View" aria-label="Map View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="Check In" aria-label="Check In" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr role="row" class="even bg-gray">
+
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Virtual Meeting" aria-label="Virtual Meeting" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <mask id="mask0_9380_180256" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="15">
+                                    <path d="M0 0H21.4884V15H0V0Z" fill="white"/>
+                                  </mask>
+                                  <g mask="url(#mask0_9380_180256)">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 3.21439C0 1.43932 1.44295 0 3.22311 0H13.4302C15.2104 0 16.6533 1.43932 16.6533 3.21439V3.70858L19.9775 2.23547C20.31 2.08794 20.6944 2.11846 20.9993 2.31613C21.3041 2.51381 21.4884 2.85174 21.4884 3.21439V11.786C21.4884 12.1486 21.3041 12.4866 20.9993 12.6842C20.6944 12.8819 20.31 12.9121 19.9775 12.7649L16.6533 11.2918V11.786C16.6533 13.561 15.2104 15 13.4302 15H3.22311C1.44295 15 0 13.561 0 11.786V3.21439ZM3.22311 2.14281C2.62972 2.14281 2.14898 2.62282 2.14898 3.21439V11.786C2.14898 12.3775 2.62972 12.8572 3.22311 12.8572H13.4302C14.0236 12.8572 14.5047 12.3775 14.5047 11.786V10.4673C14.5047 9.30414 15.7049 8.52616 16.7707 8.99855L19.3394 10.137V4.86301L16.7707 6.00145C15.7049 6.47384 14.5047 5.69586 14.5047 4.53307V3.21439C14.5047 2.62282 14.0236 2.14281 13.4302 2.14281H3.22311Z" fill="black"/>
+                                  </g>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.29756 3.21094H8.59516V5.35374H4.29756V3.21094Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M14.2857 17.1462C15.0747 17.1462 15.7143 16.5066 15.7143 15.7176C15.7143 14.9287 15.0747 14.2891 14.2857 14.2891C13.4967 14.2891 12.8571 14.9287 12.8571 15.7176C12.8571 16.5066 13.4967 17.1462 14.2857 17.1462Z" fill="black"/>
+                                  <path d="M19.8407 15.341C19.3994 14.2167 18.6378 13.2465 17.6503 12.5509C16.6629 11.8552 15.493 11.4646 14.2857 11.4275C13.0784 11.4646 11.9085 11.8552 10.9211 12.5509C9.93363 13.2465 9.17204 14.2167 8.7307 15.341L8.57141 15.7132L8.7307 16.0853C9.17204 17.2097 9.93363 18.1798 10.9211 18.8755C11.9085 19.5711 13.0784 19.9618 14.2857 19.9989C15.493 19.9618 16.6629 19.5711 17.6503 18.8755C18.6378 18.1798 19.3994 17.2097 19.8407 16.0853L20 15.7132L19.8407 15.341ZM14.2857 18.5703C13.7206 18.5703 13.1682 18.4027 12.6984 18.0888C12.2285 17.7748 11.8623 17.3286 11.646 16.8066C11.4298 16.2845 11.3732 15.71 11.4835 15.1558C11.5937 14.6015 11.8658 14.0924 12.2654 13.6929C12.665 13.2933 13.1741 13.0212 13.7283 12.9109C14.2825 12.8007 14.857 12.8573 15.3791 13.0735C15.9012 13.2898 16.3474 13.656 16.6613 14.1258C16.9753 14.5957 17.1428 15.1481 17.1428 15.7132C17.1419 16.4706 16.8406 17.1968 16.305 17.7324C15.7693 18.268 15.0432 18.5694 14.2857 18.5703ZM3.57141 10.7132H7.14284V12.1417H3.57141V10.7132ZM3.57141 7.14174H12.1428V8.57031H3.57141V7.14174ZM3.57141 3.57031H12.1428V4.99888H3.57141V3.57031Z" fill="black"/>
+                                  <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr role="row" class="odd bg-warning">
+
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Map View" aria-label="Map View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="Check In" aria-label="Check In" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr role="row" class="even">
+
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Map View" aria-label="Map View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="Check In" aria-label="Check In" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr role="row" class="odd">
+
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Map View" aria-label="Map View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="Check In" aria-label="Check In" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr role="row" class="even">
+
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Map View" aria-label="Map View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="Check In" aria-label="Check In" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr role="row" class="odd">
+
+                          <td class="text-center">
+                            <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                          </td>
+                          <td>
+                            <div>
+                              <div class="time-date">08/24/2022</div>
+                              <div class="time-date">9:59 AM to<br> 4:22 PM</div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#">100995-6</a>
+                            <div>In-Perosn Assignment</div>
+                          </td>
+                          <td>
+                            <div>Information Technology</div>
+                          </td>
+                          <td>
+                            <div>Shelby Sign Language</div>
+                            <div>Shelby Sign Language</div>
+                            <div>Service: Language interpreting</div>
+                          </td>
+                          <td>
+                            <div>98 Shirley Street PIMPAMA QLD 4209</div>
+                          </td>
+                          <td>5</td>
+                          <td>On Time</td>
+                          <td>
+                            <div class="d-flex actions">
+                              <a href="" title="Map View" aria-label="Map View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                                </svg>
+                              </a>
+                              <a href="" title="Check In" aria-label="Check In" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                                </svg>
+                              </a>
+                              <div class="dropdown ac-cstm">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4.0625C10.5178 4.0625 10.9375 3.64277 10.9375 3.125C10.9375 2.60723 10.5178 2.1875 10 2.1875C9.48223 2.1875 9.0625 2.60723 9.0625 3.125C9.0625 3.64277 9.48223 4.0625 10 4.0625Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M10 17.8125C10.5178 17.8125 10.9375 17.3928 10.9375 16.875C10.9375 16.3572 10.5178 15.9375 10 15.9375C9.48223 15.9375 9.0625 16.3572 9.0625 16.875C9.0625 17.3928 9.48223 17.8125 10 17.8125Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+            </div>
+            <!-- Hoverable rows end -->
+            <!-- Icon Help -->
+            <div class="d-flex actions gap-3 justify-content-end mb-3">
+              <div class="d-flex gap-2 align-items-center">
+                <a href="" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 10.1911C8.55 10.1911 9.021 9.99134 9.413 9.59185C9.80433 9.19304 10 8.71338 10 8.15287C10 7.59236 9.80433 7.11236 9.413 6.71287C9.021 6.31406 8.55 6.11465 8 6.11465C7.45 6.11465 6.97933 6.31406 6.588 6.71287C6.196 7.11236 6 7.59236 6 8.15287C6 8.71338 6.196 9.19304 6.588 9.59185C6.97933 9.99134 7.45 10.1911 8 10.1911ZM8 17.6815C10.0333 15.7792 11.5417 14.0508 12.525 12.4963C13.5083 10.9425 14 9.56263 14 8.35669C14 6.50531 13.4207 4.98921 12.262 3.80841C11.104 2.62828 9.68333 2.03822 8 2.03822C6.31667 2.03822 4.89567 2.62828 3.737 3.80841C2.579 4.98921 2 6.50531 2 8.35669C2 9.56263 2.49167 10.9425 3.475 12.4963C4.45833 14.0508 5.96667 15.7792 8 17.6815ZM8 20C7.86667 20 7.73333 19.9745 7.6 19.9236C7.46667 19.8726 7.35 19.8047 7.25 19.7197C4.81667 17.5287 3 15.4949 1.8 13.6183C0.6 11.7411 0 9.98726 0 8.35669C0 5.80892 0.804334 3.77919 2.413 2.26752C4.021 0.755839 5.88333 0 8 0C10.1167 0 11.979 0.755839 13.587 2.26752C15.1957 3.77919 16 5.80892 16 8.35669C16 9.98726 15.4 11.7411 14.2 13.6183C13 15.4949 11.1833 17.5287 8.75 19.7197C8.65 19.8047 8.53333 19.8726 8.4 19.9236C8.26667 19.9745 8.13333 20 8 20Z" fill="black"/>
+                  </svg>
+                </a>
+                <span class="text-sm">
+                  In-Person
+                </span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <a href="" title="Accept" aria-label="Accept" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_9380_60671" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="15">
+                    <path d="M0 0H21.4884V15H0V0Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0_9380_60671)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 3.21439C0 1.43932 1.44295 0 3.22311 0H13.4302C15.2104 0 16.6533 1.43932 16.6533 3.21439V3.70858L19.9775 2.23547C20.31 2.08794 20.6944 2.11846 20.9993 2.31613C21.3041 2.51381 21.4884 2.85174 21.4884 3.21439V11.786C21.4884 12.1486 21.3041 12.4866 20.9993 12.6842C20.6944 12.8819 20.31 12.9121 19.9775 12.7649L16.6533 11.2918V11.786C16.6533 13.561 15.2104 15 13.4302 15H3.22311C1.44295 15 0 13.561 0 11.786V3.21439ZM3.22311 2.14281C2.62972 2.14281 2.14898 2.62282 2.14898 3.21439V11.786C2.14898 12.3775 2.62972 12.8572 3.22311 12.8572H13.4302C14.0236 12.8572 14.5047 12.3775 14.5047 11.786V10.4673C14.5047 9.30414 15.7049 8.52616 16.7707 8.99855L19.3394 10.137V4.86301L16.7707 6.00145C15.7049 6.47384 14.5047 5.69586 14.5047 4.53307V3.21439C14.5047 2.62282 14.0236 2.14281 13.4302 2.14281H3.22311Z" fill="black"/>
+                    </g>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.29755 3.21094H8.59515V5.35374H4.29755V3.21094Z" fill="black"/>
+                  </svg>
+                </a>
+                <span class="text-sm">
+                  Virtual
+                </span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.26 18.74L9 20L7.5 18.5L6 20L4.5 18.5L3 20L1.5 18.5L0 20V0L1.5 1.5L3 0L4.5 1.5L6 0L7.5 1.5L9 0L10.5 1.5L12 0L13.5 1.5L15 0L16.5 1.5L18 0V11.35C17.37 11.13 16.7 11 16 11V3H2V17H10C10 17.57 10.1 18.22 10.26 18.74ZM3 13V15H10.35C10.61 14.25 11 13.58 11.54 13H3ZM3 11H15V9H3V11ZM3 7H15V5H3V7ZM20 15.23L18.84 13.82L15.25 17.41L13.66 15.82L12.5 17L15.25 20" fill="black"/>
+                  </svg>
+                </a>
+                <span class="text-sm">
+                  Check-In
+                </span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                  <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.69705 6.53125H2.39162V7.22194H1.69705V6.53125Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M11.7457 3.40163V2.71094H10.3569V3.74698C10.3569 3.85199 10.3089 3.95101 10.2268 4.01656L9.13547 4.88486C9.39342 5.03568 9.68978 5.12801 10.0098 5.12801C10.9669 5.12801 11.7457 4.3538 11.7457 3.40163Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M4.23674 9.97939C4.48483 9.97939 4.71529 9.85711 4.85273 9.65166L6.55479 7.11266V5.83594C6.2394 5.83594 5.94973 5.99416 5.78058 6.25846L5.60896 6.52663H3.083V7.21732H5.16706L4.06231 8.9437H1V9.63439H3.80012C3.85122 9.83103 4.02319 9.97939 4.23674 9.97939Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M2.04451 13.0859H1.69705V15.102C2.01914 14.9956 2.27991 14.7436 2.39162 14.4113V13.4313C2.39162 13.241 2.23586 13.0859 2.04451 13.0859Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M6.61563 10.3325H9.11093L10.062 8.1248C10.1047 8.02577 10.1914 7.95212 10.2967 7.92605C10.4018 7.89962 10.5131 7.92393 10.598 7.99124L11.0914 8.38381L11.4973 7.44221L10.4691 6.41921C10.2971 6.70183 9.99791 6.87979 9.66173 6.87979C9.34387 6.87979 9.04821 6.72227 8.87236 6.45903L8.45936 5.84375H7.25664V6.87979H7.60374C7.72109 6.87979 7.82998 6.93829 7.89412 7.03625C7.95861 7.13386 7.96882 7.25685 7.9216 7.36327L6.61563 10.3325Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M9.87577 6.03772L9.98007 5.83051C9.69816 5.82593 9.42858 5.77272 9.17767 5.67969L9.43598 6.06485C9.53712 6.21674 9.79472 6.20017 9.87577 6.03772Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M9.66848 3.59679V2.38103C9.66848 2.19074 9.82353 2.03604 10.0156 2.03604H11.6042C11.3357 1.4271 10.7257 1 10.0156 1C9.05848 1 8.27969 1.77456 8.27969 2.72638V3.41707C8.27969 3.79766 8.40796 4.14653 8.61834 4.43197L9.66848 3.59679Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M11.782 18.2533H11.844C11.8214 18.1984 11.8027 18.1416 11.782 18.0859V18.2533Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M9.21655 11.0078H6.29979L5.47941 12.8727C5.42444 12.9985 5.29934 13.0795 5.16155 13.0795H3.07855V14.4609H7.0303L7.97577 12.5798C8.02264 12.4868 8.10968 12.4195 8.21188 12.3973C8.31478 12.3751 8.42155 12.4001 8.50366 12.465L10.2396 13.846C10.2829 13.8805 10.3174 13.9253 10.34 13.9757L11.4222 16.3977C11.419 16.3272 11.4109 16.2581 11.4109 16.1873C11.4109 15.3631 11.5984 14.5832 11.9251 13.8802L11.468 12.6073L9.21655 11.0078Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M16.9628 12.7578C15.0486 12.7578 13.491 14.3069 13.491 16.2109C13.491 18.1149 15.0486 19.664 16.9628 19.664C18.8774 19.664 20.4346 18.1149 20.4346 16.2109C20.4346 14.3069 18.8774 12.7578 16.9628 12.7578ZM18.52 17.5426L17.2965 16.8125C17.1972 16.8678 17.0844 16.9016 16.9628 16.9016C16.5801 16.9016 16.2686 16.5919 16.2686 16.2109C16.2686 15.9565 16.4092 15.7362 16.6157 15.6164V13.4485H17.3099V15.6168C17.5168 15.7366 17.6574 15.9568 17.6574 16.2113C17.6574 16.2152 17.6563 16.2183 17.6563 16.2222L18.8777 16.9513L18.52 17.5426Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M16.9658 11.3281C14.2855 11.3281 12.1052 13.4964 12.1052 16.1623C12.1052 18.8278 14.2855 20.9964 16.9658 20.9964C19.6461 20.9964 21.8264 18.8278 21.8264 16.1623C21.8264 13.4964 19.6461 11.3281 16.9658 11.3281ZM16.9658 20.3057C14.6685 20.3057 12.7998 18.4472 12.7998 16.1623C12.7998 13.8773 14.6685 12.0188 16.9658 12.0188C19.2631 12.0188 21.1322 13.8773 21.1322 16.1623C21.1322 18.4472 19.2631 20.3057 16.9658 20.3057Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M12.914 9.22145L15.3801 8.40354C15.5073 8.36125 15.5929 8.2432 15.5929 8.10929C15.5929 7.74632 15.2257 7.46688 14.8705 7.56766L12.5637 8.22311C12.4439 8.25765 12.3121 8.22417 12.223 8.13537L12.0302 7.94367L11.6581 8.80703L11.9678 9.053C12.2297 9.26162 12.5965 9.32646 12.914 9.22145Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M14.5477 5.14844H18.7137V5.83913H14.5477V5.14844Z" fill="black" stroke="black" stroke-width="0.35"/>
+                    <path d="M17.6805 7.22656H19.7635V7.9169H17.6805V7.22656Z" fill="black" stroke="black" stroke-width="0.35"/>
+                  </svg>
+                </a>
+                <span class="text-sm">
+                  Running Late
+                </span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.2857 17.1462C15.0747 17.1462 15.7143 16.5066 15.7143 15.7176C15.7143 14.9287 15.0747 14.2891 14.2857 14.2891C13.4967 14.2891 12.8571 14.9287 12.8571 15.7176C12.8571 16.5066 13.4967 17.1462 14.2857 17.1462Z" fill="black"/>
+                    <path d="M19.8407 15.341C19.3994 14.2167 18.6378 13.2465 17.6503 12.5509C16.6629 11.8552 15.493 11.4646 14.2857 11.4275C13.0784 11.4646 11.9085 11.8552 10.9211 12.5509C9.93363 13.2465 9.17204 14.2167 8.7307 15.341L8.57141 15.7132L8.7307 16.0853C9.17204 17.2097 9.93363 18.1798 10.9211 18.8755C11.9085 19.5711 13.0784 19.9618 14.2857 19.9989C15.493 19.9618 16.6629 19.5711 17.6503 18.8755C18.6378 18.1798 19.3994 17.2097 19.8407 16.0853L20 15.7132L19.8407 15.341ZM14.2857 18.5703C13.7206 18.5703 13.1682 18.4027 12.6984 18.0888C12.2285 17.7748 11.8623 17.3286 11.646 16.8066C11.4298 16.2845 11.3732 15.71 11.4835 15.1558C11.5937 14.6015 11.8658 14.0924 12.2654 13.6929C12.665 13.2933 13.1741 13.0212 13.7283 12.9109C14.2825 12.8007 14.857 12.8573 15.3791 13.0735C15.9012 13.2898 16.3474 13.656 16.6613 14.1258C16.9753 14.5957 17.1428 15.1481 17.1428 15.7132C17.1419 16.4706 16.8406 17.1968 16.305 17.7324C15.7693 18.268 15.0432 18.5694 14.2857 18.5703ZM3.57141 10.7132H7.14284V12.1417H3.57141V10.7132ZM3.57141 7.14174H12.1428V8.57031H3.57141V7.14174ZM3.57141 3.57031H12.1428V4.99888H3.57141V3.57031Z" fill="black"/>
+                    <path d="M14.2857 0H1.42857C1.05004 0.00113052 0.687332 0.152003 0.419668 0.419668C0.152003 0.687332 0.00113052 1.05004 0 1.42857V18.5714C0.00113052 18.95 0.152003 19.3127 0.419668 19.5803C0.687332 19.848 1.05004 19.9989 1.42857 20H7.14286V18.5714H1.42857V1.42857H14.2857V9.28571H15.7143V1.42857C15.7132 1.05004 15.5623 0.687332 15.2946 0.419668C15.027 0.152003 14.6642 0.00113052 14.2857 0Z" fill="black"/>
+                  </svg>
+                </a>
+                <span class="text-sm">
+                  View Assignment
+                </span>
+              </div>
+            </div>
+            <!-- /Icon Help -->
+            <div class="d-flex justify-content-between">
+              <div>
+                <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100 entries</p>
+              </div>
+              <nav aria-label="Page Navigation">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <!-- /Today's Assignment -->
+        </div>
+      </div>
+    </div>
+    <!-- End: Content-->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <!-- BEGIN: Footer-->
+    <footer
+      class="footer footer-light  footer-static">
+      <p class="clearfix mb-0">
+        <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
+        <a class="ms-25" href=""
+          target="_blank">Eclipse Scheduling</a>,
+        <span class="d-none d-sm-inline-block">All rights Reserved</span>
+        </span>
+      </p>
+    </footer>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+    <script src="../js/jquery-3.6.3.min.js"></script>
+    <script src="../js/alpinejs-3.11.1.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/moment.min.js"></script>
+    <script type="text/javascript" src="../js/daterangepicker.min.js"></script>
+    <script src="../js/unison-js.min.js"></script>
+    <script src="../js/perfect-scrollbar.min.js"></script>
+    <script src="../js/feather-icons.min.js"></script>
+    <script src="../js/chosen.jquery.min.js"></script>
+    <script src="../js/app-menu.js"></script>
+    <script src="../js/app-new.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>
