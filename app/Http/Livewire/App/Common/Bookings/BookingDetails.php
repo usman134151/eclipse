@@ -8,8 +8,6 @@ class BookingDetails extends Component
 {
 	public $component = 'booking-details';
 
-	protected $listeners = ['switch'];
-
 	public function render()
 	{
 		return view('livewire.app.common.bookings.booking-details', ['component' => $this->component,]);
