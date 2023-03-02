@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Tenant\Api;
 
-use App\Http\Controllers\Tenant\Api\ApiController;
 use Illuminate\Http\Request;
+use App\Services\CustomizeForm;
 use App\Services\AssignmentService;
+use App\Http\Controllers\Tenant\Api\ApiController;
 
 class AssignmentController extends ApiController
 {
@@ -333,11 +334,9 @@ class AssignmentController extends ApiController
                 'assignment_id'         =>  $bookingId,
                 'assignment_no'         =>  '101787-'.$bookingId,
                 'assignment_type' => ($bookingId % 2 == 0)?'virtual':'in-person',
-                'assignment_start_date' =>  api_date_formate(date('d-m-Y')),
-                'assignment_start_time' =>  '11:15 AM',
-                'assignment_actual_start_time' =>  '11:15 AM',
-                'assignment_end_date' =>  api_date_formate(date('d-m-Y')),
-                'assignment_end_time' =>  '1:15 PM',
+                'assignment_start_time' =>  api_date_formate(date('d-m-Y h:i a')),
+                'assignment_actual_start_time' =>  api_date_formate(date('d-m-Y h:i a')),
+                'assignment_end_time' =>  api_date_formate(date('d-m-Y h:i a')),
                 'industory'             =>  'Religion',
                 'accommondation'        =>  'Sign Language Interpreting Services',
                 'service'               =>  'American Sign Language Interpreting',
@@ -354,6 +353,8 @@ class AssignmentController extends ApiController
                 'meeting_link'        =>  ($bookingId % 2 == 0)?'https://meet.google.com/gdo-qgdjfjf-test':null,
                 'status'              =>  'pending',
             ];
+            $result['customiz_form'] =  $this->customizFormData();
+            $result['customiz_form_id'] = 1;
             return $this->response($result,200);
             
         } catch (\Throwable $th) {
@@ -361,6 +362,82 @@ class AssignmentController extends ApiController
                 'errors' => $th->getMessage(),
             ],500);
         }
+    }
+
+    public function customizFormData()
+    {
+        $data = array();
+        $fields =array( [
+            'title'=> 'Company Name',
+            'type'=> 'text',
+            'placeholder'=> 'Enter Company Name',
+            'option' => null,
+        ], [
+            'title'=> 'Type Of Appointment',
+            'type'=> 'text',
+            'placeholder'=> 'Enter Type Of Appointment',
+            'option' => null,
+        ], [
+            'title'=> 'Entry Notes',
+            'type'=> 'textarea',
+            'placeholder'=> null,
+            'option' => null,
+        ],[
+            'title'=> 'Covid-19 Regulations',
+            'type'=> 'text',
+            'placeholder'=> 'Covid-19 Regulations',
+            'option' => null,
+        ],[
+            'title'=> 'Is this new patient',
+            'type'=> 'dropdown',
+            'placeholder'=> 'Please select',
+            'option' => array(
+                [
+                    'title'=> 'Yes',
+                    'value'=> 'yes'
+                ],
+                [
+                    'title'=> 'No',
+                    'value'=> 'no'
+                ]
+            ),
+        ],
+        [
+            'title'=> 'Gender',
+            'type'=> 'radio',
+            'placeholder'=> null,
+            'option' => array(
+                [
+                    'title'=> 'Male',
+                    'value'=> 'male'
+                ],
+                [
+                    'title'=> 'Female',
+                    'value'=> 'female'
+                ],
+                [
+                    'title'=> 'Other',
+                    'value'=> 'other'
+                ]
+            ),
+        ],
+        [
+            'title'=> 'Terms And Condition',
+            'type'=> 'checkbox',
+            'placeholder'=> null,
+            'option' => array(
+                [
+                    'title'=> 'I Agree That The Information Of Assginment Is Completed ',
+                    'value'=> 1
+                ]
+            ),
+        ]);
+        $customiz_form = [];
+        foreach ($fields as  $data) {
+            $customiz_form[] = CustomizeForm::field($data['title'],$data['type'],$data['placeholder'],null,$data['option']);
+        }
+       
+       return $customiz_form;
     }
 
     /**
@@ -377,10 +454,10 @@ class AssignmentController extends ApiController
                 [
                     'assignment_id' => 'required',
                     'actual_start_time' => 'required',
-                    'company_name' => 'required',
-                    'appointment_type' => 'required',
-                    'covid_regulation' => 'required',
-                    'is_new_patient' => 'required',
+                    // 'company_name' => 'required',
+                    // 'appointment_type' => 'required',
+                    // 'covid_regulation' => 'required',
+                    // 'is_new_patient' => 'required',
                 ]
             );
             if($validate   !== true )
@@ -467,21 +544,28 @@ class AssignmentController extends ApiController
     public function storeCheckIn(Request $request)
     {
         try {
+            $rules =  [
+                'assignment_id' => 'required',
+                'actual_start_time' => 'required',
+                'actual_end_time' => 'required',
+                'signater_type' => 'required',
+                'timesheet_file' => 'required',
+            ];
+            if($request->signater_type && $request->signater_type == 'digital')
+            {
+                $rules['signater_user_type'] =  'required';
+            }
             $validate = $this->vallidateApi(
                 $request,
-                [
-                    'assignment_id' => 'required',
-                    'actual_start_time' => 'required',
-                    'actual_end_time' => 'required',
-                    'signater_type' => 'required',
-                    'timesheet_file' => 'required',
-                ]
+                $rules
             );
             if($validate   !== true )
             {
                 return $validate;
             } 
             $result = array();
+            $result['customiz_form'] =  $this->customizFormData();
+            $result['customiz_form_id'] = 1;
             $result['assignment_id'] = $request->assignment_id;
             $result['assignment_no'] = '101787-'.$request->assignment_id;
             $result['next_step'] = 'checkout_end_form';
@@ -506,10 +590,10 @@ class AssignmentController extends ApiController
                 $request,
                 [
                     'assignment_id' => 'required',
-                    'company_name' => 'required',
-                    'appointment_type' => 'required',
-                    'covid_regulation' => 'required',
-                    'is_new_patient' => 'required',
+                    // 'company_name' => 'required',
+                    // 'appointment_type' => 'required',
+                    // 'covid_regulation' => 'required',
+                    // 'is_new_patient' => 'required',
                 ]
             );
             if($validate   !== true )
@@ -599,6 +683,37 @@ class AssignmentController extends ApiController
         }    
     }
 
+    /**
+    *  Store Location status Of Assignment.
+    *  
+    * @param  Request $request
+    * @return \Illuminate\Http\Response
+    */
+    public function setLocationStatus(Request $request)
+    {
+        try {
+            $validate = $this->vallidateApi(
+                $request,
+                [
+                    'assignment_id' => 'required',
+                    'location_verified' => 'required',
+                ]
+            );
+            if($validate   !== true )
+            {
+                return $validate;
+            } 
+            $result = array();
+            $status_code = 607;
+            if($request->location_verified)
+            $status_code = 606;
+            return $this->response($result,$status_code); 
+        } catch (\Throwable $th) {
+            return $this->response([
+                'errors' => $th->getMessage(),
+            ],500);
+        }
+    }
 
      /**
     * Store Check in And Out Provider Of Assignment.

@@ -61,7 +61,7 @@ class ChatService
     
     public static function chatMessages( $user )
     {
-        return array( [
+        return array( 
             'room_id' => 1,
             'customer_id' => 2,
             'user_id' => $user->id,
@@ -114,7 +114,29 @@ class ChatService
                     'service'               =>  null,
                 ]
             ]
-        ] );
+         );
+    }
+
+    public static function chatRoomCreate( $user )
+    {
+        return array( 
+            'room_id' => 1,
+            'customer_id' => 2,
+            'user_id' => $user->id,
+            'message' => '',
+            'last_message_at' => api_date_formate(date('Y-m-d h:sa')),
+            'unread_message_count' => 0,
+            'customer' =>  [
+                'uid'           =>  1,
+                'user_name'     => 'Cameron Williamson',
+                'role'          =>  'Supervisor' , 
+                'status'        =>  'active',
+                'gender'        => 'male',
+                'profile_pic' => $user->gravatar_url,
+                'created_at' => api_date_formate($user->created_at),
+            ],
+            'messages' => null
+        );
     }
 
     public static function message( $user )
