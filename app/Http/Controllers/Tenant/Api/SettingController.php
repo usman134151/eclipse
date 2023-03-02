@@ -105,7 +105,7 @@ class SettingController extends ApiController
                 $validate = $this->vallidateApi(
                     $request,
                     [
-                        'address_id' => 'required',
+                    //    'address_id' => 'required',
                         'address' => 'required',
                         'latitude' => 'required',
                         'longitude'    =>  'required'
