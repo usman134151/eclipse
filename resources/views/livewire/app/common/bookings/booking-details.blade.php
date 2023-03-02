@@ -3,7 +3,9 @@
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
-					<h1 class="content-header-title float-start mb-0">Assignment Details</h1>
+					<h1 class="content-header-title float-start mb-0">
+						Assignment Details
+					</h1>
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
@@ -557,7 +559,9 @@
 												</div>
 												<div class="col-lg-7 align-self-center">
 													<div class="d-flex align-items-center gap-2">
-														<div class="font-family-tertiary text-primary">https://meet.google.com/xxxxxxxx</div>
+														<div class="font-family-tertiary text-primary">
+															https://meet.google.com/xxxxxxxx
+														</div>
 														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
@@ -716,286 +720,321 @@
 												</div>
 											</div>
 										</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Last Name:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-								<div class="d-flex align-items-center gap-2">
-								<div class="font-family-tertiary">Charles</div>
-								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
-								  </svg>
-								</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Phone Number:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-								<div class="d-flex align-items-center gap-2">
-								<div class="font-family-tertiary">(923) 023-9683</div>
-								<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
-								  </svg>
-								</a>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-5">
-							  <label class="col-form-label">Severity:</label>
-							</div>
-							<div class="col-lg-7 align-self-center">
-							  <div class="font-family-tertiary">Active</div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div><!-- /Service Form Detail -->
-				  <!-- Industry Form Detail -->
-				  <div class="row mb-4">
-					<div class="col-lg-12">
-					  <div class="d-lg-flex justify-content-between align-items-center mb-5">
-						<h2 class="mb-lg-0">Industry Form Detail</h2>
-					  </div>
-					  <div class="row">
-						<div class="col-lg-8 mb-3">
-						  <div class="row">
-							<div class="col-lg-12">
-							  <div class="row">
-								<div class="col-lg-3">
-								  <label class="col-form-label">Req_info:</label>
-								</div>
-								<div class="col-lg-9">
-								  <a href="#">View Uploaded Document</a>
-								</div>
-								<div class="col-lg-3">
-								  <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
-								  <p class="font-family-secondary"><small>File Name</small></p>
-								</div>
-							  </div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div><!-- /Industry Form Detail -->
-				  <!-- Notes -->
-				  <div class="row mb-4">
-					<div class="col-lg-12">
-					  <h2 class="mb-lg-4">Notes</h2>
-					  <div class="row mb-4">
-						<div class="col-lg-6 mb-4">
-						  <!-- Provider Notes -->
-						  <div class="">
-							<label class="form-label">
-							  Provider Notes
-							</label>
-							<textarea class="form-control" rows="4" cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
-						  </div>
-						  <!-- /Provider Notes -->
-						</div>
-						<div class="col-lg-6 mb-4">
-						  <!-- Customer Notes -->
-						  <div class="">
-							<label class="form-label">
-							  Customer Notes
-							</label>
-							<textarea class="form-control" rows="4" cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
-						  </div>
-						  <!-- /Customer Notes -->
-						</div>
-						<div class="col-lg-6 mb-4">
-						  <!-- Private Notes -->
-						  <div class="">
-							<label class="form-label">
-							  Private Notes
-							</label>
-							<textarea class="form-control" rows="4" cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
-						  </div>
-						  <!-- /Private Notes -->
-						</div>
-						<div class="col-lg-6 mb-4">
-						  <!-- Tags -->
-						  <div class="">
-							<label class="form-label">
-							  Tags
-							</label>
-							<select x-cloak="" id="select">
-							  <option value="1">Option 1</option>
-							  <option value="2">Option 2</option>
-							  <option value="3">Option 3</option>
-							  <option value="4">Option 4</option>
-							  <option value="5">Option 5</option>
-							</select>
-
-							<div x-data="dropdown()" x-init="loadOptions()" class="form-control multi-select-dropdown mb-2">
-							  <input name="values" type="hidden" x-bind:value="selectedValues()" value="">
-							  <div class="inline-block position-relative w-100">
-								<div class="d-flex flex-column align-items-center position-relative">
-								  <div x-on:click="open" class="w-100">
-									<div class="d-flex justify-content-between">
-									  <div class="d-flex flex-auto flex-wrap gap-2">
-										<template x-for="(option,index) in selected" :key="options[option].value">
-										  <div class="d-flex justify-content-center align-items-center py-1 px-1 bg-white rounded border">
-											<div class="text-xs font-normal leading-none max-w-full flex-initial x-model=" options[option]="" x-text="options[option].text"></div>
-											<div class="d-flex flex-auto flex-row-reverse">
-											  <div class="btn btn-hs-icon p-0" x-on:click.stop="remove(index,option)">
-												<svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
-												  <path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0 c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183 l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15 C14.817,13.62,14.817,14.38,14.348,14.849z"></path>
-												</svg>
-											  </div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Last Name:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="d-flex align-items-center gap-2">
+														<div class="font-family-tertiary">Charles</div>
+														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
 											</div>
-										  </div>
-										</template>
-										<div x-show="selected.length == 0" class="flex-1">
-										  <input placeholder="Select a option" class="form-control border-0 p-0" x-bind:value="selectedValues()">
 										</div>
-									  </div>
-									  <div class="svelte-1l8159u d-flex align-items-center">
-
-										<button type="button" x-show="isOpen() === true" x-on:click="open" class="btn btn-hs-icon p-0" style="display: none;">
-										  <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
-											<path d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83 c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z "></path>
-										  </svg>
-
-										</button>
-										<button type="button" x-show="isOpen() === false" @click="close" class="btn btn-hs-icon p-0">
-										  <svg version="1.1" class="fill-current h-4 w-4" viewBox="0 0 20 20">
-											<path d="M17.418,6.109c0.272-0.268,0.709-0.268,0.979,0s0.271,0.701,0,0.969l-7.908,7.83 c-0.27,0.268-0.707,0.268-0.979,0l-7.908-7.83c-0.27-0.268-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.979,0L10,13.25 L17.418,6.109z"></path>
-										  </svg>
-
-										</button>
-									  </div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Phone Number:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="d-flex align-items-center gap-2">
+														<div class="font-family-tertiary">
+															(923) 023-9683
+														</div>
+														<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M19.2555 4.11766L15.8304 0.680256C15.3834 0.258855 14.7977 0.017061 14.1846 0.000869084C13.5715 -0.0153228 12.9739 0.195217 12.5054 0.592439L1.25527 11.8832C0.85122 12.2921 0.599641 12.8281 0.54276 13.4012L0.00525375 18.6325C-0.0115852 18.8163 0.0121717 19.0015 0.074831 19.175C0.13749 19.3485 0.237509 19.5059 0.367758 19.6362C0.484559 19.7524 0.623081 19.8444 0.775379 19.9069C0.927678 19.9693 1.09076 20.0009 1.25527 20H1.36777L6.58033 19.5233C7.15133 19.4662 7.68538 19.2137 8.09284 18.8082L19.343 7.51743C19.7796 7.05447 20.0156 6.43667 19.9992 5.7994C19.9828 5.16213 19.7154 4.55738 19.2555 4.11766ZM6.35532 17.0142L2.60528 17.3655L2.94279 13.6019L10.0054 6.60163L13.3804 9.98885L6.35532 17.0142ZM15.0054 8.30778L11.6554 4.94565L14.0929 2.43659L17.5054 5.86145L15.0054 8.30778Z" fill="black"></path>
+															</svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-5">
+													<label class="col-form-label">Severity:</label>
+												</div>
+												<div class="col-lg-7 align-self-center">
+													<div class="font-family-tertiary">Active</div>
+												</div>
+											</div>
+										</div>
 									</div>
-								  </div>
-								  <div class="w-100 px-0">
-									<div x-show.transition.origin.top="isOpen()" class="position-absolute shadow top-100 bg-white z-40 w-100 left-0 rounded max-h-select" x-on:click.away="close" style="display: none;">
-									  <div class="d-flex flex-column w-100 overflow-y-auto options-container">
-										<template x-for="(option,index) in options" :key="option" class="overflow-auto">
-										  <div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-											<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-											  <div class="w-100 d-flex justify-content-between align-items-center">
-												<div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
-												<div x-show="option.selected">
-												  <svg class="svg-icon" viewBox="0 0 20 20">
-													<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-												  </svg>
-												</div>
-											  </div>
-											</div>
-										  </div>
-										</template><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-											<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-											  <div class="w-100 d-flex justify-content-between align-items-center">
-												<div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 1</div>
-												<div x-show="option.selected" style="display: none;">
-												  <svg class="svg-icon" viewBox="0 0 20 20">
-													<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-												  </svg>
-												</div>
-											  </div>
-											</div>
-										  </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-											<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-											  <div class="w-100 d-flex justify-content-between align-items-center">
-												<div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 2</div>
-												<div x-show="option.selected" style="display: none;">
-												  <svg class="svg-icon" viewBox="0 0 20 20">
-													<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-												  </svg>
-												</div>
-											  </div>
-											</div>
-										  </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-											<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-											  <div class="w-100 d-flex justify-content-between align-items-center">
-												<div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 3</div>
-												<div x-show="option.selected" style="display: none;">
-												  <svg class="svg-icon" viewBox="0 0 20 20">
-													<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-												  </svg>
-												</div>
-											  </div>
-											</div>
-										  </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-											<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-											  <div class="w-100 d-flex justify-content-between align-items-center">
-												<div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 4</div>
-												<div x-show="option.selected" style="display: none;">
-												  <svg class="svg-icon" viewBox="0 0 20 20">
-													<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-												  </svg>
-												</div>
-											  </div>
-											</div>
-										  </div><div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-											<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-											  <div class="w-100 d-flex justify-content-between align-items-center">
-												<div class="mx-2 leading-6" x-model="option" x-text="option.text">Option 5</div>
-												<div x-show="option.selected" style="display: none;">
-												  <svg class="svg-icon" viewBox="0 0 20 20">
-													<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-												  </svg>
-												</div>
-											  </div>
-											</div>
-										  </div>
-									  </div>
-									</div>
-								  </div>
 								</div>
-							  </div>
 							</div>
-							<div class="d-lg-flex flex-wrap gap-3 mb-3">
-							  <div class="tag">@admin_company</div>
-							  <div class="tag">@booking_start_at</div>
-							  <div class="tag">@consumer</div>
-							  <div class="tag">@booking_end_at</div>
-							  <div class="tag">@booking_duration</div>
+							<!-- /Service Form Detail -->
+							<!-- Industry Form Detail -->
+							<div class="row mb-4">
+								<div class="col-lg-12">
+									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+										<h2 class="mb-lg-0">Industry Form Detail</h2>
+									</div>
+									<div class="row">
+										<div class="col-lg-8 mb-3">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="row">
+														<div class="col-lg-3">
+															<label class="col-form-label">
+																Req_info:
+															</label>
+														</div>
+														<div class="col-lg-9">
+															<a href="#">View Uploaded Document</a>
+														</div>
+														<div class="col-lg-3">
+															<img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+															<p class="font-family-secondary">
+																<small>File Name</small>
+															</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- /Industry Form Detail -->
+							<!-- Notes -->
+							<div class="row mb-4">
+								<div class="col-lg-12">
+									<h2 class="mb-lg-4">Notes</h2>
+									<div class="row mb-4">
+										<div class="col-lg-6 mb-4">
+											<!-- Provider Notes -->
+											<div class="">
+												<label class="form-label">
+													Provider Notes
+												</label>
+												<textarea class="form-control" rows="4" cols="4">
+													Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+												</textarea>
+											</div>
+											<!-- /Provider Notes -->
+										</div>
+										<div class="col-lg-6 mb-4">
+											<!-- Customer Notes -->
+											<div class="">
+												<label class="form-label">
+													Customer Notes
+												</label>
+												<textarea class="form-control" rows="4" cols="4">
+													Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+												</textarea>
+											</div>
+											<!-- /Customer Notes -->
+										</div>
+										<div class="col-lg-6 mb-4">
+											<!-- Private Notes -->
+											<div class="">
+												<label class="form-label">
+													Private Notes
+												</label>
+												<textarea class="form-control" rows="4" cols="4">
+													Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+												</textarea>
+											</div>
+											<!-- /Private Notes -->
+										</div>
+										<div class="col-lg-6 mb-4">
+											<!-- Tags -->
+											<div class="">
+												<label class="form-label">
+													Tags
+												</label>
+												<select x-cloak="" id="select">
+													<option value="1">Option 1</option>
+													<option value="2">Option 2</option>
+													<option value="3">Option 3</option>
+													<option value="4">Option 4</option>
+													<option value="5">Option 5</option>
+												</select>
+												
+												<div x-data="dropdown()" x-init="loadOptions()" class="form-control multi-select-dropdown mb-2">
+													<input name="values" type="hidden" x-bind:value="selectedValues()" value="">
+													<div class="inline-block position-relative w-100">
+														<div class="d-flex flex-column align-items-center position-relative">
+															<div x-on:click="open" class="w-100">
+																<div class="d-flex justify-content-between">
+																	<div class="d-flex flex-auto flex-wrap gap-2">
+																		<template x-for="(option,index) in selected" :key="options[option].value">
+																			<div class="d-flex justify-content-center align-items-center py-1 px-1 bg-white rounded border">
+																				<div class="text-xs font-normal leading-none max-w-full flex-initial x-model=" options[option]="" x-text="options[option].text"></div>
+																				<div class="d-flex flex-auto flex-row-reverse">
+																					<div class="btn btn-hs-icon p-0" x-on:click.stop="remove(index,option)">
+																						<svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
+																							<path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0 c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183 l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15 C14.817,13.62,14.817,14.38,14.348,14.849z"></path>
+																						</svg>
+																					</div>
+																				</div>
+																			</div>
+																		</template>
+																		<div x-show="selected.length == 0" class="flex-1">
+																			<input placeholder="Select a option" class="form-control border-0 p-0" x-bind:value="selectedValues()">
+																		</div>
+																	</div>
+																	<div class="svelte-1l8159u d-flex align-items-center">
+																		<button type="button" x-show="isOpen() === true" x-on:click="open" class="btn btn-hs-icon p-0" style="display: none;">
+																			<svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
+																				<path d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83 c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z "></path>
+																			</svg>
+																		</button>
+																		<button type="button" x-show="isOpen() === false" @click="close" class="btn btn-hs-icon p-0">
+																			<svg version="1.1" class="fill-current h-4 w-4" viewBox="0 0 20 20">
+																				<path d="M17.418,6.109c0.272-0.268,0.709-0.268,0.979,0s0.271,0.701,0,0.969l-7.908,7.83 c-0.27,0.268-0.707,0.268-0.979,0l-7.908-7.83c-0.27-0.268-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.979,0L10,13.25 L17.418,6.109z"></path>
+																			</svg>
+																		</button>
+																	</div>
+																</div>
+															</div>
+															<div class="w-100 px-0">
+																<div x-show.transition.origin.top="isOpen()" class="position-absolute shadow top-100 bg-white z-40 w-100 left-0 rounded max-h-select" x-on:click.away="close" style="display: none;">
+																	<div class="d-flex flex-column w-100 overflow-y-auto options-container">
+																		<template x-for="(option,index) in options" :key="option" class="overflow-auto">
+																			<div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+																				<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+																					<div class="w-100 d-flex justify-content-between align-items-center">
+																						<div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
+																						<div x-show="option.selected">
+																							<svg class="svg-icon" viewBox="0 0 20 20">
+																								<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+																							</svg>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</template>
+																		<div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+																			<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+																				<div class="w-100 d-flex justify-content-between align-items-center">
+																					<div class="mx-2 leading-6" x-model="option" x-text="option.text">
+																						Option 1
+																					</div>
+																					<div x-show="option.selected" style="display: none;">
+																						<svg class="svg-icon" viewBox="0 0 20 20">
+																							<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+																						</svg>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+																			<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+																				<div class="w-100 d-flex justify-content-between align-items-center">
+																					<div class="mx-2 leading-6" x-model="option" x-text="option.text">
+																						Option 2
+																					</div>
+																					<div x-show="option.selected" style="display: none;">
+																						<svg class="svg-icon" viewBox="0 0 20 20">
+																							<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+																						</svg>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+																			<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+																				<div class="w-100 d-flex justify-content-between align-items-center">
+																					<div class="mx-2 leading-6" x-model="option" x-text="option.text">
+																						Option 3
+																					</div>
+																					<div x-show="option.selected" style="display: none;">
+																						<svg class="svg-icon" viewBox="0 0 20 20">
+																							<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+																						</svg>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+																			<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+																				<div class="w-100 d-flex justify-content-between align-items-center">
+																					<div class="mx-2 leading-6" x-model="option" x-text="option.text">
+																						Option 4
+																					</div>
+																					<div x-show="option.selected" style="display: none;">
+																						<svg class="svg-icon" viewBox="0 0 20 20">
+																							<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+																						</svg>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
+																			<div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
+																				<div class="w-100 d-flex justify-content-between align-items-center">
+																					<div class="mx-2 leading-6" x-model="option" x-text="option.text">
+																						Option 5
+																					</div>
+																					<div x-show="option.selected" style="display: none;">
+																						<svg class="svg-icon" viewBox="0 0 20 20">
+																							<path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
+																						</svg>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="d-lg-flex flex-wrap gap-3 mb-3">
+													<div class="tag">@admin_company</div>
+													<div class="tag">@booking_start_at</div>
+													<div class="tag">@consumer</div>
+													<div class="tag">@booking_end_at</div>
+													<div class="tag">@booking_duration</div>
+												</div>
+												<div>
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" id="Requester" name="" type="checkbox" tabindex="">
+														<label class="form-check-label" for="Requester">
+															Requester
+														</label>
+													</div>
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" id="ServiceConsumers" name="" type="checkbox" tabindex="">
+														<label class="form-check-label" for="ServiceConsumers">
+															Service Consumer(s)
+														</label>
+													</div>
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" id="Participants" name="" type="checkbox" tabindex="">
+														<label class="form-check-label" for="Participants">
+															Participant(s)
+														</label>
+													</div>
+												</div>
+											</div>
+											<!-- /Tags -->
+										</div>
+										<div class="col-lg-12">
+											<a href="#" class="btn btn-primary rounded">Save Notes</a>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div>
-							  <div class="form-check form-check-inline">
-								<input class="form-check-input" id="Requester" name="" type="checkbox" tabindex="">
-								<label class="form-check-label" for="Requester">Requester</label>
-							  </div>
-							  <div class="form-check form-check-inline">
-								<input class="form-check-input" id="ServiceConsumers" name="" type="checkbox" tabindex="">
-								<label class="form-check-label" for="ServiceConsumers">Service Consumer(s)</label>
-							  </div>
-							  <div class="form-check form-check-inline">
-								<input class="form-check-input" id="Participants" name="" type="checkbox" tabindex="">
-								<label class="form-check-label" for="Participants">Participant(s)</label>
-							  </div>
-							</div>
-						  </div>
-						  <!-- /Tags -->
+							<!-- /Notes -->
 						</div>
-						<div class="col-lg-12">
-						  <a href="#" class="btn btn-primary rounded">Save Notes</a>
+						<div class="col-12 justify-content-center form-actions d-flex gap-3">
+							<button type="" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+								Cancel
+							</button>
+							<button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('assigned-providers')">
+								Next
+							</button>
 						</div>
-					  </div>
 					</div>
-				  </div><!-- /Notes -->
-				</div>
-				<div class="col-12 justify-content-center form-actions d-flex gap-3">
-				  <button type="" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
-					Cancel
-				</button>
-				  <button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('assigned-providers')">Next</button>
-				</div>
-			  </div><!-- END: booking-details-tab -->
+					<!-- END: booking-details-tab -->
 			  <div class="tab-pane fade {{ $component == 'assigned-providers' ? 'active show' : '' }}" id="assigned-providers" role="tabpanel" aria-labelledby="assigned-providers-tab" tabindex="0">
 				<!-- Service 1 Assigned Providers -->
 				<div class="mb-5">
