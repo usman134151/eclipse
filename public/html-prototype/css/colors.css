@@ -79,7 +79,7 @@ input:focus ~ .bg-black {
   color: #4b4b4b !important; }
 
 .border-dark {
-  border: 1px solid #4b4b4b !important; }
+  border-color: #4b4b4b !important; }
 
 .border-top-dark {
   border-top: 1px solid #4b4b4b; }
