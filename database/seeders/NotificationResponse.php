@@ -250,6 +250,28 @@ class NotificationResponse extends Seeder
             'updated_at'   => now()
         ]);
         DB::table('api_notifications')->insert([
+            'id'    =>  606,
+            'message' =>    'Assignment location is verified.',
+            'title'    => 'Location Verified!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
+            'id'    =>  607,
+            'message' =>    'Assignment location is un-verified.',
+            'title'    => 'Location Un-Verified!',
+            'btn_cancel'  =>   '',
+            'btn_link'  =>   '',
+            'base_code' =>   200,
+            'type' =>   'response' ,
+            'created_at'   => now(),
+            'updated_at'   => now()
+        ]);
+        DB::table('api_notifications')->insert([
             'id'    =>  660,
             'message' =>    'Reimbursement create successfuly!.',
             'title'    => 'Reimbursement Done!',

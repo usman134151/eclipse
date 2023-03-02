@@ -33,7 +33,6 @@ class ChatController extends ApiController
             $validate = $this->vallidateApi(
                 $request,
                 [
-                    'room_id' => 'required',
                     'user_id' => 'required',
                 ]
             );
@@ -45,7 +44,10 @@ class ChatController extends ApiController
             //Todo Update Work
 
             $user = Auth::user(); 
+            if($request->room_id)
             $result = ChatService::chatMessages($user);
+            else
+            $result = ChatService::chatRoomCreate($user);
             return $this->response($result, 200);
             
         } catch (\Throwable $th) {
