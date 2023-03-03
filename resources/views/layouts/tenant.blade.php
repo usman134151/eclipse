@@ -65,7 +65,7 @@
 		{{-- END: Footer --}}
 		@include('partials/panels')
 		@include('partials/modals')
-		@include('layouts/savebrowserpopup')
+		@include('modals/global/savebrowserpopup')
 		
 		<script src="/tenant/js/jquery-3.6.3.min.js"></script>
 		<script src="/tenant/js/bootstrap.bundle.min.js"></script>
@@ -80,6 +80,14 @@
 		<script src="/tenant/js/app-new.js"></script>
 		<script src="/tenant/js/select2.min.js"></script>
 		<script src="/tenant/js/sweetalert.min.js"></script>
+		<script src="/tenant/js/common.js"></script>
+		@auth
+		@if(!checkUserSavedBrowser())
+			<script>
+			openSaveBrowserPopup();
+			</script>
+		@endif
+		@endauth
 		@livewireScripts
 		@powerGridScripts
 		<script src="/tenant/js/alpinejs-3.11.1.js" defer></script>
