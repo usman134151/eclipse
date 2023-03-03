@@ -236,3 +236,17 @@ $('.js-checkout-go-step-4').click(function(){
   $('.js-checkout-step-3-content').addClass("hidden");
   $('.js-checkout-step-4-content').removeClass("hidden");
 });
+
+const ps = new
+PerfectScrollbar('.js-ps-container', {
+    wheelSpeed: 2,
+    wheelPropagation: false,
+    minScrollbarLength: 20
+});
+
+const psContainerCheckOut = new
+PerfectScrollbar('.js-ps-container-check-out', {
+    wheelSpeed: 2,
+    wheelPropagation: false,
+    minScrollbarLength: 20
+});

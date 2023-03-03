@@ -775,7 +775,7 @@
         <h2 class="offcanvas-title" id="offcanvasRightLabel">Check-In # 100995-6</h2>
         <button type="button" class="btn-close" x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body position-relative js-ps-container">
         <div class="accordion mb-4" id="accordionAssignment">
           <div class="accordion-item">
             <h2 class="accordion-header" id="AssignmentNo">
@@ -958,7 +958,7 @@
         <h2 class="offcanvas-title" id="offcanvasRightLabel">Check-Out # 100995-6</h2>
         <button type="button" class="btn-close" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body position-relative js-ps-container-check-out">
         <!-- BEGIN: Step 1 -->
         <div class="js-checkout-step-1-content">
           <label class="form-label mb-0">Check-in Time 10:25AM</label>
@@ -971,9 +971,9 @@
               </div>
               <div>
                 <div class="form-check form-switch mb-0">
-                  <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked>
-                  <label class="form-check-label" for="checkin">No</label>
-                  <label class="form-check-label" for="checkin">Yes</label>
+                  <input class="form-check-input" type="checkbox" role="switch" id="checkOut" checked>
+                  <label class="form-check-label" for="checkOut">No</label>
+                  <label class="form-check-label" for="checkOut">Yes</label>
                 </div>
               </div>
             </div>
@@ -1372,7 +1372,7 @@
       </div>
     </div>
     <!-- END: Panel/Offcanvas - Check-Out -->
-    <!-- Objection - Modal -->
+    <!-- Running Late - Modal -->
     <div class="modal fade" id="runningLateModal" tabindex="-1" aria-labelledby="runningLateModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
@@ -1410,18 +1410,21 @@
         </div>
       </div>
     </div>
-    <!-- /Objection - Modal -->
+    <!-- /Running Late - Modal -->
     <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpenCheckIn == true }" x-show="offcanvasOpenCheckIn"></div>
     <div class="offcanvas-backdrop" :class="{ 'fade show': offcanvasOpenCheckOut == true }" x-show="offcanvasOpenCheckOut"></div>
     <script src="../js/jquery-3.6.3.min.js"></script>
     <script src="../js/alpinejs-3.11.1.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../js/moment.min.js"></script>
-    <script type="text/javascript" src="../js/daterangepicker.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/daterangepicker.min.js"></script>
     <script src="../js/unison-js.min.js"></script>
     <script src="../js/perfect-scrollbar.min.js"></script>
     <script src="../js/feather-icons.min.js"></script>
     <script src="../js/chosen.jquery.min.js"></script>
+    <script src="../js/select2.min.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
+    <script src="../js/pikaday.js"></script>
     <script src="../js/app-menu.js"></script>
     <script src="../js/app-new.js"></script>
     <script src="../js/app.js"></script>
