@@ -3,10 +3,11 @@
  *  Dev :  Sakhawat Kamran
  *  Date: 21-02-2023
  */
-use App\Http\Controllers\Tenant\Jobs\sendEmail;
-use App\Http\Controllers\Tenant\Jobs\sendSms;
+use App\Models\Tenant\User;
 use App\Models\Tenant\LoginAddress;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Tenant\Jobs\sendSms;
+use App\Http\Controllers\Tenant\Jobs\sendEmail;
 
 ##### API Related Helpers #####
 
@@ -95,8 +96,8 @@ if(!function_exists('checkUserSavedBrowser'))
 {  
   function checkUserSavedBrowser()
   {
-    $browser = Helper::get_browser_name($_SERVER['HTTP_USER_AGENT']);
-    $ipAdd   = Helper::get_ip_address();
+    $browser = get_browser_name($_SERVER['HTTP_USER_AGENT']);
+    $ipAdd   = get_ip_address();
     $isLogin = LoginAddress::where('user_id', auth()->user()->id)->where(function ($q) use ($browser, $ipAdd) {
       $q->where('browser', $browser)
       ->where('ip_address', $ipAdd);
@@ -179,4 +180,25 @@ if(!function_exists('saveUserBrowser'))
 
     }
   } 
-}   
+}  
+
+/**
+ * save user browser
+ *
+ * @param 
+ * @return ip_address
+ */
+
+ if(!function_exists('getAdmin'))
+ {
+   function getAdmin()
+   {
+       try{
+       $user = User::find(1);
+       return $user;
+     } catch (\Exception $e) {
+ 
+     }
+   } 
+ }  
+ 

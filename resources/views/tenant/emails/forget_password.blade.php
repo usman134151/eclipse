@@ -25,7 +25,7 @@
                                     <tbody>
                                     <tr>
                                         <td style="background:#fff;text-align:center;padding:15px;">
-                                            <img src="{{ Helper::getAdminLogo() }}" style="height:110px; width:auto;" />
+                                            {{-- <img src="{{ Helper::getAdminLogo() }}" style="height:110px; width:auto;" /> --}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -34,9 +34,8 @@
                                     <tr>
                                         <td>
                                             @php
-                                            $company  = $data->company;
-                                                //$company = Helper::getAdmin();
-                                                //$company = isset($company->users_business)?$company->users_business->company_name:''; 
+                                            $company = getAdmin();
+                                            $company = isset($company->users_business)?$company->users_business->company_name:''; 
                                             @endphp
                                             <table style="" width="100%" cellspacing="0" cellpadding="0" border="0">
                                                 <tbody>
@@ -98,7 +97,7 @@
                                                     <td style="background:#fbfbfb;" height="19" bgcolor="#3A3F51"><br></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="background:#fbfbfb;color:#000;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;line-height:20px;margin:0;padding:0 6px 0 6px;text-align:center" valign="middle" align="center">Need Help? Email us at <a href="mailto:{!! Helper::getAdmin()->email; !!}">{!! Helper::getAdmin()->email; !!}</a></td>
+                                                    <td style="background:#fbfbfb;color:#000;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:12px;line-height:20px;margin:0;padding:0 6px 0 6px;text-align:center" valign="middle" align="center">Need Help? Email us at <a href="mailto:{!! getAdmin()->email; !!}">{!! getAdmin()->email; !!}</a></td>
                                                 </tr>
                                                 <tr><td style="background:#fbfbfb;" height="19" bgcolor="#3A3F51"><br></td></tr>
                                                 <tr>

@@ -75,7 +75,7 @@ class User extends Authenticatable
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email)));
     }
     
-    public function role()
+    public function roles()
     {
         return $this->hasOne(RoleUser::class);
     }
