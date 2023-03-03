@@ -1229,21 +1229,5 @@ small {
   right: 1rem; }
 
 /* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #e2e8f0; }
-
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 5px; }
-
-*::-webkit-scrollbar-track {
-  background: none;
-  border-radius: 5px; }
-
-*::-webkit-scrollbar-thumb {
-  background-color: #e2e8f0;
-  border-radius: 1rem;
-  border: 3px solid #e2e8f0; }
 
 /*# sourceMappingURL=style.css.map */
