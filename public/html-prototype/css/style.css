@@ -1235,4 +1235,7 @@ small {
     background: linear-gradient(220deg, rgba(255, 255, 255, 0.0001) 0.63%, rgba(0, 0, 0, 0.0001) 100%), linear-gradient(220deg, #C4C4C4 1%, rgba(255, 255, 255, 0.0001) 100%) !important;
     color: #000 !important; }
 
+.header-navbar .navbar-container .dropdown-menu-media {
+  background: #ffffff; }
+
 /*# sourceMappingURL=style.css.map */

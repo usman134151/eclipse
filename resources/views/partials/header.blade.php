@@ -79,7 +79,7 @@
               <li class="dropdown-menu-header">
                 <div class="dropdown-header d-flex">
                   <h4 class="notification-title mb-0 me-auto">Notifications</h4>
-                                      <div class="badge rounded-pill bg-primary">
+                                      <div class="badge rounded-pill bg-primary d-flex align-items-center justify-content-center">
                       21 New
                     </div>
                                   </div>
