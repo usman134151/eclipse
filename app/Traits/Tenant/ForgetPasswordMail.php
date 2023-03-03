@@ -12,7 +12,7 @@ trait ForgetPasswordMail
         $user->subject = $company.' Portal - Password Reset';
         $user->company = $company;
         //dd(sendmail($user->email,'',$user->subject,['data' => $user],'tenant.emails.forgot_password'));
-        sendMail($user->email, $user->subject, ['data' => $user], 'tenant.emails.forgot_password', [],'dispatch');
+        sendMail($user->email, $user->subject, ['data' => $user], 'tenant.emails.forget_password', [],'dispatch');
               
     }
 }    
