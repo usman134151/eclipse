@@ -58,17 +58,23 @@
                                     <div class="col-3">
                                         <label>Default Colour</label>
                                     </div>
-                                    <div class="col-3 choosen-color choosen-default-color">
-  
+                                    <div class="col-1 choosen-color">
+                                      <input type="color" class="form-control form-control-color border-0 p-0 w-100 h-100" id="PortalDefaultColour" value="#0A1E46" title="Choose your color">
                                     </div>
                                     <div class="col-3">
-                                        <a href="#" class="btn btn-primary btn-sm rounded">Choose Colour</a>
+                                        <label class="form-label-sm">Choose Colour</label>
                                     </div>
                                   </div>
                                   <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-                                      <label>Foreground Color</label>
-                                      <div class="choosen-color choosen-foreground-color"></div>
-                                      <a href="#" class="btn btn-primary btn-sm rounded">Choose Colour</a>
+                                      <div class="col-3">
+                                          <label>Foreground Color</label>
+                                      </div>
+                                      <div class="col-1 choosen-color">
+                                        <input type="color" class="form-control form-control-color border-0 p-0 w-100 h-100" id="PortalForegroundColour" value="#000000" title="Choose your color">
+                                      </div>
+                                      <div class="col-3">
+                                          <label class="form-label-sm">Choose Colour</label>
+                                      </div>
                                    </div>
                              </div>
                             </div>
