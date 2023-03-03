@@ -33,9 +33,8 @@ class CustomizeForm
             $options_feild = array();
             foreach ($options as $key => $option) {
                 $options_feild[] = [
-                    'option_title' => $option['title'],
-                    'option_value' => $option['value'],
-                    'is_default' => $key == 0,
+                    'label' => $option['title'],
+                    'value' => $option['value']
                 ];
             }
             return $options_feild;

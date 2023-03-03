@@ -69,7 +69,7 @@
                                                     <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:normal;margin:0;padding:15px 30px 25px 25px;color:#000000;">To enter the portal, reset your password using the link above and log into your Eclipse account.</td>
                                                 </tr>
                                                 <tr>
-                                                    @if($data->roles()->first()->name == 'admin')
+                                                    @if($data->role()->first()->name == 'admin')
                                                         <td style="color:#757575;font-family:&quot;Roboto&quot;,OpenSans,&quot;OpenSans&quot;,Arial,sans-serif;font-size:15px;font-weight:300;line-height:4px;margin:0;padding:0 30px 25px 25px;color:#000000;">
                                                             <a href="{!! str_replace('https://' , '' , url('')) !!}">{!! url('') !!}</a>
                                                         </td>
