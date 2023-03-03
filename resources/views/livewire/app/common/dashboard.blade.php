@@ -139,9 +139,10 @@
         
         </div>
         <!-- /Filters -->
-        <div>
+        @livewire('app.common.calendar')
+        {{-- <div>
           <img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="w-100" alt="Dashboard Calender"/>
-        </div>
+        </div> --}}
       </div>
       <div class="tab-pane fade" id="assignments-tab-pane" role="tabpanel" aria-labelledby="assignments-tab" tabindex="0">
         <!-- Filters -->
