@@ -65,6 +65,7 @@
 		{{-- END: Footer --}}
 		@include('partials/panels')
 		@include('partials/modals')
+		@include('layouts/savebrowserpopup')
 		
 		<script src="/tenant/js/jquery-3.6.3.min.js"></script>
 		<script src="/tenant/js/bootstrap.bundle.min.js"></script>
