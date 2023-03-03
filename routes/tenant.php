@@ -7,6 +7,7 @@ use App\Http\Middleware\CheckSubscription;
 use Stancl\Tenancy\Features\UserImpersonation;
 use App\Http\Controllers\Tenant as Controllers;
 use App\Http\Controllers\Tenant\Auth\OtpController;
+use App\Http\Controllers\Tenant\Common\BrowserHandleController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 Route::group([
@@ -149,5 +150,7 @@ Route::group([
         Route::get('otpverify', [OtpController::class, 'loadOtpView'])->name('otpverify');
         Route::get('resendotp', [OtpController::class, 'resendOtpView'])->name('resendotp');
         Route::post('otpverify', [OtpController::class, 'verifyOtp'])->name('submit.otpverify');
+        Route::post('/saveBrowser', [BrowserHandleController::class,'store']);
+       
     });
 });

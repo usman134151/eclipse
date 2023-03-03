@@ -57,5 +57,10 @@
     <script type="text/javascript" src="tenant/js/bootstrap.bundle.min.js"></script>
     <script src="/tenant/js/feather-icons.min.js"></script>
     <script src="/tenant/js/alpinejs-3.11.1.js"></script>
+    <script src="/tenant/js/common.js"></script>
+    <script>
+      resetSaveBrowser();
+    </script>
+
   </body>
 </html>
