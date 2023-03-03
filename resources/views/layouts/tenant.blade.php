@@ -21,6 +21,7 @@
 		<link rel="stylesheet" href="/tenant/css/select2.min.css"/>
 		<link rel="stylesheet" href="/tenant/css/pikaday.css">
 		<link rel="stylesheet" href="/tenant/css/style.css">
+		<link rel="stylesheet" href='/tenant/css/bootstrap-icons.css'/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
