@@ -6,8 +6,17 @@ use Livewire\Component;
 
 class BusinessSetup extends Component
 {
+	public $component = 'configuration-setting';
 	public $showForm;
 	protected $listeners = ['showList'=>'resetForm'];
+
+	public function mount()
+	{}
+
+	public function render()
+	{
+		return view('livewire.app.common.forms.business-setup');
+	}
 
 	function showForm()
 	{
@@ -19,11 +28,8 @@ class BusinessSetup extends Component
 		$this->showForm=false;
 	}
 
-	public function mount()
-	{}
-
-	public function render()
+	public function switch($component)
 	{
-		return view('livewire.app.common.forms.business-setup');
+		$this->component = $component;
 	}
 }

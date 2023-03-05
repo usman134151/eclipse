@@ -6,13 +6,20 @@ use Livewire\Component;
 
 class CustomerForm extends Component
 {
+	public $component = 'customer-info';
+
+	public function render()
+	{
+		return view('livewire.app.common.forms.customer-form');
+	}
+	
 	public function showList()
 	{
 		$this->emit('showList');
 	}
 
-	public function render()
+	public function switch($component)
 	{
-		return view('livewire.app.common.forms.customer-form');
+		$this->component = $component;
 	}
 }
