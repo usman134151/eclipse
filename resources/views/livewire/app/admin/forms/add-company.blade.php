@@ -1571,6 +1571,8 @@
 			</div>
   
 			@include('panels.common.customers')
+			@include('modals.company-business-hours')
+			@include('modals.common.add-address')
 	  </section>
   
 			</div><!--End: Drive Documents Pane-->

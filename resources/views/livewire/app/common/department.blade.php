@@ -8,6 +8,9 @@
 	</div>
 	@if ($showForm)
 	@livewire('app.common.forms.department-form') {{-- Show Add / Edit Form --}}
+	 {{-- Show Add / Edit Form --}}
+	@elseif ($showProfile)
+	    @livewire('app.common.department-profile')
 	@else
 	<div class="content-wrapper container-xxl p-0">
 		<div class="content-header row">
@@ -98,13 +101,13 @@
 		  <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -133,13 +136,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -168,13 +171,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -203,13 +206,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -239,13 +242,13 @@
 		  </td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -274,13 +277,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -309,13 +312,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -344,13 +347,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -379,13 +382,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete " aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
@@ -414,13 +417,13 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="pencil"/>
 				</a>
-				<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
 					<x-icon name="view"/>
 				</a>
-				<a href="javascript:void(0)" title="Delete Company" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 					<x-icon name="recycle-bin"/>
 				</a>
 			</div>
