@@ -29,7 +29,7 @@
 		<div class="card">
 			<div class="card-body">
 				{{-- BEGIN: Steps --}}
-				<div x-data="{ tab: 'customer-info' }" id="tab_wrapper">
+				<div x-data="{ tab: @entangle('component') }" id="tab_wrapper">
 					{{-- Nav tabs --}}
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
@@ -60,7 +60,6 @@
 
 					{{-- Tab panes --}}
 					<div class="tab-content">
-
 						{{-- BEGIN: Customer Info --}}
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'customer-info' }" id="customer-info" role="tabpanel" aria-labelledby="customer-info-tab" tabindex="0" x-show="tab === 'customer-info'">
 							<section id="multiple-column-form">
@@ -443,7 +442,7 @@
 												<button type="submit" class="btn btn-primary rounded">
 													Save & Exit
 												</button>
-												<button type="submit" class="btn btn-primary rounded">
+												<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('permission-configurations')">
 													Next
 												</button>
 											</div>
@@ -688,13 +687,13 @@
 									</div>
 									{{-- Action Buttons Start --}}
 									<div class="col-12 justify-content-center form-actions d-flex gap-3">
-										<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
-											Cancel
+										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('customer-info')">
+											Back
 										</button>
 										<button type="submit" class="btn btn-primary rounded">
 											Save & Exit
 										</button>
-										<button type="submit" class="btn btn-primary rounded">
+										<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('service-catalog')">
 											Next
 										</button>
 									</div>
@@ -1022,13 +1021,13 @@
 									</div>
 									{{-- Action Buttons Start --}}
 									<div class="col-12 justify-content-center form-actions d-flex gap-3">
-										<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
-											Cancel
+										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('permission-configurations')">
+											Back
 										</button>
 										<button type="submit" class="btn btn-primary rounded">
 											Save & Exit
 										</button>
-										<button type="submit" class="btn btn-primary rounded">
+										<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('drive-documents')">
 											Next
 										</button>
 									</div>
@@ -1077,15 +1076,15 @@
 													</div>
 													{{-- Action Buttons Start --}}
 													<div class="col-12 justify-content-center form-actions d-flex gap-3">
-														<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+														<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-catalog')">
 															Back
 														</button>
 														<button type="submit" class="btn btn-primary rounded">
 															Submit
 														</button>
-														<button type="submit" class="btn btn-primary rounded">
+														{{-- <button type="submit" class="btn btn-primary rounded">
 															Next
-														</button>
+														</button> --}}
 													</div>
 													{{-- Action Buttons End --}}
 												</div>
@@ -1109,10 +1108,6 @@
 	@include('modals.supervising')
 	@include('modals.bill-managing')
 	@include('modals.admin-staff')
-
-
-
-
 </div>
 
 @push('scripts')

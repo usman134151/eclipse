@@ -37,7 +37,7 @@
 		<div class="card">
 			<div class="card-body">
 				{{-- BEGIN: Steps --}}
-				<div x-data="{ tab: 'profile' }" id="tab_wrapper">
+				<div x-data="{ tab: @entangle('component') }" id="tab_wrapper">
 					{{-- Nav tabs --}}
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
@@ -423,7 +423,7 @@
 								<button type="submit" class="btn btn-primary rounded">
 									Save & Exit
 								</button>
-								<button type="submit" class="btn btn-primary rounded">
+								<button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('provider-service')">
 									Next
 								</button>
 							</div>
@@ -440,10 +440,8 @@
 												<div class="col-md-12 mb-md-2">
 													<div class="col-md-12 col-12 mb-md-2">
 														<div class="row mb-5">
-															<div class="col-lg-12">
-																<div class="mb-4">
-																	<h3>Provider Type</h3>
-																</div>
+															<div class="col-lg-12 mb-4">
+																<h3>Provider Type</h3>
 																<div class="row">
 																	<div class="col-12 mb-4">
 																		<div class="mb-2">
@@ -490,7 +488,7 @@
 																</div>
 															</div>
 															<div class="row">
-																<h4 class="mb-2" for="">
+																<h4 class="mb-2">
 																	Would you like to set a rate for when this provider works outside their set schedule?
 																</h4>
 																<div class="d-flex">
@@ -511,10 +509,8 @@
 														</div>
 														<div class="col-md-12 col-12 md-2 mb-5 mt-4">
 															<div class="row">
-																<div class="col-6">
-																	<div class="mb-4">
-																		<h2>Provider Service Profile</h2>
-																	</div>
+																<div class="col-6 mb-4">
+																	<h2>Provider Service Profile</h2>
 																	<div class="bg-muted rounded p-4">
 																		<h5 class="text-primary">
 																			Travel Profile
@@ -1473,22 +1469,23 @@
 												</div>
 												<!-- cancel/next (buttons) -->
 												<div class="col-12 justify-content-center form-actions d-flex gap-3">
-													<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
+													<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('profile')">
 														Back
 													</button>
 													<button type="submit" class="btn btn-primary rounded">
 														Save & Exit
 													</button>
-													<button type="submit" class="btn btn-primary rounded">
+													<button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('upload-document')">
 														Next
 													</button>
 												</div>
-											</form>
-										</div>
+											</div>
+										</form>
 									</div>
-								</section>
-							</div>
-							{{-- END: Provider Service --}}
+								</div>
+							</section>
+						</div>
+						{{-- END: Provider Service --}}
 
 						{{-- BEGIN: Upload Document --}}
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'upload-document' }"  id="upload-document" role="tabpanel" aria-labelledby="upload-document-tab" tabindex="0" x-show="tab === 'upload-document'">
@@ -1587,7 +1584,6 @@
 												<option value=""></option>
 											  </select>
 											</div>
-											<!-- main row -->
 										  </div>
 										  <div class="row">
 											<div class="col-lg-12 gap-2">
@@ -1600,22 +1596,22 @@
 												</div>
 											  </div>
 											</div>
-											<!-- main row -->
 										  </div>
-										  <!-- cancel/next (buttons) -->
 										  <div class="col-12 justify-content-center form-actions d-flex gap-3">
-											<button type="button"
-											  class="btn btn-outline-dark rounded" wire:click.prevent="showList">Back</button>
-											  <button type="submit"
-											  class="btn btn-primary rounded">Submit</button>
-											<button type="submit"
-											  class="btn btn-primary rounded">Next</button>
+											<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('provider-service')">
+												Back
+											</button>
+											<button type="submit" class="btn btn-primary rounded">
+												Submit
+											</button>
+											{{-- <button type="submit" class="btn btn-primary rounded">
+												Next
+											</button> --}}
 										  </div>
 										</form>
 									</div>
 								</div>
 							</section>
-							<!-- Basic Floating Label Form section end -->
 						</div>
 						{{-- END: Upload Document --}}
 					</div>
@@ -1627,6 +1623,4 @@
 	@include('modals.assign-provider-team')
 	@include('modals.contract-provider-availiblity')
 	@include('modals.staff-provider-availiblity')
-
-
 </div>
