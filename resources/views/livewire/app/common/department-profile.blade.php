@@ -1,10 +1,10 @@
-<div>
+<div x-data="{addDocument: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
 					<h1 class="content-header-title float-start mb-0">
-						Company Details
+						Department Profile
 					</h1>
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
@@ -14,10 +14,10 @@
 								</a>
 							</li>
 							<li class="breadcrumb-item">
-								All Companies
+								All Department
 							</li>
 							<li class="breadcrumb-item">
-								Company Details
+								Department Details
 							</li>
 						</ol>
 					</div>
@@ -39,9 +39,11 @@
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="departments-tab" data-bs-toggle="tab" data-bs-target="#departments-tab-pane" type="button" role="tab" aria-controls="departments-tab-panel" aria-selected="false">
-										<x-icon name="gray-department"/>
-										<span>Departments</span>
+									<button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users-tab-pane" type="button" role="tab" aria-controls="users-tab-panel" aria-selected="false">
+										<svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21.5 20.2423V23.2423H0.5V20.2423C0.5 20.2423 0.5 14.2423 11 14.2423C21.5 14.2423 21.5 20.2423 21.5 20.2423ZM16.25 5.99227C16.25 4.95391 15.9421 3.93888 15.3652 3.07552C14.7883 2.21216 13.9684 1.53926 13.0091 1.1419C12.0498 0.744539 10.9942 0.640571 9.97577 0.843144C8.95737 1.04572 8.02192 1.54573 7.28769 2.27996C6.55346 3.01418 6.05345 3.94964 5.85088 4.96804C5.6483 5.98644 5.75227 7.04204 6.14963 8.00135C6.54699 8.96067 7.2199 9.7806 8.08326 10.3575C8.94661 10.9344 9.96165 11.2423 11 11.2423C12.3924 11.2423 13.7277 10.6891 14.7123 9.70458C15.6969 8.72001 16.25 7.38465 16.25 5.99227ZM21.41 14.2423C22.3321 14.9559 23.0867 15.8629 23.6205 16.8995C24.1544 17.9361 24.4546 19.0771 24.5 20.2423V23.2423H30.5V20.2423C30.5 20.2423 30.5 14.7973 21.41 14.2423ZM20 0.742266C18.9675 0.736517 17.9578 1.0452 17.105 1.62727C18.0162 2.90037 18.5061 4.4267 18.5061 5.99227C18.5061 7.55784 18.0162 9.08416 17.105 10.3573C17.9578 10.9393 18.9675 11.248 20 11.2423C21.3924 11.2423 22.7277 10.6891 23.7123 9.70458C24.6969 8.72001 25.25 7.38465 25.25 5.99227C25.25 4.59988 24.6969 3.26452 23.7123 2.27996C22.7277 1.29539 21.3924 0.742266 20 0.742266Z" fill="#0A1E46"/>
+                                        </svg>
+										<span>Users</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
@@ -63,7 +65,7 @@
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="permission-tab" data-bs-toggle="tab" data-bs-target="#feedback-tab-pane" type="button" role="tab" aria-controls="feedback-tab-panel" aria-selected="false">
+									<button class="nav-link" id="department-feedback-tab" data-bs-toggle="tab" data-bs-target="#department-feedback-tab-pane" type="button" role="tab" aria-controls="department-feedback-tab-panel" aria-selected="false">
 										<x-icon name="gray-rated-user"/>
 										<span>Feedback</span>
 									</button>
@@ -149,9 +151,12 @@
 														</div>
 
 														<div class="col-md-7 ms-4">
-															<h3 class="font-family-tertiary fw-medium">
-																Example Company
-															</h3>
+                                                            <div>
+                                                                <h3 class="font-family-tertiary fw-medium">
+                                                                    Example Company
+                                                                </h3>
+                                                                <span>Information Technology</span>
+                                                            </div>
 															<div class="row mb-4">
 																<div class="col-md-12">
 																	<div class="row mb-1">
@@ -508,10 +513,10 @@
 								</div>
 								{{-- Schedule Tab - End --}}
 
-								{{-- Departments Tab - Start --}}
-								<div class="tab-pane fade" id="departments-tab-pane" role="tabpanel" aria-labelledby="departments-tab-tab" tabindex="0">
+								{{-- Users Tab - Start --}}
+								<div class="tab-pane fade" id="users-tab-pane" role="tabpanel" aria-labelledby="users-tab-tab" tabindex="0">
 									<div class="row mb-3">
-										<h2>Company Departments</h2>
+										<h2>Department Users</h2>
 									</div>
 									<div class="d-flex justify-content-between mb-2">
 										<div class="d-inline-flex align-items-center gap-4">
@@ -539,12 +544,6 @@
 													</li>
 												</ul>
 											</div>
-										</div>
-										<div class="d-inline-flex align-items-center gap-4 me-3">
-											<a href="javascript:void(0)" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-												<x-icon name="plus"/>
-												<span>Add Department</span>
-											</a>
 										</div>
 									</div>
 									<div class="d-flex justify-content-end mt-4 mb-3"></div>
@@ -575,13 +574,13 @@
 														<th scope="col" class="text-center">
 															<input class="form-check-input" type="checkbox" value="" aria-label="Select All Departments">
 														</th>
-														<th scope="col">Name</th>
+														<th scope="col">User</th>
 														<th scope="col">Phone Number</th>
 														<th scope="col" class="text-center">
-															Total Departments
+															Position
 														</th>
 														<th scope="col" class="text-center">
-															Department User
+															Status
 														</th>
 														<th scope="col">Action</th>
 													</tr>
@@ -594,42 +593,32 @@
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
@@ -640,88 +629,68 @@
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
-													<tr role="row" class="odd">
+                                                    <tr role="row" class="odd">
 														<td class="text-center">
 															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
 														</td>
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
@@ -732,88 +701,68 @@
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
-													<tr role="row" class="odd">
+                                                    <tr role="row" class="odd">
 														<td class="text-center">
 															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
 														</td>
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
@@ -824,88 +773,68 @@
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
-													<tr role="row" class="odd">
+                                                    <tr role="row" class="odd">
 														<td class="text-center">
 															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
 														</td>
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
@@ -916,88 +845,68 @@
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
-													<tr role="row" class="odd">
+                                                    <tr role="row" class="odd">
 														<td class="text-center">
 															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
 														</td>
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
@@ -1008,42 +917,32 @@
 														<td>
 															<div class="row g-2">
 																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/image4.png" />
+																	<img class="img-fluid rounded-circle" src="/tenant/images/portrait/small/avatar-s-20.jpg" />
 																</div>
 																<div class="col-md-10">
 																	<h6 class="fw-semibold">
-																		Computer Science
+																		Dori Griffiths
 																	</h6>
-																	<p>www.software.com</p>
+																	<p>dorigriffit@gmail.com</p>
 																</div>
 															</div>
 														</td>
 														<td>
 															<p>(923) 023-9683</p>
 														</td>
-														<td class="text-center">5</td>
-														<td class="text-center">5</td>
+														<td class="text-center">Developer</td>
+														<td class="text-center">Inactive</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
-																</a>
-																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="view"/>
 																</a>
-																<div class="d-flex actions">
-																	<div class="dropdown ac-cstm">
-																		<a href="javascript:void(0)" title="More Options" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																			<x-icon name='dropdown'/>
-																		</a>
-																		<div class="tablediv dropdown-menu">
-																			<a title="Edit" aria-label="Edit" href="#" class="dropdown-item">
-																				<i class="fa fa-eye"></i>
-																				Action
-																			</a>
-																		</div>
-																	</div>
-																</div>
+																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="message"/>
+																</a>
+                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<x-icon name="recycle-bin"/>
+																</a>
 															</div>
 														</td>
 													</tr>
@@ -1083,50 +982,71 @@
 												</ul>
 											</nav>
 										</div>
+                                        <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+                                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <x-icon name="view"/>
+                                              </a>
+                                              <span class="text-sm">
+                                                View
+                                              </span>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <a href="#" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <x-icon name="message"/>
+                                                </a>
+                                                <span class="text-sm">
+                                                    Message
+                                                </span>
+                                              </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                              <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <x-icon name="recycle-bin"/>
+                                              </a>
+                                              <span class="text-sm">
+                                                Delete
+                                              </span>
+                                            </div>
+                                           
+                                          </div>
 									</div>
 								</div>
-								{{-- Departments Tab - End --}}
+								{{-- Users Tab - End --}}
 
 								{{-- Drive Tab - Start --}}
 								<div class="tab-pane fade" id="drive-tab-pane" role="tabpanel" aria-labelledby="drive-tab" tabindex="0">
-									<h3>Drive</h3>
-									<p>
-										Here you can manage company required documents. You will receive notifications when your credentials are approaching expiration or have expired.
-									</p>
 									<div class="row">
-										<div class="col-md-4 col-12 mb-4">
-											<label class="form-label" for="search">
-												Search
-											</label>
-											<input type="text" id="search" class="form-control" name="search" placeholder="Keyword Search"/>
-										</div>
-										<div class="col-md-4 col-12">
-											<label class="form-label" for="search">
-												Tags
-											</label>
-											<input type="text" id="tags" class="form-control" name="search" placeholder="tags"/>
-										</div>
-										<div class="col-md-4 col-12">
-											<label class="form-label" for="search">
-												Document Type
-											</label>
-											<select class="select2 form-select" id="document-type">
-												<option value="document-type">
-													Select Document Type
-												</option>
-											</select>
-										</div>
+										<h3>My Drive</h3>
 									</div>
-									<div class="row mb-4">
-										<div class="col-md-2">
-											<label class="form-label" for="search">
-												Status
-											</label>
-											<select class="select2 form-select" id="document-type">
-												<option value="document-type">
-													Pending
-												</option>
-											</select>
+									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
+										<div class="col-md-3 col-12">
+											<div>
+												<label class="form-label" for="keyword-search">
+													Search
+												</label>
+												<input type="text" id="keyword-search" class="form-control"  placeholder="Keyword Search"/>
+											</div>
+										</div>
+										<div class="col-md-3 col-12">
+											<div class="mb-4">
+												<label class="form-label" for="payment-status">
+													Document Type
+												</label>
+											    <select class="select2 form-select" id="payment-status">
+													<option>Select Document Type</option>
+												</select>	
+											</div>
+										</div>
+										<div class="col-md-3 col-12">
+											<div>
+												<label class="form-label" for="set_set_date">
+													Date Range
+												</label>
+												<div class="position-relative">
+													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+													<x-icon name="datefield-icon"/>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="row mb-4">
@@ -1134,10 +1054,10 @@
 											<label class="form-label" for="search">
 												Upload Document
 											</label>
-											<input type="file" id="upload-document" class="form-control" name="upload-document" placeholder="upload-document"/>
+											<button @click="addDocument = true" class="btn btn-secondary btn-outline-secondary" type="button">Choose File</button>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row mb-4">
 										<div class="dropdown">
 											<button class="btn btn-secondary dropdown-toggle btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 												<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1163,35 +1083,29 @@
 											</ul>
 										</div>
 									</div>
-									<div class="row my-4">
-										<div class="col-md-2">
-											<img src="/tenant/images/img-placeholder-document.jpg"/>
-											<p>Certification</p>
+									<div class="row">
+										<div class="d-flex d-inline-flex">
+											<div class="mx-2">
+												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<p>Certification</p>
+											</div>
+											<div class="mx-2">
+												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<p>Certification</p>
+											</div>
+											<div class="mx-2">
+												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<p>Certification</p>
+											</div>
 										</div>
 									</div>
 								</div>
 								{{-- Drive Tab -End --}}
 								
 								{{-- Feedback Tab - Start --}}
-								<div class="tab-pane fade" id="feedback-tab-pane" role="tabpanel" aria-labelledby="feedback-tab" tabindex="0">
+								<div class="tab-pane fade" id="department-feedback-tab-pane" role="tabpanel" aria-labelledby="department-feedback-tab" tabindex="0">
 									<div class="row mb-4">
 										<h3>Feedback</h3>
-									</div>
-									<div class="col-md-12 d-flex col-12  mb-4">
-										{{-- Date Range --}}
-										<div class="col-md-3 col-12">
-											<div>
-												<label class="form-label" for="set_set_date">
-													Date Range
-												</label>
-												<div class="position-relative">
-													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-													</svg>
-												</div>
-											</div>
-										</div>
 									</div>
 									<div class="row mb-4 mb-5">
 										<div class="dropdown">
@@ -1593,6 +1507,32 @@
 												</ul>
 											</nav>
 										</div>
+                                        <div class="d-flex actions gap-3 justify-content-end mb-2">
+											<div class="d-flex gap-2 align-items-center">
+											  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<x-icon name="hide-icon"/>
+											  </a>
+											  <span class="text-sm">
+												Hide
+											  </span>
+											</div>
+											<div class="d-flex gap-2 align-items-center">
+											  <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<x-icon name="pencil"/>
+											  </a>
+											  <span class="text-sm">
+												Edit
+											  </span>
+											</div>
+											<div class="d-flex gap-2 align-items-center">
+											  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<x-icon name="recycle-bin"/>
+											  </a>
+											  <span class="text-sm">
+												Delete
+											  </span>
+											</div>
+										  </div>
 									</div>
 								</div>
 								{{-- Feedback Tab - End --}}
@@ -1857,59 +1797,6 @@
 													<td class="text-center">Direct Deposit</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="yellow-dot"/>
-															<p>issued</p>
-														</div>
-													</td>
-													<td>
-														<div class="d-flex actions">
-															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="round-arrow"/>
-															</a>
-															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
-																<x-icon name="dollar-icon"/>
-															</a>
-															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="download-file"/>
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="even">
-													<td>
-														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
-														</div>
-													</td>
-													<td>
-														<a @click="offcanvasOpen = true">
-															87109
-														</a>
-														<p class="mt-1">
-															08/24/2022
-														</p>
-													</td>
-													<td class="align-middle">
-														<div class="row g-2">
-															<div class="col-md-2">
-																<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Team Profile Image">
-															</div>
-															<div class="col-md-10 align-self-center">
-																<h6 class="fw-semibold">
-																	Information Technology
-																</h6>
-																<p>www.software.com</p>
-															</div>
-														</div>
-													</td>
-													<td class="text-center">17837</td>
-													<td class="text-center">$40.00</td>
-													<td class="text-center">
-														<x-icon name="doc"/>
-													</td>
-													<td class="text-center">Direct Deposit</td>
-													<td>
-														<div class="d-flex align-items-center gap-2">
 															<x-icon name="green-dot"/>
 															<p>Paid</p>
 														</div>
@@ -1921,59 +1808,6 @@
 															</a>
 															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="dollar-assignment"/>
-															</a>
-															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="download-file"/>
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr role="row" class="odd">
-													<td>
-														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
-														</div>
-													</td>
-													<td>
-														<a @click="offcanvasOpen = true">
-															87109
-														</a>
-														<p class="mt-1">
-															08/24/2022
-														</p>
-													</td>
-													<td class="align-middle">
-														<div class="row g-2">
-															<div class="col-md-2">
-																<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Team Profile Image">
-															</div>
-															<div class="col-md-10 align-self-center">
-																<h6 class="fw-semibold">
-																	Information Technology
-																</h6>
-																<p>www.software.com</p>
-															</div>
-														</div>
-													</td>
-													<td class="text-center">17837</td>
-													<td class="text-center">$40.00</td>
-													<td class="text-center">
-														<x-icon name="doc"/>
-													</td>
-													<td class="text-center">Direct Deposit</td>
-													<td>
-														<div class="d-flex align-items-center gap-2">
-															<x-icon name="red-dot"/>
-															<p>pending</p>
-														</div>
-													</td>
-													<td>
-														<div class="d-flex actions">
-															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="round-arrow"/>
-															</a>
-															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
-																<x-icon name="dollar-icon"/>
 															</a>
 															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="download-file"/>
@@ -2122,8 +1956,8 @@
 													<td class="text-center">Direct Deposit</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="yellow-dot"/>
-															<p>issued</p>
+															<x-icon name="green-dot"/>
+															<p>Paid</p>
 														</div>
 													</td>
 													<td>
@@ -2131,8 +1965,114 @@
 															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="round-arrow"/>
 															</a>
-															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
-																<x-icon name="dollar-icon"/>
+															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="dollar-assignment"/>
+															</a>
+															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="download-file"/>
+															</a>
+														</div>
+													</td>
+												</tr>
+												<tr role="row" class="odd">
+													<td>
+														<div class="form-check">
+															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+														</div>
+													</td>
+													<td>
+														<a @click="offcanvasOpen = true">
+															87109
+														</a>
+														<p class="mt-1">
+															08/24/2022
+														</p>
+													</td>
+													<td class="align-middle">
+														<div class="row g-2">
+															<div class="col-md-2">
+																<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Team Profile Image">
+															</div>
+															<div class="col-md-10 align-self-center">
+																<h6 class="fw-semibold">
+																	Information Technology
+																</h6>
+																<p>www.software.com</p>
+															</div>
+														</div>
+													</td>
+													<td class="text-center">17837</td>
+													<td class="text-center">$40.00</td>
+													<td class="text-center">
+														<x-icon name="doc"/>
+													</td>
+													<td class="text-center">Direct Deposit</td>
+													<td>
+														<div class="d-flex align-items-center gap-2">
+															<x-icon name="green-dot"/>
+															<p>Paid</p>
+														</div>
+													</td>
+													<td>
+														<div class="d-flex actions">
+															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="round-arrow"/>
+															</a>
+															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="dollar-assignment"/>
+															</a>
+															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="download-file"/>
+															</a>
+														</div>
+													</td>
+												</tr>
+												<tr role="row" class="even">
+													<td>
+														<div class="form-check">
+															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+														</div>
+													</td>
+													<td>
+														<a @click="offcanvasOpen = true">
+															87109
+														</a>
+														<p class="mt-1">
+															08/24/2022
+														</p>
+													</td>
+													<td class="align-middle">
+														<div class="row g-2">
+															<div class="col-md-2">
+																<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Team Profile Image">
+															</div>
+															<div class="col-md-10 align-self-center">
+																<h6 class="fw-semibold">
+																	Information Technology
+																</h6>
+																<p>www.software.com</p>
+															</div>
+														</div>
+													</td>
+													<td class="text-center">17837</td>
+													<td class="text-center">$40.00</td>
+													<td class="text-center">
+														<x-icon name="doc"/>
+													</td>
+													<td class="text-center">Direct Deposit</td>
+													<td>
+														<div class="d-flex align-items-center gap-2">
+															<x-icon name="green-dot"/>
+															<p>Paid</p>
+														</div>
+													</td>
+													<td>
+														<div class="d-flex actions">
+															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="round-arrow"/>
+															</a>
+															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<x-icon name="dollar-assignment"/>
 															</a>
 															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="download-file"/>
@@ -2280,6 +2220,32 @@
 											</ul>
 										</nav>
 									</div>
+                                    <div class="d-flex actions gap-3 justify-content-end mb-2">
+										<div class="d-flex gap-2 align-items-center">
+										  <a href="#" title="Revert" aria-label="Revert" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="round-arrow"/>
+										  </a>
+										  <span class="text-sm">
+											Revert
+										  </span>
+										</div>
+										<div class="d-flex gap-2 align-items-center">
+										  <a href="#" title="Record Payment" aria-label="Record Payment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="dollar-assignment"/>
+										  </a>
+										  <span class="text-sm">
+											Record Payment
+										  </span>
+										</div>
+										<div class="d-flex gap-2 align-items-center">
+										  <a href="#" title="Download Invoice" aria-label="Download Invoice" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="download-file"/>
+										  </a>
+										  <span class="text-sm">
+											Download Invoice
+										  </span>
+										</div>
+									  </div>
 								</div>
 								{{-- Invoices Tab : End --}}
 
@@ -2954,6 +2920,48 @@
 											</ul>
 										</nav>
 									</div>
+                                    <div class="d-flex actions gap-3 justify-content-end mb-2">
+										<div class="d-flex gap-2 align-items-center">
+										  <a href="#" title="View Receipt" aria-label="View Receipt" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="eye-icon"/>
+										  </a>
+										  <span class="text-sm">
+											View Receipt
+										  </span>
+										</div>
+										<div class="d-flex gap-2 align-items-center">
+											<a href="#" title="Send Receipt" aria-label="Send Receipt" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											  <x-icon name="mapview"/>
+											</a>
+											<span class="text-sm">
+												Send Receipt
+											</span>
+										  </div>
+										<div class="d-flex gap-2 align-items-center">
+										  <a href="#" title="Edit Payment" aria-label="Edit Payment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="pencil"/>
+										  </a>
+										  <span class="text-sm">
+											Edit Payment
+										  </span>
+										</div>
+										<div class="d-flex gap-2 align-items-center">
+										  <a href="#" title="Issue Refund" aria-label="Issue Refund" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+											<x-icon name="round-arrow"/>
+										  </a>
+										  <span class="text-sm">
+											Issue Refund
+										  </span>
+										</div>
+										<div class="d-flex gap-2 align-items-center">
+											<a href="#" title="Delete Payment" aria-label="Delete Payment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+												<x-icon name="recycle-bin"/>
+											</a>
+											<span class="text-sm">
+												Delete Payment
+											</span>
+										  </div>
+									  </div>
 								</div>
 								{{-- Payments Tab - End --}}
 								
@@ -4111,7 +4119,7 @@
 					</div>
 				</div>
 			</div>
+			@include('panels.common.add-document')
 		</section>
 	</div>
-	@include('modals.markasread')
 </div>

@@ -7,6 +7,7 @@ use Livewire\Component;
 class Department extends Component
 {
 	public $showForm;
+	public $showProfile;
 	protected $listeners = ['showList' => 'resetForm'];
 
 	function showForm()
@@ -17,6 +18,12 @@ class Department extends Component
 	public function resetForm()
 	{
 		$this->showForm=false;
+		$this->showProfile = false;
+	}
+
+	public function showProfile()
+	{
+		$this->showProfile = true;
 	}
 
 	public function mount()

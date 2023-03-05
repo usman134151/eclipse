@@ -196,7 +196,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -248,7 +248,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -300,7 +300,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -351,7 +351,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -402,7 +402,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -453,7 +453,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -504,7 +504,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -555,7 +555,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -606,7 +606,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">
@@ -657,7 +657,7 @@
                                       <a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
                                       </a>
-                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                      <a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view"/>
                                       </a>
                                       <div class="d-flex actions">

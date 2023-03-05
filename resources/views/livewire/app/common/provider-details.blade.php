@@ -2892,6 +2892,9 @@
 			 @include('panels.common.default-availability')
 			 @include('panels.common.specific-date-availibility')
 			 @include('panels.common.pending-credentials')
+			 @include('modals.common.view-button')
+			 @include('modals.common.add-address')
+
 		   </section>
 		   <!-- Basic Floating Label Form section end -->
 		 </div>
