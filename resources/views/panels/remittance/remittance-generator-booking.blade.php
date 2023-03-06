@@ -69,7 +69,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">INP-89-23-001</a>
+					  <a href="javascript:void(0)" >INP-89-23-001</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -109,7 +109,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">INP-89-23-001</a>
+					  <a href="javascript:void(0)">INP-89-23-001</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -149,7 +149,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">100995-6</a>
+					  <a href="javascript:void(0)">100995-6</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -189,7 +189,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">100995-6</a>
+					  <a href="javascript:void(0)">100995-6</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -229,7 +229,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">100995-6</a>
+					  <a href="javascript:void(0)">100995-6</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -269,7 +269,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">100995-6</a>
+					  <a href="javascript:void(0)">100995-6</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -309,7 +309,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">100995-6</a>
+					  <a href="javascript:void(0)">100995-6</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -349,7 +349,7 @@
 					  <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
 					</td>
 					<td class="align-middle">
-					  <a href="javascript:void(0)" @click="issueRemittance = true">100995-6</a>
+					  <a href="javascript:void(0)">100995-6</a>
 					</td>
 					<td class="text-center align-middle">
 					  11/23/2022
@@ -466,7 +466,7 @@
 	  <!-- /Total -->
 	  <div class="row justify-content-center mb-2">
 		<div class="col-lg-3">
-		  <a href="#" class="btn btn-primary rounded w-100">Add to Remittance</a>
+		  <a @click="issueRemittance = true" href="#" class="btn btn-primary rounded w-100">Add to Remittance</a>
 		</div>
 	  </div>
 	  <div class="justify-content-center d-flex mb-4">
