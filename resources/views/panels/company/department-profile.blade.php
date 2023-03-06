@@ -2,90 +2,90 @@
 <x-off-canvas show="departmentProfile" :allowBackdrop="false" size="fullscreen">
 	<x-slot name="title">Department Profile</x-slot>
 	<div class="card-body">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<ul class="nav nav-tabs" id="Tab" role="tablist">
 			<li class="nav-item" role="presentation">
-				<button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="true">
+				<button class="nav-link active" id="offcanvas-dashboard-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="true">
 					<x-icon name="tablet"/>
 					<span>Dashboard</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-schedule-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-schedule-tab-pane" type="button" role="tab" aria-controls="offcanvas-schedule-tab-panel" aria-selected="false">
 					<x-icon name="gray-calendar"/>
 					<span>Schedule</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="service-requests-tab" data-bs-toggle="tab" data-bs-target="#service-requests-tab-pane" type="button" role="tab" aria-controls="service-requests-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-service-requests-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-service-requests-tab-pane" type="button" role="tab" aria-controls="offcanvas-service-requests-tab-panel" aria-selected="false">
 					<x-icon name="gray-journal"/>
 					<span>Service Requests</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="permission-tab" data-bs-toggle="tab" data-bs-target="#drive-tab-pane" type="button" role="tab" aria-controls="drive-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-permission-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-drive-tab-pane" type="button" role="tab" aria-controls="offcanvas-drive-tab-panel" aria-selected="false">
 					<x-icon name="gray-drive"/>
 					<span>Drive</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="permission-tab" data-bs-toggle="tab" data-bs-target="#feedback-tab-pane" type="button" role="tab" aria-controls="feedback-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-permission-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-feedback-tab-pane" type="button" role="tab" aria-controls="offcanvas-feedback-tab-panel" aria-selected="false">
 					<x-icon name="gray-rated-user"/>
 					<span>Feedback</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="invoices-tab" data-bs-toggle="tab" data-bs-target="#invoices-tab-pane" type="button" role="tab" aria-controls="invoices-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-invoices-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-invoices-tab-pane" type="button" role="tab" aria-controls="offcanvas-invoices-tab-panel" aria-selected="false">
 					<x-icon name="gray-invoice"/>
 					<span>Invoices</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments-tab-pane" type="button" role="tab" aria-controls="payments-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-payments-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-payments-tab-pane" type="button" role="tab" aria-controls="offcanvas-payments-tab-panel" aria-selected="false">
 					<x-icon name="gray-payment"/>
 					<span>Payments</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="referrals-tab" data-bs-toggle="tab" data-bs-target="#referrals-tab-pane" type="button" role="tab" aria-controls="referrals-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-referrals-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-referrals-tab-pane" type="button" role="tab" aria-controls="offcanvas-referrals-tab-panel" aria-selected="false">
 					<x-icon name="gray-referral"/>
 					<span>Referrals</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-notes-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-notes-tab-pane" type="button" role="tab" aria-controls="offcanvas-notes-tab-panel" aria-selected="false">
 					<x-icon name="gray-note"/>
 					<span>Notes</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-tab-pane" type="button" role="tab" aria-controls="reports-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-reports-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-reports-tab-pane" type="button" role="tab" aria-controls="offcanvas-reports-tab-panel" aria-selected="false">
 					<x-icon name="gray-bar-chart"/>
 					<span>Reports</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications-tab-pane" type="button" role="tab" aria-controls="notifications-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-notifications-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-notifications-tab-pane" type="button" role="tab" aria-controls="offcanvas-notifications-tab-panel" aria-selected="false">
 					<x-icon name="gray-bell"/>
 					<span>Notifications</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="log-tab" data-bs-toggle="tab" data-bs-target="#log-tab-pane" type="button" role="tab" aria-controls="log-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-log-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-log-tab-pane" type="button" role="tab" aria-controls="offcanvas-log-tab-panel" aria-selected="false">
 					<x-icon name="gray-log"/>
 					<span>Log</span>
 				</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-tab-pane" type="button" role="tab" aria-controls="settings-tab-panel" aria-selected="false">
+				<button class="nav-link" id="offcanvas-settings-tab" data-bs-toggle="tab" data-bs-target="#offcanvas-settings-tab-pane" type="button" role="tab" aria-controls="offcanvas-settings-tab-panel" aria-selected="false">
 					<x-icon name="gray-cog"/>
 					<span>Settings</span>
 				</button>
 			</li>
 		</ul>
 
-		<div class="tab-content" id="myTabContent">
+		<div class="tab-content" id="TabContent">
 			{{-- Dashboard Tab - Start --}}
-			<div class="tab-pane fade show active" id="dashboard-tab-pane" role="tabpanel" aria-labelledby="dashboard-tab" tabindex="0">
+			<div class="tab-pane fade show active" id="offcanvas-dashboard-tab-pane" role="tabpanel" aria-labelledby="offcanvas-dashboard-tab" tabindex="0">
 				<div class="col-md-12 mb-md-2 mt-5">
 					<div class="row mt-2 mb-5">
 						<div class="col-md-5 me-5">
@@ -423,7 +423,7 @@
 			{{-- Dashboard Tab - End --}}
 			
 			{{-- Schedule Tab - Start --}}
-			<div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-schedule-tab-pane" role="tabpanel" aria-labelledby="offcanvas-schedule-tab" tabindex="0">
 				<div class="row mb-4">
 					<h3>Schedule</h3>
 				</div>
@@ -474,7 +474,7 @@
 			{{-- Schedule Tab - End --}}
 
 			{{-- Drive Tab - Start --}}
-			<div class="tab-pane fade" id="drive-tab-pane" role="tabpanel" aria-labelledby="drive-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-drive-tab-pane" role="tabpanel" aria-labelledby="offcanvas-drive-tab" tabindex="0">
 				<h3>Drive</h3>
 				<p>
 					Here you can manage company required documents. You will receive notifications when your credentials are approaching expiration or have expired.
@@ -559,7 +559,7 @@
 			{{-- Drive Tab -End --}}
 			
 			{{-- Feedback Tab - Start --}}
-			<div class="tab-pane fade" id="feedback-tab-pane" role="tabpanel" aria-labelledby="feedback-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-feedback-tab-pane" role="tabpanel" aria-labelledby="offcanvas-feedback-tab" tabindex="0">
 				<div class="row mb-4">
 					<h3>Feedback</h3>
 				</div>
@@ -984,7 +984,7 @@
 			{{-- Feedback Tab - End --}}
 			
 			{{-- Invoices Tab - Start --}}
-			<div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel" aria-labelledby="invoices-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-invoices-tab-pane" role="tabpanel" aria-labelledby="offcanvas-invoices-tab" tabindex="0">
 				<h3>
 					Company Invoices
 				</h3>
@@ -1670,7 +1670,7 @@
 			{{-- Invoices Tab : End --}}
 
 			{{-- Payments Tab - Start --}}
-			<div class="tab-pane fade" id="payments-tab-pane" role="tabpanel" aria-labelledby="payments-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-payments-tab-pane" role="tabpanel" aria-labelledby="offcanvas-payments-tab" tabindex="0">
 				<div class="row">
 					<h3>Payments</h3>
 				</div>
@@ -2344,7 +2344,7 @@
 			{{-- Payments Tab - End --}}
 			
 			{{-- Referrals Tab - Start --}}
-			<div class="tab-pane fade" id="referrals-tab-pane" role="tabpanel" aria-labelledby="referrals-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-referrals-tab-pane" role="tabpanel" aria-labelledby="offcanvas-referrals-tab" tabindex="0">
 				<div class="row mb-4">
 					<h3>Referral Code: 122YCRK</h3>
 				</div>
@@ -2576,7 +2576,7 @@
 			{{-- Referrals Tab - End --}}
 
 			{{-- Notes Tab - Start --}}
-			<div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-notes-tab-pane" role="tabpanel" aria-labelledby="offcanvas-notes-tab" tabindex="0">
 				<div class="row">
 					<h3>Notes</h3>
 					<div class="col-md-6 col-12 mb-4">
@@ -2683,7 +2683,7 @@
 			{{-- Notes Tab -End --}}
 			
 			{{-- Notifications Tab - Start --}}
-			<div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-notifications-tab-pane" role="tabpanel" aria-labelledby="offcanvas-notifications-tab" tabindex="0">
 				<div class="row">
 					<h3>Notification</h3>
 					<p class="mt-3">
@@ -2863,7 +2863,7 @@
 			{{-- Notifications Tab - End --}}
 
 			{{-- Settings Tab - Start --}}
-			<div class="tab-pane fade" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-settings-tab-pane" role="tabpanel" aria-labelledby="offcanvas-settings-tab" tabindex="0">
 				<div class="row mb-4" >
 					<div class="col-lg-12">
 						<h2>Business Hours Setup</h2>
@@ -3337,7 +3337,7 @@
 			{{-- Settings Tab - End --}}
 
 			{{-- Logs Tab - Start --}}
-			<div class="tab-pane fade" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab" tabindex="0">
+			<div class="tab-pane fade" id="offcanvas-log-tab-pane" role="tabpanel" aria-labelledby="offcanvas-log-tab" tabindex="0">
 				<div class="row mb-4">
 					<h3>Logs</h3>
 				</div>
