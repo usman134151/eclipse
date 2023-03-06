@@ -1268,4 +1268,7 @@ small {
 .table th div[aria-expanded="true"] svg {
   transform: rotate(180deg); }
 
+.table th div[data-bs-toggle="collapse"] svg {
+  transition: all ease-in-out 0.3s; }
+
 /*# sourceMappingURL=style.css.map */
