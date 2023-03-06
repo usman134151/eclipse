@@ -1409,3 +1409,8 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
     padding: 0.5rem 1.5rem !important;
     font-size: 1rem !important;
 }
+
+
+:focus-visible {
+    outline: none;
+}
