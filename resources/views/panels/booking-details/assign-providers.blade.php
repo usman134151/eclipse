@@ -1,7 +1,6 @@
 {{-- BEGIN: Assign Provider Off Canvas --}}
 <x-off-canvas show="assignProvider" size="fullscreen">
 	<x-slot name="title">Assign Provider</x-slot>
-
 	{{-- BEGIN: Filters --}}
 	<div class="accordion mb-4" id="accordionFilters">
 		<div class="accordion-item">
@@ -738,12 +737,10 @@
 		  </tbody>
 		</table>
 	  </div>
+	  <div class="col-12 justify-content-center form-actions d-flex gap-3">
+		<button type="" class="btn btn-outline-dark rounded">Cancel</button>
+		<button type="" class="btn btn-primary rounded">Save</button>
+	  </div>
 	  <!-- END: Filter Table -->
-	  <x-slot name="outsideBody">
-		<div class="col-12 justify-content-center form-actions d-flex gap-3">
-			<button type="" class="btn btn-outline-dark rounded">Cancel</button>
-			<button type="" class="btn btn-primary rounded">Save</button>
-		</div>
-	   </x-slot>
 </x-off-canvas>
 {{-- END: Assign Provider Off Canvas --}}
