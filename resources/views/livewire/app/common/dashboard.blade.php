@@ -32,7 +32,7 @@
 		</div>
 	</div>
 	<div class="row mb-5">
-	<ul class="d-grid grid-cols-6 gap-4 list-unstyled mb-5" id="myTab" role="tablist">
+	<ul class="d-grid 2xl:grid-cols-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 list-unstyled mb-5" id="myTab" role="tablist">
 	  <li class="" role="presentation">
 		<a class="dashborad-block active" id="calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-tab-pane" type="button" role="tab" aria-controls="calendar-tab-pane" aria-selected="true">
 		  <div class="text-center block-text">Calendar</div>
