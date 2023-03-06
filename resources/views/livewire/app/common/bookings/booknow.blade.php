@@ -261,12 +261,15 @@
                                 </small>
                               </a>
                             </div>
-                            <select class="form-select mb-2">
-                              <option>Select Service Consumer(s)</option>
-                            </select>
-                            <div class="form-check">
-                              <input class="form-check-input" id="ManualEntryServiceConsumer" name="" type="checkbox" tabindex="">
-                              <label class="form-check-label" for="ManualEntryServiceConsumer"><small>Manual Entry</small></label>
+                            <div class="js-wrapper-manual-entry">
+                              <select class="form-select mb-2 js-form-select-manual-entry" aria-label="Select Service Consumer(s)">
+                                <option>Select Service Consumer(s)</option>
+                              </select>
+                              <input type="" name="" class="form-control mb-2 hidden js-form-input-manual-entry" placeholder="Enter Service Consumer(s)">
+                              <div class="form-check">
+                                <input class="form-check-input js-form-check-input-manual-entry" id="ManualEntryServiceConsumer" name="" type="checkbox" tabindex="">
+                                <label class="form-check-label" for="ManualEntryServiceConsumer"><small>Manual Entry</small></label>
+                              </div>
                             </div>
                           </div>
                           <div class="col-lg-6 mb-4 ps-lg-5">
@@ -281,12 +284,15 @@
                                 </small>
                               </a>
                             </div>
-                            <select class="form-select mb-2">
-                              <option>Select Participant(s)</option>
-                            </select>
-                            <div class="form-check">
-                              <input class="form-check-input" id="ManualEntryParticipant" name="" type="checkbox" tabindex="">
-                              <label class="form-check-label" for="ManualEntryParticipant"><small>Manual Entry</small></label>
+                            <div class="js-wrapper-manual-entry">
+                              <select class="form-select mb-2 js-form-select-manual-entry" aria-label="Select Participant(s)">
+                                <option>Select Participant(s)</option>
+                              </select>
+                              <input type="" name="" class="form-control mb-2 hidden js-form-input-manual-entry" placeholder="Enter Participant(s)">
+                              <div class="form-check">
+                                <input class="form-check-input js-form-check-input-manual-entry" id="ManualEntryParticipant" name="" type="checkbox" tabindex="">
+                                <label class="form-check-label" for="ManualEntryParticipant"><small>Manual Entry</small></label>
+                              </div>
                             </div>
                           </div>
                         </div>
