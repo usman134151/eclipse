@@ -1414,3 +1414,9 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 :focus-visible {
     outline: none;
 }
+
+
+
+.table th div[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
