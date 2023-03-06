@@ -684,7 +684,6 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
   padding: 0 0.5rem;
   cursor: pointer;
   height: 13.9375rem;
-  max-width: 11.5625rem;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -859,6 +858,24 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)); }
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1280px) {
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 1536px) {
+  .\32 xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 .text-primary {
   color: #023DB0 !important; }
 
