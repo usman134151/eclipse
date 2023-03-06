@@ -174,3 +174,14 @@ $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
         }
     });
 });
+
+
+$('.js-form-check-input-manual-entry').change(function(){
+    if($(this).is(":checked")) {
+        $(this).parent().parent().children('.js-form-select-manual-entry').addClass("hidden");
+        $(this).parent().parent().children('.js-form-input-manual-entry').removeClass("hidden");
+    } else {
+        $(this).parent().parent().children('.js-form-select-manual-entry').removeClass("hidden");
+        $(this).parent().parent().children('.js-form-input-manual-entry').addClass("hidden");
+    }
+});
