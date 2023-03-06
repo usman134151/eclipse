@@ -22,6 +22,7 @@
 	<div class="offcanvas-body">
 		{{ $slot }}
 	</div>
+	{{ $outsideBody }}
 </div>
 @if ($allowBackdrop)
 	<div class="offcanvas-backdrop" :class="{ 'fade show': {{ $show }} == true }" x-show="{{ $show }}" x-cloak></div>
