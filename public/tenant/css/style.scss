@@ -1427,3 +1427,42 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 .table th div[data-bs-toggle="collapse"] svg {
     transition: all ease-in-out 0.3s;
 }
+
+.tooltip {
+}
+
+.tooltip-inner {
+	border-radius: 0;
+	padding: 1rem;
+	background-color: $primary;
+	text-align: left;
+	div b {
+		font-family: 'Poppins', sans-serif;
+		font-size: 0.8125rem;
+		font-weight: 700;
+	}
+	p {
+		font-family: 'Poppins', sans-serif;
+		font-weight: 400;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,.bs-tooltip-top .tooltip-arrow::before {
+	border-top-color: $primary;
+}
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before,.bs-tooltip-right .tooltip-arrow::before {
+	border-right-color: $primary;
+}
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before,.bs-tooltip-bottom .tooltip-arrow::before {
+	border-bottom-color: $primary;
+}
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before,.bs-tooltip-left .tooltip-arrow::before {
+	border-left-color: $primary;
+}
+
+.tooltip.show {
+    opacity: 1;
+}

@@ -94,7 +94,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -168,7 +168,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -289,7 +289,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -363,7 +363,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -437,7 +437,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -511,7 +511,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -585,7 +585,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
@@ -659,7 +659,7 @@
 					  <div class="fw-semibold">100995-6</div>
 					  <div>
 						<div>08/24/2022</div>
-						<div>9:59 AM to 4:22 PM</div>
+						<div class="d-inline-flex" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Payment Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">9:59 AM to 4:22 PM</div>
 					  </div>
 					  <div class="mb-2">
 						<div>08/24/2022</div>
