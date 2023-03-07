@@ -858,7 +858,7 @@
                                   <table class="table table-hover mb-3">
                                     <thead>
                                       <tr>
-                                      <th>
+                                      <th class="w-25">
                                         Section
                                       </th>
                                       <th>
