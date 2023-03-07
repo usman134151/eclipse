@@ -188,25 +188,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="d-flex actions gap-3 justify-content-end mb-2">
-								<div class="d-flex gap-2 align-items-center">
-									<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<x-icon name="pencil"/>
-									</a>
-									<span class="text-sm">
-										Edit
-									</span>
-								</div>
-								<div class="d-flex gap-2 align-items-center">
-									<a href="#" title="Assign Provider" aria-label="Assign Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<x-icon name="assign-provider"/>
-									</a>
-									<span class="text-sm">
-										Assign Provider
-									</span>
-								</div>
-							</div>
-						</div>
+
 						{{-- Hoverable rows End --}}
 						<div class="d-flex justify-content-between">
 							<div>
@@ -249,6 +231,27 @@
 								</ul>
 							</nav>
 						</div>
+                        {{-- icon legend bar start --}}
+                        <div class="d-flex actions gap-3 justify-content-end mb-2">
+                            <div class="d-flex gap-2 align-items-center">
+                                <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <x-icon name="pencil"/>
+                                </a>
+                                <span class="text-sm">
+                                    Edit
+                                </span>
+                            </div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <a href="#" title="Assign Provider" aria-label="Assign Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <x-icon name="assign-provider"/>
+                                </a>
+                                <span class="text-sm">
+                                    Assign Provider
+                                </span>
+                            </div>
+                        </div>
+                        {{-- icon legend bar end --}}
+                    </div>
 					</div>
 				</div>
 			</div>
