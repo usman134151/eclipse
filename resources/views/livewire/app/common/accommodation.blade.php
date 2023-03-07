@@ -320,8 +320,32 @@
                             </tbody>
                             </table>
                       </div>
-                      {{-- icon legend bar start --}}
-                      <div class="d-flex actions gap-3 justify-content-end mb-2">
+
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
+                      </div>
+                      <nav aria-label="Page Navigation">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">Previous
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">Next
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+                     {{-- icon legend bar start --}}
+                     <div class="d-flex actions gap-3 justify-content-end mb-2">
                         <div class="d-flex gap-2 align-items-center">
                             <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="pencil"/>
@@ -359,29 +383,6 @@
 
                         </div>
                         {{-- icon legend bar end --}}
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
-                      </div>
-                      <nav aria-label="Page Navigation">
-                        <ul class="pagination">
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">Previous
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item active"><a class="page-link" href="#">4</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">Next
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
                   </div>
                 </div>
               </div>

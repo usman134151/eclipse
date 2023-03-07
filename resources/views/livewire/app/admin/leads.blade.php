@@ -23,7 +23,7 @@
 						  </div>
 						</div>
 					  </div>
-					  </div>    
+					  </div>
 					  </div>
 					  <div class="d-flex justify-content-between mb-2">
 						<div class="d-inline-flex align-items-center gap-4">
@@ -204,6 +204,7 @@
 		  </tr>
 		</tbody>
 	  </table>
+
 					  </div>
 					<div class="d-flex justify-content-between">
 					  <div>
@@ -228,8 +229,36 @@
 						</ul>
 					  </nav>
 					</div>
+                           {{-- icon legend bar start --}}
+       <div class="d-flex actions gap-3 justify-content-end mb-2">
+        <div class="d-flex gap-2 align-items-center">
+            <a href="#" title="Edit Lead" aria-label="Edit Lead" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                <i style="margin-left: 8px" class="fa fa-edit"></i>
+            </a>
+            <span class="text-sm">
+            Edit Lead
+            </span>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+            <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+               <x-icon name="recycle-bin"/>
+              </a>
+            <span class="text-sm">
+                Delete                                                        </span>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+            <a href="#" title="Lead sync" aria-label="Lead sync" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                <i style="margin-left: 8px" class="fa fa-sync"></i>
+            </a>
+            <span class="text-sm">
+                Convert to Customer
+            </span>
+        </div>
+
+        </div>
+        {{-- icon legend bar end --}}
 				</div>
-			  
+
 			  </div>
 			</div>
 		  </div>
