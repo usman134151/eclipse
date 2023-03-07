@@ -218,25 +218,7 @@
                               </tbody>
                           </table>
                       </div>
-                                                  {{-- icon bar start--}}
-                                                  <div class="d-flex actions gap-3 justify-content-end mb-2">
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <a href="#" title="Activate" aria-label="Activate" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                            <i style="margin-left: 8px" class="fa fa-check-circle "></i>
-                                                          </a>
-                                                        <span class="text-sm">
-                                                            Activate </span>
-                                                    </div>
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                            <i style="margin-left: 8px" class="fa fa-trash "></i>
-                                                          </a>
-                                                        <span class="text-sm">
-                                                            Delete                                                        </span>
-                                                    </div>
 
-                                                    </div>
-                                                   {{-- icon bar  end--}}
                 <div class="d-flex justify-content-between mt-4">
                   <div>
                     <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
@@ -260,6 +242,25 @@
                     </ul>
                   </nav>
                 </div>
+                 {{-- icon bar start--}}
+                 <div class="d-flex actions gap-3 justify-content-end mb-2">
+                    <div class="d-flex gap-2 align-items-center">
+                        <a href="#" title="Activate" aria-label="Activate" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                            <i style="margin-left: 8px" class="fa fa-check-circle "></i>
+                          </a>
+                        <span class="text-sm">
+                            Activate </span>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                            <i style="margin-left: 8px" class="fa fa-trash "></i>
+                          </a>
+                        <span class="text-sm">
+                            Delete                                                        </span>
+                    </div>
+
+                    </div>
+                   {{-- icon bar  end--}}
             </div>
 
           </div>

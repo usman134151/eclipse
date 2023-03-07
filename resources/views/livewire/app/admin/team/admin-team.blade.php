@@ -550,26 +550,7 @@
 			</div>
 		</div>
 	</div>
-	{{-- Icon Legend Bar Start --}}
-	<div class="d-flex actions gap-3 justify-content-end mb-2">
-		<div class="d-flex gap-2 align-items-center">
-			<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-				<x-icon name="pencil"/>
-			</a>
-			<span class="text-sm">
-				Edit Admin
-			</span>
-		</div>
-		<div class="d-flex gap-2 align-items-center">
-			<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-				<x-icon name="recycle-bin"/>
-			</a>
-			<span class="text-sm">
-				Delete
-			</span>
-		</div>
-	</div>
-	{{-- Icon Legend Bar End --}}
+
 	<div class="d-flex justify-content-between">
 		<div>
 			<p class="fw-semibold">Showing 1 to 5 of 100 entries</p>
@@ -601,6 +582,26 @@
 			</ul>
 		</nav>
 	</div>
+    	{{-- Icon Legend Bar Start --}}
+	<div class="d-flex actions gap-3 justify-content-end mb-2">
+		<div class="d-flex gap-2 align-items-center">
+			<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+				<x-icon name="pencil"/>
+			</a>
+			<span class="text-sm">
+				Edit Admin
+			</span>
+		</div>
+		<div class="d-flex gap-2 align-items-center">
+			<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				<x-icon name="recycle-bin"/>
+			</a>
+			<span class="text-sm">
+				Delete
+			</span>
+		</div>
+	</div>
+	{{-- Icon Legend Bar End --}}
 	@endif
 	@include('panels.common.admin-staff-details')
 </div>
