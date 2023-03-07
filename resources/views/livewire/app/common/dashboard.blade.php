@@ -423,7 +423,7 @@
 	        <tbody>
 	          <tr class="even">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Charles
 	              </div>
@@ -443,7 +443,7 @@
 	          </tr>
 	          <tr class="odd">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Thomas
 	              </div>
@@ -464,7 +464,7 @@
 	          </tr>
 	          <tr class="even">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Charles
 	              </div>
@@ -484,7 +484,7 @@
 	          </tr>
 	          <tr class="even">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Charles
 	              </div>
@@ -504,7 +504,7 @@
 	          </tr>
 	          <tr class="odd">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Thomas
 	              </div>
@@ -525,7 +525,7 @@
 	          </tr>
 	          <tr class="even">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Charles
 	              </div>
@@ -545,7 +545,7 @@
 	          </tr>
 	          <tr class="odd">
 	            <td>
-	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <img src="/html-prototype/images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
 	              <div class="mt-2 text-sm">
 	                Thomas
 	              </div>
