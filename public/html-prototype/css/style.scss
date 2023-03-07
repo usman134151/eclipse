@@ -1478,3 +1478,63 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 .tooltip.show {
     opacity: 1;
 }
+
+.table-availability {
+	th {
+		font-size: 0.8125rem;
+		font-weight: 400;
+		border-bottom: 1px solid #E8E8E8;
+	}
+	th {
+		text-align: center;
+		padding: 0.566rem 0;
+		&:first-child {
+			padding-left: 0.5rem;
+		}
+		&:last-child {
+			padding-right: 0.5rem;
+		}
+	}
+	td {
+		text-align: center;
+		padding: 1rem 0;
+		&:first-child {
+			padding-left: 0.5rem;
+		}
+		&:last-child {
+			padding-right: 0.5rem;
+		}
+	}
+	td {
+		&:first-child {
+			border-right: 1px solid #E8E8E8;
+		}
+	}
+	.text-xs {
+		font-size: 0.6875rem;
+	}
+	.img-user {
+		width: 2.1875rem;
+		border-radius: 100px;
+	}
+	.bg-light {
+		background-color: #EDEDED !important;
+	}
+	.bg-lighter {
+		background-color: #E8E8E8 !important;
+	}
+	.bg-purple {
+		background: #7082A5;
+		color: #ffffff;
+	}
+	.bg-sky-blue {
+		background: #819ED7;
+		color: #ffffff;
+	}
+	.event-box {
+		border-radius: 0.25rem;
+		padding: 0.516rem 0.5rem;
+		font-size: 0.6875rem;
+		font-weight: 500;
+	}
+}

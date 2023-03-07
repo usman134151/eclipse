@@ -1307,4 +1307,45 @@ small {
 .tooltip.show {
   opacity: 1; }
 
+.table-availability th {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  border-bottom: 1px solid #E8E8E8; }
+.table-availability th {
+  text-align: center;
+  padding: 0.566rem 0; }
+  .table-availability th:first-child {
+    padding-left: 0.5rem; }
+  .table-availability th:last-child {
+    padding-right: 0.5rem; }
+.table-availability td {
+  text-align: center;
+  padding: 1rem 0; }
+  .table-availability td:first-child {
+    padding-left: 0.5rem; }
+  .table-availability td:last-child {
+    padding-right: 0.5rem; }
+.table-availability td:first-child {
+  border-right: 1px solid #E8E8E8; }
+.table-availability .text-xs {
+  font-size: 0.6875rem; }
+.table-availability .img-user {
+  width: 2.1875rem;
+  border-radius: 100px; }
+.table-availability .bg-light {
+  background-color: #EDEDED !important; }
+.table-availability .bg-lighter {
+  background-color: #E8E8E8 !important; }
+.table-availability .bg-purple {
+  background: #7082A5;
+  color: #ffffff; }
+.table-availability .bg-sky-blue {
+  background: #819ED7;
+  color: #ffffff; }
+.table-availability .event-box {
+  border-radius: 0.25rem;
+  padding: 0.516rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 500; }
+
 /*# sourceMappingURL=style.css.map */
