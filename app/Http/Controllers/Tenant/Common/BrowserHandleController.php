@@ -48,7 +48,8 @@ class BrowserHandleController extends Controller
             $saveBrowser->ip_address = $ipAdd;
             $saveBrowser->save();
             $response['message'] = __('lang.browser_add_success');
-            return $this->response($response,200);
+            $cookie = cookie('savedBrowser', 1);
+            return $this->response($response,200)->cookie($cookie);
       
             
          } catch (\Exception $e) {

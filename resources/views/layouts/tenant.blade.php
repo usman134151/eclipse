@@ -82,8 +82,10 @@
 		<script src="/tenant/js/select2.min.js"></script>
 		<script src="/tenant/js/sweetalert.min.js"></script>
 		<script src="/tenant/js/common.js"></script>
+
 		@auth
-		@if(!checkUserSavedBrowser())
+		@if(!request()->cookie('savedBrowser'))
+		test
 			<script>
 			openSaveBrowserPopup();
 			</script>
