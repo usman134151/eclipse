@@ -176,6 +176,8 @@ $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (event) {
 });
 
 
+//For Manual Entry
+
 $('.js-form-check-input-manual-entry').change(function(){
     if($(this).is(":checked")) {
         $(this).parent().parent().children('.js-form-select-manual-entry').addClass("hidden");
@@ -184,4 +186,14 @@ $('.js-form-check-input-manual-entry').change(function(){
         $(this).parent().parent().children('.js-form-select-manual-entry').removeClass("hidden");
         $(this).parent().parent().children('.js-form-input-manual-entry').addClass("hidden");
     }
+});
+
+
+
+// For Highlighting Address Table Row
+
+$('.js-selected-row').click(function(){
+    $(this).addClass("selected");
+    $('.js-tick').removeClass("d-none");
+    $(this).siblings().removeClass("selected");
 });
