@@ -377,9 +377,197 @@
 		  </div>
 		</div>
 		<!-- /Filters -->
-		<div>
-		  <img src="/html-prototype/images/temp/img-placeholder-availability.jpg" class="w-100" alt="Dashboard Calender"/>
-		</div>
+		<!-- BEGIN: Availability -->
+	    <div class="availability card border-0">
+	      <table class="table-availability">
+	        <thead>
+	          <tr class="row-day-time">
+	            <th class="day">
+	              Th 05
+	            </th>
+	            <th class="time">
+	              09:00 AM
+	            </th>
+	            <th class="time">
+	              10:00 AM
+	            </th>
+	            <th class="time">
+	              11:00 AM
+	            </th>
+	            <th class="time">
+	              12:00 PM
+	            </th>
+	            <th class="time">
+	              01:00 PM
+	            </th>
+	            <th class="time">
+	              02:00 PM
+	            </th>
+	            <th class="time">
+	              03:00 PM
+	            </th>
+	            <th class="time">
+	              04:00 PM
+	            </th>
+	            <th class="time">
+	              05:00 PM
+	            </th>
+	            <th class="time">
+	              06:00 PM
+	            </th>
+	            <th class="time">
+	              07:00 PM
+	            </th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr class="even">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Charles
+	              </div>
+	            </td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-light event-box">Inperson Dayrate (new)</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="3">
+	              <div class="bg-lighter event-box">&nbsp;</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	          <tr class="odd">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Thomas
+	              </div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-purple event-box">English to Arabic Sign Language</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-lighter event-box">English to German Interpreting</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	          <tr class="even">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Charles
+	              </div>
+	            </td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-sky-blue event-box">English to French Interpreting</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="3">
+	              <div class="bg-lighter event-box">&nbsp;</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	          <tr class="even">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Charles
+	              </div>
+	            </td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-light event-box">Inperson Dayrate (new)</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="3">
+	              <div class="bg-lighter event-box">&nbsp;</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	          <tr class="odd">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Thomas
+	              </div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-purple event-box">English to Arabic Sign Language</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-lighter event-box">English to German Interpreting</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	          <tr class="even">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Charles
+	              </div>
+	            </td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-sky-blue event-box">English to French Interpreting</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="3">
+	              <div class="bg-lighter event-box">&nbsp;</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	          <tr class="odd">
+	            <td>
+	              <img src="images/portrait/small/avatar-s-1.jpg" alt="Image" class="img-user">
+	              <div class="mt-2 text-sm">
+	                Thomas
+	              </div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-purple event-box">English to Arabic Sign Language</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td colspan="2">
+	              <div class="bg-lighter event-box">English to German Interpreting</div>
+	            </td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	        </tbody>
+	      </table>
+	    </div>
+	    <!-- EMD: Availability -->
 	  </div>
 	  <div class="tab-pane fade" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">
 		<h3>Map</h3>
