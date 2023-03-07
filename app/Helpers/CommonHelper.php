@@ -156,31 +156,6 @@ if(!function_exists('get_ip_address'))
   }
 }
 
-/**
- * save user browser
- *
- * @param 
- * @return ip_address
- */
-
-if(!function_exists('saveUserBrowser'))
-{
-  function saveUserBrowser()
-  {
-      try{
-      $browser = get_browser_name($_SERVER['HTTP_USER_AGENT']);
-      $ipAdd   = get_ip_address();
-      $loginData  = array(
-      'user_id' => auth()->user()->id,
-      'browser' => $browser,
-      'ip_address'=> $ipAdd
-      );
-      LoginAddress::updateOrCreate($loginData);
-    } catch (\Exception $e) {
-
-    }
-  } 
-}  
 
 /**
  * save user browser

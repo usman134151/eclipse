@@ -120,26 +120,6 @@ class Helper {
 		return $ip_address;
 	}
 
-	/**
-     * save user browser
-     *
-     * @param 
-     * @return ip_address
-     */
-	public static function saveUserBrowser()
-  	{
-    	try{
-			$browser = Helper::get_browser_name($_SERVER['HTTP_USER_AGENT']);
-			$ipAdd   = Helper::get_ip_address();
-			$loginData  = array(
-			'user_id' => auth()->user()->id,
-			'browser' => $browser,
-			'ip_address'=> $ipAdd
-			);
-			LoginAddress::updateOrCreate($loginData);
-		} catch (\Exception $e) {
 
-		}
-  	}
 }
 
