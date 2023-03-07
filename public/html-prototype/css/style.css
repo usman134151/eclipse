@@ -1271,6 +1271,12 @@ small {
 .table th div[data-bs-toggle="collapse"] svg {
   transition: all ease-in-out 0.3s; }
 
+.table td[data-bs-toggle="collapse"][aria-expanded="true"] svg {
+  transform: rotate(180deg); }
+
+.table td[data-bs-toggle="collapse"] svg {
+  transition: all ease-in-out 0.3s; }
+
 .tooltip-inner {
   border-radius: 0;
   padding: 1rem;
