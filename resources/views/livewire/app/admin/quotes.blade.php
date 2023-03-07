@@ -23,7 +23,7 @@
 						  </div>
 						</div>
 					  </div>
-					  </div>    
+					  </div>
 					  </div>
 					  <div class="d-flex justify-content-between mb-2">
 						<div class="d-inline-flex align-items-center gap-4">
@@ -226,6 +226,7 @@
 		  </tr>
 		</tbody>
 	  </table>
+
 					  </div>
 					<div class="d-flex justify-content-between">
 					  <div>
@@ -250,8 +251,44 @@
 						</ul>
 					  </nav>
 					</div>
+                    {{-- icon legend bar start --}}
+             <div class="d-flex actions gap-3 justify-content-end mb-2">
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="#" title="Edit Request" aria-label="Edit Request" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <i style="margin-left: 8px" class="fa fa-edit"></i>
+                    </a>
+                    <span class="text-sm">
+                    Edit Request
+                    </span>
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="#" title="View Request" aria-label="View Request" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <i style="margin-left: 8px" class="fa fa-envelope-open-o"></i>
+                    </a>
+                    <span class="text-sm">
+                    View Request
+                    </span>
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+                       <x-icon name="recycle-bin"/>
+                      </a>
+                    <span class="text-sm">
+                        Delete  Request                                                      </span>
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="#" title=" Create Quote" aria-label=" Create Quote" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <i style="margin-left: 8px" class="fa fa-sync"></i>
+                    </a>
+                    <span class="text-sm">
+                        Create Quote
+                    </span>
+                </div>
+
+                </div>
+                {{-- icon legend bar end --}}
 				</div>
-			  
+
 			  </div>
 			</div>
 		  </div>

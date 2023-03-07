@@ -385,32 +385,7 @@ payroll in "Remittances."</p>
 								</tbody>
 							</table>
 						</div>
-                        {{-- icon legend bar start --}}
-                        <div class="d-flex actions gap-3 justify-content-end mb-2">
-                            <div class="d-flex gap-2 align-items-center">
-                                <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <x-icon name="pencil"/>
-                                </a>
-                                <span class="text-sm">
-                                Edit Provider
-                                </span>
-                            </div>
-                            <div class="d-flex gap-2 align-items-center">
-                                <a href="#" title="approve" aria-label="approve" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <x-icon name="check"/>
-                                </a>
-                                <span class="text-sm">
-                                    Approve                               </span>
-                            </div>
-                            <div class="d-flex gap-2 align-items-center">
-                                <a href="#" title="cross" aria-label="cross " class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <x-icon name="cross"/>
-                                </a>
-                                <span class="text-sm">
-                                        Deny                                </span>
-                            </div>
-                            </div>
-                            {{-- icon legend bar end --}}
+
 				  <div class="d-flex justify-content-between">
 					<div>
 					  <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
@@ -434,6 +409,32 @@ payroll in "Remittances."</p>
 					  </ul>
 					</nav>
 				  </div>
+                                          {{-- icon legend bar start --}}
+                                          <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <x-icon name="pencil"/>
+                                                </a>
+                                                <span class="text-sm">
+                                                Edit Provider
+                                                </span>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <a href="#" title="approve" aria-label="approve" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <x-icon name="check"/>
+                                                </a>
+                                                <span class="text-sm">
+                                                    Approve                               </span>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <a href="#" title="cross" aria-label="cross " class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <x-icon name="cross"/>
+                                                </a>
+                                                <span class="text-sm">
+                                                        Deny                                </span>
+                                            </div>
+                                            </div>
+                                            {{-- icon legend bar end --}}
 			  </div>
                        <div class="row mt-4 mb-4">
                                  	<div class="d-flex justify-content-center gap-4">
