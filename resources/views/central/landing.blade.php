@@ -436,7 +436,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </div>
 </div>
 </div>
-<img src="/landing-page-assets/images/img-small-screen.jpg" alt="img-small-screen" class="w-75 d-block d-xl-none">
+<img src="/landing-page-assets/images/img-tab.png" alt="img-small-screen" class="w-75 d-block d-xl-none">
 </div>
 </div>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
