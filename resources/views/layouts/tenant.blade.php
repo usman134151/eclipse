@@ -43,6 +43,8 @@
 			@include('partials/sidebar')
 		@elseif (Auth::user()->roleUser->role_id == '2')
 			@include('partials/provider-sidebar')
+		@elseif (Auth::user()->roleUser->role_id == '4')
+			@include('partials/customer-sidebar')
 		@endif
 		{{-- BEGIN: Content --}}
 		<div class="content-overlay"></div>
