@@ -1,5 +1,5 @@
 @props([
-	'moduleName' => null
+	'moduleName' => 'Component',
 ])
 
 <div>
