@@ -17,7 +17,7 @@ class Role
 	 */
 	public function handle(Request $request, Closure $next, $role = null)
 	{
-		if(Auth::user()->roleUser()->count() != 0)
+		if(Auth::user()->roleUser->count() != 0)
 		{
 			$roleName=Auth::user()->roleUser->role->name;
 		}
