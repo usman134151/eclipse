@@ -24,14 +24,14 @@ class RolesTableSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('roles')->insert([
-            'name' => 'staff',
-            'display_name' => 'Staff',
+            'name' => 'provider',
+            'display_name' => 'Provider',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('roles')->insert([
-            'name' => 'provider',
-            'display_name' => 'Provider',
+            'name' => 'staff',
+            'display_name' => 'Staff',
             'created_at' => now(),
             'updated_at' => now()
         ]);
