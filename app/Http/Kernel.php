@@ -70,5 +70,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'otpcheck' => \App\Http\Controllers\Tenant\Middleware\EnsureOtpCheckVerified::class,  // otp middleware
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'role' => \App\Http\Middleware\Role::class,
+
     ];
 }
