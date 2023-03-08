@@ -39,7 +39,11 @@
 	</head>
 	<body class="vertical-layout vertical-menu-modern navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="" x-data="{offcanvasOpen: false}">
 		@include('partials/header')
-		@include('partials/sidebar')
+		@if (Auth::user()->roleUser->role_id == '1')
+			@include('partials/sidebar')
+		@elseif (Auth::user()->roleUser->role_id == '2')
+			@include('partials/provider-sidebar')
+		@endif
 		{{-- BEGIN: Content --}}
 		<div class="content-overlay"></div>
 		<div class="app-content content">

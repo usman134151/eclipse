@@ -35,21 +35,21 @@
           <!-- Nav tabs -->
           <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="requester-info-tab" data-bs-toggle="tab" data-bs-target="#requester-info" type="button" role="tab" aria-controls="requester-info" aria-selected="true"><span class="number">1</span> Requester Info</button>
+              <button class="nav-link {{ $component == 'requester-info' ? 'active' : '' }}" id="requester-info-tab" data-bs-toggle="tab" data-bs-target="#requester-info" type="button" role="tab" aria-controls="requester-info" aria-selected="true"><span class="number">1</span> Requester Info</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="request-details-tab" data-bs-toggle="tab" data-bs-target="#request-details" type="button" role="tab" aria-controls="request-details" aria-selected="false"><span class="number">2</span> Request Details</button>
+              <button class="nav-link {{ $component == 'request-details' ? 'active' : '' }}" id="request-details-tab" data-bs-toggle="tab" data-bs-target="#request-details" type="button" role="tab" aria-controls="request-details" aria-selected="false"><span class="number">2</span> Request Details</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="payment-info-tab" data-bs-toggle="tab" data-bs-target="#payment-info" type="button" role="tab" aria-controls="payment-info" aria-selected="false"><span class="number">3</span> Payment Info</button>
+              <button class="nav-link {{ $component == 'payment-info' ? 'active' : '' }}" id="payment-info-tab" data-bs-toggle="tab" data-bs-target="#payment-info" type="button" role="tab" aria-controls="payment-info" aria-selected="false"><span class="number">3</span> Payment Info</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="booking-summary-tab" data-bs-toggle="tab" data-bs-target="#booking-summary" type="button" role="tab" aria-controls="booking-summary" aria-selected="false"><span class="number">4</span> Booking Summary</button>
+              <button class="nav-link {{ $component == 'booking-summary' ? 'active' : '' }}" id="booking-summary-tab" data-bs-toggle="tab" data-bs-target="#booking-summary" type="button" role="tab" aria-controls="booking-summary" aria-selected="false"><span class="number">4</span> Booking Summary</button>
             </li>
           </ul>
           <!-- Tab panes -->
           <div class="tab-content">
-            <div class="tab-pane fade active show" id="requester-info" role="tabpanel" aria-labelledby="requester-info-tab" tabindex="0">
+            <div class="tab-pane fade {{ $component == 'requester-info' ? 'active show' : '' }}" id="requester-info" role="tabpanel" aria-labelledby="requester-info-tab" tabindex="0">
               <h2>Requester Information</h2>
               <div class="mb-4">
                 <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
@@ -483,12 +483,12 @@
                     <!-- Button trigger modal | Add Address POPUP-->
                     <div class="col-lg-12 text-lg-end">
                       <div class="mb-4">
-                        <button type="button" class="btn btn-primary btn-sm rounded gap-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-primary btn-sm rounded gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
                             </svg>
                             <span>Add New Address</span>
-                        </button>                             
+                        </button>
                       </div>
                     </div>
                     <!-- #Address Tables-->
@@ -514,7 +514,7 @@
                               </svg>
                             </td>
                           </tr>
-                          <tr class="even js-selected-row">
+                          <tr class="even selected">
                             <td>
                               2
                             </td>
@@ -522,10 +522,10 @@
                               <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
                             </td>
                             <!-- for active class row integrated with JS  -->
-                            <td class="align-middle">
-                              <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
+                        	<td class="align-middle">
+                                <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </td>
                           </tr>
                           <tr class="odd js-selected-row">
@@ -551,12 +551,12 @@
                 <!-- /Physical Address -->
                 <div class="col-12 justify-content-center form-actions d-flex">
                   <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
-                  <button type="submit" class="btn btn-primary rounded">Proceed to Request Details</button>
+                  <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
                 </div>
               </div>
             </div>
             <!-- END: requester-info -->
-            <div class="tab-pane fade" id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
+            <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}" id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
               <form class="form">
                 <div class="col-md-12 mb-md-2">
                   <h2>Industry Form</h2>
@@ -623,11 +623,11 @@
                     </div>
                     <div class="col-12 justify-content-center form-actions d-flex">
                       <button type="button"
-                        class="btn btn-outline-dark rounded">Back</button>
+                        class="btn btn-outline-dark rounded" x-on:click="$wire.switch('requester-info')">Back</button>
                         <button type="submit"
                         class="btn btn-primary rounded mx-2">Request from User</button>
-                      <button type="submit"
-                        class="btn btn-primary rounded">Proceed to
+                      <button type="button"
+                        class="btn btn-primary rounded" x-on:click="$wire.switch('payment-info')">Proceed to
                       Payment</button>
                     </div>
                   </div>
@@ -635,7 +635,7 @@
                 </div>
               </form>
             </div>
-            <div class="tab-pane fade" id="payment-info" role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
+            <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info" role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
               <h2>Payment Summary</h2>
               <div class="row">
                 <div class="col-lg-6 mb-4 pe-lg-5 float-left pt-5">
@@ -1069,12 +1069,12 @@
               </div>
               <div class="col-12 justify-content-center form-actions d-flex">
                 <button type="button"
-                  class="btn btn-outline-dark rounded">Back</button>
-                  <button type="submit"
-                  class="btn btn-primary rounded mx-2">Booking Summary</button>
+                  class="btn btn-outline-dark rounded" x-on:click="$wire.switch('request-details')">Back</button>
+                  <button type="button"
+                  class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
               </div>
             </div>
-            <div class="tab-pane fade" id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
+            <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}" id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
               <!-- Scheduling Details -->
               <div class="mb-5">
                 <h2>Scheduling Details</h2>
@@ -1484,7 +1484,7 @@
                 </div>
                 <!-- /Checkbox Options -->
                 <div class="col-12 justify-content-center form-actions d-flex gap-3">
-                  <button type="" class="btn btn-outline-dark rounded">Back</button>
+                  <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('payment-info')">Back</button>
                   <button type="" class="btn btn-primary rounded">Save as Draft</button>
                   <button type="" class="btn btn-primary rounded">Request Feedback</button>
                   <div class="dropdown">
@@ -1499,7 +1499,7 @@
               <!-- /Service Request -->
             </div>
           </div>
-          <!-- END: Assignment Booking Form -->    
+          <!-- END: Assignment Booking Form -->
         </div>
       </div>
     </div>
@@ -1507,3 +1507,4 @@
 </div>
 <!-- End: Content-->
 </div>
+@include('modals.common.add-address')
