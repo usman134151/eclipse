@@ -7,3 +7,5 @@ git pull
 composer install
 npm install
 npm run dev
+php artisan route:cache
+php artisan cache:clear
