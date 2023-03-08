@@ -388,7 +388,7 @@ Quickly assess provider availability and coordinate schedules; manage providersâ
 </svg>
 </div>
 </a>
-<a class="col-lg-4 col-md mb-4 mb-lg-0 text-lg-center card-link">
+<a class="col-lg-4 col-md mb-4 mb-lg-0 text-lg-center card-link" href="https://interpreterscheduling.com/" target="_blank">
 <span class="title-contact text-primary">Schedule Demo</span>
 <div class="mb-2">
 <div class="text">Customized Demo!</div>
