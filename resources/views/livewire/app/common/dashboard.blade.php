@@ -430,7 +430,7 @@
 	            </td>
 	            <td></td>
 	            <td colspan="2">
-	              <div class="bg-light event-box">Inperson Dayrate (new)</div>
+	              <div class="bg-light event-box" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Lorem ipsum</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">Inperson Dayrate (new)</div>
 	            </td>
 	            <td></td>
 	            <td></td>
