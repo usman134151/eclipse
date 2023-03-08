@@ -140,10 +140,10 @@
 													</td>
 													<td>
 														<div class="d-flex actions">
-															<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<a href="#" title="Edit" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="pencil"/>
 															</a>
-															<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+															<a href="#" title="Assign Provider" aria-label="Assign Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
 																<x-icon name="assign-provider"/>
 															</a>
 															<div class="dropdown ac-cstm">
@@ -258,5 +258,6 @@
 		</div>
 	</div>
 	@endif
+    @include('modals.assign-provider-team')
 </div>
 {{-- End: Content --}}
