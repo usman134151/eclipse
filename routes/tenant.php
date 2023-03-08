@@ -130,6 +130,8 @@ Route::group([
         
         Route::middleware(['role:provider'])->group(function () {
             Route::view('/provider/dashboard', 'tenant/provider/dashboard');
+
+            Route::view('/provider/bookings/today', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Today's"]);
         });
 
         //default view 
