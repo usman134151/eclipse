@@ -131,7 +131,21 @@ Route::group([
         Route::middleware(['role:provider'])->group(function () {
             Route::view('/provider/dashboard', 'tenant/provider/dashboard');
 
+            Route::view('/provider/chat', 'tenant/provider/chat');
+
+            Route::view('/provider/set-availability', 'tenant/provider/manage-availability');
+
+            // Provider Booking Routes
             Route::view('/provider/bookings/today', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Today's"]);
+            Route::view('/provider/bookings/upcoming', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Upcoming"]);
+            Route::view('/provider/bookings/past', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Past"]);
+            Route::view('/provider/bookings/unassigned', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Unassigned"]);
+            Route::view('/provider/bookings/invitations', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Invitations"]);
+
+            Route::view('/provider/profile', 'tenant/provider/profile');
+
+            Route::view('/provider/drive', 'tenant/provider/drive');
+            Route::view('/provider/system-logs', 'tenant/provider/system-logs');
         });
 
         //default view 
