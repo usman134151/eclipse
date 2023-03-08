@@ -41,7 +41,7 @@
 		@include('partials/header')
 		@if (Auth::user()->roleUser->role_id == '1')
 			@include('partials/sidebar')
-		@elseif (Auth::user()->roleUser->role_id == '3')
+		@elseif (Auth::user()->roleUser->role_id == '2')
 			@include('partials/provider-sidebar')
 		@endif
 		{{-- BEGIN: Content --}}
