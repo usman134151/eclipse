@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      public function run()
      {
          DB::table('users')->updateOrInsert(
-             ['email' => 'eclipsetestadmin@disposible.com'],
+             ['email' => 'eclipsetestadmin@dispostable.com'],
              [
              'first_name' => 'Admin',
              'last_name' => 'Admin',

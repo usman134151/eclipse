@@ -40,13 +40,13 @@ class RoleUserTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('role_user')->updateOrInsert(
-            ['user_id' => '5'],[
-            'role_id' => 5,
-            'user_id'=> 5,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('role_user')->updateOrInsert(
+        //     ['user_id' => '5'],[
+        //     'role_id' => 5,
+        //     'user_id'=> 5,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
         // DB::table('role_user')->insert([
         //     'role_id' => 6,
         //     'user_id'=> 6,
