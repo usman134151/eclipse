@@ -202,7 +202,7 @@
 				<a href="#" class="btn btn-primary rounded btn-sm">Create Assignment</a>
 			</div>
 			<div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-				<div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-lg-0">
+				<div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0">
 					<div class="d-inline-flex align-items-center gap-4">
 						<label for="show_records_number" class="form-label-sm mb-0">
 							Show
@@ -315,7 +315,7 @@
 				</div>
 			</div>
 			{{-- Hoverable Rows - End --}}
-			<div class="d-flex flex-column flex-md-row justify-contd-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-lg-0mb-lg-0 text-sm font-family-secondary">
+			<div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0 text-sm font-family-secondary">
 						Showing 1 to 5 of 100 entries
 					</p>
 				</div>
@@ -622,7 +622,7 @@
 	  <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
 		<h3>Notifications</h3>
 		<div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-          <div clad-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-lg-0lg-0">
+          <div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0">
             <div class="d-inline-flex align-items-center gap-4">
               <label for="show_records_number" class="form-label-sm mb-0">Show</label>
               <select class="form-select form-select-sm" id="show_records_number">
@@ -966,7 +966,7 @@
             </tbody>
           </table>
         </div>
-        <div class="d-flex flex-column flex-md-row justify-content-betwd-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-lg-0semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100 entries</p>
+        <div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0 semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100 entries</p>
             </div>
             <nav aria-label="Page Navigation">
               <ul class="pagination justify-content-start justify-content-lg-end">

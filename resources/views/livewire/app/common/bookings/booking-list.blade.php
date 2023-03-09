@@ -49,7 +49,7 @@
 							</a>
 						</div>
 						<div class="d-flex flex-column flex-md-row justify-content-between mb-2">
-							<div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-lg-0">
+							<div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0">
 								<div class="d-inline-flex align-items-center gap-4">
 									<label for="show_records_number" class="form-label-sm mb-0">
 										Show
