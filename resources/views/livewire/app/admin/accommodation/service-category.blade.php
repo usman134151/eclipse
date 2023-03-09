@@ -97,7 +97,7 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -114,7 +114,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -136,23 +136,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="even" @click="associateCompanies = true">
+                                                    <tr role="row" class="even" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -167,7 +167,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -189,23 +189,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -220,7 +220,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -242,23 +242,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="even" @click="associateCompanies = true">
+                                                    <tr role="row" class="even">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -273,7 +273,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -295,23 +295,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -326,7 +326,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -348,23 +348,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -379,7 +379,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -401,23 +401,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -432,7 +432,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a  @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -454,23 +454,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -485,7 +485,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a  @click="associateCompanies = true">
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -507,23 +507,23 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd" @click="associateCompanies = true">
+                                                    <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
                                                                 aria-label="Select Team">
@@ -531,14 +531,14 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-10">
-                                                                    <p>Check service duration</p>
+                                                                    <p >Check service duration</p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <a href="#">
+                                                                    <a @click="associateCompanies = true" >
                                                                         <x-icon name="chain" />
                                                                     </a>
                                                                 </div>
@@ -560,17 +560,17 @@
                                                             <div class="d-flex actions">
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Edit Team" aria-label="Edit Team">
+                                                                    title="Edit Service" aria-label="Edit Service">
                                                                     <x-icon name='pencil' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Duplicate List" aria-label="Duplicate List">
+                                                                    title="Duplicate Service" aria-label="Duplicate Service">
                                                                     <x-icon name='duplicate' />
                                                                 </a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                                    title="Delete List" aria-label="Delete List">
+                                                                    title="Delete Service" aria-label="Delete Service">
                                                                     <x-icon name='recycle-bin' />
                                                                 </a>
                                                             </div>
@@ -614,32 +614,32 @@
                             {{-- icon legend bar start --}}
                             <div class="d-flex actions gap-3 justify-content-end mb-2">
                                 <div class="d-flex gap-2 align-items-center">
-                                    <a href="#" title="Edit Provider" aria-label="Edit Provider"
+                                    <a href="#" title="Edit Service" aria-label="Edit Service"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil" />
                                     </a>
                                     <span class="text-sm">
-                                        Edit
+                                        Edit Service
                                     </span>
                                 </div>
 
                                 <div class="d-flex gap-2 align-items-center">
-                                    <a href="#" title="Activate" aria-label="Activate"
+                                    <a href="#" title="Duplicate Service" aria-label="Duplicate Service"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                         data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                                         <x-icon name="duplicate" />
                                     </a>
                                     <span class="text-sm">
-                                        Duplicate</span>
+                                        Duplicate Service</span>
                                 </div>
                                 <div class="d-flex gap-2 align-items-center">
-                                    <a href="#" title="Delete" aria-label="Delete"
+                                    <a href="#" title="Delete Service" aria-label="Delete Service"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                         data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                                         <x-icon name="recycle-bin" />
                                     </a>
                                     <span class="text-sm">
-                                        Delete </span>
+                                        Delete Service </span>
                                 </div>
 
                             </div>

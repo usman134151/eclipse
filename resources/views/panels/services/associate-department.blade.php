@@ -1,4 +1,4 @@
-{{-- BEGIN: Assign Provider Off Canvas --}}
+{{-- BEGIN: Associate-Department Off Canvas --}}
 <x-off-canvas show="associateDepartment">
 	<x-slot name="title">Associate Department</x-slot>
 	<div class="d-flex justify-content-between mb-2">
@@ -62,7 +62,7 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" @click="associateservice = true"  title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateservice = true"  title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
                            
@@ -93,7 +93,7 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" @click="associateservice = true"  title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateservice = true"  title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
                            
@@ -125,7 +125,7 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" @click="associateservice = true"  title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateservice = true"  title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
                             
@@ -158,7 +158,7 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" @click="associateservice = true"  title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateservice = true"  title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
                             
@@ -191,7 +191,7 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" @click="associateservice = true" title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateservice = true" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
                             
@@ -200,6 +200,43 @@
                 </tr>
             </tbody>
         </table>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
+            </div>
+            <nav aria-label="Page Navigation">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">Previous
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">Next
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        {{-- icon legend bar start --}}
+        <div class="d-flex actions gap-3 justify-content-end mb-2">
+            <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="Add Service Rates" aria-label="Add Service Rates"
+                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                    <x-icon name="dollar-icon" />
+                </a>
+                <span class="text-sm">
+                    Edit
+                </span>
+            </div>
+
+        </div>
+        {{-- icon legend bar end --}}
 	  </div>
 </x-off-canvas>
-{{-- END: Admin Staff Team Details Off Canvas --}}
+{{-- END: Associate-Department Off Canvas --}}
