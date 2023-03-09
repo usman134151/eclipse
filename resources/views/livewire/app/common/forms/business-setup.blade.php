@@ -1,6 +1,6 @@
 <div>
 	<div class="content-header row">
-	  <div class="content-header-left col-md-9 col-12 mb-2">
+	  <div class="content-header-left col-12 mb-2">
 		<div class="row breadcrumbs-top">
 		  <div class="col-12">
 			<h1 class="content-header-title float-start mb-0">Business Setup</h1>
@@ -95,30 +95,26 @@
 							</div>
 						  </div>
 						  <div class="row">
-							<div class="col-lg-6 mb-4">
+							<div class="col-lg-12">
 								<h3 class="mb-3">Company Logo</h3>
-							<div class="mb-1">
+							</div>
+							<div class="col-lg-5 mb-4">
 								<label class="form-label" for="add-company-logo"> Add Company Logo</label>
+								<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control" placeholder="Name">
 							</div>
-								<div class="mb-2">
-									<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control w-auto" placeholder="Name">
-								</div>
-							</div>
-							<div class="col-lg-6 mb-4">
+							<div class="col-lg-6 mb-4 align-self-end ps-lg-5">
 								<img src="/html-prototype/images/company/rectangle-logo.png" class="img-fluid" alt="help-desk"/>
 							</div>
 						  </div>
 						  <div class="row">
-							<div class="col-lg-6 mb-4">
+						  	<div class="col-lg-12">
 								<h3 class="mb-3">Login Screen Image</h3>
-								<div class="mb-1">
-									<label class="form-label" for="upload-login-screen-image">Upload Login Screen Image</label>
-								</div>
-								<div class="mb-2">
-								  <input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control w-auto" placeholder="Name">
 							</div>
+							<div class="col-lg-5 mb-4">
+								<label class="form-label" for="upload-login-screen-image">Upload Login Screen Image</label>
+							  	<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control" placeholder="Name">
 							</div>
-							<div class="col-lg-6 mb-4">
+							<div class="col-lg-6 mb-4 align-self-end ps-lg-5">
 								<img src="/html-prototype/images/company/help-desk.png" class="img-fluid" alt="help-desk"/>
 							</div>
 						  </div>
@@ -160,17 +156,17 @@
 								<h3>Announcements & Communications</h3>
 								</div>
 						  </div>
-						  <div class="border col-6 rounded">
-							<div class="row ms-4 mt-4">
-								<div class="col-lg-11 mb-4">
+						  <div class="border col-lg-6 p-4 rounded">
+							<div class="row">
+								<div class="col-lg-12 mb-4">
 									<label class="form-label" for="AnnouncementsCommunications">Message 1</label>
 									  <textarea class="form-control" rows="4" cols="3" placeholder="Enter Message" id="AnnouncementsCommunications"></textarea>
 								</div>
 							  </div>
 
-						  <div class="row ms-4">
+						  <div class="row">
 							<div class="col-lg-12 mb-4 d-lg-flex gap-3">
-								<div class="col-lg-6">
+								<div class="col-xl-6">
 									<h3>Display:</h3>
 									<div class="form-check">
 									  <input class="form-check-input" id="DisplayOnLoginScreen" name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
@@ -189,7 +185,7 @@
 									</div>
 								</div>
 
-								<div class="col-lg-6">
+								<div class="col-xl-6">
 									<h3>Audience:</h3>
 									<div class="form-check">
 									  <input class="form-check-input" id="DisplayToProviders" name="DisplayToProviders" type="checkbox" tabindex="" />
@@ -284,7 +280,7 @@
 							<div class="row mb-4">
 								<div class="col-lg-12">
 									<label class="form-label">Select Days & Time</label>
-									<div class="d-lg-flex gap-3 align-items-center mb-3">
+									<div class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center mb-3">
 										<input aria-label="Select Day" type="" name="" class="form-control w-auto js-select-day" placeholder="Select Day">
 										<label class="form-label-sm">Choose Time</label>
 										<div class="d-flex">
@@ -342,7 +338,7 @@
 											</div>
 										</div>
 									</div>
-									<div>
+									<div class="table-responsive">
 										<table class="table table-bordered table-schedule">
 											<thead>
 												<th>
@@ -617,7 +613,7 @@
 								<div class="col-lg-12">
 									<div class="mb-5">
 									<h3>Provider Payments & Preferences</h3>
-									<div class="row mb-2">
+									<div class="row mb-4">
 										<div class="col-lg-12 mb-4">
 											<div class="form-check form-switch">
 												<input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="providerPayroll" checked>
@@ -639,7 +635,7 @@
 														</div>
 												</div>
 													<div class="col-lg-12 mb-4">
-														<div class="d-lg-flex justify-content-between">
+														<div class="d-lg-flex justify-content-between mb-2 mb-lg-0">
 															<label class="form-label" for="reimburseProviders">
 																Rate Per Mile to Reimburse Providers
 															</label>
@@ -654,12 +650,10 @@
 														<div class="d-lg-flex ">
 															<label class="form-label" for="compensatedTravelTime">
 																Rate To Reimburse Compensated Travel Time
-															</label>
-															<div class="ms-1 mt-1">
 																<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 																	<path d="M7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C11.6355 15 15 11.6355 15 7.5C15 3.3645 11.6355 0 7.5 0ZM8.25 12H6.75V10.5H8.25V12ZM8.982 8.33625C8.835 8.45475 8.69325 8.568 8.58075 8.6805C8.27475 8.98575 8.25075 9.26325 8.25 9.27525V9.375H6.75V9.24975C6.75 9.16125 6.77175 8.367 7.5195 7.61925C7.66575 7.473 7.84725 7.3245 8.03775 7.17C8.58825 6.72375 8.94975 6.39825 8.94975 5.94975C8.94104 5.57086 8.78438 5.21044 8.5133 4.94559C8.24222 4.68074 7.87824 4.53251 7.49926 4.5326C7.12027 4.5327 6.75638 4.68112 6.48543 4.94611C6.21449 5.2111 6.05802 5.57161 6.0495 5.9505H4.5495C4.5495 4.32375 5.87325 3 7.5 3C9.12675 3 10.4505 4.32375 10.4505 5.9505C10.4505 7.14825 9.56625 7.863 8.982 8.33625Z" fill="#888575"/>
-																	</svg>
-																</div>
+																</svg>
+															</label>
 														</div>
 														<div class="row">
 														<div class="col-lg-8 d-inline-flex">
@@ -688,7 +682,7 @@
 															<label class="form-check-label" >Customer Billing</label>
 														</div>
 													</div>
-													<div class="col-lg-12">
+													<div class="col-lg-12 mb-4">
 														<label class="form-label" for="billingSchedule">
 															Billing Schedule (Days After Invoice)
 														</label>
@@ -991,17 +985,17 @@
 										{{-- End: Right Column --}}
 									</div>
 									<div class="mb-5">
-									<div class="row mb-4">
+									<div class="row">
 										<div class="col-lg-12">
 											<h3>Service Agreements / Terms of Service</h3>
 											<div class="row">
-												<div class="col-lg-6">
+												<div class="col-lg-6 mb-4">
 													<label class="form-label" for="serviceAgreementsUpload">
 														Upload File
 													</label>
 													<input class="form-control" type="file" id="serviceAgreementsUpload">
 												</div>
-												<div class="col-lg-6">
+												<div class="col-lg-6 mb-4">
 													<label class="form-label" for="serviceAgreementsURL">
 														URL Link
 													</label>
@@ -1024,17 +1018,17 @@
 									</div>
 									</div>
 									<div class="mb-5">
-									<div class="row mb-4">
+									<div class="row">
 										<div class="col-lg-12">
 											<h3>Privacy Policy</h3>
 											<div class="row">
-												<div class="col-lg-6">
+												<div class="col-lg-6 mb-4">
 													<label class="form-label" >
 														Upload File
 													</label>
 													<input class="form-control" type="file" aria-label="Upload File" >
 												</div>
-												<div class="col-lg-6">
+												<div class="col-lg-6 mb-4">
 													<label class="form-label" >
 														URL Link
 													</label>
@@ -1069,50 +1063,47 @@
 										<div class="row mb-4">
 											<div class="col-lg-12 mb-4">
 												<h3>Additional Policies</h3>
-												<div class="row border col-md-10 ms-1">
-													<div class="row ms-3 mt-4">
-												<h3 class="text-primary">Policy 1</h3>
-												<div class="row mb-3">
-													<div class="row mb-2">
-														<div class="col-lg-6">
+												<div class="duplicate-block mb-3">
+													<h3 class="text-primary">Policy 1</h3>
+													<div class="row">
+														<div class="col-lg-6 mb-4">
 															<label class="form-label" for="privacyPolicyTitle">
 																Policy Title
 															</label>
 															<input type="" name="" class="form-control" placeholder="Enter Title" id="privacyPolicyTitle">
 														</div>
+													
+														<div class="col-lg-6 mb-4">
+															<label class="form-label" for="privacyPolicyUpload">
+																Upload File
+															</label>
+															<input class="form-control" type="file" id="privacyPolicyUpload">
+														</div>
+														<div class="col-lg-6 mb-4">
+															<label class="form-label" for="URL-Link">
+																URL Link
+															</label>
+															<input type="" name="" class="form-control" placeholder="Enter URL link" id="URL-Link">
+														</div>
 													</div>
-													<div class="col-lg-6">
-														<label class="form-label" for="privacyPolicyUpload">
-															Upload File
-														</label>
-														<input class="form-control" type="file" id="privacyPolicyUpload">
+													<div class="col-lg-12">
+														<div class="form-check">
+															<input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" checked />
+															<label class="form-check-label" for="customerDrive">Add to Customer Drive</label>
+														</div>
+														<div class="form-check mx-4">
+															<input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
+															<label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Require Customer to Acknowledge on Initial Login</label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" checked />
+															<label class="form-check-label" for="providerDrive">Add to Provider Drive</label>
+														</div>
+														<div class="form-check mx-4">
+															<input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
+															<label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Require Customer to Acknowledge on Initial Login</label>
+														</div>
 													</div>
-													<div class="col-lg-6">
-														<label class="form-label" for="URL-Link">
-															URL Link
-														</label>
-														<input type="" name="" class="form-control" placeholder="Enter URL link" id="URL-Link">
-													</div>
-												</div>
-												<div class="col-lg-12">
-													<div class="form-check">
-														<input class="form-check-input" id="customerDrive" name="customerDrive" type="checkbox" tabindex="" checked />
-														<label class="form-check-label" for="customerDrive">Add to Customer Drive</label>
-													</div>
-													<div class="form-check mx-4">
-														<input class="form-check-input" id="acknowledgeInitialLogincustomerDrive" name="acknowledgeInitialLogincustomerDrive" type="checkbox" tabindex="" />
-														<label class="form-check-label" for="acknowledgeInitialLogincustomerDrive">Require Customer to Acknowledge on Initial Login</label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" id="providerDrive" name="providerDrive" type="checkbox" tabindex="" checked />
-														<label class="form-check-label" for="providerDrive">Add to Provider Drive</label>
-													</div>
-													<div class="form-check mx-4">
-														<input class="form-check-input" id="acknowledgeInitialLoginproviderDrive" name="acknowledgeInitialLoginproviderDrive" type="checkbox" tabindex="" />
-														<label class="form-check-label" for="acknowledgeInitialLoginproviderDrive">Require Customer to Acknowledge on Initial Login</label>
-													</div>
-												</div>
-											</div>
 											</div>
 											<div class="row mb-4">
 												<div class="col-lg-10 text-lg-end mt-4">
