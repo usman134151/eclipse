@@ -145,6 +145,11 @@ Route::group([
 				Route::view('/bookings/unassigned', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Unassigned"]);
 				Route::view('/bookings/invitations', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Invitations"]);
 
+				// Provider Payment Routes
+				Route::view('/reimbursement', 'tenant/provider/reimbursement');
+				Route::view('/remittances', 'tenant/provider/remittances');
+				Route::view('/draft-invoices', 'tenant/provider/draft-invoices');
+
 				Route::view('/profile', 'tenant/provider/profile');
 
 				Route::view('/drive', 'tenant/provider/drive');
