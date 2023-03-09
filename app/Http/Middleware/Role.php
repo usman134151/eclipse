@@ -17,9 +17,12 @@ class Role
 	 */
 	public function handle(Request $request, Closure $next, $role = null)
 	{
-		if(Auth::user()->roleUser->count() != 0)
+		if(Auth::user()->roleUser != null)
 		{
-			$roleName=Auth::user()->roleUser->role->name;
+			if (Auth::user()->roleUser->count() != 0)
+			{
+				$roleName=Auth::user()->roleUser->role->name;
+			}
 		}
 		if($roleName == $role)
 		{
