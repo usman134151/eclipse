@@ -25,7 +25,7 @@
 					  </div>
 					  </div>
 					  </div>
-					  <div class="d-flex justify-content-between mb-2">
+					  <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
 						<div class="d-inline-flex align-items-center gap-4">
 						  <label for="show_records_number" class="form-label">Show</label>
 						  <select class="form-select" id="show_records_number">
@@ -206,12 +206,12 @@
 	  </table>
 
 					  </div>
-					<div class="d-flex justify-content-between">
+					<div class="d-flex flex-column flex-md-row justify-content-between">
 					  <div>
 						<p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
 					  </div>
 					  <nav aria-label="Page Navigation">
-						<ul class="pagination">
+						<ul class="pagination justify-content-start justify-content-lg-end">
 						  <li class="page-item">
 							<a class="page-link" href="#" aria-label="Previous">Previous
 							  <span aria-hidden="true">&laquo;</span>
