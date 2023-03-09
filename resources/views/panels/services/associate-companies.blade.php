@@ -1,4 +1,4 @@
-{{-- BEGIN: Assign Provider Off Canvas --}}
+{{-- BEGIN: Associate-Companies Off Canvas --}}
 <x-off-canvas show="associateCompanies">
 	<x-slot name="title">Associate Companies</x-slot>
 	<div class="d-flex justify-content-between mb-2">
@@ -62,10 +62,10 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
-                            <a href="javascript:void(0)" @click="associateDepartment = true" title="building" aria-label="building" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateDepartment = true" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="building"/>
                             </a>
                             <a href="#" @click="associateCustomer= true" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -98,13 +98,13 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
-                            <a href="javascript:void(0)" @click="associateDepartment = true" title="building" aria-label="building" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateDepartment = true" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="building"/>
                             </a>
-                            <a href="javascript:void(0)" @click="associateCustomer= true" title="user-group" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateCustomer= true" title="View Company Users" aria-label="View Company Users" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="user-group"/>
                             </a>
                         </div>
@@ -135,13 +135,13 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
-                            <a href="javascript:void(0)" @click="associateDepartment = true" title="building" aria-label="building" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateDepartment = true" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="building"/>
                             </a>
-                            <a href="javascript:void(0)" title="user-group" @click="associateCustomer= true" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="View Company Users" @click="associateCustomer= true" aria-label="View Company Users" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="user-group"/>
                             </a>
                         </div>
@@ -172,13 +172,13 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
-                            <a href="javascript:void(0)" @click="associateDepartment = true" title="building" aria-label="building" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateDepartment = true" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="building"/>
                             </a>
-                            <a href="javascript:void(0)" title="user-group" @click="associateCustomer= true" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="View Company Users" @click="associateCustomer= true" aria-label="View Company Users" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="user-group"/>
                             </a>
                         </div>
@@ -209,13 +209,13 @@
                     </td>
                     <td>
                         <div class="d-flex actions">
-                            <a href="javascript:void(0)" title="dollar" aria-label="dollar" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="dollar-icon"/>
                             </a>
-                            <a href="javascript:void(0)" @click="associateDepartment = true" title="building" aria-label="building" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" @click="associateDepartment = true" title="View Departments" aria-label="View Departments" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="building"/>
                             </a>
-                            <a href="javascript:void(0)" title="user-group" @click="associateCustomer= true" aria-label="user-group" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <a href="javascript:void(0)" title="View Company Users" @click="associateCustomer= true" aria-label="View Company Users" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <x-icon name="user-group"/>
                             </a>
                         </div>
@@ -223,6 +223,61 @@
                 </tr>
             </tbody>
         </table>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
+            </div>
+            <nav aria-label="Page Navigation">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">Previous
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">Next
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        {{-- icon legend bar start --}}
+        <div class="d-flex actions gap-3 justify-content-end mb-2">
+            <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="Add Service Rates" aria-label="Add Service Rates"
+                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                    <x-icon name="dollar-icon" />
+                </a>
+                <span class="text-sm">
+                    Add Service Rates
+                </span>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="View Departments" aria-label="View Departments"
+                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                    <x-icon name="building" />
+                </a>
+                <span class="text-sm">
+                    View Departments
+                </span>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <a href="#" title="View Company Users" aria-label="View Company Users"
+                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                    <x-icon name="user-group" />
+                </a>
+                <span class="text-sm">
+                    View Company Users
+                </span>
+            </div>
+
+        </div>
+        {{-- icon legend bar end --}}
 	  </div>
 </x-off-canvas>
-{{-- END: Admin Staff Team Details Off Canvas --}}
+{{-- END: Associate-Companies Off Canvas --}}
