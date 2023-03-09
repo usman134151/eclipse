@@ -1365,4 +1365,8 @@ small {
   .fc .fc-toolbar {
     flex-direction: column; } }
 
+@media (max-width: 991px) {
+  footer.footer {
+    margin-left: 0; } }
+
 /*# sourceMappingURL=style.css.map */
