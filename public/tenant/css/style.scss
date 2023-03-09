@@ -1554,3 +1554,10 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
         transform: translateX(0%);
     }
 }
+
+
+.fc .fc-toolbar {
+	@media (max-width: 991px) {
+		flex-direction: column;
+	}
+}

@@ -1361,5 +1361,8 @@ small {
     transform: translateX(-100%); }
   100% {
     transform: translateX(0%); } }
+@media (max-width: 991px) {
+  .fc .fc-toolbar {
+    flex-direction: column; } }
 
 /*# sourceMappingURL=style.css.map */
