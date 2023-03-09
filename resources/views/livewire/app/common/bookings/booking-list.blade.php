@@ -62,7 +62,7 @@
 									</select>
 								</div>
 								<div>
-									<div class="form-check form-switch mb-lg-0">
+									<div class="form-check form-switch mb-0">
 										<input class="form-check-input" type="checkbox" role="switch" id="ManagePermissions">
 										<label class="form-check-label" for="ManagePermissions">
 											Manage Permissions
