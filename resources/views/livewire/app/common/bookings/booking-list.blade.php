@@ -11,7 +11,7 @@
 	@else
 	{{-- BEGIN: Content --}}
 	<div class="content-header row">
-		<div class="content-header-left col-md-9 col-12 mb-2">
+		<div class="content-header-left col-md-12 col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
 					<h1 class="content-header-title float-start mb-0">
@@ -48,8 +48,8 @@
 								Create Assignment
 							</a>
 						</div>
-						<div class="d-flex justify-content-between mb-2">
-							<div class="d-inline-flex align-items-center gap-4">
+						<div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+							<div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-lg-0">
 								<div class="d-inline-flex align-items-center gap-4">
 									<label for="show_records_number" class="form-label-sm mb-0">
 										Show
@@ -190,14 +190,14 @@
 							</div>
 
 						{{-- Hoverable rows End --}}
-						<div class="d-flex justify-content-between">
+						<div class="d-flex flex-column flex-md-row justify-content-between">
 							<div>
 								<p class="fw-semibold mb-lg-0 text-sm font-family-secondary">
 									Showing 1 to 5 of 100 entries
 								</p>
 							</div>
 							<nav aria-label="Page Navigation">
-								<ul class="pagination">
+								<ul class="pagination justify-content-start justify-content-lg-end">
 									<li class="page-item">
 										<a class="page-link" href="#" aria-label="Previous">
 											<span aria-hidden="true">&laquo;</span>
