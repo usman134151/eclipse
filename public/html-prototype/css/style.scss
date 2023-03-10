@@ -1574,6 +1574,12 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	}
 }
 
+body .table .actions .tablediv.dropdown-menu {
+	@media (max-width: 991px) {
+		max-width: 100%;
+	}
+}
+
 footer.footer {
 	@media (max-width: 991px) {
 		margin-left: 0;

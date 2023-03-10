@@ -1374,6 +1374,10 @@ small {
     padding-left: 1rem; } }
 
 @media (max-width: 991px) {
+  body .table .actions .tablediv.dropdown-menu {
+    max-width: 100%; } }
+
+@media (max-width: 991px) {
   footer.footer {
     margin-left: 0; } }
 
