@@ -1,4 +1,4 @@
-@extends('layouts.tenant', ['title' => 'My Drive'])
+@extends('layouts.tenant', ['title' => 'Reimbursement'])
 
 @section('content')
 @livewire('app.provider.reimbursement')
