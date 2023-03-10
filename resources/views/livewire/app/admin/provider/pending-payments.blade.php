@@ -38,6 +38,7 @@
                   <div class="mb-4">
                     <img src="/html-prototype/images/temp/img-placeholder-pending-payment.png" class="img-fluid" alt="Responsive image">
                   </div>
+                  <!-- BEGIN: Filters -->
                   <div class="bg-muted rounded p-4 mb-1">
                     <div class="d-lg-flex gap-5 align-items-center">
                       <div class="mb-4 mb-lg-0">
@@ -99,8 +100,9 @@
                       </div>
                     </div>
                   </div>
+                  <!-- END: Filters -->
                 </div>
-                <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
                   <div class="d-inline-flex align-items-center gap-4">
                     <div class="d-inline-flex align-items-center gap-4">
                       <label for="show_records_number" class="form-label-sm mb-0">Show</label>
@@ -390,12 +392,12 @@
                   </div>
                 </div>
                 <!-- Hoverable rows end -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column flex-md-row justify-content-between">
                   <div>
                     <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100 entries</p>
                   </div>
                   <nav aria-label="Page Navigation">
-                    <ul class="pagination">
+                    <ul class="pagination justify-content-start justify-content-lg-end">
                       <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
                           <span aria-hidden="true">&laquo;</span>
