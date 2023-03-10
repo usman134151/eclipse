@@ -1,5 +1,29 @@
 <div>
-    <div class="content-body">
+	<div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+          <div class="row breadcrumbs-top">
+            <div class="col-12">
+              <h1 class="content-header-title float-start mb-0">My Profile</h1>
+              <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Go to Dashboard">
+                      <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.25009 12.5809H2.33343V20.1643C2.33343 21.3592 3.30518 22.3309 4.50009 22.3309H17.5001C18.695 22.3309 19.6668 21.3592 19.6668 20.1643V12.5809H20.7501C20.9643 12.5809 21.1737 12.5173 21.3518 12.3983C21.53 12.2793 21.6688 12.1101 21.7507 11.9122C21.8327 11.7142 21.8542 11.4964 21.8124 11.2863C21.7706 11.0762 21.6675 10.8832 21.516 10.7317L11.766 0.981697C11.6655 0.881006 11.5461 0.801123 11.4147 0.74662C11.2833 0.692117 11.1424 0.664062 11.0001 0.664062C10.8578 0.664063 10.7169 0.692117 10.5855 0.74662C10.4541 0.801123 10.3347 0.881006 10.2342 0.981697L0.484178 10.7317C0.332718 10.8832 0.229577 11.0762 0.187796 11.2863C0.146014 11.4964 0.167468 11.7142 0.249444 11.9122C0.331419 12.1101 0.470237 12.2793 0.648348 12.3983C0.826459 12.5173 1.03587 12.5809 1.25009 12.5809ZM8.83343 20.1643V14.7476H13.1668V20.1643H8.83343ZM11.0001 3.27945L17.5001 9.77945V14.7476L17.5012 20.1643H15.3334V14.7476C15.3334 13.5527 14.3617 12.5809 13.1668 12.5809H8.83343C7.63851 12.5809 6.66676 13.5527 6.66676 14.7476V20.1643H4.50009V9.77945L11.0001 3.27945Z" fill="#0A1E46"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">
+                        My Profile
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 		<div class="card">
 			<div class="card-body">
 				{{-- BEGIN: Steps --}}
@@ -33,12 +57,16 @@
 											<input class="position-absolute form-control" type="file" />
 										</div> --}}
 										<div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-											<x-icon name="camera"/>
+											<svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#camera"></use>
+                                            </svg>
 										</div>
 									</div>
                                     <div><h3>Referral Code: KYTALB</h3></div>
                                     <div>
-                                        <x-icon name="green-badge"/>
+                                        <svg aria-label="Certified" width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-badge"></use>
+                                        </svg>
                                         <span><strong>Certified</strong></span>
                                     </div>
 								</div>
@@ -462,18 +490,22 @@
                                                     <div class="col-md-4">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="in-person"/>                                                               
+																<svg aria-label="In-Person" width="25" height="24" viewBox="0 0 25 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#in-person"></use>
+															   </svg>                                                              
                                                             </div>
-                                                            <div class="mx-3">Day Rate In-person:</div>
+                                                            <div class="mx-3 fw-semibold">Day Rate In-person:</div>
                                                         <div class="mx-3">$101.00</div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="virtual"/>                                                              
+                                                                <svg aria-label="Virtual" width="25" height="25" viewBox="0 0 25 25" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#virtual-service"></use>
+															   </svg>                                                              
                                                             </div>
-                                                            <div class="mx-3">Day Rate Virtual:</div>
+                                                            <div class="mx-3 fw-semibold">Day Rate Virtual:</div>
                                                         <div class="mx-3">$101.00</div>
                                                         </div>
                                                     </div>
@@ -482,18 +514,22 @@
                                                     <div class="col-md-4">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="phone"/>                                                               
+                                                                <svg aria-label="Phone" width="30" height="24" viewBox="0 0 30 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#phone"></use>
+															    </svg>                                                               
                                                             </div>
-                                                            <div class="mx-3">Day Rate Phone:</div>
+                                                            <div class="mx-3 fw-semibold">Day Rate Phone:</div>
                                                         <div class="mx-3">$101.00</div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="teleconference"/>                                                               
+                                                                <svg aria-label="Teleconference" width="30" height="26" viewBox="0 0 30 26" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#teleconference"></use>
+															    </svg>                                                              
                                                             </div>
-                                                            <div class="mx-3">Day Rate Virtual:</div>
+                                                            <div class="mx-3 fw-semibold">Day Rate Teleconference:</div>
                                                         <div class="mx-3">$101.00</div>
                                                         </div>
                                                     </div>
@@ -514,22 +550,28 @@
                                             <div class="d-inline-flex">
                                                 <div class="d-inline-flex col-3">
                                                     <div >
-                                                        <x-icon name="in-person"/>
+                                                        <svg aria-label="In-Person" width="25" height="24" viewBox="0 0 25 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#in-person"></use>
+														</svg> 
                                                     </div>
                                                     <div class="mx-2 d-inline-flex">
                                                         <div class="text-primary fw-bold">In-person</div>
-                                                        <div class="mx-2 "><x-icon name="fill-question"/></div>
+                                                        <div class="mx-2 ">
+															<svg aria-label="" width="15" height="16" viewBox="0 0 15 16" fill="none"
+															xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#fill-question"></use>
+													      </svg> 
+														</div>
                                                     </div>
                                                 </div>
                                                 <div class="d-inline-flex col-3">
                                                         <div class="bg-muted rounded">
-                                                           <span>Parameter 1</span>                                                               
+                                                           <span class="fw-semibold">Parameter 1</span>                                                               
                                                         </div>
-                                                        <div class="mx-3 mt-1"><span>Hours Notice: </span><span class="mx-1">5</span></div>
+                                                        <div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice: </span><span class="mx-1">5</span></div>
                                                 </div>
                                                 <div class="mx-2 d-inline-flex">
                                                     <div class="d-inline-flex">
-                                                          <span>Rate: </span><span class="mx-1">$100.00</span>                                                       
+                                                          <span class="fw-semibold">Rate: </span><span class="mx-1">$100.00</span>                                                       
                                                         </div>
                                                 </div>
                                                 <div class="mx-4">
@@ -542,22 +584,28 @@
                                     <div class="d-inline-flex">
                                         <div class="d-inline-flex col-3">
                                             <div >
-                                                <x-icon name="virtual"/>
+                                                <svg aria-label="Virtual" width="25" height="25" viewBox="0 0 25 25" fill="none"
+												xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#virtual-service"></use>
+												</svg> 
                                             </div>
                                             <div class="mx-2 d-inline-flex">
                                                 <div class="text-primary fw-bold">Virtual</div>
-                                                <div class="mx-2 "><x-icon aria-label="Virtual" name="fill-question"/></div>
+                                                <div class="mx-2 ">
+													<svg aria-label="" width="15" height="16" viewBox="0 0 15 16" fill="none"
+															xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#fill-question"></use>
+													</svg>
+												</div>
                                             </div>
                                         </div>
                                         <div class="d-inline-flex col-3">
                                                 <div class="bg-muted rounded">
-                                                   <span>Parameter 1</span>                                                               
+                                                   <span class="fw-semibold">Parameter 1</span>                                                               
                                                 </div>
-                                                <div class="mx-3 mt-1"><span>Hours Notice: </span><span class="mx-1">5</span></div>
+                                                <div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice: </span><span class="mx-1">5</span></div>
                                         </div>
                                         <div class="mx-2 d-inline-flex">
                                             <div class="d-inline-flex">
-                                                  <span>Rate: </span><span class="mx-1">$100.00</span>                                                       
+                                                  <span class="fw-semibold">Rate: </span><span class="mx-1">$100.00</span>                                                       
                                                 </div>
                                         </div>
                                         <div class="mx-4">
@@ -570,22 +618,28 @@
                                     <div class="d-inline-flex">
                                         <div class="d-inline-flex col-3">
                                             <div >
-                                                <x-icon name="phone"/>
+                                                <svg aria-label="Phone" width="30" height="24" viewBox="0 0 30 24" fill="none"
+												 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#phone"></use>
+												</svg>
                                             </div>
                                             <div class="mx-2 d-inline-flex">
                                                 <div class="text-primary fw-bold">Phone</div>
-                                                <div class="mx-2 "><x-icon name="fill-question"/></div>
+                                                <div class="mx-2 ">
+													<svg aria-label="" width="15" height="16" viewBox="0 0 15 16" fill="none"
+															xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#fill-question"></use>
+													</svg>
+												</div>
                                             </div>
                                         </div>
                                         <div class="d-inline-flex col-3">
                                                 <div class="bg-muted rounded">
-                                                   <span>Parameter 1</span>                                                               
+                                                   <span class="fw-semibold">Parameter 1</span>                                                               
                                                 </div>
-                                                <div class="mx-3 mt-1"><span>Hours Notice: </span><span class="mx-1">5</span></div>
+                                                <div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice: </span><span class="mx-1">5</span></div>
                                         </div>
                                         <div class="mx-2 d-inline-flex">
                                             <div class="d-inline-flex">
-                                                  <span>Rate: </span><span class="mx-1">$100.00</span>                                                       
+                                                  <span class="fw-semibold">Rate: </span><span class="mx-1">$100.00</span>                                                       
                                                 </div>
                                         </div>
                                         <div class="mx-4">
@@ -598,32 +652,37 @@
                                     <div class="d-inline-flex">
                                         <div class="d-inline-flex col-3">
                                             <div >
-                                                <x-icon name="teleconference"/>
+                                                <svg aria-label="Teleconference" width="30" height="26" viewBox="0 0 30 26" fill="none"
+												xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#teleconference"></use>
+												</svg>
                                             </div>
                                             <div class="mx-2 d-inline-flex">
                                                 <div class="text-primary fw-bold">Teleconference</div>
-                                                <div class="mx-2 "><x-icon name="fill-question"/></div>
+                                                <div class="mx-2 ">
+													<svg aria-label="" width="15" height="16" viewBox="0 0 15 16" fill="none"
+													xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#fill-question"></use>
+													</svg>
+												</div>
                                             </div>
                                         </div>
                                         <div class="d-inline-flex col-3">
                                                 <div class="bg-muted rounded">
-                                                   <span>Parameter 1</span>                                                               
+                                                   <span class="fw-semibold">Parameter 1</span>                                                               
                                                 </div>
-                                                <div class="mx-3 mt-1"><span>Hours Notice: </span><span class="mx-1">5</span></div>
+                                                <div class="mx-3 mt-1"><span class="fw-semibold">Hours Notice: </span><span class="mx-1">5</span></div>
                                         </div>
                                         <div class="mx-2 d-inline-flex">
                                             <div class="d-inline-flex">
-                                                  <span>Rate: </span><span class="mx-1">$100.00</span>                                                       
+                                                  <span class="fw-semibold">Rate: </span><span class="mx-1">$100.00</span>                                                       
                                                 </div>
                                         </div>
                                         <div class="mx-4">
                                             Multiply by service duration
                                         </div>
                                     </div>
-                                    <hr>
                                    </div>
                                    {{-- Teleconference Expedited Service End --}}
-                                    
+                                    <div class="row"><hr></div>
 
                                         <div class="row">
                                             <div class="d-inline-flex mb-3">
@@ -632,90 +691,106 @@
                                                     <path d="M7.5 0.792969C3.3645 0.792969 0 4.15747 0 8.29297C0 12.4285 3.3645 15.793 7.5 15.793C11.6355 15.793 15 12.4285 15 8.29297C15 4.15747 11.6355 0.792969 7.5 0.792969ZM8.25 12.793H6.75V11.293H8.25V12.793ZM8.982 9.12922C8.835 9.24772 8.69325 9.36097 8.58075 9.47347C8.27475 9.77872 8.25075 10.0562 8.25 10.0682V10.168H6.75V10.0427C6.75 9.95422 6.77175 9.15997 7.5195 8.41222C7.66575 8.26597 7.84725 8.11747 8.03775 7.96297C8.58825 7.51672 8.94975 7.19122 8.94975 6.74272C8.94104 6.36383 8.78438 6.00341 8.5133 5.73856C8.24222 5.47371 7.87824 5.32547 7.49926 5.32557C7.12027 5.32567 6.75638 5.47409 6.48543 5.73908C6.21449 6.00407 6.05802 6.36458 6.0495 6.74347H4.5495C4.5495 5.11672 5.87325 3.79297 7.5 3.79297C9.12675 3.79297 10.4505 5.11672 10.4505 6.74347C10.4505 7.94122 9.56625 8.65597 8.982 9.12922Z" fill="#888575"/>
                                                 </svg>
                                             </div>
-                                            <div class="bg-muted p-1 col-1 mx-3">Medical</div>
+                                            <div class="bg-muted p-1 col-1 mx-3 mb-2">Medical</div>
                                             <div class="d-inline-flex">
                                                 <div class="mx-2">
                                                     <div class="d-inline-flex">
                                                         <div>
-                                                         <span>Rate Type:</span> <span>%</span>                                                      
+                                                         <span class="fw-semibold">Rate Type:</span> <span>%</span>                                                      
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="mx-3">
                                                     <div class="d-inline-flex">
                                                         <div>
-                                                            <x-icon name="in-person"/> 
+                                                            <svg aria-label="In-Person" width="25" height="24" viewBox="0 0 25 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#in-person"></use>
+															</svg> 
                                                         </div>
-                                                        <div class="mx-1 mt-1"><span>In-Person: </span><span class="mx-1">$100.00</span></div>
+                                                        <div class="mx-1 mt-1"><span class="fw-semibold">In-Person: </span><span class="mx-1">$100.00</span></div>
                                                     </div>
                                                 </div>
                                                 <div class="mx-3">
                                                     <div class="d-inline-flex">
                                                         <div>
-                                                            <x-icon name="virtual"/>
+                                                            <svg aria-label="Virtual" width="25" height="25" viewBox="0 0 25 25" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#virtual-service"></use>
+															</svg>  
                                                         </div>
-                                                        <div class="mx-1 mt-1"><span>Virtual:</span><span class="mx-1">$100.00</span></div>
+                                                        <div class="mx-1 mt-1"><span class="fw-semibold">Virtual:</span><span class="mx-1">$100.00</span></div>
                                                     </div>
                                                 </div>
                                                 <div class="mx-3">
                                                     <div class="d-inline-flex">
                                                         <div>
-                                                            <x-icon name="phone"/>
+                                                            <svg aria-label="Phone" width="30" height="24" viewBox="0 0 30 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#phone"></use>
+															</svg>
                                                         </div>
-                                                        <div class="mx-1 mt-1"><span>Phone:</span><span class="mx-1">$100.00</span></div>
+                                                        <div class="mx-1 mt-1"><span class="fw-semibold">Phone:</span><span class="mx-1">$100.00</span></div>
                                                     </div>
                                                 </div>
                                                 <div class="mx-3">
                                                     <div class="d-inline-flex">
                                                         <div>
-                                                            <x-icon name="teleconference"/> 
+                                                            <svg aria-label="Teleconference" width="30" height="26" viewBox="0 0 30 26" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#teleconference"></use>
+															</svg> 
                                                         </div>
-                                                        <div class="mx-1 mt-1"><span>Teleconferencing:</span><span class="mx-1">$100.00</span></div>
+                                                        <div class="mx-1 mt-1"><span class="fw-semibold">Teleconferencing:</span><span class="mx-1">$100.00</span></div>
                                                     </div> 
                                                 </div>
                                             </div>
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-3 mb-2 mx-1"> 
-                                                    <span class="bg-muted p-1"> Projector & Screen Rental</span>
+                                                    <span class="bg-muted p-1 mb-3"> Projector & Screen Rental</span>
                                                 </div>
-                                                <div class="d-inline-flex">
+                                                <div class="d-inline-flex mt-2">
                                                     <div class="mx-2">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                             <span> Rate Type:</span><span>%</span>                                                      
+                                                             <span class="fw-semibold"> Rate Type:</span><span>%</span>                                                      
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="mx-3">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="in-person"/>
+                                                                <svg aria-label="In-Person" width="25" height="24" viewBox="0 0 25 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#in-person"></use>
+															   </svg> 
                                                             </div>
-                                                            <div class="mx-1 mt-1"><span>In-Person: </span><span class="mx-1">$100.00</span></div>
+                                                            <div class="mx-1 mt-1"><span class="fw-semibold">In-Person: </span><span class="mx-1">$100.00</span></div>
                                                         </div>
                                                     </div>
                                                     <div class="mx-3">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="virtual"/>
+                                                                <svg aria-label="Virtual" width="25" height="25" viewBox="0 0 25 25" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#virtual-service"></use>
+															    </svg> 
                                                             </div>
-                                                            <div class="mx-1 mt-1"><span>Virtual:</span><span class="mx-1">$100.00</span></div>
+                                                            <div class="mx-1 mt-1"><span class="fw-semibold">Virtual:</span><span class="mx-1">$100.00</span></div>
                                                         </div>
                                                     </div>
                                                     <div class="mx-3">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="phone"/>
+                                                                <svg aria-label="Phone" width="30" height="24" viewBox="0 0 30 24" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#phone"></use>
+															    </svg>
                                                             </div>
-                                                            <div class="mx-1 mt-1"><span>Phone:</span><span class="mx-1">$100.00</span></div>
+                                                            <div class="mx-1 mt-1"><span class="fw-semibold">Phone:</span><span class="mx-1">$100.00</span></div>
                                                         </div>
                                                     </div>
                                                     <div class="mx-3">
                                                         <div class="d-inline-flex">
                                                             <div>
-                                                                <x-icon name="teleconference"/>
+                                                                <svg aria-label="Teleconference" width="30" height="26" viewBox="0 0 30 26" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#teleconference"></use>
+															    </svg>
                                                             </div>
-                                                            <div class="mx-1 mt-1"><span>Teleconferencing:</span><span class="mx-1">$100.00</span></div>
+                                                            <div class="mx-1 mt-1"><span class="fw-semibold">Teleconferencing:</span><span class="mx-1">$100.00</span></div>
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -728,7 +803,7 @@
                                   {{-- First accommodation -End --}}
                                   
                                   <div class="row">
-                                       <div class="mb-3 mt-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#accomodation-four" aria-expanded="false" aria-controls="accomodation-four">
+                                       <div class="mb-3 mt-4 " type="button" data-bs-toggle="collapse" data-bs-target="#accomodation-four" aria-expanded="false" aria-controls="accomodation-four">
                                            Spoken Language Interpreting Services
                                            <svg class="mx-4 mb-0" width="32" height="16" viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                <path d="M0.897074 15.2467C1.33505 15.614 1.929 15.8203 2.54831 15.8203C3.16761 15.8203 3.76156 15.614 4.19954 15.2467L15.7605 5.54916L27.3215 15.2467C27.762 15.6036 28.3519 15.801 28.9643 15.7966C29.5767 15.7921 30.1625 15.5861 30.5955 15.2228C31.0285 14.8596 31.2741 14.3682 31.2795 13.8546C31.2848 13.3409 31.0494 12.846 30.6239 12.4765L17.4117 1.39391C16.9738 1.02663 16.3798 0.820312 15.7605 0.820312C15.1412 0.820312 14.5473 1.02663 14.1093 1.39391L0.897074 12.4765C0.459226 12.8439 0.213257 13.3421 0.213257 13.8616C0.213257 14.3811 0.459226 14.8793 0.897074 15.2467Z" fill="#575656"/>
@@ -740,7 +815,7 @@
                                 </div>
                                   {{-- Accommodation two -End --}}
                                   <div class="row">
-                                    <div class="mb-3 mt-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#accomodation-three" aria-expanded="false" aria-controls="accomodation-three">
+                                    <div class="mb-3 mt-4 " type="button" data-bs-toggle="collapse" data-bs-target="#accomodation-three" aria-expanded="false" aria-controls="accomodation-three">
                                         Real Time Captioning Services
                                         <svg class="mx-4 mb-0" width="32" height="16" viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0.897074 15.2467C1.33505 15.614 1.929 15.8203 2.54831 15.8203C3.16761 15.8203 3.76156 15.614 4.19954 15.2467L15.7605 5.54916L27.3215 15.2467C27.762 15.6036 28.3519 15.801 28.9643 15.7966C29.5767 15.7921 30.1625 15.5861 30.5955 15.2228C31.0285 14.8596 31.2741 14.3682 31.2795 13.8546C31.2848 13.3409 31.0494 12.846 30.6239 12.4765L17.4117 1.39391C16.9738 1.02663 16.3798 0.820312 15.7605 0.820312C15.1412 0.820312 14.5473 1.02663 14.1093 1.39391L0.897074 12.4765C0.459226 12.8439 0.213257 13.3421 0.213257 13.8616C0.213257 14.3811 0.459226 14.8793 0.897074 15.2467Z" fill="#575656"/>
@@ -765,5 +840,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 </div>

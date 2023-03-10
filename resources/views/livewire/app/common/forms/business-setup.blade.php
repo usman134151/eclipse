@@ -127,6 +127,7 @@
 						  		</div>
 						  	</div>
 							<div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
+
 								<img src="/html-prototype/images/company/help-desk.png" class="img-fluid" alt="help-desk"/>
 							</div>
 						  </div>
