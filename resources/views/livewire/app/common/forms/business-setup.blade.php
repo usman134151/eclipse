@@ -52,26 +52,30 @@
 							<div class="col-lg-6 mb-4">
 							  <h3>Choose Portal Default Colours</h3>
 							  <div class="row gap-0 row-gap-3">
-								<div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-									<div class="col-3">
-										<label>Default Colour</label>
-									</div>
-									<div class="col-1 choosen-color">
-                                      <input type="color" class="form-control form-control-color border-0 p-0 w-100 h-100" id="PortalDefaultColour" value="#0A1E46" title="Choose your color">
-                                    </div>
-									<div class="col-3">
-										<label class="form-label-sm">Choose Colour</label>
+								  <div class="choose-portal-colors">
+									<div class="row">
+									    <div class="col-12 col-md-3 col-lg-5 col-xl-4 mb-1 mb-md-0">
+									      <label class="form-label-sm">Default Colour</label>
+									    </div>
+									    <div class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
+									      <div class="choosen-color">
+									        <input type="color" class="form-control form-control-color border-0 p-0 w-100 h-100" id="PortalDefaultColour" value="#0A1E46" title="Choose your color">
+									      </div>
+									      <label class="form-label-sm">Choose Colour</label>
+									    </div>
 									</div>
 								  </div>
-								  <div class="choose-portal-colors d-lg-flex gap-3 align-items-center">
-									<div class="col-3">
-										<label>Foreground Color</label>
-									</div>
-									<div class="col-1 choosen-color">
-                                      <input type="color" class="form-control form-control-color border-0 p-0 w-100 h-100" id="PortalForegroundColour" value="#000000" title="Choose your color">
-                                    </div>
-									<div class="col-3">
-										<label class="form-label-sm">Choose Colour</label>
+								  <div class="choose-portal-colors">
+									<div class="row">
+									    <div class="col-12 col-md-3 col-lg-5 col-xl-4 mb-1 mb-md-0">
+									      <label class="form-label-sm">Foreground Color</label>
+									    </div>
+									    <div class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
+									      <div class="choosen-color">
+									        <input type="color" class="form-control form-control-color border-0 p-0 w-100 h-100" id="PortalForegroundColour" value="#000000" title="Choose your color">
+									      </div>
+									      <label class="form-label-sm">Choose Colour</label>
+									    </div>
 									</div>
 								  </div>
 							 </div>
@@ -80,11 +84,11 @@
 						  <div class="row">
 							<div class="col-lg-6 mb-4">
 							  <h3>Choose URL for Users to Access the Portal</h3>
-								<div class="d-lg-flex gap-3 align-items-center">
-								  <input aria-label="Sub Domain Name for URL" type="" name="" class="form-control w-auto" placeholder="Name">
+								<div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
+								  <input aria-label="Sub Domain Name for URL" type="" name="" class="form-control" placeholder="Name">
 								  <label>.eclipsescheduling.com</label>
 								  <div class="option">
-									  <div>
+									  <div class="d-flex">
 										  <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 											  <path d="M2 10L8.66667 17L22 2" stroke="#15974F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 										  </svg>
@@ -95,26 +99,34 @@
 							</div>
 						  </div>
 						  <div class="row">
-							<div class="col-lg-12">
-								<h3 class="mb-3">Company Logo</h3>
-							</div>
-							<div class="col-lg-5 mb-4">
-								<label class="form-label" for="add-company-logo"> Add Company Logo</label>
-								<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control" placeholder="Name">
-							</div>
-							<div class="col-lg-6 mb-4 align-self-end ps-lg-5">
-								<img src="/html-prototype/images/company/rectangle-logo.png" class="img-fluid" alt="help-desk"/>
-							</div>
+						  	<div class="col-md-7 col-lg-5  mb-4">
+						    	<div class="row">
+						      		<div class="col-lg-12">
+						        		<h3 class="mb-3">Company Logo</h3>
+						      		</div>
+						      		<div class="col-lg-12">
+						        		<label class="form-label" for="add-company-logo"> Add Company Logo</label>
+						        		<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control" placeholder="Name">
+						      		</div>
+						    	</div>
+						  	</div>
+						  	<div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
+						    	<img src="/html-prototype/images/company/rectangle-logo.png" class="img-fluid" alt="help-desk">
+						  	</div>
 						  </div>
 						  <div class="row">
-						  	<div class="col-lg-12">
-								<h3 class="mb-3">Login Screen Image</h3>
-							</div>
-							<div class="col-lg-5 mb-4">
-								<label class="form-label" for="upload-login-screen-image">Upload Login Screen Image</label>
-							  	<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control" placeholder="Name">
-							</div>
-							<div class="col-lg-6 mb-4 align-self-end ps-lg-5">
+						  	<div class="col-md-7 col-lg-5  mb-4">
+						  		<div class="row">
+								  	<div class="col-lg-12">
+										<h3 class="mb-3">Login Screen Image</h3>
+									</div>
+									<div class="col-lg-12">
+										<label class="form-label" for="upload-login-screen-image">Upload Login Screen Image</label>
+									  	<input aria-label="Sub Domain Name for URL" type="file" name="" class="form-control" placeholder="Name">
+									</div>
+						  		</div>
+						  	</div>
+							<div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
 								<img src="/html-prototype/images/company/help-desk.png" class="img-fluid" alt="help-desk"/>
 							</div>
 						  </div>
@@ -156,7 +168,7 @@
 								<h3>Announcements & Communications</h3>
 								</div>
 						  </div>
-						  <div class="border col-lg-6 p-4 rounded">
+						  <div class="border-dashed col-lg-6 p-4 rounded">
 							<div class="row">
 								<div class="col-lg-12 mb-4">
 									<label class="form-label" for="AnnouncementsCommunications">Message 1</label>
@@ -658,7 +670,7 @@
 														<div class="row">
 														<div class="col-lg-8 d-inline-flex">
 															<input class="form-control" type="" id="compensatedTravelTime" placeholder="$00:00">
-															<div class="col-lg-4 ms-2 mt-3"><span>Per hour</span></div>
+															<div class="text-nowrap col-lg-4 ms-2 mt-3"><span>Per hour</span></div>
 														</div>
 													</div>
 													<div class="row ms-2 mt-2">
