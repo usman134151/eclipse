@@ -35,7 +35,7 @@
               <div class="card-body">
                 <div class="mb-4">
                   <p>Here you can view and manage your providers' remittance payments according to your payment cycle.</p>
-                  <div>
+                  <div class="mb-4">
                     <img src="/html-prototype/images/temp/img-placeholder-pending-payment.png" class="img-fluid" alt="Responsive image">
                   </div>
                   <div class="bg-muted rounded p-4 mb-1">
