@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="content-header row">
-            <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="content-header-left col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
                         <h1 class="content-header-title float-start mb-0">
@@ -39,7 +39,7 @@
                     <img src="/html-prototype/images/temp/img-placeholder-pending-payment.png" class="img-fluid" alt="Responsive image">
                   </div>
                   <div class="bg-muted rounded p-4 mb-1">
-                    <div class="d-flex gap-5 align-items-center">
+                    <div class="d-lg-flex gap-5 align-items-center">
                       <div class="mb-4 mb-lg-0">
                         <label class="form-label-sm">Search</label>
                         <div class="d-flex gap-2 align-items-center">
@@ -54,7 +54,7 @@
                       </div>
                       <div class="mb-4 mb-lg-0">
                         <label class="form-label-sm">Date Range</label>
-                        <div class="d-flex gap-2" >    
+                        <div class="d-md-flex gap-2" >    
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="dateRange" id="issued">
                                 <label class="form-check-label-sm" for="issued">
@@ -83,11 +83,11 @@
 							<label class="form-label-sm" for="payment-status-column">
 								Payment Status
 							</label>
-							<select class="select2 form-select" id="payment-status-column">
+							<select class="select2 form-select form-select-md" id="payment-status-column">
 								<option>Pending</option>
 							</select>
                       </div>
-                      <div class="d-flex gap-3 align-items-center">
+                      <div class="d-md-flex gap-3 align-items-center">
                         <div class="mb-4 mb-lg-0">
                           <select class="form-select form-select-sm rounded bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
                             <option>Advance Filter</option>
@@ -421,8 +421,8 @@
                     </label>
                   </div>
                 </div>
-                <div class="row justify-content-center mb-4">
-                  <div class="d-flex gap-3 col-lg-8">
+                <div class="row justify-content-center mb-4 ">
+                  <div class="d-flex gap-3 col-lg-8 form-actions flex-lg-row flex-column">
                     <a href="#" class="btn btn-primary rounded w-100">Revert Selected Remittances</a>
                     <a href="#" class="btn btn-primary rounded w-100">Mark Selected Remittances as Paid</a>
                   </div>
