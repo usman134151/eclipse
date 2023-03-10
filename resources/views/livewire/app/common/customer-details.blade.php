@@ -120,7 +120,7 @@
 								<div class="tab-pane fade show active" id="dashboard-tab-pane" role="tabpanel" aria-labelledby="dashboard-tab" tabindex="0">
 									<div class="col-md-12 mb-md-2 mt-5">
 										<div class="row mt-2 mb-5">
-											<div class="col-md-5 me-5">
+											<div class="col-lg-5 me-lg-5">
 												<div class="row mb-4">
 													<div class="col-md-4">
 														<div class="d-inline-block position-relative">
@@ -210,7 +210,6 @@
 												<div class="row mb-4">
 													<div class="col-md-12 mt-4">
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Phone Number:
@@ -221,10 +220,8 @@
 																		(987) 653-5875
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Email Address:
@@ -233,10 +230,8 @@
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">English</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Primary Language:
@@ -245,38 +240,32 @@
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">jamesmary@gmail.com</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Physical Address:
 																	</label>
 																</div>
-																<div class="col-md-12 align-self-center">
+																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Billing Address:
 																	</label>
 																</div>
-																<div class="col-md-12 align-self-center">
+																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Provider Experience:
@@ -291,10 +280,8 @@
 																		<x-icon name='star'/>
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Supervisor:
@@ -305,10 +292,8 @@
 																		Thomas Charles , Peter Henry
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Billing Manager:
@@ -319,10 +304,8 @@
 																		Wade Dave , Seth Ivan
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Completed Requests:
@@ -333,10 +316,8 @@
 																		60 Hours
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label class="col-form-label" for="">
 																		Open Requests:
@@ -347,14 +328,12 @@
 																		20 Hours
 																	</div>
 																</div>
-															</div>
 														</div>
 													</div>
 												</div>
 												<div class="row mb-4">
 													<div class="col-md-12">
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-4">
 																	<label class="col-form-label" for="">
 																		Total Invoiced:
@@ -365,10 +344,8 @@
 																		$500
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-4">
 																	<label class="col-form-label" for="">
 																		Total Paid:
@@ -379,10 +356,8 @@
 																		$300
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-4">
 																	<label class="col-form-label" for="">
 																		Total Due:
@@ -393,10 +368,8 @@
 																		$200
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-4">
 																	<label class="col-form-label" for="">
 																		Total Overdue:
@@ -407,10 +380,8 @@
 																		$300
 																	</div>
 																</div>
-															</div>
 														</div>
 														<div class="row mb-1">
-															<div class="col-md-12 d-flex">
 																<div class="col-md-4">
 																	<label class="col-form-label" for="">
 																		Account Credit:
@@ -421,12 +392,11 @@
 																		$000
 																	</div>
 																</div>
-															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
+											<div class="col-lg-6">
 												<div class="row" id="table-hover-row">
 													<div class="col-12">
 														<div class="card">
@@ -639,7 +609,7 @@
 												<!-- table e -->
 											</div>
 											<!-- Last Login colums (start) -->
-											<div class="col-md-6 mb-md-2">
+											<div class="col-lg-6 mb-md-2">
 												<div class="mb-3">
 													<h2>Top 5 Preferred Providers:</h2>
 												</div>
@@ -790,7 +760,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-md-12 mb-md-2">
+											<div class="col-md-12 mb-4">
 												<h2>Last Login:</h2>
 												<div class="row">
 													<div class="col-md-12 d-flex mb-md-2">
@@ -817,7 +787,7 @@
 											</div>
 											<!-- Last Login colums (end) -->
 											<!-- in line / side by side buttons (start) -->
-											<div class="col-md-12 mb-md-2 text-center gap-2 mt-4">
+											<div class="col-md-12 d-flex form-actions flex-lg-row flex-column justify-content-center gap-2">
 												<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 													<span>
 														Lock Account
@@ -849,7 +819,7 @@
 			                        <div class="row mb-3">
 			                    	   <h3>Schedule</h3>
 			                        </div>
-			                        <div class="d-flex justify-content-between mb-2">
+			                        <div class="d-lg-flex justify-content-between mb-2">
 			                        	<div class="d-inline-flex align-items-center gap-4">
 			                        		<div class="mb-4 mb-lg-0">
 			                        			<select class="form-select form-select-sm rounded bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
@@ -1281,8 +1251,8 @@
 								    <div class="row">
 										<h3>My Drive</h3>
 									</div>
-									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
-										<div class="col-md-3 col-12">
+									<div class="col-md-12 d-lg-flex col-12 gap-4">
+										<div class="col-md-3 mb-4 col-12">
 											<div>
 												<label class="form-label" for="keyword-search">
 													Search
@@ -1290,18 +1260,15 @@
 												<input type="text" id="keyword-search" class="form-control"  placeholder="Keyword Search"/>
 											</div>
 										</div>
-										<div class="col-md-3 col-12">
-											<div class="mb-4">
+										<div class="col-md-3 mb-4 col-12">
 												<label class="form-label" for="payment-status">
 													Document Type
 												</label>
 											    <select class="select2 form-select" id="payment-status">
 													<option>Select Document Type</option>
-												</select>	
-											</div>
+												</select>
 										</div>
-										<div class="col-md-3 col-12">
-											<div>
+										<div class="col-md-3 mb-4 col-12">
 												<label class="form-label" for="set_set_date">
 													Date Range
 												</label>
@@ -1309,7 +1276,6 @@
 													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
 													<x-icon name="datefield-icon"/>
 												</div>
-											</div>
 										</div>
 									</div>
 									<div class="row mb-4">
@@ -1347,17 +1313,17 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="d-flex d-inline-flex">
+										<div class="d-lg-inline-flex">
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<img src="/tenant/images/img-placeholder-document.jpg" alt="Image Certification">
 												<p>Certification</p>
 											</div>
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<img src="/tenant/images/img-placeholder-document.jpg" alt="Image Certification">
 												<p>Certification</p>
 											</div>
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<img src="/tenant/images/img-placeholder-document.jpg" alt="Image Certification">
 												<p>Certification</p>
 											</div>
 										</div>
