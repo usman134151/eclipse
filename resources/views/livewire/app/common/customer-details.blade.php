@@ -1251,8 +1251,8 @@
 								    <div class="row">
 										<h3>My Drive</h3>
 									</div>
-									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
-										<div class="col-md-3 col-12">
+									<div class="col-md-12 d-lg-flex col-12 gap-4">
+										<div class="col-md-3 mb-4 col-12">
 											<div>
 												<label class="form-label" for="keyword-search">
 													Search
@@ -1260,18 +1260,15 @@
 												<input type="text" id="keyword-search" class="form-control"  placeholder="Keyword Search"/>
 											</div>
 										</div>
-										<div class="col-md-3 col-12">
-											<div class="mb-4">
+										<div class="col-md-3 mb-4 col-12">
 												<label class="form-label" for="payment-status">
 													Document Type
 												</label>
 											    <select class="select2 form-select" id="payment-status">
 													<option>Select Document Type</option>
-												</select>	
-											</div>
+												</select>
 										</div>
-										<div class="col-md-3 col-12">
-											<div>
+										<div class="col-md-3 mb-4 col-12">
 												<label class="form-label" for="set_set_date">
 													Date Range
 												</label>
@@ -1279,7 +1276,6 @@
 													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
 													<x-icon name="datefield-icon"/>
 												</div>
-											</div>
 										</div>
 									</div>
 									<div class="row mb-4">
@@ -1317,17 +1313,17 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="d-flex d-inline-flex">
+										<div class="d-lg-inline-flex">
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<img src="/tenant/images/img-placeholder-document.jpg" alt="Image Certification">
 												<p>Certification</p>
 											</div>
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<img src="/tenant/images/img-placeholder-document.jpg" alt="Image Certification">
 												<p>Certification</p>
 											</div>
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<img src="/tenant/images/img-placeholder-document.jpg" alt="Image Certification">
 												<p>Certification</p>
 											</div>
 										</div>
