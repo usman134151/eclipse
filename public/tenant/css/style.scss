@@ -1562,6 +1562,18 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	}
 }
 
+.main-menu.menu-light .navigation > li ul li > a {
+	@media (max-width: 991px) {
+    	padding-left: 1rem;
+	}
+}
+
+.main-menu.menu-light .navigation > li ul li ul a {
+	@media (max-width: 991px) {
+    	padding-left: 1rem;
+	}
+}
+
 footer.footer {
 	@media (max-width: 991px) {
 		margin-left: 0;

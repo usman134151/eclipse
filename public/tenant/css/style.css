@@ -1366,6 +1366,14 @@ small {
     flex-direction: column; } }
 
 @media (max-width: 991px) {
+  .main-menu.menu-light .navigation > li ul li > a {
+    padding-left: 1rem; } }
+
+@media (max-width: 991px) {
+  .main-menu.menu-light .navigation > li ul li ul a {
+    padding-left: 1rem; } }
+
+@media (max-width: 991px) {
   footer.footer {
     margin-left: 0; } }
 
