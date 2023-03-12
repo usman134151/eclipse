@@ -13,13 +13,13 @@ final class Specializations extends PowerGridComponent
 {
     use ActionButton;
     protected $listeners = ['refresh'=>'setUp'];
-    
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
     |--------------------------------------------------------------------------
     | Setup Table's general features
-    |
+    |--------------------------------------------------------------------------
     */
     public function setUp(): array
     {
@@ -41,18 +41,17 @@ final class Specializations extends PowerGridComponent
     |  Datasource
     |--------------------------------------------------------------------------
     | Provides data to your Table using a Model or Collection
-    |
+    |--------------------------------------------------------------------------
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Tenant\Specialization>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Tenant\Specialization>
+     */
     public function datasource(): Builder
     {
-        return Specialization::query();
-        
+        return Specialization::query();   
     }
 
     /*
@@ -60,7 +59,7 @@ final class Specializations extends PowerGridComponent
     |  Relationship Search
     |--------------------------------------------------------------------------
     | Configure here relationships to be used by the Search and Table Filters.
-    |
+    |--------------------------------------------------------------------------
     */
 
     /**
@@ -82,88 +81,89 @@ final class Specializations extends PowerGridComponent
     |
     | ❗ IMPORTANT: When using closures, you must escape any value coming from
     |    the database using the `e()` Laravel Helper function.
-    |
+    |--------------------------------------------------------------------------
     */
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-        ->addColumn('name')
-        ->addColumn('status', function (Specialization $model) {
-            return ($model->status);
-          })
-        ->addColumn('edit',function(Specialization $model){
-            return '<div class="d-flex actions">
-            <a href="#" title="Edit Specialization" wire:click="edit('.$model->id.')"  aria-label="Edit Specialization" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-               <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
+            ->addColumn('name')
+            ->addColumn('status', function (Specialization $model) {
+                return ($model->status);
+            })
+            ->addColumn('edit',function(Specialization $model){
+                return '<div class="d-flex actions">
+                <a href="#" title="Edit Specialization" wire:click="edit('.$model->id.')"  aria-label="Edit Specialization" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                   <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
+                </a>
+        
+            <a href="#" title="Delete Specialization" aria-label="Delete Specialization" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
             </a>
-
-        <a href="#" title="Delete Specialization" aria-label="Delete Specialization" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
-        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-        </a>
-          </div>';
-
-           
-        });
+              </div>';
+            });
     }
 
     /*
     |--------------------------------------------------------------------------
     |  Include Columns
     |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
+    | Include the columns added columns, making them
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
      */
     public function columns(): array
     {
+        // Returns an array of columns for the PowerGrid component
         return [
             Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
-            ->toggleable(1, 'Deactivated', 'Activated'),
-            Column::make('Actions','edit')
-        ]
-;
+                ->toggleable(1, 'Deactivated', 'Activated'),
+            Column::make('Actions', 'edit')
+        ];
     }
 
+    // A method to handle the edit button click event
     function edit($id){
-        
-        
-        $this->emit('showForm',Specialization::find($id));
+        // Emits an event to show the form for editing a record
+        $this->emit('showForm', Specialization::find($id));
     }
 
-
-
-
+    // A method to handle the delete button click event
     public function deleteRecord($id){
-        $this->deleteRecordId=$id;
-        $this->emit('updateRecordId',$id);
+        // Sets the ID of the record to be deleted
+        $this->deleteRecordId = $id;
+        // Emits an event to update the ID of the record to be deleted
+        $this->emit('updateRecordId', $id);
+        // Dispatches a browser event to show a confirmation modal
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
             'title' => 'Delete Operation',
             'text' => 'Are you sure you want to delete this record?',
         ]);
-       
-        
     }
 
+    // A method to handle the toggleable columns update event
     public function onUpdatedToggleable(string $id, string $field, string $value): void
-{
-    Specialization::query()->find($id)->update([
-        $field => $value,
-    ]);
-}
-public function onUpdatedEditable(string $id, string $field, string $value): void
-{
-    dd($field);
-    Specialization::query()->find($id)->update([
-        $field => $value,
-    ]);
-}
+    {
+        // Updates the specified field of the record with the new value
+        Specialization::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
+
+    // A method to handle the editable columns update event
+    public function onUpdatedEditable(string $id, string $field, string $value): void
+    {
+        // Dumps the name of the field being updated
+        dd($field);
+        // Updates the specified field of the record with the new value
+        Specialization::query()->find($id)->update([
+            $field => $value,
+        ]);
+    }
+
   
 }

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Eclipse Scheduling') }}</title>
+    <title>Eclipse Scheduling  | Login Page</title>
 
     <link rel="stylesheet" href="tenant/css/bootstrap.min.css">
     <link rel="stylesheet" href="tenant/css/colors.css">
@@ -59,7 +59,7 @@
     <script src="/tenant/js/alpinejs-3.11.1.js"></script>
     <script src="/tenant/js/common.js"></script>
     <script>
-      resetSaveBrowser();
+    //  resetSaveBrowser();
     </script>
 
   </body>

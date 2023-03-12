@@ -65,7 +65,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
            // if (Auth::user()->status == 1) {
-            if(!$request->cookie('savedBrowser') && !Helper::checkUserSavedBrowser()){
+            if(!$request->cookie('savedBrowser') && !Helper::checkUserSavedBrowser() && env('2FA')){
                 
                 ####Task:OPT Add Services (Sakhawat Kamran) ####
                 OptService::optExpired();
