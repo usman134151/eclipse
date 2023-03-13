@@ -12,7 +12,7 @@
 		<!-- Begin : Header Section -->
 		<div class="content-wrapper container-xxl p-0">
 			<div class="content-header row">
-				<div class="content-header-left col-md-9 col-12 mb-2">
+				<div class="content-header-left col-12 mb-2">
 					<div class="row breadcrumbs-top">
 						<div class="col-12">
 							<h1 class="content-header-title float-start mb-0">Deactivated Providers</h1>
@@ -49,32 +49,26 @@
 						<div class="card">
 							<div class="card-body">
 								<form class="form">
-									<div class="row">
-										<div class="col-md-12 mb-md-2">
-											<div class="row">
-												<div class="col-md-3 ms-auto text-end mb-3"></div>
-											</div>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between mb-2">
-										<div class="d-inline-flex align-items-center gap-4">
-											<label for="show_records_number" class="form-label">
-												Show
-											</label>
-											<select class="form-select" id="show_records_number">
-												<option>10</option>
-												<option>15</option>
-												<option>20</option>
-												<option>25</option>
-											</select>
-										</div>
-										<div class="d-inline-flex align-items-center gap-4">
-											<label for="search" class="form-label fw-semibold">
-												Search
-											</label>
-											<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-											<input type="search" class="form-control text-center" id="advance-search" aria-label="Advance Search" name="search" placeholder="Advance Search" autocomplete="on"/>
-										</div>
+									<div class="d-flex flex-column flex-md-row justify-content-between my-2 gap-3">
+									    <div class="d-inline-flex align-items-center gap-4">
+									        <label for="show_records_number" class="form-label-sm mb-0">
+									        Show
+									        </label>
+									        <select class="form-select form-select-md" id="show_records_number">
+									            <option>10</option>
+									            <option>15</option>
+									            <option>20</option>
+									            <option>25</option>
+									        </select>
+									    </div>
+									    <div class="d-inline-flex flex-column flex-md-row align-items-md-center gap-lg-4 gap-2">
+									        <label for="search" class="form-label-sm mb-0">
+									        Search
+									        </label>
+									        <input type="search" class="form-control form-control-md" id="search" name="search" placeholder="Search here" autocomplete="on">
+									        <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+									        Advance Search</a>
+									    </div>
 									</div>
 									<!-- Hoverable rows start -->
 	<div class="row" id="table-hover-row">
@@ -389,31 +383,31 @@
 	</div>
 	<!-- Hoverable rows end -->
 								</form>
-								<div class="d-flex justify-content-between">
-	  <div>
-		<p class="fw-semibold">Showing 1 to 5 of 100 entries</p>
-	  </div>
-	  <nav aria-label="Page Navigation">
-		<ul class="pagination">
-		  <li class="page-item">
-			<a class="page-link" href="#" aria-label="Previous">
-			  <span aria-hidden="true">&laquo;</span>
-			</a>
-		  </li>
-		  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item">
-			<a class="page-link" href="#" aria-label="Next">
-			  <span aria-hidden="true">&raquo;</span>
-			</a>
-		  </li>
-		</ul>
-	  </nav>
-	</div>
+								<div class="d-flex flex-column flex-md-row justify-content-between">
+    <div>
+        <p class="fw-semibold">Showing 1 to 5 of 100 entries</p>
+    </div>
+    <nav aria-label="Page Navigation">
+        <ul class="pagination justify-content-start justify-content-lg-end">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item active"><a class="page-link" href="#">4</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
     {{-- icon legend bar start --}}
-    <div class="d-flex actions gap-3 justify-content-end mb-2">
+    <div class="d-flex actions gap-3 justify-content-md-end mb-2">
         <div class="d-flex gap-2 align-items-center">
             <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                 <x-icon name="pencil"/>
