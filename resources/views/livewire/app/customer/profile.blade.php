@@ -5,8 +5,8 @@
                 <div class="tab-content">
                     <div class="row mt-2 mb-5">
                         {{-- BEGIN: Profile --}}
-                        <div class="col-12 text-center">
-
+                        <div class="col-12 ">
+                           <div class="text-center">
                             <div class="d-inline-block position-relative mb-3">
                                 <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle"
                                     alt="Profile Image of Provider" />
@@ -25,10 +25,10 @@
                                 <x-icon name="green-badge" />
                                 <span><strong>Certified</strong></span>
                             </div>
-
+                        </div>
                             <div class="p-4 border border-dark rounded bg-lighter mb-4 align-items-left text-left">
                                 <div class="row">
-                                    <div class="col-lg col-12 mb-4">
+                                    <div class="col-lg col-3 mb-4">
                                         <div class="mb-4">
                                             <label class="form-label text-primary text-left">Supervisor Detail</label>
 
@@ -43,7 +43,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-lg col-12 mb-4">
+                                    <div class="col-lg col-3 mb-4">
                                         <div class="mb-4">
                                             <label class="form-label text-primary">Departments</label>
                                             <div class="font-family-tertiary value ">
@@ -57,35 +57,38 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-lg col-12 ">
-                                    <div class="col-lg col-12 d-flex">
-                                    <div class="col-lg col-12 mb-4 text-left">
+                                    <div class="col-lg-6 col-6 mb-4 text-left">
                                         <label class="form-label text-primary">Assigned Role</label>
-                                        <div class="font-family-tertiary value ">
+                                        <div class="d-flex col-lg-12 ">
+                                        <div class=" col-lg-6 font-family-tertiary value ">
                                             <h6> Admin</h6>
-                                            <h6>Service Consumer</h6>
                                             <h6>Supervisor</h6>
+                                            <h6>Service Consumer</h6>
+
                                         </div>
-                                        
-                                    </div>
-                                    <div class="col-lg col-12 mb-4">
-                                        <label class="form-label text-primary mt-3" ></label>
-                                        <div class="font-family-tertiary value">
-                                            <h6> Pending Invoices:<span>$253</span></h6>
-                                            <h6>Service Consumer</h6>
-                                            <h6>Supervisor</h6>
+                                        <div class=" col-lg-6 font-family-tertiary value">
+                                            <h6> Pending Invoices: <span>$253</span></h6>
+                                            <h6>Total Invoices: <span>$3734</span></h6>
+                                            <h6>Overdue Invoices: <span>$3734</span>$368</h6>
+                                            <h6></h6>
                                         </div>
                                     </div>
-                                    
+                                    <div class="mt-4">
+                                        <p class="fw-semibold">Total Number of Assigned Supervisor: <span class="text-primary">15</span>
+                                        </p>
+                                    </div>
+                                    </div>
+
+
                                 </div>
-                                <p class="fw-semibold">Total Number of Assigned Supervisor: <span class="text-primary">15</span>
-                                </p>
+
                              </div>
                                 </div>
 
 
 
                             </div>
+
 
                         </div>
                     </div>

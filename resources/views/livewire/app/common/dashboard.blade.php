@@ -138,7 +138,7 @@
               <button type="button" class="btn btn-xs w-100 btn-outline-dark rounded">Clear all</button>
             </div>
           </div>
-        
+
         </div>
         <!-- /Filters -->
 		@livewire('app.common.calendar')
@@ -148,9 +148,9 @@
 	  </div>
 	  <div class="tab-pane fade" id="assignments-tab-pane" role="tabpanel" aria-labelledby="assignments-tab" tabindex="0">
 		@livewire('app.common.bookings.booking-list')
-	</div>
+	  </div>
 	  <div class="tab-pane fade" id="availability-tab-pane" role="tabpanel" aria-labelledby="availability-tab" tabindex="0">
-		@livewire('app.common.availibility')	
+		@livewire('app.common.availibility')
 	  </div>
 	  <div class="tab-pane fade" id="map-tab-pane" role="tabpanel" aria-labelledby="map-tab" tabindex="0">
 		@livewire('app.common.map')
