@@ -108,7 +108,7 @@
 		                </div>
 		              </div>
 		              <!-- END: Filters -->
-									<div class="mb-4">
+									<div class="form-check mb-4">
 										<input class="form-check-input" type="checkbox" value="select-all-providers" id="select-all-providers">
 										<label class="form-check-label fw-semibold" for="select-all-providers">
 											Select All Providers
@@ -157,7 +157,7 @@
 						<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
 					  </div>
 					</div>
-					<div class="table-responsive">
+					<div class="table-responsive mb-2">
 						<table id="remittances" class="table table-hover" aria-label="Remittance">
 						  <thead>
 							  <tr role="row">
@@ -405,7 +405,7 @@
 					</nav>
 				  </div>
                                           {{-- icon legend bar start --}}
-                                          <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                          <div class="d-flex legend-bar gap-3 justify-content-md-end mb-2">
                                             <div class="d-flex gap-2 align-items-center">
                                                 <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                     <x-icon name="pencil"/>
@@ -432,16 +432,16 @@
                                             {{-- icon legend bar end --}}
 			  
                        <div class="row mt-4 mb-4">
-                                 	<div class="d-flex justify-content-center gap-4">
-									 <div class="mb-4">
-                                       <input class="form-check-input" type="checkbox" value="select-all-providers" id="select-all-providers">
-                                        <label class="form-check-label" for="select-all-providers">
+                                 	<div class="d-flex flex-column flex-lg-row justify-content-center gap-lg-4">
+									 <div class="form-check">
+                                       <input class="form-check-input" type="checkbox" value="" id="charge-to-customer">
+                                        <label class="form-check-label" for="charge-to-customer">
 										Charge to Customer
                                         </label>
                                      </div>
-									 <div class="mb-4">
-                                       <input class="form-check-input" type="checkbox" value="select-all-providers" id="select-all-providers">
-                                        <label class="form-check-label" for="select-all-providers">
+									 <div class="form-check">
+                                       <input class="form-check-input" type="checkbox" value="" id="exclude-notification">
+                                        <label class="form-check-label" for="exclude-notification">
 										Exclude Notification
                                         </label>
                                      </div>
