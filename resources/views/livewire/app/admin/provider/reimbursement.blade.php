@@ -430,7 +430,7 @@
                                             </div>
                                             </div>
                                             {{-- icon legend bar end --}}
-			  </div>
+			  
                        <div class="row mt-4 mb-4">
                                  	<div class="d-flex justify-content-center gap-4">
 									 <div class="mb-4">
@@ -451,6 +451,7 @@
 									 <a href="#" class="btn btn-primary rounded">Decline Reimburement</a>
                                     </div>
                                  </div>
+                                 </div><!-- END: Card Body -->
 			</div>
 		  </div>
 		</div>
