@@ -405,7 +405,7 @@
 					</nav>
 				  </div>
                                           {{-- icon legend bar start --}}
-                                          <div class="d-flex legend-bar gap-3 justify-content-md-end mb-2">
+                                          <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                                             <div class="d-flex gap-2 align-items-center">
                                                 <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                     <x-icon name="pencil"/>
