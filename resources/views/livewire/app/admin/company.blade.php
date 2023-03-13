@@ -45,7 +45,7 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="row mb-3">
+								<div class="row mb-5">
 								    <div class="col-md-8">
 								        <p>
 								            Here you can view the companies you service and the users, assignments and invoices associated with them.
