@@ -14,7 +14,7 @@
 	{{-- BEGIN: Content --}}
 	{{-- BEGIN: Header --}}
 	<div class="content-header row">
-		<div class="content-header-left col-md-9 col-12 mb-2">
+		<div class="content-header-left col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
 					<h1 class="content-header-title float-start mb-0">All Companies</h1>
@@ -45,30 +45,34 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="d-flex justify-content-between mb-3">
-									<p>
-										Here you can view the companies you service and the users, assignments and invoices associated with them.
-									</p>
-									<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-										<x-icon name="plus"/>
-										<span>Add Company</span>
-									</button>
+								<div class="row mb-5">
+								    <div class="col-md-8">
+								        <p>
+								            Here you can view the companies you service and the users, assignments and invoices associated with them.
+								        </p>
+								    </div>
+								    <div class="col-md-4 text-md-end">
+								        <button type="button" class="d-inline-lg-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
+								            <x-icon name="plus"/>
+								            <span>Add Company</span>
+								        </button>
+								    </div>
 								</div>
 							</div>
-							<div class="d-flex justify-content-between mb-2">
-								<div class="d-inline-flex align-items-center gap-4">
-									<label for="show_records_number" class="form-label">Show</label>
-									<select class="form-select" id="show_records_number">
-										<option>10</option>
-										<option>15</option>
-										<option>20</option>
-										<option>25</option>
-									</select>
-								</div>
-								<div class="d-inline-flex align-items-center gap-4">
-									<label for="search" class="form-label fw-semibold">Search</label>
-									<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-								</div>
+							<div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-3">
+							    <div class="d-inline-flex align-items-center gap-4">
+							        <label for="show_records_number" class="form-label-sm mb-0">Show</label>
+							        <select class="form-select form-select-md" id="show_records_number">
+							            <option>10</option>
+							            <option>15</option>
+							            <option>20</option>
+							            <option>25</option>
+							        </select>
+							    </div>
+							    <div class="d-inline-flex align-items-center gap-4">
+							        <label for="search" class="form-label-sm mb-0">Search</label>
+							        <input type="search" class="form-control form-control-md" id="search" name="search" placeholder="Search here" autocomplete="on">
+							    </div>
 							</div>
 
 							<div class="table-responsive mb-2">
@@ -149,12 +153,12 @@
 							</div>
 
 
-							<div class="d-flex justify-content-between">
+							<div class="d-flex flex-column flex-md-row justify-content-between">
 								<div>
 									<p class="fw-semibold">Showing 1 to 10 of 100 entries</p>
 								</div>
 								<nav aria-label="Page Navigation">
-									<ul class="pagination">
+									<ul class="pagination justify-content-start justify-content-lg-end">
 										<li class="page-item">
 											<a class="page-link" href="#" aria-label="Previous">
 												<span aria-hidden="true">&laquo;</span>
@@ -181,7 +185,7 @@
 								</nav>
 							</div>
                             {{-- icon bar start--}}
-                            <div class="d-flex actions gap-3 justify-content-end mb-2">
+                            <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="Edit Company" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="pencil"/>
