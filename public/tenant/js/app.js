@@ -202,3 +202,21 @@ $('.js-selected-row').click(function(){
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
+// Check-Out Off-Canvas Provider
+
+$('.js-checkout-go-step-2').click(function(){
+  $('.js-checkout-step-1-content').addClass("hidden");
+  $('.js-checkout-step-2-content').removeClass("hidden");
+});
+
+$('.js-checkout-go-step-3').click(function(){
+  $('.js-checkout-step-2-content').addClass("hidden");
+  $('.js-checkout-step-3-content').removeClass("hidden");
+});
+
+$('.js-checkout-go-step-4').click(function(){
+  $('.js-checkout-step-3-content').addClass("hidden");
+  $('.js-checkout-step-4-content').removeClass("hidden");
+});
