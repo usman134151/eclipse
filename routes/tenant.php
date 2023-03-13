@@ -154,6 +154,9 @@ Route::group([
 
 				Route::view('/drive', 'tenant/provider/drive');
 				Route::view('/system-logs', 'tenant/provider/system-logs');
+
+				Route::view('/settings', 'tenant/settings/notifications');
+				Route::view('/change-password', 'tenant/provider/change-password');
 			});
 		});
 
