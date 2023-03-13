@@ -1,6 +1,6 @@
 <div x-data="{ createInvoices:false, invoiceGeneratorbookings:false }">
 	<div class="content-header row">
-		<div class="content-header-left col-md-9 col-12 mb-2">
+		<div class="content-header-left col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
 					<h1 class="content-header-title float-start mb-0">
@@ -105,7 +105,7 @@
 							</label>
 						</div>
 					</div>
-					<div class="d-flex justify-content-between mb-2">
+					<div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
 						<div class="d-inline-flex align-items-center gap-4">
 							<div class="d-inline-flex align-items-center gap-4">
 								<label for="show_records" class="form-label-sm mb-0">
@@ -119,12 +119,10 @@
 								</select>
 							</div>
 						</div>
-						<div class="">
-							<a @click="createInvoices = true" href="#" class="btn btn-primary btn-sm px-4 btn-has-icon rounded">
-								<x-icon name="plus"/>
-								<span>Create Invoice</span>
-							</a>
-						</div>
+						<a @click="createInvoices = true" href="#" class="btn btn-primary btn-has-icon rounded">
+							<x-icon name="plus"/>
+							<span>Create Invoice</span>
+						</a>
 					</div>
 					<div class="row" id="table-hover-row">
 						<div class="col-12">
@@ -203,14 +201,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="d-flex justify-content-between">
+					<div class="d-flex flex-column flex-md-row justify-content-between">
 						<div>
 							<p class="fw-semibold mb-lg-0 text-sm font-family-secondary">
 								Showing 1 to 5 of 100 entries
 							</p>
 						</div>
 						<nav aria-label="Page Navigation">
-							<ul class="pagination">
+							<ul class="pagination justify-content-start justify-content-lg-end">
 								<li class="page-item">
 									<a class="page-link" href="#" aria-label="Previous">
 										<span aria-hidden="true">&laquo;</span>
