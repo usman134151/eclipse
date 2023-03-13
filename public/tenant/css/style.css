@@ -1384,4 +1384,7 @@ small {
 swal-button {
   background-color: #0a1e46 !important; }
 
+.fc-prev-button .bi, .fc-next-button .bi {
+  height: auto; }
+
 /*# sourceMappingURL=style.css.map */
