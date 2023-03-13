@@ -18,7 +18,7 @@ class EnsureOtpCheckVerified
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()) {
+        if (Auth::user() &&  env('2FA')) {
             if (!$request->session()->has('optverified')) {
                 $user = Auth::user();
             // check if otp status verified for auth user

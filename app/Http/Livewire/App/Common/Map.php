@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Customer\Booking;
+namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 
-class ScheduledServices extends Component
+class Map extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.customer.booking.scheduled-services');
+        return view('livewire.app.common.map');
     }
 
     public function mount()

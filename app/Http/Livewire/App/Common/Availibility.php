@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Customer\Booking;
+namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 
-class BookingList extends Component
+class Availibility extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.customer.booking.booking-list');
+        return view('livewire.app.common.availibility');
     }
 
     public function mount()

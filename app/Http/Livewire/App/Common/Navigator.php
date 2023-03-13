@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Customer\Booking;
+namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 
-class NotificationList extends Component
+class Navigator extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.customer.booking.notification-list');
+        return view('livewire.app.common.navigator');
     }
 
     public function mount()
