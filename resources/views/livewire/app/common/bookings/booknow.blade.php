@@ -296,13 +296,13 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row">
                           <div class="col-lg-6 align-self-center">
                             <h2 class="mb-lg-0">Meeting Information</h2>
                           </div>
                           <div class="col-lg-6">
                             <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-6 mb-4">
                                 <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
                                   <svg width="22" height="18" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 10.4062L8.66667 17.4062L22 2.40625" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -310,7 +310,7 @@
                                   Add Manually
                                 </a>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 mb-4">
                                 <a href="#" class="btn btn-primary rounded w-100">
                                   Request from User
                                 </a>
@@ -318,10 +318,10 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row border-dashed rounded p-3 mb-3">
+                        <div class="border-dashed rounded p-3 mb-3">
                           <div class="d-flex justify-content-between">
                             <div class="align-items-center gap-4"><h2>Meeting Link 1</h2></div>
-                            <div class="align-items-center gap-4 me-4">
+                            <div class="align-items-center gap-4">
                               <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
@@ -558,10 +558,10 @@
                   </div>
                 </div>
                 <!-- /Physical Address -->
-                <div class="col-12 justify-content-center form-actions d-flex">
-                  <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
-                  <button type="button" class="btn btn-primary rounded mx-2">Save as Draft</button>
-                  <button type="submit" class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
+                <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                  <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
+                  <button type="button" class="btn btn-primary rounded">Save as Draft</button>
+                  <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
                 </div>
               </div>
             </div>

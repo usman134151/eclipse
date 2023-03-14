@@ -1398,4 +1398,7 @@ swal-button {
 .table-responsive {
   margin: 1.5rem 0 !important; }
 
+#table-hover-row .card {
+  border: 0; }
+
 /*# sourceMappingURL=style.css.map */
