@@ -10,6 +10,8 @@ class Specializationmain extends Component
     // properties for displaying/hiding the form and displaying confirmation message
     public $showForm;
     public $confirmationMessage;
+    public $listTitle="Specializations";
+    public $listDescription="Here you can create and manage service specializations. Deactivated specializations will not display in the service request form.";
     // property for holding the ID of the record being edited/deleted
     public $recordId;
     // define event listeners for this component

@@ -1,21 +1,55 @@
 <?php
 
 namespace App\Http\Livewire\App\Common\Forms;
+use App\Models\Tenant\Industry;
+
 
 use Livewire\Component;
 
 class IndustriesForm extends Component
 {
-    public function showList()
-    {
-        $this->emit('showList');
+    public $industry, $label="Add";
+    protected $listeners = ['editRecord' => 'edit'];
+
+
+    public function mount(Industry $industry){
+        $this->industry=$industry;
     }
 
-    public function mount()
-    {}
+    
+    // Validation Rules
+    public function rules()
+    {
+        return [
+                'industry.name' => 'required',
+                
+            ];
+    }
+    public function showList($message="")
+    {
+        // save data
+        $this->emit('showList',$message);
+    }
+
+    public function edit(Industry $industry){
+        $this->label="Edit";
+       $this->industry=$industry;
+       //dd($this->industry);
+    }
+
+    public function save(){
+        $this->validate();
+        $this->industry->added_by=1;
+        $this->industry->save();
+        $this->showList("Record saved successfully");
+        $this->industry=new Industry;
+    }
 
     public function render()
     {
+        
         return view('livewire.app.common.forms.industries-form');
     }
+
+  
 }

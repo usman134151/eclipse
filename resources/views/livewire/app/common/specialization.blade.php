@@ -21,12 +21,12 @@
                         <div class="col-md-12 mb-md-2">
                           <div class="row mt-3">
                           <div class="col-md-3">
-                            <h1>Specializations</h1>
+                            <h1>{{$listTitle}}</h1>
                           </div>
                           <div class="col-md-3 ms-auto text-end">
                             <a href="#"  wire:click="showForm" class="btn btn-primary">Create</a>
                           </div>
-                          <p>Here you can create and manage service specializations. Deactivated specializations will not display in the service request form.</p>
+                          <p>{{$listDescription}}</p>
                         </div>
                         </div>    
                         </div>
