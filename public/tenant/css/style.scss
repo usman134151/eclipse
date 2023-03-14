@@ -198,16 +198,16 @@ h1, h2, h3, h4, h5, h6 {
 				transition: all 0.3s ease-in-out;
 			}
 			&.active {
-				color: $actual_blue;
-				svg path {
-					fill: $primary !important;
-				}
-			}
-			&:hover {
 				background-color: $primary;
 				color: #ffffff;
 				svg path {
 					fill: #ffffff !important;
+				}
+			}
+			&:hover {
+				color: $actual_blue;
+				svg path {
+					fill: $primary !important;
 				}
 			}
 		}
@@ -263,6 +263,7 @@ h1, h2, h3, h4, h5, h6 {
 				}
 				&.active {
 					color: $actual_blue;
+					background: none;
 				}
 				&:hover {
 					background-color: transparent;
@@ -1592,4 +1593,8 @@ swal-button {
 
 .fc-prev-button .bi, .fc-next-button .bi{
 	height: auto;
+}
+
+.table-responsive {
+	margin: 1.5rem 0 !important;
 }
