@@ -1231,6 +1231,8 @@ small {
   color: #ffffff; }
 .table-hover > tbody > tr.bg-warning:hover * {
   color: #ffffff; }
+.table-hover > tbody > tr.bg-warning:hover .badge {
+  color: #0A1E46; }
 
 .main-menu.menu-light .navigation > li > a {
   font-size: 0.9375rem;
