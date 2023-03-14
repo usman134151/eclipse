@@ -203,7 +203,7 @@
                 </a>
                 <ul role="menu" class="menu-content" id="Billing">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/invoices">
                             <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#inovice-icon"></use>
