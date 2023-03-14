@@ -404,14 +404,14 @@ h1, h2, h3, h4, h5, h6 {
     .nav-tabs li.nav-item .nav-link svg path {
       transition: all 0.3s ease-in-out; }
     .nav-tabs li.nav-item .nav-link.active {
-      color: #023DB0; }
-      .nav-tabs li.nav-item .nav-link.active svg path {
-        fill: #0A1E46 !important; }
-    .nav-tabs li.nav-item .nav-link:hover {
       background-color: #0A1E46;
       color: #ffffff; }
-      .nav-tabs li.nav-item .nav-link:hover svg path {
+      .nav-tabs li.nav-item .nav-link.active svg path {
         fill: #ffffff !important; }
+    .nav-tabs li.nav-item .nav-link:hover {
+      color: #023DB0; }
+      .nav-tabs li.nav-item .nav-link:hover svg path {
+        fill: #0A1E46 !important; }
   .nav-tabs.nav-steps {
     margin-bottom: 3rem;
     padding-bottom: 1.5rem;
@@ -1386,5 +1386,8 @@ swal-button {
 
 .fc-prev-button .bi, .fc-next-button .bi {
   height: auto; }
+
+.table-responsive {
+  margin: 1.5rem 0 !important; }
 
 /*# sourceMappingURL=style.css.map */
