@@ -1377,7 +1377,7 @@
                     <input class="form-check-input" id="AssignAdminStaff&adminStaffTeam" name="" type="checkbox" tabindex="" />
                     <label class="form-check-label" for="AssignAdminStaff&adminStaffTeam">Assign Admin-Staff & admin-Staff Team</label>
                   </div>
-                  <div class="d-lg-flex gap-2 mb-4">
+                  <div class="d-flex flex-column flex-md-row gap-2 mb-4">
                     <a href="#" class="btn btn-outline-dark btn-sm rounded">
                       Assign Admin-Staff
                     </a>
@@ -1396,79 +1396,81 @@
                         </svg>
                       </a>
                     </div>
-                    <table class="table table-hover border">
-                      <thead>
-                        <tr>
-                          <th class="align-middle">
-                            <div class="form-check">
-                              <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
-                            </div>
-                          </th>
-                          <th class="align-middle">
-                            ADMIN-STAFF TEAM
-                          </th>
-                          <th class="align-middle">
-                            PERMISSION
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="align-middle">
-                            <div class="form-check">
-                              <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="d-flex gap-2 align-items-center">
-                              <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                    <div class="table-responsive">
+                      <table class="table table-hover border">
+                        <thead>
+                          <tr>
+                            <th class="align-middle">
+                              <div class="form-check">
+                                <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                               </div>
-                              <div class="pt-2">
-                                <div class="font-family-secondary leading-none">Fast Talkers</div>
-                                <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                            </th>
+                            <th class="align-middle">
+                              ADMIN-STAFF TEAM
+                            </th>
+                            <th class="align-middle">
+                              PERMISSION
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="align-middle">
+                              <div class="form-check">
+                                <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                               </div>
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="Visible">Visible</label>
-                                <input class="form-check-input" type="checkbox" role="switch" id="Visible">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="align-middle">
-                            <div class="form-check">
-                              <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="d-flex gap-2 align-items-center">
-                              <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex gap-2 align-items-center">
+                                <div>
+                                  <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                                </div>
+                                <div class="pt-2">
+                                  <div class="font-family-secondary leading-none">Fast Talkers</div>
+                                  <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                                </div>
                               </div>
-                              <div class="pt-2">
-                                <div class="font-family-secondary leading-none">Fast Talkers</div>
-                                <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                            </td>
+                            <td class="align-middle">
+                              <div class="form-check form-switch">
+                                  <label class="form-check-label" for="Visible">Visible</label>
+                                  <input class="form-check-input" type="checkbox" role="switch" id="Visible">
                               </div>
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="Manage">Manage</label>
-                                <input checked class="form-check-input" type="checkbox" role="switch" id="Manage">
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="align-middle">
+                              <div class="form-check">
+                                <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
+                              </div>
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex gap-2 align-items-center">
+                                <div>
+                                  <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                                </div>
+                                <div class="pt-2">
+                                  <div class="font-family-secondary leading-none">Fast Talkers</div>
+                                  <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle">
+                              <div class="form-check form-switch">
+                                  <label class="form-check-label" for="Manage">Manage</label>
+                                  <input checked class="form-check-input" type="checkbox" role="switch" id="Manage">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   <!-- Programming note: only show on admin-end -->
                 </div>
                 <!-- /Assign Admin-Staff & admin-Staff Team -->
                 <!-- Checkbox Options -->
-                <div class="d-grid grid-cols-3 gap-2 my-5 col-lg-10">
+                <div class="d-grid grid-cols-3 sm:grid-cols-1 gap-2 my-5 col-lg-10">
                   <div class="form-check">
                     <input class="form-check-input" id="ExcludeAllNotifications" name="" type="checkbox" tabindex="">
                     <label class="form-check-label form-check-label-sm fw-semibold" for="ExcludeAllNotifications">Exclude All Notifications</label>
