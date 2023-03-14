@@ -1612,3 +1612,11 @@ swal-button {
 #table-hover-row .card {
 	border: 0;
 }
+
+
+.form-actions .btn {
+	@media (min-width: 768px) and (max-width: 991px) {
+		padding: 0.7rem 1rem;
+	    line-height: 1;
+    }
+}

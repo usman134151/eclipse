@@ -653,23 +653,23 @@
                   <div class="col-lg-10 mb-5">
                     <div class="d-flex flex-column gap-5">
                       <div class="row">
-                        <label class="form-label mb-0 col-lg-6">Service 1 Total Rate:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 align-self-center">$00.00</label>
-                        <div class="col-lg-3">
+                        <label class="form-label mb-2 col-lg-6">Service 1 Total Rate:</label>
+                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-md-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
                       <div class="row">
-                        <label class="form-label mb-0 col-lg-6">Service 2 Total Rate:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 align-self-center">$00.00</label>
-                        <div class="col-lg-3">
+                        <label class="form-label mb-2 col-lg-6">Service 2 Total Rate:</label>
+                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-md-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
                       <div class="row">
-                        <label class="form-label mb-0 col-lg-6">Additional Charges:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 align-self-center">$00.00</label>
-                        <div class="col-lg-3">
+                        <label class="form-label mb-2 col-lg-6">Additional Charges:</label>
+                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-md-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
@@ -677,23 +677,23 @@
                   </div>
                   <div class="col-lg-10 mb-5">
                     <h2>Discounts</h2>
-                    <div class="d-flex gap-3 flex-column flex-lg-row mb-4">
-                      <div class="form-check">
+                    <div class="d-flex gap-3 flex-column flex-md-row mb-4">
+                      <div class="form-check mb-0">
                         <input class="form-check-input" id="Coupon" name="discounts" type="radio" tabindex="" checked />
                         <label class="form-check-label" for="Coupon">Coupon</label>
                       </div>
-                      <div class="form-check">
+                      <div class="form-check mb-0">
                         <input class="form-check-input" id="$Amount" name="discounts" type="radio" tabindex="" />
                         <label class="form-check-label" for="$Amount">$ Amount</label>
                       </div>
-                      <div class="form-check">
+                      <div class="form-check mb-0">
                         <input class="form-check-input" id="%Amount" name="discounts" type="radio" tabindex="" />
                         <label class="form-check-label" for="%Amount">% Amount</label>
                       </div>
                     </div>
                     <div class="row mb-4">
                       <label class="form-label mb-lg-0 col-lg-5 align-self-center">Coupon Code</label>
-                      <div class="col-lg-4">
+                      <div class="col-lg-4 mb-3 mb-md-0">
                         <input type="" name="" class="form-control form-control-md" placeholder="Enter Code">
                       </div>
                       <div class="col-lg-3 align-self-center">
@@ -747,7 +747,7 @@
                       <h3 class="text-primary">Booking Schedule</h3>
                     </div>
                     <div class="row">
-                      <div class="col-lg-6">
+                      <div class="col-lg-6 mb-3 mb-lg-0">
                         <div class="title">Service 1 Bookings</div>
                         <div class="d-flex flex-column gap-3">
                           <div class="row">
@@ -884,10 +884,10 @@
                 <div class="col-lg-6">
                   <div class="row mb-4">
                     <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
-                    <div class="col-lg-3">
+                    <div class="col-md-3 mb-3 mb-md-0">
                       <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                     </div>
-                    <div class="col-lg-3 align-self-center">
+                    <div class="col-md-3 align-self-center">
                       <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                     </div>
                   </div>
@@ -924,7 +924,7 @@
                   <div class="row mb-4">
                     <div class="col-lg-6 mb-4">
                       <!-- Provider Notes -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Provider Notes
                         </label>
@@ -934,7 +934,7 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                       <!-- Customer Notes -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Customer Notes
                         </label>
@@ -944,7 +944,7 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                       <!-- Private Notes -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Private Notes
                         </label>
@@ -954,7 +954,7 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                       <!-- Tags -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Tags
                         </label>
