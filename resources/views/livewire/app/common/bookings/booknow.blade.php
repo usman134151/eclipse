@@ -319,7 +319,16 @@
                           </div>
                         </div>
                         <div class="row border-dashed rounded p-3 mb-3">
-                          <h2>Meeting Information 1</h2>
+                          <div class="d-flex justify-content-between">
+                            <div class="align-items-center gap-4"><h2>Meeting Link 1</h2></div>
+                            <div class="align-items-center gap-4 me-4">
+                              <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                </svg>
+                              </a>
+                            </div>
+                          </div>
                           <div class="row">
                             <div class="col-lg-4 mb-3">
                               <label class="form-label">Meeting Name</label>
@@ -341,7 +350,7 @@
                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
                               </svg>
-                              Add Information
+                              Add Link
                             </a>
                           </div>
                         </div>
@@ -551,7 +560,8 @@
                 <!-- /Physical Address -->
                 <div class="col-12 justify-content-center form-actions d-flex">
                   <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
-                  <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
+                  <button type="button" class="btn btn-primary rounded mx-2">Save as Draft</button>
+                  <button type="submit" class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
                 </div>
               </div>
             </div>
@@ -623,11 +633,12 @@
                     </div>
                     <div class="col-12 justify-content-center form-actions d-flex">
                       <button type="button"
-                        class="btn btn-outline-dark rounded" x-on:click="$wire.switch('requester-info')">Back</button>
+                        class="btn btn-outline-dark rounded me-1" x-on:click="$wire.switch('requester-info')">Back</button>
+                        <button type="submit" class="btn btn-primary rounded mx-2">Save as Draft</button>
                         <button type="submit"
                         class="btn btn-primary rounded mx-2">Request from User</button>
                       <button type="button"
-                        class="btn btn-primary rounded" x-on:click="$wire.switch('payment-info')">Proceed to
+                        class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('payment-info')">Proceed to
                       Payment</button>
                     </div>
                   </div>
@@ -1069,7 +1080,8 @@
               </div>
               <div class="col-12 justify-content-center form-actions d-flex">
                 <button type="button"
-                  class="btn btn-outline-dark rounded" x-on:click="$wire.switch('request-details')">Back</button>
+                  class="btn btn-outline-dark rounded me-1" x-on:click="$wire.switch('request-details')">Back</button>
+                  <button type="submit" class="btn btn-primary rounded mx-2">Save as Draft</button>
                   <button type="button"
                   class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
               </div>

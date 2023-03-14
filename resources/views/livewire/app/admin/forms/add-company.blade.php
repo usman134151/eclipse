@@ -70,7 +70,9 @@
 													<div class="d-inline-block position-relative">
 														<img src="/tenant/images/portrait/small/testing.png" width="150" height="130" class="img-fluid rounded-circle" alt="Company Image"/>
 														<div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-															<x-icon name="camera"/>
+															<svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#camera"></use>
+                                                            </svg>
 														</div>
 													</div>
 												</div>
@@ -261,7 +263,6 @@
 
 												{{-- Select Default Timesheet --}}
 												<div class="row">
-													<div class="col-md-12 mb-md-2">
 														<div class="col-md-6 col-12">
 															<div class="mb-4">
 																<label class="form-label" for="select-default-timesheet">
@@ -274,7 +275,14 @@
 																</select>
 															</div>
 														</div>
-													</div>
+														<div class="col-md-6 col-12">
+															<div class="mb-4">
+																<label class="form-label" for="tags-column">
+																	Tags
+																</label>
+																<textarea class="form-control" rows="3" placeholder="" name="tags" id="tags-column"></textarea>
+															</div>
+														</div>
 												</div>
 
 												{{-- Department Phone Number --}}

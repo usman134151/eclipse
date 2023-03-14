@@ -7,7 +7,7 @@
         <div class="row breadcrumbs-top">
             <div class="col-12">
                 <h1 class="content-header-title float-start mb-0">
-                    {{ $bookingType }} Assignments
+                    {{ $bookingType }} Services
                 </h1>
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
@@ -20,11 +20,11 @@
                         </li>
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0)">
-                                Assignments
+                                Services
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            {{ $bookingType }} Assignments
+                            {{ $bookingType }} Services
                         </li>
                     </ol>
                 </div>
@@ -34,7 +34,7 @@
 </div>
 <div class="d-lg-flex justify-content-end mb-4">
     <a href="/admin/booknow/create" class="btn btn-primary rounded btn-sm">
-        Create Assignment
+        Scheduled Services
     </a>
 </div>
 @livewire('app.common.bookings.booking-list', ['bookingType'=>$bookingType])

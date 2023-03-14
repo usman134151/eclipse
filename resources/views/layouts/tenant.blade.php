@@ -91,9 +91,9 @@
 
 		@auth
 		@if(!request()->cookie('savedBrowser'))
-		test
+		
 			<script>
-			openSaveBrowserPopup();
+			//openSaveBrowserPopup();
 			</script>
 		@endif
 		@endauth

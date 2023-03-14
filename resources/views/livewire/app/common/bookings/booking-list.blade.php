@@ -10,52 +10,19 @@
     @livewire('app.common.bookings.booking-details')
     @else
     {{-- BEGIN: Content --}}
-    <div class="content-header row">
-        <div class="content-header-left col-md-12 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">
-                        {{ $bookingType }} Assignments
-                    </h1>
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#">
-                                    <x-icon name="home" />
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="javascript:void(0)">
-                                    Assignments
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                {{ $bookingType }} Assignments
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="content-body">
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div>
-                        <div class="d-lg-flex justify-content-end mb-4">
-                            <a href="/admin/booknow/create" class="btn btn-primary rounded btn-sm">
-                                Create Assignment
-                            </a>
-                        </div>
                         <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
                             <div
                                 class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0">
                                 <div class="d-inline-flex align-items-center gap-4">
-                                    <label for="show_records_number" class="form-label-sm mb-0">
+                                    <label for="show_records" class="form-label-sm mb-0">
                                         Show
                                     </label>
-                                    <select class="form-select form-select-sm" id="show_records_number">
+                                    <select class="form-select form-select-sm" id="show_records">
                                         <option>7</option>
                                         <option>15</option>
                                         <option>20</option>
@@ -64,8 +31,8 @@
                                 </div>
                                 <div>
                                     <div class="form-check form-switch mb-0">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="ManagePermissions">
+                                        <input class="form-check-input" type="checkbox" role="switch" aria-label="Manage Permissions Toggle"
+                                         id="ManagePermissions">
                                         <label class="form-check-label" for="ManagePermissions">
                                             Manage Permissions
                                         </label>
@@ -73,10 +40,10 @@
                                 </div>
                             </div>
                             <div class="d-inline-flex align-items-center gap-4">
-                                <label for="search" class="form-label-sm mb-0">
+                                <label for="search-booking" class="form-label-sm mb-0">
                                     Search
                                 </label>
-                                <input type="search" class="form-control form-control-sm" id="search" name="search"
+                                <input type="search" class="form-control form-control-sm" id="search-booking" name="search"
                                     placeholder="Search here" autocomplete="on" />
                             </div>
                         </div>
@@ -91,7 +58,7 @@
                                                 <tr role="row">
                                                     <th scope="col" class="text-center">
                                                         <input class="form-check-input" type="checkbox" value=""
-                                                            aria-label="Select Booking">
+                                                            aria-label="Select All Bookings">
                                                     </th>
                                                     <th scope="col">Booking ID</th>
                                                     <th scope="col">Accommodation</th>
@@ -111,7 +78,7 @@
                                                     class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
                                                     <td class="text-center">
                                                         <input class="form-check-input" type="checkbox" value=""
-                                                            aria-label="Select Team">
+                                                            aria-label="Select Booking">
                                                     </td>
                                                     <td wire:click="showBookingDetails">
                                                         <a href="#">100995-6</a>
@@ -146,22 +113,26 @@
                                                     </td>
                                                     <td>
                                                         <div class="d-flex actions">
-                                                            <a href="#" title="Edit" aria-label="Edit Team"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <x-icon name="pencil" />
+                                                            <a href="#" title="Edit" aria-label="Edit Booking" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                <svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                              </svg>
                                                             </a>
                                                             <a href="#" title="Assign Provider"
                                                                 aria-label="Assign Provider"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#AssignproviderTeamModal">
-                                                                <x-icon name="assign-provider" />
+                                                                <svg aria-label="Assign Provider" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#assign-provider"></use>
+                                                                </svg>
                                                             </a>
                                                             <div class="dropdown ac-cstm">
                                                                 <a href="javascript:void(0)"
                                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle"
                                                                     data-bs-toggle="dropdown"
                                                                     data-bs-auto-close="outside"
+                                                                    aria-label="Action dropdown"
                                                                     data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
                                                                     <x-icon name="dropdown" />
                                                                 </a>
@@ -264,18 +235,20 @@
                             {{-- icon legend bar start --}}
                             <div class="d-flex actions gap-3 justify-content-end mb-2">
                                 <div class="d-flex gap-2 align-items-center">
-                                    <a href="#" title="Edit" aria-label="Edit"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="pencil" />
+                                    <a href="#" title="Edit" aria-label="Edit Booking" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Assign Provider" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                        </svg>
                                     </a>
                                     <span class="text-sm">
                                         Edit
                                     </span>
                                 </div>
                                 <div class="d-flex gap-2 align-items-center">
-                                    <a href="#" title="Assign Provider" aria-label="Assign Provider"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="assign-provider" />
+                                    <a href="#" title="Assign Provider" aria-label="Assign Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Assign Provider" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#assign-provider"></use>
+                                        </svg>
                                     </a>
                                     <span class="text-sm">
                                         Assign Provider

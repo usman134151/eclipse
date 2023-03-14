@@ -13,6 +13,7 @@ final class Specializations extends PowerGridComponent
 {
     use ActionButton;
     protected $listeners = ['refresh'=>'setUp'];
+    public $name;
 
     /*
     |--------------------------------------------------------------------------
@@ -158,7 +159,7 @@ final class Specializations extends PowerGridComponent
     public function onUpdatedEditable(string $id, string $field, string $value): void
     {
         // Dumps the name of the field being updated
-        dd($field);
+       
         // Updates the specified field of the record with the new value
         Specialization::query()->find($id)->update([
             $field => $value,
