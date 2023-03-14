@@ -10,7 +10,9 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
 								<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-									<x-icon name="home"/>
+									<svg aria-label="Home" width="22" height="23"viewBox="0 0 22 23" fill="none"
+                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#home"></use>
+                                    </svg>
 								</a>
 							</li>
 							<li class="breadcrumb-item">
@@ -35,91 +37,116 @@
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
 								<li class="nav-item" role="presentation">
 									<button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="true">
-										<x-icon name="tablet"/>
+										<svg aria-label="Dashboard" width="31" height="29" viewBox="0 0 31 29" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#tablet"></use>
+                                        </svg>
 										<span>Dashboard</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-pane" aria-selected="false">
-										<x-icon name="gray-calendar"/>
+										<svg aria-label="Schedule" width="30" height="29" viewBox="0 0 30 29" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-calender"></use>
+                                        </svg>
 										<span>Schedule</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability-tab-pane" type="button" role="tab" aria-controls="availability-tab-pane" aria-selected="false">
-										<x-icon name="gray-suitcase"/>
+										<svg aria-label="Availability" width="31" height="30" viewBox="0 0 31 30" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-suit-case"></use>
+                                        </svg>
 										<span>Availability</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="my-drive-tab" data-bs-toggle="tab" data-bs-target="#my-drive-tab-pane" type="button" role="tab" aria-controls="my-drive-tab-pane" aria-selected="false">
-										<x-icon name="gray-drive"/>
+										<svg aria-label="My Drive" width="35" height="30" viewBox="0 0 35 30" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-drive"></use>
+                                        </svg>
 										<span>My Drive</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="provider-feedback-tab" data-bs-toggle="tab" data-bs-target="#provider-feedback-tab-pane" type="button" role="tab" aria-controls="provider-feedback-tab-pane" aria-selected="false">
-										<x-icon name="gray-rated-user"/>
+										<svg aria-label="Feedback" width="24" height="29" viewBox="0 0 24 29" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-rated-user"></use>
+                                        </svg>
 										<span>Feedback</span>
 									</button>
 								</li>
-
+                               {{--  
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="referrals-tab" data-bs-toggle="tab" data-bs-target="#referrals-tab-pane" type="button" role="tab" aria-controls="referrals-tab-pane" aria-selected="false">
 										<x-icon name="gray-referral"/>
 										<span>Referrals</span>
 									</button>
 								</li>
+								--}}
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="invoices-remittances-tab" data-bs-toggle="tab" data-bs-target="#invoices-remittances-tab-pane" type="button" role="tab" aria-controls="invoices-remittances-tab-pane" aria-selected="false">
-										<x-icon name="gray-invoice"/>
+										<svg aria-label="Invoices & Remittances" width="29" height="31" viewBox="0 0 29 31" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-invoice"></use>
+                                        </svg>
 										<span>Invoices & Remittances</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="payments-preferences-tab" data-bs-toggle="tab" data-bs-target="#payments-preferences-tab-pane" type="button" role="tab" aria-controls="payments-preferences-tab-pane" aria-selected="false">
-										<x-icon name="gray-payment"/>
+										<svg aria-label="Payments & Preferences" width="27" height="31" viewBox="0 0 29 31" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-payment"></use>
+                                        </svg>
 										<span>Payments & Preferences</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-pane" aria-selected="false">
-										<x-icon name="gray-note"/>
+										<svg aria-label="Notes" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-notes"></use>
+                                        </svg>
 										<span>Notes</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-tab-pane" type="button" role="tab" aria-controls="reports-tab-pane" aria-selected="false">
-										<x-icon name="gray-bar-chart"/>
+										<svg aria-label="Reports" width="30" height="28" viewBox="0 0 30 28" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-bar-char"></use>
+                                        </svg>
 										<span>Reports</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications-tab-pane" type="button" role="tab" aria-controls="notifications-tab-pane" aria-selected="false">
-										<x-icon name="gray-bell"/>
+										<svg aria-label="Notifications" width="26" height="29" viewBox="0 0 26 29" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-bell"></use>
+                                        </svg>
 										<span>Notifications</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="log-tab" data-bs-toggle="tab" data-bs-target="#log-tab-pane" type="button" role="tab" aria-controls="log-tab-pane" aria-selected="false">
-										<x-icon name="gray-log"/>
+										<svg aria-label="Log" width="27" height="27" viewBox="0 0 27 27" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-log"></use>
+                                        </svg>
 										<span>Log</span>
 									</button>
 								</li>
 
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-tab-pane" type="button" role="tab" aria-controls="settings-tab-pane" aria-selected="false">
-										<x-icon name="gray-cog"/>
+										<svg aria-label="Log" width="26" height="27" viewBox="0 0 26 27" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-cog"></use>
+                                        </svg>
 										<span>Settings</span>
 									</button>
 								</li>
@@ -160,15 +187,27 @@
 														<div class="col-md-6">
 															<h3>James Mary (He)</h3>
 															<p>
-																<x-icon name="gray-tick-badge"/>
+															  <svg aria-label="Certified" width="30" height="30" viewBox="0 0 30 30" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#grey-tick-badge"></use>
+															  </svg>
 																Certified
 															</p>
 															<div class="mb-3">
-																<x-icon name="filled-star"/>
-																<x-icon name="filled-star"/>
-																<x-icon name="filled-star"/>
-																<x-icon name="star"/>
-																<x-icon name="star"/>
+																<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 															</div>
 															<p>10 Feedback 3 Stars</p>
 														</div>
@@ -178,8 +217,10 @@
 												<div class="row mb-4">
 													<div class="col-md-12 mt-4">
 														<div class="">
-															<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon ms-auto">
-																<x-icon name="pencil"/>
+															<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ms-auto">
+																<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 														<div class="row mb-1 mx-2">
@@ -634,7 +675,9 @@
 					                                     	 </div></td>
 					                                     	 <td class="align-middle">
 					                                     		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					                                     			<x-icon name="message"/>
+																	<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
+																	   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
+															        </svg>
 					                                     		</a>
 					                                     	 </td>
 					                                        </tr>
@@ -651,7 +694,9 @@
 					                                     	 </div></td>
 					                                    	 <td class="align-middle">
 					                                    		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					                                    			<x-icon name="message"/>
+					                                    			<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
+																	   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
+															        </svg>
 					                                    		</a>
 					                                    	 </td>
 					                                       </tr>
@@ -668,7 +713,9 @@
 					                                    	 </div></td>
 					                                    	 <td class="align-middle">
 					                                    		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					                                    			<x-icon name="message"/>
+					                                    			<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
+																	   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
+															        </svg>
 					                                    		</a>
 					                                    	 </td>
 					                                       </tr>
@@ -685,7 +732,9 @@
 					                                     	 </div></td>
 					                                     	 <td class="align-middle">
 					                                     		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					                                     			<x-icon name="message"/>
+																	<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
+																	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
+																 </svg>
 					                                     		</a>
 					                                     	 </td>
 					                                        </tr>
@@ -702,7 +751,9 @@
 					                                     	 </div></td>
 		                                       				 <td class="align-middle">
 		                                       				  <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-		                                       					<x-icon name="message"/>
+																<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
+																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
+															 </svg>
 		                                       				</a>
 		                                       				 </td>
 		                                       			   </tr>
@@ -883,21 +934,23 @@
 										{{-- Search --}}
 										<div class="col-md-3 col-12">
 											<div class="mb-4">
-												<label class="form-label" for="search-column">
+												<label class="form-label" for="search-record">
 													Search
 												</label>
-												<input type="text" id="search-column" class="form-control" name="search-column" placeholder="Search here" required aria-required="true"/>
+												<input type="text" id="search-record" class="form-control" name="search-record" placeholder="Search here" required aria-required="true"/>
 											</div>
 										</div>
 										{{-- Date Range --}}
 										<div class="col-md-3 col-12">
 											<div>
-												<label class="form-label" for="set_set_date">
+												<label class="form-label" for="setDate">
 													Date Range
 												</label>
 												<div class="position-relative">
 													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-													<x-icon name="datefield-icon"/>
+													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
+													</svg>
 												</div>
 											</div>
 										</div>
@@ -949,10 +1002,10 @@
 									</div>
 									<div class="d-flex justify-content-between mb-2">
 										<div class="d-inline-flex align-items-center gap-4">
-											<label for="show_records_number" class="form-label">
+											<label for="showRecordsNumber" class="form-label">
 												Show
 											</label>
-											<select class="form-select" id="show_records_number">
+											<select class="form-select" id="showRecordsNumber">
 												<option>10</option>
 												<option>15</option>
 												<option>20</option>
@@ -960,10 +1013,10 @@
 											</select>
 										</div>
 										<div class="d-inline-flex align-items-center gap-4">
-											<label for="search" class="form-label fw-semibold">
+											<label for="searchRecord" class="form-label fw-semibold">
 												Search
 											</label>
-											<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+											<input type="search" class="form-control" id="searchRecord" name="search" placeholder="Search here" autocomplete="on"/>
 										</div>
 									</div>
 									<div class="card">
@@ -972,7 +1025,7 @@
 												<thead>
 													<tr role="row">
 														<th scope="col" class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select All Departments">
+															<input class="form-check-input" type="checkbox" value="" aria-label="Select All Customers">
 														</th>
 														<th scope="col">Customer</th>
 														<th scope="col">Feedback</th>
@@ -983,7 +1036,7 @@
 												<tbody>
 													<tr role="row" class="odd">
 														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select">
+															<input class="form-check-input" type="checkbox" value="" aria-label="Select Customer">
 														</td>
 														<td>
 															<div class="row g-2">
@@ -1004,31 +1057,47 @@
 														<td>
 															<div class="row mt-4">
 																<div class="col-md-12 d-flex">
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="star"/>
-																	<x-icon name="star"/>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 																</div>
 															</div>
 														</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="javascript:void(0)" title="Hide" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="hide-icon"/>
+																<a href="javascript:void(0)" title="Hide" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#hide-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="#" title="Edit Company" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
+																<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="javascript:void(0)" title="Delete" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="recycle-bin"/>
+																<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
 																</a>
 															</div>
 														</td>
 													</tr>
 													<tr role="row" class="even">
 														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select">
+															<input class="form-check-input" type="checkbox" value="" aria-label="Select Customer">
 														</td>
 														<td>
 															<div class="row g-2">
@@ -1049,31 +1118,47 @@
 														<td>
 															<div class="row mt-4">
 																<div class="col-md-12 d-flex">
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="star"/>
-																	<x-icon name="star"/>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 																</div>
 															</div>
 														</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="javascript:void(0)" title="Hide" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="hide-icon"/>
+																<a href="javascript:void(0)" title="Hide" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#hide-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="#" title="Edit Company" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
+																<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="javascript:void(0)" title="Delete" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="recycle-bin"/>
+																<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
 																</a>
 															</div>
 														</td>
 													</tr>
 													<tr role="row" class="odd">
 														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select">
+															<input class="form-check-input" type="checkbox" value="" aria-label="Select Customer">
 														</td>
 														<td>
 															<div class="row g-2">
@@ -1094,31 +1179,47 @@
 														<td>
 															<div class="row mt-4">
 																<div class="col-md-12 d-flex">
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="star"/>
-																	<x-icon name="star"/>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 																</div>
 															</div>
 														</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="javascript:void(0)" title="Hide" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="hide-icon"/>
+																<a href="javascript:void(0)" title="Hide" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#hide-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="#" title="Edit Company" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
+																<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="javascript:void(0)" title="Delete" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="recycle-bin"/>
+																<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
 																</a>
 															</div>
 														</td>
 													</tr>
 													<tr role="row" class="even">
 														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select">
+															<input class="form-check-input" type="checkbox" value="" aria-label="Select Customer">
 														</td>
 														<td>
 															<div class="row g-2">
@@ -1139,31 +1240,47 @@
 														<td>
 															<div class="row mt-4">
 																<div class="col-md-12 d-flex">
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="star"/>
-																	<x-icon name="star"/>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 																</div>
 															</div>
 														</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="javascript:void(0)" title="Hide" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="hide-icon"/>
+																<a href="javascript:void(0)" title="Hide" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#hide-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="#" title="Edit Company" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
+																<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="javascript:void(0)" title="Delete" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="recycle-bin"/>
+																<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
 																</a>
 															</div>
 														</td>
 													</tr>
 													<tr role="row" class="odd">
 														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select">
+															<input class="form-check-input" type="checkbox" value="" aria-label="Select Customer">
 														</td>
 														<td>
 															<div class="row g-2">
@@ -1184,24 +1301,40 @@
 														<td>
 															<div class="row mt-4">
 																<div class="col-md-12 d-flex">
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="filled-star"/>
-																	<x-icon name="star"/>
-																	<x-icon name="star"/>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 																</div>
 															</div>
 														</td>
 														<td>
 															<div class="d-flex actions">
-																<a href="javascript:void(0)" title="Hide" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="hide-icon"/>
+																<a href="javascript:void(0)" title="Hide" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#hide-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="#" title="Edit Company" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="pencil"/>
+																<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                                    </svg>
 																</a>
-																<a href="javascript:void(0)" title="Delete" aria-label="Delete Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<x-icon name="recycle-bin"/>
+																<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																	<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
 																</a>
 															</div>
 														</td>
@@ -1211,7 +1344,9 @@
 											<div class="d-flex actions gap-3 justify-content-end mb-2">
 												<div class="d-flex gap-2 align-items-center">
 												  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													<x-icon name="hide-icon"/>
+													<svg aria-label="Hide" width="24" height="19" viewBox="0 0 24 19" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#hide-icon"></use>
+                                                    </svg>
 												  </a>
 												  <span class="text-sm">
 													Hide
@@ -1219,7 +1354,9 @@
 												</div>
 												<div class="d-flex gap-2 align-items-center">
 												  <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													<x-icon name="pencil"/>
+													<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                   </svg>
 												  </a>
 												  <span class="text-sm">
 													Edit
@@ -1227,7 +1364,9 @@
 												</div>
 												<div class="d-flex gap-2 align-items-center">
 												  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													<x-icon name="recycle-bin"/>
+													<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                    </svg>
 												  </a>
 												  <span class="text-sm">
 													Delete
@@ -1312,7 +1451,9 @@
 												</label>
 												<div class="position-relative">
 													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-													<x-icon name="datefield-icon"/>
+													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
+													</svg>
 												</div>
 											</div>
 										</div>
@@ -1601,21 +1742,23 @@
 										{{-- Date Range --}}
 										<div class="col-md-3 col-12">
 											<div>
-												<label class="form-label" for="set_set_date">
+												<label class="form-label" for="set_date">
 													Date Range
 												</label>
 												<div class="position-relative">
 													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-													<x-icon name="datefield-icon"/>
+													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
+													</svg>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-3 col-12">
 											<div class="mb-4">
-												<label class="form-label" for="payment-status">
+												<label class="form-label" for="paymentStatus">
 													Payment Status
 												</label>
-											    <select class="select2 form-select" id="payment-status">
+											    <select class="select2 form-select" id="paymentStatus">
 													<option>Select Payment Status</option>
 												</select>	
 											</div>
@@ -1649,10 +1792,10 @@
 									</div>
 									<div class="d-flex justify-content-between mb-2">
 										<div class="d-inline-flex align-items-center gap-4">
-											<label for="show_records_number" class="form-label">
+											<label for="show_records" class="form-label">
 												Show
 											</label>
-											<select class="form-select" id="show_records_number">
+											<select class="form-select" id="show_records">
 												<option>10</option>
 												<option>15</option>
 												<option>20</option>
@@ -1666,7 +1809,7 @@
 												<tr role="row">
 													<th scope="col">
 														<div class="form-check">
-															<input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="checkbox">
+															<input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select All Remittances">
 														</div>
 													</th>
 													<th scope="col">Remittance. NO</th>
@@ -1680,7 +1823,7 @@
 												<tr role="row" class="odd">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1691,23 +1834,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                 </svg>
 															</a>
-															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+															<a href="#" title="Send" aria-label="Send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1715,7 +1868,7 @@
 												<tr role="row" class="even">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1726,23 +1879,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                 </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1750,7 +1913,7 @@
 												<tr role="row" class="odd">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1761,23 +1924,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                 </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1785,7 +1958,7 @@
 												<tr role="row" class="even">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1796,23 +1969,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1820,7 +2003,7 @@
 												<tr role="row" class="odd">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1831,23 +2014,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                 </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                 </svg>
 															</a>
 														</div>
 													</td>
@@ -1855,7 +2048,7 @@
 												<tr role="row" class="even">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1866,23 +2059,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1890,7 +2093,7 @@
 												<tr role="row" class="odd">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1901,23 +2104,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1925,7 +2138,7 @@
 												<tr role="row" class="even">
 													<td>
 														<div class="form-check">
-															<input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+															<input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
 														</div>
 													</td>
 													<td>
@@ -1936,23 +2149,33 @@
 													<td class="text-center">3346$</td>
 													<td>
 														<div class="d-flex align-items-center gap-2">
-															<x-icon name="green-dot"/>
+															<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                                            </svg>
 															<p>Paid</p>
 														</div>
 													</td>
 													<td>
 														<div class="d-flex actions">
 															<a href="#" title="view" aria-label="view" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="eye-icon"/>
+																<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="send" aria-label="send" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<x-icon name="mapview"/>
+																<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                                                </svg>
 															</a>
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											                    <x-icon name="round-arrow"/>												
+											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                                                </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															    <x-icon name="dollar-icon"/>
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+																<svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                                </svg>
 															</a>
 														</div>
 													</td>
@@ -1964,7 +2187,9 @@
 									<div class="d-flex actions gap-3 justify-content-end mb-2">
 										<div class="d-flex gap-2 align-items-center">
 										  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="eye-icon"/>
+											<svg aria-label="View "width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#eye-icon"></use>
+                                            </svg>
 										  </a>
 										  <span class="text-sm">
 										  View
@@ -1972,7 +2197,9 @@
 										</div>
 										<div class="d-flex gap-2 align-items-center">
 										  <a href="#" title="" aria-label="Resend Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="mapview"/>
+											<svg aria-label="Send" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#mapview"></use>
+                                            </svg>
 										  </a>
 										  <span class="text-sm">
 											Resend Remittance
@@ -1980,7 +2207,9 @@
 										</div>
 										<div class="d-flex gap-2 align-items-center">
 										  <a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="round-arrow"/>
+											<svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
+                                            </svg>
 										  </a>
 										  <span class="text-sm">
 											Revert Remittance
@@ -1988,7 +2217,9 @@
 										</div>
 										<div class="d-flex gap-2 align-items-center">
 											<a href="#" title="Mark as Paid" aria-label="Mark as Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-												<x-icon name="dollar-icon"/>
+												<svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
+                                                </svg>
 											</a>
 											<span class="text-sm">
 												Mark as Paid
@@ -2057,11 +2288,15 @@
 													</p>
 												</div>
 												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<x-icon name="pencil"/>
+													<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
+														<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                       </svg>
 													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<x-icon name="recycle-bin"/>
+													<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                        </svg>
 													</a>
 												</div>
 											</div>
@@ -2080,11 +2315,15 @@
 													</p>
 												</div>
 												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<x-icon name="pencil"/>
+													<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
+														<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                       </svg>
 													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<x-icon name="recycle-bin"/>
+													<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                        </svg>
 													</a>
 												</div>
 											</div>
@@ -2117,11 +2356,15 @@
 													</div>
 												</div>
 												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<x-icon name="pencil"/>
+													<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
+														<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                       </svg>
 													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<x-icon name="recycle-bin"/>
+													<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                        </svg>
 													</a>
 												</div>
 											</div>
@@ -2140,11 +2383,15 @@
 													</p>
 												</div>
 												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<x-icon name="pencil"/>
+													<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
+														<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
+                                                       </svg>
 													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<x-icon name="recycle-bin"/>
+													<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                        </svg>
 													</a>
 												</div>
 											</div>
@@ -2931,6 +3178,7 @@
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.view-button')
 			 @include('modals.common.add-address')
+			 @include('modals.markasread')
 
 		   </section>
 		   <!-- Basic Floating Label Form section end -->
