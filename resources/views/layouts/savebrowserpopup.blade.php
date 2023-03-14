@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal
 <div class="modal fade" id="saveBrowser" tabindex="-1" aria-labelledby="saveBrowserLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -82,4 +82,4 @@ function saveBrowser(){
 }
 </script>
 @endif
-@endif
+@endif  -->

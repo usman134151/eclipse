@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal 
 <div class="modal fade" id="saveBrowser" tabindex="-1" aria-labelledby="saveBrowserLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -21,4 +21,4 @@
     </div>
   </div>
 </div>
-<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
+<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>-->
