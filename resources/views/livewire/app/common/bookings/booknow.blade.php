@@ -296,13 +296,13 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row">
                           <div class="col-lg-6 align-self-center">
                             <h2 class="mb-lg-0">Meeting Information</h2>
                           </div>
                           <div class="col-lg-6">
                             <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-6 mb-4">
                                 <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
                                   <svg width="22" height="18" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 10.4062L8.66667 17.4062L22 2.40625" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -310,7 +310,7 @@
                                   Add Manually
                                 </a>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 mb-4">
                                 <a href="#" class="btn btn-primary rounded w-100">
                                   Request from User
                                 </a>
@@ -318,10 +318,10 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row border-dashed rounded p-3 mb-3">
+                        <div class="border-dashed rounded p-3 mb-3">
                           <div class="d-flex justify-content-between">
                             <div class="align-items-center gap-4"><h2>Meeting Link 1</h2></div>
-                            <div class="align-items-center gap-4 me-4">
+                            <div class="align-items-center gap-4">
                               <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
@@ -558,10 +558,10 @@
                   </div>
                 </div>
                 <!-- /Physical Address -->
-                <div class="col-12 justify-content-center form-actions d-flex">
-                  <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
-                  <button type="button" class="btn btn-primary rounded mx-2">Save as Draft</button>
-                  <button type="submit" class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
+                <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                  <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
+                  <button type="button" class="btn btn-primary rounded">Save as Draft</button>
+                  <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
                 </div>
               </div>
             </div>
@@ -631,14 +631,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-12 justify-content-center form-actions d-flex">
+                    <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                       <button type="button"
-                        class="btn btn-outline-dark rounded me-1" x-on:click="$wire.switch('requester-info')">Back</button>
-                        <button type="submit" class="btn btn-primary rounded mx-2">Save as Draft</button>
+                        class="btn btn-outline-dark rounded" x-on:click="$wire.switch('requester-info')">Back</button>
+                        <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                         <button type="submit"
-                        class="btn btn-primary rounded mx-2">Request from User</button>
+                        class="btn btn-primary rounded">Request from User</button>
                       <button type="button"
-                        class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('payment-info')">Proceed to
+                        class="btn btn-primary rounded" x-on:click="$wire.switch('payment-info')">Proceed to
                       Payment</button>
                     </div>
                   </div>
@@ -653,23 +653,23 @@
                   <div class="col-lg-10 mb-5">
                     <div class="d-flex flex-column gap-5">
                       <div class="row">
-                        <label class="form-label mb-0 col-lg-6">Service 1 Total Rate:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 align-self-center">$00.00</label>
-                        <div class="col-lg-3">
+                        <label class="form-label mb-2 col-lg-6">Service 1 Total Rate:</label>
+                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-md-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
                       <div class="row">
-                        <label class="form-label mb-0 col-lg-6">Service 2 Total Rate:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 align-self-center">$00.00</label>
-                        <div class="col-lg-3">
+                        <label class="form-label mb-2 col-lg-6">Service 2 Total Rate:</label>
+                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-md-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
                       <div class="row">
-                        <label class="form-label mb-0 col-lg-6">Additional Charges:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 align-self-center">$00.00</label>
-                        <div class="col-lg-3">
+                        <label class="form-label mb-2 col-lg-6">Additional Charges:</label>
+                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-md-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
@@ -677,23 +677,23 @@
                   </div>
                   <div class="col-lg-10 mb-5">
                     <h2>Discounts</h2>
-                    <div class="d-flex gap-3 flex-column flex-lg-row mb-4">
-                      <div class="form-check">
+                    <div class="d-flex gap-3 flex-column flex-md-row mb-4">
+                      <div class="form-check mb-0">
                         <input class="form-check-input" id="Coupon" name="discounts" type="radio" tabindex="" checked />
                         <label class="form-check-label" for="Coupon">Coupon</label>
                       </div>
-                      <div class="form-check">
+                      <div class="form-check mb-0">
                         <input class="form-check-input" id="$Amount" name="discounts" type="radio" tabindex="" />
                         <label class="form-check-label" for="$Amount">$ Amount</label>
                       </div>
-                      <div class="form-check">
+                      <div class="form-check mb-0">
                         <input class="form-check-input" id="%Amount" name="discounts" type="radio" tabindex="" />
                         <label class="form-check-label" for="%Amount">% Amount</label>
                       </div>
                     </div>
                     <div class="row mb-4">
                       <label class="form-label mb-lg-0 col-lg-5 align-self-center">Coupon Code</label>
-                      <div class="col-lg-4">
+                      <div class="col-lg-4 mb-3 mb-md-0">
                         <input type="" name="" class="form-control form-control-md" placeholder="Enter Code">
                       </div>
                       <div class="col-lg-3 align-self-center">
@@ -747,7 +747,7 @@
                       <h3 class="text-primary">Booking Schedule</h3>
                     </div>
                     <div class="row">
-                      <div class="col-lg-6">
+                      <div class="col-lg-6 mb-3 mb-lg-0">
                         <div class="title">Service 1 Bookings</div>
                         <div class="d-flex flex-column gap-3">
                           <div class="row">
@@ -884,10 +884,10 @@
                 <div class="col-lg-6">
                   <div class="row mb-4">
                     <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
-                    <div class="col-lg-3">
+                    <div class="col-md-3 mb-3 mb-md-0">
                       <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                     </div>
-                    <div class="col-lg-3 align-self-center">
+                    <div class="col-md-3 align-self-center">
                       <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                     </div>
                   </div>
@@ -924,7 +924,7 @@
                   <div class="row mb-4">
                     <div class="col-lg-6 mb-4">
                       <!-- Provider Notes -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Provider Notes
                         </label>
@@ -934,7 +934,7 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                       <!-- Customer Notes -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Customer Notes
                         </label>
@@ -944,7 +944,7 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                       <!-- Private Notes -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Private Notes
                         </label>
@@ -954,7 +954,7 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                       <!-- Tags -->
-                      <div class="my-5">
+                      <div class="my-lg-5">
                         <label class="form-label">
                           Tags
                         </label>
@@ -1066,11 +1066,11 @@
                     </div>
                     <div class="row">
                       <div class="col-2">
-                        <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+                        <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
                         <p class="font-family-secondary"><small>File Name</small></p>
                       </div>
                       <div class="col-2">
-                        <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+                        <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
                         <p class="font-family-secondary"><small>File Name</small></p>
                       </div>
                     </div>
@@ -1078,12 +1078,12 @@
                   <!-- /Add Document -->
                 </div>
               </div>
-              <div class="col-12 justify-content-center form-actions d-flex">
+              <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                 <button type="button"
-                  class="btn btn-outline-dark rounded me-1" x-on:click="$wire.switch('request-details')">Back</button>
-                  <button type="submit" class="btn btn-primary rounded mx-2">Save as Draft</button>
+                  class="btn btn-outline-dark rounded" x-on:click="$wire.switch('request-details')">Back</button>
+                  <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                   <button type="button"
-                  class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
+                  class="btn btn-primary rounded" x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
               </div>
             </div>
             <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}" id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
@@ -1377,7 +1377,7 @@
                     <input class="form-check-input" id="AssignAdminStaff&adminStaffTeam" name="" type="checkbox" tabindex="" />
                     <label class="form-check-label" for="AssignAdminStaff&adminStaffTeam">Assign Admin-Staff & admin-Staff Team</label>
                   </div>
-                  <div class="d-lg-flex gap-2 mb-4">
+                  <div class="d-flex flex-column flex-md-row gap-2 mb-4">
                     <a href="#" class="btn btn-outline-dark btn-sm rounded">
                       Assign Admin-Staff
                     </a>
@@ -1396,79 +1396,81 @@
                         </svg>
                       </a>
                     </div>
-                    <table class="table table-hover border">
-                      <thead>
-                        <tr>
-                          <th class="align-middle">
-                            <div class="form-check">
-                              <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
-                            </div>
-                          </th>
-                          <th class="align-middle">
-                            ADMIN-STAFF TEAM
-                          </th>
-                          <th class="align-middle">
-                            PERMISSION
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="align-middle">
-                            <div class="form-check">
-                              <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="d-flex gap-2 align-items-center">
-                              <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                    <div class="table-responsive">
+                      <table class="table table-hover border">
+                        <thead>
+                          <tr>
+                            <th class="align-middle">
+                              <div class="form-check">
+                                <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                               </div>
-                              <div class="pt-2">
-                                <div class="font-family-secondary leading-none">Fast Talkers</div>
-                                <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                            </th>
+                            <th class="align-middle">
+                              ADMIN-STAFF TEAM
+                            </th>
+                            <th class="align-middle">
+                              PERMISSION
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="align-middle">
+                              <div class="form-check">
+                                <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                               </div>
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="Visible">Visible</label>
-                                <input class="form-check-input" type="checkbox" role="switch" id="Visible">
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="align-middle">
-                            <div class="form-check">
-                              <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="d-flex gap-2 align-items-center">
-                              <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex gap-2 align-items-center">
+                                <div>
+                                  <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                                </div>
+                                <div class="pt-2">
+                                  <div class="font-family-secondary leading-none">Fast Talkers</div>
+                                  <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                                </div>
                               </div>
-                              <div class="pt-2">
-                                <div class="font-family-secondary leading-none">Fast Talkers</div>
-                                <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                            </td>
+                            <td class="align-middle">
+                              <div class="form-check form-switch">
+                                  <label class="form-check-label" for="Visible">Visible</label>
+                                  <input class="form-check-input" type="checkbox" role="switch" id="Visible">
                               </div>
-                            </div>
-                          </td>
-                          <td class="align-middle">
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="Manage">Manage</label>
-                                <input checked class="form-check-input" type="checkbox" role="switch" id="Manage">
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="align-middle">
+                              <div class="form-check">
+                                <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
+                              </div>
+                            </td>
+                            <td class="align-middle">
+                              <div class="d-flex gap-2 align-items-center">
+                                <div>
+                                  <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+                                </div>
+                                <div class="pt-2">
+                                  <div class="font-family-secondary leading-none">Fast Talkers</div>
+                                  <a href="#" class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle">
+                              <div class="form-check form-switch">
+                                  <label class="form-check-label" for="Manage">Manage</label>
+                                  <input checked class="form-check-input" type="checkbox" role="switch" id="Manage">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   <!-- Programming note: only show on admin-end -->
                 </div>
                 <!-- /Assign Admin-Staff & admin-Staff Team -->
                 <!-- Checkbox Options -->
-                <div class="d-grid grid-cols-3 gap-2 my-5 col-lg-10">
+                <div class="d-grid grid-cols-3 sm:grid-cols-1 gap-2 my-5 col-lg-10">
                   <div class="form-check">
                     <input class="form-check-input" id="ExcludeAllNotifications" name="" type="checkbox" tabindex="">
                     <label class="form-check-label form-check-label-sm fw-semibold" for="ExcludeAllNotifications">Exclude All Notifications</label>
@@ -1495,7 +1497,7 @@
                   </div>
                 </div>
                 <!-- /Checkbox Options -->
-                <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                   <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('payment-info')">Back</button>
                   <button type="" class="btn btn-primary rounded">Save as Draft</button>
                   <button type="" class="btn btn-primary rounded">Request Feedback</button>
