@@ -458,7 +458,8 @@ h1, h2, h3, h4, h5, h6 {
           font-size: 1.5rem;
           font-weight: 400; }
         .nav-tabs.nav-steps li.nav-item .nav-link.active {
-          color: #023DB0; }
+          color: #023DB0;
+          background: none; }
         .nav-tabs.nav-steps li.nav-item .nav-link:hover {
           background-color: transparent;
           color: #6e6b7b; }
