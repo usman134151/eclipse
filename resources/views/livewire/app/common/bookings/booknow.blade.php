@@ -631,14 +631,14 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-12 justify-content-center form-actions d-flex">
+                    <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                       <button type="button"
-                        class="btn btn-outline-dark rounded me-1" x-on:click="$wire.switch('requester-info')">Back</button>
-                        <button type="submit" class="btn btn-primary rounded mx-2">Save as Draft</button>
+                        class="btn btn-outline-dark rounded" x-on:click="$wire.switch('requester-info')">Back</button>
+                        <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                         <button type="submit"
-                        class="btn btn-primary rounded mx-2">Request from User</button>
+                        class="btn btn-primary rounded">Request from User</button>
                       <button type="button"
-                        class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('payment-info')">Proceed to
+                        class="btn btn-primary rounded" x-on:click="$wire.switch('payment-info')">Proceed to
                       Payment</button>
                     </div>
                   </div>
@@ -1078,12 +1078,12 @@
                   <!-- /Add Document -->
                 </div>
               </div>
-              <div class="col-12 justify-content-center form-actions d-flex">
+              <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                 <button type="button"
-                  class="btn btn-outline-dark rounded me-1" x-on:click="$wire.switch('request-details')">Back</button>
-                  <button type="submit" class="btn btn-primary rounded mx-2">Save as Draft</button>
+                  class="btn btn-outline-dark rounded" x-on:click="$wire.switch('request-details')">Back</button>
+                  <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                   <button type="button"
-                  class="btn btn-primary rounded mx-2" x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
+                  class="btn btn-primary rounded" x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
               </div>
             </div>
             <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}" id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
@@ -1495,7 +1495,7 @@
                   </div>
                 </div>
                 <!-- /Checkbox Options -->
-                <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                   <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('payment-info')">Back</button>
                   <button type="" class="btn btn-primary rounded">Save as Draft</button>
                   <button type="" class="btn btn-primary rounded">Request Feedback</button>
