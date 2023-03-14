@@ -171,6 +171,7 @@ Route::group([
 				Route::view('/pending-review', 'tenant/customer/pending-review');
 				Route::view('/drive', 'tenant/customer/drive');
 				Route::view('/system-logs', 'tenant/customer/system-logs');
+                Route::view('/invoices', 'tenant/customer/invoices');
 			  });
 		});
 
