@@ -164,15 +164,20 @@ Route::group([
 		Route::middleware(['role:customer'])->group(function () {
 			Route::prefix('customer')->namespace('Customer')->group(function(){
 				Route::view('/dashboard', 'tenant/customer/dashboard');
-
-				Route::view('/chat', 'tenant/customer/chat');
-				Route::view('/set-availability', 'tenant/customer/set-availability');
-				Route::view('/reports', 'tenant/customer/reports');
-				Route::view('/pending-review', 'tenant/customer/pending-review');
-				Route::view('/drive', 'tenant/customer/drive');
-				Route::view('/system-logs', 'tenant/customer/system-logs');
+                Route::view('/chat', 'tenant/customer/chat');
+                Route::view('booking/booknow', 'tenant/customer/booking/service-request');
+                Route::view('/pending-reviews', 'tenant/customer/pending-reviews');
+                Route::view('/booking/today', 'tenant/customer/booking/booking-list', ["bookingType"=>"Today's"]);
+				Route::view('/booking/upcoming', 'tenant/customer/booking/booking-list', ["bookingType"=>"Upcoming"]);
+				Route::view('/booking/past', 'tenant/customer/booking/booking-list', ["bookingType"=>"Past"]);
+                Route::view('/booking/draft', 'tenant/customer/booking/booking-list', ["bookingType"=>"Draft"]);
                 Route::view('/invoices', 'tenant/customer/invoices');
                 Route::view('/payments-recepts', 'tenant/customer/payment-recepts');
+                Route::view('/payments-setting', 'tenant/customer/payment-setting');
+                Route::view('/myprofile', 'tenant/customer/myprofile');
+                Route::view('/system-logs', 'tenant/customer/system-logs');
+                Route::view('/settings', 'tenant/settings/notifications');
+                Route::view('/change-password', 'tenant/customer/change-password');
 			  });
 		});
 

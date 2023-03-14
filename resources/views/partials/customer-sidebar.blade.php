@@ -119,7 +119,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/customer/set-availability">
+                <a href="/customer/booking/booknow">
                     <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21">
                         <use xlink:href="/css/customer.svg#submit-icon"></use>
                     </svg>
@@ -127,7 +127,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/customer/pending-review">
+                <a href="/customer/pending-reviews">
 
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/customer.svg#pending-icon"></use>
@@ -144,7 +144,7 @@
                 </a>
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/booking/today">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#today-service-icon"></use>
@@ -155,7 +155,7 @@
                 </ul>
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/booking/upcoming">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#upcomming-service"></use>
@@ -166,7 +166,7 @@
                 </ul>
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/booking/past">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#draft-service-icon"></use>
@@ -177,7 +177,7 @@
                 </ul>
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/booking/draft">
                             <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -225,7 +225,7 @@
                 </ul>
                 <ul role="menu" class="menu-content" id="Billing">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/payments-setting">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#payment-recept"></use>
@@ -244,7 +244,7 @@
                 </a>
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/myprofile">
                             <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/sprite.svg#mypro-icon"></use>
@@ -303,7 +303,7 @@
                 </a>
                 <ul role="menu" class="menu-content" id="Settings">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/settings">
                             <svg class="fill-none" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#notification-icon-sidebar"></use>
@@ -314,7 +314,7 @@
                 </ul>
                 <ul role="menu" class="menu-content" id="Settings">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/change-password">
                             <svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#reset-password-icon"></use>
