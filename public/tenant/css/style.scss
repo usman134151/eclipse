@@ -1355,7 +1355,9 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 		&:hover * {
 			color: #ffffff;
 		}
-		&:hover .badge {
+	}
+	&:hover {
+		.badge {
 			color: $primary;
 		}
 	}
