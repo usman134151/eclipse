@@ -408,6 +408,11 @@ h1, h2, h3, h4, h5, h6 {
       color: #ffffff; }
       .nav-tabs li.nav-item .nav-link.active svg path {
         fill: #ffffff !important; }
+      .nav-tabs li.nav-item .nav-link.active:hover {
+        background-color: #0A1E46;
+        color: #ffffff; }
+        .nav-tabs li.nav-item .nav-link.active:hover svg path {
+          fill: #ffffff !important; }
     .nav-tabs li.nav-item .nav-link:hover {
       color: #023DB0; }
       .nav-tabs li.nav-item .nav-link:hover svg path {
