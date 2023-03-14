@@ -1470,7 +1470,7 @@
                 </div>
                 <!-- /Assign Admin-Staff & admin-Staff Team -->
                 <!-- Checkbox Options -->
-                <div class="d-grid grid-cols-3 sm:grid-cols-1 gap-2 my-5 col-lg-10">
+                <div class="d-grid lg:grid-cols-3 sm:grid-cols-2 gap-2 my-5 col-lg-10">
                   <div class="form-check">
                     <input class="form-check-input" id="ExcludeAllNotifications" name="" type="checkbox" tabindex="">
                     <label class="form-check-label form-check-label-sm fw-semibold" for="ExcludeAllNotifications">Exclude All Notifications</label>
@@ -1502,7 +1502,7 @@
                   <button type="" class="btn btn-primary rounded">Save as Draft</button>
                   <button type="" class="btn btn-primary rounded">Request Feedback</button>
                   <div class="dropdown">
-                    <button type="" class="btn btn-primary rounded dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Confirm</button>
+                    <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">Confirm</button>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
                       <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
