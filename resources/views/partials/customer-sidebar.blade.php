@@ -214,7 +214,7 @@
                 </ul>
                 <ul role="menu" class="menu-content" id="Billing">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/payments-recepts">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#payment-recept"></use>

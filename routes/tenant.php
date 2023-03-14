@@ -172,6 +172,7 @@ Route::group([
 				Route::view('/drive', 'tenant/customer/drive');
 				Route::view('/system-logs', 'tenant/customer/system-logs');
                 Route::view('/invoices', 'tenant/customer/invoices');
+                Route::view('/payments-recepts', 'tenant/customer/payment-recepts');
 			  });
 		});
 
