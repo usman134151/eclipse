@@ -233,7 +233,7 @@
                                 </nav>
                             </div>
                             {{-- icon legend bar start --}}
-                            <div class="d-flex actions gap-3 justify-content-end mb-2">
+                            <div class="d-flex actions gap-3 justify-content-md-end mb-2">
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="Edit" aria-label="Edit Booking" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Assign Provider" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"

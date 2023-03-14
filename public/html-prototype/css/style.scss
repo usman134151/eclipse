@@ -198,16 +198,23 @@ h1, h2, h3, h4, h5, h6 {
 				transition: all 0.3s ease-in-out;
 			}
 			&.active {
-				color: $actual_blue;
-				svg path {
-					fill: $primary !important;
-				}
-			}
-			&:hover {
 				background-color: $primary;
 				color: #ffffff;
 				svg path {
 					fill: #ffffff !important;
+				}
+				&:hover {
+					background-color: $primary;
+					color: #ffffff;
+					svg path {
+						fill: #ffffff !important;
+					}
+				}
+			}
+			&:hover {
+				color: $actual_blue;
+				svg path {
+					fill: $primary !important;
 				}
 			}
 		}
@@ -263,6 +270,7 @@ h1, h2, h3, h4, h5, h6 {
 				}
 				&.active {
 					color: $actual_blue;
+					background: none;
 				}
 				&:hover {
 					background-color: transparent;
@@ -807,6 +815,9 @@ div[data-bs-toggle="collapse"] {
 }
 
 @media (min-width: 640px) {
+	.sm\:grid-cols-1 {
+	   grid-template-columns: repeat(1,minmax(0,1fr));
+	}
 	.sm\:grid-cols-2 {
 	   grid-template-columns: repeat(2,minmax(0,1fr));
 	}
@@ -1345,6 +1356,11 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 			color: #ffffff;
 		}
 	}
+	&:hover {
+		.badge {
+			color: $primary;
+		}
+	}
 }
 
 
@@ -1584,4 +1600,28 @@ footer.footer {
 	@media (max-width: 991px) {
 		margin-left: 0;
 	}
+}
+
+swal-button {
+    background-color: #0a1e46 !important;
+}
+
+.fc-prev-button .bi, .fc-next-button .bi{
+	height: auto;
+}
+
+.table-responsive {
+	margin: 1.5rem 0 !important;
+}
+
+#table-hover-row .card {
+	border: 0;
+}
+
+
+.form-actions .btn {
+	@media (min-width: 768px) and (max-width: 991px) {
+		padding: 0.7rem 1rem;
+	    line-height: 1;
+    }
 }
