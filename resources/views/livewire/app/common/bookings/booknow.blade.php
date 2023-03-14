@@ -1066,11 +1066,11 @@
                     </div>
                     <div class="row">
                       <div class="col-2">
-                        <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+                        <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
                         <p class="font-family-secondary"><small>File Name</small></p>
                       </div>
                       <div class="col-2">
-                        <img src="images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
+                        <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
                         <p class="font-family-secondary"><small>File Name</small></p>
                       </div>
                     </div>
