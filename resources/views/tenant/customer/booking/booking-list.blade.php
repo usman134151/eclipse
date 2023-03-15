@@ -37,6 +37,7 @@
         Scheduled Services
     </a>
 </div>
+
 @livewire('app.common.bookings.booking-list', ['bookingType'=>$bookingType])
 {{-- End: Content --}}
 @endsection
