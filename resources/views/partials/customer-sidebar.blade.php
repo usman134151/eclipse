@@ -255,7 +255,7 @@
                 </ul>
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/company-profile">
                             <svg class="fill-none" width="19" height="18" viewBox="0 0 19 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#company-profile"></use>
