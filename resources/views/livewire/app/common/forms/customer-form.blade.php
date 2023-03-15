@@ -722,7 +722,7 @@
 														<div class="card">
 															<div class="card-body shadow-sm">
 																<input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
-																<div class="overflow-y-auto max-h-56">
+																<div class="overflow-y-auto max-h-30rem">
 																	<table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
 																		<tbody>
 																			<tr role="row" class="odd">
@@ -800,7 +800,7 @@
 													<div class="card">
 														<div class="card-body shadow-sm">
 															<input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
-															<div class="overflow-y-auto max-h-56">
+															<div class="overflow-y-auto max-h-30rem">
 																<table id="" class="table table-hover" aria-label="Select Service Table">
 																	<tbody>
 																		<tr role="row" class="odd">
@@ -1020,7 +1020,7 @@
 										</div>
 									</div>
 									{{-- Action Buttons Start --}}
-									<div class="col-12 justify-content-center form-actions d-flex gap-3">
+									<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('permission-configurations')">
 											Back
 										</button>
