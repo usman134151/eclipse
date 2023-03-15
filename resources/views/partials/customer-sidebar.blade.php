@@ -223,7 +223,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul role="menu" class="menu-content" id="Billing">
+                {{-- <ul role="menu" class="menu-content" id="Billing">
                     <li role="menuitem" class="nav-item">
                         <a class="nav-link" href="/customer/payments-setting">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
@@ -233,7 +233,7 @@
                             <span class="menu-item">Payment Settings</span>
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
             </li>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
@@ -255,7 +255,7 @@
                 </ul>
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/company-profile">
                             <svg class="fill-none" width="19" height="18" viewBox="0 0 19 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#company-profile"></use>

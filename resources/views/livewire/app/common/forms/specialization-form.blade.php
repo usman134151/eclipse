@@ -7,7 +7,7 @@
                     <form class="form">
                       <div class="row">
                         <div class="col-md-12 mb-md-2">
-                          <h1>Add Specialization</h1>
+                          <h1>{{$label}} Specialization</h1>
                           <p>Create a specialization to add to your service catalog.</p>
                           <div class="row">
                             <div class="col-12">

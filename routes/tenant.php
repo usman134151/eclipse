@@ -175,6 +175,7 @@ Route::group([
                 Route::view('/payments-recepts', 'tenant/customer/payment-recepts');
                 Route::view('/payments-setting', 'tenant/customer/payment-setting');
                 Route::view('/myprofile', 'tenant/customer/myprofile');
+                Route::view('/company-profile', 'tenant/customer/company-profile');
                 Route::view('/system-logs', 'tenant/customer/system-logs');
                 Route::view('/settings', 'tenant/settings/notifications');
                 Route::view('/change-password', 'tenant/customer/change-password');

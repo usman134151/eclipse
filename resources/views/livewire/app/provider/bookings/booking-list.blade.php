@@ -605,7 +605,7 @@
           <!-- /Today's Assignment -->
         </div>
       </div>
-	  @include('panels.Provider.check-in')
-	  @include('panels.Provider.check-out')
+	  @include('panels.provider.check-in')
+	  @include('panels.provider.check-out')
 	  @include('modals.common.running-late')
 </div>

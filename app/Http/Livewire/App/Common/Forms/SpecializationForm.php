@@ -9,6 +9,7 @@ use Livewire\Component;
 class SpecializationForm extends Component
 {
     public $specialization;
+    public $label="Add";
     protected $listeners = ['editRecord' => 'edit'];
 
 
@@ -32,8 +33,10 @@ class SpecializationForm extends Component
     }
 
     public function edit(Specialization $specialization){
-       $this->specialization=$specialization;
-       //dd($this->specialization);
+        $this->label="Edit";
+        $this->specialization=$specialization;
+        
+       
     }
 
     public function save(){
@@ -46,7 +49,7 @@ class SpecializationForm extends Component
 
     public function render()
     {
-        
+
         return view('livewire.app.common.forms.specialization-form');
     }
 

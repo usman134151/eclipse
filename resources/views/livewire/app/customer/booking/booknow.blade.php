@@ -236,8 +236,22 @@
                                             </div>
                                             <h2 class="mb-lg-0">Add Consumers & Participants</h2>
                                         </div>
+                                        <div class="row mb-4 d-flex">
+                                            <div class="col-lg-11 align-self-center d-flex">
+                                                <h2 class="mb-lg-0">Services 2</h2>
+                                            </div>
+                                            <div class="col-lg" style="margin-left: 37px">
+                                                <a href="#" title="Edit Company" aria-label="Edit Company"
+                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/customer.svg#delete-icon"></use>
+                                                </svg>
+                                                </a>
 
-                                        <h2>Services 2</h2>
+                                            </div>
+                                        </div>
+
                                         <div class="row">
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Accommodation <span
@@ -267,7 +281,8 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input" id="Virtual" name=""
                                                             type="radio" tabindex="" />
-                                                        <label class="form-check-label" for="Virtual"> Virtual</label>
+                                                        <label class="form-check-label" for="Virtual">
+                                                            Virtual</label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" id="Phone" name="" type="radio"
@@ -424,6 +439,7 @@
                                                     <div class="col-lg-6 align-self-center">
                                                         <h2 class="mb-lg-0">Meeting Information</h2>
                                                     </div>
+
                                                     <div class="col-lg-6">
                                                         <div class="row">
                                                             <div class="col-lg-6">
@@ -449,25 +465,12 @@
                                                 </div>
 
                                                 <div class="row border-dashed rounded p-3 mb-3">
-                                                    <div class="row mb-4">
-                                                        <div class="col-lg-6 align-self-center">
+                                                    <div class="row mb-4 d-flex">
+                                                        <div class="col-lg-11 align-self-center d-flex">
                                                             <h2 class="mb-lg-0">Meeting Link 1</h2>
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
 
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <svg  width="21" height="21" viewBox="0 0 21 21"  fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <use xlink:href="/css/customer.svg#delete-icon"></use>
-                                                                </svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                    <h2>Meeting Link 1</h2>
                                                     <div class="row">
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label">Meeting
@@ -490,7 +493,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="row border-dashed rounded p-3 mb-3">
-                                                    <h2>Meeting Link 2</h2>
+                                                    <div class="row mb-4 d-flex">
+                                                        <div class="col-lg-11 align-self-center d-flex">
+                                                            <h2 class="mb-lg-0">Meeting Link 2</h2>
+                                                        </div>
+                                                        <div class="col-lg" style="margin-left: 37px">
+                                                            <a href="#" title="Edit Company" aria-label="Edit Company"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <use xlink:href="/css/customer.svg#delete-icon"></use>
+                                                            </svg>
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label">Meeting
@@ -511,20 +528,23 @@
                                                                 placeholder="Enter Access Code">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row justify-content-end">
-                                                    <div class="col-lg-2">
-                                                        <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
-                                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                    d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                                                                    fill="white" />
-                                                            </svg>
-                                                            Add Link
-                                                        </a>
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-lg-2">
+                                                            <a href="#"
+                                                                class="btn btn-primary rounded btn-has-icon w-100">
+                                                                <svg width="20" height="20" viewBox="0 0 20 20"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                        d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                Add Link
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -550,7 +570,12 @@
                                     <h2>Select Dates & Times</h2>
                                     <!-- Select Dates & Times Duplicate Block -->
                                     <div class="duplicate-block">
-                                        <h2>Date & Time 1</h2>
+                                        <div class="row mb-4 d-flex">
+                                            <div class="col-lg-11 align-self-center d-flex">
+                                                <h2 class="mb-lg-0">Date & Time 1</h2>
+                                            </div>
+
+                                        </div>
                                         <div class="d-lg-flex gap-5 mb-4">
                                             <div class="col-lg-3">
                                                 <label class="form-label-sm" for="set_time_zone">Set
@@ -577,7 +602,8 @@
                                             </div>
                                             <div class="d-flex">
                                                 <div class="d-flex flex-column justify-content-between">
-                                                    <label class="form-label-sm" for="set_start_time">Start Time</label>
+                                                    <label class="form-label-sm" for="set_start_time">Start
+                                                        Time</label>
                                                     <div class="d-flex gap-2">
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <div class="hours">12</div>
@@ -670,7 +696,21 @@
                                 <div class="col-lg-12 mb-4">
                                     <!-- Select Dates & Times Duplicate Block -->
                                     <div class="duplicate-block">
-                                        <h2>Date & Time 2</h2>
+                                        <div class="row mb-4 d-flex">
+                                            <div class="col-lg-11 align-self-center d-flex">
+                                                <h2 class="mb-lg-0">Date & Time 2</h2>
+                                            </div>
+                                            <div class="col-lg" style="margin-left: 37px">
+                                                <a href="#" title="Edit Company" aria-label="Edit Company"
+                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/customer.svg#delete-icon"></use>
+                                                </svg>
+                                                </a>
+
+                                            </div>
+                                        </div>
                                         <div class="d-lg-flex gap-5 mb-4">
                                             <div class="col-lg-3">
                                                 <label class="form-label-sm" for="set_time_zone">Set
@@ -697,7 +737,8 @@
                                             </div>
                                             <div class="d-flex">
                                                 <div class="d-flex flex-column justify-content-between">
-                                                    <label class="form-label-sm" for="set_start_time">Start Time</label>
+                                                    <label class="form-label-sm" for="set_start_time">Start
+                                                        Time</label>
                                                     <div class="d-flex gap-2">
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <div class="hours">12</div>
@@ -1027,14 +1068,11 @@
                             <div class="col-lg-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <a href="#"
-                                            class="btn btn-primary rounded w-100 btn-has-icon">
-                                            <svg width="22" height="18" viewBox="0 0 24 19"
-                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2 10.4062L8.66667 17.4062L22 2.40625"
-                                                    stroke="white" stroke-width="3"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round" />
+                                        <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
+                                            <svg width="22" height="18" viewBox="0 0 24 19" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2 10.4062L8.66667 17.4062L22 2.40625" stroke="white"
+                                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                             Add Manually
                                         </a>
@@ -1288,6 +1326,7 @@
                         <!-- Services 2 -->
                         <div class="my-5">
                             <h2>Services 2</h2>
+
                             <div class="d-flex flex-column gap-3">
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -1459,12 +1498,14 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-9 align-self-center">
-                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,500.00</div>
+                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,500.00
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-2">
-                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">Discount:</div>
+                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">Discount:
+                                        </div>
                                     </div>
                                     <div class="col-lg-9 align-self-center">
                                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">$00.00</div>
@@ -1472,10 +1513,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-2">
-                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">Net Total:</div>
+                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">Net Total:
+                                        </div>
                                     </div>
                                     <div class="col-lg-9 align-self-center">
-                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,596.00</div>
+                                        <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,596.00
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1506,4 +1549,3 @@
 
 
 </div>
-
