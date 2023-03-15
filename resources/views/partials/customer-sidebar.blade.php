@@ -264,7 +264,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul role="menu" class="menu-content" id="Profile">
+                {{-- <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item">
                         <a class="nav-link" href="#">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,10 +273,10 @@
                             <span class="menu-item">Departments</span>
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/customer/add-team">
                             <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/customer.svg#add-team-icon"></use>
