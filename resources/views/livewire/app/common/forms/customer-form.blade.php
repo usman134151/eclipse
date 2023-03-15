@@ -1050,8 +1050,8 @@
 												<div class="row">
 													<div class="col-md-12 mb-md-2">
 														<div class="row justify-content-center">
-															<div class="col-lg-8">
-																<div class="d-flex flex-column align-items-center justify-content-center mb-3">
+															<div class="col-md-8">
+																<div class="d-flex flex-column align-items-md-center justify-content-md-center mb-3">
 																	<label for="formFile" class="form-label">
 																		Upload Document
 																	</label>
@@ -1059,7 +1059,7 @@
 																</div>
 															</div>
 														</div>
-														<div class="d-flex justify-content-center gap-3 mt-4">
+														<div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
 															<div>
 																<img src="/tenant/images/img-placeholder-document.jpg"/>
 																<p>File Name</p>
@@ -1075,7 +1075,7 @@
 														</div>
 													</div>
 													{{-- Action Buttons Start --}}
-													<div class="col-12 justify-content-center form-actions d-flex gap-3">
+													<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 														<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-catalog')">
 															Back
 														</button>
