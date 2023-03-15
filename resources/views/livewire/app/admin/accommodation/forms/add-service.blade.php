@@ -1,5 +1,5 @@
 <div>
-  <!-- BEGIN: Content-->
+  <!-- BEGIN: Content--> 
      <div class="content-header row">
        <div class="content-header-left col-md-9 col-12 mb-2">
          <div class="row breadcrumbs-top">
@@ -64,15 +64,15 @@
                <div class="row">
                  <div class="col-lg-6">
                    <div class="mb-4">
-                     <label class="form-label" for="service-name">
+                     <label class="form-label" for="serviceName">
                      Service Name <span class="mandatory">*</span>
                      </label>
                      <input
                        type="text"
-                       id="service-name"
+                       id="serviceName"
                        class="form-control"
-                       name="service-name"
-                       placeholder="Company"
+                       name="serviceName"
+                       placeholder="Enter Service Name"
                        />
                    </div>
                  </div>
@@ -126,8 +126,8 @@
                        <label class="form-check-label" for="one-time-request">One-Time Request</label>
                      </div>
                      <div class="form-check">
-                       <input class="form-check-input" id="Daily" name="Daily" type="checkbox" tabindex="" />
-                       <label class="form-check-label" for="Daily"> Daily</label>
+                       <input class="form-check-input" id="Daily-frequency" name="" type="checkbox" tabindex="" />
+                       <label class="form-check-label" for="Daily-frequency"> Daily</label>
                      </div>
                      <div class="form-check">
                        <input class="form-check-input" id="Weekly" name="Weekly" type="checkbox" tabindex="" />
@@ -164,6 +164,23 @@
                      </div>
                    </div>
                  </div>
+                 <div class="col-12">
+                  <div class="mb-4">
+                    <h2 class="mb-4">Display Service in</h2>
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" id="newProviderApplicationForm" name="" type="checkbox" tabindex="" />
+                      <label class="form-check-label" for="newProviderApplicationForm">New Provider Application Form</label>
+                    </div>
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" id="CustomerQuoteRequestForm" name="" type="checkbox" tabindex="" />
+                      <label class="form-check-label" for="CustomerQuoteRequestForm"> Customer Quote Request Form</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="DisableserviceForCompanies" name="" type="checkbox" tabindex="" />
+                      <label class="form-check-label" for="DisableserviceForCompanies"> Disable service for Companies by Default</label>
+                    </div>  
+                  </div>
+                </div>
                  <div class="col-lg-12 mb-5">
                    <h2>Standard Rates</h2>
                    <div class="row justify-content-between">
@@ -1308,6 +1325,14 @@
                                        Apply too
                                      </label>
                                      <div class="d-grid grid-cols-2 gap-1">
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-duration" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-duration">X by Duration</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-providers" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-providers">X by No. of Providers</label>
+                                      </div>
                                        <div class="form-check form-check-inline">
                                          <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                                          <label class="form-check-label" for="">Cancellations</label>
@@ -1374,6 +1399,14 @@
                                        Apply too
                                      </label>
                                      <div class="d-grid grid-cols-2 gap-1">
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-duration" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-duration">X by Duration</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-providers" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-providers">X by No. of Providers</label>
+                                      </div>
                                        <div class="form-check form-check-inline">
                                          <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                                          <label class="form-check-label" for="">Cancellations</label>
@@ -1447,6 +1480,14 @@
                                        Apply too
                                      </label>
                                      <div class="d-grid grid-cols-2 gap-1">
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-duration" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-duration">X by Duration</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-providers" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-providers">X by No. of Providers</label>
+                                      </div>
                                        <div class="form-check form-check-inline">
                                          <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                                          <label class="form-check-label" for="">Cancellations</label>
@@ -1513,6 +1554,14 @@
                                        Apply too
                                      </label>
                                      <div class="d-grid grid-cols-2 gap-1">
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-duration" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-duration">X by Duration</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="x-by-providers" name="" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="x-by-providers">X by No. of Providers</label>
+                                      </div>
                                        <div class="form-check form-check-inline">
                                          <input class="form-check-input" id="" name="" type="checkbox" tabindex="" />
                                          <label class="form-check-label" for="">Cancellations</label>
