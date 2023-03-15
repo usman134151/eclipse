@@ -508,8 +508,8 @@
 														</label>
 													</div>
 												</div>
-												<div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
-													<div class="form-check mb-lg-0">
+												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
+													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="Supervisor" checked>
 														<label class="form-check-label" for="Supervisor">
 															Supervisor
@@ -529,8 +529,8 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-12 mb-4 d-lg-flex gap-5">
-													<div class="form-check mb-lg-0">
+												<div class="col-lg-12 mb-4 d-md-flex gap-5">
+													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="Requester" checked>
 														<label class="form-check-label" for="Requester">
 															Requester
@@ -568,8 +568,8 @@
 													</div>
 												</div>
 												
-												<div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
-													<div class="form-check mb-lg-0">
+												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
+													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="BillingManager" checked>
 														<label class="form-check-label" for="BillingManager">
 															Billing Manager
@@ -686,7 +686,7 @@
 										</div>
 									</div>
 									{{-- Action Buttons Start --}}
-									<div class="col-12 justify-content-center form-actions d-flex gap-3">
+									<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('customer-info')">
 											Back
 										</button>
