@@ -649,13 +649,13 @@
             <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info" role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
               <h2>Payment Summary</h2>
               <div class="row">
-                <div class="col-lg-6 mb-4 pe-lg-5 float-left pt-5">
+                <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
                   <div class="col-lg-10 mb-5">
                     <div class="d-flex flex-column gap-5">
                       <div class="row">
                         <label class="form-label mb-2 col-lg-6">Service 1 Total Rate:</label>
-                        <label class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
-                        <div class="col-lg-3 col-md-6">
+                        <label class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">$00.00</label>
+                        <div class="col-lg-3 col-6">
                           <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                         </div>
                       </div>
@@ -679,24 +679,24 @@
                     <h2>Discounts</h2>
                     <div class="d-flex gap-3 flex-column flex-md-row mb-4">
                       <div class="form-check mb-0">
-                        <input class="form-check-input" id="Coupon" name="discounts" type="radio" tabindex="" checked />
+                        <input class="form-check-input" id="Coupon" name="discounts" type="radio" tabindex="" checked="">
                         <label class="form-check-label" for="Coupon">Coupon</label>
                       </div>
                       <div class="form-check mb-0">
-                        <input class="form-check-input" id="$Amount" name="discounts" type="radio" tabindex="" />
+                        <input class="form-check-input" id="$Amount" name="discounts" type="radio" tabindex="">
                         <label class="form-check-label" for="$Amount">$ Amount</label>
                       </div>
                       <div class="form-check mb-0">
-                        <input class="form-check-input" id="%Amount" name="discounts" type="radio" tabindex="" />
+                        <input class="form-check-input" id="%Amount" name="discounts" type="radio" tabindex="">
                         <label class="form-check-label" for="%Amount">% Amount</label>
                       </div>
                     </div>
                     <div class="row mb-4">
-                      <label class="form-label mb-lg-0 col-lg-5 align-self-center">Coupon Code</label>
-                      <div class="col-lg-4 mb-3 mb-md-0">
+                      <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center">Coupon Code</label>
+                      <div class="col-lg-4 col-md-3 mb-3 mb-md-0">
                         <input type="" name="" class="form-control form-control-md" placeholder="Enter Code">
                       </div>
-                      <div class="col-lg-3 align-self-center">
+                      <div class="col-md-3 align-self-center">
                         <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                       </div>
                     </div>
@@ -712,7 +712,7 @@
                         <small>
                           Add Additional  Charges
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"></path>
                           </svg>
                         </small>
                       </a>
@@ -724,30 +724,31 @@
                       <input type="" name="" class="form-control form-control-md" placeholder="Enter Charge Label">
                       <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="" />
+                        <input class="form-check-input" id="ChargetoCustomer" name="" type="checkbox" tabindex="">
                         <label class="form-check-label" for="ChargetoCustomer"><small>Charge to Customer</small></label>
                       </div>
                       <a href="#" class="fw-bold">
                         <small>
                           Add Additional  Charges
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"></path>
                           </svg>
                         </small>
                       </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 mb-4 ps-lg-5 float-right">
+                <div class="col-lg-6 ps-lg-5 d-md-flex flex-md-wrap" style="
+                  ">
                   <!-- Booking Schedule -->
-                  <div class="border p-3 tabular-nums mb-5">
+                  <div class="col-md-12 border p-3 tabular-nums mb-lg-5 mb-4">
                     <div class="text-center">
                       <h3 class="text-primary">Booking Schedule</h3>
                     </div>
                     <div class="row">
-                      <div class="col-lg-6 mb-3 mb-lg-0">
+                      <div class="col-md-6 mb-3 mb-lg-0">
                         <div class="title">Service 1 Bookings</div>
                         <div class="d-flex flex-column gap-3">
                           <div class="row">
@@ -792,7 +793,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6">
+                      <div class="col-md-6">
                         <div class="title">Service 2 Bookings</div>
                         <div class="d-flex flex-column gap-3">
                           <div class="row">
@@ -849,17 +850,17 @@
                   </div>
                   <!-- /Booking Schedule -->
                   <!-- Billing Notes -->
-                  <div class="my-5">
+                  <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-0">
                     <label class="form-label">
-                      Billing Notes
+                    Billing Notes
                     </label>
                     <textarea class="form-control" rows="5" cols="5"></textarea>
                   </div>
                   <!-- /Billing Notes -->
                   <!-- Payment Notes -->
-                  <div class="my-5">
+                  <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
                     <label class="form-label">
-                      Payment Notes
+                    Payment Notes
                     </label>
                     <textarea class="form-control" rows="5" cols="5"></textarea>
                   </div>
@@ -955,80 +956,14 @@
                     <div class="col-lg-6 mb-4">
                       <!-- Tags -->
                       <div class="my-lg-5">
-                        <label class="form-label">
+                        <label class="form-label" for="tags">
                           Tags
                         </label>
-                        <select x-cloak id="select">
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
-                          <option value="4">Option 4</option>
-                          <option value="5">Option 5</option>
+                        <select data-placeholder="" multiple class="form-select chosen-select" tabindex="" id="tags">
+                          <option value=""></option>
+                          <option selected>Option 1</option>
+                          <option selected>Option 2</option>
                         </select>
-
-                        <div x-data="dropdown()" x-init="loadOptions()" class="form-control multi-select-dropdown mb-2">
-                          <input name="values" type="hidden" x-bind:value="selectedValues()">
-                          <div class="inline-block position-relative w-100">
-                            <div class="d-flex flex-column align-items-center position-relative">
-                              <div x-on:click="open" class="w-100">
-                                <div class="d-flex justify-content-between">
-                                  <div class="d-flex flex-auto flex-wrap gap-2">
-                                    <template x-for="(option,index) in selected" :key="options[option].value">
-                                      <div class="d-flex justify-content-center align-items-center py-1 px-1 bg-white rounded border">
-                                        <div class="text-xs font-normal leading-none max-w-full flex-initial x-model=" options[option] x-text="options[option].text"></div>
-                                        <div class="d-flex flex-auto flex-row-reverse">
-                                          <div class="btn btn-hs-icon p-0" x-on:click.stop="remove(index,option)">
-                                            <svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
-                                              <path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0 c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183 l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15 C14.817,13.62,14.817,14.38,14.348,14.849z" />
-                                            </svg>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </template>
-                                    <div x-show="selected.length == 0" class="flex-1">
-                                      <input placeholder="Select a option" class="form-control border-0 p-0" x-bind:value="selectedValues()">
-                                    </div>
-                                  </div>
-                                  <div class="svelte-1l8159u d-flex align-items-center">
-
-                                    <button type="button" x-show="isOpen() === true" x-on:click="open" class="btn btn-hs-icon p-0">
-                                      <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
-                                        <path d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83 c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z " />
-                                      </svg>
-
-                                    </button>
-                                    <button type="button" x-show="isOpen() === false" @click="close" class="btn btn-hs-icon p-0">
-                                      <svg version="1.1" class="fill-current h-4 w-4" viewBox="0 0 20 20">
-                                        <path d="M17.418,6.109c0.272-0.268,0.709-0.268,0.979,0s0.271,0.701,0,0.969l-7.908,7.83 c-0.27,0.268-0.707,0.268-0.979,0l-7.908-7.83c-0.27-0.268-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.979,0L10,13.25 L17.418,6.109z" />
-                                      </svg>
-
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="w-100 px-0">
-                                <div x-show.transition.origin.top="isOpen()" class="position-absolute shadow top-100 bg-white z-40 w-100 left-0 rounded max-h-select" x-on:click.away="close">
-                                  <div class="d-flex flex-column w-100 overflow-y-auto options-container">
-                                    <template x-for="(option,index) in options" :key="option" class="overflow-auto">
-                                      <div class="cursor-pointer w-100 border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-                                        <div class="d-flex w-100 items-center p-2 pl-2 border-transparent border-l-2 relative">
-                                          <div class="w-100 d-flex justify-content-between align-items-center">
-                                            <div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
-                                            <div x-show="option.selected">
-                                              <svg class="svg-icon" viewBox="0 0 20 20">
-                                                <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087 C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087 L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-                                              </svg>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </template>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <div class="d-lg-flex flex-wrap gap-3 mb-3">
                           <div class="tag">@admin_company</div>
                           <div class="tag">@booking_start_at</div>
@@ -1056,7 +991,7 @@
                   </div>
                   <!-- Add Document -->
                   <div class="row">
-                    <div class="col-lg-3 mb-4">
+                    <div class="col-lg-3 col-md-5 mb-4">
                       <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"></path>
@@ -1065,11 +1000,11 @@
                       </a>
                     </div>
                     <div class="row">
-                      <div class="col-2">
+                      <div class="col-6 col-md-3 col-lg-2">
                         <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
                         <p class="font-family-secondary"><small>File Name</small></p>
                       </div>
-                      <div class="col-2">
+                      <div class="col-6 col-md-3 col-lg-2">
                         <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="w-100">
                         <p class="font-family-secondary"><small>File Name</small></p>
                       </div>
