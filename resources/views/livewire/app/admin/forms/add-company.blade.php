@@ -1,6 +1,6 @@
 <div x-data="{customers: false}">
 	<div class="content-header row">
-		<div class="content-header-left col-md-9 col-12 mb-5">
+		<div class="content-header-left col-12 mb-5">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
 					<h1 class="content-header-title float-start mb-0">
@@ -78,12 +78,12 @@
 												</div>
 											</div>
 											<div class="row">
-												<div class="col-md-8 mb-md-2">
+												<div class="col-lg-12 mb-md-2">
 													<h2>Company Info</h2>
 												</div>
 												
 												{{-- Company --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 pe-lg-5 col-12">
 													<div class="mb-2">
 														<label class="form-label" for="company-name">
 															Company Name
@@ -94,15 +94,17 @@
 														<input type="text" id="company-name" class="form-control" name="company-name" placeholder="Enter Company Name" required aria-required="true"/>
 													</div>
 													<div class="mb-4">
-														<input class="form-check-input" type="checkbox" value="hide-user-details-providers" id="hide-user-details-providers">
-														<label class="form-check-label" for="hide-user-details-providers">
-															Hide All Comapny Users' Details from Providers
-														</label>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="hide-user-details-providers" id="hide-user-details-providers">
+															<label class="form-check-label" for="hide-user-details-providers">
+																Hide All Comapny Users' Details from Providers
+															</label>
+														</div>
 													</div>
 												</div>
 
 												{{-- Industry --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 ps-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="industry-column">
 															Industry
@@ -118,7 +120,7 @@
 
 												{{-- Department Website --}}
 												<div class="row">
-													<div class="col-md-6 col-12">
+													<div class="col-lg-6 pe-lg-5 col-12">
 														<div class="mb-4">
 															<label class="form-label" for="company-website">
 																Company Website
@@ -129,7 +131,7 @@
 												</div>
 
 												{{-- Department Business Hours --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 pe-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="department-business-hours">Manage Company Business Hours</label>
 														<div class="mb-1">
@@ -142,7 +144,7 @@
 												</div>
 
 												{{-- Preferred Language --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 ps-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="preferred-language">
 															Preferred Language
@@ -156,7 +158,7 @@
 												</div>
 
 												{{-- Service Start Date --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 pe-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="service-start-date">
 															Service Start Date
@@ -171,7 +173,7 @@
 												</div>
 
 												{{-- Service End Date --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 ps-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="service-end-date">
 															Service End Date
@@ -186,7 +188,7 @@
 												</div>
 
 												{{-- Company Admin(s) --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 pe-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="company-manager">
 															Company Admin(s)
@@ -196,7 +198,7 @@
 												</div>
 
 												{{-- Associated Tags --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 ps-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="associated-tags">
 															Associated Tags
@@ -206,7 +208,7 @@
 												</div>
 
 												{{-- Preferred Providers --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 pe-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="preferred-providers">
 															Preferred Providers
@@ -220,7 +222,7 @@
 												</div>
 
 												{{-- Disfavored Providers --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 ps-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="disfavored-providers">
 															Disfavored Providers
@@ -234,7 +236,7 @@
 												</div>
 
 												{{-- Default Invoice Template --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 pe-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="select-default-invoice-template">
 															Select Default Invoice Template
@@ -248,7 +250,7 @@
 												</div>
 
 												{{-- Select Default Quote Template --}}
-												<div class="col-md-6 col-12">
+												<div class="col-lg-6 ps-lg-5 col-12">
 													<div class="mb-4">
 														<label class="form-label" for="select-default-quote-template">
 															Select Default Quote Template
@@ -263,7 +265,7 @@
 
 												{{-- Select Default Timesheet --}}
 												<div class="row">
-														<div class="col-md-6 col-12">
+														<div class="col-lg-6 pe-lg-5 col-12">
 															<div class="mb-4">
 																<label class="form-label" for="select-default-timesheet">
 																	Select Default Timesheet
@@ -275,7 +277,7 @@
 																</select>
 															</div>
 														</div>
-														<div class="col-md-6 col-12">
+														<div class="col-lg-6 ps-lg-5 col-12">
 															<div class="mb-4">
 																<label class="form-label" for="tags-column">
 																	Tags
@@ -293,25 +295,21 @@
 												</div>
 												
 												<div class="row ms-1">
-													<div class="col-8 border">
-														<div class="row mt-3">
-															<div class="col-5">
-																<div class="mb-4">
+													<div class="col-lg-8 py-3 border">
+														<div class="row">
+															<div class="col-lg-5 col-md-4 mb-4 mb-md-0">
 																	<label class="form-label" for="title">
 																		Title
 																	</label>
 																	<input type="text" id="title" class="form-control" name="" placeholder="Enter Title"/>
-																</div>
 															</div>
-															<div class="col-5">
-																<div class="mb-4">
+															<div class="col-lg-5 col-md-4 mb-4 mb-md-0">
 																	<label class="form-label" for="phone">
 																		Phone Number
 																	</label>
 																	<input type="text" id="phone" class="form-control" name="" placeholder="Enter Phone Number"/>
-																</div>
 															</div>
-															<div class="col-2 mt-5">
+															<div class="col-lg-2 col-md-4 align-self-end">
 																<button class="btn btn-primary rounded">
 																	Add
 																</button>
@@ -319,7 +317,7 @@
 														</div>
 													</div>
 
-													<div class="col-md-8 d-flex justify-content-end col-8 md-2 mt-4 mb-4">
+													<div class="col-lg-8 d-flex justify-content-end md-2 mt-4 mb-4">
 														<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 																<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
@@ -330,152 +328,132 @@
 												</div>
 
 												{{-- Default Billing Address --}}
-												<div class="col-md-6 col-12 mt-4 mb-4">
-													<h3>Default Billing Address</h3>
-												</div>
-												
-												<div class="col-md-6 col-12 mt-4 mb-4">
-													<h3>Default Service Address</h3>
-												</div>
-												
-												<div class="col-md-6 col-12">
-													<div class="mb-4">
-														<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-															<x-icon name="plus"/>
-															<span>Add Address</span>
-														</button>
+												<div class="col-lg-12 mb-4">
+													<div class="row">
+														<div class="col-lg-6 pe-lg-5 mb-4">
+															<h2>Default Billing Address</h2>
+															<button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+																<x-icon name="plus"/>
+																<span>Add Address</span>
+															</button>
+															<table class="table table-hover border">
+																<thead>
+																	<th>#</th>
+																	<th>Address</th>
+																	<th></th>
+																</thead>
+																<tbody>
+																	<tr class="odd js-selected-row">
+																		<td>1</td>
+																		<td>
+																			<p>
+																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																			</p>
+																		</td>
+																		<td class="align-middle">
+																			<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																			</svg>
+																		</td>
+																	</tr>
+																	<tr class="even js-selected-row">
+																		<td>2</td>
+																		<td>
+																			<p>
+																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																			</p>
+																		</td>
+																		<td class="align-middle">
+																			<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																			</svg>
+																		</td>
+																	</tr>
+																	<tr class="odd js-selected-row">
+																		<td>3</td>
+																		<td>
+																			<p>
+																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																			</p>
+																		</td>
+																		<td class="align-middle">
+																			<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																			</svg>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+														
+														<div class="col-lg-6 ps-lg-5 mb-4">
+															<h2>Default Service Address</h2>
+															<div class="d-lg-flex justify-content-between align-items-center">
+																<div class="form-check mb-4">
+																	<input class="form-check-input" type="checkbox" value="" id="same-as-billing-address-checkbox">
+																	<label class="form-check-label" for="same-as-billing-address-checkbox">
+																		Same as Billing Address
+																	</label>
+																</div>
+																
+																<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2 mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+																	<x-icon name="plus"/>
+																	<span>Add Address</span>
+																</button>
+															</div>
+															<table class="table table-hover border">
+																<thead>
+																	<th>#</th>
+																	<th>Address</th>
+																	<th></th>
+																</thead>
+																<tbody>
+																	<tr class="odd js-selected-row">
+																		<td>1</td>
+																		<td>
+																			<p>
+																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																			</p>
+																		</td>
+																		<td class="align-middle">
+																			<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																			</svg>
+																		</td>
+																	</tr>
+																	<tr class="even js-selected-row">
+																		<td>2</td>
+																		<td>
+																			<p>
+																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																			</p>
+																		</td>
+																		<td class="align-middle">
+																			<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																			</svg>
+																		</td>
+																	</tr>
+																	<tr class="odd js-selected-row">
+																		<td>3</td>
+																		<td>
+																			<p>
+																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+																			</p>
+																		</td>
+																		<td class="align-middle">
+																			<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+																			</svg>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
 													</div>
 												</div>
 												
-												<div class="col-md-3 col-12">
-													<div class="mb-4">
-														<input class="form-check-input" type="checkbox" value="" id="same-as-billing-address-checkbox">
-														<label class="form-check-label" for="same-as-billing-address-checkbox">
-															Same as Billing Address
-														</label>
-													</div>
-												</div>
-												
-												<div class="col-md-3 col-12 text-end">
-													<div class="mb-4">
-														<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-															<x-icon name="plus"/>
-															<span>Add Address</span>
-														</button>
-													</div>
-												</div>
-												
-												<div class="col-md-12 d-flex col-12 mb-4 gap-4">
-													<div class="col-md-6 col-12 mb-4 border">
-														<table class="table table-hover">
-															<thead>
-																<th>#</th>
-																<th>Address</th>
-																<th></th>
-															</thead>
-															<tbody>
-																<tr class="odd">
-																	<td>1</td>
-																	<td>
-																		<p>
-																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-																		</p>
-																	</td>
-																	{{-- For active class row integrated with JS --}}
-																	<td class="allign-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-																		</svg>
-																	</td>
-																</tr>
-																<tr class="even">
-																	<td>2</td>
-																	<td>
-																		<p>
-																			Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA
-																		</p>
-																	</td>
-																	{{-- For active class row integrated with JS --}}
-																	<td class="allign-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-																		</svg>
-																	</td>
-																</tr>
-																<tr class="odd">
-																	<td>3</td>
-																	<td>
-																		<p>
-																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-																		</p>
-																	</td>
-																	{{-- For active class row integrated with JS --}}
-																	<td class="allign-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-																		</svg>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													
-													<div class="col-md-6 col-12 mb-4 border">
-														<table class="table table-hover">
-															<thead>
-																<th>#</th>
-																<th>Address</th>
-																<th></th>
-															</thead>
-															<tbody>
-																<tr class="odd">
-																	<td>1</td>
-																	<td>
-																		<p>
-																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-																		</p>
-																	</td>
-																	{{-- For active class row integrated with JS --}}
-																	<td class="allign-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-																		</svg>
-																	</td>
-																</tr>
-																<tr class="even">
-																	<td>2</td>
-																	<td>
-																		<p>
-																			Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA
-																		</p>
-																	</td>
-																	{{-- For active class row integrated with JS --}}
-																	<td class="allign-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-																		</svg>
-																	</td>
-																</tr>
-																<tr class="odd">
-																	<td>3</td>
-																	<td>
-																		<p>
-																			Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-																		</p>
-																	</td>
-																	{{-- For active class row integrated with JS --}}
-																	<td class="allign-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-																		</svg>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-												
-												<div class="col-12 justify-content-center form-actions d-flex gap-2">
+												<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 													<button type="button" class="btn btn-outline-dark rounded px-4 py-2" wire:click.prevent="showList">
 														Cancel
 													</button>
