@@ -33,8 +33,8 @@
     </div>
 </div>
 <div class="d-lg-flex justify-content-end mb-4">
-    <a href="/admin/booknow/create" class="btn btn-primary rounded btn-sm">
-        Scheduled Services
+    <a href="/customer/booking/booknow" class="btn btn-primary rounded btn-sm">
+        Submit Service Request
     </a>
 </div>
 
