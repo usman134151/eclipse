@@ -1,5 +1,5 @@
 {{-- BEGIN: Add Document Off Canvas --}}
-<x-off-canvas show="addDocuments">
+<x-off-canvas show="addDocuments" size="fullscreen">
 	<x-slot name="title">Add Document</x-slot>
 	<div class="row">
 		<div class="col-lg-12">
