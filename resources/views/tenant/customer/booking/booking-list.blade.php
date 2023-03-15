@@ -50,7 +50,7 @@
         <label class="form-label-sm">Search</label>
         <div class="d-flex gap-2 align-items-center">
           <div class="position-relative">
-            <input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Provider Name or Email">
+            <input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Customer Name or Email">
             <svg class="icon-search position-absolute" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
               <path d="M290 323.515733a25.6 25.6 0 1 1 36.181334-36.181333l408.234666 408.234667a25.6 25.6 0 1 1-36.181333 36.181333l-408.234667-408.234667z" fill="#ffffff" />
               <path d="M320.365867 731.7504a25.6 25.6 0 1 1-36.181334-36.181333l408.234667-408.234667a25.6 25.6 0 1 1 36.181333 36.181333l-408.234666 408.234667z" fill="#ffffff" />
