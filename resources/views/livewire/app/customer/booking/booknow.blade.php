@@ -1143,10 +1143,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12 justify-content-center form-actions d-flex">
-                                    <button type="button" class="btn btn-outline-dark rounded"
+                                    <button type="button" class="btn btn-outline-dark rounded mx-2"
                                         x-on:click="$wire.switch('requester-info')">Back</button>
-                                    <button type="submit" class="btn btn-primary rounded mx-2">Request from
-                                        User</button>
+
                                     <button type="button" class="btn btn-primary rounded"
                                         x-on:click="$wire.switch('payment-info')">Proceed to
                                         Payment</button>
