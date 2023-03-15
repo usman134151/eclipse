@@ -209,7 +209,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                <h2 class="text-dark">My Profile</h2>
+
                 <!-- Filters -->
                 @livewire('app.customer.profile')
             </div>
