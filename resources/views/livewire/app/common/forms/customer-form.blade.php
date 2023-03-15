@@ -288,7 +288,7 @@
 											
 											<div class="col-lg-12 mb-4">
 												<div class="row">
-													<div class="col-lg-6 mb-4">
+													<div class="col-lg-6 pe-lg-5 mb-4">
 														<h2>Default Billing Address</h2>
 														<button type="button" class="btn btn-primary btn-has-icon rounded mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
 															<x-icon name="plus"/>
@@ -301,7 +301,7 @@
 																<th></th>
 															</thead>
 															<tbody>
-																<tr class="odd">
+																<tr class="odd js-selected-row">
 																	<td>1</td>
 																	<td>
 																		<p>
@@ -309,12 +309,12 @@
 																		</p>
 																	</td>
 																	<td class="align-middle">
-																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																		</svg>
 																	</td>
 																</tr>
-																<tr class="even selected">
+																<tr class="even js-selected-row">
 																	<td>2</td>
 																	<td>
 																		<p>
@@ -322,12 +322,12 @@
 																		</p>
 																	</td>
 																	<td class="align-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																		</svg>
 																	</td>
 																</tr>
-																<tr class="odd">
+																<tr class="odd js-selected-row">
 																	<td>3</td>
 																	<td>
 																		<p>
@@ -335,7 +335,7 @@
 																		</p>
 																	</td>
 																	<td class="align-middle">
-																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																		</svg>
 																	</td>
@@ -344,17 +344,17 @@
 														</table>
 													</div>
 													
-													<div class="col-lg-6 mb-4">
+													<div class="col-lg-6 ps-lg-5 mb-4">
 														<h2>Default Service Address</h2>
-														<div class="d-lg-flex justify-content-between align-items-center mb-lg-4">
-															<div class="form-check mb-lg-0">
+														<div class="d-lg-flex justify-content-between align-items-center">
+															<div class="form-check mb-4">
 																<input class="form-check-input" type="checkbox" value="" id="same-as-billing-address-checkbox">
 																<label class="form-check-label" for="same-as-billing-address-checkbox">
 																	Same as Billing Address
 																</label>
 															</div>
 															
-															<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+															<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2 mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
 																<x-icon name="plus"/>
 																<span>Add Address</span>
 															</button>
@@ -366,7 +366,7 @@
 																<th></th>
 															</thead>
 															<tbody>
-																<tr class="odd">
+																<tr class="odd js-selected-row">
 																	<td>1</td>
 																	<td>
 																		<p>
@@ -374,12 +374,12 @@
 																		</p>
 																	</td>
 																	<td class="align-middle">
-																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																		</svg>
 																	</td>
 																</tr>
-																<tr class="even selected">
+																<tr class="even js-selected-row">
 																	<td>2</td>
 																	<td>
 																		<p>
@@ -387,12 +387,12 @@
 																		</p>
 																	</td>
 																	<td class="align-middle">
-																		<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																		</svg>
 																	</td>
 																</tr>
-																<tr class="odd">
+																<tr class="odd js-selected-row">
 																	<td>3</td>
 																	<td>
 																		<p>
@@ -400,7 +400,7 @@
 																		</p>
 																	</td>
 																	<td class="align-middle">
-																		<svg class="d-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 																			<path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 																		</svg>
 																	</td>
@@ -411,7 +411,7 @@
 												</div>
 											</div>
 											
-											<div class="col-lg-12 mb-4">
+											<div class="col-lg-12 mb--4">
 												<div class="form-check mb-lg-0">
 													<input class="form-check-input" type="checkbox" value="" id="HideDepartmentfromProvider">
 													<label class="form-check-label" for="HideDepartmentfromProvider">
@@ -435,7 +435,7 @@
 												</div>
 											</div>
 											{{-- Action Buttons Start --}}
-											<div class="col-12 justify-content-center form-actions d-flex gap-3">
+											<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 												<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
 													Cancel
 												</button>
