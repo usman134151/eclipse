@@ -252,7 +252,7 @@
 					  </nav>
 					</div>
                     {{-- icon legend bar start --}}
-             <div class="d-flex actions gap-3 justify-content-end mb-2">
+             <div class="d-flex flex-wrap actions gap-3 justify-content-md-end mb-2">
                 <div class="d-flex gap-2 align-items-center">
                     <a href="#" title="Edit Request" aria-label="Edit Request" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                         <i style="margin-left: 8px" class="fa fa-edit"></i>
