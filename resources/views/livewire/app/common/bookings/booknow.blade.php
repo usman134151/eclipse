@@ -1027,18 +1027,18 @@
                 <h2>Scheduling Details</h2>
                 <div class="d-flex flex-column gap-3 mt-5">
                   <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-4">
                       <label class="col-form-label">Date & Time:</label>
                     </div>
-                    <div class="col-lg-9 align-self-center">
+                    <div class="col-lg-9 col-md-8 align-self-center">
                       <div class="font-family-tertiary">(10/25/2022 13:35 - 10/25/2022 13:35)</div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-4">
                       <label class="col-form-label">Frequency:</label>
                     </div>
-                    <div class="col-lg-9 align-self-center">
+                    <div class="col-lg-9 col-md-8 align-self-center">
                       <div class="font-family-tertiary">One-Time Request</div>
                     </div>
                   </div>
@@ -1053,58 +1053,58 @@
                   <h2>Services 1</h2>
                   <div class="d-flex flex-column gap-3">
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Accommodation:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">Sign Language Interpreting Services</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Service:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">English to Arabic Sign Language</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Specialization:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">Medical, Conference</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Service Type:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">In person</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Number of Providers:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">13</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Total Billable Time:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">1 hour(s) 0 minute(s)</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Total Cost:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$00.00</div>
                       </div>
                     </div>
@@ -1116,74 +1116,74 @@
                   <h2>Services 2</h2>
                   <div class="d-flex flex-column gap-3">
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Accommodation:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">Sign Language Interpreting Services</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Service:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">English to Arabic Sign Language</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Specialization:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">Medical, Conference</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Service Type:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">In person</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Number of Providers:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">13</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Service Consumer:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">John Wick</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Participant(s):</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">Scott Hall</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Total Billable Time:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">1 hour(s) 0 minute(s)</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Total Cost:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$00.00</div>
                       </div>
                     </div>
@@ -1195,42 +1195,42 @@
                   <h2>Service Billing</h2>
                   <div class="d-flex flex-column gap-3">
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Total Service Rate:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$6,500.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Differentials:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$70.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Specializations:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$70.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label">Total Service Charges:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$26.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-3 col-md-4">
                         <label class="col-form-label fw-semibold">Service Total:</label>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-8 align-self-center">
                         <div class="font-family-tertiary fw-medium">$6,596.00</div>
                       </div>
                     </div>
@@ -1242,70 +1242,70 @@
                   <h2>Booking Total</h2>
                   <div class="d-flex flex-column gap-3">
                     <div class="row">
-                      <div class="col-lg-4">
+                      <div class="col-lg-4 col-md-4">
                         <label class="col-form-label">Total Service Rate:</label>
                       </div>
-                      <div class="col-lg-8 align-self-center">
+                      <div class="col-lg-8 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$6,500.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-4">
+                      <div class="col-lg-4 col-md-4">
                         <label class="col-form-label">Total Differentials:</label>
                       </div>
-                      <div class="col-lg-8 align-self-center">
+                      <div class="col-lg-8 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$70.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-4">
+                      <div class="col-lg-4 col-md-4">
                         <label class="col-form-label">Total Service Charges:</label>
                       </div>
-                      <div class="col-lg-8 align-self-center">
+                      <div class="col-lg-8 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$27.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-4">
+                      <div class="col-lg-4 col-md-4">
                         <label class="col-form-label">Additional Customer Charges:</label>
                       </div>
-                      <div class="col-lg-8 align-self-center">
+                      <div class="col-lg-8 col-md-8 align-self-center">
                         <div class="font-family-tertiary">$26.00</div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- /Booking Total -->
-                <!-- Gross Total -->
+                <!-- Gross Total - Discount - Net Total -->
                 <div class="my-5">
                   <div class="d-flex flex-column gap-3">
                     <div class="row">
-                      <div class="col-lg-2">
+                      <div class="col-lg-2 col-md-3">
                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">Gross Total:</div>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-9 align-self-center">
                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,500.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-2">
+                      <div class="col-lg-2 col-md-3">
                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">Discount:</div>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-9 align-self-center">
                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">$00.00</div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-2">
+                      <div class="col-lg-2 col-md-3">
                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">Net Total:</div>
                       </div>
-                      <div class="col-lg-9 align-self-center">
+                      <div class="col-lg-9 col-md-9 align-self-center">
                         <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,596.00</div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- /Gross Total -->
+                <!-- /Gross Total - Discount - Net Total -->
                 <!-- Assign Admin-Staff & admin-Staff Team -->
                 <div class="my-5">
                   <div class="form-check">

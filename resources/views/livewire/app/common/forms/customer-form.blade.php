@@ -508,8 +508,8 @@
 														</label>
 													</div>
 												</div>
-												<div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
-													<div class="form-check mb-lg-0">
+												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
+													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="Supervisor" checked>
 														<label class="form-check-label" for="Supervisor">
 															Supervisor
@@ -529,8 +529,8 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-12 mb-4 d-lg-flex gap-5">
-													<div class="form-check mb-lg-0">
+												<div class="col-lg-12 mb-4 d-md-flex gap-5">
+													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="Requester" checked>
 														<label class="form-check-label" for="Requester">
 															Requester
@@ -568,8 +568,8 @@
 													</div>
 												</div>
 												
-												<div class="col-lg-12 mb-4 d-lg-flex gap-5 align-items-center">
-													<div class="form-check mb-lg-0">
+												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
+													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="BillingManager" checked>
 														<label class="form-check-label" for="BillingManager">
 															Billing Manager
@@ -686,7 +686,7 @@
 										</div>
 									</div>
 									{{-- Action Buttons Start --}}
-									<div class="col-12 justify-content-center form-actions d-flex gap-3">
+									<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('customer-info')">
 											Back
 										</button>
@@ -722,7 +722,7 @@
 														<div class="card">
 															<div class="card-body shadow-sm">
 																<input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
-																<div class="overflow-y-auto max-h-56">
+																<div class="overflow-y-auto max-h-30rem">
 																	<table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
 																		<tbody>
 																			<tr role="row" class="odd">
@@ -800,7 +800,7 @@
 													<div class="card">
 														<div class="card-body shadow-sm">
 															<input type="search" class="form-control" id="search" name="search" placeholder="Search" autocomplete="on"/>
-															<div class="overflow-y-auto max-h-56">
+															<div class="overflow-y-auto max-h-30rem">
 																<table id="" class="table table-hover" aria-label="Select Service Table">
 																	<tbody>
 																		<tr role="row" class="odd">
@@ -1020,7 +1020,7 @@
 										</div>
 									</div>
 									{{-- Action Buttons Start --}}
-									<div class="col-12 justify-content-center form-actions d-flex gap-3">
+									<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('permission-configurations')">
 											Back
 										</button>
@@ -1050,8 +1050,8 @@
 												<div class="row">
 													<div class="col-md-12 mb-md-2">
 														<div class="row justify-content-center">
-															<div class="col-lg-8">
-																<div class="d-flex flex-column align-items-center justify-content-center mb-3">
+															<div class="col-md-8">
+																<div class="d-flex flex-column align-items-md-center justify-content-md-center mb-3">
 																	<label for="formFile" class="form-label">
 																		Upload Document
 																	</label>
@@ -1059,7 +1059,7 @@
 																</div>
 															</div>
 														</div>
-														<div class="d-flex justify-content-center gap-3 mt-4">
+														<div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
 															<div>
 																<img src="/tenant/images/img-placeholder-document.jpg"/>
 																<p>File Name</p>
@@ -1075,7 +1075,7 @@
 														</div>
 													</div>
 													{{-- Action Buttons Start --}}
-													<div class="col-12 justify-content-center form-actions d-flex gap-3">
+													<div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
 														<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-catalog')">
 															Back
 														</button>
