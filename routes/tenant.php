@@ -172,7 +172,7 @@ Route::group([
 				Route::view('/booking/past', 'tenant/customer/booking/booking-list', ["bookingType"=>"Past"]);
                 Route::view('/booking/draft', 'tenant/customer/booking/booking-list', ["bookingType"=>"Draft"]);
                 Route::view('/invoices', 'tenant/customer/invoices');
-                Route::view('/payments-recepts', 'tenant/customer/payment-recepts');
+                Route::view('/payments-receipts', 'tenant/customer/payment-receipts');
                 Route::view('/add-team', 'tenant/customer/add-team');
                 Route::view('/payments-setting', 'tenant/customer/payment-setting');
                 Route::view('/myprofile', 'tenant/customer/myprofile');

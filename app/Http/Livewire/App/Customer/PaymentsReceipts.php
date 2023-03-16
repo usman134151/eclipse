@@ -4,14 +4,14 @@ namespace App\Http\Livewire\App\Customer;
 
 use Livewire\Component;
 
-class PaymentsRecepts extends Component
+class PaymentsReceipts extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.customer.payments-recepts');
+        return view('livewire.app.customer.payments-receipts');
     }
 
     public function mount()

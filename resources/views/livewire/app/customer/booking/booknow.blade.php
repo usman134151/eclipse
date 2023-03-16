@@ -1084,8 +1084,9 @@
                                     <div class="col-12 justify-content-center form-actions d-flex">
                                         <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
                                         <button type="submit" class="btn btn-primary rounded"
-                                            x-on:click="$wire.switch('request-details')">Proceed to
-                                            Request Details</button>
+                                            x-on:click="$wire.switch('request-details')">Next</button>
+                                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
+                                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
                                     </div>
                                 </div>
 
@@ -1181,10 +1182,11 @@
                                     <div class="col-12 justify-content-center form-actions d-flex">
                                         <button type="button" class="btn btn-outline-dark rounded mx-2"
                                             x-on:click="$wire.switch('requester-info')">Back</button>
+                                            <button type="button" class="btn btn-primary rounded"
+                                            x-on:click="$wire.switch('payment-info')">Next</button>
+                                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
+                                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
 
-                                        <button type="button" class="btn btn-primary rounded"
-                                            x-on:click="$wire.switch('payment-info')">Proceed to
-                                            Payment</button>
                                     </div>
                                 </div>
                                 <!-- Service Form End -->
@@ -1261,10 +1263,13 @@
                             </div>
                         </div>
                         <div class="col-12 justify-content-center form-actions d-flex">
-                            <button type="button" class="btn btn-outline-dark rounded"
-                                x-on:click="$wire.switch('request-details')">Back</button>
-                            <button type="button" class="btn btn-primary rounded mx-2"
-                                x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
+                            <button type="button" class="btn btn-outline-dark rounded mx-2"
+                                            x-on:click="$wire.switch('request-details')">Back</button>
+                                            <button type="button" class="btn btn-outline-dark rounded mx-2"
+                                            x-on:click="$wire.switch('booking-summary')">Next</button>
+                                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
+                                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
+
                         </div>
                     </div>
                     <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}"
@@ -1563,16 +1568,9 @@
                             <div class="col-12 justify-content-center form-actions d-flex gap-3">
                                 <button type="button" class="btn btn-outline-dark rounded"
                                     x-on:click="$wire.switch('payment-info')">Back</button>
-                                <button type="" class="btn btn-primary rounded">Save as Draft</button>
-                                <button type="" class="btn btn-primary rounded">Request Feedback</button>
-                                <div class="dropdown">
-                                    <button type="" class="btn btn-primary rounded dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">Confirm</button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
-                                        <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
-                                    </ul>
-                                </div>
+                                    <button type="submit" class="btn btn-primary rounded mx-2">Save As Draft</button>
+                                    <button type="submit" class="btn btn-primary rounded mx-2">confirm</button>
+
                             </div>
                         </div>
                         <!-- /Service Request -->
