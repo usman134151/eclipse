@@ -1137,13 +1137,20 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 		background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
 	}
 	&.dropdown-toggle {
+		background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) !important;
+	    color: #ffffff !important;
+	    padding: 0.5rem 1.5rem !important;
 		&::after {
 			border-width: 0.5rem;
-			margin-left: 1.5rem;
+			margin-left: 1rem;
 			transition: all 0.2s ease-in-out;
+			vertical-align: 0;
+		}
+		&:hover {
+			background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
 		}
 		&[aria-expanded="true"] {
-			background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+			background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
 			&::after {
 				transform: rotate(180deg);
 			}
