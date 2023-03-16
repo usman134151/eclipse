@@ -1087,14 +1087,21 @@ small {
   color: #ffffff; }
 .btn-inactive:hover {
   background: linear-gradient(90deg, #213969 50%, #204387 90.12%); }
-.btn-inactive.dropdown-toggle::after {
-  border-width: 0.5rem;
-  margin-left: 1.5rem;
-  transition: all 0.2s ease-in-out; }
-.btn-inactive.dropdown-toggle[aria-expanded="true"] {
-  background: linear-gradient(90deg, #213969 50%, #204387 90.12%); }
-  .btn-inactive.dropdown-toggle[aria-expanded="true"]::after {
-    transform: rotate(180deg); }
+.btn-inactive.dropdown-toggle {
+  background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) !important;
+  color: #ffffff !important;
+  padding: 0.5rem 1.5rem !important; }
+  .btn-inactive.dropdown-toggle::after {
+    border-width: 0.5rem;
+    margin-left: 1rem;
+    transition: all 0.2s ease-in-out;
+    vertical-align: 0; }
+  .btn-inactive.dropdown-toggle:hover {
+    background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important; }
+  .btn-inactive.dropdown-toggle[aria-expanded="true"] {
+    background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important; }
+    .btn-inactive.dropdown-toggle[aria-expanded="true"]::after {
+      transform: rotate(180deg); }
 
 .offcanvas.offcanvas-assign-provider {
   width: 95%; }
