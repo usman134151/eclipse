@@ -79,9 +79,6 @@
             <button type="submit" class="btn btn-primary rounded">
                 Save
             </button>
-            <button type="submit" class="btn btn-primary rounded">
-                Next
-            </button>
         </div>
     </div>
 </x-off-canvas>
