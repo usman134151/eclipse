@@ -129,14 +129,14 @@
                   <label class="form-label">Phone Number <span class="mandatory">*</span></label>
                   <input type="" class="form-control" placeholder="Enter Phone Number">
                 </div>
-                <div class="col-lg-12">
-                  <div class="d-md-flex align-items-center mb-4 gap-3">
+                <div class="col-lg-12" x-data="{ open: false }">
+                  <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                     <div class="form-check form-switch form-switch-column mb-lg-0">
-                      <input class="form-check-input" type="checkbox" role="switch" id="" checked>
+                      <input class="form-check-input" type="checkbox" role="switch" id="" @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                     </div>
                     <h2 class="mb-lg-0">Add Supervisor & Billing Manager</h2>
                   </div>
-                  <div class="row">
+                  <div class="row switch-toggle-content" x-show="open">
                     <div class="col-lg-6 mb-4 pe-lg-5">
                       <label class="form-label">Supervisor <span class="mandatory">*</span></label>
                       <select class="form-select">
@@ -241,14 +241,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-12 mb-4">
-                        <div class="d-md-flex align-items-center mb-4 gap-3">
+                      <div class="col-lg-12 mb-4" x-data="{ open: false }">
+                        <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                           <div class="form-check form-switch form-switch-column mb-lg-0">
-                            <input class="form-check-input" type="checkbox" role="switch" id="" checked>
+                            <input class="form-check-input" type="checkbox" role="switch" id="" @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                           </div>
                           <h2 class="mb-lg-0">Add Consumers & Participants</h2>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 switch-toggle-content" x-show="open">
                           <div class="col-lg-6 mb-4 pe-lg-5">
                             <div class="d-flex justify-content-between align-items-center">
                               <label class="form-label">Service Consumer(s)</label>
@@ -296,13 +296,13 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-md-4">
                           <div class="col-lg-6 align-self-center">
                             <h2 class="mb-lg-0">Meeting Information</h2>
                           </div>
                           <div class="col-lg-6">
                             <div class="row">
-                              <div class="col-md-6 mb-4">
+                              <div class="col-md-6 mb-4 mb-md-0">
                                 <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
                                   <svg width="22" height="18" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 10.4062L8.66667 17.4062L22 2.40625" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -310,7 +310,7 @@
                                   Add Manually
                                 </a>
                               </div>
-                              <div class="col-md-6 mb-4">
+                              <div class="col-md-6 mb-4 mb-md-0">
                                 <a href="#" class="btn btn-primary rounded w-100">
                                   Request from User
                                 </a>
@@ -531,7 +531,7 @@
                               <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
                             </td>
                             <!-- for active class row integrated with JS  -->
-                        	<td class="align-middle">
+                          <td class="align-middle">
                                 <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
