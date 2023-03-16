@@ -84,7 +84,7 @@
                                             <th scope="col">Invoice Due Date</th>
                                             <th scope="col">PDF</th>
                                             <th scope="col">Payment Method</th>
-                                            <th scope="col">Payment Status</th>
+                                            <th scope="col">Pending</th>
                                             <th class="text-center" scope="col">Action</th>
 
                                         </tr>
@@ -93,6 +93,12 @@
 
                                     </thead>
                                     <tbody>
+                                        @php
+                                        $status = ['1', '2', '3'];
+                                        $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
+                                        @endphp
+                                        @for ($i = 1; $i <= 9; $i++) <tr role="row"
+                                        class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
                                         <tr role="row" class="odd">
                                             <td>
                                                 <div class="form-check">
@@ -132,201 +138,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr role="row" class="odd">
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                        name="" type="checkbox" tabindex="">
-                                                </div>
-                                            </td>
-                                            <td><a @click="offcanvasOpen = true">87109</a>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">17837</td>
-                                            <td class="text-center">$40.00</td>
-                                            <td>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <x-icon name="doc" />
-                                            </td>
-                                            <td class="text-center">Direct Deposit</td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <circle cx="6" cy="6" r="6" fill="#32A35F" />
-                                                    </svg>
-                                                    <p>Paid</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#" title="View Invoice" aria-label="View Invoice"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        wire:click="showProfile">
-                                                        <x-icon name="view" />
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                        name="" type="checkbox" tabindex="">
-                                                </div>
-                                            </td>
-                                            <td><a @click="offcanvasOpen = true">87109</a>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">17837</td>
-                                            <td class="text-center">$40.00</td>
-                                            <td>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <x-icon name="doc" />
-                                            </td>
-                                            <td class="text-center">Direct Deposit</td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <circle cx="6" cy="6" r="6" fill="#32A35F" />
-                                                    </svg>
-                                                    <p>Paid</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#" title="View Invoice" aria-label="View Invoice"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        wire:click="showProfile">
-                                                        <x-icon name="view" />
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                        name="" type="checkbox" tabindex="">
-                                                </div>
-                                            </td>
-                                            <td><a @click="offcanvasOpen = true">87109</a>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">17837</td>
-                                            <td class="text-center">$40.00</td>
-                                            <td>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <x-icon name="doc" />
-                                            </td>
-                                            <td class="text-center">Direct Deposit</td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <circle cx="6" cy="6" r="6" fill="#32A35F" />
-                                                    </svg>
-                                                    <p>Paid</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#" title="View Invoice" aria-label="View Invoice"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        wire:click="showProfile">
-                                                        <x-icon name="view" />
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                        name="" type="checkbox" tabindex="">
-                                                </div>
-                                            </td>
-                                            <td><a @click="offcanvasOpen = true">87109</a>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">17837</td>
-                                            <td class="text-center">$40.00</td>
-                                            <td>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <x-icon name="doc" />
-                                            </td>
-                                            <td class="text-center">Direct Deposit</td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <circle cx="6" cy="6" r="6" fill="#32A35F" />
-                                                    </svg>
-                                                    <p>Paid</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#" title="View Invoice" aria-label="View Invoice"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        wire:click="showProfile">
-                                                        <x-icon name="view" />
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                        name="" type="checkbox" tabindex="">
-                                                </div>
-                                            </td>
-                                            <td><a @click="offcanvasOpen = true">87109</a>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">17837</td>
-                                            <td class="text-center">$40.00</td>
-                                            <td>
-                                                <p class="mt-1">08/24/2022</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <x-icon name="doc" />
-                                            </td>
-                                            <td class="text-center">Direct Deposit</td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <circle cx="6" cy="6" r="6" fill="#32A35F" />
-                                                    </svg>
-                                                    <p>Paid</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#" title="View Invoice" aria-label="View Invoice"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        wire:click="showProfile">
-                                                        <x-icon name="view" />
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endfor
                                     </tbody>
                                 </table>
                             </div>

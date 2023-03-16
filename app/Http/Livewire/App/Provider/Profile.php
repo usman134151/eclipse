@@ -8,7 +8,7 @@ class Profile extends Component
 {
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
-
+    public $component = 'profile';
     public function render()
     {
         return view('livewire.app.provider.profile');
@@ -28,5 +28,9 @@ class Profile extends Component
     {
         $this->showForm=false;
     }
+    public function switch($component)
+	{
+		$this->component = $component;
+	}
 
 }
