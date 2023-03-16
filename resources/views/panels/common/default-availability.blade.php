@@ -305,10 +305,10 @@
             </div>
         </div>
         <div class="col-12 justify-content-center form-actions d-flex gap-3">
-            <button type="button" class="btn btn-outline-dark rounded">
+            <button type="button" class="btn btn-outline-dark rounded" x-on:click="defaultAvailability = !defaultAvailability">
                 Cancel
             </button>
-            <button type="submit" class="btn btn-primary rounded">
+            <button type="submit" class="btn btn-primary rounded" x-on:click="defaultAvailability = !defaultAvailability">
                 Save
             </button>
         </div>
