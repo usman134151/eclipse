@@ -129,7 +129,7 @@
                   <label class="form-label">Phone Number <span class="mandatory">*</span></label>
                   <input type="" class="form-control" placeholder="Enter Phone Number">
                 </div>
-                <div class="col-lg-12" x-data="{ open: false }">
+                <div class="col-lg-12" x-data="{ open: true }">
                   <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                     <div class="form-check form-switch form-switch-column mb-lg-0">
                       <input class="form-check-input" type="checkbox" role="switch" id="" @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
@@ -241,7 +241,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-12 mb-4" x-data="{ open: false }">
+                      <div class="col-lg-12 mb-4" x-data="{ open: true }">
                         <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                           <div class="form-check form-switch form-switch-column mb-lg-0">
                             <input class="form-check-input" type="checkbox" role="switch" id="" @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
