@@ -138,7 +138,7 @@
                           </td>
                           <td>
                             <div class="d-flex actions"> 
-                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                 <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
@@ -183,7 +183,7 @@
                            </td>
                            <td>
                              <div class="d-flex actions"> 
-                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                 <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                               </svg>
@@ -228,7 +228,7 @@
                             </td>
                             <td>
                               <div class="d-flex actions"> 
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
@@ -273,7 +273,7 @@
                              </td>
                              <td>
                                <div class="d-flex actions"> 
-                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
@@ -318,7 +318,7 @@
                             </td>
                             <td>
                               <div class="d-flex actions"> 
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
@@ -363,7 +363,7 @@
                              </td>
                              <td>
                                <div class="d-flex actions"> 
-                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
@@ -408,7 +408,7 @@
                             </td>
                             <td>
                               <div class="d-flex actions"> 
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
@@ -453,7 +453,7 @@
                              </td>
                              <td>
                                <div class="d-flex actions"> 
-                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
@@ -534,4 +534,5 @@
           <!-- /Icon Help -->
         </div>
     </div>
+    @include('modals.remittance-details')
 </div>
