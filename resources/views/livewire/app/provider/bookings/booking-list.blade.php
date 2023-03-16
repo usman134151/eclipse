@@ -1,4 +1,14 @@
 <div x-data="{offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false}">
+  <div id="loader-section" class="loader-section" wire:loading>
+    <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+        <div class="spinner-border" role="status" aria-live="polite">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+@if ($showBookingDetails)
+@livewire('app.common.bookings.booking-details')
+@else
 	  <div class="row mb-5">
         <div class="col-lg-12">
           <!-- Today's Assignment -->
@@ -34,7 +44,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -102,7 +112,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -157,7 +167,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -224,7 +234,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -292,7 +302,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -359,7 +369,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -426,7 +436,7 @@
                               <div class="time-date">9:59 AM to<br> 4:22 PM</div>
                             </div>
                           </td>
-                          <td>
+                          <td wire:click="showBookingDetails">
                             <a href="#">100995-6</a>
                             <div>In-Perosn Assignment</div>
                           </td>
@@ -605,6 +615,7 @@
           <!-- /Today's Assignment -->
         </div>
       </div>
+      @endif
 	  @include('panels.provider.check-in')
 	  @include('panels.provider.check-out')
 	  @include('modals.common.running-late')

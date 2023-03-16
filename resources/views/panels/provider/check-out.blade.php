@@ -203,7 +203,7 @@
         <hr>
         <div class="mb-4">
           <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-            <button type="button" class="btn btn-outline-dark rounded">Back</button>
+            <button type="button" class="btn btn-outline-dark rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
             <button type="submit" class="btn btn-primary rounded js-checkout-go-step-2">Next</button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-<div>
+<div x-data="{invoiceDetails: false}">
   <div class="content-header row">
       <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
@@ -72,8 +72,8 @@
                         <!-- Company -->
                           <div class="col-md-3 col-12">
                             <div>
-                              <label class="form-label" for="company-column">Company</label>
-                              <select class="select2 form-select" id="company-column">
+                              <label class="form-label" for="company">Company</label>
+                              <select class="select2 form-select" id="company">
                                 <option>Select Company</option>
                                 <option>Companey-1</option>
                                 <option>Comapaney-2</option>
@@ -84,8 +84,8 @@
                           <!-- Billing Manager -->
                           <div class="col-md-3 col-12">
                             <div>
-                              <label class="form-label" for="Billing-Manager-column">Billing Manager</label>
-                              <select class="select2 form-select" id="Billing-Manager-column">
+                              <label class="form-label" for="Billing-Manager">Billing Manager</label>
+                              <select class="select2 form-select" id="Billing-Manager">
                                 <option>Select Billing Manager</option>
                                 <option>Department-1</option>
                                 <option>Department-2</option>
@@ -95,7 +95,7 @@
                                 <!-- Date Range -->
                                 <div class="col-md-3 col-12">
                                   <div>
-                                    <label class="form-label" for="set_set_date">Date Range</label>
+                                    <label class="form-label" for="set_date">Date Range</label>
                                     <div class="d-flex gap-3"><div class="form-check">
                                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="Issued">
                                       <label class="form-check-label" for="Issued">
@@ -108,7 +108,7 @@
                                       </label>
                                     </div></div>
                                     <div class="position-relative">
-                                      <input type="" name="" class="form-control js-single-date" placeholder="Select Date" id="">
+                                      <input type="" name="" class="form-control js-single-date" placeholder="Select Date" id="set_date">
                                       <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
                                       </svg>
@@ -120,14 +120,14 @@
                         <!-- search  -->
                         <div class="col-md-3 col-12">
                           <div class="mb-4">
-                            <label class="form-label" for="search-column">
+                            <label class="form-label" for="search-record">
                               Search
                             </label>
                             <input
                               type="text"
-                              id="search-column"
+                              id="search-record"
                               class="form-control"
-                              name="search-column"
+                              name="search-record"
                               placeholder="Search here"
                               required
                               aria-required="true"
@@ -137,8 +137,8 @@
                           <!-- Payment Status -->
                           <div class="col-md-3 col-12">
                             <div class="mb-4">
-                              <label class="form-label" for="payment-status-column">Payment Status</label>
-                              <select class="select2 form-select" id="payment-status-column">
+                              <label class="form-label" for="payment-status">Payment Status</label>
+                              <select class="select2 form-select" id="payment-status">
                                 <option>Select Payment Status</option>
                                 <option>Payment Status-1</option>
                                 <option>Payment Status-2</option>
@@ -164,8 +164,8 @@
                         </div>
                       <div class="d-flex justify-content-between mb-2 mt-5">
                         <div class="d-inline-flex align-items-center gap-4">
-                          <label for="show_records_number" class="form-label">Show</label>
-                          <select class="form-select" id="show_records_number">
+                          <label for="show_records" class="form-label">Show</label>
+                          <select class="form-select" id="show_records">
                             <option>10</option>
                             <option>15</option>
                             <option>20</option>
@@ -180,7 +180,7 @@
                                 <tr role="row">
                                     <th scope="col">
                                       <div class="form-check">
-                                          <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="checkbox">
+                                          <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select All Invoices">
                                         </div>
                                     </th>
                                     <th scope="col">Invoice</th>
@@ -191,27 +191,86 @@
                                     <th scope="col">Payment Method</th>
                                     <th scope="col">Payment Status</th>
                                     <th class="text-center" scope="col">Action</th>
-
                               </tr>
                             </thead>
                               <tbody>
                                 <tr role="row" class="odd">
                                   <td>
                                       <div class="form-check">
-                                      <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                      <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                     </div>
                                   </td>
                                   <td><a @click="offcanvasOpen = true">87109</a>
                                   <p class="mt-1">08/24/2022</p></td>
                                   <td class="align-middle"> <div class="row g-2">
                                     <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                      <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Team Profile Image">
                                     </div>
                                     <div class="col-md-10 align-self-center">
-                                      <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                      <p>dorigriffit@gmail.com</p>
+                                      <h6 class="fw-semibold">Information Technology</h6>
+                                      <p>www.software.com</p>
                                     </div>
                                   </div></td>
+                                  <td class="text-center">17837</td>
+                                  <td class="text-center">$40.00</td>
+                                  <td class="text-center">
+                                    <x-icon name="doc"/>
+                                  </td>
+                                  <td class="text-center">Direct Deposit</td>
+                                  <td><div class="d-flex align-items-center gap-2">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <circle cx="6" cy="6" r="6" fill="#32A35F"/>
+                                      </svg>
+                                  <p>Paid</p>
+                                  </div></td>
+                                  <td>
+                                    <div class="d-flex actions">
+                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                          </svg>
+                                        </a>                                  
+                                      <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                            </svg>
+                                      </a>
+                                      <div class="d-flex actions">
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                            </svg>
+                                              </a>
+                                          <!-- <div class="tablediv dropdown-menu">
+                                            <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                            <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+
+                                          </div> -->
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  </tr>
+                                <tr role="row" class="odd">
+                                  <td>
+                                      <div class="form-check">
+                                      <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
+                                    </div>
+                                  </td>
+                                  <td><a @click="offcanvasOpen = true">87109</a>
+                                  <p class="mt-1">08/24/2022</p></td>
+                                  <td class="align-middle"> 
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                      </div>
+                                      <div class="col-md-10 align-self-center">
+                                        <h6 class="fw-semibold">Information Technology</h6>
+                                        <p>www.software.com</p>
+                                      </div>
+                                    </div>
+                                  </td>
                                   <td class="text-center">17837</td>
                                   <td class="text-center">$40.00</td>
                                   <td class="text-center">
@@ -227,105 +286,51 @@
                                   <td>
                                     <div class="d-flex actions">
                                       <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                        <x-icon name="round-arrow"/>
-
-                                      </a>
-
-                                      <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="dollar-assignment"/>
-
-                                      </a>
-                                      <div class="d-flex actions">
-                                        <div class="dropdown ac-cstm">
-                                          <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                            <x-icon name="download-file"/>
-
-                                          </a>
-                                          <!-- <div class="tablediv dropdown-menu">
-                                            <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                            <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                          </div> -->
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </td>
-                                  </tr>
-                                <tr role="row" class="odd">
-                                  <td>
-                                      <div class="form-check">
-                                      <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
-                                    </div>
-                                  </td>
-                                  <td><a @click="offcanvasOpen = true">87109</a>
-                                  <p class="mt-1">08/24/2022</p></td>
-                                  <td class="align-middle"> <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-                                    </div>
-                                    <div class="col-md-10 align-self-center">
-                                      <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                      <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                  </div></td>
-                                  <td class="text-center">17837</td>
-                                  <td class="text-center">$40.00</td>
-                                  <td class="text-center">
-                                    <x-icon name="doc"/>
-                                  </td>
-                                  <td class="text-center">Direct Deposit</td>
-                                  <td><div class="d-flex align-items-center gap-2">
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <circle cx="6" cy="6" r="6" fill="#32A35F"/>
-                                      </svg>
-                                    <p>Paid</p>
-                                  </div></td>
-                                  <td>
+                                        <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                        </svg>
+                                      </a>                                  
+                                    <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                          </svg>
+                                    </a>
                                     <div class="d-flex actions">
-                                      <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <div class="dropdown ac-cstm">
+                                        <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                          </svg>
+                                            </a>
+                                        <!-- <div class="tablediv dropdown-menu">
+                                          <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                          <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
 
-                                        <x-icon name="round-arrow"/>
-
-                                      </a>
-
-                                      <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="dollar-assignment"/>
-
-                                      </a>
-                                      <div class="d-flex actions">
-                                        <div class="dropdown ac-cstm">
-                                          <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                            <x-icon name="download-file"/>
-
-                                          </a>
-                                          <!-- <div class="tablediv dropdown-menu">
-                                            <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                            <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                          </div> -->
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
+                                  </div>
                                   </td>
                                   </tr>
                                 <tr role="row" class="odd">
                                   <td>
                                       <div class="form-check">
-                                      <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                      <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                     </div>
                                   </td>
                                   <td><a @click="offcanvasOpen = true">87109</a>
                                   <p class="mt-1">08/24/2022</p></td>
-                                  <td class="align-middle"> <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                  <td class="align-middle">
+                                    <div class="row g-2">
+                                      <div class="col-md-2">
+                                        <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                      </div>
+                                      <div class="col-md-10 align-self-center">
+                                        <h6 class="fw-semibold">Information Technology</h6>
+                                        <p>www.software.com</p>
+                                      </div>
                                     </div>
-                                    <div class="col-md-10 align-self-center">
-                                      <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                      <p>dorigriffit@gmail.com</p>
-                                    </div>
-                                  </div></td>
+                                  </td>
                                   <td class="text-center">17837</td>
                                   <td class="text-center">$40.00</td>
                                   <td class="text-center">
@@ -342,48 +347,51 @@
                                   <td>
                                     <div class="d-flex actions">
                                       <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                        </svg>
+                                      </a>                                  
+                                    <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                          </svg>
+                                    </a>
+                                    <div class="d-flex actions">
+                                      <div class="dropdown ac-cstm">
+                                        <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                          </svg>
+                                            </a>
+                                        <!-- <div class="tablediv dropdown-menu">
+                                          <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                          <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
 
-                                        <x-icon name="round-arrow"/>
-
-                                      </a>
-
-                                      <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="dollar-assignment"/>
-
-                                      </a>
-                                      <div class="d-flex actions">
-                                        <div class="dropdown ac-cstm">
-                                          <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                            <x-icon name="download-file"/>
-
-                                          </a>
-                                          <!-- <div class="tablediv dropdown-menu">
-                                            <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                            <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                          </div> -->
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </div>
+                                  </div>
                                   </td>
                                   </tr>
                                   <tr role="row" class="odd">
                                     <td>
                                         <div class="form-check">
-                                        <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                        <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                       </div>
                                     </td>
                                     <td><a @click="offcanvasOpen = true">87109</a>
                                     <p class="mt-1">08/24/2022</p></td>
-                                    <td class="align-middle"> <div class="row g-2">
-                                      <div class="col-md-2">
-                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                    <td class="align-middle">
+                                      <div class="row g-2">
+                                        <div class="col-md-2">
+                                          <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                        </div>
+                                        <div class="col-md-10 align-self-center">
+                                          <h6 class="fw-semibold">Information Technology</h6>
+                                          <p>www.software.com</p>
+                                        </div>
                                       </div>
-                                      <div class="col-md-10 align-self-center">
-                                        <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                        <p>dorigriffit@gmail.com</p>
-                                      </div>
-                                    </div></td>
+                                      </td>
                                     <td class="text-center">17837</td>
                                     <td class="text-center">$40.00</td>
                                     <td class="text-center">
@@ -399,48 +407,51 @@
                                     <td>
                                       <div class="d-flex actions">
                                         <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                          </svg>
+                                        </a>                                  
+                                      <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                            </svg>
+                                      </a>
+                                      <div class="d-flex actions">
+                                        <div class="dropdown ac-cstm">
+                                          <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                            </svg>
+                                              </a>
+                                          <!-- <div class="tablediv dropdown-menu">
+                                            <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                            <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
 
-                                          <x-icon name="round-arrow"/>
-
-                                        </a>
-
-                                        <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                          <x-icon name="dollar-assignment"/>
-
-                                        </a>
-                                        <div class="d-flex actions">
-                                          <div class="dropdown ac-cstm">
-                                            <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                              <x-icon name="download-file"/>
-
-                                            </a>
-                                            <!-- <div class="tablediv dropdown-menu">
-                                              <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                              <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                            </div> -->
-                                          </div>
+                                          </div> -->
                                         </div>
                                       </div>
+                                    </div>
                                     </td>
                                     </tr>
                                     <tr role="row" class="odd">
                                       <td>
                                           <div class="form-check">
-                                          <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                          <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                         </div>
                                       </td>
                                       <td><a @click="offcanvasOpen = true">87109</a>
                                       <p class="mt-1">08/24/2022</p></td>
-                                      <td class="align-middle"> <div class="row g-2">
-                                        <div class="col-md-2">
-                                          <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                      <td class="align-middle"> 
+                                        <div class="row g-2">
+                                          <div class="col-md-2">
+                                            <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                          </div>
+                                          <div class="col-md-10 align-self-center">
+                                            <h6 class="fw-semibold">Information Technology</h6>
+                                            <p>www.software.com</p>
+                                          </div>
                                         </div>
-                                        <div class="col-md-10 align-self-center">
-                                          <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                          <p>dorigriffit@gmail.com</p>
-                                        </div>
-                                      </div></td>
+                                    </td>
                                       <td class="text-center">17837</td>
                                       <td class="text-center">$40.00</td>
                                       <td class="text-center">
@@ -455,50 +466,53 @@
                                         <p>Partial</p>
                                       </div></td>
                                       <td>
-                                        <div class="d-flex actions">
+                                        <   <div class="d-flex actions">
                                           <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                            <x-icon name="round-arrow"/>
-
-                                          </a>
-
-                                          <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <x-icon name="dollar-assignment"/>
-
-                                          </a>
-                                          <div class="d-flex actions">
-                                            <div class="dropdown ac-cstm">
-                                              <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                <x-icon name="download-file"/>
-
-                                              </a>
-                                              <!-- <div class="tablediv dropdown-menu">
-                                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                                <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                              </div> -->
-                                            </div>
+                                            <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                            </svg>
+                                          </a>                                  
+                                        <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                              </svg>
+                                        </a>
+                                        <div class="d-flex actions">
+                                          <div class="dropdown ac-cstm">
+                                            <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                              </svg>
+                                                </a>
+                                            <!-- <div class="tablediv dropdown-menu">
+                                              <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                              <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+  
+                                            </div> -->
                                           </div>
                                         </div>
+                                      </div>
                                       </td>
                                       </tr>
                                     <tr role="row" class="odd">
                                       <td>
                                           <div class="form-check">
-                                          <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                          <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                         </div>
                                       </td>
                                       <td><a @click="offcanvasOpen = true">87109</a>
                                       <p class="mt-1">08/24/2022</p></td>
-                                      <td class="align-middle"> <div class="row g-2">
-                                        <div class="col-md-2">
-                                          <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                      <td class="align-middle">
+                                        <div class="row g-2">
+                                          <div class="col-md-2">
+                                            <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                          </div>
+                                          <div class="col-md-10 align-self-center">
+                                            <h6 class="fw-semibold">Information Technology</h6>
+                                            <p>www.software.com</p>
+                                          </div>
                                         </div>
-                                        <div class="col-md-10 align-self-center">
-                                          <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                          <p>dorigriffit@gmail.com</p>
-                                        </div>
-                                      </div></td>
+                                    </td>
                                       <td class="text-center">17837</td>
                                       <td class="text-center">$40.00</td>
                                       <td class="text-center">
@@ -514,48 +528,51 @@
                                       <td>
                                         <div class="d-flex actions">
                                           <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                            <x-icon name="round-arrow"/>
-
-                                          </a>
-
-                                          <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <x-icon name="dollar-assignment"/>
-
-                                          </a>
-                                          <div class="d-flex actions">
-                                            <div class="dropdown ac-cstm">
-                                              <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                <x-icon name="download-file"/>
-
-                                              </a>
-                                              <!-- <div class="tablediv dropdown-menu">
-                                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                                <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                              </div> -->
-                                            </div>
+                                            <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                            </svg>
+                                          </a>                                  
+                                        <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                              </svg>
+                                        </a>
+                                        <div class="d-flex actions">
+                                          <div class="dropdown ac-cstm">
+                                            <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                              </svg>
+                                                </a>
+                                            <!-- <div class="tablediv dropdown-menu">
+                                              <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                              <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+  
+                                            </div> -->
                                           </div>
                                         </div>
+                                      </div>
                                       </td>
                                       </tr>
                                       <tr role="row" class="odd">
                                         <td>
                                             <div class="form-check">
-                                            <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                            <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                           </div>
                                         </td>
                                         <td><a @click="offcanvasOpen = true">87109</a>
                                         <p class="mt-1">08/24/2022</p></td>
-                                        <td class="align-middle"> <div class="row g-2">
-                                          <div class="col-md-2">
-                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                        <td class="align-middle">
+                                          <div class="row g-2">
+                                            <div class="col-md-2">
+                                              <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                            </div>
+                                            <div class="col-md-10 align-self-center">
+                                              <h6 class="fw-semibold">Information Technology</h6>
+                                              <p>www.software.com</p>
+                                            </div>
                                           </div>
-                                          <div class="col-md-10 align-self-center">
-                                            <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                            <p>dorigriffit@gmail.com</p>
-                                          </div>
-                                        </div></td>
+                                      </td>
                                         <td class="text-center">17837</td>
                                         <td class="text-center">$40.00</td>
                                         <td class="text-center">
@@ -571,48 +588,51 @@
                                         <td>
                                           <div class="d-flex actions">
                                             <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                              <x-icon name="round-arrow"/>
-
-                                            </a>
-
-                                            <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                              <x-icon name="dollar-assignment"/>
-
-                                            </a>
-                                            <div class="d-flex actions">
-                                              <div class="dropdown ac-cstm">
-                                                <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                  <x-icon name="download-file"/>
-
-                                                </a>
-                                                <!-- <div class="tablediv dropdown-menu">
-                                                  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                                  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                                </div> -->
-                                              </div>
+                                              <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                              </svg>
+                                            </a>                                  
+                                          <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                                </svg>
+                                          </a>
+                                          <div class="d-flex actions">
+                                            <div class="dropdown ac-cstm">
+                                              <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                </svg>
+                                                  </a>
+                                              <!-- <div class="tablediv dropdown-menu">
+                                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+    
+                                              </div> -->
                                             </div>
                                           </div>
+                                        </div>
                                         </td>
                                         </tr>
                                         <tr role="row" class="odd">
                                           <td>
                                               <div class="form-check">
-                                              <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                              <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                             </div>
                                           </td>
                                           <td><a @click="offcanvasOpen = true">87109</a>
                                           <p class="mt-1">08/24/2022</p></td>
-                                          <td class="align-middle"> <div class="row g-2">
-                                            <div class="col-md-2">
-                                              <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                          <td class="align-middle"> 
+                                            <div class="row g-2">
+                                              <div class="col-md-2">
+                                                <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                              </div>
+                                              <div class="col-md-10 align-self-center">
+                                                <h6 class="fw-semibold">Information Technology</h6>
+                                                <p>www.software.com</p>
+                                              </div>
                                             </div>
-                                            <div class="col-md-10 align-self-center">
-                                              <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                              <p>dorigriffit@gmail.com</p>
-                                            </div>
-                                          </div></td>
+                                          </td>
                                           <td class="text-center">17837</td>
                                           <td class="text-center">$40.00</td>
                                           <td class="text-center">
@@ -629,48 +649,51 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                <x-icon name="round-arrow"/>
-
-                                              </a>
-
-                                              <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="dollar-assignment"/>
-
-                                              </a>
-                                              <div class="d-flex actions">
-                                                <div class="dropdown ac-cstm">
-                                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                    <x-icon name="download-file"/>
-
-                                                  </a>
-                                                  <!-- <div class="tablediv dropdown-menu">
-                                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                                    <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                                  </div> -->
-                                                </div>
+                                                <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                                </svg>
+                                              </a>                                  
+                                            <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                                  </svg>
+                                            </a>
+                                            <div class="d-flex actions">
+                                              <div class="dropdown ac-cstm">
+                                                <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                  <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                  </svg>
+                                                    </a>
+                                                <!-- <div class="tablediv dropdown-menu">
+                                                  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+      
+                                                </div> -->
                                               </div>
                                             </div>
+                                          </div>
                                           </td>
                                           </tr>
                                         <tr role="row" class="odd">
                                           <td>
                                               <div class="form-check">
-                                              <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                              <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                             </div>
                                           </td>
                                           <td><a @click="offcanvasOpen = true">87109</a>
                                           <p class="mt-1">08/24/2022</p></td>
-                                          <td class="align-middle"> <div class="row g-2">
-                                            <div class="col-md-2">
-                                              <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                          <td class="align-middle">
+                                            <div class="row g-2">
+                                              <div class="col-md-2">
+                                                <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                              </div>
+                                              <div class="col-md-10 align-self-center">
+                                                <h6 class="fw-semibold">Information Technology</h6>
+                                                <p>www.software.com</p>
+                                              </div>
                                             </div>
-                                            <div class="col-md-10 align-self-center">
-                                              <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                              <p>dorigriffit@gmail.com</p>
-                                            </div>
-                                          </div></td>
+                                          </td>
                                           <td class="text-center">17837</td>
                                           <td class="text-center">$40.00</td>
                                           <td class="text-center">
@@ -686,48 +709,51 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                <x-icon name="round-arrow"/>
-
-                                              </a>
-
-                                              <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="dollar-assignment"/>
-
-                                              </a>
-                                              <div class="d-flex actions">
-                                                <div class="dropdown ac-cstm">
-                                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                    <x-icon name="download-file"/>
-
-                                                  </a>
-                                                  <!-- <div class="tablediv dropdown-menu">
-                                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                                    <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                                  </div> -->
-                                                </div>
+                                                <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                                </svg>
+                                              </a>                                  
+                                            <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                                  </svg>
+                                            </a>
+                                            <div class="d-flex actions">
+                                              <div class="dropdown ac-cstm">
+                                                <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                  <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                  </svg>
+                                                    </a>
+                                                <!-- <div class="tablediv dropdown-menu">
+                                                  <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                  <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+      
+                                                </div> -->
                                               </div>
                                             </div>
+                                          </div>
                                           </td>
                                           </tr>
                                           <tr role="row" class="odd">
                                             <td>
                                                 <div class="form-check">
-                                                <input class="form-check-input" aria-label="List Checkbox" id="" name="" type="checkbox" tabindex="">
+                                                <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
                                               </div>
                                             </td>
                                             <td><a @click="offcanvasOpen = true">87109</a>
                                             <p class="mt-1">08/24/2022</p></td>
-                                            <td class="align-middle"> <div class="row g-2">
-                                              <div class="col-md-2">
-                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                            <td class="align-middle">
+                                              <div class="row g-2">
+                                                <div class="col-md-2">
+                                                  <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                                </div>
+                                                <div class="col-md-10 align-self-center">
+                                                  <h6 class="fw-semibold">Information Technology</h6>
+                                                  <p>www.software.com</p>
+                                                </div>
                                               </div>
-                                              <div class="col-md-10 align-self-center">
-                                                <h6 class="fw-semibold"> Dori Griffiths</h6>
-                                                <p>dorigriffit@gmail.com</p>
-                                              </div>
-                                            </div></td>
+                                            </td>
                                             <td class="text-center">17837</td>
                                             <td class="text-center">$40.00</td>
                                             <td class="text-center">
@@ -743,65 +769,69 @@
                                             <td>
                                               <div class="d-flex actions">
                                                 <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-
-                                                  <x-icon name="round-arrow"/>
-
-                                                </a>
-
-                                                <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                  <x-icon name="dollar-assignment"/>
-
-                                                </a>
-                                                <div class="d-flex actions">
-                                                  <div class="dropdown ac-cstm">
-                                                    <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                      <x-icon name="download-file"/>
-
-                                                    </a>
-                                                    <!-- <div class="tablediv dropdown-menu">
-                                                      <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                                      <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                                    </div> -->
-                                                  </div>
+                                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                                  </svg>
+                                                </a>                                  
+                                              <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                                    </svg>
+                                              </a>
+                                              <div class="d-flex actions">
+                                                <div class="dropdown ac-cstm">
+                                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                    </svg>
+                                                      </a>
+                                                  <!-- <div class="tablediv dropdown-menu">
+                                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
+                                                    <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
+        
+                                                  </div> -->
                                                 </div>
                                               </div>
+                                            </div>
                                             </td>
                                             </tr>
-
-
                                   </tbody>
                               </table>
                           </div>
                              {{-- icon bar start--}}
-                                                      <div class="d-flex actions gap-3 justify-content-end mb-2">
-                                                          <div class="d-flex gap-2 align-items-center">
-                                                              <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                  <x-icon name="round-arrow"/>
-                                                                </a>
-                                                              <span class="text-sm">
-                                                              Revert
-                                                              </span>
-                                                          </div>
-                                                          <div class="d-flex gap-2 align-items-center">
-                                                              <a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                  <x-icon name="dollar-assignment"/>
-
-                                                                </a>
-                                                              <span class="text-sm">
-                                                                  Remitance Inactive
-                                                              </span>
-                                                          </div>
-                                                          <div class="d-flex gap-2 align-items-center">
-                                                              <a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                                  <x-icon name="download-file"/>
-                                                                </a>
-                                                              <span class="text-sm">
-                                                                  Download PDF
-                                                              </span>
-                                                          </div>
-                                                          </div>
-                                                         {{-- icon bar start end--}}
+                          <div class="d-flex actions gap-3 justify-content-end mb-2">
+                              <div class="d-flex gap-2 align-items-center">
+                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
+                                  </svg>
+                                </a> 
+                                  <span class="text-sm">
+                                  Revert
+                                  </span>
+                              </div>
+                              <div class="d-flex gap-2 align-items-center">
+                                <a href="#" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
+                                      </svg>
+                                </a>
+                                  <span class="text-sm">
+                                    Invoice Details
+                                  </span>
+                              </div>
+                              <div class="d-flex gap-2 align-items-center">
+                                <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                  </svg>
+                                    </a>
+                                  <span class="text-sm">
+                                      Download PDF
+                                  </span>
+                              </div>
+                              </div>
+                             {{-- icon bar start end--}}
                     <div class="d-flex justify-content-between mt-4">
                       <div>
                         <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
@@ -825,6 +855,12 @@
                         </ul>
                       </nav>
                     </div>
+
+                    <div class="d-flex justify-content-center">
+                      <button class="btn btn-primary rounded">Resend Invoice</button>
+                      <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#payInvoice">Record Payment</button>
+                      <button class="btn btn-primary rounded mx-2">Revert Invoice</button>
+                    </div>
                 </div>
 
               </div>
@@ -833,4 +869,6 @@
         </section>
         <!-- Basic Floating Label Form section end -->
     </div>
+  @include('modals.common.pay-invoice')
+  @include('panels.invoices.invoice-details')
 </div>

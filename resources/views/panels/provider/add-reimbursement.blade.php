@@ -74,10 +74,10 @@
             </label>
         </div>
         <div class="col-12 justify-content-center form-actions d-flex gap-3">
-            <button class="btn btn-outline-primary rounded">
+            <button class="btn btn-outline-primary rounded" x-on:click="addReimbursement = !addReimbursement">
                 CANCEL
             </button>
-            <button type="submit" class="btn btn-primary rounded">
+            <button type="submit" class="btn btn-primary rounded" x-on:click="addReimbursement = !addReimbursement">
                 ADD
             </button>
         </div>

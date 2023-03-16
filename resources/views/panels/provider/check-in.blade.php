@@ -169,8 +169,8 @@
             <label class="form-label-sm mb-0 text-primary">Verified Location</label>
           </div>
           <div class="form-actions d-flex gap-3 justify-content-center mt-5">
-            <button type="button" class="btn btn-outline-dark rounded">Back</button>
-            <button type="submit" class="btn btn-primary rounded">Submit</button>
+            <button type="button" class="btn btn-outline-dark rounded" x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Back</button>
+            <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckIn = !offcanvasOpenCheckIn">Submit</button>
           </div>
         </div>
 </x-off-canvas>
