@@ -1082,9 +1082,19 @@ small {
 .chosen-container {
   width: 100% !important; }
 
+.btn-inactive.active {
+  background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+  color: #ffffff; }
+.btn-inactive:hover {
+  background: linear-gradient(90deg, #213969 50%, #204387 90.12%); }
 .btn-inactive.dropdown-toggle::after {
   border-width: 0.5rem;
-  margin-left: 1.5rem; }
+  margin-left: 1.5rem;
+  transition: all 0.2s ease-in-out; }
+.btn-inactive.dropdown-toggle[aria-expanded="true"] {
+  background: linear-gradient(90deg, #213969 50%, #204387 90.12%); }
+  .btn-inactive.dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg); }
 
 .offcanvas.offcanvas-assign-provider {
   width: 95%; }

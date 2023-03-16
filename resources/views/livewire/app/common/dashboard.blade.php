@@ -170,7 +170,7 @@
           <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Upcoming</button>
         </div>
         <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
-          <button type="button" class="btn btn-xs w-100 btn-primary rounded">Unassigned</button>
+          <button type="button" class="btn btn-xs w-100 btn-inactive active rounded">Unassigned</button>
         </div>
         <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
           <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Previous</button>
@@ -183,7 +183,7 @@
     </div>
     <div class="row">
       <div class="col-lg-5 pe-lg-3 mb-5">
-        <label class="form-label">Accommodation</label>
+        <label class="form-label">Filter by Accommodation</label>
         <select data-placeholder="Select Accommodations" multiple class="form-select chosen-select" tabindex="" id="tags">
           <option value=""></option>
           <option selected>Shelby Sign Language</option>
@@ -191,7 +191,7 @@
         </select>
       </div>
       <div class="col-lg-5 ps-lg-3 mb-5">
-        <label class="form-label">Service</label>
+        <label class="form-label">Filter by Service</label>
         <select data-placeholder="Select Service" multiple class="form-select chosen-select" tabindex="" id="tags">
           <option value=""></option>
           <option selected>Shelby Sign Language</option>
@@ -199,12 +199,8 @@
         </select>
       </div>
       <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end mb-5">
-        <a class="link-advance-filter" data-bs-toggle="collapse" href="#collapseAdvanceFilter" role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
-            <span class="text-adf text-shown-closed-state">Advance Filter</span>
-            <span class="text-adf text-shown-opened-state">Close Advance Filter</span>
-            <svg class="icon" width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.96132 19.5547L16.279 12.237C16.4969 12.0265 16.6707 11.7748 16.7903 11.4964C16.9099 11.218 16.9729 10.9186 16.9755 10.6156C16.9781 10.3126 16.9204 10.0122 16.8057 9.73174C16.6909 9.45131 16.5215 9.19655 16.3073 8.98231C16.093 8.76806 15.8383 8.59864 15.5578 8.48391C15.2774 8.36918 14.977 8.31144 14.674 8.31408C14.371 8.31671 14.0716 8.37965 13.7932 8.49924C13.5148 8.61883 13.263 8.79266 13.0526 9.01059L11.2431 10.82L11.2431 2.55772C11.2431 1.95255 11.0027 1.37218 10.5748 0.94426C10.1469 0.516343 9.56649 0.275944 8.96132 0.275944C8.35616 0.275944 7.77578 0.516343 7.34786 0.94426C6.91995 1.37218 6.67954 1.95255 6.67954 2.55772L6.67954 10.82L4.87009 9.01059C4.42401 8.5645 3.84101 8.34203 3.25688 8.34203C2.67274 8.34203 2.08975 8.5645 1.64366 9.01059C1.21589 9.43849 0.975586 10.0188 0.975586 10.6238C0.975586 11.2289 1.21589 11.8091 1.64366 12.237L8.96132 19.5547Z" fill="#023DB0"/>
-            </svg>
+        <a class="btn btn-inactive dropdown-toggle rounded" data-bs-toggle="collapse" href="#collapseAdvanceFilter" role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
+            <span class="">Advance Filter</span>
         </a>
       </div>
     </div>
