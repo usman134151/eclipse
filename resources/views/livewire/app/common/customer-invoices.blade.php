@@ -403,7 +403,8 @@
                                         <circle cx="6" cy="6" r="6" fill="#32A35F"/>
                                         </svg>
                                       <p>Paid</p>
-                                    </div></td>
+                                    </div>
+                                  </td>
                                     <td>
                                       <div class="d-flex actions">
                                         <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -416,20 +417,11 @@
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
                                             </svg>
                                       </a>
-                                      <div class="d-flex actions">
-                                        <div class="dropdown ac-cstm">
-                                          <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                            </svg>
-                                              </a>
-                                          <!-- <div class="tablediv dropdown-menu">
-                                            <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                            <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                          </div> -->
-                                        </div>
-                                      </div>
+                                      <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                        </svg>
+                                          </a>
                                     </div>
                                     </td>
                                     </tr>
@@ -466,7 +458,7 @@
                                         <p>Partial</p>
                                       </div></td>
                                       <td>
-                                        <   <div class="d-flex actions">
+                                        <div class="d-flex actions">
                                           <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                             <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
@@ -861,7 +853,7 @@
                       <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#payInvoice">Record Payment</button>
                       <button class="btn btn-primary rounded mx-2">Revert Invoice</button>
                     </div>
-                </div>
+                    </div>
 
               </div>
             </div>

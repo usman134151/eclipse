@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ invoiceDetailsPanel:false}">
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -105,7 +105,7 @@
                                                         name="" type="checkbox" tabindex="">
                                                 </div>
                                             </td>
-                                            <td><a @click="offcanvasOpen = true">INC-100995-6</a>
+                                            <td><a href="#">INC-100995-6</a>
                                                 <p class="mt-1">08/24/2022
                                                     9:59 AM</p>
                                             </td>
@@ -125,9 +125,8 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex actions">
-                                                    <a href="#" title="View Invoice" aria-label="View Invoice"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        wire:click="showProfile">
+                                                    <a @click="invoiceDetailsPanel = true" title="View Invoice" aria-label="View Invoice"
+                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         <x-icon name="view" />
                                                     </a>
 
@@ -166,7 +165,7 @@
                             <div class="d-flex actions gap-3 justify-content-end mb-2">
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="View Invoice" aria-label="View Invoice"
-                                        class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <x-icon name="view" />
                                     </a>
                                     <span class="text-sm">
@@ -184,5 +183,6 @@
         </section>
         <!-- Basic Floating Label Form section end -->
     </div>
+    @include('panels.common.invoice-details')
 </div>
 

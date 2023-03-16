@@ -92,11 +92,11 @@
                                     <div class="col-lg-6 pe-lg-5">
                                         <label class="form-label">Point of Contact <span
                                                 class="mandatory">*</span></label>
-                                        <input type="" class="form-control" placeholder="">
+                                        <input type="" class="form-control" placeholder="Enter Name  ">
                                     </div>
                                     <div class="col-lg-6 ps-lg-5">
                                         <label class="form-label">Phone Number<span class="mandatory">*</span></label>
-                                        <input type="" class="form-control" placeholder="">
+                                        <input type="" class="form-control" placeholder="Enter Phone Number">
                                     </div>
                                 </div>
                             </div>
@@ -131,8 +131,6 @@
                                         <input type="text" class="form-control" placeholder="Enter Booking Title">
                                     </div>
                                 </div>
-
-                                <!-- Services Duplicate Block -->
                                 <div class="duplicate-block mb-3">
                                     <h2>Services 1</h2>
                                     <div class="row">
@@ -204,6 +202,11 @@
                                                     class="mandatory">*</span></label>
                                             <input type="" class="form-control" placeholder="Enter Number of Providers">
                                         </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label">Number of Providers <span
+                                                    class="mandatory">*</span></label>
+                                            <input type="" class="form-control" placeholder="Enter Number of Providers">
+                                        </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <div class="row">
                                                 <div class="col-lg-5 mb-4">
@@ -234,14 +237,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 mb-4">
-                                            <div class="d-lg-flex align-items-center mb-4 gap-3">
-                                                <div class="form-check form-switch form-switch-column mb-lg-0">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                        checked>
-                                                </div>
-                                                <h2 class="mb-lg-0">Add Consumers & Participants</h2>
+                                        <div class="d-lg-flex align-items-center mb-4 gap-3">
+                                            <div class="form-check form-switch form-switch-column mb-lg-0">
+                                                <input class="form-check-input" type="checkbox" role="switch" id=""
+                                                    checked>
                                             </div>
+                                            <h2 class="mb-lg-0 text-dark">Add Consumers & Participants</h2>
+                                        </div>                                    </div>
+                                </div>
+                                <!-- Services Duplicate Block -->
+                                <div class="duplicate-block mb-3">
+
+                                    <div class="row">
+
+
+                                        <div class="col-lg-12 mb-4">
+
                                             <div class="row mb-4 d-flex">
                                                 <div class="col-lg-11 align-self-center d-flex">
                                                     <h2 class="mb-lg-0">Services 2</h2>
@@ -1085,8 +1096,8 @@
                                         <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
                                         <button type="submit" class="btn btn-primary rounded"
                                             x-on:click="$wire.switch('request-details')">Next</button>
-                                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
-                                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
+                                        <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
+                                        <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
                                     </div>
                                 </div>
 
@@ -1182,10 +1193,10 @@
                                     <div class="col-12 justify-content-center form-actions d-flex">
                                         <button type="button" class="btn btn-outline-dark rounded mx-2"
                                             x-on:click="$wire.switch('requester-info')">Back</button>
-                                            <button type="button" class="btn btn-primary rounded"
+                                        <button type="button" class="btn btn-primary rounded"
                                             x-on:click="$wire.switch('payment-info')">Next</button>
-                                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
-                                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
+                                        <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
+                                        <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
 
                                     </div>
                                 </div>
@@ -1236,7 +1247,8 @@
                                 <!-- Add Document -->
                                 <div class="row">
                                     <div class="col-lg-3 mb-4">
-                                        <a  @click="addDocuments = true" class="btn btn-primary rounded btn-has-icon w-100">
+                                        <a @click="addDocuments = true"
+                                            class="btn btn-primary rounded btn-has-icon w-100">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1264,11 +1276,11 @@
                         </div>
                         <div class="col-12 justify-content-center form-actions d-flex">
                             <button type="button" class="btn btn-outline-dark rounded mx-2"
-                                            x-on:click="$wire.switch('request-details')">Back</button>
-                                            <button type="button" class="btn btn-outline-dark rounded mx-2"
-                                            x-on:click="$wire.switch('booking-summary')">Next</button>
-                                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
-                                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
+                                x-on:click="$wire.switch('request-details')">Back</button>
+                            <button type="button" class="btn btn-primary rounded mx-2"
+                                x-on:click="$wire.switch('booking-summary')">Next</button>
+                            <button type="submit" class="btn btn-primary rounded mx-2">Draft</button>
+                            <button type="submit" class="btn btn-primary rounded mx-2">Save</button>
 
                         </div>
                     </div>
@@ -1568,8 +1580,8 @@
                             <div class="col-12 justify-content-center form-actions d-flex gap-3">
                                 <button type="button" class="btn btn-outline-dark rounded"
                                     x-on:click="$wire.switch('payment-info')">Back</button>
-                                    <button type="submit" class="btn btn-primary rounded mx-2">Save As Draft</button>
-                                    <button type="submit" class="btn btn-primary rounded mx-2">confirm</button>
+                                <button type="submit" class="btn btn-primary rounded mx-2">Save As Draft</button>
+                                <button type="submit" class="btn btn-primary rounded mx-2">confirm</button>
 
                             </div>
                         </div>
@@ -1583,5 +1595,5 @@
 
     </div>
     @include('panels.common.add-documents')
+    @include('modals.common.add-address')
 </div>
-
