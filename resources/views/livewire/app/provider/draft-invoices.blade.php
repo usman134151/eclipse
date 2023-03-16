@@ -149,15 +149,15 @@
                           </td>
                           <td>
                             <div class="d-flex actions"> 
-                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                              </svg>
-                              </a>
-                              <a href="#" @click="invoicesDetails = true" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                              <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                                </svg>       
+                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+                               </svg>        
+                              </a>
+                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                               </svg>
                               </a>     
                             </div>
                           </td>
@@ -200,15 +200,15 @@
                             </td>
                             <td>
                               <div class="d-flex actions"> 
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                  </svg>
+                                <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+                                 </svg>        
                                 </a>
-                                <a href="#" @click="invoicesDetails = true" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                               </svg>      
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                 </svg>
                                 </a>     
                               </div>
                             </td>
@@ -253,15 +253,15 @@
                             </td>
                             <td>
                               <div class="d-flex actions"> 
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                  </svg>
+                                <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+                                 </svg>        
                                 </a>
-                                <a href="#" @click="invoicesDetails = true" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                               </svg>      
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                 </svg>
                                 </a>     
                               </div>
                             </td>
@@ -306,15 +306,15 @@
                               </td>
                               <td>
                                 <div class="d-flex actions"> 
-                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                  </svg>
-                                  </a>
-                                  <a href="#" @click="invoicesDetails = true" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                     <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                                    </svg>       
+                                   </svg>        
+                                  </a>
+                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                   </svg>
                                   </a>     
                                 </div>
                               </td>
@@ -359,15 +359,15 @@
                                 </td>
                                 <td>
                                   <div class="d-flex actions"> 
-                                    <a href="#" @click="invoicesDetails = true" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                      </svg>
+                                    <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+                                     </svg>        
                                     </a>
-                                    <a href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                                        </svg> 
+                                    <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                     </svg>
                                     </a>     
                                   </div>
                                 </td>
@@ -412,15 +412,15 @@
                                   </td>
                                   <td>
                                     <div class="d-flex actions"> 
+                                      <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+                                       </svg>        
+                                      </a>
                                       <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                      </svg>
-                                      </a>
-                                      <a href="#" @click="invoicesDetails = true" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                                      </svg>   
+                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                       </svg>
                                       </a>     
                                     </div>
                                   </td>
@@ -465,15 +465,15 @@
                                     </td>
                                     <td>
                                       <div class="d-flex actions"> 
+                                        <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+                                         </svg>        
+                                        </a>
                                         <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                           <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                           </svg>
-                                        </a>
-                                        <a href="#" @click="invoicesDetails = true" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
-                                           </svg>    
+                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                         </svg>
                                         </a>     
                                       </div>
                                     </td>
@@ -518,15 +518,15 @@
                                       </td>
                                       <td>
                                         <div class="d-flex actions"> 
-                                          <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                           </svg>
-                                          </a>
                                           <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                             <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                            </svg>        
+                                          </a>
+                                          <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                           </svg>
                                           </a>     
                                         </div>
                                       </td>
@@ -534,8 +534,32 @@
                           </tbody>
                       </table>
             </div>
+              <!-- Icon Help -->
+        <div class="d-flex actions gap-3 justify-content-end mb-2">
+          <div class="d-flex gap-2 align-items-center">
+            <a href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+              <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
+             </svg>        
+            </a> 
+            <span class="text-sm">
+              Invoice Generate
+            </span>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+              <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+             </svg>
+            </a>
+            <span class="text-sm">
+              View
+            </span>
+          </div>
+        </div>
+        <!-- /Icon Help -->
             <div class="d-flex justify-content-center mt-4">
-              <button class="btn btn-primary rounded">Generate Invoice</button>
+              <button class="btn btn-primary rounded" @click="invoicesDetails = true">Generate Invoice</button>
               </div>
         </div>
     </div>
