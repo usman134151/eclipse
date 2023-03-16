@@ -1128,9 +1128,27 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	width: 100% !important;
 }
 
-.btn-inactive.dropdown-toggle::after {
-	border-width: 0.5rem;
-	margin-left: 1.5rem;
+.btn-inactive {
+	&.active {
+		background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+		color: #ffffff;
+	}
+	&:hover {
+		background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+	}
+	&.dropdown-toggle {
+		&::after {
+			border-width: 0.5rem;
+			margin-left: 1.5rem;
+			transition: all 0.2s ease-in-out;
+		}
+		&[aria-expanded="true"] {
+			background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
+			&::after {
+				transform: rotate(180deg);
+			}
+		}
+	}
 }
 
 .offcanvas.offcanvas-assign-provider {
