@@ -148,44 +148,119 @@
 	  </div>
 	  <div class="tab-pane fade" id="assignments-tab-pane" role="tabpanel" aria-labelledby="assignments-tab" tabindex="0">
 		<h2 class="text-dark">Assignment List</h2>
-		<!-- Filters -->
-		<div class="d-flex justify-content-start gap-4 mb-5">
-			<div class="d-flex justify-content-start gap-2">
-				<div class="mb-4 mb-lg-0 position-relative">
-				<!-- Begin : it will be replaced with livewire module-->
-				<svg class="icon-date sm cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-				</svg>
-				<input type="" class="form-control form-control-sm w-auto js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
-				<!-- End : it will be replaced with livewire module -->
-				</div>
-				<div class="mb-4 mb-lg-0">
-				<select class="form-select form-select-sm rounded bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
-					<option>Advance Filter</option>
-				</select>
-				</div>
-				<div class="mb-4 mb-lg-0">
-				<button type="button" class="btn btn-xs btn-outline-dark rounded">Clear all</button>
-				</div>
-			</div>
-			<div class="d-flex justify-content-start gap-2">
-				<div class="mb-4 mb-lg-0">
-				<button type="button" class="btn btn-xs btn-primary rounded">Today</button>
-				</div>
-				<div class="mb-4 mb-lg-0">
-				<button type="button" class="btn btn-xs btn-inactive rounded">Upcoming</button>
-				</div>
-				<div class="mb-4 mb-lg-0">
-				<button type="button" class="btn btn-xs btn-inactive rounded">Unassigned</button>
-				</div>
-				<div class="mb-4 mb-lg-0">
-				<button type="button" class="btn btn-xs btn-inactive rounded">Previous</button>
-				</div>
-				<div class="mb-4 mb-lg-0">
-				<button type="button" class="btn btn-xs btn-inactive rounded">Cancelled</button>
-				</div>
-			</div>
-			</div>
+		<!-- BEGIN: Filters -->
+    <div class="d-flex flex-lg-row flex-column justify-content-start gap-4 mb-5">
+      <div class="row g-0">
+        <div class="position-relative col-12 col-lg-auto px-lg-1 mb-2 mb-lg-0">
+          <!-- Begin : it will be replaced with livewire module-->
+          <svg class="icon-date sm cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
+          </svg>
+          <div class="col-12 col-lg-auto">
+          <input type="" class="form-control form-control-sm js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+          <!-- End : it will be replaced with livewire module -->
+          </div>
+        </div>
+      </div>
+      <div class="row g-0">
+        <div class="mb-2 mb-lg-0 col-lg-auto col-12 px-1">
+          <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Today</button>
+        </div>
+        <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
+          <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Upcoming</button>
+        </div>
+        <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
+          <button type="button" class="btn btn-xs w-100 btn-primary rounded">Unassigned</button>
+        </div>
+        <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
+          <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Previous</button>
+        </div>
+        <div class="mb-2 mb-lg-0 col-lg-auto col-6 px-1">
+          <button type="button" class="btn btn-xs w-100 btn-inactive rounded">Cancelled</button>
+        </div>
+      </div>
+    
+    </div>
+    <div class="row">
+      <div class="col-lg-5 pe-lg-3 mb-5">
+        <label class="form-label">Accommodation</label>
+        <select data-placeholder="Select Accommodations" multiple class="form-select chosen-select" tabindex="" id="tags">
+          <option value=""></option>
+          <option selected>Shelby Sign Language</option>
+          <option selected>Language Translation Services</option>
+        </select>
+      </div>
+      <div class="col-lg-5 ps-lg-3 mb-5">
+        <label class="form-label">Service</label>
+        <select data-placeholder="Select Service" multiple class="form-select chosen-select" tabindex="" id="tags">
+          <option value=""></option>
+          <option selected>Shelby Sign Language</option>
+          <option selected>Language Translation Services</option>
+        </select>
+      </div>
+      <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end mb-5">
+        <a class="link-advance-filter" data-bs-toggle="collapse" href="#collapseAdvanceFilter" role="button" aria-expanded="false" aria-controls="collapseAdvanceFilter">
+            <span class="text-adf text-shown-closed-state">Advance Filter</span>
+            <span class="text-adf text-shown-opened-state">Close Advance Filter</span>
+            <svg class="icon" width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.96132 19.5547L16.279 12.237C16.4969 12.0265 16.6707 11.7748 16.7903 11.4964C16.9099 11.218 16.9729 10.9186 16.9755 10.6156C16.9781 10.3126 16.9204 10.0122 16.8057 9.73174C16.6909 9.45131 16.5215 9.19655 16.3073 8.98231C16.093 8.76806 15.8383 8.59864 15.5578 8.48391C15.2774 8.36918 14.977 8.31144 14.674 8.31408C14.371 8.31671 14.0716 8.37965 13.7932 8.49924C13.5148 8.61883 13.263 8.79266 13.0526 9.01059L11.2431 10.82L11.2431 2.55772C11.2431 1.95255 11.0027 1.37218 10.5748 0.94426C10.1469 0.516343 9.56649 0.275944 8.96132 0.275944C8.35616 0.275944 7.77578 0.516343 7.34786 0.94426C6.91995 1.37218 6.67954 1.95255 6.67954 2.55772L6.67954 10.82L4.87009 9.01059C4.42401 8.5645 3.84101 8.34203 3.25688 8.34203C2.67274 8.34203 2.08975 8.5645 1.64366 9.01059C1.21589 9.43849 0.975586 10.0188 0.975586 10.6238C0.975586 11.2289 1.21589 11.8091 1.64366 12.237L8.96132 19.5547Z" fill="#023DB0"/>
+            </svg>
+        </a>
+      </div>
+    </div>
+    <div class="collapse" id="collapseAdvanceFilter">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-5 pe-lg-3 mb-5">
+            <label class="form-label">Specialization</label>
+            <select data-placeholder="Select Specialization" multiple class="form-select chosen-select" tabindex="" id="tags">
+              <option value=""></option>
+              <option selected>Deaf-Blind Tactile</option>
+              <option selected>Closed-Captioning</option>
+            </select>
+          </div>
+          <div class="col-lg-5 ps-lg-3 mb-5">
+            <label class="form-label">Service Type</label>
+            <select data-placeholder="Select Service Type" multiple class="form-select chosen-select" tabindex="" id="tags">
+              <option value=""></option>
+              <option selected>Language interpreting</option>
+              <option selected>New service capacity</option>
+            </select>
+          </div>
+          <div class="col-lg-5 pe-lg-3 mb-5">
+            <label class="form-label">Company</label>
+            <select data-placeholder="Select Company" multiple class="form-select chosen-select" tabindex="" id="tags">
+              <option value=""></option>
+              <option selected>AbmaSoft</option>
+              <option selected>Demo Company</option>
+            </select>
+          </div>
+          <div class="col-lg-5 ps-lg-3 mb-5">
+            <label class="form-label">Provider</label>
+            <select data-placeholder="Select Provider" multiple class="form-select chosen-select" tabindex="" id="tags">
+              <option value=""></option>
+              <option selected>Chandler Leach</option>
+              <option selected>Giacomo Marsh</option>
+            </select>
+          </div>
+          <div class="col-lg-5 pe-lg-3 mb-5">
+            <label class="form-label">Tags</label>
+            <select data-placeholder="Select Tags" multiple class="form-select chosen-select" tabindex="" id="tags">
+              <option value=""></option>
+              <option selected>end_Assignment</option>
+              <option selected>end_date</option>
+            </select>
+          </div>
+          <div class="col-lg-5 ps-lg-3 mb-5">
+            <label class="form-label">Address</label>
+            <select data-placeholder="Select Provider" multiple class="form-select chosen-select" tabindex="" id="tags">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: Filters -->
 			<div class="d-lg-flex justify-content-between mb-2">
 				<h2 class="mb-lg-0 text-dark">Today’s Assignment</h2>
 				<div class="d-inline-flex align-items-center gap-4">

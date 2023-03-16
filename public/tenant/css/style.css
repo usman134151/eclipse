@@ -1052,7 +1052,7 @@ small {
 .chosen-container-multi .chosen-choices li.search-choice {
   font-size: 0.75rem;
   color: #000000;
-  background: none;
+  background: #fff;
   padding: 0.419rem 2rem 0.419rem 0.5rem;
   box-shadow: none;
   margin: 12.2px 7px 3px 0; }
@@ -1072,8 +1072,11 @@ small {
 .chosen-container-multi .chosen-choices li.search-field input[type=text] {
   height: 2.9rem; }
 
+.chosen-container-multi .chosen-choices li.search-field input.chosen-search-input[type=text] {
+  padding: 0; }
+
 .chosen-container-multi .chosen-choices {
-  background: none;
+  background: #ffffff;
   padding: 0 8px; }
 
 .chosen-container {
@@ -1412,5 +1415,23 @@ swal-button {
   .form-actions .btn {
     padding: 0.7rem 1rem;
     line-height: 1; } }
+
+.link-advance-filter .text-adf {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-bottom: 3px solid #023DB0;
+  line-height: 1; }
+.link-advance-filter .text-shown-closed-state {
+  display: inline-block; }
+.link-advance-filter .text-shown-opened-state {
+  display: none; }
+.link-advance-filter .icon {
+  transition: all 0.2s ease-in-out; }
+.link-advance-filter[aria-expanded="true"] .icon {
+  transform: rotate(180deg); }
+.link-advance-filter[aria-expanded="true"] .text-shown-closed-state {
+  display: none; }
+.link-advance-filter[aria-expanded="true"] .text-shown-opened-state {
+  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
