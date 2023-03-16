@@ -1,4 +1,4 @@
-<div x-data="{ invoiceDetails:false}">
+<div x-data="{ invoiceDetailsPanel:false}">
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -125,7 +125,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex actions">
-                                                    <a @click="invoiceDetails = true" title="View Invoice" aria-label="View Invoice"
+                                                    <a @click="invoiceDetailsPanel = true" title="View Invoice" aria-label="View Invoice"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         <x-icon name="view" />
                                                     </a>
@@ -183,6 +183,6 @@
         </section>
         <!-- Basic Floating Label Form section end -->
     </div>
-    @include('panels.invoices.invoice-details')
+    @include('panels.common.invoice-details')
 </div>
 
