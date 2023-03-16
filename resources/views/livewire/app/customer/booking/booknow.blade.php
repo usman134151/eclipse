@@ -897,7 +897,7 @@
                                             <div class="col-lg-12 text-lg-end">
                                                 <div class="mb-4">
                                                     <button type="button" class="btn btn-primary btn-sm rounded gap-2"
-                                                        data-bs-toggle="modal" data-bs-target="#addAddressModal">
+                                                    data-bs-toggle="modal" data-bs-target="#addAddressModal">
                                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1583,5 +1583,6 @@
 
     </div>
     @include('panels.common.add-documents')
+    @include('modals.common.add-address')
 </div>
 
