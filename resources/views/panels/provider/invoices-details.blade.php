@@ -280,6 +280,6 @@
               </table>
     </div>
     <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-primary rounded">Generate Invoice</button>
+        <button class="btn btn-primary rounded" x-on:click="invoicesDetails = !invoicesDetails">Generate Invoice</button>
     </div>
 </x-off-canvas>
