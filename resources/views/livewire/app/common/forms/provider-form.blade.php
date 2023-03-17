@@ -1038,9 +1038,9 @@
 																						</div>
 																						<div class="d-grid grid-cols-2 gap-1">
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-after-hours">
-																									X by Duration
+																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-closed-hours">
+																									Cancellations
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1050,9 +1050,9 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-closed-hours">
-																									Cancellations
+																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-after-hours">
+																									Modifications
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1064,7 +1064,7 @@
 																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Modifications
+																									Rescheduling
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1074,9 +1074,11 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
+																							</div>
+																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Rescheduling
+																									X by Duration
 																								</label>
 																							</div>
 																						</div>
@@ -1119,9 +1121,9 @@
 																						</div>
 																						<div class="d-grid grid-cols-2 gap-1">
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-after-hours">
-																									X by Duration
+																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-closed-hours">
+																									Cancellations
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1131,9 +1133,9 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-closed-hours">
-																									Cancellations
+																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-after-hours">
+																									Modifications
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1145,7 +1147,7 @@
 																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Modifications
+																									Rescheduling
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1155,9 +1157,11 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
+																							</div>
+																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Rescheduling
+																									X by Duration
 																								</label>
 																							</div>
 																						</div>
@@ -1202,9 +1206,9 @@
 																						</div>
 																						<div class="d-grid grid-cols-2 gap-1">
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-after-hours">
-																									X by Duration
+																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-closed-hours">
+																									Cancellations
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1214,9 +1218,9 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-closed-hours">
-																									Cancellations
+																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-after-hours">
+																									Modifications
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1228,7 +1232,7 @@
 																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Modifications
+																									Rescheduling
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1238,9 +1242,11 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
+																							</div>
+																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Rescheduling
+																									X by Duration
 																								</label>
 																							</div>
 																						</div>
@@ -1283,9 +1289,9 @@
 																						</div>
 																						<div class="d-grid grid-cols-2 gap-1">
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-after-hours">
-																									X by Duration
+																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-closed-hours">
+																									Cancellations
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1295,9 +1301,9 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
-																								<input class="form-check-input" id="1-exclude-closed-hours" name="" type="checkbox" tabindex="" />
-																								<label class="form-check-label" for="1-exclude-closed-hours">
-																									Cancellations
+																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
+																								<label class="form-check-label" for="1-exclude-after-hours">
+																									Modifications
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1309,7 +1315,7 @@
 																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Modifications
+																									Rescheduling
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
@@ -1319,9 +1325,11 @@
 																								</label>
 																							</div>
 																							<div class="form-check form-check-inline">
+																							</div>
+																							<div class="form-check form-check-inline">
 																								<input class="form-check-input" id="1-exclude-after-hours" name="" type="checkbox" tabindex="" />
 																								<label class="form-check-label" for="1-exclude-after-hours">
-																									Rescheduling
+																									X by Duration
 																								</label>
 																							</div>
 																						</div>
