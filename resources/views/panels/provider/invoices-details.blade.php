@@ -1,9 +1,9 @@
 <x-off-canvas show="invoicesDetails" :allowBackdrop="false" size="fullscreen">
-	<x-slot name="title">Invoices Details</x-slot>
+	<x-slot name="title">Generate Invoice</x-slot>
 
     <div class="row mb-4 mt-3">
         <div class="col-md-4 d-inline-flex">
-          <div><label class="form-label" for="provider-inovice-id">Provider Invoice Id: </label></div>
+          <div><label class="form-label form-label-sm" for="provider-inovice-id">Provider Invoice Id: </label></div>
           <div class="mx-2"><input type="text" id="provider-inovice-id" class="form-control form-control-sm" name="" placeholder=""/></div>
         </div>
         <div class="col-md-4">
@@ -282,16 +282,12 @@
               </table>
     </div>
     <!-- Total -->
-		<div class="bg-muted py-2 mb-4">
-		  <div class="row justify-content-center">
-			<div class="col-lg-4">
-			  <div class="d-flex justify-content-between">
-				<div class="fw-bold text-sm">Total</div>
-				<div class="fw-bold text-sm text-lg-end">$675</div>
-			  </div>
-			</div>
-		  </div>
-		</div>
+    <div class="row bg-muted py-2 mb-4">
+      <div class="col-md-7"></div>
+      <div class="col-md-3 d-flex justify-content-end">
+        <div class="fw-bold text-sm mx-5">Total <span class="mx-5">$675</span></div>
+      </div>
+    </div>
 		<!-- /Total -->
     <div class="justify-content-center d-flex mb-2">
 		  <div class="form-check mx-auto">
@@ -302,6 +298,6 @@
 		  </div>
 		</div>
     <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-primary rounded" x-on:click="invoicesDetails = !invoicesDetails">Generate Invoice</button>
+        <button class="btn btn-primary rounded" x-on:click="invoicesDetails = !invoicesDetails">Submit Invoice</button>
     </div>
 </x-off-canvas>

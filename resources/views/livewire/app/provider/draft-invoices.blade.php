@@ -112,7 +112,7 @@
                         <tr role="row" class="odd">
                           <td>
                             <div class="form-check">
-                            <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                            <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                             </div>
                           </td>
                           <td>
@@ -130,7 +130,7 @@
                           <td >
                             <div class="row g-2">
                                 <div class="col-md-2">
-                                  <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                  <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
                                 </div>
                                 <div class="col-md-10 align-self-center">
                                   <div class="fw-semibold text-sm">Example Company</div>
@@ -140,11 +140,11 @@
                           </td>
                           <td>$150.00</td>
                           <td>
-                            <div>
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
-                               </svg>
-                               completed
+                            <div class="d-inline-flex">
+                                <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                 </svg></div>
+                               <div class="mx-1 text-sm mt-1">completed</div>
                             </div>     
                           </td>
                           <td>
@@ -165,7 +165,7 @@
                         <tr role="row" class="even">
                             <td>
                               <div class="form-check">
-                              <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                              <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
                             <td>
@@ -183,7 +183,7 @@
                             <td >
                               <div class="row g-2">
                                   <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                    <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
                                   </div>
                                   <div class="col-md-10 align-self-center">
                                     <div class="fw-semibold text-sm">Example Company</div>
@@ -196,7 +196,7 @@
                                 <svg class="fill" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#red-dot"></use>
                                 </svg>
-                              Underfilled
+                              <span class="text-sm">Underfilled</span>
                             </td>
                             <td>
                               <div class="d-flex actions"> 
@@ -216,7 +216,7 @@
                           <tr role="row" class="odd">
                             <td>
                               <div class="form-check">
-                              <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                              <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
                             <td>
@@ -234,7 +234,7 @@
                             <td >
                               <div class="row g-2">
                                   <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                    <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
                                   </div>
                                   <div class="col-md-10 align-self-center">
                                     <div class="fw-semibold text-sm">Example Company</div>
@@ -247,9 +247,9 @@
                                 <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
                                    </svg>
-                                   Canceled
+                                   <span class="text-sm"> Canceled</span> 
                                 </div>
-                                   <div class="ms-2">Billable</div>   
+                                   <div class="ms-2 text-sm">Billable</div>   
                             </td>
                             <td>
                               <div class="d-flex actions"> 
@@ -269,7 +269,7 @@
                           <tr role="row" class="even">
                               <td>
                                 <div class="form-check">
-                                <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                                <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                 </div>
                               </td>
                               <td>
@@ -287,7 +287,7 @@
                               <td >
                                 <div class="row g-2">
                                     <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                      <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
                                     </div>
                                     <div class="col-md-10 align-self-center">
                                       <div class="fw-semibold text-sm">Example Company</div>
@@ -297,12 +297,12 @@
                               </td>
                               <td>$150.00</td>
                               <td>
-                                <div>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                <div class="d-inline-flex">
+                                  <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
-                                   </svg>
-                                   completed
-                                </div>
+                                   </svg></div>
+                                 <div class="mx-1 text-sm mt-1">completed</div>
+                              </div>
                               </td>
                               <td>
                                 <div class="d-flex actions"> 
@@ -322,7 +322,7 @@
                             <tr role="row" class="odd">
                                 <td>
                                   <div class="form-check">
-                                  <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                                  <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
                                 <td>
@@ -340,7 +340,7 @@
                                 <td >
                                   <div class="row g-2">
                                       <div class="col-md-2">
-                                        <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                        <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
                                       </div>
                                       <div class="col-md-10 align-self-center">
                                         <div class="fw-semibold text-sm">Example Company</div>
@@ -350,12 +350,12 @@
                                 </td>
                                 <td>$150.00</td>
                                 <td>
-                                    <div>
-                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
-                                       </svg>
-                                       completed
-                                    </div>
+                                  <div class="d-inline-flex">
+                                    <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                     </svg></div>
+                                     <div class="mx-1 text-sm mt-1">completed</div>
+                                </div>
                                 </td>
                                 <td>
                                   <div class="d-flex actions"> 
@@ -375,7 +375,7 @@
                               <tr role="row" class="even">
                                   <td>
                                     <div class="form-check">
-                                    <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                                    <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                     </div>
                                   </td>
                                   <td>
@@ -393,7 +393,7 @@
                                   <td >
                                     <div class="row g-2">
                                         <div class="col-md-2">
-                                          <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                          <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
                                         </div>
                                         <div class="col-md-10 align-self-center">
                                           <div class="fw-semibold text-sm">Example Company</div>
@@ -403,12 +403,12 @@
                                   </td>
                                   <td>$150.00</td>
                                   <td>
-                                    <div>
-                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    <div class="d-inline-flex">
+                                      <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
-                                       </svg>
-                                       completed
-                                    </div>
+                                       </svg></div>
+                                       <div class="mx-1 text-sm mt-1">completed</div>
+                                  </div>
                                   </td>
                                   <td>
                                     <div class="d-flex actions"> 
@@ -428,7 +428,7 @@
                                 <tr role="row" class="odd">
                                     <td>
                                       <div class="form-check">
-                                      <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                                      <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                       </div>
                                     </td>
                                     <td>
@@ -446,7 +446,7 @@
                                     <td >
                                       <div class="row g-2">
                                           <div class="col-md-2">
-                                            <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                            <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
                                           </div>
                                           <div class="col-md-10 align-self-center">
                                             <div class="fw-semibold text-sm">Example Company</div>
@@ -456,12 +456,12 @@
                                     </td>
                                     <td>$150.00</td>
                                     <td>
-                                        <div>
-                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
-                                           </svg>
-                                           completed
-                                        </div>
+                                      <div class="d-inline-flex">
+                                        <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                                         </svg></div>
+                                       <div class="mx-1 text-sm">completed</div>
+                                    </div>
                                     </td>
                                     <td>
                                       <div class="d-flex actions"> 
@@ -481,7 +481,7 @@
                                   <tr role="row" class="even">
                                       <td>
                                         <div class="form-check">
-                                        <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
+                                        <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                         </div>
                                       </td>
                                       <td>
@@ -499,7 +499,7 @@
                                       <td >
                                         <div class="row g-2">
                                             <div class="col-md-2">
-                                              <img src="/tenant/images/portrait/small/image.png" height="70" width="70" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                              <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
                                             </div>
                                             <div class="col-md-10 align-self-center">
                                               <div class="fw-semibold text-sm">Example Company</div>
@@ -509,12 +509,12 @@
                                       </td>
                                       <td>$150.00</td>
                                       <td>
-                                        <div>
-                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                        <div class="d-inline-flex">
+                                          <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
-                                           </svg>
-                                           completed
-                                        </div>
+                                           </svg></div>
+                                           <div class="mx-1 text-sm mt-1">completed</div>
+                                      </div>
                                       </td>
                                       <td>
                                         <div class="d-flex actions"> 
