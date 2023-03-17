@@ -1,5 +1,5 @@
 <div>
-  <!-- BEGIN: Content--> 
+  <!-- BEGIN: Content-->
      <div class="content-header row">
        <div class="content-header-left col-md-9 col-12 mb-2">
          <div class="row breadcrumbs-top">
@@ -33,27 +33,27 @@
            <!-- Nav tabs -->
            <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
              <li class="nav-item" role="presentation">
-               <button class="nav-link active" id="basic-service-setup-tab" data-bs-toggle="tab" data-bs-target="#basic-service-setup" type="button" role="tab" aria-controls="basic-service-setup" aria-selected="true"><span class="number">1</span> Basic Service Setup</button>
+               <button class="nav-link  {{ $component == 'basic-service-setup' ? 'active' : '' }}" id="basic-service-setup-tab" data-bs-toggle="tab" data-bs-target="#basic-service-setup" type="button" role="tab" aria-controls="basic-service-setup" aria-selected="true"><span class="number">1</span> Basic Service Setup</button>
              </li>
              <li class="nav-item" role="presentation">
-               <button class="nav-link" id="advanced-service-rate-tab" data-bs-toggle="tab" data-bs-target="#advanced-service-rate" type="button" role="tab" aria-controls="advanced-service-rate" aria-selected="false"><span class="number">2</span> Advanced Service Rate</button>
+               <button class="nav-link {{ $component == 'advanced-service-rate' ? 'active' : '' }}" id="advanced-service-rate-tab" data-bs-toggle="tab" data-bs-target="#advanced-service-rate" type="button" role="tab" aria-controls="advanced-service-rate" aria-selected="false"><span class="number">2</span> Advanced Service Rate</button>
              </li>
              <li class="nav-item" role="presentation">
-               <button class="nav-link" id="service-forms-tab" data-bs-toggle="tab" data-bs-target="#service-forms" type="button" role="tab" aria-controls="service-forms" aria-selected="false"><span class="number">3</span> Service Forms</button>
+               <button class="nav-link {{ $component == 'service-forms' ? 'active' : '' }}" id="service-forms-tab" data-bs-toggle="tab" data-bs-target="#service-forms" type="button" role="tab" aria-controls="service-forms" aria-selected="false"><span class="number">3</span> Service Forms</button>
              </li>
              <li class="nav-item" role="presentation">
-               <button class="nav-link" id="service-configuration-tab" data-bs-toggle="tab" data-bs-target="#service-configuration" type="button" role="tab" aria-controls="service-configuration" aria-selected="false"><span class="number">4</span> Service Configuration</button>
+               <button class="nav-link {{ $component == 'service-configuration' ? 'active' : '' }}" id="service-configuration-tab" data-bs-toggle="tab" data-bs-target="#service-configuration" type="button" role="tab" aria-controls="service-configuration" aria-selected="false"><span class="number">4</span> Service Configuration</button>
              </li>
              <li class="nav-item" role="presentation">
-               <button class="nav-link" id="advance-options-tab" data-bs-toggle="tab" data-bs-target="#advance-options" type="button" role="tab" aria-controls="advance-options" aria-selected="false"><span class="number">5</span> Advance Options</button>
+               <button class="nav-link {{ $component == 'advance-options' ? 'active' : '' }}" id="advance-options-tab" data-bs-toggle="tab" data-bs-target="#advance-options" type="button" role="tab" aria-controls="advance-options" aria-selected="false"><span class="number">5</span> Advance Options</button>
              </li>
              <li class="nav-item" role="presentation">
-               <button class="nav-link" id="notification-setting-tab" data-bs-toggle="tab" data-bs-target="#notification-setting" type="button" role="tab" aria-controls="notification-setting" aria-selected="false"><span class="number">6</span> Notification Setting</button>
+               <button class="nav-link {{ $component == 'notification-setting' ? 'active' : '' }}" id="notification-setting-tab" data-bs-toggle="tab" data-bs-target="#notification-setting" type="button" role="tab" aria-controls="notification-setting" aria-selected="false"><span class="number">6</span> Notification Setting</button>
              </li>
            </ul>
            <!-- Tab panes -->
            <div class="tab-content">
-             <div class="tab-pane fade active show" id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
+             <div class="tab-pane fade {{ $component == 'basic-service-setup' ? 'active show' : '' }}" id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
                <div class="d-lg-flex justify-content-between align-items-center mb-4">
                  <h2 class="mb-lg-0">Basic Service Setup</h2>
                  <div class="form-check form-switch form-switch-column">
@@ -178,7 +178,7 @@
                     <div class="form-check">
                       <input class="form-check-input" id="DisableserviceForCompanies" name="" type="checkbox" tabindex="" />
                       <label class="form-check-label" for="DisableserviceForCompanies"> Disable service for Companies by Default</label>
-                    </div>  
+                    </div>
                   </div>
                 </div>
                  <div class="col-lg-12 mb-5">
@@ -532,15 +532,14 @@
                    </div>
                  </div>
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                   <button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">Back</button>
-                   <button type="submit" class="btn btn-primary rounded">Save & Exit</button>
-                   <button type="submit" class="btn btn-primary rounded">Next</button>
-                   
+                  <a href="/admin/accommodation/all-services"><button type="submit" class="btn btn-primary rounded">Save & Exit</button></a>
+                   <button type="submit"  class="btn btn-primary rounded" x-on:click="$wire.switch('advanced-service-rate')">Next</button>
+
                  </div>
                </div>
              </div>
              <!-- END: basic-service-setup -->
-             <div class="tab-pane fade" id="advanced-service-rate" role="tabpanel" aria-labelledby="advanced-service-rate-tab" tabindex="0">
+             <div class="tab-pane fade {{ $component == 'advanced-service-rate' ? 'active show' : '' }}" id="advanced-service-rate" role="tabpanel" aria-labelledby="advanced-service-rate-tab" tabindex="0">
                <div class="d-lg-flex justify-content-between align-items-center mb-4">
                  <h2 class="mb-lg-0">Service Rates And Charges</h2>
                </div>
@@ -738,7 +737,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -776,7 +775,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -821,7 +820,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -859,7 +858,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -911,7 +910,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -949,7 +948,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -994,7 +993,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -1032,7 +1031,7 @@
                                      <div class="text-end">
                                        <a href="#" class="fw-bold">
                                          <small>
-                                           Add Additional Service Charges 
+                                           Add Additional Service Charges
                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                            </svg>
@@ -1104,7 +1103,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1157,7 +1156,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1217,7 +1216,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1270,7 +1269,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1362,7 +1361,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1436,7 +1435,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1517,7 +1516,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1591,7 +1590,7 @@
                                    <div class="text-end">
                                      <a href="#" class="fw-bold">
                                        <small>
-                                         Add Additional Service Charges 
+                                         Add Additional Service Charges
                                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                          </svg>
@@ -1624,8 +1623,8 @@
                            <a href="#" class="btn btn-primary">Create New Specialization</a>
                          </div>
                          <div class="d-flex flex-column gap-3">
-                           
-                         
+
+
                            <div class="d-lg-flex gap-4">
                              <div class="align-self-end col-lg-5">
                                <div class="input-group">
@@ -1679,7 +1678,7 @@
                            <div class="text-end">
                              <a href="#" class="fw-bold">
                                <small>
-                                 Add Additional Specialization 
+                                 Add Additional Specialization
                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z" fill="#0A1E46"/>
                                  </svg>
@@ -1692,13 +1691,13 @@
                    </div>
                  </div><!-- /Specialization Rates -->
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                   <button type="button" class="btn btn-outline-dark rounded">Back</button>
-                   <button type="submit" class="btn btn-primary rounded">Save & Exit</button>
-                   <button type="submit" class="btn btn-primary rounded">Next</button>
+                   <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('basic-service-setup')">Back</button>
+                  <a href="/admin/accommodation/all-services"><button type="submit" class="btn btn-primary rounded">Save & Exit</button></a>
+                   <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('service-forms')">Next</button>
                  </div>
                </div>
              </div>
-             <div class="tab-pane fade" id="service-forms" role="tabpanel" aria-labelledby="service-forms-tab" tabindex="0">
+             <div class="tab-pane fade {{ $component == 'service-forms' ? 'active show' : '' }}" id="service-forms" role="tabpanel" aria-labelledby="service-forms-tab" tabindex="0">
                <div class="d-lg-flex justify-content-between align-items-center mb-4">
                  <h2 class="mb-lg-0">Customized Forms Selection</h2>
                </div>
@@ -1816,13 +1815,13 @@
                </div>
                <div class="row">
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                   <button type="button" class="btn btn-outline-dark rounded">Back</button>
-                   <button type="submit" class="btn btn-primary rounded">Save & Exit</button>
-                   <button type="submit" class="btn btn-primary rounded">Next</button>
+                   <button type="button" class="btn btn-outline-dark rounded"  x-on:click="$wire.switch('advanced-service-rate')">Back</button>
+                   <a href="/admin/accommodation/all-services"><button type="submit" class="btn btn-primary rounded">Save & Exit</button></a>
+                   <button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('service-configuration')">Next</button>
                  </div>
                </div>
              </div>
-             <div class="tab-pane fade" id="service-configuration" role="tabpanel" aria-labelledby="service-configuration-tab" tabindex="0">
+             <div class="tab-pane fade {{ $component == 'service-configuration' ? 'active show' : '' }}" id="service-configuration" role="tabpanel" aria-labelledby="service-configuration-tab" tabindex="0">
                <div class="d-lg-flex justify-content-between align-items-center mb-4">
                  <h2 class="mb-lg-0">Service Configuration</h2>
                </div>
@@ -1932,14 +1931,14 @@
                </div>
                <div class="row">
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                   <button type="button" class="btn btn-outline-dark rounded">Back</button>
-                   <button type="submit" class="btn btn-primary rounded">Save & Exit</button>
-                   <button type="submit" class="btn btn-primary rounded">Next</button>
+                   <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-forms')" >Back</button>
+                   <a href="/admin/accommodation/all-services"><button type="submit" class="btn btn-primary rounded">Save & Exit</button></a>
+                   <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('advance-options')">Next</button>
 
                  </div>
                </div>
              </div>
-             <div class="tab-pane fade" id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
+             <div class="tab-pane fade {{ $component == 'advance-options' ? 'active show' : '' }}" id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
                <div class="d-lg-flex justify-content-between align-items-center mb-4">
                  <h2 class="mb-lg-0">Default Time Zone & Booking Procedures</h2>
                </div>
@@ -2430,13 +2429,13 @@
                </div>
                <div class="row">
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                   <button type="button" class="btn btn-outline-dark rounded">Back</button>
-                   <button type="submit" class="btn btn-primary rounded">Save & Exit</button>
-                   <button type="submit" class="btn btn-primary rounded">Next</button>
+                   <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-configuration')">Back</button>
+                   <a href="/admin/accommodation/all-services"><button type="submit" class="btn btn-primary rounded">Save & Exit</button></a>
+                   <button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('notification-setting')">Next</button>
                  </div>
                </div>
              </div>
-             <div class="tab-pane fade" id="notification-setting" role="tabpanel" aria-labelledby="notification-setting-tab" tabindex="0">
+             <div class="tab-pane fade {{ $component == 'notification-setting' ? 'active show' : '' }}" id="notification-setting" role="tabpanel" aria-labelledby="notification-setting-tab" tabindex="0">
                <div class="d-lg-flex justify-content-between align-items-center">
                  <h2>Default Notification Settings</h2>
                </div>
@@ -2656,15 +2655,13 @@
                </div>
                <div class="row">
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                   <button type="button" class="btn btn-outline-dark rounded">Back</button>
-                   <button type="submit" class="btn btn-primary rounded">Save</button>
-                   <button type="submit" class="btn btn-primary rounded">Next</button>
-
+                   <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('advance-options')">Back</button>
+                   <a href="/admin/accommodation/all-services"><button type="submit" class="btn btn-primary rounded">Save & Exit</button></a>
                  </div>
                </div>
              </div>
            </div>
-           <!-- END: Steps -->    
+           <!-- END: Steps -->
          </div>
        </div>
      </div>
