@@ -31,8 +31,8 @@
                     <th scope="col">Booking ID</th>
                     <th scope="col">Date & Time</th>
                     <th scope="col">Service</th>
-                    <th scope="col">Paid At</th>
                     <th scope="col">Service type</th>
+                    <th scope="col">Total PAY</th>
                     <th scope="col">Action</th>
               </tr>
             </thead>
@@ -279,6 +279,26 @@
                   </tbody>
               </table>
     </div>
+    <!-- Total -->
+		<div class="bg-muted py-2 mb-4">
+		  <div class="row justify-content-center">
+			<div class="col-lg-4">
+			  <div class="d-flex justify-content-between">
+				<div class="fw-bold text-sm">Total</div>
+				<div class="fw-bold text-sm text-lg-end">$675</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<!-- /Total -->
+    <div class="justify-content-center d-flex mb-2">
+		  <div class="form-check mx-auto">
+			<input class="form-check-input" type="checkbox" value="" id="remittance-generator-checkbox">
+			<label class="form-check-label" for="remittance-generator-checkbox">
+			  all bookings are complete to the best of his/her knowledge and request to issue the remittance or payment
+			</label>
+		  </div>
+		</div>
     <div class="d-flex justify-content-center mt-4">
         <button class="btn btn-primary rounded" x-on:click="invoicesDetails = !invoicesDetails">Generate Invoice</button>
     </div>
