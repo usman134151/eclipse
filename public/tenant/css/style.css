@@ -1451,4 +1451,7 @@ swal-button {
 .link-advance-filter[aria-expanded="true"] .text-shown-opened-state {
   display: inline-block; }
 
+.form-control-max-w-xs {
+  width: 4rem; }
+
 /*# sourceMappingURL=style.css.map */

@@ -220,3 +220,16 @@ $('.js-checkout-go-step-4').click(function(){
   $('.js-checkout-step-3-content').addClass("hidden");
   $('.js-checkout-step-4-content').removeClass("hidden");
 });
+
+
+// For Notify Later Checkbox - Modal Request from User - Create Assignment
+
+$('.js-form-check-input-notify-later').change(function(){
+    if($(this).is(":checked")) {
+        $(this).parent().parent().parent().parent().children('.js-notify-later-content').addClass("shown");
+        $(this).parent().parent().parent().parent().children('.js-notify-later-content').removeClass("hidden");
+    } else {
+        $(this).parent().parent().parent().parent().children('.js-notify-later-content').removeClass("shown");
+        $(this).parent().parent().parent().parent().children('.js-notify-later-content').addClass("hidden");
+    }
+});
