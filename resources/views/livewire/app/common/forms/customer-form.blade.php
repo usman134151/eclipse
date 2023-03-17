@@ -1086,10 +1086,10 @@
 															Back
 														</button>
                                                         <a href="/admin/customer">
-														<button type="submit" class="btn btn-primary rounded">
-															Submit
-														</button>
-                                                    </a>
+                                                            <button type="button" class="btn btn-primary rounded">
+                                                                Submit
+                                                            </button>
+                                                        </a>
 														{{-- <button type="submit" class="btn btn-primary rounded">
 															Next
 														</button> --}}
