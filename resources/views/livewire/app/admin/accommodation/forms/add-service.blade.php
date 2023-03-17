@@ -1790,7 +1790,7 @@
                      </div>
                    </div>
                  </div>
-                 <div class="col-lg-6 ps-lg-5">
+                 <div class="col-lg-6 pe-lg-5">
                    <div class="mb-5 border p-3">
                      <h3>
                        Default Remittance Line Item Template
@@ -2103,7 +2103,7 @@
                      </div>
                    </div>
                  </div>
-                 <div class="col-lg-6 ps-lg-5 ms-lg-auto">
+                 <div class="col-lg-6 pe-lg-5">
                    <div class="mb-5 border p-3">
                      <h3>
                        Minimum Payment Duration <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
@@ -2136,7 +2136,7 @@
                  </div>
                </div>
                <div class="row mb-4">
-                 <div class="col-lg-6 pe-lg-5 float-left">
+                 <div class="col-lg-6 pe-lg-5">
                    <div class="w-100">
                      <div class="mb-5 border p-3 pb-lg-5">
                        <h2>
@@ -2178,88 +2178,8 @@
                        </div>
                      </div>
                    </div><!-- /Check-In Procedure -->
-                   <div class="w-100">
-                     <div class="mb-5 border p-3 pb-lg-5">
-                       <h2>
-                         Running Late Procedure
-                       </h2>
-                       <div class="d-flex flex-column gap-3">
-                         <div class="form-check">
-                           <label class="form-check-label" for="EnableRunningLateButton">Enable “Running Late” Button</label>
-                           <input class="form-check-input" id="EnableRunningLateButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="NotifyCustomer">Notify Customer</label>
-                           <input class="form-check-input show-hidden-content" id="NotifyCustomer" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                           <div class="hidden-content">
-                             <label class="form-label-sm">Select Customer</label>
-                             <select class="form-select">
-                               <option>Select Customer</option>
-                             </select>
-                           </div>
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="NotifyTeamProviders">Notify Team Providers</label>
-                           <input class="form-check-input" id="NotifyTeamProviders" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="AddCustomizedRunningLateForm">Add Customized “Running Late” Form</label>
-                           <input class="form-check-input show-hidden-content" id="AddCustomizedRunningLateForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                           <div class="hidden-content">
-                             <label class="form-label-sm">Select Form</label>
-                             <select class="form-select">
-                               <option>Select Form</option>
-                             </select>
-                           </div>
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
-                           <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                           <div class="hidden-content">
-                             <label class="form-label-sm">Select Customer-Users</label>
-                             <select class="form-select">
-                               <option>Select Customer-Users</option>
-                             </select>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   </div><!-- /Running Late Procedure -->
-                   <div class="w-100">
-                     <div class="mb-5 border p-3 pb-lg-5">
-                       <h2>
-                         Display to providers prior to being assigned
-                       </h2>
-                       <div class="d-flex flex-column gap-3">
-                         <div class="form-check">
-                           <label class="form-check-label" for="CompanyName">Company Name</label>
-                           <input class="form-check-input" id="CompanyName" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="FullServiceAddress">Full Service Address</label>
-                           <input class="form-check-input" id="FullServiceAddress" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <input class="form-check-input" id="requester" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                           <label class="form-check-label" for="requester">Requester</label>
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="ServiceConsumer">Service Consumer(s)</label>
-                           <input class="form-check-input" id="ServiceConsumer" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="Participants">Participants</label>
-                           <input class="form-check-input" id="Participants" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="Step2Details">Step 2 Details</label>
-                           <input class="form-check-input" id="Step2Details" name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                         </div>
-                       </div>
-                     </div>
-                   </div><!-- /Display to providers prior to being assigned -->
                  </div>
-                 <div class="col-lg-6 ps-lg-5 float-right">
+                 <div class="col-lg-6 ps-lg-5">
                    <div class="w-100">
                      <div class="mb-5 border p-3 pb-lg-5">
                        <h2>
@@ -2427,6 +2347,90 @@
                    </div><!-- /Authorize & Close-Out Procedure -->
                  </div>
                </div>
+               <div class="row mb-4">
+                 <div class="col-lg-6 pe-lg-5">
+                   <div class="w-100">
+                     <div class="mb-5 border p-3 pb-lg-5">
+                       <h2>
+                         Running Late Procedure
+                       </h2>
+                       <div class="d-flex flex-column gap-3">
+                         <div class="form-check">
+                           <label class="form-check-label" for="EnableRunningLateButton">Enable “Running Late” Button</label>
+                           <input class="form-check-input" id="EnableRunningLateButton" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="NotifyCustomer">Notify Customer</label>
+                           <input class="form-check-input show-hidden-content" id="NotifyCustomer" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                           <div class="hidden-content">
+                             <label class="form-label-sm">Select Customer</label>
+                             <select class="form-select">
+                               <option>Select Customer</option>
+                             </select>
+                           </div>
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="NotifyTeamProviders">Notify Team Providers</label>
+                           <input class="form-check-input" id="NotifyTeamProviders" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="AddCustomizedRunningLateForm">Add Customized “Running Late” Form</label>
+                           <input class="form-check-input show-hidden-content" id="AddCustomizedRunningLateForm" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                           <div class="hidden-content">
+                             <label class="form-label-sm">Select Form</label>
+                             <select class="form-select">
+                               <option>Select Form</option>
+                             </select>
+                           </div>
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="NotifyCustomerofCheckin">Notify Customer of Check-in</label>
+                           <input class="form-check-input show-hidden-content" id="NotifyCustomerofCheckin" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                           <div class="hidden-content">
+                             <label class="form-label-sm">Select Customer-Users</label>
+                             <select class="form-select">
+                               <option>Select Customer-Users</option>
+                             </select>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div><!-- /Running Late Procedure -->
+                   <div class="w-100">
+                     <div class="mb-5 border p-3 pb-lg-5">
+                       <h2>
+                         Display to providers prior to being assigned
+                       </h2>
+                       <div class="d-flex flex-column gap-3">
+                         <div class="form-check">
+                           <label class="form-check-label" for="CompanyName">Company Name</label>
+                           <input class="form-check-input" id="CompanyName" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="FullServiceAddress">Full Service Address</label>
+                           <input class="form-check-input" id="FullServiceAddress" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                         <div class="form-check">
+                           <input class="form-check-input" id="requester" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                           <label class="form-check-label" for="requester">Requester</label>
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="ServiceConsumer">Service Consumer(s)</label>
+                           <input class="form-check-input" id="ServiceConsumer" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="Participants">Participants</label>
+                           <input class="form-check-input" id="Participants" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                         <div class="form-check">
+                           <label class="form-check-label" for="Step2Details">Step 2 Details</label>
+                           <input class="form-check-input" id="Step2Details" name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                         </div>
+                       </div>
+                     </div>
+                   </div><!-- /Display to providers prior to being assigned -->
+                 </div>
+               </div>
                <div class="row">
                  <div class="col-12 justify-content-center form-actions d-flex gap-2">
                    <button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-configuration')">Back</button>
@@ -2455,35 +2459,38 @@
                        </div>
                      </div>
                      <div class="col-lg-7 mb-4">
-                       <div class="d-flex gap-3">
-                         <label class="form-label-sm">
-                             Assign
-                         </label>
-                         <div class="form-check form-switch form-switch-column">
-                           <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
-                           <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
-                         </div>
-                       </div>
-                     </div>
-                     <div class="col-lg-7 ms-lg-auto mb-4">
-                       <div class="d-flex flex-column gap-3">
-                         <div class="form-check">
-                           <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
-                           <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityAssign">Priority</label>
-                           <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
-                           <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
-                           <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                       </div>
+                       <div>
+                        <div class="d-flex gap-3 mb-4">
+                          <label class="form-label-sm">
+                          Assign
+                          </label>
+                          <div class="form-check form-switch form-switch-column">
+                            <input class="form-check-input js-auto-notify" type="checkbox" role="switch" id="AutoNotifyAssign">
+                            <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                          </div>
+                        </div>
+                        <div class="js-auto-notify-content hidden">
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
+                              <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityAssign">Priority</label>
+                              <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
+                              <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
+                              <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                      </div>
                      <div class="col-lg-12 mb-4">
                        <div class="d-lg-flex align-items-center gap-5">
@@ -2562,35 +2569,38 @@
                        </div>
                      </div>
                      <div class="col-lg-7 mb-4">
-                       <div class="d-flex gap-3">
-                         <label class="form-label-sm">
-                             Assign
-                         </label>
-                         <div class="form-check form-switch form-switch-column">
-                           <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
-                           <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
-                         </div>
-                       </div>
-                     </div>
-                     <div class="col-lg-7 ms-lg-auto mb-4">
-                       <div class="d-flex flex-column gap-3">
-                         <div class="form-check">
-                           <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
-                           <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityAssign">Priority</label>
-                           <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
-                           <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
-                           <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                       </div>
+                       <div>
+                          <div class="d-flex gap-3 mb-4">
+                            <label class="form-label-sm">
+                            Assign
+                            </label>
+                            <div class="form-check form-switch form-switch-column">
+                              <input class="form-check-input js-auto-notify" type="checkbox" role="switch" id="AutoNotifyAssign">
+                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            </div>
+                          </div>
+                          <div class="js-auto-notify-content hidden">
+                            <div class="d-flex flex-column gap-3">
+                              <div class="form-check">
+                                <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
+                                <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label" for="PriorityAssign">Priority</label>
+                                <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
+                                <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
+                                <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                      </div>
                      <div class="col-lg-12 mb-4">
                        <div class="d-lg-flex align-items-center gap-5">

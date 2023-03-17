@@ -1290,20 +1290,31 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	fill: transparent;
 }
 
-.table-hover > tbody > tr:hover {
-	.btn.btn-hs-icon * {
-		fill: #ffffff;
+.table-hover > tbody > tr {
+	.text-primary {
+		// transition: all ease-in-out 0.2s;
 	}
-	.btn.btn-hs-icon.btn-secondary * {
-		fill: #000000;
-	}
-	.btn.btn-hs-icon svg.fill-stroke * {
-		stroke: #ffffff;
-		fill: none;
-	}
-	.btn.btn-secondary.btn-hs-icon svg.fill-stroke * {
-		fill: transparent;
-		stroke: #000000;
+	&:hover {
+		.btn.btn-hs-icon * {
+			fill: #ffffff;
+		}
+		.btn.btn-hs-icon.btn-secondary * {
+			fill: #000000;
+		}
+		.btn.btn-hs-icon svg.fill-stroke * {
+			stroke: #ffffff;
+			fill: none;
+		}
+		.btn.btn-secondary.btn-hs-icon svg.fill-stroke * {
+			fill: transparent;
+			stroke: #000000;
+		}
+		.text-primary {
+			color: #ffffff !important;
+		}
+		svg.icon-arrow path {
+			fill: #ffffff !important;
+		}
 	}
 }
 
@@ -1329,14 +1340,9 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	border-radius: 50px;
 }
 .icon-edit {
-	position: absolute;
-	right: 1rem;
-	top: 1rem;
 }
+
 .icon-save {
-	position: absolute;
-	right: 1rem;
-	top: 1rem;
 }
 
 .table>:not(caption)> {
@@ -1686,4 +1692,14 @@ swal-button {
 			display: inline-block;
 		}
 	}
+}
+
+.form-control-max-w-xs {
+	width: 4rem;
+}
+
+.btn.btn-xs.btn-hs-icon {
+	width: 0.9375rem;
+	height: 0.9375rem;
+	padding: 0;
 }
