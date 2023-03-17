@@ -2455,35 +2455,38 @@
                        </div>
                      </div>
                      <div class="col-lg-7 mb-4">
-                       <div class="d-flex gap-3">
-                         <label class="form-label-sm">
-                             Assign
-                         </label>
-                         <div class="form-check form-switch form-switch-column">
-                           <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
-                           <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
-                         </div>
-                       </div>
-                     </div>
-                     <div class="col-lg-7 ms-lg-auto mb-4">
-                       <div class="d-flex flex-column gap-3">
-                         <div class="form-check">
-                           <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
-                           <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityAssign">Priority</label>
-                           <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
-                           <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
-                           <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                       </div>
+                       <div>
+                        <div class="d-flex gap-3 mb-4">
+                          <label class="form-label-sm">
+                          Assign
+                          </label>
+                          <div class="form-check form-switch form-switch-column">
+                            <input class="form-check-input js-auto-notify" type="checkbox" role="switch" id="AutoNotifyAssign">
+                            <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                          </div>
+                        </div>
+                        <div class="js-auto-notify-content hidden">
+                          <div class="d-flex flex-column gap-3">
+                            <div class="form-check">
+                              <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
+                              <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityAssign">Priority</label>
+                              <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
+                              <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
+                              <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                      </div>
                      <div class="col-lg-12 mb-4">
                        <div class="d-lg-flex align-items-center gap-5">
@@ -2562,35 +2565,38 @@
                        </div>
                      </div>
                      <div class="col-lg-7 mb-4">
-                       <div class="d-flex gap-3">
-                         <label class="form-label-sm">
-                             Assign
-                         </label>
-                         <div class="form-check form-switch form-switch-column">
-                           <input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
-                           <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
-                         </div>
-                       </div>
-                     </div>
-                     <div class="col-lg-7 ms-lg-auto mb-4">
-                       <div class="d-flex flex-column gap-3">
-                         <div class="form-check">
-                           <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
-                           <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityAssign">Priority</label>
-                           <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
-                           <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                         <div class="form-check">
-                           <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
-                           <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
-                         </div>
-                       </div>
+                       <div>
+                          <div class="d-flex gap-3 mb-4">
+                            <label class="form-label-sm">
+                            Assign
+                            </label>
+                            <div class="form-check form-switch form-switch-column">
+                              <input class="form-check-input js-auto-notify" type="checkbox" role="switch" id="AutoNotifyAssign">
+                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            </div>
+                          </div>
+                          <div class="js-auto-notify-content hidden">
+                            <div class="d-flex flex-column gap-3">
+                              <div class="form-check">
+                                <label class="form-check-label" for="FirstAvailableAssign">First Available</label>
+                                <input class="form-check-input" id="FirstAvailableAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label" for="PriorityAssign">Priority</label>
+                                <input class="form-check-input" id="PriorityAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label" for="PriorityPreferredProvidersAssign">Priority & Preferred Providers</label>
+                                <input class="form-check-input" id="PriorityPreferredProvidersAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label" for="ClosestProviderAssign">Closest Provider</label>
+                                <input class="form-check-input" id="ClosestProviderAssign" name="RequestStartTimeforServices" type="radio" tabindex="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                      </div>
                      <div class="col-lg-12 mb-4">
                        <div class="d-lg-flex align-items-center gap-5">

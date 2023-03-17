@@ -233,3 +233,16 @@ $('.js-form-check-input-notify-later').change(function(){
         $(this).parent().parent().parent().parent().children('.js-notify-later-content').addClass("hidden");
     }
 });
+
+
+// For In-Person Services Radio - Default Notification Settings Tab - Add Service
+
+$('.js-auto-notify').change(function(){
+    if($(this).is(":checked")) {
+        $(this).parent().parent().parent().children('.js-auto-notify-content').addClass("shown");
+        $(this).parent().parent().parent().children('.js-auto-notify-content').removeClass("hidden");
+    } else {
+        $(this).parent().parent().parent().children('.js-auto-notify-content').removeClass("shown");
+        $(this).parent().parent().parent().children('.js-auto-notify-content').addClass("hidden");
+    }
+});
