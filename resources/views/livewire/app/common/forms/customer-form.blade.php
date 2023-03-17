@@ -79,7 +79,7 @@
 											<div class="col-lg-12 mb-4">
 												<h2>Customer Information</h2>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<label class="form-label" for="company-column">
 													Company
@@ -91,7 +91,7 @@
 													<option>Select Company</option>
 												</select>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<label class="form-label" for="industry-column">
 													Industry
@@ -106,7 +106,7 @@
 													</button>
 												</div>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<div class="d-flex justify-content-between align-items-center">
 													<label for="department-column" class="form-label">Department</label>
@@ -147,7 +147,7 @@
 												</label>
 												<input type="text" id="f-name" class="form-control" name="f-name" placeholder="Enter First Name" required aria-required="true"/>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<label class="form-label" for="l-name">
 													Last Name
@@ -157,14 +157,14 @@
 												</label>
 												<input type="text" id="l-name" class="form-control" name="l-name" placeholder="Enter Last Name" required aria-required="true"/>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<label class="form-label" for="pronouns-column">
 													Pronouns
 												</label>
 												<input type="text" id="pronouns-column" class="form-control" placeholder="Enter Pronouns" name="pronouns"/>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<label class="form-label" for="">
 													Date of Birth
@@ -183,7 +183,7 @@
 													</button>
 												</div>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<div class="d-flex justify-content-between align-items-center">
 													<label class="form-label" for="gender-column">
@@ -204,7 +204,7 @@
 													<option>Others</option>
 												</select>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<div class="d-flex justify-content-between align-items-center">
 													<label class="form-label" for="ethnicity-column">
@@ -223,7 +223,7 @@
 													<option>Select Ethnicity</option>
 												</select>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<label class="form-label" for="email">
 													Email
@@ -233,14 +233,14 @@
 												</label>
 												<input type="text" id="email" class="form-control" name="email" placeholder="Enter Email" required aria-required="true"/>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<label class="form-label" for="phone">
 													Phone Number
 												</label>
 												<input type="text" id="phone" class="form-control" name="phone" placeholder="Enter Phone Number"/>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<label class="form-label" for="preferred-language">
 													Preferred Language
@@ -249,7 +249,7 @@
 													<option>English</option>
 												</select>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<label class="form-label" for="time-zone">
 													Time Zone
@@ -258,21 +258,21 @@
 													<option>Select Time Zone</option>
 												</select>
 											</div>
-											
+
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<label class="form-label" for="service-consumer-introduction-column">
 													Service Consumer Introduction
 												</label>
 												<textarea class="form-control" rows="3" cols="3" placeholder="" name="service-consumer-introduction-column" id="service-consumer-introduction-column"></textarea>
 											</div>
-											
+
 											<div class="col-lg-6 ps-lg-5 mb-4">
 												<label for="file" class="form-label">
 													Service Consumer Introduction Media
 												</label>
 												<input class="form-control" type="file" id="file">
 											</div>
-											
+
 											<div class="col-lg-12 mb-4">
 												<div class="row">
 													<div class="col-lg-6 pe-lg-5">
@@ -285,7 +285,7 @@
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="col-lg-12 mb-4">
 												<div class="row">
 													<div class="col-lg-6 pe-lg-5 mb-4">
@@ -343,7 +343,7 @@
 															</tbody>
 														</table>
 													</div>
-													
+
 													<div class="col-lg-6 ps-lg-5 mb-4">
 														<h2>Default Service Address</h2>
 														<div class="d-lg-flex justify-content-between align-items-center">
@@ -353,7 +353,7 @@
 																	Same as Billing Address
 																</label>
 															</div>
-															
+
 															<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2 mb-4" data-bs-toggle="modal" data-bs-target="#addAddressModal">
 																<x-icon name="plus"/>
 																<span>Add Address</span>
@@ -410,7 +410,7 @@
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="col-lg-12 mb--4">
 												<div class="form-check mb-lg-0">
 													<input class="form-check-input" type="checkbox" value="" id="HideDepartmentfromProvider">
@@ -419,7 +419,7 @@
 													</label>
 												</div>
 											</div>
-											
+
 											<div class="col-lg-12 d-lg-flex gap-5 justify-content-center">
 												<div class="form-check mb-lg-0">
 													<input class="form-check-input" type="checkbox" id="HideUsersDetailsfromProvider">
@@ -439,9 +439,11 @@
 												<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
 													Cancel
 												</button>
+                                                <a href="/admin/customer">
 												<button type="submit" class="btn btn-primary rounded">
 													Save & Exit
 												</button>
+                                            </a>
 												<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('permission-configurations')">
 													Next
 												</button>
@@ -549,7 +551,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="col-lg-12 mb-4">
 													<div class="form-check mb-lg-0">
 														<input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
@@ -558,7 +560,7 @@
 														</label>
 													</div>
 												</div>
-												
+
 												<div class="col-lg-12 mb-4">
 													<div class="form-check mb-lg-0">
 														<input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
@@ -567,7 +569,7 @@
 														</label>
 													</div>
 												</div>
-												
+
 												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
 													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="BillingManager" checked>
@@ -581,7 +583,7 @@
 													</button>
 												</div>
 											</div>
-											
+
 											<div class="row mb-5">
 												<div class="col-lg-6 mb-4 pe-lg-5">
 													<label class="form-label">
@@ -599,7 +601,7 @@
 														<option>Select Disfavored Providers</option>
 													</select>
 												</div>
-												
+
 												<div class="col-lg-6 mb-4 pe-lg-5">
 													<label class="form-label">
 														Grant Access to User(s)' Schedules?
@@ -619,7 +621,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="col-lg-6 mb-4 ps-lg-5">
 													<label class="form-label">
 														Grant Access to User(s)' Schedules
@@ -628,7 +630,7 @@
 														<option>Select</option>
 													</select>
 												</div>
-												
+
 												<div class="col-lg-6 mb-4 pe-lg-5">
 													<label class="form-label">
 														Require Service Request Approval from Assigned Supervisor
@@ -641,7 +643,7 @@
 																Yes
 															</label>
 														</div>
-														
+
 														<div class="form-check mb-lg-0">
 															<input class="form-check-input" type="radio" name="RequireServiceRequestApprovalfromAssignedSupervisor" value="" id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
 															<label class="form-check-label" for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
@@ -650,7 +652,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="col-lg-6 mb-4 ps-lg-5">
 													<label class="form-label">
 														Hide Billing Information from User
@@ -671,7 +673,7 @@
 													</div>
 												</div>
 											</div>
-											
+
 											<div class="col-lg-12 mb-4">
 												<label class="form-label" for="industry-column">
 													Assigned Admin-Staff
@@ -690,9 +692,11 @@
 										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('customer-info')">
 											Back
 										</button>
+                                        <a href="/admin/customer">
 										<button type="submit" class="btn btn-primary rounded">
 											Save & Exit
 										</button>
+                                    </a>
 										<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('service-catalog')">
 											Next
 										</button>
@@ -713,7 +717,7 @@
 												<h2>Service Catalog</h2>
 											</div>
 										</div>
-										
+
 										<div class="col-md-12 mb-md-2">
 											<div class="row">
 												<div class="col-lg-5 mb-3">
@@ -792,7 +796,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="col-lg-7 ps-lg-5">
 													<div class="mb-3">
 														<p class="fs-5">Select Service</p>
@@ -1024,9 +1028,11 @@
 										<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('permission-configurations')">
 											Back
 										</button>
+                                        <a href="/admin/customer">
 										<button type="submit" class="btn btn-primary rounded">
 											Save & Exit
 										</button>
+                                    </a>
 										<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('drive-documents')">
 											Next
 										</button>
@@ -1079,9 +1085,11 @@
 														<button type="button" class="btn btn-outline-dark rounded" x-on:click="$wire.switch('service-catalog')">
 															Back
 														</button>
-														<button type="submit" class="btn btn-primary rounded">
-															Submit
-														</button>
+                                                        <a href="/admin/customer">
+                                                            <button type="button" class="btn btn-primary rounded">
+                                                                Submit
+                                                            </button>
+                                                        </a>
 														{{-- <button type="submit" class="btn btn-primary rounded">
 															Next
 														</button> --}}
@@ -1117,7 +1125,7 @@
 	document.addEventListener("livewire:load", () => {
 		let el = $('.select2')
 		initSelect()
-		
+
 		Livewire.hook('message.processed', (message, component) => {
 			initSelect()
 		})

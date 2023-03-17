@@ -982,3 +982,12 @@ window.addEventListener('resize', function () {
   var vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', vh + 'px');
 });
+
+
+var currentUrl=window.location.href;
+// Split the URL by "/"
+var urlSplit = currentUrl.split('/');
+// Get the last element of the URL
+var lastElement = urlSplit[urlSplit.length - 1];
+$("#"+lastElement).addClass('active');
+

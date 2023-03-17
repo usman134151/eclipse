@@ -1,15 +1,17 @@
 <x-off-canvas show="invoicesDetails" :allowBackdrop="false" size="fullscreen">
-	<x-slot name="title">Invoices Details</x-slot>
+	<x-slot name="title">Generate Invoice</x-slot>
 
     <div class="row mb-4 mt-3">
-        <div class="col-md-4">
-           <span class="fw-semibold"> Invoice ID:</span> INP-73-23-0001
+        <div class="col-md-4 d-inline-flex">
+          <div><label class="form-label form-label-sm" for="provider-inovice-id">Provider Invoice Id: </label></div>
+          <div class="mx-2"><input type="text" id="provider-inovice-id" class="form-control form-control-sm" name="" placeholder=""/></div>
         </div>
         <div class="col-md-4">
-            <span class="fw-semibold"> Creation Date:</span> 22/02/2023
+            <div><span class="fw-semibold"> Submission Date:</span> 22/02/2023</div>
+            <div><span class="fw-semibold"> Due Date:</span> 22/03/2023</div>
         </div>
-        <div class="col-md-4">
-            <span class="fw-semibold"> Due Date:</span> 22/02/2023
+        <div class="col-md-3">
+            <span class="fw-semibold"> Invoice Total:</span> 440 USD
         </div>
     </div>
     <div class="dropdown mb-4">
@@ -31,8 +33,8 @@
                     <th scope="col">Booking ID</th>
                     <th scope="col">Date & Time</th>
                     <th scope="col">Service</th>
-                    <th scope="col">Paid At</th>
                     <th scope="col">Service type</th>
+                    <th scope="col">Total PAY</th>
                     <th scope="col">Action</th>
               </tr>
             </thead>
@@ -279,7 +281,23 @@
                   </tbody>
               </table>
     </div>
+    <!-- Total -->
+    <div class="row bg-muted py-2 mb-4">
+      <div class="col-md-7"></div>
+      <div class="col-md-3 d-flex justify-content-end">
+        <div class="fw-bold text-sm mx-5">Total <span class="mx-5">$675</span></div>
+      </div>
+    </div>
+		<!-- /Total -->
+    <div class="justify-content-center d-flex mb-2">
+		  <div class="form-check mx-auto">
+			<input class="form-check-input" type="checkbox" value="" id="remittance-generator-checkbox">
+			<label class="form-check-label" for="remittance-generator-checkbox">
+			  all bookings are complete to the best of his/her knowledge and request to issue the remittance or payment
+			</label>
+		  </div>
+		</div>
     <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-primary rounded" x-on:click="invoicesDetails = !invoicesDetails">Generate Invoice</button>
+        <button class="btn btn-primary rounded" x-on:click="invoicesDetails = !invoicesDetails">Submit Invoice</button>
     </div>
 </x-off-canvas>

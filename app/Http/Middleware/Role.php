@@ -17,6 +17,7 @@ class Role
 	 */
 	public function handle(Request $request, Closure $next, $role = null)
 	{
+		
 		if(Auth::user()->roleUser != null)
 		{
 			if (Auth::user()->roleUser->count() != 0)
@@ -24,10 +25,15 @@ class Role
 				$roleName=Auth::user()->roleUser->role->name;
 			}
 		}
+		else{
+			$roleName="admin";
+			
+		}
 		if($roleName == $role)
 		{
 			return $next($request);
 		}
+
 		return redirect('/'.$roleName.'/dashboard');
 	}
 }

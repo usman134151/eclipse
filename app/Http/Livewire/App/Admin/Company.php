@@ -34,4 +34,8 @@ class Company extends Component
 	{
 		$this->showProfile = true;
 	}
+	public function switch($component)
+	{
+		$this->component = $component;
+	}
 }
