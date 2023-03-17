@@ -2,14 +2,16 @@
 	<x-slot name="title">Invoices Details</x-slot>
 
     <div class="row mb-4 mt-3">
-        <div class="col-md-4">
-           <span class="fw-semibold"> Invoice ID:</span> INP-73-23-0001
+        <div class="col-md-4 d-inline-flex">
+          <div><label class="form-label" for="provider-inovice-id">Provider Invoice Id: </label></div>
+          <div class="mx-2"><input type="text" id="provider-inovice-id" class="form-control form-control-sm" name="" placeholder=""/></div>
         </div>
         <div class="col-md-4">
-            <span class="fw-semibold"> Creation Date:</span> 22/02/2023
+            <div><span class="fw-semibold"> Submission Date:</span> 22/02/2023</div>
+            <div><span class="fw-semibold"> Due Date:</span> 22/03/2023</div>
         </div>
-        <div class="col-md-4">
-            <span class="fw-semibold"> Due Date:</span> 22/02/2023
+        <div class="col-md-3">
+            <span class="fw-semibold"> Invoice Total:</span> 440 USD
         </div>
     </div>
     <div class="dropdown mb-4">
