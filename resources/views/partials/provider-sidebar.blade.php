@@ -91,7 +91,7 @@
 				<span class="menu-item">Today's</span>
 			  </a>
 			</li>
-			<li class="nav-item  ">
+			<li class="nav-item" id="upcoming">
 			  <a class="nav-link" href="/provider/bookings/upcoming">
 				<svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#upcomming-icon"></use>
