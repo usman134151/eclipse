@@ -444,6 +444,6 @@
     {{-- Revert Back - Modal --}}
         @include('modals.common.revert-back')
     {{-- Revert Back - Modal --}}
-    
+    @include('modals.mark-as-paid')
     </div>
 </div>
