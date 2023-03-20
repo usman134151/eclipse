@@ -11,7 +11,7 @@
 @else
 	  <div class="row mb-5">
         <div class="col-lg-12">
-          {{$bookingType}}
+          
           <div>
             <!-- Hoverable rows start -->
             <div class="row" id="table-hover-row">
