@@ -14,7 +14,7 @@
 	x-show="{{ $show }}"
 >
 	<div class="offcanvas-header">
-		<h2 class="offcanvas-title" id="offcanvasRightLabel">
+		<h2 class="offcanvas-title" id="">
 			{{ $title }}
 		</h2>
 		<button type="button" class="btn-close" x-on:click="{{ $show }} = !{{ $show }}" aria-label="Close"></button>

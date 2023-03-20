@@ -340,7 +340,7 @@
 						  <input class="form-check-input" id="assignPartialCoverage" name="" type="checkbox" tabindex="">
 						  <label class="form-check-label text-nowrap" for="assignPartialCoverage" for="partial-coverage"><small>Assign Partial Coverage</small></label>
 						</div>
-						<a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+						<a href="#" class="btn btn-sm btn-primary rounded text-nowrap" data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
 						  Select Booking Range
 						</a>
 					  </div>
@@ -476,7 +476,7 @@
 							<input class="form-check-input" id="assignPartialCoverage" name="" type="checkbox" tabindex="">
 							<label class="form-check-label text-nowrap" for="assignPartialCoverage" for="partial-coverage"><small>Assign Partial Coverage</small></label>
 						  </div>
-						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap" data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
 							Select Booking Range
 						  </a>
 						</div>
@@ -612,7 +612,7 @@
 							<input class="form-check-input" id="assignPartialCoverage" name="" type="checkbox" tabindex="">
 							<label class="form-check-label text-nowrap" for="assignPartialCoverage" for="partial-coverage"><small>Assign Partial Coverage</small></label>
 						  </div>
-						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap" data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
 							Select Booking Range
 						  </a>
 						</div>
@@ -748,7 +748,7 @@
 							<input class="form-check-input" id="assignPartialCoverage" name="" type="checkbox" tabindex="">
 							<label class="form-check-label text-nowrap" for="assignPartialCoverage" for="partial-coverage"><small>Assign Partial Coverage</small></label>
 						  </div>
-						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap" data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
 							Select Booking Range
 						  </a>
 						</div>
@@ -884,7 +884,7 @@
 							<input class="form-check-input" id="assignPartialCoverage" name="" type="checkbox" tabindex="">
 							<label class="form-check-label text-nowrap" for="assignPartialCoverage" for="partial-coverage"><small>Assign Partial Coverage</small></label>
 						  </div>
-						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap">
+						  <a href="#" class="btn btn-sm btn-primary rounded text-nowrap" data-bs-toggle="modal" data-bs-target="#availableTimeslotModal">
 							Select Booking Range
 						  </a>
 						</div>
