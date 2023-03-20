@@ -590,6 +590,10 @@ div[data-bs-toggle="collapse"] .icon-arrow-right {
   transition: all 0.2s ease-in-out; }
 div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-right {
   transform: rotate(90deg); }
+div[data-bs-toggle="collapse"] .icon-arrow-bottom {
+  transition: all 0.2s ease-in-out; }
+div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-bottom {
+  transform: rotate(180deg); }
 
 .accordion-button {
   padding-right: 3rem;
