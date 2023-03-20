@@ -15,14 +15,6 @@
 				</select>
 			</div>
 			<div class="col-lg-8 mb-4">
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="no-expiration" id="no-expiration">
-					<label class="form-check-label" for="no-expiration">
-						No Expiration
-					</label>
-				</div>
-			</div>
-			<div class="col-lg-8 mb-4">
 				<label class="form-label" for="expiration-date-column">Expiration Date</label>
 				<div class="d-flex align-items-center w-100">
 					<div class="position-relative flex-grow-1">
@@ -33,6 +25,14 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-8 mb-4">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="no-expiration" id="no-expiration">
+					<label class="form-check-label" for="no-expiration">
+						No Expiration
+					</label>
+				</div>
+			</div>
 		</div>
 		<div class="col-lg-8 mb-4">
 			<label class="form-label" for="set_set_date">Upload File</label>
@@ -40,6 +40,22 @@
 		<div class="col-lg-8 mb-4">
 			<div class="row">
 				<div class="col-lg-3 d-flex text-center">
+					<a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
+						<svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M16.35 23.4921L9.702 35.2381H33.35L40 23.4921H16.35ZM11.73 2.54302L0 23.3237L6.744 35.2342L18.476 14.4535L11.73 2.54302ZM38.89 21.5344L26.698 0H13.208L25.384 21.5344H38.89Z" fill="url(#paint0_linear_2957_105057)"/>
+							<defs>
+								<linearGradient id="paint0_linear_2957_105057" x1="20" y1="0" x2="36.0479" y2="0" gradientUnits="userSpaceOnUse">
+									<stop stop-color="#213969"/>
+									<stop offset="1" stop-color="#204387"/>
+								</linearGradient>
+							</defs>
+						</svg>
+						<p class="text-primary mb-0 fw-medium">
+							Attach from Company Drive
+						</p>
+					</a>
+				</div>
+				<div class="text-center col-lg-3 d-flex">
 					<a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
 						<svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M16.35 23.4921L9.702 35.2381H33.35L40 23.4921H16.35ZM11.73 2.54302L0 23.3237L6.744 35.2342L18.476 14.4535L11.73 2.54302ZM38.89 21.5344L26.698 0H13.208L25.384 21.5344H38.89Z" fill="url(#paint0_linear_2957_105057)"/>
@@ -67,7 +83,7 @@
 							</defs>
 						</svg>
 						<p class="text-primary mb-0 fw-medium">
-							Attach from Local Drive
+							Attach from Disk
 						</p>
 					</a>
 				</div>
@@ -77,13 +93,13 @@
 			<label class="form-label" for="tags-column">
 				Tags
 			</label>
-			<textarea class="form-control" rows="3" placeholder="" name="tagsColumn" id="tags-column"></textarea>
+			<textarea class="form-control" rows="4" placeholder="" name="tagsColumn" id="tags-column"></textarea>
 		</div>
 		<div class="col-lg-8 mb-4">
 			<label class="form-label" for="notes-column">
 				Note
 			</label>
-			<textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
+			<textarea class="form-control" rows="4" placeholder="" name="notesColumn" id="notes-column"></textarea>
 		</div>
 	</div>
 	<div class="col-lg-12 justify-content-center gap-2 d-flex mt-5 form-actions">

@@ -1,4 +1,4 @@
-<div >
+<div x-data="{addDocument: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -1134,7 +1134,8 @@
 											<label class="form-label" for="search">
 												Upload Document
 											</label>
-											<input type="file" id="upload-document" class="form-control" name="upload-document" placeholder="upload-document"/>
+											<button @click="addDocument = true" class="btn btn-secondary btn-outline-secondary" type="button">Choose File</button>
+											{{-- <input type="file" id="upload-document" class="form-control" name="upload-document" placeholder="upload-document"/> --}}
 										</div>
 									</div>
 									<div class="row">
@@ -4114,4 +4115,5 @@
 		</section>
 	</div>
 	@include('modals.markasread')
+	@include('panels.common.add-document')
 </div>
