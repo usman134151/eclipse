@@ -14,6 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
+                <x-advancefilters/>
                     <div>
                         <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
                             <div
