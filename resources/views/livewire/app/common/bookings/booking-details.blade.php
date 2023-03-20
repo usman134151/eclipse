@@ -3002,5 +3002,6 @@
       @include('modals.assign-provider-team')
       @include('modals.admin-staff')
 	  @include('modals.common.review-feedback')
+	  @include('modals.common.available-timeslot')
 	  @include('panels.common.add-documents')
 </div>
