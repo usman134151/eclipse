@@ -51,7 +51,7 @@
 	<div class="shadow-bottom"></div>
 	<div class="main-menu-content">
 		<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-			<li class="nav-item active">
+			<li class="nav-item" id="dashboard">
 				<a href="/provider/dashboard">
 					<svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#dashboard-icon"></use>
@@ -59,7 +59,7 @@
 					<span class="menu-item">Dashboard</span>
 				</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" id="chat">
 				<a href="/provider/chat">
 					<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#chat-icon"></use>
@@ -67,7 +67,7 @@
 					<span class="menu-item">Chat</span>
 				</a>
 			</li>
-		<li class="nav-item">
+		<li class="nav-item" id="set-availability">
 		  <a href="/provider/set-availability">
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#manage-availability-icon"></use>
@@ -83,7 +83,7 @@
 			<span class="menu-item">Assignments</span>
 		  </a>
 		  <ul class="menu-content " id="Bookings">
-			<li class="nav-item ">
+			<li class="nav-item " id="today">
 			  <a class="nav-link" href="/provider/bookings/today">
 				<svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#today-icon"></use>
