@@ -202,12 +202,12 @@
                                   </td>
                                   <td><a @click="offcanvasOpen = true">87109</a>
                                   <p class="mt-1">08/24/2022</p></td>
-                                  <td class="align-middle"> <div class="row g-2">
-                                    <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Team Profile Image">
+                                  <td class="align-middle"> <div class="d-flex gap-2 align-items-center">
+                                    <div class="">
+                                      <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Team Profile Image">
                                     </div>
-                                    <div class="col-md-10 align-self-center">
-                                      <h6 class="fw-semibold">Information Technology</h6>
+                                    <div class="">
+                                      <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                       <p>www.software.com</p>
                                     </div>
                                   </div></td>
@@ -261,12 +261,12 @@
                                   <td><a @click="offcanvasOpen = true">87109</a>
                                   <p class="mt-1">08/24/2022</p></td>
                                   <td class="align-middle"> 
-                                    <div class="row g-2">
-                                      <div class="col-md-2">
-                                        <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                    <div class="d-flex gap-2 align-items-center">
+                                      <div class="">
+                                        <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                       </div>
-                                      <div class="col-md-10 align-self-center">
-                                        <h6 class="fw-semibold">Information Technology</h6>
+                                      <div class="">
+                                        <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                         <p>www.software.com</p>
                                       </div>
                                     </div>
@@ -321,12 +321,12 @@
                                   <td><a @click="offcanvasOpen = true">87109</a>
                                   <p class="mt-1">08/24/2022</p></td>
                                   <td class="align-middle">
-                                    <div class="row g-2">
-                                      <div class="col-md-2">
-                                        <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                    <div class="d-flex gap-2 align-items-center">
+                                      <div class="">
+                                        <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                       </div>
-                                      <div class="col-md-10 align-self-center">
-                                        <h6 class="fw-semibold">Information Technology</h6>
+                                      <div class="">
+                                        <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                         <p>www.software.com</p>
                                       </div>
                                     </div>
@@ -382,12 +382,12 @@
                                     <td><a @click="offcanvasOpen = true">87109</a>
                                     <p class="mt-1">08/24/2022</p></td>
                                     <td class="align-middle">
-                                      <div class="row g-2">
-                                        <div class="col-md-2">
-                                          <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                      <div class="d-flex gap-2 align-items-center">
+                                        <div class="">
+                                          <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                         </div>
-                                        <div class="col-md-10 align-self-center">
-                                          <h6 class="fw-semibold">Information Technology</h6>
+                                        <div class="">
+                                          <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                           <p>www.software.com</p>
                                         </div>
                                       </div>
@@ -434,12 +434,12 @@
                                       <td><a @click="offcanvasOpen = true">87109</a>
                                       <p class="mt-1">08/24/2022</p></td>
                                       <td class="align-middle"> 
-                                        <div class="row g-2">
-                                          <div class="col-md-2">
-                                            <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                        <div class="d-flex gap-2 align-items-center">
+                                          <div class="">
+                                            <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                           </div>
-                                          <div class="col-md-10 align-self-center">
-                                            <h6 class="fw-semibold">Information Technology</h6>
+                                          <div class="">
+                                            <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                             <p>www.software.com</p>
                                           </div>
                                         </div>
@@ -495,12 +495,12 @@
                                       <td><a @click="offcanvasOpen = true">87109</a>
                                       <p class="mt-1">08/24/2022</p></td>
                                       <td class="align-middle">
-                                        <div class="row g-2">
-                                          <div class="col-md-2">
-                                            <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                        <div class="d-flex gap-2 align-items-center">
+                                          <div class="">
+                                            <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                           </div>
-                                          <div class="col-md-10 align-self-center">
-                                            <h6 class="fw-semibold">Information Technology</h6>
+                                          <div class="">
+                                            <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                             <p>www.software.com</p>
                                           </div>
                                         </div>
@@ -555,12 +555,12 @@
                                         <td><a @click="offcanvasOpen = true">87109</a>
                                         <p class="mt-1">08/24/2022</p></td>
                                         <td class="align-middle">
-                                          <div class="row g-2">
-                                            <div class="col-md-2">
-                                              <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                          <div class="d-flex gap-2 align-items-center">
+                                            <div class="">
+                                              <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                             </div>
-                                            <div class="col-md-10 align-self-center">
-                                              <h6 class="fw-semibold">Information Technology</h6>
+                                            <div class="">
+                                              <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                               <p>www.software.com</p>
                                             </div>
                                           </div>
@@ -615,12 +615,12 @@
                                           <td><a @click="offcanvasOpen = true">87109</a>
                                           <p class="mt-1">08/24/2022</p></td>
                                           <td class="align-middle"> 
-                                            <div class="row g-2">
-                                              <div class="col-md-2">
-                                                <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                            <div class="d-flex gap-2 align-items-center">
+                                              <div class="">
+                                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                               </div>
-                                              <div class="col-md-10 align-self-center">
-                                                <h6 class="fw-semibold">Information Technology</h6>
+                                              <div class="">
+                                                <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                                 <p>www.software.com</p>
                                               </div>
                                             </div>
@@ -676,12 +676,12 @@
                                           <td><a @click="offcanvasOpen = true">87109</a>
                                           <p class="mt-1">08/24/2022</p></td>
                                           <td class="align-middle">
-                                            <div class="row g-2">
-                                              <div class="col-md-2">
-                                                <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                            <div class="d-flex gap-2 align-items-center">
+                                              <div class="">
+                                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                               </div>
-                                              <div class="col-md-10 align-self-center">
-                                                <h6 class="fw-semibold">Information Technology</h6>
+                                              <div class="">
+                                                <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                                 <p>www.software.com</p>
                                               </div>
                                             </div>
@@ -736,12 +736,12 @@
                                             <td><a @click="offcanvasOpen = true">87109</a>
                                             <p class="mt-1">08/24/2022</p></td>
                                             <td class="align-middle">
-                                              <div class="row g-2">
-                                                <div class="col-md-2">
-                                                  <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                              <div class="d-flex gap-2 align-items-center">
+                                                <div class="">
+                                                  <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                                 </div>
-                                                <div class="col-md-10 align-self-center">
-                                                  <h6 class="fw-semibold">Information Technology</h6>
+                                                <div class="">
+                                                  <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
                                                   <p>www.software.com</p>
                                                 </div>
                                               </div>
