@@ -1346,9 +1346,17 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	border-radius: 50px;
 }
 .icon-edit {
+	&.position-absolute {
+		top: 1rem;
+		right: 1rem;
+	}
 }
 
 .icon-save {
+	&.position-absolute {
+		top: 1rem;
+		right: 1rem;
+	}
 }
 
 .table>:not(caption)> {
