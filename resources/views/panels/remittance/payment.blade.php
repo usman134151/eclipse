@@ -360,7 +360,9 @@
 	  <div class="row justify-content-center mb-4">
 		<div class="col-lg-7 d-flex gap-2">
 		  <a href="#" class="btn btn-primary rounded w-100">Revert Selected Remittances</a>
-		  <a href="#" class="btn btn-primary rounded w-100">Mark Selected Remittances as Paid</a>
+		  <a href="#" class="btn btn-primary rounded w-100" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
+			Mark Selected Remittances as Paid
+		</a>
 		</div>
 	  </div>
 </x-off-canvas>

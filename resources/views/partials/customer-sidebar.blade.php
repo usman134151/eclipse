@@ -102,7 +102,7 @@
             window.userCurrent = "admin";
         </script>
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a href="/customer/dashboard">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#dashboard-icon"></use>
@@ -110,7 +110,7 @@
                     <span class="menu-item">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="chat">
                 <a href="/customer/chat">
                     <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#chat-icon"></use>
@@ -118,7 +118,7 @@
                     <span class="menu-item">Chat</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="booknow">
                 <a href="/customer/booking/booknow">
                     <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21">
                         <use xlink:href="/css/menu.svg#submit-service-request-icon"></use>
@@ -126,7 +126,7 @@
                     <span class="menu-item">Submit Service Request</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="pending-reviews">
                 <a href="/customer/pending-reviews">
 
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +143,7 @@
                     <span class="menu-item">Scheduled Services</span>
                 </a>
                 <ul class="menu-content " id="Scheduled-Services">
-                    <li class="nav-item ">
+                    <li class="nav-item " id="today">
                         <a class="nav-link" href="/customer/booking/today">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -154,7 +154,7 @@
                     </li>
                 </ul>
                 <ul class="menu-content " id="Scheduled-Services">
-                    <li class="nav-item ">
+                    <li class="nav-item " id="upcoming">
                         <a class="nav-link" href="/customer/booking/upcoming">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +165,7 @@
                     </li>
                 </ul>
                 <ul class="menu-content " id="Scheduled-Services">
-                    <li class="nav-item ">
+                    <li class="nav-item " id="past">
                         <a class="nav-link" href="/customer/booking/past">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -176,7 +176,7 @@
                     </li>
                 </ul>
                 <ul class="menu-content " id="Scheduled-Services">
-                    <li class="nav-item ">
+                    <li class="nav-item " id="draft">
                         <a class="nav-link" href="/customer/booking/draft">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +197,7 @@
                     <span class="menu-item">Billing</span>
                 </a>
                 <ul role="menu" class="menu-content" id="Billing">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="invoices">
                         <a class="nav-link" href="/customer/invoices">
                             <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -208,7 +208,7 @@
                     </li>
                 </ul>
                 <ul role="menu" class="menu-content" id="Billing">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="payments-receipts">
                         <a class="nav-link" href="/customer/payments-receipts">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -238,7 +238,7 @@
                     <span class="menu-item">Profile</span>
                 </a>
                 <ul role="menu" class="menu-content" id="Profile">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="myprofile">
                         <a class="nav-link" href="/customer/myprofile">
                             <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +249,7 @@
                     </li>
                 </ul>
                 <ul role="menu" class="menu-content" id="Profile">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="company-profile">
                         <a class="nav-link" href="/customer/company-profile">
                             <svg class="fill-none" width="19" height="18" viewBox="0 0 19 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -270,7 +270,7 @@
                     </li>
                 </ul> --}}
                 <ul role="menu" class="menu-content" id="Profile">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="add-team">
                         <a class="nav-link" href="/customer/add-team">
                             <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -281,7 +281,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="system-logs">
                 <a href="/customer/system-logs">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#system-log-icon"></use>
@@ -297,7 +297,7 @@
                     <span class="menu-item">Settings</span>
                 </a>
                 <ul role="menu" class="menu-content" id="Settings">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="settings">
                         <a class="nav-link" href="/customer/settings">
                             <svg class="fill-none" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -308,7 +308,7 @@
                     </li>
                 </ul>
                 <ul role="menu" class="menu-content" id="Settings">
-                    <li role="menuitem" class="nav-item">
+                    <li role="menuitem" class="nav-item" id="change-password">
                         <a class="nav-link" href="/customer/change-password">
                             <svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">

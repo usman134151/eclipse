@@ -1,4 +1,4 @@
-<div >
+<div x-data="{addDocument: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -1134,7 +1134,8 @@
 											<label class="form-label" for="search">
 												Upload Document
 											</label>
-											<input type="file" id="upload-document" class="form-control" name="upload-document" placeholder="upload-document"/>
+											<button @click="addDocument = true" class="btn btn-secondary btn-outline-secondary" type="button">Choose File</button>
+											{{-- <input type="file" id="upload-document" class="form-control" name="upload-document" placeholder="upload-document"/> --}}
 										</div>
 									</div>
 									<div class="row">
@@ -1858,7 +1859,7 @@
 													<td>
 														<div class="d-flex align-items-center gap-2">
 															<x-icon name="yellow-dot"/>
-															<p>issued</p>
+															<p>Issued</p>
 														</div>
 													</td>
 													<td>
@@ -1866,7 +1867,7 @@
 															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="round-arrow"/>
 															</a>
-															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 																<x-icon name="dollar-icon"/>
 															</a>
 															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -1964,7 +1965,7 @@
 													<td>
 														<div class="d-flex align-items-center gap-2">
 															<x-icon name="red-dot"/>
-															<p>pending</p>
+															<p>Pending</p>
 														</div>
 													</td>
 													<td>
@@ -1972,7 +1973,7 @@
 															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="round-arrow"/>
 															</a>
-															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 																<x-icon name="dollar-icon"/>
 															</a>
 															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -2123,7 +2124,7 @@
 													<td>
 														<div class="d-flex align-items-center gap-2">
 															<x-icon name="yellow-dot"/>
-															<p>issued</p>
+															<p>Issued</p>
 														</div>
 													</td>
 													<td>
@@ -2131,7 +2132,7 @@
 															<a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																<x-icon name="round-arrow"/>
 															</a>
-															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Remitance Inactive" aria-label="Remitance Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 																<x-icon name="dollar-icon"/>
 															</a>
 															<a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -4113,5 +4114,6 @@
 			</div>
 		</section>
 	</div>
-	@include('modals.markasread')
+	@include('modals.mark-as-paid')
+	@include('panels.common.add-document')
 </div>

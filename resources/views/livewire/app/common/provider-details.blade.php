@@ -1857,7 +1857,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -1902,7 +1902,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -1947,7 +1947,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -1992,7 +1992,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -2037,7 +2037,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                  </svg>
@@ -2082,7 +2082,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -2127,7 +2127,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -2172,7 +2172,7 @@
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
                                                                 </svg>												
 															</a>
-															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsReadModal">
+															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 																<svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-icon"></use>
                                                                 </svg>
@@ -3178,7 +3178,7 @@
 			 @include('panels.common.pending-credentials')
 			 @include('modals.common.view-button')
 			 @include('modals.common.add-address')
-			 @include('modals.markasread')
+			 @include('modals.mark-as-paid')
 
 		   </section>
 		   <!-- Basic Floating Label Form section end -->

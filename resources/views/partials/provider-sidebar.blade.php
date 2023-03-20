@@ -99,7 +99,7 @@
 				<span class="menu-item">Upcoming</span>
 			  </a>
 			</li>
-			<li class="nav-item  ">
+			<li class="nav-item" id="past">
 			  <a class="nav-link" href="/provider/bookings/past">
 				<svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#past-icon"></use>
@@ -117,7 +117,7 @@
 			<span class="menu-item">Available Assignments</span>
 		  </a>
 		  <ul class="menu-content " id="Bookings">
-			<li class="nav-item  ">
+			<li class="nav-item" id="unassigned">
 			  <a class="nav-link" href="/provider/bookings/unassigned">
 				<svg width="17" height="20" viewBox="0 0 17 20" class="fill-none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#unassigned-icon"></use>
@@ -125,7 +125,7 @@
 				<span class="menu-item">Unassigned</span>
 			  </a>
 			</li>
-			<li class="nav-item  ">
+			<li class="nav-item" id="invitations">
 			  <a class="nav-link" href="/provider/bookings/invitations">
 				<svg width="18" height="16" viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#invitations-icon"></use>
@@ -142,16 +142,16 @@
             </svg>
 			<span class="menu-item">Payments </span>
 		  </a>
-		  <ul class="menu-content">
-			<li class="nav-item">
-			  <a class="nav-link" href="/provider/draft-invoices">
+		  <ul class="menu-content" >
+			<li class="nav-item" id="draft-invoices">
+			  <a class="nav-link"  href="/provider/draft-invoices">
 				<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#invoice-generator-icon"></use>
                 </svg>
-				<span class="menu-item">Invoice generator</span>
+				<span class="menu-item" >Invoice generator</span>
 			  </a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" id="remittances">
 				<a class="nav-link" href="/provider/remittances">
 					<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#remittances-icon"></use>
@@ -159,7 +159,7 @@
 				  <span class="menu-item">Remittances</span>
 				</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item" id="reimbursement">
 				<a class="nav-link" href="/provider/reimbursement">
                     <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#reimbursement-icon"></use>
@@ -169,7 +169,7 @@
 			  </li>
 		  </ul>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item" id="profile">
 		  <a href="/provider/profile">
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#profile-icon"></use>
@@ -177,7 +177,7 @@
 			<span class="menu-item">Profile</span>
 		  </a>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item" id="drive">
 		  <a href="/provider/drive">
 			<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#my-drive-icon"></use>
@@ -185,7 +185,7 @@
 			<span class="menu-item">My Drive</span>
 		  </a>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item" id="system-logs">
 		  <a href="/provider/system-logs">
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#system-logs-icon"></use>
@@ -203,7 +203,7 @@
 			<span class="menu-item">Settings</span>
 		  </a>
 		  <ul role="menu" class="menu-content" id="Settings">
-			<li class="nav-item">
+			<li class="nav-item" id="settings">
 				<a href="/provider/settings">
 					<svg class="fill-none" width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#notification-icon"></use>
@@ -211,7 +211,7 @@
 				  <span class="menu-item">Notifications</span>
 				</a>
 			  </li>
-			  <li class="nav-item">
+			  <li class="nav-item" id="change-password">
 				<a href="/provider/change-password">
 					<svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#reset-password-icon"></use>
