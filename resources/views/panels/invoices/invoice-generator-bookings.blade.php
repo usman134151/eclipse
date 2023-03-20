@@ -849,7 +849,7 @@
       </div>
     </div>
     <div class="justify-content-center d-flex mb-4">
-      <a href="#" class="btn btn-primary rounded">Create invoice</a>
+      <a @click="createInvoices = true" href="#" class="btn btn-primary rounded">Create invoice</a>
     </div>
 </x-off-canvas>
 {{-- Invoice generator bookings - End --}}
