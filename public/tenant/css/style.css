@@ -1236,6 +1236,14 @@ small {
 .badge.rounded-lg {
   border-radius: 50px; }
 
+.icon-edit.position-absolute {
+  top: 1rem;
+  right: 1rem; }
+
+.icon-save.position-absolute {
+  top: 1rem;
+  right: 1rem; }
+
 .table > :not(caption) > .ivp > * {
   background-color: #E3E3E3;
   border-bottom-color: #575656; }
