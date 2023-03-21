@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div><label class="form-label" for="address-title">Notes</label></div>
 
-                <textarea placeholder="Enter Text Here" name="" id="" cols="50" rows="5"></textarea>
+                <textarea placeholder="Enter Text Here" name="" id="" cols="30" rows="5"></textarea>
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-secondary">Cancel</button>

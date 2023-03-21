@@ -8,7 +8,7 @@
       <div class="modal-body">
         <div><label class="form-label" for="address-title">Reason For Objection</label></div>
 
-      <textarea placeholder="Enter Text Here" name="" id="" cols="50" rows="5"></textarea>
+      <textarea placeholder="Enter Text Here" name="" id="" cols="30" rows="5"></textarea>
     </div>
       <div class="modal-footer justify-items-center">
 
