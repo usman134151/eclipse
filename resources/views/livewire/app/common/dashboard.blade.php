@@ -182,18 +182,9 @@
         </div>
       
       </div>
-	  <x-advancefilters/>
+	 
       <!-- END: Filters -->
-			<div class="d-lg-flex justify-content-between mb-2">
-				<h2 class="mb-lg-0 text-dark">Today’s Assignment</h2>
-				<div class="d-inline-flex align-items-center gap-4">
-					<div class="d-lg-flex justify-content-end mb-4">
-						<a href="/admin/booknow/create" class="btn btn-primary rounded btn-sm">
-							Create Assignment
-						</a>
-					</div>
-				</div>
-			</div>
+
 		@livewire('app.common.bookings.booking-list')
 	</div>
 	  <div class="tab-pane fade" id="availability-tab-pane" role="tabpanel" aria-labelledby="availability-tab" tabindex="0">
@@ -210,3 +201,9 @@
 	  </div>
 	</div>
 </div>
+<style>
+.tab-content>.active {
+    display: contents !important;
+}
+
+</style>
