@@ -24,19 +24,19 @@
                         </div>
                         <div class="mb-2 d-flex gap-2 ">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="completed" id="completed" checked>
+                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status" checked>
                                 <label class="form-check-label" for="completed">
                                     Completed
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="no-show" id="no-show">
+                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status">
                                 <label class="form-check-label" for="no-show">
                                     No Show
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="cancellation" id="cancellation">
+                                <input class="form-check-input" type="radio" name="booking-status" id="booking-status">
                                 <label class="form-check-label" for="cancellation">
                                     Cancellation
                                 </label>
