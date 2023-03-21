@@ -1,4 +1,4 @@
-<div>
+<div x-data="{rescheduleBooking: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -150,8 +150,13 @@
                                                                         <i class="fa fa-clone"></i>
                                                                         Duplicate
                                                                     </a>
-                                                                    <a href="javascript:void(0)" aria-label="Reschedule"
-                                                                        title="Reschedule" class="dropdown-item">
+                                                                    <a
+																		href="javascript:void(0)"
+																		aria-label="Reschedule"
+																		title="Reschedule"
+																		class="dropdown-item"
+																		@click="rescheduleBooking = true"
+																	>
                                                                         <i class="fa fa-calendar"></i>
                                                                         Reschedule
                                                                     </a>
@@ -275,5 +280,6 @@
     @endif
     @include('modals.assign-provider-team')
     @include('modals.common.confirm-completion')
+	@include('panels.booking-details.reschedule-booking')
 </div>
 {{-- End: Content --}}
