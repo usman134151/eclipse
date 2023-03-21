@@ -249,7 +249,6 @@ $('.js-auto-notify').change(function(){
 
 // Tiny Mce Editor
 
-$(document).ready(function() {
 tinymce.init({
   selector: 'textarea#editor',
   height : "300",
@@ -259,4 +258,3 @@ tinymce.init({
        freeTiny.style.display = 'none';
     }
   });
-});

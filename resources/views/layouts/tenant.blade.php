@@ -86,6 +86,7 @@
 		<script src="/tenant/js/perfect-scrollbar.min.js"></script>
 		<script src="/tenant/js/feather-icons.min.js"></script>
 		<script src="/tenant/js/chosen.jquery.min.js"></script>
+		<script src="/tenant/js/tinymce.min.js"></script>
 		<script src="/tenant/js/app.js"></script>
 		<script src="/tenant/js/app-menu.js"></script>
 		<script src="/tenant/js/app-new.js"></script>
