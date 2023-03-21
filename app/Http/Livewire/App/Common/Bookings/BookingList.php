@@ -8,6 +8,7 @@ class BookingList extends Component
 {
 	public $bookingType;
 	public $showBookingDetails;
+	public $bookingSection;
 
 	protected $listeners = ['showList' => 'resetForm'];
 
@@ -17,7 +18,9 @@ class BookingList extends Component
 	}
 
 	public function mount()
-	{}
+	{
+		
+	}
 
 	public function resetForm()
 	{
