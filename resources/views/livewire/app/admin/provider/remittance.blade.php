@@ -38,7 +38,7 @@
                         remittances to the respective Providers. Once issued, you can manage remittance payments from
                         "Payment Manager."</p>
                     <!-- BEGIN: Filters -->
-                    <div class="bg-muted rounded p-4 mb-1">
+                    {{-- <div class="bg-muted rounded p-4 mb-1">
                         <div class="d-lg-flex gap-5 align-items-center">
                             <div class="mb-4 mb-lg-0">
                                 <label class="form-label-sm">Search</label>
@@ -98,8 +98,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- END: Filters -->
+                    <x-advancefilters/>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="SelectAllProviders">
                         <label class="form-check-label" for="SelectAllProviders">
