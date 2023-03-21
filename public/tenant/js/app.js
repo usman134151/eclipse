@@ -246,15 +246,3 @@ $('.js-auto-notify').change(function(){
         $(this).parent().parent().parent().children('.js-auto-notify-content').addClass("hidden");
     }
 });
-
-// Tiny Mce Editor
-
-tinymce.init({
-  selector: 'textarea#editor',
-  height : "300",
-  placeholder: "Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard",
-    init_instance_callback : function(editor) {
-       var freeTiny = document.querySelector('.tox .tox-notification--in');
-       freeTiny.style.display = 'none';
-    }
-  });

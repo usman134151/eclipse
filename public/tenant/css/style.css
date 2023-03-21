@@ -1468,4 +1468,11 @@ swal-button {
 .tox-notifications-container {
   display: none; }
 
+.accordion-button:not(.collapsed) {
+  background-color: transparent;
+  color: #0A1E46; }
+
+.accordion-button:focus {
+  box-shadow: none; }
+
 /*# sourceMappingURL=style.css.map */
