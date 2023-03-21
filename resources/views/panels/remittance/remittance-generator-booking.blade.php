@@ -1,48 +1,85 @@
 {{-- Remittance Generator Booking - Start --}}
 <x-off-canvas show="remittanceGeneratorBooking" size="fullscreen">
 	<x-slot name="title">Remittance Generator Booking</x-slot>
-	<div class="d-flex justify-content-between mb-2">
-		<div class="flex-grow-1">
-		  <h3>Provider Info</h3>
-		  <div class="row mb-lg-4">
-			<div class="col-lg-6 mb-4 mb-lg-0">
-			  <div class="row">
-				<div class="col-lg-4 mb-4 mb-lg-0">
-				  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+	<div class="bg-muted rounded p-4 mb-3">
+		<div class="d-lg-flex gap-5 align-items-center mb-4">
+			<div class="mb-4 mb-lg-0">
+				<label class="form-label-sm">Search</label>
+				<div class="d-flex gap-2 align-items-center">
+					<div class="position-relative">
+						<input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Provider Name or Email">
+						<x-icon name="cancel"/>
+					</div>
+					<button class="btn btn-secondary rounded btn-sm btn-hs-icon">
+						<x-icon name="search"/>
+					</button>
 				</div>
-				<div class="col-lg-8 align-self-center">
-				  <div class="mb-2">
-					<label class="form-label mb-0">Provider Name:</label>
-					<div class="text-xs"><small>Imogene Guthrie</small></div>
-				  </div>
-				  <div>
-					<label class="form-label mb-0">Email:</label>
-					<div><a class="text-xs text-dark"><small>ImogeneGuthrie@gmail.com</small></a></div>
-				  </div>
-				</div>
-			  </div>
 			</div>
-			<div class="col-lg-6 mb-4 mb-lg-0 align-self-center">
+			<div class="mb-4 mb-lg-0">
+				<label class="form-label-sm">Date Range</label>
+				<div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
+					<x-icon name="input-calender"/>
+					<input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
+				</div>
+			</div>
+			<div class="mb-4 mb-lg-0">
+				<label class="form-label-sm">scheduled payment</label>
+				<div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
+					<x-icon name="input-calender"/>
+					<input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY"  aria-label="scheduled payment">
+				</div>
+			</div>
+			<div class="d-md-flex gap-3 align-items-center">
+				<div class="mb-4 mb-lg-0">
+					<select class="form-select form-select-sm rounded bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
+						<option>Advance Filter</option>
+					</select>
+				</div>
+				<div class="mb-4 mb-lg-0">
+					<button type="button" class="btn btn-xs bg-white btn-outline-dark rounded">Clear all</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<h3>Provider Info</h3>
+	  </div>
+	<div class="row mb-lg-4 mb-4">
+		<div class="col-lg-4 mb-4 mb-lg-0">
+		  <div class="row">
+			<div class="col-lg-4 mb-4 mb-lg-0">
+			  <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+			</div>
+			<div class="col-lg-8 align-self-center">
 			  <div class="mb-2">
-				<label class="form-label mb-0">Phone Number:</label>
-				<div class="text-xs"><small>(176) 361-8176</small></div>
+				<label class="form-label mb-0">Provider Name:</label>
+				<div class="text-xs"><small>Imogene Guthrie</small></div>
 			  </div>
 			  <div>
-				<label class="form-label mb-0">Address:</label>
-				<div><a class="text-xs text-dark"><small>Velit aut dicta min Utah</small></a></div>
+				<label class="form-label mb-0">Email:</label>
+				<div><a class="text-xs text-dark"><small>ImogeneGuthrie@gmail.com</small></a></div>
 			  </div>
 			</div>
 		  </div>
 		</div>
-		<div class="d-inline-flex align-items-center align-self-end gap-4">
-		  <div class="d-inline-flex align-items-center gap-4">
-			<label for="show_records_number" class="form-label-sm mb-0">Show</label>
-			<select class="form-select form-select-sm" id="show_records_number">
-			  <option>10</option>
-			  <option>15</option>
-			  <option>20</option>
-			  <option>25</option>
-			</select>
+		<div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
+		  <div class="mb-2">
+			<label class="form-label mb-0">Phone Number:</label>
+			<div class="text-xs"><small>(176) 361-8176</small></div>
+		  </div>
+		  <div>
+			<label class="form-label mb-0">Address:</label>
+			<div><a class="text-xs text-dark"><small>Velit aut dicta min Utah</small></a></div>
+		  </div>
+		</div>
+		<div class="col-lg-4 mb-4 mb-lg-0 align-self-center">
+		  <div class="d-grid grid-cols-2 gap-2">
+			<div class="fw-semibold text-sm">Total Invoiced:</div>
+			<div class="text-sm">$3000</div>
+			<div class="fw-semibold text-sm">Total Pending:</div>
+			<div class="text-sm">$1500</div>
+			<div class="fw-semibold text-sm">Next Payment Date:</div>
+			<div class="text-sm">$500</div>
 		  </div>
 		</div>
 	  </div>
