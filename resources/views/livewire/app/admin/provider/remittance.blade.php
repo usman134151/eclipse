@@ -87,16 +87,7 @@
                                     <option>Pending</option>
                                 </select>
                             </div>
-                            <div class="d-md-flex gap-3 align-items-center">
-                                <div class="mb-4 mb-lg-0">
-                                    <select class="form-select form-select-sm rounded bg-secondary text-white rounded" aria-label="Advance Filter" id="show_status">
-                                        <option>Advance Filter</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4 mb-lg-0">
-                                    <button type="button" class="btn btn-xs bg-white btn-outline-dark rounded">Clear all</button>
-                                </div>
-                            </div>
+
                         </div>
                         <x-advancefilters/>
                     </div>

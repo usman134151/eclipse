@@ -80,7 +80,7 @@
 												Search
 											</label>
 											<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-											<input type="search" class="form-control text-center" id="advance-search" aria-label="Advance Search" name="search" placeholder="Advance Search" autocomplete="on"/>
+											
 										</div>
 									</div>
 									<!-- Hoverable rows start -->
