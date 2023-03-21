@@ -1,8 +1,8 @@
-<div class="modal fade" id="addNewRequester" tabindex="-1" aria-labelledby="addNewRequesterLabel " aria-hidden="true">
+<div class="modal fade" id="addNewCustomer" tabindex="-1" aria-labelledby="addNewCustomerLabel " aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header justify-center">
-                <h2 class="modal-title fs-5 text-center" id="addNewRequesterLabel">ADD NEW CUSTOMER</h2>
+                <h2 class="modal-title fs-5 text-center" id="addNewCustomerLabel">ADD NEW CUSTOMER</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
