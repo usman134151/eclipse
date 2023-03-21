@@ -168,7 +168,7 @@
 						</div>
 						<div class="col-lg-7 align-self-center">
 							<div>
-								Assignment Details:
+								7:52 AM - 11:04 AM
 							</div>
 						</div>
 					</div>
