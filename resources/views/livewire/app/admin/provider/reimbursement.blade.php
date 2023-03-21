@@ -48,8 +48,8 @@
 	           		<div class="col-12">
 									<p>Here you can manage your providers' reimbursements for each assignment they work. Once approved, reimbursements will appear in the provider's payroll in "Remittances."</p>
 									<!-- BEGIN: Filters -->
-		              {{-- <div class="bg-muted rounded p-4 mb-1">
-		                <div class="d-lg-flex gap-5 align-items-center">
+		              <div class="bg-muted rounded p-4 mb-1">
+		                <div class="d-lg-flex gap-5 align-items-center mb-4">
 		                  <div class="mb-4 mb-lg-0">
 		                    <label class="form-label-sm">Search</label>
 		                    <div class="d-flex gap-2 align-items-center">
@@ -106,9 +106,9 @@
 												</select>
 		                  </div>
 		                </div>
-		              </div> --}}
+						<x-advancefilters/>
+		              </div>
 		              <!-- END: Filters -->
-					  <x-advancefilters/>
 									<div class="form-check mb-4">
 										<input class="form-check-input" type="checkbox" value="select-all-providers" id="select-all-providers">
 										<label class="form-check-label fw-semibold" for="select-all-providers">

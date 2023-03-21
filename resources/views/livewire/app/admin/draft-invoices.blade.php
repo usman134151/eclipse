@@ -36,8 +36,8 @@
 							Here you will manage your Providers' payment based on the assignments they work. Select the bookings you wish to include on the remittance and when remittances are ready, issue one or all remittances to the respective Providers. Once issued, you can manage remittance payments from "Payment Manager."
 						</p>
 						<!-- BEGIN: Filters -->
-						{{-- <div class="bg-muted rounded p-4 mb-1">
-						    <div class="d-lg-flex gap-5 align-items-center">
+						<div class="bg-muted rounded p-4 mb-1">
+						    <div class="d-lg-flex gap-5 align-items-center mb-4">
 						        <div class="mb-4 mb-lg-0">
 						            <label class="form-label-sm">Search</label>
 						            <div class="d-flex gap-2 align-items-center">
@@ -96,9 +96,10 @@
 						            </div>
 						        </div>
 						    </div>
-						</div> --}}
+							<x-advancefilters/>
+						</div>
 						<!-- END: Filters -->
-						<x-advancefilters/>
+						
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="" id="SelectAllProviders">
 							<label class="form-check-label" for="SelectAllProviders">
