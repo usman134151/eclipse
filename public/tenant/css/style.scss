@@ -1721,3 +1721,13 @@ swal-button {
 .tox-notifications-container {
 	display: none;
 }
+
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: $primary;
+}
+
+.accordion-button:focus {
+	box-shadow: none;
+}
