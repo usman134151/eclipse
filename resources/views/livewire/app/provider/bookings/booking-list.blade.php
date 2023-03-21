@@ -1,4 +1,4 @@
-<div x-data="{offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false}">
+<div x-data="{offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false}">
   <div id="loader-section" class="loader-section" wire:loading>
     <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
         <div class="spinner-border" role="status" aria-live="polite">
@@ -45,9 +45,9 @@
                               <div class="time-date">{!! $booking['time'] !!}</div>
                             </div>
                           </td>
-                          <td wire:click="showBookingDetails">
+                          <td @click="assignmentDetails = true">
                             <a href="#">{{$booking['number']}}</a>
-                            <div>In-Perosn Assignment</div>
+                            <div>In-Person Assignment</div>
                           </td>
                           <td>
                             <div>{{$booking['industry']}}</div>
@@ -230,4 +230,5 @@
 	  @include('modals.common.running-late')
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
+	@include('panels.common.assignment-details')
 </div>
