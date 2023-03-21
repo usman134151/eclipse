@@ -95,11 +95,21 @@
                 </div>
                 <div class="col-lg-6 mb-4 ps-lg-5">
                   <label class="form-label">Department <span class="mandatory">*</span></label>
-                  <input type="" class="form-control" placeholder="Select Department">
+                  <div>
+                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#departmentModal">
+                        <x-icon name="right-color-arrow"/>
+                        Select Department
+                    </button>
+                </div>
                 </div>
                 <div class="col-lg-6 mb-4 pe-lg-5">
                   <label class="form-label">Industry <span class="mandatory">*</span></label>
-                  <input type="" class="form-control" placeholder="Select Industry">
+                  <div>
+                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup" data-bs-toggle="modal" data-bs-target="#industryModal">
+                        <x-icon name="right-color-arrow"/>
+                        Select Industry
+                    </button>
+                </div>
                 </div>
                 <div class="col-lg-6 mb-4 ps-lg-5">
                   <div class="d-flex justify-content-between align-items-center">
@@ -1550,10 +1560,12 @@
             <button type="button" class="btn rounded w-100 btn-primary">Add</button>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 </div>
 <!-- /Modal Request from User -->
 @include('modals.common.add-address')
+@include('modals.common.add-industry')
+@include('modals.common.add-department')
