@@ -1465,4 +1465,7 @@ swal-button {
   height: 0.9375rem;
   padding: 0; }
 
+.tox-notifications-container {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
