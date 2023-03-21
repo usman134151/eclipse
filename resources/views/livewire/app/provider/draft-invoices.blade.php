@@ -102,7 +102,7 @@
                             <th scope="col">Booking id</th>
                             <th scope="col">Service Date<br> & Time</th>
                             <th scope="col">Accommodation</th>
-                            <th scope="col">Company Name</th>
+                            <th scope="col" width="20%">Company Name</th>
                             <th scope="col">Total Pay</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -130,7 +130,9 @@
                           <td >
                             <div class="row g-2">
                                 <div class="col-md-2">
-                                  <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
+                                  <img src="/tenant/images/portrait/small/image4.png"
+                                  class="img-fluid rounded-circle"
+                                  alt="Company Profile Image">
                                 </div>
                                 <div class="col-md-10 align-self-center">
                                   <div class="fw-semibold text-sm">Example Company</div>
@@ -183,7 +185,9 @@
                             <td >
                               <div class="row g-2">
                                   <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                    <img src="/tenant/images/portrait/small/image4.png"
+                                  class="img-fluid rounded-circle"
+                                  alt="Company Profile Image">
                                   </div>
                                   <div class="col-md-10 align-self-center">
                                     <div class="fw-semibold text-sm">Example Company</div>
@@ -234,7 +238,9 @@
                             <td >
                               <div class="row g-2">
                                   <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                    <img src="/tenant/images/portrait/small/image4.png"
+                                  class="img-fluid rounded-circle"
+                                  alt="Company Profile Image">
                                   </div>
                                   <div class="col-md-10 align-self-center">
                                     <div class="fw-semibold text-sm">Example Company</div>
@@ -287,7 +293,9 @@
                               <td >
                                 <div class="row g-2">
                                     <div class="col-md-2">
-                                      <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
+                                      <img src="/tenant/images/portrait/small/image4.png"
+                                        class="img-fluid rounded-circle"
+                                        alt="Company Profile Image">
                                     </div>
                                     <div class="col-md-10 align-self-center">
                                       <div class="fw-semibold text-sm">Example Company</div>
@@ -340,7 +348,9 @@
                                 <td >
                                   <div class="row g-2">
                                       <div class="col-md-2">
-                                        <img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Company Profile Image">
+                                        <img src="/tenant/images/portrait/small/image4.png"
+                                        class="img-fluid rounded-circle"
+                                        alt="Company Profile Image">
                                       </div>
                                       <div class="col-md-10 align-self-center">
                                         <div class="fw-semibold text-sm">Example Company</div>
@@ -393,7 +403,9 @@
                                   <td >
                                     <div class="row g-2">
                                         <div class="col-md-2">
-                                          <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
+                                          <img src="/tenant/images/portrait/small/image4.png"
+                                          class="img-fluid rounded-circle"
+                                          alt="Company Profile Image">
                                         </div>
                                         <div class="col-md-10 align-self-center">
                                           <div class="fw-semibold text-sm">Example Company</div>
@@ -446,7 +458,9 @@
                                     <td >
                                       <div class="row g-2">
                                           <div class="col-md-2">
-                                            <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
+                                            <img src="/tenant/images/portrait/small/image4.png"
+                                              class="img-fluid rounded-circle"
+                                              alt="Company Profile Image">
                                           </div>
                                           <div class="col-md-10 align-self-center">
                                             <div class="fw-semibold text-sm">Example Company</div>
@@ -499,7 +513,9 @@
                                       <td >
                                         <div class="row g-2">
                                             <div class="col-md-2">
-                                              <img src="/tenant/images/portrait/small/image.png"  class="img-fluid rounded-circle" alt="Company Profile Image">
+                                              <img src="/tenant/images/portrait/small/image4.png"
+                                               class="img-fluid rounded-circle"
+                                               alt="Company Profile Image">
                                             </div>
                                             <div class="col-md-10 align-self-center">
                                               <div class="fw-semibold text-sm">Example Company</div>
