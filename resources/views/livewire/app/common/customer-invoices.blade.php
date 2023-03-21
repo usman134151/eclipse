@@ -68,16 +68,15 @@
                         </div>
 
                       </div>
-                      <x-advancefilters/>
-                      {{-- <div class="col-md-12 d-flex col-12 gap-4 mb-4 mt-5">
+                      <div class="col-md-12 d-flex col-12 gap-4 mb-4 mt-5">
 
                          <div class="col-md-3 col-12">
                             <div>
                               <label class="form-label" for="company">Company</label>
                               <select class="select2 form-select" id="company">
                                 <option>Select Company</option>
-                                <option>Companey-1</option>
-                                <option>Comapaney-2</option>
+                                <option>Company-1</option>
+                                <option>Comapany-2</option>
                               </select>
                             </div>
                           </div>
@@ -116,8 +115,8 @@
                                     </div>
                                   </div>
                                 </div>
-                        {{-- </div>
-                      {{-- <div class="col-md-12 d-flex col-12 gap-4">
+                        </div>
+                      <div class="col-md-12 d-flex col-12 gap-4">
 
                         <div class="col-md-3 col-12">
                           <div class="mb-4">
@@ -147,7 +146,8 @@
                             </div>
                           </div>
 
-                        </div> --}}
+                        </div>
+                        <x-advancefilters/>
                         <div class="row mb-4 mt-4">
                           <div class="dropdown">
 

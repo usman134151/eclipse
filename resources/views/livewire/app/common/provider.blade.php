@@ -75,13 +75,13 @@
 												<option>25</option>
 											</select>
 										</div>
-										{{-- <div class="d-inline-flex align-items-center gap-4">
+										<div class="d-inline-flex align-items-center gap-4">
 											<label for="search" class="form-label fw-semibold">
 												Search
 											</label>
 											<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
 											<input type="search" class="form-control text-center" id="advance-search" aria-label="Advance Search" name="search" placeholder="Advance Search" autocomplete="on"/>
-										</div> --}}
+										</div>
 									</div>
 									<!-- Hoverable rows start -->
 									<div class="row" id="table-hover-row">
