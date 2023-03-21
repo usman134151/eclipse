@@ -1,17 +1,20 @@
 @props([
 	'show',
 	'allowBackdrop' => true,
-	'size' => 'default'
+	'size' => 'default',
+	'style'=>''
 ])
 
 @php
 	$offcanvasSize = ($size == 'fullscreen') ? 'offcanvas-assign-provider' : '';
+	
 @endphp
 
 <div
 	class="offcanvas {{ $offcanvasSize }} offcanvas-end"
 	:class="{ 'show': {{ $show }} == true }"
 	x-show="{{ $show }}"
+	style="{{$style}}"
 >
 	<div class="offcanvas-header">
 		<h2 class="offcanvas-title" id="">
