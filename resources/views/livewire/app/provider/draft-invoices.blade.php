@@ -100,7 +100,7 @@
                                 </div>
                             </th>
                             <th scope="col">Booking id</th>
-                            <th scope="col">Service Date<br> & Time</th>
+                            <th scope="col">Date & Time</th>
                             <th scope="col">Accommodation</th>
                             <th scope="col" width="20%">Company Name</th>
                             <th scope="col">Total Pay</th>

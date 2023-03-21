@@ -285,7 +285,7 @@
 		  <div class="form-check mx-auto">
 			<input class="form-check-input" type="checkbox" value="" id="remittance-generator-checkbox">
 			<label class="form-check-label" for="remittance-generator-checkbox">
-			  all bookings are complete to the best of my knowledge and request to issue the remittance or payment
+			  All bookings are complete to the best of my knowledge and request to issue the remittance or payment
 			</label>
 		  </div>
 		</div>
