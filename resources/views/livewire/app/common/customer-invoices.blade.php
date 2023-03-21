@@ -68,9 +68,10 @@
                         </div>
 
                       </div>
-                      <div class="col-md-12 d-flex col-12 gap-4 mb-4 mt-5">
-                        <!-- Company -->
-                          <div class="col-md-3 col-12">
+                      <x-advancefilters/>
+                      {{-- <div class="col-md-12 d-flex col-12 gap-4 mb-4 mt-5">
+                        
+                         <div class="col-md-3 col-12">
                             <div>
                               <label class="form-label" for="company">Company</label>
                               <select class="select2 form-select" id="company">
@@ -81,7 +82,7 @@
                             </div>
                           </div>
 
-                          <!-- Billing Manager -->
+                          
                           <div class="col-md-3 col-12">
                             <div>
                               <label class="form-label" for="Billing-Manager">Billing Manager</label>
@@ -92,7 +93,7 @@
                               </select>
                             </div>
                           </div>
-                                <!-- Date Range -->
+                                
                                 <div class="col-md-3 col-12">
                                   <div>
                                     <label class="form-label" for="set_date">Date Range</label>
@@ -115,9 +116,9 @@
                                     </div>
                                   </div>
                                 </div>
-                        </div>
-                      <div class="col-md-12 d-flex col-12 gap-4">
-                        <!-- search  -->
+                        {{-- </div>
+                      {{-- <div class="col-md-12 d-flex col-12 gap-4">
+                       
                         <div class="col-md-3 col-12">
                           <div class="mb-4">
                             <label class="form-label" for="search-record">
@@ -134,8 +135,8 @@
                               />
                           </div>
                         </div>
-                          <!-- Payment Status -->
-                          <div class="col-md-3 col-12">
+                          
+                         <div class="col-md-3 col-12">
                             <div class="mb-4">
                               <label class="form-label" for="payment-status">Payment Status</label>
                               <select class="select2 form-select" id="payment-status">
@@ -146,7 +147,7 @@
                             </div>
                           </div>
 
-                        </div>
+                        </div> --}}
                         <div class="row mb-4 mt-4">
                           <div class="dropdown">
 

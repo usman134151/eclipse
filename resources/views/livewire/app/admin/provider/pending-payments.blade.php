@@ -39,7 +39,7 @@
                     <img src="/html-prototype/images/temp/img-placeholder-pending-payment.png" class="img-fluid" alt="Responsive image">
                   </div>
                   <!-- BEGIN: Filters -->
-                  <div class="bg-muted rounded p-4 mb-1">
+                  {{-- <div class="bg-muted rounded p-4 mb-1">
                     <div class="d-lg-flex gap-5 align-items-center">
                       <div class="mb-4 mb-lg-0">
                         <label class="form-label-sm">Search</label>
@@ -99,8 +99,9 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
                   <!-- END: Filters -->
+                  <x-advancefilters/>
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
                   <div class="d-inline-flex align-items-center gap-4">
