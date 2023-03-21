@@ -62,6 +62,7 @@
 											</div>
 										</div>
 									</div>
+									<x-advancefilters/>
 									<div class="d-flex justify-content-between mb-2">
 										<div class="d-inline-flex align-items-center gap-4">
 											<label for="show_records_number" class="form-label">

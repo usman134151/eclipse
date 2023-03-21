@@ -69,19 +69,19 @@
 
                       </div>
                       <div class="col-md-12 d-flex col-12 gap-4 mb-4 mt-5">
-                        <!-- Company -->
-                          <div class="col-md-3 col-12">
+
+                         <div class="col-md-3 col-12">
                             <div>
                               <label class="form-label" for="company">Company</label>
                               <select class="select2 form-select" id="company">
                                 <option>Select Company</option>
-                                <option>Companey-1</option>
-                                <option>Comapaney-2</option>
+                                <option>Company-1</option>
+                                <option>Comapany-2</option>
                               </select>
                             </div>
                           </div>
 
-                          <!-- Billing Manager -->
+
                           <div class="col-md-3 col-12">
                             <div>
                               <label class="form-label" for="Billing-Manager">Billing Manager</label>
@@ -92,7 +92,7 @@
                               </select>
                             </div>
                           </div>
-                                <!-- Date Range -->
+
                                 <div class="col-md-3 col-12">
                                   <div>
                                     <label class="form-label" for="set_date">Date Range</label>
@@ -117,7 +117,7 @@
                                 </div>
                         </div>
                       <div class="col-md-12 d-flex col-12 gap-4">
-                        <!-- search  -->
+
                         <div class="col-md-3 col-12">
                           <div class="mb-4">
                             <label class="form-label" for="search-record">
@@ -134,8 +134,8 @@
                               />
                           </div>
                         </div>
-                          <!-- Payment Status -->
-                          <div class="col-md-3 col-12">
+
+                         <div class="col-md-3 col-12">
                             <div class="mb-4">
                               <label class="form-label" for="payment-status">Payment Status</label>
                               <select class="select2 form-select" id="payment-status">
@@ -147,6 +147,7 @@
                           </div>
 
                         </div>
+                        <x-advancefilters/>
                         <div class="row mb-4 mt-4">
                           <div class="dropdown">
 
@@ -225,11 +226,11 @@
                                   </div></td>
                                   <td>
                                     <div class="d-flex actions">
-                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                           <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                           </svg>
-                                        </a>                                  
+                                        </a>
                                       <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -260,7 +261,7 @@
                                   </td>
                                   <td><a @click="offcanvasOpen = true">87109</a>
                                   <p class="mt-1">08/24/2022</p></td>
-                                  <td class="align-middle"> 
+                                  <td class="align-middle">
                                     <div class="d-flex gap-2 align-items-center">
                                       <div class="">
                                         <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
@@ -285,11 +286,11 @@
                                   </div></td>
                                   <td>
                                     <div class="d-flex actions">
-                                      <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                         <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                         </svg>
-                                      </a>                                  
+                                      </a>
                                     <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                       <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -346,11 +347,11 @@
                                   </div></td>
                                   <td>
                                     <div class="d-flex actions">
-                                      <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                         <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                         </svg>
-                                      </a>                                  
+                                      </a>
                                     <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                       <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -407,11 +408,11 @@
                                   </td>
                                     <td>
                                       <div class="d-flex actions">
-                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                           <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                           </svg>
-                                        </a>                                  
+                                        </a>
                                       <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                         <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -433,7 +434,7 @@
                                       </td>
                                       <td><a @click="offcanvasOpen = true">87109</a>
                                       <p class="mt-1">08/24/2022</p></td>
-                                      <td class="align-middle"> 
+                                      <td class="align-middle">
                                         <div class="d-flex gap-2 align-items-center">
                                           <div class="">
                                             <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
@@ -459,11 +460,11 @@
                                       </div></td>
                                       <td>
                                         <div class="d-flex actions">
-                                          <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                             <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                             </svg>
-                                          </a>                                  
+                                          </a>
                                         <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                           <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -479,7 +480,7 @@
                                             <!-- <div class="tablediv dropdown-menu">
                                               <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                               <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-  
+
                                             </div> -->
                                           </div>
                                         </div>
@@ -519,11 +520,11 @@
                                       </div></td>
                                       <td>
                                         <div class="d-flex actions">
-                                          <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                             <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                             </svg>
-                                          </a>                                  
+                                          </a>
                                         <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                           <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -539,7 +540,7 @@
                                             <!-- <div class="tablediv dropdown-menu">
                                               <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                               <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-  
+
                                             </div> -->
                                           </div>
                                         </div>
@@ -579,11 +580,11 @@
                                         </div></td>
                                         <td>
                                           <div class="d-flex actions">
-                                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                               <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                               </svg>
-                                            </a>                                  
+                                            </a>
                                           <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                             <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -599,7 +600,7 @@
                                               <!-- <div class="tablediv dropdown-menu">
                                                 <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                 <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-    
+
                                               </div> -->
                                             </div>
                                           </div>
@@ -614,7 +615,7 @@
                                           </td>
                                           <td><a @click="offcanvasOpen = true">87109</a>
                                           <p class="mt-1">08/24/2022</p></td>
-                                          <td class="align-middle"> 
+                                          <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
                                               <div class="">
                                                 <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
@@ -640,11 +641,11 @@
                                           </div></td>
                                           <td>
                                             <div class="d-flex actions">
-                                              <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                 <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                                 </svg>
-                                              </a>                                  
+                                              </a>
                                             <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                               <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -660,7 +661,7 @@
                                                 <!-- <div class="tablediv dropdown-menu">
                                                   <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                   <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-      
+
                                                 </div> -->
                                               </div>
                                             </div>
@@ -700,11 +701,11 @@
                                           </div></td>
                                           <td>
                                             <div class="d-flex actions">
-                                              <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                              <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                 <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                                 </svg>
-                                              </a>                                  
+                                              </a>
                                             <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                               <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -720,7 +721,7 @@
                                                 <!-- <div class="tablediv dropdown-menu">
                                                   <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                   <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-      
+
                                                 </div> -->
                                               </div>
                                             </div>
@@ -760,11 +761,11 @@
                                             </div></td>
                                             <td>
                                               <div class="d-flex actions">
-                                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                                   <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                                   </svg>
-                                                </a>                                  
+                                                </a>
                                               <a href="#" @click="invoiceDetails = true" title="Invoice Details" aria-label="Invoice Details" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                 <svg aria-label="Invoice Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -780,7 +781,7 @@
                                                   <!-- <div class="tablediv dropdown-menu">
                                                     <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
                                                     <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-        
+
                                                   </div> -->
                                                 </div>
                                               </div>
@@ -793,11 +794,11 @@
                              {{-- icon bar start--}}
                           <div class="d-flex actions gap-3 justify-content-end mb-2">
                               <div class="d-flex gap-2 align-items-center">
-                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                   <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg>
-                                </a> 
+                                </a>
                                   <span class="text-sm">
                                   Revert
                                   </span>
@@ -851,7 +852,7 @@
                     <div class="d-flex justify-content-center">
                       <button class="btn btn-primary rounded">Resend Invoice</button>
                       <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#payInvoice">Record Payment</button>
-                      <button class="btn btn-primary rounded mx-2">Revert Invoice</button>
+                      <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#revertBackModal">Revert Invoice</button>
                     </div>
                     </div>
 
@@ -862,5 +863,6 @@
         <!-- Basic Floating Label Form section end -->
     </div>
   @include('modals.common.pay-invoice')
+  @include('modals.common.revert-back')
   @include('panels.invoices.invoice-details')
 </div>

@@ -1,4 +1,4 @@
-<div>
+<div x-data="{rescheduleBooking: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -114,6 +114,13 @@
                                                     </td>
                                                     <td>
                                                         <div class="d-flex actions">
+
+                                                        <a href="#" title="Edit" aria-label="Edit Booking" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal"
+                                                        data-bs-target="#confirmCompletion">
+                                                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <use xlink:href="/css/customer.svg#confirm-completion-icon"></use>
+                                                              </svg>
+                                                        </a>
                                                             <a href="#" title="Edit" aria-label="Edit Booking" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
@@ -143,8 +150,13 @@
                                                                         <i class="fa fa-clone"></i>
                                                                         Duplicate
                                                                     </a>
-                                                                    <a href="javascript:void(0)" aria-label="Reschedule"
-                                                                        title="Reschedule" class="dropdown-item">
+                                                                    <a
+																		href="javascript:void(0)"
+																		aria-label="Reschedule"
+																		title="Reschedule"
+																		class="dropdown-item"
+																		@click="rescheduleBooking = true"
+																	>
                                                                         <i class="fa fa-calendar"></i>
                                                                         Reschedule
                                                                     </a>
@@ -179,6 +191,8 @@
                                                                         </svg>
                                                                         Cancel
                                                                     </a>
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -265,5 +279,7 @@
     </div>
     @endif
     @include('modals.assign-provider-team')
+    @include('modals.common.confirm-completion')
+	@include('panels.booking-details.reschedule-booking')
 </div>
 {{-- End: Content --}}

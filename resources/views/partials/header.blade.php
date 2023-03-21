@@ -59,7 +59,12 @@
         <!-- END: search-by-keyword - search-by-no -->
         <ul class="nav navbar-nav align-items-center ms-auto">
         <li class="nav-item dropdown dropdown-user">
-              <div class="user-nav d-sm-flex d-none"><span class="user-name fw-medium m-1">Interpreter Admin</span></div>
+              <div class="user-nav d-sm-flex d-none">
+                <span class="user-name fw-medium m-1">
+                  {{-- Interpreter Admin --}}
+                  {{ Auth::user()->first_name}} {{ Auth::user()->last_name }}
+                </span>
+              </div>
             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                 @csrf
               </form>

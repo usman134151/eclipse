@@ -39,7 +39,7 @@
                         "Payment Manager."</p>
                     <!-- BEGIN: Filters -->
                     <div class="bg-muted rounded p-4 mb-1">
-                        <div class="d-lg-flex gap-5 align-items-center">
+                        <div class="d-lg-flex gap-5 align-items-center mb-4">
                             <div class="mb-4 mb-lg-0">
                                 <label class="form-label-sm">Search</label>
                                 <div class="d-flex gap-2 align-items-center">
@@ -98,6 +98,7 @@
                                 </div>
                             </div>
                         </div>
+                        <x-advancefilters/>
                     </div>
                     <!-- END: Filters -->
                     <div class="form-check">

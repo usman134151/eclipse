@@ -15,7 +15,7 @@
                                             fill="#0A1E46" />
                                     </svg>
                                 </a>
-                            </li>
+                            </li> 
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000">
                                     Profile
@@ -52,10 +52,6 @@
                                 </div>
                                 <div>
                                     <h3>Referral Code: KYTALB</h3>
-                                </div>
-                                <div>
-                                    <x-icon name="green-badge" />
-                                    <span><strong>Certified</strong></span>
                                 </div>
                             </div>
                             <div class="p-4 border border-dark rounded bg-lighter mb-4 align-items-left text-left">
@@ -118,25 +114,24 @@
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-lg-12">
-                                        <div class="row justify-content-end">
+                                        <div class="row">
                                             <div class="col-lg-3 ">
-                                                <a href="#"
-                                                    class="btn btn-primary rounded w-100 btn-has-icon">
-
-                                                    Open Service Requests
-                                                </a>
+                                                <div class="w-100">
+                                                 <span class="fw-semibold">Open Service Requests:</span>
+                                                 <span>10</span>
+                                                </div>
                                             </div>
                                             <div class="col-lg-3">
-                                                <a href="#"
-                                                    class="btn btn-primary rounded w-100">
-                                                    Total Service Requests
-                                                </a>
+                                                <div class="w-100">
+                                                    <span class="fw-semibold">Total Service Requests:</span>
+                                                    <span>10</span>
+                                                   </div>
                                             </div>
                                             <div class="col-lg-5">
-                                                <a href="#"
-                                                    class="btn btn-primary rounded w-100">
-                                                    Total Number of Users Assigned to Supervise
-                                                </a>
+                                                <div class="w-100 mx-5">
+                                                    <span class="fw-semibold">Total Number of Assigned Supervisor:</span>
+                                                    <span>15</span>
+                                                   </div>
                                             </div>
                                         </div>
                                     </div>
