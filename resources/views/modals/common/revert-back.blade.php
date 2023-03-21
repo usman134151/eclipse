@@ -13,7 +13,7 @@
                             Cancel
                         </button>
                         <button type="button" class="btn rounded btn-primary">
-                            CONFIRM
+                            Yes Revert Invoice
                         </button>
                     </div>
                 </div>
