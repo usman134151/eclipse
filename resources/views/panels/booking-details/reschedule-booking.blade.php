@@ -263,14 +263,14 @@
 			</a>
 			<div class="dropdown">
 				<button type="button" class="btn btn-primary rounded dropdown-toggle w-100 h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-					Upload
+					Update
 				</button>
 				<ul class="dropdown-menu">
 					<li>
-						<a class="dropdown-item d-block rounded" href="#">Update + Invite </a>
+						<a href="#" class="dropdown-item d-block rounded">Update + Invite</a>
 					</li>
 					<li>
-						<a class="dropdown-item d-block rounded" href="#">Update + Assign </a>
+						<a href="#" class="dropdown-item d-block rounded">Update + Assign</a>
 					</li>
 				</ul>
 			</div>
