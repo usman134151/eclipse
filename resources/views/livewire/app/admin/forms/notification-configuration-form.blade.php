@@ -117,7 +117,7 @@
                         </div>
                       </div>
                       <div class="col-lg-8 col-12 mb-4">
-                        <textarea id="editor"></textarea>
+                        <textarea rows="10" cols="10" id="" class="form-control" placeholder="Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard"></textarea>
                       </div>
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
@@ -241,7 +241,7 @@
                     <!-- ..... section 3 start.... -->
                     <div class="row">
                       <div class="col-lg-8 col-12 mb-4">
-                        <textarea id="editor"></textarea>
+                        <textarea rows="10" cols="10" id="" class="form-control" placeholder="Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard"></textarea>
                       </div>
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
@@ -384,7 +384,7 @@
                     <!-- ....   section 4 start.... -->
                     <div class="row mb-4">
                       <div class="col-lg-8 col-12 mb-4">
-                        <textarea id="editor"></textarea>
+                        <textarea rows="10" cols="10" id="" class="form-control" placeholder="Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard"></textarea>
                       </div>
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
@@ -431,31 +431,3 @@
       </div>
     </section>
 </div>
-<script src="/tenant/js/chosen.jquery.min.js"></script>
-<script src="/tenant/js/tinymce.min.js"></script>
-<script>
-  // Chosen
-  var config = {
-    '.chosen-select'           : {},
-    '.chosen-select-deselect'  : { allow_single_deselect: true },
-    '.chosen-select-no-single' : { disable_search_threshold: 10 },
-    '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
-    '.chosen-select-rtl'       : { rtl: true },
-    '.chosen-select-width'     : { width: '95%' }
-  }
-  for (var selector in config) {
-    $(selector).chosen(config[selector]);
-  }
-  // Tiny Mce Editor
-
-tinymce.init({
-  selector: 'textarea#editor',
-  height : "300",
-  placeholder: "Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard",
-    init_instance_callback : function(editor) {
-       var freeTiny = document.querySelector('.tox .tox-notification--in');
-       freeTiny.style.display = 'none';
-    }
-  });
-
-</script>
