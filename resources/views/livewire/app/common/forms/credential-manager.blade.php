@@ -56,7 +56,7 @@
                     <label class="form-check-label" for="specializations"> Specializations</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" id="accomodation-service" name="accomodation-service" type="checkbox" tabindex="" />
+                    <input class="form-check-input" id="accomodation-service" name="accomodation-service" type="checkbox" tabindex="" checked/>
                     <label class="form-check-label" for="accomodation-service"> Accommodations & Services</label>
                   </div>
                 </div>
@@ -466,8 +466,8 @@
               </div>
          </div>
          <div class="d-flex justify-content-center">
-           <button class="btn btn-outline-primary rounded">Cancel</button>
-           <button class="btn btn-primary rounded mx-2">Save</button>
+           <button class="btn btn-outline-primary rounded" wire:click.prevent="showList">Cancel</button>
+           <button class="btn btn-primary rounded mx-2" wire:click.prevent="showList">Save</button>
          </div>
     </div>
    </div>
