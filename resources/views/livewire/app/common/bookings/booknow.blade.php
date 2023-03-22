@@ -1323,11 +1323,11 @@
                     <label class="form-check-label" for="AssignAdminStaff&adminStaffTeam">Assign Admin-Staff & admin-Staff Team</label>
                   </div>
                   <div class="d-flex flex-column flex-md-row gap-2 mb-4">
-                    <a href="#" class="btn btn-outline-dark btn-sm rounded">
+                    <a href="#" class="btn btn-outline-dark btn-sm rounded" data-bs-toggle="modal" data-bs-target="#assignAdminStaffModal">
                       Assign Admin-Staff
                     </a>
                     <!-- Programming note: only show on admin-end -->
-                    <a href="#" class="btn btn-primary btn-sm rounded">
+                    <a href="#" class="btn btn-primary btn-sm rounded" data-bs-toggle="modal" data-bs-target="#assignAdminStaffTeamModal">
                       Assign Admin-Staff Team
                     </a>
                     <!-- /Programming note: only show on admin-end -->
@@ -1571,3 +1571,5 @@
 @include('modals.common.add-department')
 @include('modals.common.add-document')
 @include('modals.common.add-new-customer')
+@include('modals.common.assign-admin-staff')
+@include('modals.common.assign-admin-staff-team')
