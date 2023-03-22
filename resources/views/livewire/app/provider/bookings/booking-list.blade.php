@@ -233,4 +233,5 @@
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
     @include('modals.common.running-late')
+    @include('modals.return-assignment')
 </div>

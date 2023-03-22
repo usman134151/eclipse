@@ -69,7 +69,7 @@
 							</svg>
 							<span>Running Late</span>
 						</button>
-						<button type="button" class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3">
+						<button type="button" class="btn btn-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3" data-bs-toggle="modal" data-bs-target="#returnAssignmentModal">
 							<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M15 5C9.48615 5 5 9.48615 5 15C5 20.5138 9.48615 25 15 25C20.5138 25 25 20.5138 25 15C25 9.48615 20.5138 5 15 5ZM15 6.53846C19.6823 6.53846 23.4615 10.3177 23.4615 15C23.4615 19.6823 19.6823 23.4615 15 23.4615C10.3177 23.4615 6.53846 19.6823 6.53846 15C6.53846 10.3177 10.3177 6.53846 15 6.53846ZM12.0923 10.9846L10.9846 12.0923L13.8954 15L10.9862 17.9077L12.0938 19.0154L15 16.1054L17.9077 19.0131L19.0154 17.9077L16.1054 15L19.0131 12.0923L17.9077 10.9846L15 13.8954L12.0923 10.9862V10.9846Z" fill="white"/>
 							</svg>
