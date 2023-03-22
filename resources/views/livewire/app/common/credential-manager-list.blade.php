@@ -51,7 +51,12 @@
                                   <h3>Credential Management</h3>
                                 </div>
                                 <div class="col-md-3 ms-auto text-end">
-                                  <a href="javascript:void(0)" wire:click="showForm" class="btn btn-primary rounded">Create Credential</a>
+                                  <a href="javascript:void(0)" wire:click="showForm" class="btn btn-primary rounded">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"></path>
+                                    </svg>
+                                    <span class="mx-2 mt-1">Create Credential</span>
+                                </a>
                                 </div>
                                 </div>
                             </div>
@@ -107,7 +112,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-10">
-                                                        <p>Admin</p>
+                                                        <p>Driving License</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -136,7 +141,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-10">
-                                                        <p>Admin</p>
+                                                        <p>COVID vaccination certificate</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -165,7 +170,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-10">
-                                                        <p>Admin</p>
+                                                        <p>National Board of Certification for Medical Interpreters (NBCMI)</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -194,7 +199,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-10">
-                                                        <p>Admin</p>
+                                                        <p>American Translators Association (ATA) Certification</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -223,94 +228,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-10">
-                                                        <p>Admin</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        title="Edit" aria-label="Edit">
-                                                     <svg width="19" height="19" aria-label="Delete" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        title="Delet" aria-label="Delete Service">
-                                                        <svg width="19" height="19" aria-label="Delete" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even" >
-                                            <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    aria-label="Select Credential">
-                                            </td>
-                                            <td>
-                                                <div class="row g-2">
-                                                    <div class="col-md-10">
-                                                        <p>Admin</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        title="Edit" aria-label="Edit">
-                                                     <svg width="19" height="19" aria-label="Delete" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        title="Delet" aria-label="Delete Service">
-                                                        <svg width="19" height="19" aria-label="Delete" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd" >
-                                            <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    aria-label="Select Credential">
-                                            </td>
-                                            <td>
-                                                <div class="row g-2">
-                                                    <div class="col-md-10">
-                                                        <p>Admin</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex actions">
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        title="Edit" aria-label="Edit">
-                                                     <svg width="19" height="19" aria-label="Delete" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon"
-                                                        title="Delet" aria-label="Delete Service">
-                                                        <svg width="19" height="19" aria-label="Delete" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even" >
-                                            <td class="text-center">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    aria-label="Select Credential">
-                                            </td>
-                                            <td>
-                                                <div class="row g-2">
-                                                    <div class="col-md-10">
-                                                        <p>Admin</p>
+                                                        <p>United Nations Language Competitive Examination Certification</p>
                                                     </div>
                                                 </div>
                                             </td>

@@ -19,6 +19,10 @@ class CredentialManager extends Component
        
        
     }
+    public function showList()
+	{
+		$this->emit('showList');
+	}
 
     function showForm()
     {     
