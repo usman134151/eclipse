@@ -6,9 +6,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <div><label class="form-label" for="address-title">Reason For Objection</label></div>
+        <div><label class="form-label">Reason For Objection</label></div>
 
-      <textarea placeholder="Enter Text Here" name="" id="" cols="30" rows="5"></textarea>
+      <textarea class="form-control" placeholder="Enter Text Here" name="" id="" cols="30" rows="5"></textarea>
     </div>
       <div class="modal-footer justify-items-center">
 
