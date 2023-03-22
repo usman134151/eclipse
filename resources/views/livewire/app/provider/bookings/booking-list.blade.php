@@ -1,4 +1,4 @@
-<div x-data="{offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false}">
+<div x-data="{offcanvasOpenCheckIn: false, offcanvasOpenCheckOut: false, assignmentDetails: false, addReimbursement: false}">
   <div id="loader-section" class="loader-section" wire:loading>
     <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
         <div class="spinner-border" role="status" aria-live="polite">
@@ -227,8 +227,10 @@
       @endif
 	  @include('panels.provider.check-in')
 	  @include('panels.provider.check-out')
-	  @include('modals.common.running-late')
+    @include('panels.common.assignment-details')
+    @include('panels.provider.add-reimbursement')
+    @include('modals.common.running-late')
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
-	@include('panels.common.assignment-details')
+    @include('modals.common.running-late')
 </div>
