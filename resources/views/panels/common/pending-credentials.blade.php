@@ -1,7 +1,7 @@
 
-{{-- Specific Date Availibility Off Canvas - Start --}}
+{{-- Sign & Upload Document Off Canvas - Start --}}
 <x-off-canvas show="pendingCredentials">
-	<x-slot name="title">Pending Credentials</x-slot>
+	<x-slot name="title">Sign & Upload Document</x-slot>
     <div class="row mb-4 mt-4">
         <div class="d-inline-flex mb-4">
             <div>
@@ -51,4 +51,4 @@
         </div>
     </div>
 </x-off-canvas>
-{{-- Specific Date Availibility Off Canvas - End --}}
+{{-- Sign & Upload Document Off Canvas - End --}}
