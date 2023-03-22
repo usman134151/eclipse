@@ -1097,7 +1097,7 @@
 </div>
 
 
-<!-- Modal Map -->
+<!-- BEGIN: Modal Map -->
 <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -1111,3 +1111,4 @@
     </div>
   </div>
 </div>
+<!-- END: Modal Map -->
