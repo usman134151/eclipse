@@ -22,7 +22,7 @@
                       </thead>
                       <tbody>
                         <tr role="row" class="odd">
-                          <td class="text-center align-middle">
+                          <td class="text-center align-middle" x-on:click="assignmentDetails = true">
                             101359-A-2 <br> 08/24/2022 9:59 AM <br> 08/24/2022 9:59 AM
                           </td>
                           <td class="text-center align-middle">
@@ -42,7 +42,7 @@
                           </td>
                         </tr>
                         <tr role="row" class="odd">
-                            <td class="text-center align-middle">
+                            <td class="text-center align-middle" x-on:click="assignmentDetails = true">
                               101359-A-2 <br> 08/24/2022 9:59 AM <br> 08/24/2022 9:59 AM
                             </td>
                             <td class="text-center align-middle">
@@ -62,7 +62,7 @@
                             </td>
                           </tr>
                           <tr role="row" class="odd">
-                            <td class="text-center align-middle">
+                            <td class="text-center align-middle" x-on:click="assignmentDetails = true">
                               101359-A-2 <br> 08/24/2022 9:59 AM <br> 08/24/2022 9:59 AM
                             </td>
                             <td class="text-center align-middle">

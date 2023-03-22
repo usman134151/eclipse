@@ -1,4 +1,4 @@
-<div>
+<div x-data="{assignmentDetails: false, addReimbursement: false}">
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
@@ -117,7 +117,7 @@
                             <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                             </div>
                           </td>
-                          <td>
+                          <td x-on:click="assignmentDetails = true">
                             <div>100995-6</div>
                             <div>08/24/2022</div>
                             <div>9:59 AM</div>
@@ -162,7 +162,7 @@
                              <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                              </div>
                            </td>
-                           <td>
+                           <td x-on:click="assignmentDetails = true">
                              <div>100995-6</div>
                              <div>08/24/2022</div>
                              <div>9:59 AM</div>
@@ -207,7 +207,7 @@
                               <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
-                            <td>
+                            <td x-on:click="assignmentDetails = true">
                               <div>100995-6</div>
                               <div>08/24/2022</div>
                               <div>9:59 AM</div>
@@ -252,7 +252,7 @@
                                <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                                </div>
                              </td>
-                             <td>
+                             <td x-on:click="assignmentDetails = true">
                                <div>100995-6</div>
                                <div>08/24/2022</div>
                                <div>9:59 AM</div>
@@ -297,7 +297,7 @@
                               <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
-                            <td>
+                            <td x-on:click="assignmentDetails = true">
                               <div>100995-6</div>
                               <div>08/24/2022</div>
                               <div>9:59 AM</div>
@@ -342,7 +342,7 @@
                                <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                                </div>
                              </td>
-                             <td>
+                             <td x-on:click="assignmentDetails = true">
                                <div>100995-6</div>
                                <div>08/24/2022</div>
                                <div>9:59 AM</div>
@@ -387,7 +387,7 @@
                               <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
-                            <td>
+                            <td x-on:click="assignmentDetails = true">
                               <div>100995-6</div>
                               <div>08/24/2022</div>
                               <div>9:59 AM</div>
@@ -432,7 +432,7 @@
                                <input class="form-check-input" aria-label="Select Remittance" id="" name="" type="checkbox" tabindex="">
                                </div>
                              </td>
-                             <td>
+                             <td x-on:click="assignmentDetails = true">
                                <div>100995-6</div>
                                <div>08/24/2022</div>
                                <div>9:59 AM</div>
@@ -534,5 +534,9 @@
           <!-- /Icon Help -->
         </div>
     </div>
+    @include('panels.common.assignment-details')
+    @include('panels.provider.add-reimbursement')
+    @include('modals.common.running-late')
+    @include('modals.return-assignment')
     @include('modals.remittance-details')
 </div>

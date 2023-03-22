@@ -229,7 +229,6 @@
 	  @include('panels.provider.check-out')
     @include('panels.common.assignment-details')
     @include('panels.provider.add-reimbursement')
-    @include('modals.common.running-late')
     @include('modals.common.assignment-invitation')
     @include('modals.common.confirm-invitation')
     @include('modals.common.running-late')

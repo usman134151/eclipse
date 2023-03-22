@@ -1,4 +1,4 @@
-<div class="modal fade" id="returnAssignmentModal" tabindex="-1" aria-labelledby="returnAssignmentModal" aria-hidden="true">
+<div class="modal fade" id="returnAssignmentModal" tabindex="-1" aria-labelledby="returnAssignmentModal" aria-hidden="true" style="z-index:1057">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">

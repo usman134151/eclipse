@@ -1,4 +1,4 @@
-<x-off-canvas show="invoicesDetails" :allowBackdrop="false" size="fullscreen">
+<x-off-canvas show="invoicesDetails" size="fullscreen">
 	<x-slot name="title">Generate Invoice</x-slot>
 
     <div class="row mb-4 mt-3">
@@ -32,7 +32,7 @@
             </thead>
               <tbody>
                 <tr role="row" class="odd">
-                  <td>
+                  <td x-on:click="assignmentDetails = true">
                     <div>100995-6</div>
                   </td>
                   <td>
@@ -62,7 +62,7 @@
                   </td>
                 </tr>
                 <tr role="row" class="even">
-                    <td>
+                    <td x-on:click="assignmentDetails = true">
                       <div>100995-6</div>
                     </td>
                     <td>
@@ -92,7 +92,7 @@
                     </td>
                   </tr>
                   <tr role="row" class="odd">
-                    <td>
+                    <td x-on:click="assignmentDetails = true">
                       <div>100995-6</div>
                     </td>
                     <td>
@@ -122,7 +122,7 @@
                     </td>
                   </tr>
                   <tr role="row" class="even">
-                      <td>
+                      <td x-on:click="assignmentDetails = true">
                         <div>100995-6</div>
                       </td>
                       <td>
@@ -152,7 +152,7 @@
                       </td>
                     </tr>
                     <tr role="row" class="odd">
-                        <td>
+                        <td x-on:click="assignmentDetails = true">
                           <div>100995-6</div>
                         </td>
                         <td>
@@ -182,7 +182,7 @@
                         </td>
                       </tr>
                       <tr role="row" class="even">
-                          <td>
+                          <td x-on:click="assignmentDetails = true">
                             <div>100995-6</div>
                           </td>
                           <td>
@@ -211,7 +211,7 @@
                             </div>
                           </td>
                         </tr> <tr role="row" class="odd">
-                            <td>
+                            <td x-on:click="assignmentDetails = true">
                               <div>100995-6</div>
                             </td>
                             <td>
@@ -241,7 +241,7 @@
                             </td>
                           </tr>
                           <tr role="row" class="even">
-                              <td>
+                              <td x-on:click="assignmentDetails = true">
                                 <div>100995-6</div>
                               </td>
                               <td>
