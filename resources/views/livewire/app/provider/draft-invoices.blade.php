@@ -1,4 +1,4 @@
-<div x-data="{invoicesDetails: false}">
+<div x-data="{invoicesDetails: false, assignmentDetails: false, addReimbursement: false}">
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
@@ -115,7 +115,7 @@
                             <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                             </div>
                           </td>
-                          <td>
+                          <td x-on:click="assignmentDetails = true">
                             100995-6
                           </td>
                           <td>
@@ -146,7 +146,7 @@
                                 <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                  </svg></div>
-                               <div class="mx-1 text-sm mt-1">completed</div>
+                               <div class="mx-1 text-sm mt-1">Completed</div>
                             </div>     
                           </td>
                           <td>
@@ -156,7 +156,7 @@
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                </svg>        
                               </a>
-                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                 <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                </svg>
@@ -170,7 +170,7 @@
                               <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
-                            <td>
+                            <td x-on:click="assignmentDetails = true">
                               100995-6
                             </td>
                             <td>
@@ -209,7 +209,7 @@
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                  </svg>        
                                 </a>
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                   <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                  </svg>
@@ -223,7 +223,7 @@
                               <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                               </div>
                             </td>
-                            <td>
+                            <td x-on:click="assignmentDetails = true">
                               <div class="text-sm">100995-6</div>
                             </td>
                             <td>
@@ -264,7 +264,7 @@
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                  </svg>        
                                 </a>
-                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                   <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                  </svg>
@@ -278,7 +278,7 @@
                                 <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                 </div>
                               </td>
-                              <td>
+                              <td x-on:click="assignmentDetails = true">
                                 100995-6
                               </td>
                               <td>
@@ -309,7 +309,7 @@
                                   <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                    </svg></div>
-                                 <div class="mx-1 text-sm mt-1">completed</div>
+                                 <div class="mx-1 text-sm mt-1">Completed</div>
                               </div>
                               </td>
                               <td>
@@ -319,7 +319,7 @@
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                    </svg>        
                                   </a>
-                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                     <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                    </svg>
@@ -333,7 +333,7 @@
                                   <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   100995-6
                                 </td>
                                 <td>
@@ -364,7 +364,7 @@
                                     <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                      </svg></div>
-                                     <div class="mx-1 text-sm mt-1">completed</div>
+                                     <div class="mx-1 text-sm mt-1">Completed</div>
                                 </div>
                                 </td>
                                 <td>
@@ -374,7 +374,7 @@
                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                      </svg>        
                                     </a>
-                                    <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                    <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                       <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                      </svg>
@@ -388,7 +388,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                     </div>
                                   </td>
-                                  <td>
+                                  <td x-on:click="assignmentDetails = true">
                                     100995-6
                                   </td>
                                   <td>
@@ -419,7 +419,7 @@
                                       <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                        </svg></div>
-                                       <div class="mx-1 text-sm mt-1">completed</div>
+                                       <div class="mx-1 text-sm mt-1">Completed</div>
                                   </div>
                                   </td>
                                   <td>
@@ -429,7 +429,7 @@
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                        </svg>        
                                       </a>
-                                      <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                      <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                         <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                        </svg>
@@ -443,7 +443,7 @@
                                       <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                       </div>
                                     </td>
-                                    <td>
+                                    <td x-on:click="assignmentDetails = true">
                                       100995-6
                                     </td>
                                     <td>
@@ -474,7 +474,7 @@
                                         <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                          </svg></div>
-                                       <div class="mx-1 text-sm">completed</div>
+                                       <div class="mx-1 text-sm">Completed</div>
                                     </div>
                                     </td>
                                     <td>
@@ -484,7 +484,7 @@
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                          </svg>        
                                         </a>
-                                        <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                           <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                          </svg>
@@ -498,7 +498,7 @@
                                         <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                         </div>
                                       </td>
-                                      <td>
+                                      <td x-on:click="assignmentDetails = true">
                                         100995-6
                                       </td>
                                       <td>
@@ -529,7 +529,7 @@
                                           <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                            </svg></div>
-                                           <div class="mx-1 text-sm mt-1">completed</div>
+                                           <div class="mx-1 text-sm mt-1">Completed</div>
                                       </div>
                                       </td>
                                       <td>
@@ -539,7 +539,7 @@
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                            </svg>        
                                           </a>
-                                          <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                          <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
                                             <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                            </svg>
@@ -580,4 +580,8 @@
         </div>
     </div>
     @include('panels.provider.invoices-details')
+    @include('panels.common.assignment-details')
+    @include('panels.provider.add-reimbursement')
+    @include('modals.common.running-late')
+    @include('modals.return-assignment')
 </div>

@@ -1,4 +1,4 @@
-<x-off-canvas show="addReimbursement">
+<x-off-canvas show="addReimbursement" style="z-index: 1057;">
 	<x-slot name="title">Add Reimbursement</x-slot>
      
     <div class="row">

@@ -1,4 +1,4 @@
-<div x-data="{addReimbursement: false}">
+<div x-data="{addReimbursement: false, assignmentDetails: false}">
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
@@ -100,7 +100,7 @@
                                   <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                 </div>
                               </td>
-                              <td>
+                              <td x-on:click="assignmentDetails = true">
                                 <div>
                                     100995-6
                                 </div>
@@ -128,7 +128,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -156,7 +156,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -184,7 +184,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -212,7 +212,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -240,7 +240,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -268,7 +268,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -296,7 +296,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -324,7 +324,7 @@
                                     <input class="form-check-input" aria-label="Select Booking" id="" name="" type="checkbox" tabindex="">
                                   </div>
                                 </td>
-                                <td>
+                                <td x-on:click="assignmentDetails = true">
                                   <div>
                                       100995-6
                                   </div>
@@ -376,4 +376,7 @@
         </div>
      </div>
      @include('panels.provider.add-reimbursement')
+     @include('panels.common.assignment-details')
+    @include('modals.common.running-late')
+    @include('modals.return-assignment')
 </div>

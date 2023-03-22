@@ -1,4 +1,4 @@
-<x-off-canvas show="assignmentDetails">
+<x-off-canvas show="assignmentDetails" style="z-index: 1056;">
 	<x-slot name="title">Assignment Detail (100995-6)</x-slot>
 	<ul class="nav nav-tabs border-0 mt-4" id="assignment-details-tab" role="tablist">
 		<li class="nav-item" role="presentation">
