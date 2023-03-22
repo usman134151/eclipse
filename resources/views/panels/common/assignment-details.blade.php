@@ -814,12 +814,22 @@
 				<div class="d-lg-flex align-items-center justify-content-between mb-4">
 					<h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
 					<div class="d-flex">
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
+						<a href="#" class="btn btn-has-icon border-2 btn-outline-primary text-primary rounded">
 							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="white"/>
-								<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="white"/>
+								<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="url(#paint0_linear_10513_5925)"></path>
+								<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="url(#paint1_linear_10513_5925)"></path>
+								<defs>
+									<linearGradient id="paint0_linear_10513_5925" x1="8" y1="4" x2="14.4192" y2="4" gradientUnits="userSpaceOnUse">
+										<stop stop-color="#213969"></stop>
+										<stop offset="0.994792" stop-color="#013191"></stop>
+									</linearGradient>
+									<linearGradient id="paint1_linear_10513_5925" x1="12" y1="0" x2="18.4192" y2="0" gradientUnits="userSpaceOnUse">
+										<stop stop-color="#213969"></stop>
+										<stop offset="0.994792" stop-color="#013191"></stop>
+									</linearGradient>
+								</defs>
 							</svg>
-							Team Chat
+							<span>Team Chat</span>
 						</a>
 					</div>
 				</div>
@@ -831,6 +841,23 @@
 							</svg>
 						</span>
 					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#" class="dropdown-item d-block rounded">
+								Action
+							</a>
+						</li>
+						<li>
+							<a href="#" class="dropdown-item d-block rounded">
+								Another action
+							</a>
+						</li>
+						<li>
+							<a href="#" class="dropdown-item d-block rounded">
+								Something else here
+							</a>
+						</li>
+					</ul>
 				</div>
 				<div class="row" id="table-hover-row">
 					<div class="col-12">
@@ -929,12 +956,22 @@
 				<div class="d-lg-flex align-items-center justify-content-between mb-4">
 					<h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
 					<div class="d-flex">
-						<a href="#" class="btn btn-has-icon btn-primary rounded">
+						<a href="#" class="btn btn-has-icon border-2 btn-outline-primary text-primary rounded">
 							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="white"/>
-								<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="white"/>
+								<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="url(#paint0_linear_10513_5925)"></path>
+								<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="url(#paint1_linear_10513_5925)"></path>
+								<defs>
+									<linearGradient id="paint0_linear_10513_5925" x1="8" y1="4" x2="14.4192" y2="4" gradientUnits="userSpaceOnUse">
+										<stop stop-color="#213969"></stop>
+										<stop offset="0.994792" stop-color="#013191"></stop>
+									</linearGradient>
+									<linearGradient id="paint1_linear_10513_5925" x1="12" y1="0" x2="18.4192" y2="0" gradientUnits="userSpaceOnUse">
+										<stop stop-color="#213969"></stop>
+										<stop offset="0.994792" stop-color="#013191"></stop>
+									</linearGradient>
+								</defs>
 							</svg>
-							Team Chat
+							<span>Team Chat</span>
 						</a>
 					</div>
 				</div>
@@ -946,6 +983,23 @@
 							</svg>
 						</span>
 					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#" class="dropdown-item d-block rounded">
+								Action
+							</a>
+						</li>
+						<li>
+							<a href="#" class="dropdown-item d-block rounded">
+								Another action
+							</a>
+						</li>
+						<li>
+							<a href="#" class="dropdown-item d-block rounded">
+								Something else here
+							</a>
+						</li>
+					</ul>
 				</div>
 				<div class="row" id="table-hover-row">
 					<div class="col-12">
