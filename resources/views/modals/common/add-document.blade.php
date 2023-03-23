@@ -221,22 +221,19 @@
                                 <a href="">
                                     <input class="form-check-input" type="radio" value="">
                                 </a>
-
                                 <p>Day(s)</p>
                             </div>
-
                         </div>
-                        <p>Notify before the service start-time</p>
-
                     </div>
 
                 </div>
-                <div class="col-lg-5 gap-1">
-                    <input class="form-control text-center" type="text" placeholder="10">
-                    <label class="form-label">Before the service start-time</label>
+                <div class="col-lg-5 gap-1 mb-4">
+                    <input class="form-control text-center" type="text" id="before-service-start-time" placeholder="10">
+                    <label class="form-label form-label-sm text-sm" for="before-service-start-time">Before the service start-time</label>
                 </div>
                 <div class="col-lg-5 ">
-                    <textarea name="" id="" cols="30" rows="5"></textarea>
+                    <label class="form-label" for="message-to-requestee">Message to Requestee</label>
+                    <textarea name="" id="" cols="30" rows="5" id="message-to-requestee"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
