@@ -766,7 +766,7 @@ footer.footer-border {
   margin: 0; }
 
 .main-menu.menu-light .navigation > li > ul li.has-sub > ul > li {
-  margin: 0 15px; }
+  margin: 0; }
 
 .main-menu.menu-light .navigation > li.open:not(.menu-item-closing) > a, .main-menu.menu-light .navigation > li.sidebar-group-active > a {
   color: #565360;
