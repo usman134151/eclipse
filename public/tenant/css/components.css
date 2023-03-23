@@ -818,8 +818,11 @@ footer.footer-border {
     white-space: normal; }
 
 .main-menu.menu-light .navigation > li ul li ul a {
-  padding: 10px 0px 10px 9px;
+  padding: 10px 0px 10px 35px;
   white-space: normal; }
+
+  .main-menu.menu-light .navigation > li ul li ul a span.menu-item {
+    font-size: 0.9375rem; }
 
 .main-menu.menu-light .navigation > li ul .has-sub:not(.open) > ul {
   display: none; }

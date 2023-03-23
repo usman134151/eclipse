@@ -39,7 +39,7 @@
     top: 0.7rem; }
 .vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > ul > li a svg,
 .vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > ul > li > a i {
-    left: -1rem;
+    left: 0.7rem;
     position: absolute;
     top: 0.6rem;
 }    
