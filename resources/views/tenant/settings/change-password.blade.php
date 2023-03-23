@@ -1,7 +1,5 @@
-@extends('layouts.tenant', ['title' => 'Setting'])
+@extends('layouts.tenant', ['title' => 'Change Password'])
 
 @section('content')
-	{{-- BEGIN: Content --}}
-		@livewire('app.common.forms.change-password', ['showForm'=>$showForm])
-	{{-- End: Content --}}
+@livewire('app.common.forms.change-password')
 @endsection
