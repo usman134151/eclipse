@@ -16,9 +16,11 @@
                 <div class="col-lg-3 text-center py-2">
                   <label class="form-label-sm fw-bold mb-0">Default <i class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
                 </div>
+                {{--  
                 <div class="col-lg-3 text-center py-2">
                   <label class="form-label-sm fw-bold mb-0">Supervisor</label>
                 </div>
+                --}}
               </div><!-- END: Row Header -->
               <div class="row">
                 <div class="col-lg-6 py-2">
@@ -34,11 +36,13 @@
                     <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
                   </div>
                 </div>
+                {{--  
                 <div class="col-lg-3 text-center py-2">
                   <div class="form-check mb-0 mx-auto d-inline-block">
                     <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                   </div>
                 </div>
+                --}}
               </div><!-- END: Row Data -->
               <div class="row">
                 <div class="col-lg-6 py-2">
@@ -54,11 +58,13 @@
                     <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
                   </div>
                 </div>
+                 {{--  
                 <div class="col-lg-3 text-center py-2">
                   <div class="form-check mb-0 mx-auto d-inline-block">
                     <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                   </div>
                 </div>
+                --}}
               </div><!-- END: Row Data -->
               <div class="row">
                 <div class="col-lg-6 py-2">
@@ -74,11 +80,13 @@
                     <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
                   </div>
                 </div>
+                 {{--  
                 <div class="col-lg-3 text-center py-2">
                   <div class="form-check mb-0 mx-auto d-inline-block">
                     <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                   </div>
                 </div>
+                --}}
               </div><!-- END: Row Data -->
               <div class="row">
                 <div class="col-lg-6 py-2">
@@ -94,11 +102,13 @@
                     <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
                   </div>
                 </div>
+                 {{--  
                 <div class="col-lg-3 text-center py-2">
                   <div class="form-check mb-0 mx-auto d-inline-block">
                     <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                   </div>
                 </div>
+                --}}
               </div><!-- END: Row Data -->
               <div class="row">
                 <div class="col-lg-6 py-2">
@@ -114,11 +124,13 @@
                     <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
                   </div>
                 </div>
+                 {{--  
                 <div class="col-lg-3 text-center py-2">
                   <div class="form-check mb-0 mx-auto d-inline-block">
                     <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                   </div>
                 </div>
+                --}}
               </div><!-- END: Row Data -->
               <div class="row">
                 <div class="col-lg-6 py-2">
@@ -134,11 +146,13 @@
                     <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
                   </div>
                 </div>
+                 {{--  
                 <div class="col-lg-3 text-center py-2">
                   <div class="form-check mb-0 mx-auto d-inline-block">
                     <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                   </div>
                 </div>
+                --}}
               </div><!-- END: Row Data -->
             </div>
           </div>
