@@ -37,7 +37,7 @@ Route::group([
 			Route::view('/admin/chat', 'tenant/admin/chat');
 
 			Route::view('/admin/all-specialization', 'tenant/common/specialization', ["showForm"=>false]);
-			Route::view('/admin/specialization/create-specilization', 'tenant/common/specialization', ["showForm"=>true]);
+			Route::view('/admin/specialization/create-specialization', 'tenant/common/specialization', ["showForm"=>true]);
 
 			Route::view('/admin/all-industry', 'tenant/common/industry', ["showForm"=>false]);
 			Route::view('/admin/industry/create-industry', 'tenant/common/industry', ["showForm"=>true]);
@@ -92,7 +92,7 @@ Route::group([
 			Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
 			Route::view('/admin/templates', 'tenant/settings/email-templates', ["showForm"=>false]);
 			Route::view('/admin/sms-templates', 'tenant/settings/sms-templates', ["showForm"=>false]);
-			Route::view('/admin/change-password', 'tenant/settings/change-password', ["showForm"=>false]);
+			Route::view('/admin/change-password', 'tenant/settings/change-password');
 			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager');
 			// End of Admin Setting Routes
 
