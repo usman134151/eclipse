@@ -2,13 +2,46 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 
+use App\Models\Tenant\Accommodation;
 use Livewire\Component;
 
 class AccommodationForm extends Component
 {
-	public function showList()
+	public $accommodation;
+	public $label = "Add";
+	protected $listeners = ['editRecord' => 'edit'];
+
+	public function mount(Accommodation $accommodation) {
+		$this->accommodation = $accommodation;
+	}
+
+	// Validation Rules
+	public function rules()
 	{
-		$this->emit('showList');
+		return [
+			'accommodation.name' => 'required',
+			'accommodation.description' => ''
+		];
+	}
+
+	public function showList($message = "")
+	{
+		// Save data
+		$this->emit('showList', $message);
+	}
+
+	public function edit(Accommodation $accommodation) {
+		$this->label = "Edit";
+		$this->accommodation = $accommodation;
+	}
+
+	public function save() {
+		$this->validate();
+		$this->accommodation->added_by = 1;
+		$this->accommodation->status = 1;
+		$this->accommodation->save();
+		$this->showList("Accommodation saved successfully");
+		$this->accommodation = new Accommodation;
 	}
 
 	public function render()
