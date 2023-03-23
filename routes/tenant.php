@@ -37,7 +37,7 @@ Route::group([
 			Route::view('/admin/chat', 'tenant/admin/chat');
 
 			Route::view('/admin/all-specialization', 'tenant/common/specialization', ["showForm"=>false]);
-			Route::view('/admin/specialization/create-specilization', 'tenant/common/specialization', ["showForm"=>true]);
+			Route::view('/admin/specialization/create-specialization', 'tenant/common/specialization', ["showForm"=>true]);
 
 			Route::view('/admin/all-industry', 'tenant/common/industry', ["showForm"=>false]);
 			Route::view('/admin/industry/create-industry', 'tenant/common/industry', ["showForm"=>true]);

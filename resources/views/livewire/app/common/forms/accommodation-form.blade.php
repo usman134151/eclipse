@@ -4,7 +4,7 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<form class="form">
+						<form class="form" wire:submit.prevent="save">
 							<div class="row">
 								<div class="col-md-12 mb-md-2">
 									<h1>{{ $label }} Accommodation</h1>
@@ -12,10 +12,10 @@
 										Create a unique name to set up a new category by which to group your more specific services.
 									</p>
 									<div class="row">
-										<div class="col-md-4">
+										<div class="col-12">
 											<div class="mb-4">
 												<label class="form-label" for="accommodation-name">
-													Name
+													Accommodation Name
 													<span class="text-danger">*</span>
 												</label>
 												<input
@@ -27,20 +27,18 @@
 													wire:model.defer="accommodation.name"
 												/>
 												@error('accommodation.name')
-												<span class="d-inline-block text-danger mt-2">
+												<span class="d-inline-block invalid-feedback mt-2">
 													{{ $message }}
 												</span>
 												@enderror
 											</div>
 										</div>
-										<div class="col-md-4"></div>
-										<div class="col-md-4"></div>
 									</div>
 									<div class="row">
-										<div class="col-md-4">
+										<div class="col-12">
 											<div class="mb-4">
 												<label class="form-label" for="accommodation-description">
-													Description
+													Accommodation Description
 												</label>
 												<textarea
 													type="text"
@@ -53,8 +51,6 @@
 												></textarea>
 											</div>
 										</div>
-										<div class="col-md-4"></div>
-										<div class="col-md-4"></div>
 									</div>
 								</div>
 							</div>

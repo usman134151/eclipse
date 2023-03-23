@@ -464,8 +464,8 @@
                   <span class="menu-item">Specializations</span>
                 </a>
                 <ul role="menu" class="menu-content " id="Specialization">
-                  <li role="menuitem" class="nav-item " id="create-specilization">
-                    <a class="nav-link" href="/admin/specialization/create-specilization">
+                  <li role="menuitem" class="nav-item " id="create-specialization">
+                    <a class="nav-link" href="/admin/specialization/create-specialization">
                       <svg class="fill-none" width="13" height="19" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#add-specialization-icon"></use>
                       </svg>
