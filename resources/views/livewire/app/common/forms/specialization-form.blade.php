@@ -4,7 +4,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-body">
-                    <form class="form">
+                    <form class="form" wire:submit.prevent="save">
                       <div class="row">
                         <div class="col-md-12 mb-md-2">
                           <h1>{{$label}} Specialization</h1>
