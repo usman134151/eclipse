@@ -30,7 +30,7 @@ final class Specializations extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -122,7 +122,7 @@ final class Specializations extends PowerGridComponent
             Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
                 ->toggleable(1, 'Deactivated', 'Activated'),
-            Column::make('Actions', 'edit')
+            Column::make('Actions', 'edit')->visibleInExport(false),
         ];
     }
 
