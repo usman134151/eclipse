@@ -934,3 +934,4 @@
 
 
 <script src="/tenant/js/Chart.js"></script>
+<script src="/tenant/js/Chart-init.js"></script>

@@ -65,7 +65,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -202,7 +202,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -325,7 +325,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -411,7 +411,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -496,7 +496,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -579,7 +579,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -662,7 +662,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>
@@ -745,7 +745,7 @@
             <input class="form-check-input" type="checkbox" value="" aria-label="Select Booking">
           </td>
           <td>
-            <div class="fw-semibold">100995-6</div>
+            <div class="fw-semibold" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<div><b>Billing Notes</b></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum dolor sit amet</p>">100995-6</div>
             <div>
             <div>08/24/2022</div>
             <div>9:59 AM to 4:22 PM</div>

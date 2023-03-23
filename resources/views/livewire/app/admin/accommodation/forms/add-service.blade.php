@@ -2466,7 +2466,7 @@
                           </label>
                           <div class="form-check form-switch form-switch-column">
                             <input class="form-check-input js-auto-notify" type="checkbox" role="switch" id="AutoNotifyAssign">
-                            <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                            <label class="form-check-label" for="AutoNotifyAssign"></label>
                             <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
                           </div>
                         </div>
@@ -2576,7 +2576,7 @@
                             </label>
                             <div class="form-check form-switch form-switch-column">
                               <input class="form-check-input js-auto-notify" type="checkbox" role="switch" id="AutoNotifyAssign">
-                              <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
+                              <label class="form-check-label" for="AutoNotifyAssign"></label>
                               <label class="form-check-label" for="AutoNotifyAssign">Auto-notify</label>
                             </div>
                           </div>
