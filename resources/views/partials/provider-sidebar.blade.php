@@ -203,6 +203,14 @@
 			<span class="menu-item">Settings</span>
 		  </a>
 		  <ul role="menu" class="menu-content" id="Settings">
+			<li class="nav-item" id="payment-preferences">
+				<a href="/provider/payment-preferences" title="Payment Preferences" aria-label="Payment Preferences">
+					<svg aria-label="Payment Preferences" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/provider-menu.svg#remittances-icon"></use>
+                    </svg>
+				  <span class="menu-item">Payment Preferences</span>
+				</a>
+			  </li>
 			<li class="nav-item" id="settings">
 				<a href="/provider/settings">
 					<svg class="fill-none" width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
