@@ -158,6 +158,7 @@ Route::group([
 
 				Route::view('/settings', 'tenant/settings/notifications');
 				Route::view('/change-password', 'tenant/provider/change-password');
+				Route::view('/payment-preferences', 'tenant/provider/payment-preferences');
 			});
 		});
 
