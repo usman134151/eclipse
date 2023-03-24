@@ -68,9 +68,12 @@
 										<div class="row mt-2 mb-5">
 											<div class="col-12 text-center">
 												<div class="d-inline-block position-relative">
-													<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+													<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Customer"/>
 													<div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-														<x-icon name="camera"/>
+														<svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg">
+                                                          <use xlink:href="/css/provider.svg#camera"></use>
+                                                        </svg>
 													</div>
 												</div>
 											</div>
@@ -1061,21 +1064,21 @@
 																	<label for="formFile" class="form-label">
 																		Upload Document
 																	</label>
-																	<input class="form-control" type="file" id="formFile">
+																	<input class="form-control" type="file" id="formFile" >
 																</div>
 															</div>
 														</div>
 														<div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
 															<div>
-																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<img src="/tenant/images/img-placeholder-document.jpg" alt="Preview File"/>
 																<p>File Name</p>
 															</div>
 															<div>
-																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<img src="/tenant/images/img-placeholder-document.jpg" alt="Preview File"/>
 																<p>File Name</p>
 															</div>
 															<div>
-																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<img src="/tenant/images/img-placeholder-document.jpg" alt="Preview File"/>
 																<p>File Name</p>
 															</div>
 														</div>
