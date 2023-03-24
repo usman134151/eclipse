@@ -70,9 +70,9 @@
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row align-items-center">
 										<div class="col-md-4">
-											<div class="mb-4">
+											<div class="mb-2">
 												<label class="form-label" for="password">
 													New Password
 												</label>
@@ -84,7 +84,7 @@
 														name="password"
 														class="form-control"
 														placeholder="Enter New Password"
-														wire:model.defer="password"
+														wire:model="password"
 													/>
 													<span class="input-group-text cursor-pointer">
 														<svg class="d-block" width="20" height="20" fill="none" @click="password = !password" :class="{'d-none': !password, 'd-block':password }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -95,15 +95,25 @@
 														</svg>
 													</span>
 												</div>
-												@error('password')
-													<span class="d-inline-block invalid-feedback mt-2">
-														{{ $message }}
-													</span>
-												@enderror
+											</div>
+											<span class="fw-bold">Password strength:</span>
+											{{ $strengthLevels[$strengthScore] ?? 'Weak' }}
+											<progress value="{{ $strengthScore }}" max="4" class="w-100"></progress>
+											@error('password')
+												<span class="d-inline-block invalid-feedback">
+													{{ $message }}
+												</span>
+											@enderror
+										</div>
+										<div class="col-md-4">
+											<div class="d-flex pb-4">
+												<button type="button" class="btn btn-secondary btn-outline-secondary" wire:click="generatePassword">
+													Generate
+												</button>
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row my-4">
 										<div class="col-md-4">
 											<div class="mb-4">
 												<label class="form-label" for="password_confirmation">
