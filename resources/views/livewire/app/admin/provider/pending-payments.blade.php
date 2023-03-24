@@ -407,6 +407,19 @@
                     </ul>
                   </nav>
                 </div>
+                <!-- Icon Help -->
+                <div class="d-flex actions gap-3 justify-content-end mb-2">
+                  <div class="d-flex gap-2 align-items-center">
+                      <a href="#" title="Bookings" aria-label="Bookings" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <x-icon name="right-gray-arrows"/>
+                        </a>
+                    <span class="text-sm">
+                      Bookings
+                    </span>
+                  </div>
+                  
+                </div>
+                <!-- /Icon Help -->
                 <div class="justify-content-center d-flex mb-2">
                   <div class="form-check mx-auto">
                     <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">

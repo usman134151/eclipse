@@ -115,10 +115,10 @@
                                     <div class="row">
                                       <div class="col-md-4">
                                         <div class="d-inline-block position-relative">
-                                          <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+                                          <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff"/>
                                         </div>
                                         <div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">
-                                          <svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <svg aria-label="Sydney, Australia" width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0 0H133L156 32H0V0Z" fill="url(#paint0_linear_2265_83025)"/>
                                             <defs>
                                               <linearGradient id="paint0_linear_2265_83025" x1="78" y1="0" x2="140.587" y2="0" gradientUnits="userSpaceOnUse">
@@ -209,7 +209,7 @@
                                                 <td>
                                                   <div class="row g-2">
                                                     <div class="col-md-2">
-                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                                                     </div>
                                                     <div class="col-md-10">
                                                       <h6 class="fw-semibold">Langauge Translation</h6>
@@ -218,22 +218,12 @@
                                                   </div>
                                                 </td>
                                                 <td>
-                                                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-                                                     <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-                                                     <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-                                                     <defs>
-                                                    <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                        <stop offset="0.0150376" stop-color="#C4C4C4"/>
-                                                         <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-                                                      </linearGradient>
-                                                        <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                          <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-                                                          <stop offset="1" stop-opacity="0.01"/>
-                                                    </linearGradient>
-                                                         </defs>
-                                                  </svg>
+                                                  <a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+                                                    <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+                                                      </svg>
+                                                  </a>
                                                  </td>
                                               </tr>
                                               <tr role="row" class="odd">
@@ -241,7 +231,7 @@
                                                 <td>
                                                   <div class="row g-2">
                                                     <div class="col-md-2">
-                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                                                     </div>
                                                     <div class="col-md-10">
                                                       <h6 class="fw-semibold">Langauge Translation</h6>
@@ -250,22 +240,12 @@
                                                   </div>
                                                 </td>
                                               <td>
-                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                   <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-                                                   <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-                                                   <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-                                                   <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-                                                   <defs>
-                                                  <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                      <stop offset="0.0150376" stop-color="#C4C4C4"/>
-                                                       <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-                                                    </linearGradient>
-                                                      <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                        <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-                                                        <stop offset="1" stop-opacity="0.01"/>
-                                                  </linearGradient>
-                                                       </defs>
-                                                </svg>
+                                                <a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                  <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+                                                  <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+                                                    </svg>
+                                                </a>
                                                </td>
                                               </tr>
                                               <tr role="row" class="odd">
@@ -273,7 +253,7 @@
                                                 <td>
                                                   <div class="row g-2">
                                                     <div class="col-md-2">
-                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                                                     </div>
                                                     <div class="col-md-10">
                                                       <h6 class="fw-semibold">Langauge Translation</h6>
@@ -282,22 +262,12 @@
                                                   </div>
                                                 </td>
                                                 <td>
-                                                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-                                                     <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-                                                     <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-                                                     <defs>
-                                                    <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                        <stop offset="0.0150376" stop-color="#C4C4C4"/>
-                                                         <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-                                                      </linearGradient>
-                                                        <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                          <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-                                                          <stop offset="1" stop-opacity="0.01"/>
-                                                    </linearGradient>
-                                                         </defs>
-                                                  </svg>
+                                                  <a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+                                                    <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+                                                      </svg>
+                                                  </a>
                                                  </td>
                                               </tr>
                                               <tr role="row" class="odd">
@@ -305,7 +275,7 @@
                                                 <td>
                                                   <div class="row g-2">
                                                     <div class="col-md-2">
-                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                                                     </div>
                                                     <div class="col-md-10">
                                                       <h6 class="fw-semibold">Langauge Translation</h6>
@@ -314,22 +284,12 @@
                                                   </div>
                                                 </td>
                                                 <td>
-                                                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-                                                     <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-                                                     <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-                                                     <defs>
-                                                    <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                        <stop offset="0.0150376" stop-color="#C4C4C4"/>
-                                                         <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-                                                      </linearGradient>
-                                                        <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                          <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-                                                          <stop offset="1" stop-opacity="0.01"/>
-                                                    </linearGradient>
-                                                         </defs>
-                                                  </svg>
+                                                  <a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+                                                    <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+                                                      </svg>
+                                                  </a>
                                                  </td>
                                               </tr>
                                               <tr role="row" class="odd">
@@ -337,7 +297,7 @@
                                                 <td>
                                                   <div class="row g-2">
                                                     <div class="col-md-2">
-                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                                                      <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                                                     </div>
                                                     <div class="col-md-10">
                                                       <h6 class="fw-semibold">Langauge Translation</h6>
@@ -346,22 +306,12 @@
                                                   </div>
                                                 </td>
                                                 <td>
-                                                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint0_linear_581_12026)"/>
-                                                     <circle cx="15" cy="15" r="15" transform="rotate(90 15 15)" fill="url(#paint1_linear_581_12026)"/>
-                                                     <path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="black"/>
-                                                     <path d="M23 5H11C9.897 5 9 5.897 9 7H21C22.103 7 23 7.897 23 9V17C24.103 17 25 16.103 25 15V7C25 5.897 24.103 5 23 5Z" fill="black"/>
-                                                     <defs>
-                                                    <linearGradient id="paint0_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                        <stop offset="0.0150376" stop-color="#C4C4C4"/>
-                                                         <stop offset="1" stop-color="white" stop-opacity="0.01"/>
-                                                      </linearGradient>
-                                                        <linearGradient id="paint1_linear_581_12026" x1="-9.53674e-07" y1="-0.154101" x2="-9.53674e-07" y2="30" gradientUnits="userSpaceOnUse">
-                                                          <stop offset="0.0114183" stop-color="white" stop-opacity="0.01"/>
-                                                          <stop offset="1" stop-opacity="0.01"/>
-                                                    </linearGradient>
-                                                         </defs>
-                                                  </svg>
+                                                  <a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+                                                    <path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+                                                      </svg>
+                                                  </a>
                                                  </td>
                                               </tr>
                                             </tbody>
@@ -569,7 +519,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -604,7 +556,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -639,7 +593,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -674,7 +630,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -709,7 +667,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -744,7 +704,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -779,7 +741,9 @@
                                           <td>
                                             <div class="d-flex actions">
                                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <x-icon name="view"/>
+                                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                              </svg>
                                               </a>
                                             </div>
                                           </td>
@@ -824,6 +788,20 @@
                                 </ul>
                               </nav>
                             </div>
+                              <!-- Icon Help -->
+                           <div class="d-flex actions gap-3 justify-content-end mb-2">
+                             <div class="d-flex gap-2 align-items-center">
+                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                   <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                 </svg>
+                                   </a>
+                               <span class="text-sm">
+                                 View
+                               </span>
+                             </div>
+                           </div>
+                           <!-- /Icon Help -->
                           </div>
                         </div>
 
