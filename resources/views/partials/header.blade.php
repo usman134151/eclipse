@@ -41,7 +41,7 @@
               </linearGradient>
               </defs>
             </svg>
-            <input type="" name="" class="form-control rounded" placeholder="Search by Keyword">
+            <input type="" name="" class="form-control rounded" placeholder="Search by Keyword" aria-label="Search by Keyword">
           </div>
           <div class="search-by-no position-relative">
             <svg width="15" height="15" class="icon-search-keyword-no" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@
               </linearGradient>
               </defs>
             </svg>
-            <input type="" name="" class="form-control rounded" placeholder="Search by No">
+            <input type="" name="" class="form-control rounded" placeholder="Search by No" aria-label="Search by No">
           </div>
         </div>
         <!-- END: search-by-keyword - search-by-no -->
