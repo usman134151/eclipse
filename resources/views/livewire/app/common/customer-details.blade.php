@@ -124,10 +124,10 @@
 												<div class="row mb-4">
 													<div class="col-md-4">
 														<div class="d-inline-block position-relative">
-															<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+															<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"/>
 														</div>
 														<div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">
-															<svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<svg aria-label="Sydney, Australia" width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 																<path d="M0 0H133L156 32H0V0Z" fill="url(#paint0_linear_2265_83025)"/>
 																<defs>
 																	<linearGradient id="paint0_linear_2265_83025" x1="78" y1="0" x2="140.587" y2="0" gradientUnits="userSpaceOnUse">
@@ -635,7 +635,7 @@
 																			<td class="align-middle">
 																				<div class="row g-2">
 																					<div class="col-md-2">
-																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Provider Profile Image">
 																					</div>
 																					<div class="col-md-10 align-self-center">
 																						<h6 class="fw-semibold">
@@ -648,8 +648,11 @@
 																				</div>
 																			</td>
 																			<td class="align-middle">
-																				<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																					<x-icon name="message"/>
+																				<a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																					<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+																					<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+																				</svg>
 																				</a>
 																			</td>
 																		</tr>
@@ -660,7 +663,7 @@
 																			<td class="align-middle">
 																				<div class="row g-2">
 																					<div class="col-md-2">
-																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Provider Profile Image">
 																					</div>
 																					<div class="col-md-10 align-self-center">
 																						<h6 class="fw-semibold">
@@ -673,8 +676,11 @@
 																				</div>
 																			</td>
 																			<td class="align-middle">
-																				<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																					<x-icon name="message"/>
+																				<a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																					<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+																					<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+																				</svg>
 																				</a>
 																			</td>
 																		</tr>
@@ -685,7 +691,7 @@
 																			<td class="align-middle">
 																				<div class="row g-2">
 																					<div class="col-md-2">
-																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Provider Profile Image">
 																					</div>
 																					<div class="col-md-10 align-self-center">
 																						<h6 class="fw-semibold">
@@ -698,8 +704,11 @@
 																				</div>
 																			</td>
 																			<td class="align-middle">
-																				<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																					<x-icon name="message"/>
+																				<a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																					<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+																					<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+																				</svg>
 																				</a>
 																			</td>
 																		</tr>
@@ -710,7 +719,7 @@
 																			<td class="align-middle">
 																				<div class="row g-2">
 																					<div class="col-md-2">
-																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Provider Profile Image">
 																					</div>
 																					<div class="col-md-10 align-self-center">
 																						<h6 class="fw-semibold">
@@ -723,8 +732,11 @@
 																				</div>
 																			</td>
 																			<td class="align-middle">
-																				<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																					<x-icon name="message"/>
+																				<a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																					<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+																					<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+																				</svg>
 																				</a>
 																			</td>
 																		</tr>
@@ -735,7 +747,7 @@
 																			<td class="align-middle">
 																				<div class="row g-2">
 																					<div class="col-md-2">
-																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+																						<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Provider Profile Image">
 																					</div>
 																					<div class="col-md-10 align-self-center">
 																						<h6 class="fw-semibold">
@@ -748,8 +760,11 @@
 																				</div>
 																			</td>
 																			<td class="align-middle">
-																				<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																					<x-icon name="message"/>
+																				<a href="#" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+																					<path d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z" fill="black" />
+																					<path d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z" fill="black" />
+																				</svg>
 																				</a>
 																			</td>
 																		</tr>

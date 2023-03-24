@@ -59,12 +59,15 @@
 								{{-- BEGIN: Profile --}}
 								<div class="col-12 text-center">
 									<div class="d-inline-block position-relative">
-										<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+										<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Provider Profile Image"/>
 										{{-- <div>
 											<input class="position-absolute form-control" type="file" />
 										</div> --}}
 										<div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-											<x-icon name="camera"/>
+											<svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57" fill="none"
+                                              xmlns="http://www.w3.org/2000/svg">
+                                              <use xlink:href="/css/provider.svg#camera"></use>
+                                            </svg>
 										</div>
 									</div>
 								</div>
