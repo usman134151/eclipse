@@ -71,6 +71,7 @@
 						</p>
 					</a>
 				</div>
+				{{--  
 				<div class="text-center col-lg-3 d-flex">
 					<a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
 						<svg class="mb-2" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,6 +88,7 @@
 						</p>
 					</a>
 				</div>
+                --}}
 			</div>
 		</div>
 		<div class="col-lg-8 mb-4">

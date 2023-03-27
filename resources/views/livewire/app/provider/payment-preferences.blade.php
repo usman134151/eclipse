@@ -112,4 +112,5 @@
         </div>
     </div>
    </div>
+   @include('modals.common.add-address')
 </div>

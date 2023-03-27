@@ -195,7 +195,7 @@
 													</div>
 												</div>
 
-												<div class="row mb-4">
+												<div class="row mb-4 ms-3">
 													<div class="col-md-12 mt-4">
 														<div class="row mb-3">
 															<div class="col-md-12 d-flex">
@@ -361,8 +361,8 @@
 											<div class="col-md-6">
 												<div class="row" id="table-hover-row">
 													<div class="col-12">
-														<div class="mb-2">
-															<h2>Business Hours</h2>
+														<div class="mb-0">
+															<h3>Business Hours</h3>
 														</div>
 														<div class="card">
 															<div class="table-responsive">
@@ -1086,15 +1086,42 @@
 									<div class="row">
 										<div class="d-flex d-inline-flex">
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<div class="position-relative">
+													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<div class="position-absolute top-0 end-0">
+													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+														</svg>
+													  </a>
+													</div>
+												  </div>
 												<p>Certification</p>
 											</div>
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<div class="position-relative">
+													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<div class="position-absolute top-0 end-0">
+													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+														</svg>
+													  </a>
+													</div>
+												  </div>
 												<p>Certification</p>
 											</div>
 											<div class="mx-2">
-												<img src="/tenant/images/img-placeholder-document.jpg"/>
+												<div class="position-relative">
+													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<div class="position-absolute top-0 end-0">
+													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+														</svg>
+													  </a>
+													</div>
+												  </div>
 												<p>Certification</p>
 											</div>
 										</div>
