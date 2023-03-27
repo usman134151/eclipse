@@ -816,12 +816,12 @@ footer.footer-border {
   background: transparent; }
 
 .main-menu.menu-light .navigation > li ul li > a {
-      padding: 10px 12px 10px 12px;
+      padding: 10px 25px 10px 25px;
     font-size: 0.9375rem;
     white-space: normal; }
 
 .main-menu.menu-light .navigation > li ul li ul a {
-  padding: 10px 12px 10px 12px;
+  padding: 10px 25px 10px 25px;
   white-space: normal; }
 
   .main-menu.menu-light .navigation > li ul li ul a span.menu-item {
