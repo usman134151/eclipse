@@ -13,6 +13,7 @@ class ChangePassword extends Component
 	public $current_password;
 	public string $password = '';
 	public $password_confirmation;
+	public $hidePassword = true;
 
 	public string $passwordStrength = 'Weak';
 	public int $strengthScore = 0;
@@ -88,6 +89,7 @@ class ChangePassword extends Component
 		$generatedPassword = implode('', $password);
 		$this->setPasswords($generatedPassword);
 		$this->updatedPassword($generatedPassword);
+		$this->hidePassword = false;
 	}
 
 	public function setPasswords($value)
