@@ -1,4 +1,5 @@
 <div>
+    <div x-data="{ addReimbursement: false,}">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -64,7 +65,7 @@
 		                  </div>
 		                  <div class="mb-4 mb-lg-0">
 		                    <label class="form-label-sm">Date Range</label>
-		                    <div class="d-md-flex gap-2" >    
+		                    <div class="d-md-flex gap-2" >
 		                        <div class="form-check">
 		                            <input class="form-check-input" type="radio" name="dateRange" id="booking">
 		                            <label class="form-check-label-sm" for="booking">
@@ -133,7 +134,7 @@
 	                </div>
 					    	</div>
 							  <div class="col-lg-6 text-end mb-4">
-									<a href="#" class="btn btn-primary rounded ">
+									<a @click="addReimbursement = true" class="btn btn-primary rounded ">
 										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-2">
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
 											</svg>
@@ -431,7 +432,7 @@
                                             </div>
                                             </div>
                                             {{-- icon legend bar end --}}
-			  
+
                        <div class="row mt-4 mb-4">
                                  	<div class="d-flex flex-column flex-lg-row justify-content-center gap-lg-4">
 									 <div class="form-check">
@@ -457,5 +458,8 @@
 		  </div>
 		</div>
 	  </section>
+      @include('panels.common.add-reimbursement')
+    </div>
+
 	  <!-- Basic Floating Label Form section end -->
 </div>
