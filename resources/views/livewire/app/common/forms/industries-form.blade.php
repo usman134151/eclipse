@@ -22,7 +22,7 @@
                                   placeholder="Enter industry name"
                                   wire:model="industry.name"
                                   />
-                                  @error('industry.name') <span class="error">{{ $message }}</span> @enderror
+                                  @error('industry.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
                               </div>
                             </div>
 

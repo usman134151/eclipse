@@ -19,7 +19,7 @@ class AccommodationForm extends Component
 	public function rules()
 	{
 		return [
-			'accommodation.name' => 'required',
+			'accommodation.name' => 'required|string|max:255|unique:accommodations,name',
 			'accommodation.description' => ''
 		];
 	}
