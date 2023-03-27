@@ -177,7 +177,7 @@
             </div>
             <div class="row mb-4">
                 <div class="col-12">
-                    <h3>Add Holidays / Days Closed</h3>
+                    <h3>Add Holidays / Days Off</h3>
                     <div class="d-lg-flex gap-3 mb-3">
                         <div>
                             <label for="select-days" class="form-label">Select Days / Holidays </label>
@@ -201,7 +201,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-9">
-                    <h3>Listed Holidays</h3>
+                    <h3>Listed Holidays / Days Off</h3>
                     <table class="table table-hover">
                         <thead>
                             <th scope="col">DATE</th>
