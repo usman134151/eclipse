@@ -1,4 +1,4 @@
-<div>
+<div x-data="{associateservice: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -470,7 +470,7 @@
 												<label class="form-label-sm">
 													Copy permissions from another user
 												</label>
-												<a href="#" class="btn btn-primary w-75">
+												<a href="#" class="btn btn-primary w-75" data-bs-toggle="modal" data-bs-target="#addModal">
 													Select User
 												</a>
 											</div>
@@ -589,10 +589,10 @@
 
 											<div class="row mb-5">
 												<div class="col-lg-6 mb-4 pe-lg-5">
-													<label class="form-label">
+													<label class="form-label" for="preffered-providers">
 														Preferred Providers
 													</label>
-													<select class="form-select">
+													<select class="form-select" id="preffered-providers">
 														<option>Select Preferred Providers</option>
 													</select>
 												</div>
@@ -600,7 +600,7 @@
 													<label class="form-label">
 														Disfavored Providers
 													</label>
-													<select class="form-select">
+													<select class="form-select" aria-label="Disfavored Providers">
 														<option>Select Disfavored Providers</option>
 													</select>
 												</div>
@@ -626,10 +626,10 @@
 												</div>
 
 												<div class="col-lg-6 mb-4 ps-lg-5">
-													<label class="form-label">
+													<label class="form-label" for="user-schedule">
 														Grant Access to User(s)' Schedules
 													</label>
-													<select class="form-select">
+													<select class="form-select" id="user-schedule">
 														<option>Select</option>
 													</select>
 												</div>
@@ -827,7 +827,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -850,7 +850,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -873,7 +873,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -896,7 +896,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -919,7 +919,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -942,7 +942,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -965,7 +965,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -988,7 +988,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -1011,7 +1011,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -1119,6 +1119,8 @@
 	@include('modals.supervising')
 	@include('modals.bill-managing')
 	@include('modals.admin-staff')
+	@include('panels.services.associated-service')
+	@include('modals.add-user')
 </div>
 
 @push('scripts')
