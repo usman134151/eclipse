@@ -21,7 +21,7 @@ class IndustriesForm extends Component
     public function rules()
     {
         return [
-                'industry.name' => 'required',
+                'industry.name' => 'required|string|max:255|unique:industries,name',
                 
             ];
     }

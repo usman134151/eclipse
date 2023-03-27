@@ -22,7 +22,7 @@ class SpecializationForm extends Component
     public function rules()
     {
         return [
-                'specialization.name' => 'required',
+                'specialization.name' => 'required|string|max:255|unique:specializations,name',
                 'specialization.description'=>'' 
             ];
     }

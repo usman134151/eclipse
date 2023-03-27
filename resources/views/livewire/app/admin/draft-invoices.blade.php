@@ -42,11 +42,11 @@
 						            <label class="form-label-sm">Search</label>
 						            <div class="d-flex gap-2 align-items-center">
 						                <div class="position-relative">
-						                    <input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Provider Name or Email">
-						                    <x-icon name="cancel"/>
+						                    <input type="text" class="form-control form-control-md is-search" id="search-column" aria-label="Search" aria-describedby="search" placeholder="Provider Name or Email">
+						                    <x-icon aria-label="Cancel" name="cancel"/>
 						                </div>
-						                <button class="btn btn-secondary rounded btn-sm btn-hs-icon">
-						                    <x-icon name="search"/>
+						                <button aria-label="Search" class="btn btn-secondary rounded btn-sm btn-hs-icon">
+						                    <x-icon aria-label="Search" name="search"/>
 						                </button>
 						            </div>
 						        </div>
@@ -112,8 +112,8 @@
 								</select>
 							</div>
 						</div>
-						<a @click="createInvoices = true" href="#" class="btn btn-primary btn-has-icon rounded">
-							<x-icon name="plus"/>
+						<a @click="createInvoices = true" href="#" aria-label="Create Invoice" class="btn btn-primary btn-has-icon rounded">
+							<x-icon aria-label="Create Invoice" name="plus"/>
 							<span>Create Invoice</span>
 						</a>
 					</div>
@@ -124,7 +124,7 @@
 									<thead>
 										<tr role="row">
 											<th scope="col" class="text-center align-middle">
-												<input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
+												<input class="form-check-input" type="checkbox" value="" aria-label="Select All Providers">
 											</th>
 											<th scope="col" class="align-middle">
 												Provider
@@ -149,12 +149,12 @@
 										@for ($i = 1; $i <= 6; $i++)
 										<tr role="row" class="{{ ($i % 2 == 0) ? 'even' : 'odd' }}">
 											<td class="text-center align-middle">
-												<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+												<input class="form-check-input" type="checkbox" value="" aria-label="Select Provider">
 											</td>
 											<td class="align-middle">
 												<div class="d-flex gap-2 align-items-center">
 													<div>
-														<img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Image">
+														<img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
 													</div>
 													<div class="pt-2">
 														<div class="font-family-secondary leading-none">
@@ -176,7 +176,7 @@
 											<td class="align-middle">
 												<div class="d-flex actions justify-content-center">
 													<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-														<x-icon name="message"/>
+														<x-icon aria-label="Chat" name="message"/>
 													</a>
 												</div>
 											</td>
@@ -230,8 +230,8 @@
 					{{-- Icon Legend Bar - Start --}}
 					<div class="d-flex actions gap-3 justify-content-end mb-2">
 						<div class="d-flex gap-2 align-items-center">
-							<a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								<x-icon name="right-gray-arrows"/>
+							<a href="#" title="Bookings" aria-label="Bookings" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<x-icon aria-label="Bookings" name="right-gray-arrows"/>
 							</a>
 							<span class="text-sm">
 								Booking

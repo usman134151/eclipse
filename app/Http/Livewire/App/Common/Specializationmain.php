@@ -37,6 +37,7 @@ class Specializationmain extends Component
         }
         // set the showForm property to true to display the form
         $this->showForm = true;
+        $this->dispatchBrowserEvent('update-url', ['url' => '/admin/specialization/create-specialization']);
     }
 
     // function to reset the form and display a confirmation message
@@ -53,6 +54,7 @@ class Specializationmain extends Component
         }
         // set the showForm property to false to hide the form
         $this->showForm = false;
+        $this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-specialization']);
     }
 
     // function to update the ID of the record being edited/deleted

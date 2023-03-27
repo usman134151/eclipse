@@ -20,7 +20,10 @@
                                     <use xlink:href="/css/customer.svg#customer-signature"></use>
                                 </svg>
                                 <h6>Customer Signature</h6>
-                            </div>
+                            </div>  
+                        </div>
+                        <div class="d-flex justify-content-end me-5">
+                            <button class="btn btn-primary rounded btn-xs">Click to Sign</button>
                         </div>
                         <div class="mb-2 d-flex gap-2 ">
                             <div class="form-check">

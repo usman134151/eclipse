@@ -1,4 +1,4 @@
-<div>
+<div x-data="{associateservice: false}">
 	<div class="content-header row">
 		<div class="content-header-left col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -68,9 +68,12 @@
 										<div class="row mt-2 mb-5">
 											<div class="col-12 text-center">
 												<div class="d-inline-block position-relative">
-													<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
+													<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Customer"/>
 													<div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-														<x-icon name="camera"/>
+														<svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57" fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg">
+                                                          <use xlink:href="/css/provider.svg#camera"></use>
+                                                        </svg>
 													</div>
 												</div>
 											</div>
@@ -467,7 +470,7 @@
 												<label class="form-label-sm">
 													Copy permissions from another user
 												</label>
-												<a href="#" class="btn btn-primary w-75">
+												<a href="#" class="btn btn-primary w-75" data-bs-toggle="modal" data-bs-target="#addModal">
 													Select User
 												</a>
 											</div>
@@ -586,10 +589,10 @@
 
 											<div class="row mb-5">
 												<div class="col-lg-6 mb-4 pe-lg-5">
-													<label class="form-label">
+													<label class="form-label" for="preffered-providers">
 														Preferred Providers
 													</label>
-													<select class="form-select">
+													<select class="form-select" id="preffered-providers">
 														<option>Select Preferred Providers</option>
 													</select>
 												</div>
@@ -597,7 +600,7 @@
 													<label class="form-label">
 														Disfavored Providers
 													</label>
-													<select class="form-select">
+													<select class="form-select" aria-label="Disfavored Providers">
 														<option>Select Disfavored Providers</option>
 													</select>
 												</div>
@@ -623,10 +626,10 @@
 												</div>
 
 												<div class="col-lg-6 mb-4 ps-lg-5">
-													<label class="form-label">
+													<label class="form-label" for="user-schedule">
 														Grant Access to User(s)' Schedules
 													</label>
-													<select class="form-select">
+													<select class="form-select" id="user-schedule">
 														<option>Select</option>
 													</select>
 												</div>
@@ -824,7 +827,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -847,7 +850,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -870,7 +873,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -893,7 +896,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -916,7 +919,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -939,7 +942,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -962,7 +965,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -985,7 +988,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -1008,7 +1011,7 @@
 																			</td>
 																			<td width="5%">
 																				<div class="d-flex actions">
-																					<a @click="offcanvasOpen = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<a @click="associateservice = true" href="#" title="" aria-label="" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																						<x-icon name="dollar-icon"/>
 																					</a>
 																				</div>
@@ -1061,21 +1064,21 @@
 																	<label for="formFile" class="form-label">
 																		Upload Document
 																	</label>
-																	<input class="form-control" type="file" id="formFile">
+																	<input class="form-control" type="file" id="formFile" >
 																</div>
 															</div>
 														</div>
 														<div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
 															<div>
-																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<img src="/tenant/images/img-placeholder-document.jpg" alt="Preview File"/>
 																<p>File Name</p>
 															</div>
 															<div>
-																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<img src="/tenant/images/img-placeholder-document.jpg" alt="Preview File"/>
 																<p>File Name</p>
 															</div>
 															<div>
-																<img src="/tenant/images/img-placeholder-document.jpg"/>
+																<img src="/tenant/images/img-placeholder-document.jpg" alt="Preview File"/>
 																<p>File Name</p>
 															</div>
 														</div>
@@ -1116,6 +1119,8 @@
 	@include('modals.supervising')
 	@include('modals.bill-managing')
 	@include('modals.admin-staff')
+	@include('panels.services.associated-service')
+	@include('modals.add-user')
 </div>
 
 @push('scripts')

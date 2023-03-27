@@ -37,7 +37,17 @@
         <div class="row my-4">
             <h3>Preview</h3>
             <div class="col-md-2">
-                <img src="/tenant/images/img-placeholder-document.jpg"/>
+                
+                <div class="position-relative">
+                  <img src="/tenant/images/img-placeholder-document.jpg"/>
+                  <div class="position-absolute top-0 start-100">
+                    <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-3">
+                      <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
                 <p>Certification</p>
             </div>
         </div>

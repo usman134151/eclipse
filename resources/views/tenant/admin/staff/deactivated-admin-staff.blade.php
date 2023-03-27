@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	<x-coming-soon></x-coming-soon>
+@livewire('app.admin.staff.deactivated-admin-staff')
 	{{-- End: Content --}}
 @endsection

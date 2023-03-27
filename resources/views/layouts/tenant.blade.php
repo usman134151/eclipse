@@ -106,5 +106,14 @@
 		@powerGridScripts
 		<script src="/tenant/js/alpinejs-3.11.1.js" defer></script>
 		@stack('scripts')
+		<script>
+    window.addEventListener('update-url', function(event) {
+      pushStateToUrl(event.detail.url);
+    });
+	function pushStateToUrl(url) {
+  history.pushState(null, null, url);
+}
+  </script>
+		
 	</body>
 </html>

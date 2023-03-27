@@ -144,7 +144,7 @@
                     <div class="form-check form-switch form-switch-column mb-lg-0">
                       <input class="form-check-input" type="checkbox" role="switch" id="" @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                     </div>
-                    <h2 class="mb-lg-0">Add Supervisor & Billing Manager</h2>
+                    <h3 class="mb-lg-0">Add Supervisor & Billing Manager</h3>
                   </div>
                   <div class="row switch-toggle-content" x-show="open">
                     <div class="col-lg-6 mb-4 pe-lg-5">
@@ -256,7 +256,7 @@
                           <div class="form-check form-switch form-switch-column mb-lg-0">
                             <input class="form-check-input" type="checkbox" role="switch" id="" @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                           </div>
-                          <h2 class="mb-lg-0">Add Consumers & Participants</h2>
+                          <h3 class="mb-lg-0">Add Consumers & Participants</h3>
                         </div>
                         <div class="row mb-4 switch-toggle-content" x-show="open">
                           <div class="col-lg-6 mb-4 pe-lg-5">
@@ -394,7 +394,7 @@
                             </select>
                           </div>
                           <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
-                            <label class="form-label-sm" for="set_start_date">Set Date <span class="mandatory">*</span></label>
+                            <label class="form-label-sm" for="set_start_date">Start Date <span class="mandatory">*</span></label>
                             <div class="position-relative">
                               <input type="" name="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" id="set_start_date" aria-label="Set Start Date">
                               <svg class="icon-date md" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -422,7 +422,7 @@
                             </div>
                           </div>
                           <div class="col-lg-auto mb-4">
-                            <label class="form-label-sm" for="set_end_date">Set Date <span class="mandatory">*</span></label>
+                            <label class="form-label-sm" for="set_end_date">End Date<span class="mandatory">*</span></label>
                             <div class="position-relative">
                               <input type="" name="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" id="set_end_date" aria-label="Set End Date">
                               <svg class="icon-date md" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -467,6 +467,14 @@
                         </div>
                       </div>
                       <!-- /Select Dates & Times Duplicate Block -->
+                      <div class="d-flex justify-content-end mt-3">
+                        <button class="btn btn-primary rounded">
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                          </svg>   
+                          <span class="mx-2">Add Date</span>
+                        </button>
+                      </div>
                 </div>
                 <!-- /Select Dates & Times -->
                 <!-- Physical Address -->

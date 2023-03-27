@@ -143,6 +143,8 @@ Route::group([
 				Route::view('/bookings/today', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Today's"]);
 				Route::view('/bookings/upcoming', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Upcoming"]);
 				Route::view('/bookings/past', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Past"]);
+                Route::view('/bookings/active', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Active"]);
+                Route::view('/bookings/cancelled', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Cancelled"]);
 				Route::view('/bookings/unassigned', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Unassigned"]);
 				Route::view('/bookings/invitations', 'tenant/provider/bookings/booking-list', ["bookingType"=>"Invitations"]);
 
@@ -158,6 +160,7 @@ Route::group([
 
 				Route::view('/settings', 'tenant/settings/notifications');
 				Route::view('/change-password', 'tenant/provider/change-password');
+				Route::view('/payment-preferences', 'tenant/provider/payment-preferences');
 			});
 		});
 
