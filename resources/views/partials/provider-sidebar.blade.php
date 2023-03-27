@@ -107,6 +107,22 @@
 				<span class="menu-item">Past</span>
 			  </a>
 			</li>
+            <li class="nav-item" id="active">
+                <a class="nav-link" href="/provider/bookings/active">
+                  <svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+                      <use xlink:href="/css/provider-menu.svg#past-icon"></use>
+                  </svg>
+                  <span class="menu-item">Active</span>
+                </a>
+              </li>
+              <li class="nav-item" id="cancelled">
+                <a class="nav-link" href="/provider/bookings/cancelled">
+                  <svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+                      <use xlink:href="/css/provider-menu.svg#past-icon"></use>
+                  </svg>
+                  <span class="menu-item">Cancelled</span>
+                </a>
+              </li>
 		  </ul>
 		</li>
 		<li class="nav-item has-sub">
