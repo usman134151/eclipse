@@ -1,4 +1,31 @@
 <div>
+    <div class="content-header row">
+		<div class="content-header-left col-md-9 col-12 mb-2">
+		  <div class="row breadcrumbs-top">
+			<div class="col-12">
+			  <h1 class="content-header-title float-start mb-0">Notification</h1>
+			  <div class="breadcrumb-wrapper">
+				<ol class="breadcrumb">
+				  <li class="breadcrumb-item">
+					<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
+						<x-icon name="home"/>
+					</a>
+				  </li>
+				  <li class="breadcrumb-item">
+					Settings
+				  </li>
+				  <li class="breadcrumb-item">
+					Business profile & Settings
+				  </li>
+                  <li class="breadcrumb-item">
+					Notification
+				  </li>
+				</ol>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
     <section id="multiple-column-form">
       <div class="row">
         <div class="col-12">
