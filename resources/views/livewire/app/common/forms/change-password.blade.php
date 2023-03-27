@@ -1,4 +1,4 @@
-<div x-data="{ currentPassword: true, password: true, confirmPassword: true }">
+<div x-data="{ currentPassword: true, password: @entangle('hidePassword'), confirmPassword: true }">
 	<section id="multiple-column-form">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-12 mb-2">
