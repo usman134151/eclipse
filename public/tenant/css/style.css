@@ -1275,12 +1275,12 @@ small {
 .main-menu.menu-light .navigation > li > a {
   font-size: 0.9375rem;
   margin: 0 0.5rem;
-  padding: 10px 12px 10px 12px; }
+  padding: 10px 25px 10px 25px; }
 
 .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a svg,
 .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a i,
 .vertical-layout.vertical-menu-modern .main-menu .navigation > li > a .icon_img {
-  margin-right: 0.7rem; }
+  margin-right: 1.2rem; }
 
 .vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:after {
   right: 1rem; }
