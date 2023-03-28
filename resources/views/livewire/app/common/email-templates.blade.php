@@ -151,7 +151,7 @@
 																<th>Name</th>
 																<th>Trigger</th>
 																<th>Trigger Description</th>
-																<th>Body</th>
+																<th>Subject</th>
 																<th>Status</th>
 																<th>Action</th>
 															</tr>
@@ -470,6 +470,7 @@
                             {{-- icon legend bar end --}}
 										<div class="col-12 justify-content-center form-actions d-flex">
 											<button type="button" class="btn btn-outline-dark rounded px-4 py-2 mx-2">Cancel</button>
+                                            <button type="submit" class="btn btn-primary rounded px-4 py-2 mx-2">Save</button>
 											<button type="submit" class="btn btn-primary rounded px-4 py-2">Next</button>
 										</div>
 									</div>
