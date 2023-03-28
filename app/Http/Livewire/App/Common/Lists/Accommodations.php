@@ -30,7 +30,7 @@ final class Accommodations extends PowerGridComponent
 			Exportable::make('export')
 				->striped()
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-			Header::make()->showSearchInput(),
+			Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add toggle column option
 			Footer::make()
 				->showPerPage()
 				->showRecordCount(),
@@ -135,7 +135,7 @@ final class Accommodations extends PowerGridComponent
 				->makeBooleanFilter('status', 'Activated', 'Deactivated')
 				->toggleable(1, 'Activated', 'Deactivated'),
 			
-			Column::make('Actions', 'edit')
+			Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action from export
 		];
 	}
 
