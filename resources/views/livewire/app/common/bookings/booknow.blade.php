@@ -173,7 +173,7 @@
 
                   <!-- Services Duplicate Block -->
                   <div class="duplicate-block mb-3">
-                    <h2>Services 1</h2>
+                    <h3 class="text-primary">Services 1</h3>
                     <div class="row">
                       <div class="col-lg-6 mb-4 pe-lg-5">
                         <label class="form-label">Accommodation <span class="mandatory">*</span></label>
@@ -330,7 +330,7 @@
                         </div>
                         <div class="border-dashed rounded p-3 mb-3">
                           <div class="d-flex justify-content-between">
-                            <div class="align-items-center gap-4"><h2>Meeting Link 1</h2></div>
+                            <div class="align-items-center gap-4"><h3 class="text-primary">Meeting Link 1</h3></div>
                             <div class="align-items-center gap-4">
                               <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -501,18 +501,14 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="mb-4">
-                      <div class="d-lg-flex justify-content-between align-items-center mb-3">
-                        <h3 class="mb-lg-0">Start Service Address</h3>
-                        <a href="#" class="btn btn-primary btn-sm rounded">End Address</a>
-                      </div>
-                      <p>List of most recently used address from the requester</p>
+                      <p class="mt-3">List of most recently used address from the requester</p>
                     </div>
                     <!-- Button trigger modal | Add Address POPUP-->
                     <div class="col-lg-12 text-lg-end">
                       <div class="mb-4">
                         <button type="button" class="btn btn-primary btn-sm rounded gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"></path>
                             </svg>
                             <span>Add New Address</span>
                         </button>
@@ -522,10 +518,10 @@
                     <div class="col-lg-12 mb-4 border">
                       <table class="table table-hover">
                         <thead>
-                          <th>#</th>
+                          <tr><th>#</th>
                           <th>Address</th>
                           <th></th>
-                        </thead>
+                        </tr></thead>
                         <tbody>
                           <tr class="odd js-selected-row">
                             <td>
@@ -537,11 +533,11 @@
                             <!-- for active class row integrated with JS  -->
                             <td class="align-middle">
                               <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
                               </svg>
                             </td>
                           </tr>
-                          <tr class="even selected">
+                          <tr class="even js-selected-row">
                             <td>
                               2
                             </td>
@@ -550,8 +546,8 @@
                             </td>
                             <!-- for active class row integrated with JS  -->
                           <td class="align-middle">
-                                <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </td>
                           </tr>
@@ -565,7 +561,7 @@
                             <!-- for active class row integrated with JS  -->
                             <td class="align-middle">
                               <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
                               </svg>
                             </td>
                           </tr>
@@ -573,6 +569,82 @@
                       </table>
                     </div>
                     <!-- #Address Tables-->
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-4">
+                      <div class="d-lg-flex justify-content-between align-items-center">
+                        <h3 class="mb-lg-0">Start Service Address</h3>
+                        <a href="#" class="btn btn-primary btn-sm rounded js-show-start-service-hidden-content">End Address</a>
+                      </div>
+                    </div>
+                    <div class="js-start-service-hidden-content">
+                      <!-- Button trigger modal | Add Address POPUP-->
+                      <div class="col-lg-12 text-lg-end">
+                        <div class="mb-4">
+                          <button type="button" class="btn btn-primary btn-sm rounded gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"></path>
+                              </svg>
+                              <span>Add New Address</span>
+                          </button>
+                        </div>
+                      </div>
+                      <!-- #Address Tables-->
+                      <div class="col-lg-12 mb-4 border">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr><th>#</th>
+                            <th>Address</th>
+                            <th></th>
+                          </tr></thead>
+                          <tbody>
+                            <tr class="odd js-selected-row">
+                              <td>
+                                1
+                              </td>
+                              <td>
+                                <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
+                              </td>
+                              <!-- for active class row integrated with JS  -->
+                              <td class="align-middle">
+                                <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                              </td>
+                            </tr>
+                            <tr class="even js-selected-row">
+                              <td>
+                                2
+                              </td>
+                              <td>
+                                <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
+                              </td>
+                              <!-- for active class row integrated with JS  -->
+                            <td class="align-middle">
+                                  <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                                  </svg>
+                              </td>
+                            </tr>
+                            <tr class="odd js-selected-row">
+                              <td>
+                                3
+                              </td>
+                              <td>
+                                <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
+                              </td>
+                              <!-- for active class row integrated with JS  -->
+                              <td class="align-middle">
+                                <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- #Address Tables-->
+                    </div>
                   </div>
                 </div>
                 <!-- /Physical Address -->
