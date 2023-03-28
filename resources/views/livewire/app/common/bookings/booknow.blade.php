@@ -541,7 +541,7 @@
                               </svg>
                             </td>
                           </tr>
-                          <tr class="even selected">
+                          <tr class="even js-selected-row">
                             <td>
                               2
                             </td>
@@ -550,8 +550,8 @@
                             </td>
                             <!-- for active class row integrated with JS  -->
                           <td class="align-middle">
-                                <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg class="d-none js-tick" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M2 10.2852L8.66667 17.2852L22 2.28516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </td>
                           </tr>
