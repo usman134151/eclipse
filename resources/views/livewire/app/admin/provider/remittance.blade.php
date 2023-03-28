@@ -1,4 +1,4 @@
-<div x-data="{ remittanceGeneratorBooking: false, issueRemittance: false, addNewPayment: false }">
+<div x-data="{ remittanceGeneratorBooking: false, issueRemittance: false, addNewPayment: false,  addReimbursement: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -615,4 +615,5 @@
     @include('panels.remittance.remittance-generator-booking')
     @include('panels.remittance.issue-remittance')
     @include('panels.remittance.add-new-payment')
+    @include('panels.common.add-reimbursement')
 </div>
