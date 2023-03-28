@@ -173,7 +173,7 @@
 
                   <!-- Services Duplicate Block -->
                   <div class="duplicate-block mb-3">
-                    <h2>Services 1</h2>
+                    <h3 class="text-primary">Services 1</h3>
                     <div class="row">
                       <div class="col-lg-6 mb-4 pe-lg-5">
                         <label class="form-label">Accommodation <span class="mandatory">*</span></label>
@@ -330,7 +330,7 @@
                         </div>
                         <div class="border-dashed rounded p-3 mb-3">
                           <div class="d-flex justify-content-between">
-                            <div class="align-items-center gap-4"><h2>Meeting Link 1</h2></div>
+                            <div class="align-items-center gap-4"><h3 class="text-primary">Meeting Link 1</h3></div>
                             <div class="align-items-center gap-4">
                               <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
