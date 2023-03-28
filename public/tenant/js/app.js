@@ -246,3 +246,9 @@ $('.js-auto-notify').change(function(){
         $(this).parent().parent().parent().children('.js-auto-notify-content').addClass("hidden");
     }
 });
+
+// Start Service Content Show/Hide
+
+$('.js-show-start-service-hidden-content').click(function(){
+  $('.js-start-service-hidden-content').removeClass("hidden");
+});
