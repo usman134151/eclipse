@@ -1742,3 +1742,12 @@ footer.footer {
 .max-h-17rem {
 	max-height: 17rem;
 }
+
+.breadcrumb .breadcrumb-item a {
+    display: flex;
+    align-content: center;
+}
+
+.breadcrumb:not([class*='breadcrumb-']) .breadcrumb-item + .breadcrumb-item:before {
+	background-position: center 5px;
+}
