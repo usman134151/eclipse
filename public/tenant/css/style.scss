@@ -1783,10 +1783,10 @@ footer.footer {
 	background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) !important;
 }
 
-#calendar .fc .fc-timegrid-axis-cushion {
+.fc .fc-timegrid-axis-cushion {
 	font-size: 0.875rem;
 }
 
 .fc-direction-ltr .fc-timegrid-slot-label-frame {
-	text-align: center;
+	text-align: center !important;
 }
