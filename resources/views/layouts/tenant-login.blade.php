@@ -61,6 +61,6 @@
     <script>
     //  resetSaveBrowser();
     </script>
-
+    @stack('scripts')
   </body>
 </html>
