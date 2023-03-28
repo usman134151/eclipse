@@ -34,6 +34,8 @@ class Accommodation extends Component
 		}
 		// Set the showForm property to true to display the form
 		$this->showForm=true;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/accommodation/create-accommodation']);  //updated by Amna Bilal to set url
+		
 	}
 
 	// Reset the form and display a confirmation message
@@ -50,6 +52,7 @@ class Accommodation extends Component
 		}
 		// Set the showForm property to false to hide the form
 		$this->showForm=false;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-accommodation']); //updated by Amna Bilal to set url
 	}
 
 	// Update the ID of the record being edited / deleted

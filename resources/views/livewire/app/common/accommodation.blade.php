@@ -16,7 +16,7 @@
 					<div class="card-body">
 						<div class="page-title">
 							<div class="row mt-3">
-								<div class="col-md-3">
+								<div class="col-md-6">
 									<h1>{{ $listTitle }}</h1>
 								</div>
 								<div class="col-md-3 ms-auto text-end">
