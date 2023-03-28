@@ -30,5 +30,7 @@ class TenantDatabaseSeeder extends Seeder
       #### Add Custome Seeder For ApiReponse By Sakhawat #####
       $this->call(NotificationResponse::class);
       $this->call(BookingsSeeder::class); //added records in booking table by Sohail
+      $this->call(SetupSeeder::class); //added records in booking table by Amna Bilal
+      
     }
 }
