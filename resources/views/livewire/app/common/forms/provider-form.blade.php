@@ -44,7 +44,7 @@
 							<a href="#" class="nav-link" :class="{ 'active': tab === 'profile' }" @click.prevent="tab = 'profile'" id="user-profile-tab" role="tab" aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider info</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab" aria-controls="provider-service" aria-selected="false"><span class="number">2</span>Provider Serivce Profile</a>
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'provider-service' }" @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab" aria-controls="provider-service" aria-selected="false"><span class="number">2</span>Provider Service Profile</a>
 						</li>
 						<li class="nav-item" role="presentation">
 							<a href="#" class="nav-link" :class="{ 'active': tab === 'upload-document' }" @click.prevent="tab = 'upload-document'" id="upload-document-tab" role="tab" aria-controls="upload-document" aria-selected="false"><span class="number">3</span> Upload Document</a>
@@ -1367,10 +1367,8 @@
 																	<div class="d-flex flex-column gap-3">
 																		<div class="d-lg-flex gap-4">
 																			<div class="align-self-end d-flex align-items-center gap-2 col-lg-5">
-																				<div class="align-items-center">
-																					<input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Checkbox Medical Interpreting" />
-																				</div>
-																				<div class="input-group">
+
+																				<div class="input-group ">
 																					<select class="form-select bg-secondary w-75" aria-label="Medical Interpreting">
 																						<option>Medical Interpreting</option>
 																					</select>

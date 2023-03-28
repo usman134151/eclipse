@@ -10,11 +10,7 @@
 	{{-- /Left Text --}}
 	
 	{{-- Login --}}
-	<div
-		class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5"
-		x-data="{ loading: false, showAlertMessage: false, showSuccessMessage: false, email: '', password: '', errors: [], show: true }"
-		x-cloak
-	>
+	<div class="d-flex col-lg-4 align-items-center bg-white px-2 p-lg-5" x-data="{ show: true }">
 		<div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-4 mx-auto">
 			<h1 class="card-title fw-normal mb-3">
 				Welcome to Eclipse Scheduling!
@@ -34,94 +30,17 @@
 			</div>
 			{{-- <p class='mt-2 text-sm text-red-600'>{{$errors->first('loginError')}}</p> --}}
 			@endif
-			
-			<form method="POST" action="{{ route('tenant.login') }}" x-on:submit.prevent="loading=true; 
-			if (email == '' && password == '') {
-				errors = {
-					email: ['The email field is required'],
-					password: ['The password field is required']
-				}
 
-				loading = false;
-				showAlertMessage = true;
-				return;
-			}
-
-			if (email && password == '') {
-				errors = {
-					password: ['The password field is required']
-				}
-
-				loading = false;
-				showAlertMessage = true;
-				return;
-			}
-
-			if (email == '' && password) {
-				errors = {
-					email: ['The email field is required']
-				}
-
-				loading = false;
-				showAlertMessage = true;
-				return;
-			}
-
-			const expression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-			const validEmail = expression.test(String(email).toLowerCase())
-
-			if (email != '' && ! validEmail) {
-				errors = {
-					email: ['Please enter a valid email address']
-				}
-
-				loading = false;
-				showAlertMessage = true;
-				return;
-			}
-		
-			fetch('/login', {
-				method: 'POST',
-				redirect: 'follow',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-CSRF-Token': document.getElementsByName('_token')[0].value
-				},
-				body: JSON.stringify({
-					email: email,
-					password: password
-				})
-			}).then((response) => {
-				if (response.ok)
-				{
-					loading = false;
-					showAlertMessage = false;
-					showSuccessMessage = true;
-					if (response.redirected) {
-						window.location.href = response.url;
-						return;
-					}
-				}
-			}).catch ( e => { console.error(e) });
-		">
+			<form method="POST" action="{{ route('tenant.login') }}" name="loginForm" onsubmit="return handleValidation()">
 				@csrf
-				<div class="position-relative mb-3">
+				<div class="mb-3">
 					<label class="form-label" for="email">Email</label>
-					<input class="form-control" id="email" type="text" name="email" placeholder="Email address" aria-describedby="email" autofocus="" tabindex="1" x-model="email" x-on:keydown="delete errors['email']" x-bind:class="{ 'border-danger border-2 text-danger': errors['email'] }"/>
+					<input class="form-control" id="email" type="text" name="email" placeholder="Email address" aria-describedby="email" autofocus="" tabindex="1"/>
 					<x-form.input-error for="email" />
-					<template x-if="errors['email']">
-						<span>
-							<svg class="position-absolute text-danger" style="top: 3.2rem; right: 0.6em" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle" viewBox="0 0 24 24">
-								<circle cx="12" cy="12" r="10"></circle>
-								<line x1="12" y1="8" x2="12" y2="12"></line>
-								<line x1="12" y1="16" x2="12.01" y2="16"></line>
-							</svg>
-							<span class="d-block invalid-feedback mt-2" x-text="errors['email']"></span>
-						</span>
-					</template>
+					<span class='mt-2 mb-0 d-block invalid-feedback' id='emailError' role="alert"></span>
 				</div>
 				
-				<div class="position-relative mb-3">
+				<div class="mb-3">
 					<div class="d-flex justify-content-between">
 						<label class="form-label" for="login-password">
 							Password
@@ -133,7 +52,7 @@
 						</a>
 					</div>
 					<div class="input-group input-group-merge form-password-toggle">
-						<input class="form-control form-control-merge" :type="show ? 'password' : 'text'" id="password" type="password" name="password" placeholder="············" aria-describedby="password" tabindex="2" x-model="password" x-on:keydown="delete errors['password']" x-bind:class="{ 'border-danger border-2 text-danger': errors['password'] }"/>
+						<input class="form-control form-control-merge" :type="show ? 'password' : 'text'" id="password" type="password" name="password" placeholder="············" aria-describedby="password" tabindex="2" />
 						<span class="input-group-text cursor-pointer">
 							{{-- <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
 								<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -148,16 +67,7 @@
 							</svg>
 						</span>
 					</div>
-					<template x-if="errors['password']">
-						<span>
-							<svg class="position-absolute text-danger" style="top: 3.2rem; right: 3.6em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle">
-								<circle cx="12" cy="12" r="10"></circle>
-								<line x1="12" y1="8" x2="12" y2="12"></line>
-								<line x1="12" y1="16" x2="12.01" y2="16"></line>
-							</svg>
-							<span class="d-block invalid-feedback mt-2" x-text="errors['password']"></span>
-						</span>
-					</template>
+					<span class='mt-2 mb-0 d-block invalid-feedback' id='passError' role="alert"></span>
 				</div>
 				<div class="mb-3">
 					<div class="form-check">
@@ -167,13 +77,8 @@
 						</label>
 					</div>
 				</div>
-				<button class="btn btn-primary w-100 mb-1" name="login" id="login" type="submit" tabindex="4" x-bind:disabled="loading == true">
-					<template x-if="loading == false">
-						<div>Login</div>
-					</template>
-					<template x-if="loading == true">
-						<div>Logging in...</div>
-					</template>
+				<button class="btn btn-primary w-100 mb-1" name="login" id="login" type="submit" tabindex="4">
+					Login
 					{{-- Login --}}
 				</button>
 				<button style="display:none" class="btn btn-primary w-100 mb-1 otpF" id="resendOtp" type="button" tabindex="4">
@@ -187,3 +92,40 @@
 	</div>
 	{{-- /Login --}}
 @endsection
+@push('scripts')
+	<script>
+		function handleValidation()
+		{
+			let email = document.loginForm.email.value;
+			let password = document.loginForm.password.value;
+			let emailError = passError = true;
+			
+			if (email.trim() == '') {
+				document.getElementById('emailError').innerHTML = 'The email field is required';
+			}
+			else
+			{
+				document.getElementById('emailError').innerHTML = '';
+				emailError = false;
+			}
+
+			if (password.trim() == '') {
+				document.getElementById('passError').innerHTML = 'The password field is required';
+			}
+			else
+			{
+				document.getElementById('passError').innerHTML = '';
+				passError = false;
+			}
+
+			if((emailError || passError) == true)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+	</script>
+@endpush
