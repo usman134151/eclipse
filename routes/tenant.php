@@ -7,6 +7,7 @@ use App\Http\Middleware\CheckSubscription;
 use Stancl\Tenancy\Features\UserImpersonation;
 use App\Http\Controllers\Tenant as Controllers;
 use App\Http\Controllers\Tenant\Auth\OtpController;
+use App\Http\Controllers\Tenant\Auth\LoginController;
 use App\Http\Controllers\Tenant\Common\BrowserHandleController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -209,4 +210,6 @@ Route::group([
 		Route::post('otpverify', [OtpController::class, 'verifyOtp'])->name('submit.otpverify');
 		Route::post('/saveBrowser', [BrowserHandleController::class,'store']);
 	});
+
+	Route::any('/forgot-password', [LoginController::class, 'forgotPassword'])->name('forgot-password');Route::any('/reset-forgot-password/{securityToken}', [LoginController::class, 'resetForgotPassword'])->name('reset-forgot-password');
 });
