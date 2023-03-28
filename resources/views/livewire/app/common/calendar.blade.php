@@ -1,7 +1,13 @@
-<div>
+<div x-data="{ assignmentDetails: false, addReimbursement: false, step: 1 }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
 	<div id='calendar-container' wire:ignore>
 		<div id='calendar'></div>
 	</div>
+	{{-- Updated by Sohail Asghar to link bookings detail panel --}}
+	@include('panels.common.assignment-details')
+	@include('panels.provider.add-reimbursement')
+	@include('modals.common.running-late')
+	@include('modals.return-assignment')
+	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
@@ -30,23 +36,18 @@
 			},
 			// weekNumbers: true, // shows weeknumber
 			dayMaxEvents: true,	// allow "more" link when too many events
-			events: JSON.parse(data), dateClick(info) {
-				var title = prompt('Enter Event Title');
-				var date = new Date(info.dateStr + 'T00:00:00');
-				var date = date;
-				if(title != null && title != '') {
-					calendar.addEvent({
-						title: title,
-						start: date,
-						allDay: true
-					});
-					
-					var eventAdd = {title: title, start: date};
-					@this.addEvent(eventAdd);
-				}
-				else {
-					alert('Event Title Is Required');
-				}
+			events: JSON.parse(data),
+			eventDidMount: function(info) {
+				$(info.el).attr('x-on:click', 'assignmentDetails = true');
+				// $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
+				// let event = info.event;
+				// startDate = moment(event.start).format('MM/DD/YY');
+				var tooltip = new bootstrap.Tooltip(info.el, {
+					title: info.event.extendedProps.phone,
+					placement: 'bottom',
+					trigger: 'hover focus',
+					container: 'body',
+				});
 			},
 			editable: true,
 			selectable: true,
@@ -59,7 +60,7 @@
 				info.draggedEl.parentNode.removeChild(info.draggedEl);
 				}
 			},
-			eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
+			// eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
 			loading: function(isLoading) {
 				if (!isLoading) {
 					// Reset custom events
@@ -71,7 +72,7 @@
 				}
 			}
 		});
-		
+
 		calendar.render();
 		@this.on('refreshCalendar', () => {
 			calendar.refetchEvents()

@@ -2,17 +2,30 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\Booking;
 use Livewire\Component;
-use App\Models\Tenant\Specialization;
 
 class Calendar extends Component
 {
-	public $events = '';
+	public $events = [];
 
 	public function render()
 	{
-		$events = Specialization::select('id', 'name', 'created_at')->get();
-		$keys = ['id', 'title', 'start'];
+		$this->events = $this->getCalendarEvents();
+
+		return view('livewire.app.common.calendar');
+	}
+
+	public function mount()
+	{}
+
+	// Updated by Sohail Asghar to get booking events for dashboard calendar
+	private function getCalendarEvents()
+	{
+		$events = Booking::select('booking_number', 'booking_start_at', 'booking_end_at', 'phone')
+			->get();
+
+		$keys = ['title', 'start', 'end', 'phone'];
 		$newEvents = [];
 		$count = 0;
 
@@ -27,34 +40,7 @@ class Calendar extends Component
 			$count = 0;
 		}
 
-		$this->events = json_encode($newEvents);
-
-		return view('livewire.app.common.calendar');
+		return json_encode($newEvents);
 	}
-
-	public function mount()
-	{}
-
-	public function getevent()
-	{
-		$events = Specialization::select('id', 'name', 'added_by')->get();
-
-		return json_encode($events);
-	}
-
-	public function addEvent($event)
-	{
-		$input['name'] = $event['title'];
-		$input['added_by'] = $event['start'];
-		Specialization::create($input);
-		$this->emit('refreshCalendar');
-	}
-
-	public function eventDrop($event, $oldEvent)
-	{
-		$eventdata = Specialization::find($event['id']);
-		$eventdata->id = $event['id'];
-		$eventdata->save();
-		$this->emit('refreshCalendar');
-	}
+	// End of update by Sohail Asghar
 }
