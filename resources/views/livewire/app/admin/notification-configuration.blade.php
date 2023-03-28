@@ -22,7 +22,7 @@
                     </a>
                 </li>
                   <li class="breadcrumb-item">
-                    <span class="text-secondary">notifications</span>
+                    <span class="text-secondary">Notifications</span>
                   </li>
                 </ol>
               </div>
