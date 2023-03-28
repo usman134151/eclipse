@@ -1,4 +1,7 @@
 <div x-data="{addDocument: false}">
+	@if ($showDepartmentProfile)
+	    @livewire('app.common.department-profile')
+	@else
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -541,7 +544,7 @@
 											</div>
 										</div>
 										<div class="d-inline-flex align-items-center gap-4 me-3">
-											<a href="javascript:void(0)" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
+											<a href="/admin/department/create" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 												<x-icon name="plus"/>
 												<span>Add Department</span>
 											</a>
@@ -614,7 +617,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -660,7 +663,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a  href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -706,7 +709,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -752,7 +755,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -798,7 +801,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -844,7 +847,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -890,7 +893,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -936,7 +939,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -982,7 +985,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -1028,7 +1031,7 @@
 																<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 																	<x-icon name="pencil"/>
 																</a>
-																<a @click="departmentProfile = true" href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showDepartmentProfile">
 																	<x-icon name="view"/>
 																</a>
 																<div class="d-flex actions">
@@ -4116,4 +4119,5 @@
 	</div>
 	@include('modals.mark-as-paid')
 	@include('panels.common.add-document')
+	@endif
 </div>
