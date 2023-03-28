@@ -640,6 +640,8 @@ div[data-bs-toggle="collapse"] {
     	-moz-transition: all 0.1s linear;  
     	-o-transition: all 0.1s linear;  
     	transition: all 0.1s linear;
+    	width: 57px;
+    	height: 57px;
     &.icon-availability {
     	    width: 22rem;
 		    height: 18rem;
@@ -1739,4 +1741,25 @@ footer.footer {
 
 .max-h-17rem {
 	max-height: 17rem;
+}
+
+.breadcrumb .breadcrumb-item a {
+    display: flex;
+    align-content: center;
+}
+
+.breadcrumb:not([class*='breadcrumb-']) .breadcrumb-item + .breadcrumb-item:before {
+	background-position: center 5px;
+}
+
+#calendar .btn.btn-primary.active {
+	background: linear-gradient(90deg, #6A6A6A 50%, rgba(126, 126, 127, 0.7) 83.75%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) !important;
+}
+
+#calendar .fc .fc-timegrid-axis-cushion {
+	font-size: 0.875rem;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+	text-align: center;
 }
