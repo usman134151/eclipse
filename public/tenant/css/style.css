@@ -724,7 +724,9 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-bottom {
     -webkit-transition: all 0.1s linear;
     -moz-transition: all 0.1s linear;
     -o-transition: all 0.1s linear;
-    transition: all 0.1s linear; }
+    transition: all 0.1s linear;
+    width: 57px;
+    height: 57px; }
     .dashborad-block svg.icon-availability, a.dashborad-block svg.icon-availability {
       width: 22rem;
       height: 18rem;
