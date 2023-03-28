@@ -1368,47 +1368,74 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	}
 	.bg-success {
 		.time-date {
-			color: #000000;
+			color: #fff;
 		}
 		>* {
-			background-color: #146c43;
-			color: #000;
+			background-color: #188351;
+			color: #fff;
 		}
 	}
 	.bg-gray {
 		.time-date {
-			color: #000000;
+			color: #ffffff;
 		}
 		>* {
-			background-color: #888575;
-			color: #000;
+			background-color: #989587;
+			color: #ffffff;
 		}
 	}
 	.bg-warning {
 		.time-date {
-			color: #000000;
+			color: #ffffff;
 		}
 		>* {
-			background-color: #a76900;
-			color: #000;
+			background-color: #be7d0f;
+			color: #ffffff;
 		}
 	}
 }
 
+:root {
+	--bs-table-tr-bg-success-hover-bg: #146c43;
+	--bs-table-tr-bg-gray-hover-bg: #888575;
+	--bs-table-tr-bg-warning-hover-bg: #a76900;
+}
+
 .table-hover > tbody > tr {
 	&.bg-success {
+		.time-date {
+			color: #fff;
+		}
+		a {
+			color: #fff;
+		}
 		&:hover * {
 			color: #ffffff;
+			--bs-table-accent-bg: var(--bs-table-tr-bg-success-hover-bg);
 		}
 	}
 	&.bg-gray {
+		.time-date {
+			color: #fff;
+		}
+		a {
+			color: #fff;
+		}
 		&:hover * {
 			color: #ffffff;
+			--bs-table-accent-bg: var(--bs-table-tr-bg-gray-hover-bg);
 		}
 	}
 	&.bg-warning {
+		.time-date {
+			color: #fff;
+		}
+		a {
+			color: #fff;
+		}
 		&:hover * {
 			color: #ffffff;
+			--bs-table-accent-bg: var(--bs-table-tr-bg-warning-hover-bg);
 		}
 	}
 	&:hover {
