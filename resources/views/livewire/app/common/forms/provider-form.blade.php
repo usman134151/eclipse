@@ -609,7 +609,7 @@
 															</label>
 														</div>
 													</div>
-													<div class="col-md-12 col-12 md-2 mb-4">
+													<div class="col-md-12 col-12 md-2 mb-5">
 														<div class="row">
 															<div class="col-md-7 col-12 mb-3">
 																Service Types
@@ -645,7 +645,7 @@
 														</div>
 													</div>
 													<div class="col-lg-12 mb-5">
-														<div class="d-lg-flex align-items-center mb-4 gap-3">
+														<div class="d-lg-flex align-items-center gap-3">
 															<h2>Standard Provider Rates</h2>
 														</div>
 														<div class="row">
@@ -752,9 +752,9 @@
 														</div>
 													</div>
 													<!-- section two end -->
-													<div class="col-lg-12 mb-5">
-														<div class="d-lg-flex align-items-center mb-4 gap-3">
-															<h2 class="mb-lg-0">
+													<div class="col-lg-12 mb-5 pt-5">
+														<div class="d-lg-flex align-items-center gap-3">
+															<h2>
 																Expedited Service Differentials
 															</h2>
 														</div>
@@ -778,7 +778,7 @@
 																								</small>
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="0" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -838,7 +838,7 @@
 																								</small>
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="0" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -900,7 +900,7 @@
 																								</small>
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="0" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -960,7 +960,7 @@
 																								</small>
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="0" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -1009,9 +1009,9 @@
 													</div>
 													<!-- /Expedited Services -->
 													<!-- Cancellations/Modifications/Rescheduling -->
-													<div class="col-lg-12 mb-5">
-														<div class="d-lg-flex align-items-center mb-4 gap-3">
-															<h2 class="mb-lg-0">
+													<div class="col-lg-12 mb-5 pt-5">
+														<div class="d-lg-flex align-items-center gap-3">
+															<h2>
 																Cancellations/Modifications/Rescheduling
 															</h2>
 														</div>
@@ -1032,7 +1032,7 @@
 																								Parameter 1
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -1115,7 +1115,7 @@
 																								Parameter 1
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -1200,7 +1200,7 @@
 																								Parameter 1
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -1283,7 +1283,7 @@
 																								Parameter 1
 																							</span>
 																							<input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-																							<div class="col-lg-2">
+																							<div class="col-lg-2 d-flex">
 																								<select class="form-select rounded-0" aria-label="$">
 																									<option>$</option>
 																								</select>
@@ -1357,9 +1357,9 @@
 														</div>
 													</div>
 													<!-- /End: Cancellations/Modifications/Rescheduling -->
-													<div class="col-lg-12 mb-5">
-														<div class="d-lg-flex align-items-center mb-4 gap-3">
-															<h2 class="mb-lg-0">Specializations</h2>
+													<div class="col-lg-12 mb-5 pt-5">
+														<div class="d-lg-flex align-items-center gap-3">
+															<h2>Specializations</h2>
 														</div>
 														<div class="row">
 															<div class="col-lg-12">
@@ -1508,7 +1508,7 @@
 											  <h2>Attach Document</h2>
 											</div>
 										  </div>
-										  <div class="row">
+										  <div class="row mb-5">
 											<div class="col-lg-12 mb-4 mt-5">
 											  <div class="row">
 												<div class="col-lg-5 mb-4 ">

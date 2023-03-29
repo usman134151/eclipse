@@ -592,7 +592,7 @@
                           <a href="#" class="btn btn-primary btn-sm rounded js-show-start-service-hidden-content">End Address</a>
                         </div>
                       </div>
-                      <div class="js-start-service-hidden-content">
+                      <div class="js-start-service-hidden-content hidden">
                         <!-- Button trigger modal | Add Address POPUP-->
                         <div class="col-lg-12 text-lg-end">
                           <div class="mb-4">
@@ -677,7 +677,7 @@
                 <div class="col-md-12 mb-md-2">
                   <h2>Industry Form</h2>
                   <!-- Industry Form Begin -->
-                  <div class="row mb-4">
+                  <div class="row mb-5">
                     <div class="col-md-12 col-12">
                       <h3>Computer Science</h3>
                     </div>
@@ -989,7 +989,7 @@
               </div>
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="row mb-4">
+                  <div class="row mb-5">
                     <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
                     <div class="col-md-3 mb-3 mb-md-0">
                       <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
@@ -999,7 +999,7 @@
                     </div>
                   </div>
                   <!-- Payment Preference -->
-                  <div class="row mb-4">
+                  <div class="row mb-5">
                     <h2>Payment Preference:</h2>
                     <div class="mb-4">
                       <div class="form-check form-check-inline">
@@ -1065,11 +1065,13 @@
                         <label class="form-label" for="tags">
                           Tags
                         </label>
-                        <select data-placeholder="" multiple class="form-select chosen-select" tabindex="" id="tags">
-                          <option value=""></option>
-                          <option selected>Option 1</option>
-                          <option selected>Option 2</option>
-                        </select>
+                        <div class="mb-3">
+                          <select data-placeholder="" multiple class="form-select chosen-select" tabindex="" id="tags">
+                            <option value=""></option>
+                            <option selected>Option 1</option>
+                            <option selected>Option 2</option>
+                          </select>
+                        </div>
                         <div class="d-lg-flex flex-wrap gap-3 mb-3">
                           <div class="tag">@admin_company</div>
                           <div class="tag">@booking_start_at</div>
