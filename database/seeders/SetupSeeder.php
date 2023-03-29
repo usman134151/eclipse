@@ -38,11 +38,6 @@ class SetupSeeder extends Seeder
                 'setup_value' => 'Timezone',
                 'created_at' => now(),
                 'updated_at' => now()
-            ],
-            [
-                'setup_value' => 'Countries',
-                'created_at' => now(),
-                'updated_at' => now()
             ]
         ]);
         

@@ -7,18 +7,7 @@ class SetupValuesSeeder extends Seeder
 {
     public function run()
     {
-        $languages = [
-            'English',
-            'Spanish',
-            'French',
-            'German',
-            'Mandarin',
-            'Arabic',
-            'Hindi',
-            'Portuguese',
-            'Bengali',
-            'Russian'
-        ];
+
 
         $genders = [
             'Female',
@@ -31,6 +20,19 @@ class SetupValuesSeeder extends Seeder
             'Gender Queer / Gender Fluid',
             'Third Gender',
             'Prefer Not to Say'
+        ];
+
+        $languages = [
+            'English',
+            'Spanish',
+            'French',
+            'German',
+            'Mandarin',
+            'Arabic',
+            'Hindi',
+            'Portuguese',
+            'Bengali',
+            'Russian'
         ];
 
         $ethnicities = [
