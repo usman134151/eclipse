@@ -276,7 +276,7 @@
 												<input class="form-control" type="file" id="file">
 											</div>
 
-											<div class="col-lg-12 mb-4">
+											<div class="col-lg-12 mb-5">
 												<div class="row">
 													<div class="col-lg-6 pe-lg-5">
 														<label class="form-label">Tags</label>
@@ -289,7 +289,7 @@
 												</div>
 											</div>
 
-											<div class="col-lg-12 mb-4">
+											<div class="col-lg-12 mt-5 mb-4">
 												<div class="row">
 													<div class="col-lg-6 pe-lg-5 mb-4">
 														<h2>Default Billing Address</h2>
@@ -414,7 +414,7 @@
 												</div>
 											</div>
 
-											<div class="col-lg-12 mb--4">
+											<div class="col-lg-12 mb-4">
 												<div class="form-check mb-lg-0">
 													<input class="form-check-input" type="checkbox" value="" id="HideDepartmentfromProvider">
 													<label class="form-check-label" for="HideDepartmentfromProvider">
@@ -442,10 +442,8 @@
 												<button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
 													Cancel
 												</button>
-                                                <a href="/admin/customer">
-												<button type="submit" class="btn btn-primary rounded">
+                                                <a href="/admin/customer" class="btn btn-primary rounded">
 													Save & Exit
-												</button>
                                             </a>
 												<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('permission-configurations')">
 													Next
@@ -677,7 +675,7 @@
 												</div>
 											</div>
 
-											<div class="col-lg-12 mb-4">
+											<div class="col-lg-12 mt-1 mb-4">
 												<label class="form-label" for="industry-column">
 													Assigned Admin-Staff
 												</label>
