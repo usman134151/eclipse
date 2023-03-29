@@ -74,8 +74,10 @@
 			<i data-feather="arrow-up"></i>
 		</button>
 		{{-- END: Footer --}}
-		@include('partials/panels')
-		@include('partials/modals')
+		{{-- Updated by Sohail Asghar to comment out un-useful panels and modals file --}}
+		{{-- @include('partials/panels') --}}
+		{{-- @include('partials/modals') --}}
+		{{-- End of update by Sohail Asghar --}}
 		@include('modals/global/savebrowserpopup')
 		
 		<script src="/tenant/js/jquery-3.6.3.min.js"></script>

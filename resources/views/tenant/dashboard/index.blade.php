@@ -1,8 +1,7 @@
-@extends('layouts.tenant', ['title' => 'Blog'])
+@extends('layouts.tenant', ['title' => 'Dashboard'])
 
 @section('content')
-
-    <!-- BEGIN: Content-->
- @livewire('app.common.dashboard')
-    <!-- End: Content-->
+{{-- BEGIN: Content --}}
+@livewire('app.common.dashboard')
+{{-- End: Content --}}
 @endsection

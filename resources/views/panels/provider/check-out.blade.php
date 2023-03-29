@@ -1,4 +1,4 @@
-<x-off-canvas show="offcanvasOpenCheckOut" :allowBackdrop="false">
+<x-off-canvas show="offcanvasOpenCheckOut">
 	<x-slot name="title">Check-Out # 100995-6</x-slot>
   <div class="js-ps-container-check-out">
       <!-- BEGIN: Step 1 -->

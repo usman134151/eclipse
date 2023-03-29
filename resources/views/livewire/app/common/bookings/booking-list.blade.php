@@ -1,4 +1,4 @@
-<div x-data="{rescheduleBooking: false}">
+<div x-data="{ rescheduleBooking: false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -7,6 +7,34 @@
         </div>
     </div>
     @if ($showBookingDetails)
+    <div class="content-header row">
+		<div class="content-header-left col-md-9 col-12 mb-2">
+			<div class="row breadcrumbs-top">
+				<div class="col-12">
+					<h1 class="content-header-title float-start mb-0">
+						Assignment Details
+					</h1>
+					<div class="breadcrumb-wrapper">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="#">
+									<x-icon name="home"/>
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								<a href="javascript:void(0)">
+									Assignments
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								Assignment Details
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     @livewire('app.common.bookings.booking-details')
     @else
     {{-- BEGIN: Content --}}
@@ -333,8 +361,14 @@
         </div>
     </div>
     @endif
-    @include('modals.assign-provider-team')
+    @include('panels.booking-details.reschedule-booking')
     @include('modals.common.confirm-completion')
-	@include('panels.booking-details.reschedule-booking')
+    @include('modals.admin-staff')
+	@include('modals.assign-provider-team')
+	@include('modals.meeting-links')
+	@include('modals.provider-message')
+	@include('modals.unassign')
+	@include('modals.common.review-feedback')
+	@include('modals.common.available-timeslot')
 </div>
 {{-- End: Content --}}

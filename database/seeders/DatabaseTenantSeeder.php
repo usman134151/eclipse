@@ -1,6 +1,5 @@
 <?php
 
-use Database\Seeders\BookingsSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseTenantSeeder extends Seeder
@@ -19,6 +18,6 @@ class DatabaseTenantSeeder extends Seeder
       $this->call(notification_templatesSeeder::class);
       $this->call(sms_seeder::class);
       $this->call(TemplateSeeder::class);
-      $this->call(BookingsSeeder::class);
+
     }
 }
