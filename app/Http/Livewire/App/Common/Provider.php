@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
+use App\Services\ExportDataFile;
 
 class Provider extends Component
 {
@@ -10,6 +11,17 @@ class Provider extends Component
 	public $showProfile;
 
 	protected $listeners = ['showList'=>'resetForm'];
+	protected $exportDataFile;
+
+    public function __construct()
+    {
+        $this->exportDataFile = new ExportDataFile;
+    }
+
+    public function downloadExportFile()
+    {
+        return $this->exportDataFile->generateExcelTemplate();
+    }
 
 	public function render()
 	{
@@ -33,4 +45,5 @@ class Provider extends Component
 	{
 		$this->showProfile = true;
 	}
+ 
 }
