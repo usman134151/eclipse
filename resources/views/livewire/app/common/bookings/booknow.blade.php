@@ -592,7 +592,7 @@
                           <a href="#" class="btn btn-primary btn-sm rounded js-show-start-service-hidden-content">End Address</a>
                         </div>
                       </div>
-                      <div class="js-start-service-hidden-content">
+                      <div class="js-start-service-hidden-content hidden">
                         <!-- Button trigger modal | Add Address POPUP-->
                         <div class="col-lg-12 text-lg-end">
                           <div class="mb-4">
