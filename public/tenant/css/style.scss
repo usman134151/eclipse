@@ -540,6 +540,7 @@ div[data-bs-toggle="collapse"] {
 	    transition-duration: 0.5s;
 	    opacity: 1 !important;
 	    visibility: visible !important;
+	    transform: translateX(110%) !important;
 	    &.show {
 	    	transform: translateX(0%) !important;
 	    }
