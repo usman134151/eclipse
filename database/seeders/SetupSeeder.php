@@ -17,15 +17,34 @@ class SetupSeeder extends Seeder
      }
     public function run()
     {
+
         DB::table('setup')->insert([
-            'setup_value' => 'Gender',
-            'created_at' => now(),
-            'updated_at' => now()
+            [
+                'setup_value' => 'Languages',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'setup_value' => 'Gender',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'setup_value' => 'Ethnicity',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'setup_value' => 'Timezone',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'setup_value' => 'Countries',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
-        DB::table('setup')->insert([
-            'setup_value' => 'Languages',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        
     }
 }

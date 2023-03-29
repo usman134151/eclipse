@@ -31,6 +31,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(NotificationResponse::class);
       $this->call(BookingsSeeder::class); //added records in booking table by Sohail
       $this->call(SetupSeeder::class); //added records in booking table by Amna Bilal
+      $this->call(SetupValuesSeeder::class); //added records in booking table by Amna Bilal
       
     }
 }
