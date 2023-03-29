@@ -1,0 +1,31 @@
+<?php
+namespace Database\Seeders;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+class SetupSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+     public function __construct()
+     {
+         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+         DB::table('setup')->truncate();
+         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+     }
+    public function run()
+    {
+        DB::table('setup')->insert([
+            'setup_value' => 'Gender',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('setup')->insert([
+            'setup_value' => 'Languages',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+    }
+}
