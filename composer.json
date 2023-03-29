@@ -20,6 +20,8 @@
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^2.0",
+        "maatwebsite/excel": "^1.1",
+        "phpoffice/phpspreadsheet": "^1.28",
         "power-components/livewire-powergrid": "^3.7",
         "stancl/tenancy": "^3.5",
         "tightenco/nova-stripe": "^1.0",

@@ -53,16 +53,22 @@
 									<div class="row">
 										<div class="col-md-12 mb-md-2">
 											<div class="row">
-												<div class="col-md-3 ms-auto text-end mb-3">
+												<div class="col-md-6 ms-auto text-end mb-3">
 													<a href="#" wire:click="showForm" class="btn btn-primary rounded">
 														<x-icon name='plus'/>
 														Add Provider
 													</a>
+													<a href="#"  wire:click.prevent="downloadExportFile()" class="btn btn-primary rounded">
+														Download Import File
+														
+													</a>
+													
 												</div>
 											</div>
 										</div>
 									</div>
 									<x-advancefilters/>
+									
 									<div class="d-flex justify-content-between mb-2">
 										<div class="d-inline-flex align-items-center gap-4">
 											<label for="show_records_number" class="form-label">
