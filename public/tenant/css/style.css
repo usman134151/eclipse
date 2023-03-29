@@ -642,7 +642,8 @@ div[data-bs-toggle="collapse"][aria-expanded="true"] .icon-arrow-bottom {
   display: flex !important;
   transition-duration: 0.5s;
   opacity: 1 !important;
-  visibility: visible !important; }
+  visibility: visible !important;
+  transform: translateX(110%) !important; }
   .offcanvas.offcanvas-end.show {
     transform: translateX(0%) !important; }
 
