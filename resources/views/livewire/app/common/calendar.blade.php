@@ -1,12 +1,20 @@
-<div x-data="{ assignmentDetails: false, addReimbursement: false, step: 1 }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
+<div x-data="{ bookingDetails: false }"> {{-- Updated by Sohail Asghar to link bookings detail panel --}}
 	<div id='calendar-container' wire:ignore>
 		<div id='calendar'></div>
 	</div>
 	{{-- Updated by Sohail Asghar to link bookings detail panel --}}
-	@include('panels.common.assignment-details')
-	@include('panels.provider.add-reimbursement')
-	@include('modals.common.running-late')
-	@include('modals.return-assignment')
+	@include('panels.booking-details.admin-booking-details')
+	<template x-if="bookingDetails">
+		<div>
+			@include('modals.admin-staff')
+			@include('modals.assign-provider-team')
+			@include('modals.meeting-links')
+			@include('modals.provider-message')
+			@include('modals.unassign')
+			@include('modals.common.review-feedback')
+			@include('modals.common.available-timeslot')
+		</div>
+	</template>	
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
@@ -38,7 +46,7 @@
 			dayMaxEvents: true,	// allow "more" link when too many events
 			events: JSON.parse(data),
 			eventDidMount: function(info) {
-				$(info.el).attr('x-on:click', 'assignmentDetails = true');
+				$(info.el).attr('x-on:click', 'bookingDetails = true');
 				// $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
 				// let event = info.event;
 				// startDate = moment(event.start).format('MM/DD/YY');
