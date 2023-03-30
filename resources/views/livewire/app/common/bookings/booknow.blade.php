@@ -866,11 +866,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 2:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -882,11 +892,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 4:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -911,11 +931,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 2:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -927,6 +957,11 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 4:</div>
                             </div>
@@ -935,11 +970,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 5:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
