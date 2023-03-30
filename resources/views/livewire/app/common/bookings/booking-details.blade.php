@@ -1,32 +1,4 @@
-<div x-data="{addDocuments: false, assignProvider: false}">
-	<div class="content-header row">
-		<div class="content-header-left col-md-9 col-12 mb-2">
-			<div class="row breadcrumbs-top">
-				<div class="col-12">
-					<h1 class="content-header-title float-start mb-0">
-						Assignment Details
-					</h1>
-					<div class="breadcrumb-wrapper">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item">
-								<a href="#">
-									<x-icon name="home"/>
-								</a>
-							</li>
-							<li class="breadcrumb-item">
-								<a href="javascript:void(0)">
-									Assignments
-								</a>
-							</li>
-							<li class="breadcrumb-item">
-								Assignment Details
-							</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div x-data="{ rescheduleBooking: false, addDocuments: false, assignProvider: false }">
 	<div class="content-body">
 		<div class="card">
 			<div class="card-body">
@@ -2858,8 +2830,9 @@
 		  </div>
 		</div>
 	  </div>
+	  {{-- Updated by Sohail Asghar to comment out duplicate modals code --}}
 	  <!-- Modal - Provider Message -->
-	  <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+	  {{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -2879,10 +2852,10 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
+	  </div> --}}
 	  <!-- /Modal - Provider Message -->
 	  <!-- Modal - Provider Message -->
-	  <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
+	  {{-- <div class="modal fade" id="ProviderMessageModal" tabindex="-1" aria-labelledby="ProviderMessageModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -2902,10 +2875,10 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
+	  </div> --}}
 	  <!-- /Modal - Provider Message -->
 	  <!-- Modal - Meeting Links -->
-	  <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel" aria-hidden="true">
+	  {{-- <div class="modal fade" id="MeetingLinksModal" tabindex="-1" aria-labelledby="MeetingLinksModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -2941,10 +2914,10 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
+	  </div> --}}
 	  <!-- /Modal - Meeting Links -->
 	  <!-- Modal - Unassign -->
-	  <div class="modal fade" id="UnassignModal" tabindex="-1" aria-labelledby="UnassignModalLabel" aria-hidden="true">
+	  {{-- <div class="modal fade" id="UnassignModal" tabindex="-1" aria-labelledby="UnassignModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-md">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -2996,12 +2969,11 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
+	  </div> --}}
 	  <!-- /Modal - Unassign -->
-	  @include('panels.booking-details.assign-providers')
-      @include('modals.assign-provider-team')
-      @include('modals.admin-staff')
-	  @include('modals.common.review-feedback')
-	  @include('modals.common.available-timeslot')
-	  @include('panels.common.add-documents')
+	  {{-- End of update by Sohail Asghar --}}
+	@include('panels.booking-details.reschedule-booking')
+	@include('panels.common.add-documents')
+	@include('panels.booking-details.assign-providers')
+
 </div>
