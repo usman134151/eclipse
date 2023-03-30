@@ -1018,31 +1018,39 @@
                   <!-- /Payment Notes -->
                 </div>
               </div>
-              <div class="row">
+              <div class="row between-section-segment-spacing">
                 <div class="col-lg-12">
-                  <div class="d-flex gap-3 p-2">
-                    <label class="form-label mb-0">Discount:</label> <div class="align-self-center text-black">$00.00</div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="d-flex gap-3 p-2">
+                        <label class="form-label mb-0">Discount:</label> <div class="align-self-center text-black">$00.00</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="row mb-4">
-                <div class="col-lg-12">
-                  <div class="d-flex gap-3 bg-gray p-2">
-                    <label class="form-label mb-0">Total Price:</label> <div class="align-self-center text-black">$00.00</div>
+                  <div class="row mb-4">
+                    <div class="col-lg-12">
+                      <div class="d-flex gap-3 bg-gray p-2">
+                        <label class="form-label mb-0">Total Price:</label> <div class="align-self-center text-black">$00.00</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
+                        <div class="col-md-3 mb-3 mb-md-0">
+                          <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
+                        </div>
+                        <div class="col-md-3 align-self-center">
+                          <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="row mb-5">
-                    <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
-                    <div class="col-md-3 mb-3 mb-md-0">
-                      <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
-                    </div>
-                    <div class="col-md-3 align-self-center">
-                      <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
-                    </div>
-                  </div>
                   <!-- Payment Preference -->
                   <div class="row mb-5">
                     <h2>Payment Preference:</h2>
@@ -1073,7 +1081,7 @@
               </div>
               <div class="row">
                 <div class="col-lg-11">
-                  <div class="row mb-4">
+                  <div class="row between-section-segment-spacing">
                     <div class="col-lg-6 mb-4">
                       <!-- Provider Notes -->
                       <div class="my-lg-5">
