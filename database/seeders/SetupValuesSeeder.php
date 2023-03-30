@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\DB;
 
 class SetupValuesSeeder extends Seeder
 {
+    public function __construct()
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('setup_values')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+    }
     public function run()
     {
 
