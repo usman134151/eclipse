@@ -37,7 +37,6 @@
         <div class="row my-4">
             <h3>Preview</h3>
             <div class="col-md-2">
-                
                 <div class="position-relative">
                   <img src="/tenant/images/img-placeholder-document.jpg"/>
                   <div class="position-absolute top-0 start-100">
