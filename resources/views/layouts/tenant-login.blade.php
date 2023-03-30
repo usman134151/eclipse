@@ -10,11 +10,11 @@
 
     <title>Eclipse Scheduling  | Login Page</title>
 
-    <link rel="stylesheet" href="tenant/css/bootstrap.min.css">
-    <link rel="stylesheet" href="tenant/css/colors.css">
-    <link rel="stylesheet" href="tenant/css/components.css">
-    <link rel="stylesheet" href="tenant/css/bootstrap-extended.css">
-    <link rel="stylesheet" href="tenant/css/style.css">
+    <link rel="stylesheet" href="/tenant/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tenant/css/colors.css">
+    <link rel="stylesheet" href="/tenant/css/components.css">
+    <link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
+    <link rel="stylesheet" href="/tenant/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
     </div>
     <!-- END: Content-->
     {{-- <script src="/tenant/js/jquery-3.6.3.min.js"></script> --}}
-    <script type="text/javascript" src="tenant/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/tenant/js/bootstrap.bundle.min.js"></script>
     <script src="/tenant/js/feather-icons.min.js"></script>
     <script src="/tenant/js/alpinejs-3.11.1.js"></script>
     <script src="/tenant/js/common.js"></script>
