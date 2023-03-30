@@ -17,6 +17,7 @@ class BookingsSeeder extends Seeder
 		DB::table('bookings')->delete();
 
 		DB::table('bookings')->updateOrInsert(
+			['booking_number' => '102014'],
 			[
 				'booking_number' => '102014',
 				'user_id' => '1',
@@ -67,6 +68,7 @@ class BookingsSeeder extends Seeder
 		);
 
 		DB::table('bookings')->updateOrInsert(
+			['booking_number' => '102015'],
 			[
 				'booking_number' => '102015',
 				'user_id' => '1',
@@ -117,6 +119,7 @@ class BookingsSeeder extends Seeder
 		);
 
 		DB::table('bookings')->updateOrInsert(
+			['booking_number' => '102016'],
 			[
 				'booking_number' => '102016',
 				'user_id' => '1',
@@ -167,6 +170,7 @@ class BookingsSeeder extends Seeder
 		);
 
 		DB::table('bookings')->updateOrInsert(
+			['booking_number' => '102017'],
 			[
 				'booking_number' => '102017',
 				'user_id' => '1',
@@ -217,6 +221,7 @@ class BookingsSeeder extends Seeder
 		);
 
 		DB::table('bookings')->updateOrInsert(
+			['booking_number' => '102018'],
 			[
 				'booking_number' => '102018',
 				'user_id' => '1',
@@ -267,6 +272,7 @@ class BookingsSeeder extends Seeder
 		);
 
 		DB::table('bookings')->updateOrInsert(
+			['booking_number' => '102019'],
 			[
 				'booking_number' => '102019',
 				'user_id' => '1',
