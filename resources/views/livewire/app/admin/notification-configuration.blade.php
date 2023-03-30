@@ -118,28 +118,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- ... -->
-								<div class="row">
-									<div class="d-flex justify-content-between mb-2">
-										<div class="d-inline-flex align-items-center gap-4">
-											<label for="show_records_number" class="form-label">
-												Show
-											</label>
-											<select class="form-select" id="show_records_number">
-												<option>10</option>
-												<option>15</option>
-												<option>20</option>
-												<option>25</option>
-											</select>
-										</div>
-										<div class="d-inline-flex align-items-center gap-4">
-											<label for="search" class="form-label fw-semibold">
-												Search
-											</label>
-											<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-										</div>
-									</div>
-								</div>
 								<!-- ...... -->
 						    	@livewire('app.common.lists.notification-configuration',key(Str::random(10))) 						
 							</div>
