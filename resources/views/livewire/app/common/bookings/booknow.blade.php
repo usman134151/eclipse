@@ -76,7 +76,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row mb-5">
+              <div class="row section-segment-spacing">
                 <div class="col-lg-6 mb-4 pe-lg-5">
                   <div class="d-flex justify-content-between align-items-center">
                     <label class="form-label">Company <span class="mandatory">*</span></label>
@@ -140,7 +140,7 @@
                   <input type="" class="form-control" placeholder="Enter Phone Number">
                 </div>
               </div>
-              <div class="row mb-5">
+              <div class="row section-segment-spacing">
                 <div class="col-lg-12" x-data="{ open: true }">
                   <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                     <div class="form-check form-switch form-switch-column mb-lg-0">
@@ -164,7 +164,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row mb-5">
+              <div class="row section-segment-spacing">
                 <!-- Service Information -->
                 <div class="col-lg-12 mb-4">
                   <h2>Service Information</h2>
@@ -258,7 +258,7 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-12" x-data="{ open: true }">
-                        <div class="row mb-5">
+                        <div class="row inner-section-segment-spacing">
                           <div class="col-lg-12">
                             <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                               <div class="form-check form-switch form-switch-column mb-lg-0">
@@ -391,13 +391,13 @@
                 </div>
                 <!-- /Service Information -->
               </div>
-              <div class="row mb-5">
+              <div class="row section-segment-spacing">
                 <!-- Select Dates & Times -->
                 <div class="col-lg-12 mb-4">
                   <h2>Select Dates & Times</h2>
                   <!-- Select Dates & Times Duplicate Block -->
                   <div class="duplicate-block">
-                    <h2>Date & Time 1</h2>
+                    <h3 class="text-primary">Date & Time 1</h3>
                     <div class="d-md-flex flex-md-wrap justify-content-between">
                       <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                         <label class="form-label-sm" for="set_time_zone">Set Time Zone <span class="mandatory">*</span></label>
@@ -490,7 +490,7 @@
                 </div>
                 <!-- /Select Dates & Times -->
               </div>
-              <div class="row mb-5">
+              <div class="row section-segment-spacing">
                 <div class="col-lg-12">
                   <!-- Physical Address -->
                   <div class="row mb-4">
@@ -677,7 +677,7 @@
                 <div class="col-md-12 mb-md-2">
                   <h2>Industry Form</h2>
                   <!-- Industry Form Begin -->
-                  <div class="row mb-5">
+                  <div class="row section-segment-spacing">
                     <div class="col-md-12 col-12">
                       <h3>Computer Science</h3>
                     </div>
@@ -866,11 +866,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 2:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -882,11 +892,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 4:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -911,11 +931,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 2:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -927,6 +957,11 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 4:</div>
                             </div>
@@ -935,11 +970,21 @@
                             </div>
                           </div>
                           <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
+                            </div>
+                          </div>
+                          <div class="row">
                             <div class="col-6">
                               <div class="label">Booking 5:</div>
                             </div>
                             <div class="col-6">
                               <div class="date">01/12/2022</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <hr class="border-separate-sm">
                             </div>
                           </div>
                           <div class="row">
@@ -973,31 +1018,39 @@
                   <!-- /Payment Notes -->
                 </div>
               </div>
-              <div class="row">
+              <div class="row between-section-segment-spacing">
                 <div class="col-lg-12">
-                  <div class="d-flex gap-3 p-2">
-                    <label class="form-label mb-0">Discount:</label> <div class="align-self-center text-black">$00.00</div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="d-flex gap-3 p-2">
+                        <label class="form-label mb-0">Discount:</label> <div class="align-self-center text-black">$00.00</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="row mb-4">
-                <div class="col-lg-12">
-                  <div class="d-flex gap-3 bg-gray p-2">
-                    <label class="form-label mb-0">Total Price:</label> <div class="align-self-center text-black">$00.00</div>
+                  <div class="row mb-4">
+                    <div class="col-lg-12">
+                      <div class="d-flex gap-3 bg-gray p-2">
+                        <label class="form-label mb-0">Total Price:</label> <div class="align-self-center text-black">$00.00</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
+                        <div class="col-md-3 mb-3 mb-md-0">
+                          <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
+                        </div>
+                        <div class="col-md-3 align-self-center">
+                          <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="row mb-5">
-                    <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override Amount:</label>
-                    <div class="col-md-3 mb-3 mb-md-0">
-                      <input type="" name="" class="form-control form-control-md text-center" placeholder="$00.00">
-                    </div>
-                    <div class="col-md-3 align-self-center">
-                      <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
-                    </div>
-                  </div>
                   <!-- Payment Preference -->
                   <div class="row mb-5">
                     <h2>Payment Preference:</h2>
@@ -1028,7 +1081,7 @@
               </div>
               <div class="row">
                 <div class="col-lg-11">
-                  <div class="row mb-4">
+                  <div class="row between-section-segment-spacing">
                     <div class="col-lg-6 mb-4">
                       <!-- Provider Notes -->
                       <div class="my-lg-5">

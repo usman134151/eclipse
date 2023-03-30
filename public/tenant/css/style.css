@@ -1520,4 +1520,13 @@ small {
 .fc-direction-ltr .fc-timegrid-slot-label-frame {
   text-align: center !important; }
 
+.between-section-segment-spacing {
+  margin-bottom: 3.5rem; }
+
+.inner-section-segment-spacing {
+  margin-bottom: 3rem; }
+
+hr.border-separate-sm {
+  margin: 0; }
+
 /*# sourceMappingURL=style.css.map */
