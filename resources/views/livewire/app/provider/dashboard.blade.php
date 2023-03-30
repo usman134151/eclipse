@@ -1111,4 +1111,10 @@
     </div>
   </div>
 </div>
+<style>
+	.tab-content>.active {
+		display: contents !important;
+	}
+	
+	</style>
 <!-- END: Modal Map -->
