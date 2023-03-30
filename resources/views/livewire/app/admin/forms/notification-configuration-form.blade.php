@@ -15,6 +15,7 @@
                           <label class="form-label" for="name-column">Name</label>
                           <input type="text" id="name-column" class="form-control" name="name-column"
                             placeholder="Enter Name" />
+                      
                       </div>
                       <div class="col-lg-5 ps-lg-4 mb-4">
                           <label class="form-label" for="gender-column">Select Trigger</label>
@@ -422,7 +423,7 @@
                   <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button" wire:click.prevent="showList">
                   Cancel
                   </a>
-                  <button type="submit" class="btn btn-primary rounded">Save</button>
+                  <button type="submit" class="btn btn-primary rounded" wire:click.prevent="showList">Save</button>
                   <button type="submit" class="btn btn-primary rounded">Next</button>
                 </div>
             </div>

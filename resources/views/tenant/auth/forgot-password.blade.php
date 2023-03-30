@@ -22,10 +22,25 @@
 				<input type="hidden" class="is_login" name="is_login" value="0">
 				<div class="mb-1 loginF">
 					<label class="form-label" for="email">Email</label>
-					<input type="text" name="email" id="email" class="form-control" required aria-required="true" placeholder="Email address" autofocus>
+					<input
+						type="text"
+						name="email"
+						id="email"
+						class="form-control @error('email') border-danger border-2 @enderror"
+						required
+						aria-required="true"
+						placeholder="Email address"
+						autofocus
+						value="{{ $email ?? old('email') }}"
+					>
+					@if ($errors->has('email'))
+						<span class="d-inline-block invalid-feedback fw-semibold mt-2">
+							{{ $errors->first('email') }}
+						</span>
+					@endif
 				</div>
 				<button name="login" id="login" type="submit" class="btn btn-primary w-100 mt-2">
-					Send reset link
+					Send Password Reset Link
 				</button>
 			</form>
 			<p class="text-center mt-2">

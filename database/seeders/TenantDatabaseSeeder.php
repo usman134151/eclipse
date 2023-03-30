@@ -34,6 +34,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(SetupValuesSeeder::class); //added records in setup values table by Amna Bilal
       $this->call(ProviderSeeder::class); //added records for providers table by Amna Bilal
       $this->call(CustomerSeeder::class); //added records for customer table by Shanilla Wali
+      $this->call(Coupons_Seeder::class); //added records for customer table by Safia Liaqat
 
     }
 

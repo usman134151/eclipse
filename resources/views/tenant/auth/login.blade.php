@@ -31,6 +31,13 @@
 			{{-- <p class='mt-2 text-sm text-red-600'>{{$errors->first('loginError')}}</p> --}}
 			@endif
 
+			@if (session('message'))
+				<div class="alert alert-success alert-dismissible fade show p-3" role="alert">
+					{{ session('message') }}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			@endif
+
 			<form method="POST" action="{{ route('tenant.login') }}" name="loginForm" onsubmit="return handleValidation()">
 				@csrf
 				<div class="mb-3">

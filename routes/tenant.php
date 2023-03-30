@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckSubscription;
 use Stancl\Tenancy\Features\UserImpersonation;
 use App\Http\Controllers\Tenant as Controllers;
+use App\Http\Controllers\Tenant\Auth\ForgotPasswordController;
 use App\Http\Controllers\Tenant\Auth\OtpController;
 use App\Http\Controllers\Tenant\Auth\LoginController;
 use App\Http\Controllers\Tenant\Common\BrowserHandleController;
@@ -212,5 +213,7 @@ Route::group([
 		Route::post('/saveBrowser', [BrowserHandleController::class,'store']);
 	});
 
-	Route::any('/forgot-password', [LoginController::class, 'forgotPassword'])->name('forgot-password');Route::any('/reset-forgot-password/{securityToken}', [LoginController::class, 'resetForgotPassword'])->name('reset-forgot-password');
+	Route::any('/forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('forgot.password');
+	Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+	Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 });

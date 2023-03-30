@@ -3,13 +3,28 @@
 namespace App\Http\Livewire\App\Admin\Forms;
 
 use Livewire\Component;
+use App\Models\Tenant\NotificationTemplates;
 
 class NotificationConfigurationForm extends Component
 {
-	public function showList()
+	public $notification;
+	protected $listeners = ['editRecord' => 'edit'];
+
+	public function mount(NotificationTemplates $notification){
+        $this->notification=$notification;
+    }
+
+
+	public function showList($message="")
 	{
-		$this->emit('showList');
+		$this->emit('showList',$message);
 	}
+
+	public function edit(NotificationTemplates $notification){
+        $this->notification=$notification;    
+       
+    }
+
 
 	public function render()
 	{
