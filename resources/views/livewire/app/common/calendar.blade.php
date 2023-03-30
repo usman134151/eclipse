@@ -52,15 +52,15 @@
 				// $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
 				let event = info.event;
 				startDate = moment(event.start).format('MMMM DD, YYYY');
-				var tooltip = new bootstrap.Popover(info.el, {
-					title: startDate,
-					content: info.event.extendedProps.description,
-					placement: 'right',
-					trigger: 'hover',
-					container: 'body',
-					html: true,
-					// delay: {"show":0, "hide":1000}
-				});
+				// var tooltip = new bootstrap.Popover(info.el, {
+				// 	title: startDate,
+				// 	content: info.event.extendedProps.description,
+				// 	placement: 'right',
+				// 	trigger: 'hover',
+				// 	container: 'body',
+				// 	html: true,
+				// 	// delay: {"show":0, "hide":1000}
+				// });
 			},
 			editable: true,
 			selectable: true,
