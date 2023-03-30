@@ -18,8 +18,8 @@
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.4/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.5/index.global.min.js"></script>
 
 <script>
 	document.addEventListener('livewire:load', function() {
@@ -45,17 +45,22 @@
 			// weekNumbers: true, // shows weeknumber
 			dayMaxEvents: true,	// allow "more" link when too many events
 			events: JSON.parse(data),
+			eventDisplay: 'block',
 			eventDidMount: function(info) {
 				$(info.el).attr('x-on:click', 'bookingDetails = true');
+				$(info.el).attr('tabindex', '0');
 				// $(info.el).attr('data-id',info.event.id); // When off canvas panel will be dynamic
-				// let event = info.event;
-				// startDate = moment(event.start).format('MM/DD/YY');
-				var tooltip = new bootstrap.Tooltip(info.el, {
-					title: info.event.extendedProps.phone,
-					placement: 'bottom',
-					trigger: 'hover focus',
-					container: 'body',
-				});
+				let event = info.event;
+				startDate = moment(event.start).format('MMMM DD, YYYY');
+				// var tooltip = new bootstrap.Popover(info.el, {
+				// 	title: startDate,
+				// 	content: info.event.extendedProps.description,
+				// 	placement: 'right',
+				// 	trigger: 'hover',
+				// 	container: 'body',
+				// 	html: true,
+				// 	// delay: {"show":0, "hide":1000}
+				// });
 			},
 			editable: true,
 			selectable: true,
@@ -70,14 +75,14 @@
 			},
 			// eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
 			loading: function(isLoading) {
-				if (!isLoading) {
-					// Reset custom events
-					this.getEvents().forEach(function(e) {
-						if (e.source === null) {
-							e.remove();
-						}
-					});
-				}
+				// if (!isLoading) {
+				// 	// Reset custom events
+				// 	this.getEvents().forEach(function(e) {
+				// 		if (e.source === null) {
+				// 			e.remove();
+				// 		}
+				// 	});
+				// }
 			}
 		});
 
