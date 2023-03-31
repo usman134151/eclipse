@@ -48,7 +48,12 @@
 						</div>
 						<div class="col-md-3 ms-auto text-end">
 						  <a href="javascript:void(0)" class="btn btn-primary rounded" wire:click="showForm">
-							<x-icon name="plus"/>
+							{{-- Updated by Shanila to Add svg icon--}}
+                            <svg aria-label="Add New Role" width="20" height="20"
+                            viewBox="0 0 20 20">
+                            <use xlink:href="/css/common-icons.svg#plus"></use>
+                        </svg>
+                        {{-- End of update by Shanila --}}
 							<span class="ms-2">Add New Role</span></a>
 						</div>
 						</div>
@@ -90,10 +95,22 @@
 								<td>
 								  <div class="d-flex actions">
 									<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<x-icon name="pencil"/>
+										{{-- Updated by Shanila to Add svg icon--}}
+                                        <svg title="Edit" width="20" height="20"
+                                        viewBox="0 0 20 20">
+                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                        </use>
+                                    </svg>
+                                    {{-- End of update by Shanila --}}
 									</a>
 									<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<x-icon name="recycle-bin"/>
+										{{-- Updated by Shanila to Add svg icon--}}
+                                        <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                            <use
+                                                xlink:href="/css/common-icons.svg#recycle-bin">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
 									</a>
 								  </div>
 								</td>
@@ -106,13 +123,25 @@
 								<td class="text-center">04/22/2016</td>
 								 <td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="pencil"/>
-										</a>
-										<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="recycle-bin"/>
-										</a>
-									  </div>
+                                        <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg title="Edit" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <use xlink:href="/css/common-icons.svg#pencil">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
+                                        </a>
+                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                        </a>
+                                      </div>
 								</td>
 							  </tr>
 
@@ -123,13 +152,25 @@
 								<td class="text-center">04/22/2016</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="pencil"/>
-										</a>
-										<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="recycle-bin"/>
-										</a>
-									  </div>
+                                        <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg title="Edit" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <use xlink:href="/css/common-icons.svg#pencil">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
+                                        </a>
+                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                        </a>
+                                      </div>
 								</td>
 							  </tr>
 
@@ -140,13 +181,25 @@
 								<td class="text-center">04/22/2016</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="pencil"/>
-										</a>
-										<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="recycle-bin"/>
-										</a>
-									  </div>
+                                        <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg title="Edit" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <use xlink:href="/css/common-icons.svg#pencil">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
+                                        </a>
+                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                        </a>
+                                      </div>
 								</td>
 							  </tr>
 
@@ -157,13 +210,25 @@
 								<td class="text-center">04/22/2016</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="pencil"/>
-										</a>
-										<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="recycle-bin"/>
-										</a>
-									  </div>
+                                        <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg title="Edit" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <use xlink:href="/css/common-icons.svg#pencil">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
+                                        </a>
+                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                        </a>
+                                      </div>
 								</td>
 							  </tr>
 
@@ -174,13 +239,25 @@
 								<td class="text-center">04/22/2016</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="pencil"/>
-										</a>
-										<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="recycle-bin"/>
-										</a>
-									  </div>
+                                        <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg title="Edit" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <use xlink:href="/css/common-icons.svg#pencil">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
+                                        </a>
+                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                        </a>
+                                      </div>
 								</td>
 							  </tr>
 
@@ -191,13 +268,25 @@
 								<td class="text-center">04/22/2016</td>
 								<td>
 									<div class="d-flex actions">
-										<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="pencil"/>
-										</a>
-										<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-											<x-icon name="recycle-bin"/>
-										</a>
-									  </div>
+                                        <a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg title="Edit" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <use xlink:href="/css/common-icons.svg#pencil">
+                                            </use>
+                                        </svg>
+                                        {{-- End of update by Shanila --}}
+                                        </a>
+                                        <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                        </a>
+                                      </div>
 								</td>
 							  </tr>
 							 </tbody>
@@ -231,7 +320,13 @@
                   <div style="margin-right:10px" class="d-flex actions gap-3 justify-content-end mb-2">
                     <div class="d-flex gap-2 align-items-center">
                         <a href="#" title="Edit staff" aria-label="Edit staff" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <x-icon name="pencil"/>
+                             {{-- Updated by Shanila to Add svg icon--}}
+                             <svg title="Edit" width="20" height="20"
+                             viewBox="0 0 20 20">
+                             <use xlink:href="/css/common-icons.svg#pencil">
+                             </use>
+                         </svg>
+                         {{-- End of update by Shanila --}}
                         </a>
                         <span class="text-sm">
                         Edit staff
@@ -239,7 +334,13 @@
                     </div>
                     <div class="d-flex gap-2 align-items-center">
                         <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon"  data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                           <x-icon name="recycle-bin"/>
+                          {{-- Updated by Shanila to Add svg icon--}}
+                          <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                            <use
+                                xlink:href="/css/common-icons.svg#recycle-bin">
+                            </use>
+                        </svg>
+                        {{-- End of update by Shanila --}}
                           </a>
                         <span class="text-sm">
                             Delete                                                        </span>
