@@ -15,7 +15,11 @@
 				<ol class="breadcrumb">
 				  <li class="breadcrumb-item">
 					<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-						<x-icon name="home"/>
+						{{-- Updated by Shanila to Add svg icon--}}
+                        <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                            <use xlink:href="/css/common-icons.svg#home"></use>
+                        </svg>
+                        {{-- End of update by Shanila --}}
 					</a>
 				  </li>
 				  <li class="breadcrumb-item">
@@ -38,17 +42,17 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link {{ $component == 'system-permissions' ? 'active' : '' }}" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="true"><span class="number">1</span> 
+							<a href="#" class="nav-link {{ $component == 'system-permissions' ? 'active' : '' }}" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="true"><span class="number">1</span>
 								System Permissions
 							</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link {{ $component == 'user-access' ? 'active' : '' }}" :class="{ 'active': tab === 'user-access' }" @click.prevent="tab = 'user-access'" id="user-access-tab" role="tab" aria-controls="user-access" aria-selected="false"><span class="number">2</span> 
+							<a href="#" class="nav-link {{ $component == 'user-access' ? 'active' : '' }}" :class="{ 'active': tab === 'user-access' }" @click.prevent="tab = 'user-access'" id="user-access-tab" role="tab" aria-controls="user-access" aria-selected="false"><span class="number">2</span>
 								User Access
 							</a>
 						</li>
 					</ul>
-	
+
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<!-- BEGIN: System Permissions -->
@@ -80,7 +84,7 @@
 								</div>
 								<div class="col-lg-12">
 									<div class="table-responsive">
-										
+
 	  <table class="table table-hover mb-3">
 		<thead>
 		  <tr>
@@ -128,9 +132,13 @@
 			<tr>
 				<td data-bs-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="dashboard">
 				  <strong>Dashboard</strong>
-				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
-					</svg>
+				  {{-- Updated by Shanila to Add svg icon--}}
+                  <svg aria-label="Dashboard" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+                    <use xlink:href="/css/common-icons.svg#collapse-row">
+                    </use>
+                </svg>
+                {{-- End of update by Shanila --}}
+
 				</td>
 				<td class="">
 				  <div class="form-check">
@@ -194,9 +202,12 @@
 			<tr>
 				<td data-bs-toggle="collapse" href="#chat" role="button" aria-expanded="false" aria-controls="chat">
 				  <strong>Chat</strong>
-				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
-					</svg>
+                    {{-- Updated by Shanila to Add svg icon--}}
+                    <svg aria-label="chat" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+                    <use xlink:href="/css/common-icons.svg#collapse-row">
+                    </use>
+                </svg>
+                {{-- End of update by Shanila --}}
 				</td>
 				<td class="">
 				  <div class="form-check">
@@ -226,9 +237,12 @@
 			  </tr>
 			<td data-bs-toggle="collapse" href="#assignments" role="button" aria-expanded="false" aria-controls="assignments">
 			  <strong>Assignments</strong>
-			  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
-				</svg>
+			  {{-- Updated by Shanila to Add svg icon--}}
+              <svg aria-label="Assignments" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+                <use xlink:href="/css/common-icons.svg#collapse-row">
+                </use>
+            </svg>
+            {{-- End of update by Shanila --}}
 			</td>
 			<td class="">
 			  <div class="form-check">
@@ -354,9 +368,12 @@
 			<td data-bs-toggle="collapse" href="#customers" role="button" aria-expanded="false" aria-controls="customers">
 			  <strong>Customers</strong>
 
-			  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
-				</svg>
+			  {{-- Updated by Shanila to Add svg icon--}}
+              <svg aria-label="Customers" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+                <use xlink:href="/css/common-icons.svg#collapse-row">
+                </use>
+            </svg>
+            {{-- End of update by Shanila --}}
 
 			</td>
 			<td>
@@ -573,9 +590,12 @@
 		  <tr>
 			<td data-bs-toggle="collapse" href="#providers" role="button" aria-expanded="false" aria-controls="providers">
 			  <strong>Providers</strong>
-			  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
-				</svg>
+			  {{-- Updated by Shanila to Add svg icon--}}
+              <svg aria-label="Providers" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+                <use xlink:href="/css/common-icons.svg#collapse-row">
+                </use>
+            </svg>
+            {{-- End of update by Shanila --}}
 			</td>
 			<td>
 			  <div class="form-check">
@@ -914,9 +934,12 @@
 			  <tr>
 				<td data-bs-toggle="collapse" href="#settings" role="button" aria-expanded="false" aria-controls="settings">
 				  <strong> Settings</strong>
-				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
-					</svg>
+				  {{-- Updated by Shanila to Add svg icon--}}
+                  <svg aria-label="Settings" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+                    <use xlink:href="/css/common-icons.svg#collapse-row">
+                    </use>
+                </svg>
+                {{-- End of update by Shanila --}}
 				</td>
 				<td>
 				  <div class="form-check">
@@ -975,7 +998,7 @@
 				  </div>
 				</td>
 			  </tr>
-  {{-- 
+  {{--
 			  <tr>
 				<td data-bs-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
 				  <strong>Business Profile & Settings </strong>
@@ -2089,9 +2112,9 @@
 								<button type="button" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Back</button>
 								<button type="submit" class="btn btn-primary rounded mx-2">Add</button>
 								<button type="submit" class="btn btn-primary rounded" x-on:click="$wire.switch('user-access')">Next</button>
-							</div><!-- /Form Actions --> 
+							</div><!-- /Form Actions -->
 						</div><!-- END: System Permissions -->
-	
+
 						<!-- BEGIN: User Access -->
 						<div class="tab-pane fade {{ $component == 'user-access' ? 'active show' : '' }}" :class="{ 'active show': tab === 'user-access' }" id="user-access" role="tabpanel" aria-labelledby="user-access-tab" tabindex="0" x-show="tab === 'user-access'">
 							<div class="row mb-4">
@@ -2117,9 +2140,12 @@
 													aria-controls="collapseCompaniesCustomerAccess">
 													<div>Companies & Customer Access</div>
 													<a href="#" class="btn btn-primary rounded me-5">
-														<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
-														</svg>
+														{{-- Updated by Shanila to Add svg icon--}}
+                                                        <svg aria-label="add department" width="20" height="20" viewBox="0 0 20 20">
+                                                            <use xlink:href="/css/common-icons.svg#plus">
+                                                            </use>
+                                                        </svg>
+                                                        {{-- End of update by Shanila --}}
 														<span class="ms-2">Add Customer</span>
 													</a>
 												</div>
@@ -2192,21 +2218,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2235,21 +2252,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2278,21 +2286,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2321,21 +2320,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2363,21 +2353,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2406,21 +2387,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2466,7 +2438,7 @@
 													<a href="#" class="btn btn-primary rounded me-5">
 														<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 															<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
-														</svg>	
+														</svg>
 														<span class="ms-2">Add Provider</span>
 													</a>
 												</div>
@@ -2538,21 +2510,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2581,21 +2544,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2624,21 +2578,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2667,21 +2612,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2709,21 +2645,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2752,21 +2679,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2869,8 +2787,8 @@
 																<td>
 																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2882,21 +2800,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2910,8 +2819,8 @@
 																<td>
 																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2924,21 +2833,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2952,8 +2852,8 @@
 																<td>
 																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2966,21 +2866,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2994,8 +2885,8 @@
 																<td>
 																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3008,21 +2899,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3036,8 +2918,8 @@
 																<td>
 																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3049,21 +2931,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3077,8 +2950,8 @@
 																<td>
 																	<a @click="accommodationServicesAccess = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3091,21 +2964,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3206,7 +3070,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3218,21 +3082,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3246,7 +3101,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3259,21 +3114,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3287,7 +3133,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3300,21 +3146,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3328,7 +3165,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3341,21 +3178,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3369,7 +3197,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -3381,21 +3209,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3421,21 +3240,12 @@
 																<td class="text-center">
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
-																		<svg width="19" height="20" viewBox="0 0 19 20"
-																			fill="none" xmlns="http://www.w3.org/2000/svg">
-																			<path
-																				d="M8.99967 9.99984C11.3009 9.99984 13.1663 8.13436 13.1663 5.83317C13.1663 3.53198 11.3009 1.6665 8.99967 1.6665C6.69849 1.6665 4.83301 3.53198 4.83301 5.83317C4.83301 8.13436 6.69849 9.99984 8.99967 9.99984Z"
-																				stroke="black" stroke-width="2" />
-																			<path
-																				d="M13.1666 18.3332H3.38822C3.15187 18.3332 2.91822 18.283 2.70276 18.1859C2.4873 18.0887 2.29497 17.9468 2.13853 17.7697C1.9821 17.5925 1.86513 17.3841 1.79539 17.1583C1.72566 16.9324 1.70475 16.6944 1.73405 16.4598L2.05905 13.8565C2.13463 13.2517 2.42857 12.6953 2.88558 12.292C3.34259 11.8887 3.9312 11.6663 4.54072 11.6665H4.83322"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round" />
-																			<path
-																				d="M17.3332 15.8332L13.1665 11.6665M17.3332 11.6665L13.1665 15.8332"
-																				stroke="black" stroke-width="2"
-																				stroke-linecap="round" />
-																		</svg>
+																		{{-- Updated by Shanila to Add svg icon--}}
+                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+                                                                            <use xlink:href="/css/common-icons.svg#role-user">
+                                                                            </use>
+                                                                        </svg>
+                                                                        {{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
