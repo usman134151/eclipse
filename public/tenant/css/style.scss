@@ -51,6 +51,10 @@ h1, h2, h3, h4, h5, h6 {
 	}	
 }
 
+.header-row {
+	margin-bottom: 1rem;
+}
+
 
 .auth-wrapper {
 	min-height: 100vh;
@@ -1812,5 +1816,15 @@ hr.border-separate-sm {
 	font-weight: 700;
 }
 .main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub > .menu-content {
-	background: #ededed;
+	background: #d7d3d3;
+}
+
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li.sidebar-group-active.menu-collapsed-open > a {
+    background: #0A1E46;
+    box-shadow: none;
+    color: #565656;
+     svg {
+		fill: #ffffff !important;
+	}
 }
