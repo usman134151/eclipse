@@ -132,11 +132,7 @@
 											</small>
 										</a>
 									</div>
-									<select class="select2 form-select" id="gender-column">
-										<option>Male</option>
-										<option>Female</option>
-										<option>Others</option>
-									</select>
+									{!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender', '','gender') !!}
 								</div>
 								<div class="col-lg-6 mb-4 ps-lg-5">
 									<div class="d-flex justify-content-between align-items-center mb-1">
@@ -152,9 +148,8 @@
 											</small>
 										</a>
 									</div>
-									<select class="select2 form-select" id="ethnicity-column">
-										<option>Select Ethnicity</option>
-									</select>
+									{!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity', '','ethnicity') !!}
+
 								</div>
 								<div class="col-lg-6 mb-4 pe-lg-5">
 									<label class="form-label" for="providerID-column">
