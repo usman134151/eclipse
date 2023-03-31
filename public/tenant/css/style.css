@@ -1538,4 +1538,11 @@ hr.border-separate-sm {
 .main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub > .menu-content {
   background: #d7d3d3; }
 
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li.sidebar-group-active.menu-collapsed-open > a {
+  background: #0A1E46;
+  box-shadow: none;
+  color: #565656; }
+  .vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li.sidebar-group-active.menu-collapsed-open > a svg {
+    fill: #ffffff !important; }
+
 /*# sourceMappingURL=style.css.map */
