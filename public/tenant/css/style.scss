@@ -1804,3 +1804,13 @@ footer.footer {
 hr.border-separate-sm {
     margin: 0;
 }
+
+.main-menu.menu-light .navigation > li.nav-item.has-sub.open > a {
+	font-weight: 700;
+}
+.main-menu.menu-light .navigation > li.nav-item.has-sub.open .menu-content li.nav-item.has-sub.open > a {
+	font-weight: 700;
+}
+.main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub > .menu-content {
+	background: #ededed;
+}

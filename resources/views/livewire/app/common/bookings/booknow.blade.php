@@ -76,7 +76,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row section-segment-spacing">
+              <div class="row between-section-segment-spacing">
                 <div class="col-lg-6 mb-4 pe-lg-5">
                   <div class="d-flex justify-content-between align-items-center">
                     <label class="form-label">Company <span class="mandatory">*</span></label>
@@ -140,7 +140,7 @@
                   <input type="" class="form-control" placeholder="Enter Phone Number">
                 </div>
               </div>
-              <div class="row section-segment-spacing">
+              <div class="row between-section-segment-spacing">
                 <div class="col-lg-12" x-data="{ open: true }">
                   <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                     <div class="form-check form-switch form-switch-column mb-lg-0">
@@ -164,7 +164,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row section-segment-spacing">
+              <div class="row between-section-segment-spacing">
                 <!-- Service Information -->
                 <div class="col-lg-12 mb-4">
                   <h2>Service Information</h2>
@@ -391,7 +391,7 @@
                 </div>
                 <!-- /Service Information -->
               </div>
-              <div class="row section-segment-spacing">
+              <div class="row between-section-segment-spacing">
                 <!-- Select Dates & Times -->
                 <div class="col-lg-12 mb-4">
                   <h2>Select Dates & Times</h2>
@@ -490,7 +490,7 @@
                 </div>
                 <!-- /Select Dates & Times -->
               </div>
-              <div class="row section-segment-spacing">
+              <div class="row between-section-segment-spacing">
                 <div class="col-lg-12">
                   <!-- Physical Address -->
                   <div class="row mb-4">
@@ -677,7 +677,7 @@
                 <div class="col-md-12 mb-md-2">
                   <h2>Industry Form</h2>
                   <!-- Industry Form Begin -->
-                  <div class="row section-segment-spacing">
+                  <div class="row between-section-segment-spacing">
                     <div class="col-md-12 col-12">
                       <h3>Computer Science</h3>
                     </div>
