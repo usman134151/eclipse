@@ -178,18 +178,9 @@
 										</a>
 										<a href="#" class="btn btn-has-icon btn-outline-dark rounded">
 											<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M1.9 18.9969H13.3C14.3479 18.9969 15.2 18.1447 15.2 17.0969V5.69688C15.2 4.64903 14.3479 3.79688 13.3 3.79688H1.9C0.85215 3.79688 0 4.64903 0 5.69688V17.0969C0 18.1447 0.85215 18.9969 1.9 18.9969ZM1.9 5.69688H13.3L13.3019 17.0969H1.9V5.69688Z" fill="url(#paint0_linear_8523_15770)"/>
-												<path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="url(#paint1_linear_8523_15770)"/>
-												<defs>
-													<linearGradient id="paint0_linear_8523_15770" x1="7.6" y1="3.79687" x2="13.6982" y2="3.79687" gradientUnits="userSpaceOnUse">
-														<stop stop-color="#213969"/>
-														<stop offset="1" stop-color="#204387"/>
-													</linearGradient>
-													<linearGradient id="paint1_linear_8523_15770" x1="12.3502" y1="0" x2="17.6861" y2="0" gradientUnits="userSpaceOnUse">
-														<stop stop-color="#213969"/>
-														<stop offset="1" stop-color="#204387"/>
-													</linearGradient>
-												</defs>
+												<path d="M1.9 18.9969H13.3C14.3479 18.9969 15.2 18.1447 15.2 17.0969V5.69688C15.2 4.64903 14.3479 3.79688 13.3 3.79688H1.9C0.85215 3.79688 0 4.64903 0 5.69688V17.0969C0 18.1447 0.85215 18.9969 1.9 18.9969ZM1.9 5.69688H13.3L13.3019 17.0969H1.9V5.69688Z" fill="#4b4b4b"></path>
+												<path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="#4b4b4b"></path>
+												
 											</svg>
 											Duplicate
 										</a>
@@ -1845,7 +1836,7 @@
 			  </div><!-- END: assigned-providers-tab -->
 			  <div class="tab-pane fade {{ $component == 'attachments' ? 'active show' : '' }}" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" tabindex="0">
 				<h2>Attachments</h2>
-				<div class="col-lg-8 mb-4">
+				<div class="col-lg-8 between-section-segment-spacing">
 				  <div class="mb-3 position-relative">
 					<a href="#" @click="addDocuments = true" class="position-absolute w-100 h-100 d-block"></a>
 					<label for="AddDocuments" class="form-label">Add Documents</label>
@@ -1869,86 +1860,131 @@
 			  </div><!-- END: attachments-tab -->
 			  <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}" id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
 				<h2>Payment Detail</h2>
-				<div class="row">
+				<div class="row between-section-segment-spacing">
 				  <div class="col-lg-6">
 					<div class="d-lg-flex flex-lg-column gap-3">
 					  <div class="row">
 						<div class="col-lg-9">
-						  <label class="form-label">Total Service Rate:</label>
+						  <label class="form-label mb-lg-0">Total Service Rate:</label>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 align-self-center">
 						  <div class="font-family-tertiary">$00.00</div>
 						</div>
 					  </div>
 					  <div class="row">
-						<div class="col-lg-9">
-						  <label class="form-label">Override:</label>
-						</div>
-						<div class="col-lg-3">
-						  <div class="font-family-tertiary">$00.00</div>
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
 						</div>
 					  </div>
 					  <div class="row">
 						<div class="col-lg-9">
-						  <label class="form-label">Total Additional Charges:</label>
+						  <label class="form-label mb-lg-0">Override:</label>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 align-self-center">
 						  <div class="font-family-tertiary">$00.00</div>
 						</div>
 					  </div>
 					  <div class="row">
-						<div class="col-lg-9">
-						  <label class="form-label">Service Total:</label>
-						</div>
-						<div class="col-lg-3">
-						  <div class="font-family-tertiary">$00.00</div>
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
 						</div>
 					  </div>
 					  <div class="row">
 						<div class="col-lg-9">
-						  <label class="form-label">Discount:</label>
+						  <label class="form-label mb-lg-0">Total Additional Charges:</label>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 align-self-center">
 						  <div class="font-family-tertiary">$00.00</div>
 						</div>
 					  </div>
 					  <div class="row">
-						<div class="col-lg-9">
-						  <label class="form-label">Net Total:</label>
-						</div>
-						<div class="col-lg-3">
-						  <div class="font-family-tertiary">$00.00</div>
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
 						</div>
 					  </div>
 					  <div class="row">
 						<div class="col-lg-9">
-						  <label class="form-label">Cancel/Modify/Reschedule Fees (list):</label>
+						  <label class="form-label mb-lg-0">Service Total:</label>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 align-self-center">
 						  <div class="font-family-tertiary">$00.00</div>
 						</div>
 					  </div>
 					  <div class="row">
-						<div class="col-lg-9">
-						  <label class="form-label">Provider Rate Sum:</label>
-						</div>
-						<div class="col-lg-3">
-						  <div class="font-family-tertiary">$00.00</div>
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
 						</div>
 					  </div>
 					  <div class="row">
 						<div class="col-lg-9">
-						  <label class="form-label">Additional Provider Payments:</label>
+						  <label class="form-label mb-lg-0">Discount:</label>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 align-self-center">
 						  <div class="font-family-tertiary">$00.00</div>
 						</div>
 					  </div>
 					  <div class="row">
-						<div class="col-lg-9">
-						  <label class="form-label">Profit Margin:</label>
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
 						</div>
-						<div class="col-lg-3">
+					  </div>
+					  <div class="row">
+						<div class="col-lg-9">
+						  <label class="form-label mb-lg-0">Net Total:</label>
+						</div>
+						<div class="col-lg-3 align-self-center">
+						  <div class="font-family-tertiary">$00.00</div>
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-9">
+						  <label class="form-label mb-lg-0">Cancel/Modify/Reschedule Fees (list):</label>
+						</div>
+						<div class="col-lg-3 align-self-center">
+						  <div class="font-family-tertiary">$00.00</div>
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-9">
+						  <label class="form-label mb-lg-0">Provider Rate Sum:</label>
+						</div>
+						<div class="col-lg-3 align-self-center">
+						  <div class="font-family-tertiary">$00.00</div>
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-9">
+						  <label class="form-label mb-lg-0">Additional Provider Payments:</label>
+						</div>
+						<div class="col-lg-3 align-self-center">
+						  <div class="font-family-tertiary">$00.00</div>
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-12">
+						  <hr class="border-separate-sm">
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col-lg-9">
+						  <label class="form-label mb-lg-0">Profit Margin:</label>
+						</div>
+						<div class="col-lg-3 align-self-center">
 						  <div class="font-family-tertiary">$00.00</div>
 						</div>
 					  </div>
@@ -1978,7 +2014,7 @@
 			  </div><!-- END: payment-details-tab -->
 			  <div class="tab-pane fade {{ $component == 'assignment-log' ? 'active show' : '' }}" id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
 				<!-- Assignment Discussions -->
-				<div class="mb-4">
+				<div class="between-section-segment-spacing">
 				  <h2>Assignment Discussions</h2>
 				  <div class="d-lg-flex justify-content-between align-items-center mb-4">
 					<button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -2222,7 +2258,7 @@
 				  </div>
 				</div><!-- /Assignment Discussions -->
 				<!-- Assignment Status -->
-				<div class="mb-4">
+				<div class="between-section-segment-spacing">
 				  <h2>Assignment Status</h2>
 				  <div class="mb-4">
 					<button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -2626,7 +2662,7 @@
 				  </div>
 				</div><!-- /Assignment Status -->
 				<!-- Assignment Log -->
-				<div class="mb-4">
+				<div class="between-section-segment-spacing">
 				  <h2>Assignment Log</h2>
 				  <div class="mb-4">
 					<button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
