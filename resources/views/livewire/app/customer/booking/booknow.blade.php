@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="row">
-
+                           <div class="row between-section-segment-spacing">
                             <div class="col-lg-6 mb-4 ps-lg-5">
                                 <label class="form-label">Department <span class="mandatory">*</span></label>
                                 <input type="" class="form-control" placeholder="Select Department">
@@ -100,6 +100,8 @@
                                     </div>
                                 </div>
                             </div>
+                           </div>
+                           <div class="row between-section-segment-spacing">
                             <div class="col-lg-12 mb-4">
                                 <div class="d-lg-flex align-items-center mb-4 gap-3">
                                     <div class="form-check form-switch form-switch-column mb-lg-0">
@@ -122,6 +124,7 @@
                                     </div>
                                 </div>
                             </div>
+                           </div>
                             <!-- Service Information -->
                             <div class="col-lg-12 mb-4">
                                 <h2>Service Information</h2>
@@ -595,6 +598,7 @@
                                         </div>
                                     </div>
                                     <!-- /Service Information -->
+                                    <div class="row between-section-segment-spacing">
                                     <!-- Select Dates & Times -->
                                     <div class="col-lg-12 mb-4">
                                         <h2>Select Dates & Times</h2>
@@ -869,8 +873,9 @@
                                         <!-- /Select Dates & Times Duplicate Block -->
                                     </div>
                                     <!-- /Select Dates & Times -->
+                                    </div>
                                     <!-- Physical Address -->
-                                    <div class="row mb-4">
+                                    <div class="row between-section-segment-spacing">
                                         <div class="col-lg-6 mb-4 align-self-center">
                                             <h2 class="mb-lg-0">Physical Address</h2>
                                         </div>
@@ -1135,7 +1140,7 @@
                             </div>
                             <div class="col-md-12 mb-md-2">
                                 <!-- Industry Form Begin -->
-                                <div class="row mb-4">
+                                <div class="row between-section-segment-spacing">
                                     <div class="col-md-12 col-12">
                                         <h3>Computer Science</h3>
                                     </div>
