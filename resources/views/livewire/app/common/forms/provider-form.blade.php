@@ -76,6 +76,7 @@
 								<div class="col-lg-12 mb-4">
 									<h2>Provider Information</h2>
 								</div>
+								<div class="row between-section-segment-spacing">
 								<div class="col-lg-6 mb-4 pe-lg-5">
 									<label class="form-label" for="f-name">
 										First Name
@@ -412,6 +413,7 @@
 									</select>
 								</div>
 								{{-- Input Fields End --}}
+								</div>
 							</div>
 							{{-- Action Buttons - Start --}}
 							<div class="col-12 justify-content-center form-actions d-flex gap-3">
@@ -437,7 +439,7 @@
 											<div class="row">
 												<div class="col-md-12 mb-md-2">
 													<div class="col-md-12 col-12 mb-md-2">
-														<div class="row mb-5">
+														<div class="row between-section-segment-spacing">
 															<div class="col-lg-12 mb-4">
 																<h3>Provider Type</h3>
 																<div class="row">
@@ -505,7 +507,8 @@
 																</div>
 															</div>
 														</div>
-														<div class="col-md-12 col-12 md-2 mb-5 mt-4">
+														<div class="row between-section-segment-spacing">
+														<div class="col-md-12 col-12 md-2 mt-4">
 															<div class="row">
 																<div class="col-6 mb-4">
 																	<h2>Provider Service Profile</h2>
@@ -572,7 +575,8 @@
 																</div>
 															</div>
 														</div>
-														<div class="row mb-4">
+														</div>
+														<div class="row between-section-segment-spacing">
 															<div class="col-lg-5">
 																<label class="form-label" for="ApplyTo">
 																	Accommodation
@@ -588,22 +592,24 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-md-12 col-12 mb-md-2">
-														<div class="col-lg-12 d-flex col-12 gap-2 align-items-center mb-3 mt-1">
+                                                 <div class="row inner-section-segment-spacing"> 
+													<div class="col-md-12 col-12">
+														<div class="col-lg-12 d-flex col-12 gap-2 align-items-center mb-4 mt-1">
 															<h3 class="mb-lg-0">Service</h3>
 															<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 																<path d="M10 0C4.486 0 0 4.486 0 10C0 15.514 4.486 20 10 20C15.514 20 20 15.514 20 10C20 4.486 15.514 0 10 0ZM11 16H9V14H11V16ZM11.976 11.115C11.78 11.273 11.591 11.424 11.441 11.574C11.033 11.981 11.001 12.351 11 12.367V12.5H9V12.333C9 12.215 9.029 11.156 10.026 10.159C10.221 9.964 10.463 9.766 10.717 9.56C11.451 8.965 11.933 8.531 11.933 7.933C11.9214 7.42782 11.7125 6.94725 11.3511 6.59412C10.9896 6.24099 10.5043 6.04334 9.99901 6.04347C9.4937 6.0436 9.0085 6.2415 8.64725 6.59482C8.28599 6.94814 8.07736 7.42881 8.066 7.934H6.066C6.066 5.765 7.831 4 10 4C12.169 4 13.934 5.765 13.934 7.934C13.934 9.531 12.755 10.484 11.976 11.115Z" fill="#888575"/>
 															</svg>
 														</div>
 													</div>
-													<div class="col-md-12 col-12 mb-md-2">
-														<div class="form-check mb-3">
+													<div class="col-md-12 col-12 ">
+														<div class="form-check">
 															<input class="form-check-input" type="checkbox" value="check-service-duration" id="first-check-service-duration" checked>
 															<label class="form-check-label" for="first-check-service-duration">
 																Check service duration
 															</label>
 														</div>
 													</div>
+													 </div>
 													<div class="col-md-12 col-12 md-2 mb-5">
 														<div class="row">
 															<div class="col-md-7 col-12 mb-3">
@@ -639,7 +645,9 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-lg-12 mb-5">
+
+													<div class="row between-section-segment-spacing">
+													<div class="col-lg-12">
 														<div class="d-lg-flex align-items-center gap-3">
 															<h2>Standard Provider Rates</h2>
 														</div>
@@ -746,8 +754,10 @@
 															</div>
 														</div>
 													</div>
+													</div>
 													<!-- section two end -->
-													<div class="col-lg-12 mb-5 pt-5">
+                                                    <div class="row between-section-segment-spacing">
+													<div class="col-lg-12 pt-5">
 														<div class="d-lg-flex align-items-center gap-3">
 															<h2>
 																Expedited Service Differentials
@@ -1002,9 +1012,11 @@
 															</div>
 														</div>
 													</div>
+													</div>
 													<!-- /Expedited Services -->
 													<!-- Cancellations/Modifications/Rescheduling -->
-													<div class="col-lg-12 mb-5 pt-5">
+													<div class="row between-section-segment-spacing">
+													<div class="col-lg-12 pt-5">
 														<div class="d-lg-flex align-items-center gap-3">
 															<h2>
 																Cancellations/Modifications/Rescheduling
@@ -1351,6 +1363,7 @@
 															</div>
 														</div>
 													</div>
+													</div>
 													<!-- /End: Cancellations/Modifications/Rescheduling -->
 													<div class="col-lg-12 mb-5 pt-5">
 														<div class="d-lg-flex align-items-center gap-3">
@@ -1503,7 +1516,7 @@
 											  <h2>Attach Document</h2>
 											</div>
 										  </div>
-										  <div class="row mb-5">
+										  <div class="row between-section-segment-spacing">
 											<div class="col-lg-12 mb-4 mt-5">
 											  <div class="row">
 												<div class="col-lg-5 mb-4 ">

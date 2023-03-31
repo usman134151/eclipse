@@ -82,7 +82,7 @@
 											<div class="col-lg-12 mb-4">
 												<h2>Customer Information</h2>
 											</div>
-
+                                            <div class="row inner-section-segment-spacing">
 											<div class="col-lg-6 pe-lg-5 mb-4">
 												<label class="form-label" for="company-column">
 													Company
@@ -275,7 +275,9 @@
 												</label>
 												<input class="form-control" type="file" id="file">
 											</div>
+											</div>
 
+											<div class="row">
 											<div class="col-lg-12 mb-5">
 												<div class="row">
 													<div class="col-lg-6 pe-lg-5">
@@ -288,7 +290,9 @@
 													</div>
 												</div>
 											</div>
-
+										</div>
+                                             
+										   <div class="row between-section-segment-spacing">
 											<div class="col-lg-12 mt-5 mb-4">
 												<div class="row">
 													<div class="col-lg-6 pe-lg-5 mb-4">
@@ -413,8 +417,9 @@
 													</div>
 												</div>
 											</div>
+										   
 
-											<div class="col-lg-12 mb-4">
+											<div class="col-lg-12 ">
 												<div class="form-check mb-lg-0">
 													<input class="form-check-input" type="checkbox" value="" id="HideDepartmentfromProvider">
 													<label class="form-check-label" for="HideDepartmentfromProvider">
@@ -422,6 +427,7 @@
 													</label>
 												</div>
 											</div>
+										</div>
 
 											<div class="col-lg-12 d-lg-flex gap-5 justify-content-center">
 												<div class="form-check mb-lg-0">
@@ -450,6 +456,7 @@
 												</button>
 											</div>
 											{{-- Action Buttons End --}}
+										
 										</div>
 									</div>
 								</div>
@@ -474,6 +481,7 @@
 											</div>
 										</div>
 										<div class="row">
+                                           <div class="row inner-section-segment-spacing">
 											<div class="col-lg-12 mb-4">
 												<label class="form-label">
 													Roles & Relationships
@@ -482,7 +490,7 @@
 													Select which roles this user will play in the company. If the user is not a Supervisor and or Billing Manager then you can select other users as Supervisor of this user and or Billing Manager of the user.
 												</p>
 											</div>
-											<div class="col-lg-12 mb-4">
+											<div class="col-lg-12 ">
 												<label class="form-label">
 													Assigned Supervisor(s)
 												</label>
@@ -499,19 +507,23 @@
 													</div>
 												</div>
 											</div>
-											<div class="row mb-5">
-												<div class="col-lg-12 mb-4">
+										   </div>
+											<div class="row between-section-segment-spacing">
+												<div class="col-lg-12 ">
 													<label class="form-label text-primary">
 														Select Role
 													</label>
-													<div class="form-check mb-lg-0">
+                                                    <div class="row inner-section-segment-spacing">
+													<div class="form-check mb-lg-0 mt-4">
 														<input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
 														<label class="form-check-label" for="CompanyAdmin">
 															Company Admin
 														</label>
 													</div>
+                                                    </div>
 												</div>
-												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
+												<div class="row inner-section-segment-spacing">
+												<div class="col-lg-12  d-md-flex gap-5 align-items-center">
 													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="Supervisor" checked>
 														<label class="form-check-label" for="Supervisor">
@@ -532,7 +544,9 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-12 mb-4 d-md-flex gap-5">
+												</div>
+												<div class="row inner-section-segment-spacing">
+												<div class="col-lg-12 d-md-flex gap-5">
 													<div class="form-check mb-md-0">
 														<input class="form-check-input" type="checkbox" value="" id="Requester" checked>
 														<label class="form-check-label" for="Requester">
@@ -552,8 +566,9 @@
 														</div>
 													</div>
 												</div>
-
-												<div class="col-lg-12 mb-4">
+												</div>
+                                                 <div class="row inner-section-segment-spacing">
+												<div class="col-lg-12 ">
 													<div class="form-check mb-lg-0">
 														<input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
 														<label class="form-check-label" for="ServiceConsumer">
@@ -561,8 +576,9 @@
 														</label>
 													</div>
 												</div>
-
-												<div class="col-lg-12 mb-4">
+												 </div>
+												 <div class="row inner-section-segment-spacing">
+												<div class="col-lg-12 ">
 													<div class="form-check mb-lg-0">
 														<input class="form-check-input" type="checkbox" value="" id="ServiceConsumer">
 														<label class="form-check-label" for="ServiceConsumer">
@@ -570,6 +586,7 @@
 														</label>
 													</div>
 												</div>
+												 </div>
 
 												<div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
 													<div class="form-check mb-md-0">
