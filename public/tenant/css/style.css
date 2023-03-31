@@ -286,6 +286,9 @@ h1, h2, h3, h4, h5, h6 {
 
   h4 {
     font-size: 1.25rem; } }
+.header-row {
+  margin-bottom: 1rem; }
+
 .auth-wrapper {
   min-height: 100vh;
   overflow-y: auto; }

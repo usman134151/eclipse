@@ -36,7 +36,7 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade {{ $component == 'booking-details' ? 'active show' : '' }}" id="booking-details" role="tabpanel" aria-labelledby="booking-details-tab" tabindex="0">
-						<div class="p-4 border border-dark rounded bg-lighter mb-4">
+						<div class="p-4 border border-dark rounded bg-lighter between-section-segment-spacing">
 							<div class="row">
 								<div class="col-lg col-12 mb-4">
 									<div class="mb-4">
@@ -100,13 +100,13 @@
 											</label>
 										</div>
 										<div class="col-lg-7">
-											<div class="form-check form-switch js-form-switch-toggle form-switch-column">
+											<div class="form-check form-switch form-switch-column">
 												<input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyBroadcast">
-												<label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyBroadcast">
-													Auto-notify
-												</label>
-												<label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyBroadcast">
+												<label class="form-check-label" for="AutoNotifyBroadcast">
 													Manual-assign
+												</label>
+												<label class="form-check-label" for="AutoNotifyBroadcast">
+													Auto-notify
 												</label>
 											</div>
 										</div>
@@ -118,13 +118,13 @@
 											</label>
 										</div>
 										<div class="col-lg-7">
-											<div class="form-check form-switch js-form-switch-toggle form-switch-column">
+											<div class="form-check form-switch form-switch-column">
 												<input class="form-check-input" type="checkbox" role="switch" id="AutoNotifyAssign" checked>
-												<label class="form-check-label js-hidden-switch-toggle-content d-none" for="AutoNotifyAssign">
-													Auto-notify
-												</label>
-												<label class="form-check-label js-hidden-switch-toggle-content" for="AutoNotifyAssign">
+												<label class="form-check-label" for="AutoNotifyAssign">
 													Manual-assign
+												</label>
+												<label class="form-check-label" for="AutoNotifyAssign">
+													Auto-notify
 												</label>
 											</div>
 										</div>
@@ -166,7 +166,7 @@
 							</div>
 						</div>
 						<div>
-							<div class="row mb-4">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
 									<div class="d-lg-flex gap-3 justify-content-center">
 										<a href="#" class="btn btn-has-icon btn-primary rounded">
@@ -220,9 +220,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="row mb-4">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
-									<div class="d-lg-flex justify-content-between align-items-center mb-5">
+									<div class="d-lg-flex justify-content-between align-items-center header-row">
 										<h2 class="mb-lg-0">Requester Detail </h2>
 										<div class="d-flex gap-3">
 											<div>
@@ -404,10 +404,10 @@
 							</div>
 							<!-- /Requester Detail -->
 							<!-- Service 1 -->
-							<div class="row">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
-									<div class="d-lg-flex justify-content-between align-items-center mb-5">
-										<h2 class="mb-lg-0">Service 1</h2>
+									<div class="d-lg-flex justify-content-between align-items-center">
+										<h2 class="">Service 1</h2>
 									</div>
 									<div class="row">
 										<div class="col-lg-8 mb-3">
@@ -499,10 +499,10 @@
 							</div>
 							<!-- /Service 1 -->
 							<!-- Service 1 Meeting Detail -->
-							<div class="row mb-4">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
-									<div class="d-lg-flex justify-content-between align-items-center mb-5">
-										<h2 class="mb-lg-0">Service 1 Meeting Detail</h2>
+									<div class="d-lg-flex justify-content-between align-items-center">
+										<h2 class="">Service 1 Meeting Detail</h2>
 									</div>
 									<div class="row">
 										<div class="col-lg-8 mb-3">
@@ -596,10 +596,10 @@
 							</div>
 							<!-- /Service 1 Meeting Detail -->
 							<!-- Service 2 Meeting Detail -->
-							<div class="row mb-4 has-map">
+							<div class="row between-section-segment-spacing has-map">
 								<div class="col-lg-12">
-									<div class="d-lg-flex justify-content-between align-items-center mb-5">
-										<h2 class="mb-lg-0">Service 2 Meeting Detail</h2>
+									<div class="d-lg-flex justify-content-between align-items-center">
+										<h2 class="">Service 2 Meeting Detail</h2>
 									</div>
 									<div class="row">
 										<div class="col-lg-10 mb-3">
@@ -669,10 +669,10 @@
 							</div>
 							<!-- /Service 2 Meeting Detail -->
 							<!-- Service Form Detail -->
-							<div class="row mb-4">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
-									<div class="d-lg-flex justify-content-between align-items-center mb-5">
-										<h2 class="mb-lg-0">Service Form Detail</h2>
+									<div class="d-lg-flex justify-content-between align-items-center">
+										<h2 class="">Service Form Detail</h2>
 									</div>
 									<div class="row">
 										<div class="col-lg-8 mb-3">
@@ -743,10 +743,10 @@
 							</div>
 							<!-- /Service Form Detail -->
 							<!-- Industry Form Detail -->
-							<div class="row mb-4">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
-									<div class="d-lg-flex justify-content-between align-items-center mb-5">
-										<h2 class="mb-lg-0">Industry Form Detail</h2>
+									<div class="d-lg-flex justify-content-between align-items-center">
+										<h2 class="">Industry Form Detail</h2>
 									</div>
 									<div class="row">
 										<div class="col-lg-8 mb-3">
@@ -775,7 +775,7 @@
 								</div>
 							</div><!-- /Industry Form Detail -->
 							<!-- Notes -->
-							<div class="row mb-4">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-12">
 									<h2 class="mb-lg-4">Notes</h2>
 									<div class="row mb-4">
