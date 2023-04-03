@@ -210,7 +210,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -259,7 +259,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -355,7 +355,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -403,7 +403,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -499,7 +499,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -547,7 +547,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -595,7 +595,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>
@@ -643,7 +643,7 @@
                                                 <input class="form-check-input" type="checkbox" role="switch"
                                                     aria-label="Toggle Team Status">
                                                 <label class="form-check-label">
-                                                    Deactive
+                                                    Deactivate
                                                 </label>
                                             </div>
                                         </td>

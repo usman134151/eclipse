@@ -65,7 +65,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="dateRange" id="scheduledPayment">
                                 <label class="form-check-label-sm" for="scheduledPayment">
-                                    Scheduled_Payment
+                                    Scheduled Payment
                                 </label>
                             </div>
                             <div class="form-check">
