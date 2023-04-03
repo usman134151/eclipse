@@ -2609,7 +2609,7 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Request a Start Time for Services? <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -2632,7 +2632,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Request an End Time for Services? <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -2655,7 +2655,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Request an Address for End of In-person Services? <i
                                             class="fa fa-question-circle text-muted" aria-hidden="true"
@@ -2678,7 +2678,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Request Number of Providers? <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -2701,7 +2701,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Request Service Consumers? <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -2724,7 +2724,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Request Participants? <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
