@@ -1,4 +1,4 @@
-<div>
+<div> 
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -59,6 +59,7 @@
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
 							--}}
 							<form class="form">
+							<div class="row between-section-segment-spacing">
 								<div class="row mb-4">
 									<div class="col-12 text-center">
 										<div class="d-inline-block position-relative">
@@ -136,8 +137,9 @@
 											</select>
 										</div>
 									</div>
+									<div class="row inner-section-segment-spacing">
 									<div class="col-md-6 col-12">
-										<div class="mb-4">
+										<div>
 											<div class="d-flex justify-content-between align-items-center">
 												<label class="form-label" for="ethnicity">
 													Ethnicity
@@ -157,12 +159,13 @@
 										</div>
 									</div>
 									<div class="col-md-6 col-12">
-										<div class="mb-4">
+										<div>
 											<label class="form-label" for="position">Position</label>
 											<input type="text" id="position" class="form-control"
 												placeholder="Enter Position" name="position" />
 										</div>
 									</div>
+								</div>
 									<div class="col-md-6 col-12">
 										<div class="mb-4">
 											<label class="form-label">
@@ -323,6 +326,7 @@
 									<button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
 									<button type="submit" class="btn btn-primary rounded">Next</button>
 								</div>
+							</div>
 							</form>
 						</div><!-- END: Profile -->
 	{{-- 

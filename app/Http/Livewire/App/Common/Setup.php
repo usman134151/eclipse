@@ -52,7 +52,7 @@ class Setup extends Component
 		}
 		// Set the showForm property to false to hide the form
 		$this->showForm=false;
-		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-setup']); //updated by Amna Bilal to set url
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/setup-values']); //updated by Amna Bilal to set url
 	}
 
 	// Update the ID of the record being edited / deleted

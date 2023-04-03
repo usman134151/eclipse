@@ -1,10 +1,11 @@
 {{-- Create Invoice - Start --}}
 <x-off-canvas show="createInvoices" :allowBackdrop="false" style="z-index: 2147483647;">
 	<x-slot name="title">Create Invoice</x-slot>
+	<div class="row between-section-segment-spacing">
 	<div class="row mt-4">
 		<h3>Billing Manager</h3>
 	</div>
-	<div class="col-lg-12 mb-4">
+	<div class="col-lg-12 ">
 		<table class="table table-hover border">
 			<thead>
 				<th>#</th>
@@ -100,13 +101,14 @@
 			</tbody>
 		</table>
 	</div>
+  </div>
 	<div class="col-lg-12 mb-4">
 		<div class="row">
 			<div class="d-lg-flex justify-content-between align-items-center ">
 				<div>
 					<h3>Address</h3>
 				</div>
-				<div>
+				<div class="mb-2">
 					<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
 						<x-icon name="plus"/>
 						<span>Add New Address</span>
@@ -165,13 +167,18 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-12 mb-4">
+	 
+	<div class="row inner-section-segment-spacing">
+	<div class="col-lg-12">
 		<label class="form-label" for="invoice-number">
 			Invoice Number
 		</label>
 		<input type="text" id="invoice-number" class="form-control" name="invoice-number" placeholder="DOR22-003"/>
 	</div>
-	<div class="col-lg-12 mb-4">
+   </div>
+
+     <div class="row inner-section-segment-spacing">
+	<div class="col-lg-12">
 		<label class="form-label" for="invoice-number">
 			PO Number
 		</label>
@@ -183,7 +190,10 @@
 			</label>
 		</div>
 	</div>
-	<div class="col-lg-12 mb-5">
+   </div>
+
+     <div class="row inner-section-segment-spacing">
+	<div class="col-lg-12">
 		<label class="form-label" for="">
 			Due Date
 		</label>
@@ -210,6 +220,8 @@
 			</button>
 		</div>
 	</div>
+   </div>
+   
 	<div class="row mb-3">
 		<div class="col-md-3">
 			<label class="form-label" for="upload-file">
@@ -230,7 +242,7 @@
 		</div>
 	</div>
 	<div>
-		<div class="row mb-5">
+		<div class="row between-section-segment-spacing">
 			<div class="mt-2">
 				<input class="form-check-input" type="checkbox" value="reimbursement-records" id="reimbursement-records">
 				<label class="form-check-label form-label" for="reimbursement-records">

@@ -10,12 +10,11 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000" title="Go to Dashboard" aria-label="Home">
-                                    <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1.25009 12.5809H2.33343V20.1643C2.33343 21.3592 3.30518 22.3309 4.50009 22.3309H17.5001C18.695 22.3309 19.6668 21.3592 19.6668 20.1643V12.5809H20.7501C20.9643 12.5809 21.1737 12.5173 21.3518 12.3983C21.53 12.2793 21.6688 12.1101 21.7507 11.9122C21.8327 11.7142 21.8542 11.4964 21.8124 11.2863C21.7706 11.0762 21.6675 10.8832 21.516 10.7317L11.766 0.981697C11.6655 0.881006 11.5461 0.801123 11.4147 0.74662C11.2833 0.692117 11.1424 0.664062 11.0001 0.664062C10.8578 0.664063 10.7169 0.692117 10.5855 0.74662C10.4541 0.801123 10.3347 0.881006 10.2342 0.981697L0.484178 10.7317C0.332718 10.8832 0.229577 11.0762 0.187796 11.2863C0.146014 11.4964 0.167468 11.7142 0.249444 11.9122C0.331419 12.1101 0.470237 12.2793 0.648348 12.3983C0.826459 12.5173 1.03587 12.5809 1.25009 12.5809ZM8.83343 20.1643V14.7476H13.1668V20.1643H8.83343ZM11.0001 3.27945L17.5001 9.77945V14.7476L17.5012 20.1643H15.3334V14.7476C15.3334 13.5527 14.3617 12.5809 13.1668 12.5809H8.83343C7.63851 12.5809 6.66676 13.5527 6.66676 14.7476V20.1643H4.50009V9.77945L11.0001 3.27945Z"
-                                            fill="#0A1E46" />
+                                    {{-- Updated by Shanila to Add svg icon--}}
+                                    <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                        <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
+                                    {{-- End of update by Shanila --}}
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
@@ -165,7 +164,14 @@
                                                                 class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#companybusinesshoursModel">
-                                                                <x-icon name="right-color-arrow" />
+                                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                                <svg aria-label=" Select Department" width="25"
+                                                                    height="18" viewBox="0 0 25 18">
+                                                                    <use
+                                                                        xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                    </use>
+                                                                </svg>
+                                                                {{-- End of update by Shanila --}}
                                                                 Add Schedule
                                                             </button>
                                                         </div>
@@ -195,13 +201,13 @@
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY" aria-label=""
                                                                 aria-describedby="" id="service-start-date-column">
-                                                            <svg class="icon-date" width="20" height="21"
-                                                                viewBox="0 0 20 21" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z"
-                                                                    fill="black" />
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Date" class="icon-date" width="20"
+                                                                height="21" viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                </use>
                                                             </svg>
+                                                            {{-- End of update by Shanila --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -217,13 +223,13 @@
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY" aria-label=""
                                                                 aria-describedby="" id="service-end-date-column">
-                                                            <svg class="icon-date" width="20" height="21"
-                                                                viewBox="0 0 20 21" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M18.75 2.28511L13.7456 2.28513V1.03921C13.7456 0.693815 13.4659 0.414062 13.1206 0.414062C12.7753 0.414062 12.4956 0.693815 12.4956 1.03921V2.28481H7.49563V1.03921C7.49563 0.693815 7.21594 0.414062 6.87063 0.414062C6.52531 0.414062 6.24563 0.693815 6.24563 1.03921V2.28481H1.25C0.559687 2.28481 0 2.84463 0 3.53511V19.1638C0 19.8542 0.559687 20.4141 1.25 20.4141H18.75C19.4403 20.4141 20 19.8542 20 19.1638V3.53511C20 2.84492 19.4403 2.28511 18.75 2.28511ZM18.75 19.1638H1.25V3.53511H6.24563V4.16494C6.24563 4.51032 6.52531 4.79009 6.87063 4.79009C7.21594 4.79009 7.49563 4.51032 7.49563 4.16494V3.53542H12.4956V4.16525C12.4956 4.51065 12.7753 4.7904 13.1206 4.7904C13.4659 4.7904 13.7456 4.51065 13.7456 4.16525V3.53542H18.75V19.1638ZM14.375 10.412H15.625C15.97 10.412 16.25 10.1319 16.25 9.78686V8.53657C16.25 8.19149 15.97 7.91142 15.625 7.91142H14.375C14.03 7.91142 13.75 8.19149 13.75 8.53657V9.78686C13.75 10.1319 14.03 10.412 14.375 10.412ZM14.375 15.4129H15.625C15.97 15.4129 16.25 15.1331 16.25 14.7877V13.5374C16.25 13.1924 15.97 12.9123 15.625 12.9123H14.375C14.03 12.9123 13.75 13.1924 13.75 13.5374V14.7877C13.75 15.1334 14.03 15.4129 14.375 15.4129ZM10.625 12.9123H9.375C9.03 12.9123 8.75 13.1924 8.75 13.5374V14.7877C8.75 15.1331 9.03 15.4129 9.375 15.4129H10.625C10.97 15.4129 11.25 15.1331 11.25 14.7877V13.5374C11.25 13.1927 10.97 12.9123 10.625 12.9123ZM10.625 7.91142H9.375C9.03 7.91142 8.75 8.19149 8.75 8.53657V9.78686C8.75 10.1319 9.03 10.412 9.375 10.412H10.625C10.97 10.412 11.25 10.1319 11.25 9.78686V8.53657C11.25 8.19118 10.97 7.91142 10.625 7.91142ZM5.625 7.91142H4.375C4.03 7.91142 3.75 8.19149 3.75 8.53657V9.78686C3.75 10.1319 4.03 10.412 4.375 10.412H5.625C5.97 10.412 6.25 10.1319 6.25 9.78686V8.53657C6.25 8.19118 5.97 7.91142 5.625 7.91142ZM5.625 12.9123H4.375C4.03 12.9123 3.75 13.1924 3.75 13.5374V14.7877C3.75 15.1331 4.03 15.4129 4.375 15.4129H5.625C5.97 15.4129 6.25 15.1331 6.25 14.7877V13.5374C6.25 13.1927 5.97 12.9123 5.625 12.9123Z"
-                                                                    fill="black" />
-                                                            </svg>
+                                                             {{-- Updated by Shanila to Add svg icon--}}
+                                                             <svg aria-label="Date" class="icon-date" width="20"
+                                                             height="21" viewBox="0 0 20 21">
+                                                             <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                             </use>
+                                                         </svg>
+                                                         {{-- End of update by Shanila --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -295,24 +301,24 @@
                                                             <option>
                                                                 Select Disfavored Providers
                                                             </option>
-                                                             <option>
+                                                            <option>
                                                                 Wade Dave
-                                                                </option>
-                                                                <option>
-                                                                    Dori Griffiths
-                                                                </option>
-                                                                <option>
-                                                                    Gilbert Dan
-                                                                </option>
-                                                                <option>
-                                                                    Ramon Miles
-                                                                </option>
-                                                                <option>
-                                                                    Alexis Griffiths
-                                                                </option>
-                                                                <option>
-                                                                    Tessa Leo
-                                                                </option>
+                                                            </option>
+                                                            <option>
+                                                                Dori Griffiths
+                                                            </option>
+                                                            <option>
+                                                                Gilbert Dan
+                                                            </option>
+                                                            <option>
+                                                                Ramon Miles
+                                                            </option>
+                                                            <option>
+                                                                Alexis Griffiths
+                                                            </option>
+                                                            <option>
+                                                                Tessa Leo
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -352,7 +358,8 @@
                                                     <div class="row">
                                                         <div class="col-lg-6 pe-lg-5 col-12">
                                                             <div class="mb-4">
-                                                                <label class="form-label" for="select-default-timesheet">
+                                                                <label class="form-label"
+                                                                    for="select-default-timesheet">
                                                                     Select Default Timesheet
                                                                 </label>
                                                                 <select class="select2 form-select"
@@ -391,15 +398,17 @@
                                                                         <label class="form-label" for="title">
                                                                             Title
                                                                         </label>
-                                                                        <input type="text" id="title" class="form-control"
-                                                                            name="" placeholder="Enter Title" />
+                                                                        <input type="text" id="title"
+                                                                            class="form-control" name=""
+                                                                            placeholder="Enter Title" />
                                                                     </div>
                                                                     <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
                                                                         <label class="form-label" for="phone">
                                                                             Phone Number
                                                                         </label>
-                                                                        <input type="text" id="phone" class="form-control"
-                                                                            name="" placeholder="Enter Phone Number" />
+                                                                        <input type="text" id="phone"
+                                                                            class="form-control" name=""
+                                                                            placeholder="Enter Phone Number" />
                                                                     </div>
                                                                     <div class="col-lg-2 col-md-4 align-self-end">
                                                                         <button class="btn btn-primary rounded">
@@ -413,12 +422,9 @@
                                                         <div class="col-lg-8 d-flex justify-content-end md-2 mt-4 mb-4">
                                                             <button type="button"
                                                                 class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                                                <svg aria-label="Add Phone number" width="20" height="20"
-                                                                    viewBox="0 0 20 20" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                        d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                                                                        fill="white" />
+                                                                <svg aria-label="Add Phone Number" width="20" height="20" viewBox="0 0 20 20">
+                                                                    <use xlink:href="/css/common-icons.svg#plus">
+                                                                    </use>
                                                                 </svg>
                                                                 <span>Add Phone Number</span>
                                                             </button>
@@ -435,14 +441,9 @@
                                                                 class="btn btn-primary btn-has-icon rounded mb-4"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#addAddressModal">
-                                                                <svg aria-label="Add Address" width="20" height="20"
-                                                                    viewBox="0 0 20 20" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    class="ANDI508-element ANDI508-highlight ANDI508-element-active"
-                                                                    data-andi508-index="27">
-                                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                        d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                                                                        fill="white"></path>
+                                                                <svg aria-label="Add Address" width="20" height="20" viewBox="0 0 20 20">
+                                                                    <use xlink:href="/css/common-icons.svg#plus">
+                                                                    </use>
                                                                 </svg>
                                                                 <span>Add Address</span>
                                                             </button>
@@ -537,14 +538,9 @@
                                                                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2 mb-4"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#addAddressModal">
-                                                                    <svg aria-label="Add Adress" width="20" height="20"
-                                                                        viewBox="0 0 20 20" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        class="ANDI508-element ANDI508-highlight ANDI508-element-active"
-                                                                        data-andi508-index="27">
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                            d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
-                                                                            fill="white"></path>
+                                                                    <svg aria-label="Add Address" width="20" height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#plus">
+                                                                        </use>
                                                                     </svg>
                                                                     <span>Add Address</span>
                                                                 </button>
@@ -1143,4 +1139,3 @@
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
 </div>
-

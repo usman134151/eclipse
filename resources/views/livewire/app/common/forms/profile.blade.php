@@ -288,9 +288,9 @@
                                                                                         </div>
                                                                                         <div class="col-md-10">
                                                                                             <h6 class="fw-semibold">
-                                                                                                Langauge Translation
+                                                                                                language Translation
                                                                                             </h6>
-                                                                                            <p>langaugetranslation@gmail.com
+                                                                                            <p>languagetranslation@gmail.com
                                                                                             </p>
                                                                                         </div>
                                                                                     </div>
@@ -324,9 +324,9 @@
                                                                                         </div>
                                                                                         <div class="col-md-10">
                                                                                             <h6 class="fw-semibold">
-                                                                                                Langauge Translation
+                                                                                                language Translation
                                                                                             </h6>
-                                                                                            <p>langaugetranslation@gmail.com
+                                                                                            <p>languagetranslation@gmail.com
                                                                                             </p>
                                                                                         </div>
                                                                                     </div>
@@ -360,9 +360,9 @@
                                                                                         </div>
                                                                                         <div class="col-md-10">
                                                                                             <h6 class="fw-semibold">
-                                                                                                Langauge Translation
+                                                                                                language Translation
                                                                                             </h6>
-                                                                                            <p>langaugetranslation@gmail.com
+                                                                                            <p>languagetranslation@gmail.com
                                                                                             </p>
                                                                                         </div>
                                                                                     </div>
@@ -396,9 +396,9 @@
                                                                                         </div>
                                                                                         <div class="col-md-10">
                                                                                             <h6 class="fw-semibold">
-                                                                                                Langauge Translation
+                                                                                                language Translation
                                                                                             </h6>
-                                                                                            <p>langaugetranslation@gmail.com
+                                                                                            <p>languagetranslation@gmail.com
                                                                                             </p>
                                                                                         </div>
                                                                                     </div>
@@ -432,9 +432,9 @@
                                                                                         </div>
                                                                                         <div class="col-md-10">
                                                                                             <h6 class="fw-semibold">
-                                                                                                Langauge Translation
+                                                                                                language Translation
                                                                                             </h6>
-                                                                                            <p>langaugetranslation@gmail.com
+                                                                                            <p>languagetranslation@gmail.com
                                                                                             </p>
                                                                                         </div>
                                                                                     </div>
