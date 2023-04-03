@@ -2482,7 +2482,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Default Timesheet Template
                                     </h3>
@@ -2509,7 +2509,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Default Invoice Line Item Template
                                     </h3>
@@ -2536,7 +2536,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Default Quotes Line Item Template
                                     </h3>
@@ -2563,7 +2563,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Default Remittance Line Item Template
                                     </h3>
