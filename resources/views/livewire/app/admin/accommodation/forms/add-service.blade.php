@@ -2766,7 +2766,7 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Billing to Companies
                                     </h3>
@@ -2787,7 +2787,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Payment to Providers
                                     </h3>
@@ -2808,7 +2808,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Billing Time Zone <i class="fa fa-question-circle text-muted" aria-hidden="true"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
@@ -2838,7 +2838,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Payment Time Zone <i class="fa fa-question-circle text-muted" aria-hidden="true"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
@@ -2868,7 +2868,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         In-Person Billing <i class="fa fa-question-circle text-muted" aria-hidden="true"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
@@ -2889,7 +2889,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         In-Person Payments <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -2911,7 +2911,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Virtual Billing <i class="fa fa-question-circle text-muted" aria-hidden="true"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
@@ -2932,7 +2932,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 ps-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Virtual Payments <i class="fa fa-question-circle text-muted" aria-hidden="true"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
@@ -2953,7 +2953,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pe-lg-5">
-                                <div class="mb-5 border p-3">
+                                <div class="inner-section-segment-spacing border p-3">
                                     <h3>
                                         Minimum Payment Duration <i class="fa fa-question-circle text-muted"
                                             aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -2994,7 +2994,7 @@
                         <div class="row mb-4">
                             <div class="col-lg-6 pe-lg-5">
                                 <div class="w-100">
-                                    <div class="mb-5 border p-3 pb-lg-5">
+                                    <div class="inner-section-segment-spacing border p-3 pb-lg-5">
                                         <h2>
                                             Check-In Procedure <i class="fa fa-question-circle text-muted"
                                                 aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -3052,7 +3052,7 @@
                             </div>
                             <div class="col-lg-6 ps-lg-5">
                                 <div class="w-100">
-                                    <div class="mb-5 border p-3 pb-lg-5">
+                                    <div class="inner-section-segment-spacing border p-3 pb-lg-5">
                                         <h2>
                                             Authorize & Close-Out Procedure <i class="fa fa-question-circle text-muted"
                                                 aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -3361,7 +3361,7 @@
                         <div class="row mb-4">
                             <div class="col-lg-6 pe-lg-5">
                                 <div class="w-100">
-                                    <div class="mb-5 border p-3 pb-lg-5">
+                                    <div class="inner-section-segment-spacing border p-3 pb-lg-5">
                                         <h2>
                                             Running Late Procedure
                                         </h2>
@@ -3420,7 +3420,7 @@
                                     </div>
                                 </div><!-- /Running Late Procedure -->
                                 <div class="w-100">
-                                    <div class="mb-5 border p-3 pb-lg-5">
+                                    <div class="inner-section-segment-spacing border p-3 pb-lg-5">
                                         <h2>
                                             Display to providers prior to being assigned
                                         </h2>
