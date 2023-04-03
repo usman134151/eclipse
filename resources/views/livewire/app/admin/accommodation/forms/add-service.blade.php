@@ -77,128 +77,135 @@
                 <div class="tab-content">
                     <div class="tab-pane fade {{ $component == 'basic-service-setup' ? 'active show' : '' }}"
                         id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
-                        <div class="d-lg-flex justify-content-between align-items-center mb-4">
-                            <h2 class="mb-lg-0">Basic Service Setup</h2>
-                            <div class="form-check form-switch form-switch-column">
-                                <input class="form-check-input" type="checkbox" role="switch" id="basicService">
-                                <label class="form-check-label" for="basicService">Active</label>
+                        <div class="row between-section-segment-spacing">
+                            <div class="col-lg-12">
+                                <div class="d-lg-flex justify-content-between align-items-center mb-3">
+                                    <h2 class="mb-lg-0">Basic Service Setup</h2>
+                                    <div class="form-check form-switch form-switch-column mb-0">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="basicService">
+                                        <label class="form-check-label" for="basicService">In-Active</label>
+                                        <label class="form-check-label" for="basicService">Active</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="serviceName">
+                                                Service Name <span class="mandatory">*</span>
+                                            </label>
+                                            <input type="text" id="serviceName" class="form-control" name="serviceName"
+                                                placeholder="Enter Service Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="service-name">
+                                                Service Type <i class="fa fa-question-circle" aria-hidden="true"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+                                            </label>
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="All" name="All" type="checkbox"
+                                                        tabindex="" />
+                                                    <label class="form-check-label" for="All">All</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="InPerson" name="InPerson"
+                                                        type="checkbox" tabindex="" />
+                                                    <label class="form-check-label" for="InPerson"> In-Person</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="Virtual" name="Virtual" type="checkbox"
+                                                        tabindex="" />
+                                                    <label class="form-check-label" for="Virtual"> Virtual</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="Phone" name="Phone" type="checkbox"
+                                                        tabindex="" />
+                                                    <label class="form-check-label" for="Phone"> Phone</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="Teleconference" name="Teleconference"
+                                                        type="checkbox" tabindex="" />
+                                                    <label class="form-check-label" for="Teleconference"> Teleconference</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="description">
+                                                Description <i class="fa fa-question-circle" aria-hidden="true"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+                                            </label>
+                                            <textarea rows="4" cols="4" id="description" class="form-control" name="description"
+                                                placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="service-name">
+                                                Permitted Scheduling Frequencies <i class="fa fa-question-circle"
+                                                    aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title=""></i>
+                                            </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="one-time-request" name="one-time-request"
+                                                    type="checkbox" tabindex="" />
+                                                <label class="form-check-label" for="one-time-request">One-Time Request</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="Daily-frequency" name="" type="checkbox"
+                                                    tabindex="" />
+                                                <label class="form-check-label" for="Daily-frequency"> Daily</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="Weekly" name="Weekly" type="checkbox"
+                                                    tabindex="" />
+                                                <label class="form-check-label" for="Weekly"> Weekly</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="WeekdailyBusinessDays"
+                                                    name="WeekdailyBusinessDays" type="checkbox" tabindex="" />
+                                                <label class="form-check-label" for="WeekdailyBusinessDays"> Weekdaily (Business
+                                                    Days)</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="Monthly" name="Monthly" type="checkbox"
+                                                    tabindex="" />
+                                                <label class="form-check-label" for="Monthly"> Monthly</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-4">
-                                    <label class="form-label" for="serviceName">
-                                        Service Name <span class="mandatory">*</span>
-                                    </label>
-                                    <input type="text" id="serviceName" class="form-control" name="serviceName"
-                                        placeholder="Enter Service Name" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-4">
-                                    <label class="form-label" for="service-name">
-                                        Service Type <i class="fa fa-question-circle" aria-hidden="true"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
+                        <div class="row between-section-segment-spacing">
+                            <div class="col-12">
+                                <div class="d-lg-flex gap-4 align-items-center">
+                                    <h2 class="mb-lg-0">Enable Billing Rates</h2>
                                     <div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="All" name="All" type="checkbox"
+                                            <input class="form-check-input" id="HourlyMinutesRate"
+                                                name="HourlyMinutesRate" type="radio" tabindex="" />
+                                            <label class="form-check-label" for="HourlyMinutesRate">Hourly/Minutes
+                                                Rate</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="DayRate" name="DayRate" type="radio"
                                                 tabindex="" />
-                                            <label class="form-check-label" for="All">All</label>
+                                            <label class="form-check-label" for="DayRate"> Day Rate</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="InPerson" name="InPerson"
-                                                type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="InPerson"> In-Person</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="Virtual" name="Virtual" type="checkbox"
-                                                tabindex="" />
-                                            <label class="form-check-label" for="Virtual"> Virtual</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="Phone" name="Phone" type="checkbox"
-                                                tabindex="" />
-                                            <label class="form-check-label" for="Phone"> Phone</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="Teleconference" name="Teleconference"
-                                                type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="Teleconference"> Teleconference</label>
+                                            <input class="form-check-input" id="FixedRate" name="FixedRate"
+                                                type="radio" tabindex="" />
+                                            <label class="form-check-label" for="FixedRate"> Fixed Rate</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="mb-4">
-                                    <label class="form-label" for="description">
-                                        Description <i class="fa fa-question-circle" aria-hidden="true"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
-                                    </label>
-                                    <textarea rows="4" cols="4" id="description" class="form-control" name="description"
-                                        placeholder=""></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-4">
-                                    <label class="form-label" for="service-name">
-                                        Permitted Scheduling Frequencies <i class="fa fa-question-circle"
-                                            aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
-                                            title=""></i>
-                                    </label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="one-time-request" name="one-time-request"
-                                            type="checkbox" tabindex="" />
-                                        <label class="form-check-label" for="one-time-request">One-Time Request</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="Daily-frequency" name="" type="checkbox"
-                                            tabindex="" />
-                                        <label class="form-check-label" for="Daily-frequency"> Daily</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="Weekly" name="Weekly" type="checkbox"
-                                            tabindex="" />
-                                        <label class="form-check-label" for="Weekly"> Weekly</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="WeekdailyBusinessDays"
-                                            name="WeekdailyBusinessDays" type="checkbox" tabindex="" />
-                                        <label class="form-check-label" for="WeekdailyBusinessDays"> Weekdaily (Business
-                                            Days)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" id="Monthly" name="Monthly" type="checkbox"
-                                            tabindex="" />
-                                        <label class="form-check-label" for="Monthly"> Monthly</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-5">
-                                    <div class="d-lg-flex gap-4 align-items-center">
-                                        <h2 class="mb-lg-0">Enable Billing Rates</h2>
-                                        <div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="HourlyMinutesRate"
-                                                    name="HourlyMinutesRate" type="radio" tabindex="" />
-                                                <label class="form-check-label" for="HourlyMinutesRate">Hourly/Minutes
-                                                    Rate</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="DayRate" name="DayRate" type="radio"
-                                                    tabindex="" />
-                                                <label class="form-check-label" for="DayRate"> Day Rate</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="FixedRate" name="FixedRate"
-                                                    type="radio" tabindex="" />
-                                                <label class="form-check-label" for="FixedRate"> Fixed Rate</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="row between-section-segment-spacing">
                             <div class="col-12">
                                 <div class="mb-4">
                                     <h2 class="mb-4">Display Service in</h2>
@@ -222,7 +229,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 mb-5">
+                        </div>
+                        <div class="row between-section-segment-spacing">
+                            <div class="col-lg-12">
                                 <h2>Standard Rates</h2>
                                 <div class="row justify-content-between">
                                     <div class="col-lg-5">
@@ -361,6 +370,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row between-section-segment-spacing">
                             <div class="col-lg-12">
                                 <h2>Service Capacity & Capabilities</h2>
                                 <div class="row justify-content-between">
@@ -701,6 +712,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-12 justify-content-center form-actions d-flex gap-2">
                                 <a href="/admin/accommodation/all-services"><button type="submit"
                                         class="btn btn-primary rounded">Save & Exit</button></a>
