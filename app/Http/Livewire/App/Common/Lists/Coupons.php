@@ -122,8 +122,8 @@ class Coupons extends PowerGridComponent
         return [
             Column::make('Code', 'coupon_code', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('Discount', 'discount', '')->editOnClick(),
-            Column::make('Association', 'coupon_name', '')->searchable()->editOnClick(),
-            Column::make('Service', 'coupon_description', '')->searchable()->editOnClick(),
+            Column::make('Association', 'coupon_name', '')->searchable(),
+            Column::make('Service', 'coupon_description', '')->searchable(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
                 ->toggleable(1, 'Deactivated', 'Activated'),
             Column::make('Actions', 'edit')->visibleInExport(false),
