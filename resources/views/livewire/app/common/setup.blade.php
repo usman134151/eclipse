@@ -7,7 +7,7 @@
 		</div>
 	</div>
 	@if($showForm)
-	@livewire('app.common.forms.accommodation-form') {{-- Show Add / Edit Form --}}
+	@livewire('app.common.forms.setup-form') {{-- Show Add / Edit Form --}}
 	@else
 	<section id="multiple-column-form">
 		<div class="row">

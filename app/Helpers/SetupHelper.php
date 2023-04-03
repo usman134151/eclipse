@@ -69,7 +69,7 @@ class SetupHelper
     }
     public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = ''): string
     {
-        $model = '\App\Models\\' . $model;
+        $model = '\App\Models\Tenant\\' . $model;
         $query = $model::query();
     
         if ($filterCol && $filterValue) {
@@ -93,7 +93,7 @@ class SetupHelper
         }
     
         if ($wireVariable) {
-            $attributes['wire:model.defer'] = $wireVariable;
+            $attributes['wire:model'] = $wireVariable;
         }
     
         $html = '<select ' . self::getHtmlAttributes($attributes) . '>';

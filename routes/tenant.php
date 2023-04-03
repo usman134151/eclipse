@@ -97,6 +97,7 @@ Route::group([
 			Route::view('/admin/change-password', 'tenant/settings/change-password');
 			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager');
 			Route::view('/admin/setup-values', 'tenant/settings/setup-values', ["showForm"=>false]);
+			Route::view('/admin/setup/create-setup', 'tenant/settings/setup-values', ["showForm"=>true]);
 			// End of Admin Setting Routes
 
 			// Admin Booking Routes
