@@ -8,6 +8,7 @@ class CreateNavigatorUserNavigatorTables extends Migration
 {
     public function up()
     {
+        Schema::dropIfExists('navigators');
         Schema::create('navigators', function (Blueprint $table) {
             $table->id();
             $table->string('navigator_label');
@@ -15,11 +16,11 @@ class CreateNavigatorUserNavigatorTables extends Migration
             $table->string('navigator_link');
             $table->timestamps();
         });
-
+        Schema::dropIfExists('user_navigator');
         Schema::create('user_navigator', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('navigator_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id');
+            $table->foreignId('navigator_id');
             $table->integer('position');
             $table->timestamps();
         });

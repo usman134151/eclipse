@@ -10,7 +10,10 @@ class Provider extends Component
 	public $showForm;
 	public $showProfile;
 
-	protected $listeners = ['showList'=>'resetForm'];
+	protected $listeners = [
+		'showList'=>'resetForm',
+		'showProfile' => 'showProfile',
+	];
 	protected $exportDataFile;
 
     public function __construct()
@@ -33,17 +36,18 @@ class Provider extends Component
 	function showForm()
 	{
 		$this->showForm=true;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/provider/create-provider']);
 	}
 
 	public function resetForm()
 	{
 		$this->showForm=false;
 		$this->showProfile = false;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/provider']);
 	}
 
 	public function showProfile()
 	{
 		$this->showProfile = true;
 	}
- 
 }

@@ -38,7 +38,7 @@ class AccommodationForm extends Component
 	public function save() {
 		$this->validate();
 		$this->accommodation->added_by = 1;
-		$this->accommodation->status = 1;
+		// $this->accommodation->status = 1;
 		$this->accommodation->save();
 		$this->showList("Accommodation saved successfully");
 		$this->accommodation = new Accommodation;
