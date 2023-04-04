@@ -8,6 +8,7 @@ class CreateNavigatorUserNavigatorTables extends Migration
 {
     public function up()
     {
+        Schema::dropIfExists('navigators');
         Schema::create('navigators', function (Blueprint $table) {
             $table->id();
             $table->string('navigator_label');
