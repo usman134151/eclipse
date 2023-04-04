@@ -10,7 +10,10 @@ class Customer extends Component
 	public $showForm;
 	public $showProfile;
 
-	protected $listeners = ['showList' => 'resetForm'];
+	protected $listeners = [
+		'showList' => 'resetForm',
+		'showProfile' => 'showProfile',
+	];
 	protected $exportDataFile;
 
     public function __construct()

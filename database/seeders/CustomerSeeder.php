@@ -23,6 +23,7 @@ class CustomerSeeder extends Seeder
                     'first_name' => $firstName,
                     'last_name' => $lastName,
                     'email' => $email,
+                    'company_name' => rand(1, 3),
                     'password' => bcrypt('Test!836'),
                     'created_at' => now(),
                     'updated_at' => now()
