@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\app\common\lists;
 
 use App\Models\Tenant\Setup;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
@@ -50,7 +49,15 @@ final class SetupList extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Setup::query();
+		return Setup::query()
+			->leftJoin('setup_values', function ($setupValues) {
+				$setupValues->on('setup_values.setup_id', '=', 'setup.id');
+			})
+			->selectRaw(
+				'setup.id,
+				setup.setup_value,
+				COUNT(setup_values.setup_id) as values_added',
+			)->groupByRaw('setup_values.setup_id, setup.id, setup.setup_value');
 	}
 
 	/*
@@ -86,23 +93,12 @@ final class SetupList extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 		->addColumn('setup_value')
-		
+		->addColumn('values_added')
 		->addColumn('status', function (Setup $model) {
 			return ($model->status);
 		})
-		->addColumn('edit',function(Setup $model){
-			return '<div class="d-flex actions">
-			<a href="#" title="Edit Setup" wire:click="edit('.$model->id.')" aria-label="Edit Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-			<svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<use xlink:href="/css/sprite.svg#edit-icon"></use>
-			</svg>
-			</a>
-			<a href="#" title="Delete Setup" aria-label="Delete Setup" wire:click="deleteRecord('.$model->id.')" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-			<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<use xlink:href="/css/sprite.svg#delete-icon"></use>
-			</svg>
-			</a>
-			</div>';
+		->addColumn('edit', function() {
+			return '<div class="d-flex actions"><a x-on:click="setupDetails = true" href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
 		});
 	}
 
@@ -126,8 +122,7 @@ final class SetupList extends PowerGridComponent
 			Column::make('Setup Value', 'setup_value', '')
 				->searchable()
 				->sortable(),
-				
-			
+			Column::make('Values Added', 'values_added', ''),
 			Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action from export
 		];
 	}
@@ -165,7 +160,7 @@ final class SetupList extends PowerGridComponent
 	public function onUpdatedEditable(string $id, string $field, string $value): void
 	{
 		// Dumps the name of the field being updated
-	   
+
 		// Updates the specified field of the record with the new value
 		Setup::query()->find($id)->update([
 			$field => $value,

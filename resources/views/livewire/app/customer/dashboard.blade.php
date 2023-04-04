@@ -107,7 +107,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="calendar-tab-pane" role="tabpanel" aria-labelledby="calendar-tab"
                 tabindex="0">
-                <h3>Booking Calender</h3>
+                <h3>Booking Calendar</h3>
                 <!-- Filters -->
                 <div class="d-flex justify-content-start gap-4 mb-4">
                     <div class="d-flex justify-content-start gap-2">

@@ -10,7 +10,9 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
 								<a href="/" title="Go to Dashboard" aria-label="Go to Dashboard">
-									<x-icon name="home"/>
+									<svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
+										<use xlink:href="/css/common-icons.svg#home"></use>
+									</svg>
 								</a>
 							</li>
 							<li class="breadcrumb-item">
@@ -43,10 +45,14 @@
 						            <div class="d-flex gap-2 align-items-center">
 						                <div class="position-relative">
 						                    <input type="text" class="form-control form-control-md is-search" id="search-column" aria-label="Search" aria-describedby="search" placeholder="Provider Name or Email">
-						                    <x-icon aria-label="Cancel" name="cancel"/>
+						                    <svg aria-label="Cancel" class="icon-search position-absolute" width="1024" height="1024" viewBox="0 0 1024 1024"fill="none"
+										     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#cancel"></use>
+                                           </svg>
 						                </div>
 						                <button aria-label="Search" class="btn btn-secondary rounded btn-sm btn-hs-icon">
-						                    <x-icon aria-label="Search" name="search"/>
+						                    <svg aria-label="Search" class="mt-2" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#search"></use>
+										   </svg>
 						                </button>
 						            </div>
 						        </div>
@@ -73,7 +79,9 @@
 						                </div>
 						            </div>
 						            <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-						                <x-icon name="input-calender"/>
+						                <svg aria-label="Select Date" class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20"fill="none"
+										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#input-calender"></use>
+									    </svg>
 						                <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
 						            </div>
 						        </div>
@@ -113,7 +121,10 @@
 							</div>
 						</div>
 						<a @click="createInvoices = true" href="#" aria-label="Create Invoice" class="btn btn-primary btn-has-icon rounded">
-							<x-icon aria-label="Create Invoice" name="plus"/>
+							<svg class="mx-2" aria-label="Create Invoice" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#plus">
+								</use>
+							</svg>
 							<span>Create Invoice</span>
 						</a>
 					</div>
@@ -176,14 +187,18 @@
 											<td class="align-middle">
 												<div class="d-flex actions justify-content-center">
 													<a href="#" title="Chat" aria-label="Chat" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-														<x-icon aria-label="Chat" name="message"/>
+														<svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<use xlink:href="/css/common-icons.svg#chat"></use>
+														</svg>
 													</a>
 												</div>
 											</td>
 											<td class="align-middle">
 												<div class="d-flex actions justify-content-center">
 													<a @click="invoiceGeneratorbookings = true" href="#" title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-														<x-icon name="right-gray-arrows"/>
+														<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<use xlink:href="/css/common-icons.svg#bookings"></use>
+														</svg>
 													</a>
 												</div>
 											</td>
@@ -231,7 +246,9 @@
 					<div class="d-flex actions gap-3 justify-content-end mb-2">
 						<div class="d-flex gap-2 align-items-center">
 							<a href="#" title="Bookings" aria-label="Bookings" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-								<x-icon aria-label="Bookings" name="right-gray-arrows"/>
+								<svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<use xlink:href="/css/common-icons.svg#bookings"></use>
+								</svg>
 							</a>
 							<span class="text-sm">
 								Booking

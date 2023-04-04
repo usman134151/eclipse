@@ -41,14 +41,18 @@
                     <div class="bg-muted rounded p-4 mb-1">
                         <div class="d-lg-flex gap-5 align-items-center mb-4">
                             <div class="mb-4 mb-lg-0">
-                                <label class="form-label-sm">Search</label>
+                                <label class="form-label-sm" for="search-column">Search</label>
                                 <div class="d-flex gap-2 align-items-center">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Provider Name or Email">
-                                        <x-icon name="cancel"/>
+                                        <input type="text" class="form-control form-control-md is-search" id="search-column" aria-describedby="search-column" placeholder="Provider Name or Email">
+                                        <svg aria-label="Cancel" class="icon-search position-absolute" width="1024" height="1024" viewBox="0 0 1024 1024"fill="none"
+										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#cancel"></use>
+										</svg>
                                     </div>
                                     <button class="btn btn-secondary rounded btn-sm btn-hs-icon">
-                                        <x-icon name="search"/>
+                                        <svg aria-label="Search" class="mt-2" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#search"></use>
+										</svg>
                                     </button>
                                 </div>
                             </div>
@@ -75,7 +79,9 @@
                                     </div>
                                 </div>
                                 <div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-                                    <x-icon name="input-calender"/>
+                                    <svg aria-label="Select Date" class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20"fill="none"
+										xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#input-calender"></use>
+									</svg>
                                     <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                                 </div>
                             </div>
@@ -133,7 +139,7 @@
                                     <tr role="row">
                                         <th scope="col" class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select All Teams">
+                                                aria-label="Select All Providers">
                                         </th>
                                         <th scope="col" class="align-middle">Provider</th>
                                         <th scope="col">Total pending</th>
@@ -142,13 +148,8 @@
                                         <th scope="col" class="text-center align-middle">Preferred Payment Method</th>
                                         <th class="text-center align-middle">Chat</th>
                                         <th class="text-center align-middle">
-                                            <svg width="12" height="15" viewBox="0 0 12 15" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.875 1L10.75 7.5L5.875 14" stroke="white"
-                                                    stroke-width="1.625" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path d="M1 1L5.875 7.5L1 14" stroke="white" stroke-width="1.625"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                             </svg>
                                         </th>
                                     </tr>
@@ -157,7 +158,7 @@
                                     <tr role="row" class="odd">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Team">
+                                                aria-label="Select Provider">
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
@@ -189,15 +190,9 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="#" title="Chat" aria-label="Chat"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                            fill="black" />
-                                                    </svg>
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
+									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
+								                 	</svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -205,15 +200,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
                                                     title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg class="fill-stroke" width="12" height="15" class=""
-                                                        viewBox="0 0 12 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path d="M1 1L5.875 7.5L1 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
+                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -222,7 +210,7 @@
                                     <tr role="row" class="even">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Team">
+                                                aria-label="Select Provider">
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
@@ -254,15 +242,9 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="#" title="Chat" aria-label="Chat"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                            fill="black" />
-                                                    </svg>
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
+									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
+								                 	</svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -270,15 +252,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
                                                     title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg class="fill-stroke" width="12" height="15" class=""
-                                                        viewBox="0 0 12 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path d="M1 1L5.875 7.5L1 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
+                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -287,7 +262,7 @@
                                     <tr role="row" class="odd">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Team">
+                                                aria-label="Select Provider">
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
@@ -319,15 +294,9 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="#" title="Chat" aria-label="Chat"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                            fill="black" />
-                                                    </svg>
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
+									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
+								                 	</svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -335,15 +304,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
                                                     title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg class="fill-stroke" width="12" height="15" class=""
-                                                        viewBox="0 0 12 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path d="M1 1L5.875 7.5L1 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
+                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -352,7 +314,7 @@
                                     <tr role="row" class="even">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Team">
+                                                aria-label="Select Provider">
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
@@ -384,15 +346,9 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="#" title="Chat" aria-label="Chat"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                            fill="black" />
-                                                    </svg>
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
+									                	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
+								                 	</svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -400,15 +356,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
                                                     title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg class="fill-stroke" width="12" height="15" class=""
-                                                        viewBox="0 0 12 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path d="M1 1L5.875 7.5L1 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
+                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -417,7 +366,7 @@
                                     <tr role="row" class="odd">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Team">
+                                                aria-label="Select Provider">
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
@@ -449,15 +398,9 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="#" title="Chat" aria-label="Chat"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                            fill="black" />
-                                                    </svg>
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
+                                                 </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -465,15 +408,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
                                                     title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg class="fill-stroke" width="12" height="15" class=""
-                                                        viewBox="0 0 12 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path d="M1 1L5.875 7.5L1 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
+                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -482,7 +418,7 @@
                                     <tr role="row" class="even">
                                         <td class="text-center align-middle">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                aria-label="Select Team">
+                                                aria-label="Select Provider">
                                         </td>
                                         <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
@@ -514,14 +450,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="#" title="Chat" aria-label="Chat"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M3 16V19.766L4.515 18.857L9.277 16H14C15.103 16 16 15.103 16 14V6C16 4.897 15.103 4 14 4H2C0.897 4 0 4.897 0 6V14C0 15.103 0.897 16 2 16H3ZM2 6H14V14H8.723L5 16.234V14H2V6Z"
-                                                            fill="black" />
-                                                        <path
-                                                            d="M18 0H6C4.897 0 4 0.897 4 2H16C17.103 2 18 2.897 18 4V12C19.103 12 20 11.103 20 10V2C20 0.897 19.103 0 18 0Z"
-                                                            fill="black" />
+                                                    <svg aria-label="Chat" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chat"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -530,15 +460,8 @@
                                             <div class="d-flex actions justify-content-center">
                                                 <a href="javascript:void(0)" @click="remittanceGeneratorBooking = true"
                                                     title="Booking" aria-label="Booking" class="btn btn-hs-icon p-0">
-                                                    <svg class="fill-stroke" width="12" height="15" class=""
-                                                        viewBox="0 0 12 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                        <path d="M1 1L5.875 7.5L1 14" stroke="black"
-                                                            stroke-width="1.625" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
+                                                    <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
                                                     </svg>
                                                 </a>
                                             </div>
@@ -579,13 +502,9 @@
                     <div class="d-flex gap-2 align-items-center">
                         <a href="#" title="Edit Provider" aria-label="Edit Provider"
                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg class="fill-stroke" width="12" height="15" class="" viewBox="0 0 12 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.875 1L10.75 7.5L5.875 14" stroke="black" stroke-width="1.625"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M1 1L5.875 7.5L1 14" stroke="black" stroke-width="1.625" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
+                            <svg aria-label="Bookings" class="fill-stroke" width="12" height="15" viewBox="0 0 12 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#bookings"></use>
+                             </svg>
                         </a>
                         <span class="text-sm">
                             Booking

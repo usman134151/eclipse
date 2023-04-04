@@ -8,7 +8,7 @@
 		<div>
 			@include('modals.admin-staff')
 			@include('modals.assign-provider-team')
-			@include('modals.meeting-links')
+			@include('modals.meeting-links') 
 			@include('modals.provider-message')
 			@include('modals.unassign')
 			@include('modals.common.review-feedback')
