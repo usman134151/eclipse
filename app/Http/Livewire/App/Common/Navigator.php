@@ -28,7 +28,6 @@ class Navigator extends Component
     }
     // End of update by Waqar Mughal
 
-    
     function showForm()
     {     
        $this->showForm=true;
@@ -37,5 +36,11 @@ class Navigator extends Component
     {
         $this->showForm=false;
     }
+
+    // Updated by Waqar Mughal to, this calls after navigator drops 
+    public function updateNavigateOrder($list){     
+
+    } 
+    // End of update by Waqar Mughal
 
 }
