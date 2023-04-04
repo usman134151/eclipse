@@ -608,10 +608,10 @@
                             aria-labelledby="permission-configurations-tab" tabindex="0"
                             x-show="tab === 'permission-configurations'">
                             <section id="multiple-column-form">
-                                <div class="row">
-                                    <div class="card-body">
-                                        <div class="d-lg-flex justify-content-between mb-lg-0 mb-4">
-                                            <h2>Permission Configurations</h2>
+                                <div class="">
+                                    <div class="col-lg-12 inner-section-segment-spacing">
+                                        <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                            <h2 class="mb-lg-0">Permission Configurations</h2>
                                             <div
                                                 class="d-flex flex-column justify-content-center align-items-center gap-1">
                                                 <label class="form-label-sm">
@@ -624,311 +624,299 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="row inner-section-segment-spacing">
-                                                <div class="col-lg-12 mb-4">
-                                                    <label class="form-label">
-                                                        Roles & Relationships
-                                                    </label>
-                                                    <p>
-                                                        Select which roles this user will play in the company. If the
-                                                        user is not a Supervisor and or Billing Manager then you can
-                                                        select other users as Supervisor of this user and or Billing
-                                                        Manager of the user.
-                                                    </p>
-                                                </div>
-                                                <div class="col-lg-12 ">
-                                                    <label class="form-label">
-                                                        Assigned Supervisor(s)
-                                                    </label>
-                                                    <div>
-                                                        <button type="button"
-                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#assignedSupervisorModal">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Assigned Supervisor(s)" width="25"
-                                                                height="18" viewBox="0 0 25 18">
-                                                                <use
-                                                                    xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                            Assigned Supervisor(s)
-                                                        </button>
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="AssignSameUser">
-                                                            <label class="form-check-label" for="AssignSameUser">
-                                                                Assign Same User
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row between-section-segment-spacing">
-                                                <div class="col-lg-12 ">
-                                                    <label class="form-label text-primary">
-                                                        Select Role
-                                                    </label>
-                                                    <div class="row inner-section-segment-spacing">
-                                                        <div class="form-check mb-lg-0 mt-4">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="CompanyAdmin">
-                                                            <label class="form-check-label" for="CompanyAdmin">
-                                                                Company Admin
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row inner-section-segment-spacing">
-                                                    <div class="col-lg-12  d-md-flex gap-5 align-items-center">
-                                                        <div class="form-check mb-md-0">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="Supervisor" checked>
-                                                            <label class="form-check-label" for="Supervisor">
-                                                                Supervisor
-                                                            </label>
-                                                        </div>
-                                                        <button type="button"
-                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                            data-bs-toggle="modal" data-bs-target="#supervisingModal">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Supervising" width="25" height="18"
-                                                                viewBox="0 0 25 18">
-                                                                <use
-                                                                    xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                            Supervising
-                                                        </button>
-                                                        <div class="uploaded-data d-flex align-items-center">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                class="" alt="Image">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                class="" alt="Image">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                class="" alt="Image">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                class="" alt="Image">
-                                                            <div class="more">
-                                                                <span class="value">8</span> more
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row inner-section-segment-spacing">
-                                                    <div class="col-lg-12 d-md-flex gap-5">
-                                                        <div class="form-check mb-md-0">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="Requester" checked>
-                                                            <label class="form-check-label" for="Requester">
-                                                                Requester
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            <button type="button"
-                                                                class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#assignedBillingManagerModal">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                                <svg aria-label="Supervising" width="25" height="18"
-                                                                    viewBox="0 0 25 18">
-                                                                    <use
-                                                                        xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila --}}
-                                                                Assigned Billing Manager
-                                                            </button>
-                                                            <div class="form-check mb-lg-0">
-                                                                <input class="form-check-input" type="checkbox" value=""
-                                                                    id="AssignSameUser">
-                                                                <label class="form-check-label" for="AssignSameUser">
-                                                                    Assign Same User
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row inner-section-segment-spacing">
-                                                    <div class="col-lg-12 ">
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="ServiceConsumer">
-                                                            <label class="form-check-label" for="ServiceConsumer">
-                                                                Service Consumer
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row inner-section-segment-spacing">
-                                                    <div class="col-lg-12 ">
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="ServiceConsumer">
-                                                            <label class="form-check-label" for="ServiceConsumer">
-                                                                Participant
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-12 mb-4 d-md-flex gap-5 align-items-center">
-                                                    <div class="form-check mb-md-0">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="BillingManager" checked>
-                                                        <label class="form-check-label" for="BillingManager">
-                                                            Billing Manager
-                                                        </label>
-                                                    </div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal" data-bs-target="#billManagingModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Billing Manager" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Billing Manager
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-5">
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label" for="preffered-providers">
-                                                        Preferred Providers
-                                                    </label>
-                                                    <select class="form-select" id="preffered-providers">
-                                                        <option>Select Preferred Providers</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-6 mb-4 ps-lg-5">
-                                                    <label class="form-label">
-                                                        Disfavored Providers
-                                                    </label>
-                                                    <select class="form-select" aria-label="Disfavored Providers">
-                                                        <option>Select Disfavored Providers</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label">
-                                                        Grant Access to User(s)' Schedules?
-                                                    </label>
-                                                    <div class="d-flex gap-3">
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="GrantAccesstoUserSchedules" value=""
-                                                                id="GrantAccesstoUserSchedulesYes" checked>
-                                                            <label class="form-check-label"
-                                                                for="GrantAccesstoUserSchedulesYes">
-                                                                Yes
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="GrantAccesstoUserSchedules" value=""
-                                                                id="GrantAccesstoUserSchedulesNo">
-                                                            <label class="form-check-label"
-                                                                for="GrantAccesstoUserSchedulesNo">
-                                                                No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6 mb-4 ps-lg-5">
-                                                    <label class="form-label" for="user-schedule">
-                                                        Grant Access to User(s)' Schedules
-                                                    </label>
-                                                    <select class="form-select" id="user-schedule">
-                                                        <option>Select</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label">
-                                                        Require Service Request Approval from Assigned Supervisor
-                                                        <i class="fa fa-question-circle text-muted" aria-hidden="true"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title=""></i>
-                                                    </label>
-                                                    <div class="d-flex gap-3">
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="RequireServiceRequestApprovalfromAssignedSupervisor"
-                                                                value=""
-                                                                id="RequireServiceRequestApprovalfromAssignedSupervisorYes"
-                                                                checked>
-                                                            <label class="form-check-label"
-                                                                for="RequireServiceRequestApprovalfromAssignedSupervisorYes">
-                                                                Yes
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="RequireServiceRequestApprovalfromAssignedSupervisor"
-                                                                value=""
-                                                                id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
-                                                            <label class="form-check-label"
-                                                                for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
-                                                                No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6 mb-4 ps-lg-5">
-                                                    <label class="form-label">
-                                                        Hide Billing Information from User
-                                                    </label>
-                                                    <div class="d-flex gap-3">
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="HideBillingInformationfromUser" value=""
-                                                                id="HideBillingInformationfromUserYes" checked>
-                                                            <label class="form-check-label"
-                                                                for="HideBillingInformationfromUserYes">
-                                                                Yes
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check mb-lg-0">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="HideBillingInformationfromUser" value=""
-                                                                id="HideBillingInformationfromUserNo">
-                                                            <label class="form-check-label"
-                                                                for="HideBillingInformationfromUserNo">
-                                                                No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-12 mt-1 mb-4">
-                                                <label class="form-label" for="industry-column">
-                                                    Assigned Admin-Staff
+                                            <div class="col-lg-12">
+                                                <label class="form-label">
+                                                    Roles & Relationships
                                                 </label>
-                                                <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal" data-bs-target="#adminStaffModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Assigned Admin-Staff" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Admin-Staff
-                                                    </button>
+                                                <p>
+                                                    Select which roles this user will play in the company. If the
+                                                    user is not a Supervisor and or Billing Manager then you can
+                                                    select other users as Supervisor of this user and or Billing
+                                                    Manager of the user.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 inner-section-segment-spacing">
+                                        <label class="form-label">
+                                            Assigned Supervisor(s)
+                                        </label>
+                                        <div>
+                                            <button type="button"
+                                                class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#assignedSupervisorModal">
+                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                <svg aria-label="Assigned Supervisor(s)" width="25"
+                                                    height="18" viewBox="0 0 25 18">
+                                                    <use
+                                                        xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                    </use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Assigned Supervisor(s)
+                                            </button>
+                                            <div class="form-check mb-lg-0">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="AssignSameUser">
+                                                <label class="form-check-label" for="AssignSameUser">
+                                                    Assign Same User
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 inner-section-segment-spacing">
+                                        <label class="form-label text-primary">
+                                            Select Role
+                                        </label>
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="CompanyAdmin">
+                                            <label class="form-check-label" for="CompanyAdmin">
+                                                Company Admin
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 d-md-flex gap-5 align-items-center mb-4">
+                                        <div class="form-check mb-md-0">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="Supervisor" checked>
+                                            <label class="form-check-label" for="Supervisor">
+                                                Supervisor
+                                            </label>
+                                        </div>
+                                        <button type="button"
+                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                            data-bs-toggle="modal" data-bs-target="#supervisingModal">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Supervising" width="25" height="18"
+                                                viewBox="0 0 25 18">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                            Supervising
+                                        </button>
+                                        <div class="uploaded-data d-flex align-items-center">
+                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                class="" alt="Image">
+                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                class="" alt="Image">
+                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                class="" alt="Image">
+                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                class="" alt="Image">
+                                            <div class="more">
+                                                <span class="value">8</span> more
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 d-md-flex gap-5 mb-4">
+                                            <div class="form-check mb-md-0">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="Requester" checked>
+                                                <label class="form-check-label" for="Requester">
+                                                    Requester
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <button type="button"
+                                                    class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#assignedBillingManagerModal">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Supervising" width="25" height="18"
+                                                        viewBox="0 0 25 18">
+                                                        <use
+                                                            xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    Assigned Billing Manager
+                                                </button>
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="AssignSameUser">
+                                                    <label class="form-check-label" for="AssignSameUser">
+                                                        Assign Same User
+                                                    </label>
                                                 </div>
                                             </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="ServiceConsumer">
+                                            <label class="form-check-label" for="ServiceConsumer">
+                                                Service Consumer
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="ServiceConsumer">
+                                            <label class="form-check-label" for="ServiceConsumer">
+                                                Participant
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 d-md-flex gap-5 align-items-center between-section-segment-spacing">
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="BillingManager" checked>
+                                            <label class="form-check-label" for="BillingManager">
+                                                Billing Manager
+                                            </label>
+                                        </div>
+                                        <button type="button"
+                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                            data-bs-toggle="modal" data-bs-target="#billManagingModal">
+                                            {{-- Updated by Shanila to Add svg icon--}}
+                                            <svg aria-label="Billing Manager" width="25" height="18"
+                                                viewBox="0 0 25 18">
+                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                </use>
+                                            </svg>
+                                            {{-- End of update by Shanila --}}
+                                            Billing Manager
+                                        </button>
+                                    </div>
+
+                                    <div class="row between-section-segment-spacing">
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="preffered-providers">
+                                                Preferred Providers
+                                            </label>
+                                            <select class="form-select" id="preffered-providers">
+                                                <option>Select Preferred Providers</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label">
+                                                Disfavored Providers
+                                            </label>
+                                            <select class="form-select" aria-label="Disfavored Providers">
+                                                <option>Select Disfavored Providers</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label">
+                                                Grant Access to User(s)' Schedules?
+                                            </label>
+                                            <div class="d-flex gap-3">
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="GrantAccesstoUserSchedules" value=""
+                                                        id="GrantAccesstoUserSchedulesYes" checked>
+                                                    <label class="form-check-label"
+                                                        for="GrantAccesstoUserSchedulesYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="GrantAccesstoUserSchedules" value=""
+                                                        id="GrantAccesstoUserSchedulesNo">
+                                                    <label class="form-check-label"
+                                                        for="GrantAccesstoUserSchedulesNo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="user-schedule">
+                                                Grant Access to User(s)' Schedules
+                                            </label>
+                                            <select class="form-select" id="user-schedule">
+                                                <option>Select</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label">
+                                                Require Service Request Approval from Assigned Supervisor
+                                                <i class="fa fa-question-circle text-muted" aria-hidden="true"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title=""></i>
+                                            </label>
+                                            <div class="d-flex gap-3">
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="RequireServiceRequestApprovalfromAssignedSupervisor"
+                                                        value=""
+                                                        id="RequireServiceRequestApprovalfromAssignedSupervisorYes"
+                                                        checked>
+                                                    <label class="form-check-label"
+                                                        for="RequireServiceRequestApprovalfromAssignedSupervisorYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="RequireServiceRequestApprovalfromAssignedSupervisor"
+                                                        value=""
+                                                        id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
+                                                    <label class="form-check-label"
+                                                        for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label">
+                                                Hide Billing Information from User
+                                            </label>
+                                            <div class="d-flex gap-3">
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="HideBillingInformationfromUser" value=""
+                                                        id="HideBillingInformationfromUserYes" checked>
+                                                    <label class="form-check-label"
+                                                        for="HideBillingInformationfromUserYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="form-check mb-lg-0">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="HideBillingInformationfromUser" value=""
+                                                        id="HideBillingInformationfromUserNo">
+                                                    <label class="form-check-label"
+                                                        for="HideBillingInformationfromUserNo">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 between-section-segment-spacing">
+                                        <label class="form-label" for="industry-column">
+                                            Assigned Admin-Staff
+                                        </label>
+                                        <div>
+                                            <button type="button"
+                                                class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                data-bs-toggle="modal" data-bs-target="#adminStaffModal">
+                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                <svg aria-label="Assigned Admin-Staff" width="25" height="18"
+                                                    viewBox="0 0 25 18">
+                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                    </use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Assigned Admin-Staff
+                                            </button>
                                         </div>
                                     </div>
                                     {{-- Action Buttons Start --}}
