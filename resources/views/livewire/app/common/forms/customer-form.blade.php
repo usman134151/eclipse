@@ -949,10 +949,8 @@
                             <section id="multiple-column-form">
                                 <div class="row">
                                     <div class="card-body">
-                                        <div class="col-md-8 mb-md-2">
-                                            <div class="mb-5">
-                                                <h2>Service Catalog</h2>
-                                            </div>
+                                        <div class="col-lg-8">
+                                            <h2>Service Catalog</h2>
                                         </div>
 
                                         <div class="col-md-12 mb-md-2">
