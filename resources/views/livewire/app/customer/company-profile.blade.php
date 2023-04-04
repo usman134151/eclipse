@@ -24,7 +24,7 @@
                                 Profile
                             </li>
                             <li class="breadcrumb-item">
-                                Company Profie
+                                Company Profile
                             </li>
                         </ol>
                     </div>

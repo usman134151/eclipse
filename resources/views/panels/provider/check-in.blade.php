@@ -29,7 +29,7 @@
                     02:00 PM-11 November 2022
                   </div>
                   <div class="col-lg-3 py-2 fw-semibold text-sm">
-                    Service Loction:
+                    Service Location:
                   </div>
                   <div class="col-lg-7 py-2 text-sm text-primary">
                     Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
