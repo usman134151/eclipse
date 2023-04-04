@@ -30,7 +30,7 @@
           </ul>
         </div>
         <!-- BEGIN: search-by-keyword - search-by-no -->
-        <div class="mx-auto  d-none d-xl-flex gap-3">
+        <div class="mx-auto  d-none d-xl-flex gap-3 align-items-center">
           <div class="search-by-keyword position-relative">
             <svg width="15" height="15" class="icon-search-keyword-no" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M11.0086 9.69676C11.9163 8.45791 12.3229 6.92194 12.1469 5.39615C11.971 3.87036 11.2255 2.46727 10.0596 1.4676C8.89374 0.467925 7.39345 -0.0546141 5.8589 0.00452304C4.32436 0.0636602 2.86872 0.700112 1.78321 1.78655C0.697708 2.87298 0.0623867 4.32928 0.00435596 5.86409C-0.0536748 7.39889 0.469864 8.89902 1.47023 10.0643C2.4706 11.2297 3.87402 11.9743 5.39972 12.1491C6.92542 12.324 8.46088 11.9163 9.69892 11.0075H9.69798C9.7261 11.045 9.7561 11.0807 9.78985 11.1153L13.3991 14.7251C13.5749 14.901 13.8133 14.9999 14.062 15C14.3107 15.0001 14.5492 14.9014 14.7251 14.7256C14.901 14.5498 14.9999 14.3113 15 14.0625C15.0001 13.8138 14.9014 13.5753 14.7256 13.3993L11.1164 9.78959C11.0828 9.75565 11.0468 9.72431 11.0086 9.69583V9.69676ZM11.2504 6.09264C11.2504 6.76984 11.1171 7.44041 10.8579 8.06606C10.5988 8.69171 10.219 9.26019 9.74025 9.73904C9.26146 10.2179 8.69306 10.5977 8.0675 10.8569C7.44194 11.116 6.77147 11.2494 6.09436 11.2494C5.41726 11.2494 4.74679 11.116 4.12123 10.8569C3.49566 10.5977 2.92726 10.2179 2.44848 9.73904C1.9697 9.26019 1.5899 8.69171 1.33079 8.06606C1.07167 7.44041 0.938307 6.76984 0.938307 6.09264C0.938307 4.72498 1.48153 3.41333 2.44848 2.44625C3.41543 1.47916 4.72689 0.93586 6.09436 0.93586C7.46183 0.93586 8.7733 1.47916 9.74025 2.44625C10.7072 3.41333 11.2504 4.72498 11.2504 6.09264Z" fill="url(#paint0_linear_8033_213447)"/>
@@ -103,13 +103,19 @@
               <li class="dropdown-menu-footer"><a href="{{ url('/admin/notifications') }}" aria-label="Read All Notifications" class="btn btn-primary w-100 all_notify">Read all notifications</a></li>
             </ul>
           </li>
-          <li class="nav-item d-none d-lg-block">
+          <li class="nav-item">
             <a href="javascript:void();" aria-label="Eclipse Scheduling Tenant Logout" class="nav-link"
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.8385 2.1263L4.8708 3.6014C3.61636 4.47959 2.67458 5.73485 2.18227 7.18484C1.68995 8.63482 1.67274 10.204 2.13314 11.6644C2.59354 13.1249 3.50756 14.4005 4.74244 15.306C5.97731 16.2115 7.46872 16.6997 9 16.6997C10.5313 16.6997 12.0227 16.2115 13.2576 15.306C14.4924 14.4005 15.4065 13.1249 15.8669 11.6644C16.3273 10.204 16.31 8.63482 15.8177 7.18484C15.3254 5.73485 14.3836 4.47959 13.1292 3.6014L14.1615 2.1263C15.3477 2.95558 16.316 4.05901 16.9843 5.34278C17.6526 6.62655 18.001 8.0527 18 9.5C18 14.4707 13.9707 18.5 9 18.5C4.0293 18.5 2.33121e-06 14.4707 2.33121e-06 9.5C-0.00103989 8.0527 0.347392 6.62655 1.01568 5.34278C1.68397 4.05901 2.65235 2.95558 3.8385 2.1263ZM8.1 9.5V0.5H9.9V9.5H8.1Z" fill="#6E6B7B"/>
           </svg></a></li>
+          <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">John Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="/html-prototype/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+              </a>
+              
+          </li>
+
 
         </ul>
       </div>
