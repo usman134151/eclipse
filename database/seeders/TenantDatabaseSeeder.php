@@ -36,7 +36,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(CustomerSeeder::class); //added records for customer table by Shanilla Wali
       $this->call(Coupons_Seeder::class); //added records for customer table by Safia Liaqat
       $this->call(NavigatorTableSeeder::class);//added by Amna Bilal for dashboard navigator
-
+      $this->call(CompaniesSeeder::class); // Added records in companies table by Sohail
     }
 
 }

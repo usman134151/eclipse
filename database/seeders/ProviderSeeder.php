@@ -20,6 +20,7 @@ class ProviderSeeder extends Seeder
                     'name' => $name,
                     'first_name' => $firstName,
                     'last_name' => $lastName,
+                    'company_name' => rand(1, 3),
                     'email' => $email,
                     'password' => bcrypt('Test!836'),
                     'created_at' => now(),
