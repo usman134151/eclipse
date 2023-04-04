@@ -168,7 +168,7 @@
 		</div>
 	</div>
 	 
-	<div class="row inner-section-segment-spacing">
+	<div class="row mb-4">
 	<div class="col-lg-12">
 		<label class="form-label" for="invoice-number">
 			Invoice Number
@@ -177,7 +177,7 @@
 	</div>
    </div>
 
-     <div class="row inner-section-segment-spacing">
+     <div class="row mb-4">
 	<div class="col-lg-12">
 		<label class="form-label" for="invoice-number">
 			PO Number
@@ -192,7 +192,7 @@
 	</div>
    </div>
 
-     <div class="row inner-section-segment-spacing">
+     <div class="row mb-4">
 	<div class="col-lg-12">
 		<label class="form-label" for="">
 			Due Date

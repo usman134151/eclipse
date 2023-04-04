@@ -59,8 +59,7 @@
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
 							--}}
 							<form class="form">
-							<div class="row between-section-segment-spacing">
-								<div class="row mb-4">
+								<div class="row between-section-segment-spacing">
 									<div class="col-12 text-center">
 										<div class="d-inline-block position-relative">
 											<img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle"
@@ -84,7 +83,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row between-section-segment-spacing">
 									<div class="col-lg-12">
 										<div class="d-lg-flex justify-content-between mb-4">
 											<h2 class="mb-lg-0">User Profile</h2>
@@ -307,8 +306,8 @@
 										  ></textarea>
 										</div>
 									  </div>
-
-									<div class="row mt-3">
+								</div>
+									<div class="row">
 										<h2>Roles and Permissions</h2>
 										<div class="col-md-6 col-12">
 											<div class="mb-4">
@@ -318,7 +317,6 @@
 											</div>
 										</div>
 									</div>
-								</div>
 								<div class="col-12 justify-content-center form-actions d-flex">
 									<button type="button" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">
 										Cancel
@@ -326,7 +324,6 @@
 									<button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
 									<button type="submit" class="btn btn-primary rounded">Next</button>
 								</div>
-							</div>
 							</form>
 						</div><!-- END: Profile -->
 	{{-- 
