@@ -47,9 +47,9 @@
 				  <div class="tab-pane fade {{ $component == 'configuration-setting' ? 'active show' : '' }}" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
 					<div class="row">
 					  <div class="col-lg-12">
-						  <h2>Configuration Setting</h2>
-						  <div class="row">
-							<div class="col-lg-6 mb-4">
+						  <h2 class="mb-4">Configuration Setting</h2>
+						  <div class="row inner-section-segment-spacing">
+							<div class="col-lg-6">
 							  <h3>Choose Portal Default Colours</h3>
 							  <div class="row gap-0 row-gap-3">
 								  <div class="choose-portal-colors">
@@ -81,8 +81,8 @@
 							 </div>
 							</div>
 						  </div>
-						  <div class="row">
-							<div class="col-lg-6 mb-4">
+						  <div class="row inner-section-segment-spacing">
+							<div class="col-lg-6">
 							  <h3>Choose URL for Users to Access the Portal</h3>
 								<div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
 								  <input aria-label="Sub Domain Name for URL" type="" name="" class="form-control" placeholder="Name">
@@ -98,8 +98,8 @@
 								</div>
 							</div>
 						  </div>
-						  <div class="row">
-						  	<div class="col-md-7 col-lg-5  mb-4">
+						  <div class="row inner-section-segment-spacing">
+						  	<div class="col-md-7 col-lg-5">
 						    	<div class="row">
 						      		<div class="col-lg-12">
 						        		<h3 class="mb-3">Company Logo</h3>
@@ -114,8 +114,8 @@
 						    	<img src="/html-prototype/images/company/rectangle-logo.png" class="img-fluid" alt="help-desk">
 						  	</div>
 						  </div>
-						  <div class="row">
-						  	<div class="col-md-7 col-lg-5  mb-4">
+						  <div class="row inner-section-segment-spacing">
+						  	<div class="col-md-7 col-lg-5">
 						  		<div class="row">
 								  	<div class="col-lg-12">
 										<h3 class="mb-3">Login Screen Image</h3>
@@ -131,15 +131,15 @@
 								<img src="/html-prototype/images/company/help-desk.png" class="img-fluid" alt="help-desk"/>
 							</div>
 						  </div>
-						  <div class="row">
-							<div class="col-lg-6 mb-4">
+						  <div class="row inner-section-segment-spacing">
+							<div class="col-lg-6">
 								<h3>Login Screen Welcome Text</h3>
 								<label class="form-label" for="updated-welcome-text">Updated Welcome Text</label>
 								  <textarea class="form-control" rows="3" cols="3" placeholder="Enter Text" id="updated-welcome-text"></textarea>
 							</div>
 						  </div>
-						  <div class="row">
-							<div class="col-lg-6 mb-4">
+						  <div class="row inner-section-segment-spacing">
+							<div class="col-lg-6">
 								<h3>Assign Email to Send Notifications</h3>
 								<label class="form-label" for="EmailAddressSendNotifications">Email Address</label>
 								  <input
@@ -236,13 +236,13 @@
 					</div>
 
 				  <div class="tab-pane fade {{ $component == 'business-hours' ? 'active show' : '' }}" id="business-hours" role="tabpanel" aria-labelledby="business-hours-tab" tabindex="0">
-					<div class="row mb-4" >
+					<div class="row between-section-segment-spacing" >
 						<div class="col-lg-12">
 						  <h2>Business Hours Setup</h2>
 						  <p>Your set hours determine when "Business hours" and "After-hours" rates are in effect for customer billing and Provider payroll and prevents services from being scheduled during your "closed" hours.You can also set the times which you are closed and not providing services; this will restrict customers from scheduling.</p>
 					  </div>
 					</div>
-					<div class="row mb-4">
+					<div class="row inner-section-segment-spacing">
 						<div class="col-lg-12">
 							<h3>Time Configuration</h3>
 							<div class="row">
@@ -290,7 +290,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row mb-4">
+							<div class="row inner-section-segment-spacing">
 								<div class="col-lg-12">
 									<label class="form-label">Select Days & Time</label>
 									<div class="d-flex flex-column flex-lg-row gap-lg-3 gap-2 align-items-lg-center mb-3">
@@ -482,7 +482,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row mb-4">
+							<div class="row inner-section-segment-spacing">
 								<div class="col-12">
 									<h3>Add Holidays / Days Closed</h3>
 									<div class="d-lg-flex gap-3 mb-3">
@@ -506,7 +506,7 @@
 									<button class="btn btn-primary btn-sm rounded">Submit</button>
 								</div>
 							</div>
-							<div class="row">
+							<div class="row between-section-segment-spacing">
 								<div class="col-lg-9">
 									<h3>Listed Holidays</h3>
 									<table class="table table-hover">
@@ -626,7 +626,7 @@
 								<div class="col-lg-12">
 									<div class="mb-5">
 									<h3>Provider Payments & Preferences</h3>
-									<div class="row mb-4">
+									<div class="row between-section-segment-spacing">
 										<div class="col-lg-12 mb-4">
 											<div class="form-check form-switch">
 												<input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="providerPayroll" checked>
@@ -1119,7 +1119,7 @@
 													</div>
 											</div>
 											<div class="row mb-4">
-												<div class="col-lg-10 text-lg-end mt-4">
+												<div class="col-lg-12 text-lg-end mt-2">
 													<button type="button" class="btn btn-primary btn rounded"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Policy
 													</button>
 												</div>
