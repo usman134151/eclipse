@@ -14,7 +14,6 @@ class NavigatorTableSeeder extends Seeder
     public function run()
     {
         
-
         DB::table('navigators')->insert([
             [
                 'navigator_label' => 'Invoice Generator',         
@@ -90,21 +89,6 @@ class NavigatorTableSeeder extends Seeder
     }
 }
 
-
-
-
-
-// ============== List of Navigators ============== 
-// 1- Invoice Generator     /admin/draft-invoices              /css/dashboard.svg#invoice-icon
-// 2- Invoice Manager       /admin/customer-invoices           /css/dashboard.svg#invoice-manager
-// 3- Remittance Generator  /admin/provider/remittances        /css/dashboard.svg#remitance-icon
-// 4- Payment Manager       /admin/provider/pending-payments   /css/dashboard.svg#payment-icon
-// 5- Quotes & Leads        /admin/quotes                      /css/dashboard.svg#quotes-icon
-// 6- Chat                  /admin/chat                        /css/dashboard.svg#chat-icon
-// 7- Providers             /admin/provider                    /css/dashboard.svg#provider-icon
-// 8- Companies             /admin/company                     /css/dashboard.svg#company-icon
-// 9- Reports               /admin/reports                     /css/dashboard.svg#report-icon
-// 10- Applications          /admin/provider-applications       /css/dashboard.svg#application-icon
 
 
 
