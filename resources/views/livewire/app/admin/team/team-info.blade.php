@@ -1,6 +1,6 @@
 <div>
 	<form class="form">
-		<div class="row mt-2 mb-5">
+		<div class="row mt-2 between-section-segment-spacing">
 		  <div class="col-12 text-center">
 			<div class="d-inline-block position-relative">
 			  <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
@@ -17,8 +17,8 @@
 			</div>
 		  </div>
 		</div>
-		<div class="row">
-		  <div class="col-md-12 mb-md-2">
+		<div class="row between-section-segment-spacing">
+		  <div class="col-md-12">
 			<h2 class="mb-5">Team Info</h2>
 			<div class="row">
 			  <div class="col-md-6 col-12">
@@ -96,7 +96,6 @@
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
-				<div class="mb-4">
 				  <label class="form-label" for="team_notes">
 					Team Notes
 				  </label>
@@ -106,10 +105,8 @@
 				  name="team_notes"
 				  id="team_notes"
 				  ></textarea>
-				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
-				<div class="mb-4">
 				  <label class="form-label" for="tags">
 					Tags
 				  </label>
@@ -119,10 +116,11 @@
 				  name="tags"
 				  id="tags"
 				  ></textarea>
-				</div>
 			  </div>
 			</div>
 		  </div>
+		</div>
+		<div class="row">
 		  <div class="d-flex justify-content-center gap-2 col-12 form-actions">
 			<a
 				href="javascript:void(0);"
