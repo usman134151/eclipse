@@ -62,16 +62,12 @@
         </div>
         <!-- END: search-by-keyword - search-by-no -->
         <ul class="nav navbar-nav align-items-center ms-auto">
-        <li class="nav-item dropdown dropdown-user">
-              <div class="user-nav d-sm-flex d-none">
-                <span class="user-name fw-medium m-1">
-                  {{-- Interpreter Admin --}}
-                  {{ Auth::user()->first_name}} {{ Auth::user()->last_name }}
-                </span>
-              </div>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                @csrf
-              </form>
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link nav-link-style">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon ficon">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </a>
           </li>
           <li class="nav-item dropdown dropdown-notification me-25">
                         <a href="#" aria-label="Eclipse Scheduling Notification" id="dropdownNotification" class="nav-link" data-bs-toggle="dropdown"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,15 +108,85 @@
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
               <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3.8385 2.1263L4.8708 3.6014C3.61636 4.47959 2.67458 5.73485 2.18227 7.18484C1.68995 8.63482 1.67274 10.204 2.13314 11.6644C2.59354 13.1249 3.50756 14.4005 4.74244 15.306C5.97731 16.2115 7.46872 16.6997 9 16.6997C10.5313 16.6997 12.0227 16.2115 13.2576 15.306C14.4924 14.4005 15.4065 13.1249 15.8669 11.6644C16.3273 10.204 16.31 8.63482 15.8177 7.18484C15.3254 5.73485 14.3836 4.47959 13.1292 3.6014L14.1615 2.1263C15.3477 2.95558 16.316 4.05901 16.9843 5.34278C17.6526 6.62655 18.001 8.0527 18 9.5C18 14.4707 13.9707 18.5 9 18.5C4.0293 18.5 2.33121e-06 14.4707 2.33121e-06 9.5C-0.00103989 8.0527 0.347392 6.62655 1.01568 5.34278C1.68397 4.05901 2.65235 2.95558 3.8385 2.1263ZM8.1 9.5V0.5H9.9V9.5H8.1Z" fill="#6E6B7B"/>
-          </svg></a></li>
-          <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">John Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="/html-prototype/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
-              </a>
-              
+                <path d="M3.8385 2.1263L4.8708 3.6014C3.61636 4.47959 2.67458 5.73485 2.18227 7.18484C1.68995 8.63482 1.67274 10.204 2.13314 11.6644C2.59354 13.1249 3.50756 14.4005 4.74244 15.306C5.97731 16.2115 7.46872 16.6997 9 16.6997C10.5313 16.6997 12.0227 16.2115 13.2576 15.306C14.4924 14.4005 15.4065 13.1249 15.8669 11.6644C16.3273 10.204 16.31 8.63482 15.8177 7.18484C15.3254 5.73485 14.3836 4.47959 13.1292 3.6014L14.1615 2.1263C15.3477 2.95558 16.316 4.05901 16.9843 5.34278C17.6526 6.62655 18.001 8.0527 18 9.5C18 14.4707 13.9707 18.5 9 18.5C4.0293 18.5 2.33121e-06 14.4707 2.33121e-06 9.5C-0.00103989 8.0527 0.347392 6.62655 1.01568 5.34278C1.68397 4.05901 2.65235 2.95558 3.8385 2.1263ZM8.1 9.5V0.5H9.9V9.5H8.1Z" fill="#6E6B7B"/>
+              </svg>
+            </a>
           </li>
-
-
+          <li class="nav-item dropdown dropdown-user">
+            <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="user-nav d-sm-flex d-none">
+                {{-- Interpreter Admin --}}
+                <span class="user-name fw-bolder">{{ Auth::user()->first_name}}</span>
+                <span class="user-status">{{ Auth::user()->last_name }}</span>
+              </div>
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+              <span class="avatar">
+                <img class="round" src="/html-prototype/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
+                <span class="avatar-status-online"></span>
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end show" aria-labelledby="dropdown-user" data-bs-popper="static">
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user me-50">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Profile
+              </a>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail me-50">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Inbox
+              </a>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square me-50">
+                  <polyline points="9 11 12 14 22 4"></polyline>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+                Task
+              </a>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square me-50">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Chats
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings me-50">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                Settings
+              </a>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card me-50">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                Pricing
+              </a>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle me-50">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                FAQ
+              </a>
+              <a class="dropdown-item" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power me-50">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                  <line x1="12" y1="2" x2="12" y2="12"></line>
+                </svg>
+                Logout
+              </a>
+            </div>
+          </li>
         </ul>
       </div>
     </nav>
