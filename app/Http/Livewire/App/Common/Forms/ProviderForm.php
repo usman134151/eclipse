@@ -6,6 +6,11 @@ use Livewire\Component;
 
 class ProviderForm extends Component
 {
+    public $ethnicity;
+    public $timezone;
+    public $gender;
+    public $languages;
+
 	public $component = 'profile';
 
 	public function render()
