@@ -77,7 +77,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
-                                            <div class="row mt-2 mb-5">
+                                            <div class="row mt-2 between-section-segment-spacing">
                                                 <div class="col-12 text-center">
                                                     <div class="d-inline-block position-relative">
                                                         <img src="/tenant/images/portrait/small/testing.png" width="150"
@@ -94,7 +94,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row inner-section-segment-spacing">
                                                 <div class="col-lg-12 mb-md-2">
                                                     <h2>Company Info</h2>
                                                 </div>
@@ -112,7 +112,6 @@
                                                             name="company-name" placeholder="Enter Company Name"
                                                             required aria-required="true" />
                                                     </div>
-                                                    <div class="mb-4">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="hide-user-details-providers"
@@ -122,12 +121,10 @@
                                                                 Hide All Comapny Users' Details from Providers
                                                             </label>
                                                         </div>
-                                                    </div>
                                                 </div>
 
                                                 {{-- Industry --}}
                                                 <div class="col-lg-6 ps-lg-5 col-12">
-                                                    <div class="mb-4">
                                                         <label class="form-label" for="industry-column">
                                                             Industry
                                                             <span class="mandatory" aria-hidden="true">
@@ -137,20 +134,18 @@
                                                         <select class="select2 form-select" id="industry-column">
                                                             <option>Select Industry</option>
                                                         </select>
-                                                    </div>
                                                 </div>
-
+                                            </div>
+                                            <div class="row">
                                                 {{-- Department Website --}}
-                                                <div class="row">
+                                                <div class="row inner-section-segment-spacing">
                                                     <div class="col-lg-6 pe-lg-5 col-12">
-                                                        <div class="mb-4">
                                                             <label class="form-label" for="company-website">
                                                                 Company Website
                                                             </label>
                                                             <input type="text" id="company-website" class="form-control"
                                                                 name="company-website" placeholder="Enter Website URL"
                                                                 required aria-required="true" />
-                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -354,10 +349,9 @@
                                                 </div>
 
                                                 {{-- Select Default Timesheet --}}
-                                                <div class="col-lg-12 mb-5">
-                                                    <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="row between-section-segment-spacing">
                                                         <div class="col-lg-6 pe-lg-5 col-12">
-                                                            <div class="mb-4">
                                                                 <label class="form-label"
                                                                     for="select-default-timesheet">
                                                                     Select Default Timesheet
@@ -368,10 +362,9 @@
                                                                         Select Default Timesheet
                                                                     </option>
                                                                 </select>
-                                                            </div>
                                                         </div>
                                                         <div class="col-lg-6 ps-lg-5 col-12">
-                                                            <div class="mb-4 mx-2">
+                                                            <div class="mx-2">
                                                                 <label class="form-label" for="tags-column">
                                                                     Tags
                                                                 </label>
@@ -383,7 +376,8 @@
                                                 </div>
 
                                                 {{-- Department Phone Number --}}
-                                                <div class="col-lg-12 mb-5">
+                                                <div class="row between-section-segment-spacing">
+                                                <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <h2>Phone Number</h2>
@@ -419,7 +413,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-8 d-flex justify-content-end md-2 mt-4 mb-4">
+                                                        <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
                                                             <button type="button"
                                                                 class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
                                                                 <svg aria-label="Add Phone Number" width="20" height="20" viewBox="0 0 20 20">
@@ -431,11 +425,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                </div>
                                                 {{-- Default Billing Address --}}
-                                                <div class="col-lg-12 mb-4">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 pe-lg-5 mb-4">
+                                                <div class="col-lg-12">
+                                                    <div class="row between-section-segment-spacing">
+                                                        <div class="col-lg-6 pe-lg-5">
                                                             <h2>Default Billing Address</h2>
                                                             <button type="button"
                                                                 class="btn btn-primary btn-has-icon rounded mb-4"
@@ -521,7 +515,7 @@
                                                             </table>
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 ps-lg-5">
                                                             <h2>Default Service Address</h2>
                                                             <div
                                                                 class="d-lg-flex justify-content-between align-items-center">
