@@ -67,7 +67,7 @@ class SetupHelper
 
         return trim($html);
     }
-    public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = ''): string
+    public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = '',$tabIndex=0): string
     {
         $model = '\App\Models\Tenant\\' . $model;
         $query = $model::query();
@@ -94,6 +94,18 @@ class SetupHelper
     
         if ($wireVariable) {
             $attributes['wire:model'] = $wireVariable;
+        }
+
+        if($multipleSelect){
+            $attributes = ['multiple class' => 'form-select chosen-select'];
+
+        }
+        else{
+            $attributes = ['class' => 'select2 form-select'];
+        }
+
+        if($tabIndex){
+            $attributes = ['tab-index' => $tabIndex];
         }
     
         $html = '<select ' . self::getHtmlAttributes($attributes) . '>';

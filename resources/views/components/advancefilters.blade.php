@@ -26,11 +26,9 @@
         @else
         <div class="col-lg-5 pe-lg-3 mb-5">
           <label class="form-label">Filter by Accommodation</label>
-          <select data-placeholder="Select Accommodations" multiple class="form-select chosen-select" tabindex="" id="accommodation">
-            <option value=""></option>
-            <option selected>Shelby Sign Language</option>
-            <option selected>Language Translation Services</option>
-          </select>
+          {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+'name', 'status', 1, 'name', true, '',
+'','accommodation_filter') !!}
         </div>
         <div class="col-lg-5 ps-lg-3 mb-5">
           <label class="form-label">Filter by Service</label>
