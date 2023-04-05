@@ -1,8 +1,10 @@
 {{-- Add New Payment - Start --}}
 <x-off-canvas show="addNewPayment">
 	<x-slot name="title">Add New Payment</x-slot>
-	<p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new payment for the team you can split the amount equally in the team or pay the same to each team member.</p>
-	  <div>
+	<div class="inner-section-segment-spacing">
+    <p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new payment for the team you can split the amount equally in the team or pay the same to each team member.</p>
+    </div>
+    <div class="row inner-section-segment-spacing">
 		<div class="mb-4">
 		  <label class="form-label" for="">
 			Select Providers Or Team <span class="mandatory">*</span>
@@ -31,7 +33,7 @@
 		  </label>
 			<input type="email" class="form-control" id="Amount" placeholder="$00.00">
 		</div>
-		<div class="mb-4">
+		<div class="">
 		  <div class="form-check">
 			<input class="form-check-input" type="checkbox" value="" id="ChargetoCustomer">
 			<label class="form-check-label" for="ChargetoCustomer">
@@ -39,7 +41,9 @@
 			</label>
 		  </div>
 		</div>
-		<div class="mb-4">
+    </div>
+    <div>
+		<div class="inner-section-segment-spacing">
 		  <label class="form-label" for="PaymentOptions">
 			Payment Options
 		  </label>
@@ -56,7 +60,7 @@
 			</label>
 		  </div>
 		</div>
-		<div class="mb-4">
+		<div class="between-section-segment-spacing">
 		  <label class="form-label" for="TotalSelectedProviders">Total Selected Providers</label>
 		  <div>Teams: 1</div>
 		  <div>Providers: 10</div>

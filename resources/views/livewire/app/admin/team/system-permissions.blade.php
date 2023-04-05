@@ -1,5 +1,5 @@
 <div>
-	<div class="row mb-4">
+	<div class="row between-section-segment-spacing">
 		<div class="col-lg-12">
 			<h2>Admin-Staff Team Permissions</h2>
 			<div class="form-check">
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row mb-4">
+	<div class="row between-section-segment-spacing">
 		<div class="col-12">
 		<div class="accordion" id="accordionManageUserAccess">
 		  <div class="accordion-item">
