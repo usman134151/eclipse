@@ -17,7 +17,9 @@
                                 <li class="breadcrumb-item">
                                     <a href="http://127.0.0.1:8000" title="Go to Dashboard"
                                         aria-label="Go to Dashboard">
-                                        <x-icon name="home" />
+                                        <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                            <use xlink:href="/css/common-icons.svg#home"></use>
+                                        </svg>
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
@@ -102,7 +104,9 @@
                                 <li class="breadcrumb-item">
                                     <a href="http://127.0.0.1:8000" title="Go to Dashboard"
                                         aria-label="Go to Dashboard">
-                                        <x-icon name="home" />
+                                        <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                            <use xlink:href="/css/common-icons.svg#home"></use>
+                                        </svg>
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
@@ -143,7 +147,9 @@
                 <button type="button"
                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2"
                     wire:click="showForm">
-                    <x-icon name="plus" />
+                    <svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
+                        <use xlink:href="/css/common-icons.svg#plus"></use>
+                    </svg>
                     <span class="fw-normal">Add Admin Staff Team</span>
                 </button>
             </div>
@@ -218,17 +224,23 @@
                                             <div class="d-flex actions">
                                                 <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
                                                 <a href="javascript:void(0)" title="Delete Team"
                                                     aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -265,18 +277,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -313,18 +332,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -361,18 +387,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -409,18 +442,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -457,18 +497,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -505,18 +552,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -553,18 +607,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -601,18 +662,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -649,18 +717,25 @@
                                         </td>
                                         <td>
                                             <div class="d-flex actions">
-                                                <a href="#" title="Edit Team" aria-label="Edit Team"
+                                                <a href="javascript:void(0)" title="Edit Team" aria-label="Edit Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="pencil" />
+                                                    <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil"></use>
+                                                    </svg>
                                                 </a>
                                                 <a @click="adminStaffDetails = true" href="javascript:void(0)"
                                                     title="View Admin Staff" aria-label="View Admin Staff"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="view" />
+                                                    <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+										               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+										            </svg>
                                                 </a>
-                                                <a href="#" title="Delete Team" aria-label="Delete Team"
+                                                <a href="javascript:void(0)" title="Delete Team"
+                                                    aria-label="Delete Team"
                                                     class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <x-icon name="recycle-bin" />
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
                                                 </a>
                                             </div>
                                         </td>
@@ -708,7 +783,9 @@
                 <div class="d-flex gap-2 align-items-center">
                     <a href="#" title="Edit Provider" aria-label="Edit Provider"
                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <x-icon name="pencil" />
+                        <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                            <use xlink:href="/css/common-icons.svg#pencil"></use>
+                        </svg>
                     </a>
                     <span class="text-sm">
                         Edit Admin
@@ -718,7 +795,9 @@
                     <a href="#" title="Delete" aria-label="Delete"
                         class="btn btn-sm btn-secondary rounded btn-hs-icon"
                         data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                        <x-icon name="recycle-bin" />
+                        <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                            <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                        </svg>
                     </a>
                     <span class="text-sm">
                         Delete
