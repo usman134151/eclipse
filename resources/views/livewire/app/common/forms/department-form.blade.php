@@ -52,7 +52,7 @@
 				<div class="tab-content">
 					<!-- BEGIN: Customer Info -->
 					<div class="tab-pane fade" :class="{ 'active show': tab === 'department-info' }" @click.prevent="tab = 'department-info'" id="department-info" role="tabpanel" aria-labelledby="department-info-tab" tabindex="0" x-show="tab === 'department-info'">
-				  
+
 		                <!-- Basic multiple Column Form section start -->
 		                <section id="multiple-column-form">
 		              	<div class="row">
@@ -74,11 +74,11 @@
 		              			  <div class="row">
 		              				<div class="col-md-8 mb-md-2">
 		              					  <h2>Department Info</h2>
-		              				  </div>   
+		              				  </div>
 		              					<div class="col-md-4 ">
 		              					  <button  type="submit" class="btn btn-primary rounded">Add Data From Company</button>
-		              				  </div> 
-		              				  
+		              				  </div>
+
 		              					<!-- Department -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -96,25 +96,27 @@
 		              						  />
 		              					  </div>
 		              					</div>
-              
+
 		              					<!-- Industry -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
 		              						<label class="form-label" for="industry-column">Industry<span class="mandatory" aria-hidden="true">*</span></label>
-		              					   <select class="select2 form-select" id="industry-column">
-		              						  <option>Select Industry</option>
-		              						</select>
+		              					   {{-- Updated by Shanila to add dropdown--}}
+                                             {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+                                             'name', '', '', 'name', false, 'industry',
+                                             '','industry') !!}
+                                             {{-- End of update by Shanila --}}
 		              					  </div>
 		              					</div>
-		              					
+
 		              				  <div class="row">
-              
+
 		              					<!--  Department Website -->
 		              					<div class="row">
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
 		              						<label class="form-label" for="department-website">
-		              						  Department Website 
+		              						  Department Website
 		              						</label>
 		              						<input
 		              						  type="text"
@@ -128,7 +130,7 @@
 		              					  </div>
 		              					</div>
 		              					</div>
-              
+
 		              					<!-- Department Business Hours -->
 		              					<div class="col-md-6 col-12">
 		              						<div class="mb-4">
@@ -143,17 +145,19 @@
 		              							</div>
 		              						</div>
 		              					</div>
-              
+
 		              					<!-- Preferred Language -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
 		              						<label class="form-label" for="preferred-language">Preferred Language</label>
-		              						<select class="select2 form-select" id="preferred-language">
-		              						  <option>Select Preferred Language</option>
-		              						</select>
+                                            {{-- Updated by Shanila to add dropdown--}}
+		              						{!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
+                                                '','languages') !!}
+                                                {{-- End of update by Shanila --}}
 		              					  </div>
 		              					</div>
-		              					
+
 		              					<!-- Service End Date -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -168,7 +172,7 @@
 		              						</div>
 		              					</div>
 		              					</div>
-              
+
 		              					 <!-- Service End Date -->
 		              					 <div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -183,7 +187,7 @@
 		              						</div>
 		              					</div>
 		              					</div>
-              
+
 		              					<!-- Department Manager(s) -->
 		              					<div class="col-md-6 col-12">
 		              						<div class="mb-4">
@@ -197,7 +201,7 @@
 		              								</button>
 		              							</div>
 		              						</div>
-		              					</div> 
+		              					</div>
 		              				  <!-- Associated Tags -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -208,7 +212,7 @@
 		              						  class="form-control"
 		              						  name="associated-tags"
 		              						  placeholder="Enter Associated Tags"
-		              						  />    
+		              						  />
 		              					  </div>
 		              					</div>
 		              					<!-- Preferred Providers -->
@@ -220,7 +224,7 @@
 		              						</select>
 		              					  </div>
 		              					</div>
-              
+
 		              					<!-- Disfavored Providers -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -230,7 +234,7 @@
 		              						</select>
 		              					  </div>
 		              					</div>
-              
+
 		              				   <!-- Default Invoice Template -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -240,7 +244,7 @@
 		              						</select>
 		              					  </div>
 		              					</div>
-              
+
 		              					<!-- Select Default Quote Template -->
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
@@ -250,7 +254,7 @@
 		              						</select>
 		              					  </div>
 		              					</div>
-              
+
 		              					<!-- Select Default Timesheet -->
 		              					<div class="col-md-6 col-12">
 		              						<div class="mb-4">
@@ -260,7 +264,7 @@
 		              							</select>
 		              						  </div>
 		              					  </div>
-              
+
 		              					  <!-- Select Tags -->
 		              					  <div class="col-md-6 col-12">
 		              						<div class="mb-4">
@@ -270,8 +274,8 @@
 		              							<textarea class="form-control" rows="3" placeholder="" name="tags" id="tags-column"></textarea>
 		              						</div>
 		              					  </div>
-              
-		              					
+
+
 		              			   <!-- Department Phone Number -->
 		              				  <div class="row">
 		              					<div class="col-md-12">
@@ -279,7 +283,7 @@
 		              					  <div class="col-lg-6">
 		              						<div class="mb-4">
 		              						  <label class="form-label" for="service-name">
-		              							Company Phone Number 
+		              							Company Phone Number
 		              						  </label>
 		              						  <div class="form-check">
 		              							<input class="form-check-input" id="phone-number-ceo" name="phone-number-ceo" type="checkbox" tabindex="" />
@@ -297,7 +301,7 @@
 		              					  </div>
 		              					</div>
 		              				  </div>
-              
+
 		              				  <div class="row ms-1">
 		              				  <div class="col-8 border">
 		              					<div class="row mt-3">
@@ -310,7 +314,7 @@
 		              						class="form-control"
 		              						name=""
 		              						placeholder="Enter Title"
-		              						/>  
+		              						/>
 		              					</div>
 		              				   </div>
 		              				   <div class="col-5 ">
@@ -322,16 +326,16 @@
 		              						class="form-control"
 		              						name=""
 		              						placeholder="Enter Phone Number"
-		              						/>  
+		              						/>
 		              					</div>
 		              				   </div>
 		              				   <div class="col-2 mt-5"><button class="btn btn-primary rounded">Add</button></div>
 		              				  </div>
-		              				  
+
 		              				  </div>
 		              				  <div class="col-md-8 d-flex justify-content-end col-8 md-2 mt-4 mb-4">
 		              					<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-		              					  
+
 		              						<span>Add Phone Number</span>
 		              					</button>
 		              				  </div>
@@ -342,13 +346,13 @@
 		              					  <div><h2>Default Billing Address</h2></div>
 		              					</div>
 		              					</div>
-              
+
 		              					<div class="col-md-6 col-12 mt-4">
 		              					  <div class="mb-4">
 		              					  <div><h2>Default Service Address</h2></div>
 		              					</div>
 		              					</div>
-              
+
 		              					<div class="col-md-6 col-12">
 		              					  <div class="mb-4">
 		              					     <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
@@ -359,27 +363,27 @@
 		              					     </button>
 		              					  </div>
 		              					</div>
-              
+
 		              					<div class="col-md-3 col-12">
 		              					  <div class="mb-4">
 		              						<input class="form-check-input" type="checkbox" value="" id="same-as-billing-address-checkbox">
 		              						<label class="form-check-label" for="same-as-billing-address-checkbox">
 		              						  Same as Billing Address
-		              						</label>                              
+		              						</label>
 		              					  </div>
 		              					</div>
-              
+
 		              					<div class="col-md-3 col-12 text-end">
 		              					  <div class="mb-4">
 		              						 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2"  data-bs-toggle="modal" data-bs-target="#addAddressModal">
 		              						 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 		              						 		<use xlink:href="/css/sprite.svg#plus"></use>
-		              						 	 </svg> 
+		              						 	 </svg>
 		              						 	<span>Add Address</span>
-		              						 </button>                             
+		              						 </button>
 		              					  </div>
 		              					</div>
-		              					
+
 		              					  <!-- #Address Tables-->
 		              					  <div class="col-md-12 d-flex col-12 mb-4 gap-4">
 		              					<!-- #Address left  Table-->
@@ -389,8 +393,8 @@
 		              						  <th>#</th>
 		              						  <th>Address</th>
 		              						  <th></th>
-		              						 
-		              						  
+
+
 		              					  </thead>
 		              					  <tbody>
 		              						  <tr class="odd">
@@ -400,7 +404,7 @@
 		              							  <td>
 		              								  <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
 		              							  </td>
-              
+
 		              							  <!-- for active class row integrated with JS  -->
 		              							  <td class="allign-middle">
 													<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -415,7 +419,7 @@
 		              							  <td>
 		              								  <p>Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA</p>
 		              							  </td>
-              
+
 		              							  <!-- for active class row integrated with JS  -->
 		              							  <td class="allign-middle">
 													<svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -440,7 +444,7 @@
 		              					  </tbody>
 		              				  </table>
 		              				  </div>
-              
+
 		              				  <!-- #Address Tables left-->
 		              				  <div class="col-md-6 col-12 mb-4 border">
 		              					<table class="table table-hover">
@@ -448,7 +452,7 @@
 		              						 <th>#</th>
 		              						 <th>Address</th>
 		              						 <th></th>
-		              						 
+
 		              					 </thead>
 		              					 <tbody>
 		              						 <tr class="odd">
@@ -458,7 +462,7 @@
 		              							 <td>
 		              								 <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
 		              							 </td>
-              
+
 		              							 <!-- for active class row integrated with JS  -->
 		              							 <td class="allign-middle">
 		              							  <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -473,7 +477,7 @@
 		              							 <td>
 		              								 <p>Mrs Smith 98 Shirley Street Appartment No. 45 PIMPAMA QLD 4209 AUSTRALIA</p>
 		              							 </td>
-              
+
 		              							 <!-- for active class row integrated with JS  -->
 		              							 <td class="allign-middle">
 		              							  <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -488,7 +492,7 @@
 		              							 <td>
 		              								 <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA</p>
 		              							 </td>
-              
+
 		              							 <!-- for active class row integrated with JS  -->
 		              							 <td class="allign-middle">
 		              							  <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -499,9 +503,9 @@
 		              					 </tbody>
 		              				 </table>
 		              					</div>
-		              					 
+
 		              				   </div><!-- Address Tables end-div -->
-		              					  
+
 		              					<!-- Check-boxes -->
 		              	              <div class="col-md-12 col-12 mt-5 mb-4">
 		              	            	<div class="col-md-12 col-12 mb-4">
@@ -519,12 +523,12 @@
 		              						  class="btn btn-primary rounded px-4 py-2">Save & Exit</button>
 		              					  <button type="submit"
 		              						  class="btn btn-primary rounded px-4 py-2" x-on:click="$wire.switch('service-catalog')">Next</button>
-	              
+
 		              			        </div>
 		              				   </div>
 		              				   </div>
-		              			</form>				
-		                      	  </div>	
+		              			</form>
+		                      	  </div>
 		                        </section>
 		            </div><!-- end Customer Info  -->
 
@@ -603,7 +607,7 @@
 															</div>
 														</div>
 													</div>
-													
+
 													<div class="col-md-6 mb-md-2">
 														<div class="mb-3">
 															<p class="fs-5">
@@ -834,8 +838,8 @@
                      						  <stop offset="1" stop-color="#204387"/>
                      						  </linearGradient>
                      						  </defs>
-                     						  </svg>  
-                     						<p class="text-primary mt-2">Attach from Company Drive </p> 
+                     						  </svg>
+                     						<p class="text-primary mt-2">Attach from Company Drive </p>
                      					   </div></div>
                      					  <div class="col-md-2  rounded text-center"><div class=" border-primary rounded ">
                      						<svg width="40" height="36" viewBox="0 0 40 36" class="mt-2" class="mt-2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -847,8 +851,8 @@
                      						  </linearGradient>
                      						  </defs>
                      						  </svg>
-                     						  
-                     						<p class="text-primary mt-2">Attach from Google Drive </p> 
+
+                     						<p class="text-primary mt-2">Attach from Google Drive </p>
                      					   </div></div>
                      					  <div class="col-md-2 rounded text-center"><div class=" border border-primary rounded ">
                      						<svg width="35" height="35" viewBox="0 0 35 35" class="mt-3" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -860,8 +864,8 @@
                      						  </linearGradient>
                      						  </defs>
                      						  </svg>
-                     						<p class="mt-3 text-primary py-1">Attach from Disk</p> 
-                     						
+                     						<p class="mt-3 text-primary py-1">Attach from Disk</p>
+
                      					   </div></div>
                      					  <div class="col-md-2"></div>
                      					 </div>
@@ -880,24 +884,24 @@
 		             						</div>
 		             					</div>
                      			  </div>
-                     
-                     			  
+
+
                      		  <div class="col-12 justify-content-center form-actions d-flex gap-2">
                      			<button type="button"
                      				class="btn btn-outline-dark rounded px-4 py-2" x-on:click="$wire.switch('service-catalog')">Back</button>
                      			<button type="submit"
                      				class="btn btn-primary rounded px-4 py-2" wire:click.prevent="showList">Submit</button>
-                     
+
                      	        </div>
                      			  </div>
                      		  </div>
                      			</form>
                      		  </div>
                      		</div>
-                     	
-                     
+
+
                        </section>
-        
+
 		            </div><!--End: Drive Documents Pane-->
 	            </div><!-- tab-content-end    -->
 		    </div><!-- Basic Floating Label Form section end -->
