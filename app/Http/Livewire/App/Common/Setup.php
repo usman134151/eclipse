@@ -13,9 +13,13 @@ class Setup extends Component
 	public $confirmationMessage;
 	public $listTitle="Setup";
 	public $listDescription="";
+	public $showDetails = true;
+	
 
 	// Property for holding the ID of the record being edited / deleted
 	public $recordId;
+	public $setupId;
+	public $counter=0;
 
 	// Define event listeners for this component
 	protected $listeners = [
@@ -23,8 +27,23 @@ class Setup extends Component
 		'showForm' => 'showForm', // Show form when the parent component requests it
 		'delete' => 'deleteRecord', // Delete the record with the specified ID
 		'updateRecordId' => 'updateRecordId', // Update the ID of the record being edited / deleted
+		'refreshSetupDetails'=>'refreshDetails'
 	];
+    public function refreshDetails($setupId){
+	if($this->counter==0){
+		$this->setupId=0;
+		$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId]);
+		$this->counter=1;
 
+	}
+	else{
+		$this->setupId=$setupId;
+		$this->counter=0;
+	}
+	
+
+		//$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId]);
+	 }
 	// Show the form
 	function showForm($setup = null)
 	{

@@ -38,5 +38,7 @@
 		</div>
 	</section>
 	@endif
-	@include('panels.common.setup-details')
+	
+	   @include('panels.common.setup-details')
+	
 </div>

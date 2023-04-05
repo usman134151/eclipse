@@ -69,19 +69,8 @@ class SetupHelper
     }
     public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = '',$tabIndex=0): string
     {
-        $model = '\App\Models\Tenant\\' . $model;
-        $query = $model::query();
-    
-        if ($filterCol && $filterValue) {
-            $query->where($filterCol, $filterValue);
-        }
-    
-        if ($orderBy) {
-            $query->orderBy($orderBy);
-        }
-    
-        $values = $query->get([$valueCol, $displayCol]);
-    
+        $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
+
         $attributes = [
             'name' => $selectName ?: $displayCol,
             'id' => $selectName ?: $displayCol,
@@ -121,5 +110,54 @@ class SetupHelper
     
         return $html;
     }
+    public static function createCheckboxes(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, array $selectedValues = []): string
+    {
+        $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
+
+        $html = '';
+
+        foreach ($values as $value) {
+            $isChecked = in_array($value->{$valueCol}, $selectedValues) ? 'checked' : '';
+
+            $html .= '<div>';
+            $html .= '<input type="checkbox" id="' . $value->{$valueCol} . '" name="' . $displayCol . '[]" value="' . $value->{$valueCol} . '" ' . $isChecked . '>';
+            $html .= '<label for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
+            $html .= '</div>';
+        }
+
+        return $html;
+    }
+
+    public static function createRadio(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, string $radioName = '', $selectedValue = ''): string
+    {
+
+        $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
+        $html = '';
+
+        foreach ($values as $value) {
+            $checked = ($selectedValue == $value->{$valueCol}) ? 'checked' : '';
+            $html .= '<label><input type="radio" name="' . $radioName . '" value="' . $value->{$valueCol} . '" '.$checked.'>' . $value->{$displayCol} . '</label>';
+        }
+
+        return $html;
+    }
+
+
+    private static function getValuesFromDatabase(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null)
+    {
+        $model = '\App\Models\Tenant\\' . $model;
+        $query = $model::query();
+
+        if ($filterCol && $filterValue) {
+            $query->where($filterCol, $filterValue);
+        }
+
+        if ($orderBy) {
+            $query->orderBy($orderBy);
+        }
+
+        return $query->get([$valueCol, $displayCol]);
+    }
+
     
 }
