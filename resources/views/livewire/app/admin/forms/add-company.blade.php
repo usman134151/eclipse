@@ -179,11 +179,9 @@
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
                                                         </label>
-                                                        <select class="select2 form-select" id="preferred-language">
-                                                            <option>
-                                                                Select Preferred Language
-                                                            </option>
-                                                        </select>
+                                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
+                                                        '','languages') !!}
                                                     </div>
                                                 </div>
                                                 {{-- Service Start Date --}}
