@@ -10,7 +10,9 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
 								<a href="#">
-									<x-icon name="home" />
+									<svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M1.25009 12.5809H2.33343V20.1643C2.33343 21.3592 3.30518 22.3309 4.50009 22.3309H17.5001C18.695 22.3309 19.6668 21.3592 19.6668 20.1643V12.5809H20.7501C20.9643 12.5809 21.1737 12.5173 21.3518 12.3983C21.53 12.2793 21.6688 12.1101 21.7507 11.9122C21.8327 11.7142 21.8542 11.4964 21.8124 11.2863C21.7706 11.0762 21.6675 10.8832 21.516 10.7317L11.766 0.981697C11.6655 0.881006 11.5461 0.801123 11.4147 0.74662C11.2833 0.692117 11.1424 0.664062 11.0001 0.664062C10.8578 0.664063 10.7169 0.692117 10.5855 0.74662C10.4541 0.801123 10.3347 0.881006 10.2342 0.981697L0.484178 10.7317C0.332718 10.8832 0.229577 11.0762 0.187796 11.2863C0.146014 11.4964 0.167468 11.7142 0.249444 11.9122C0.331419 12.1101 0.470237 12.2793 0.648348 12.3983C0.826459 12.5173 1.03587 12.5809 1.25009 12.5809ZM8.83343 20.1643V14.7476H13.1668V20.1643H8.83343ZM11.0001 3.27945L17.5001 9.77945V14.7476L17.5012 20.1643H15.3334V14.7476C15.3334 13.5527 14.3617 12.5809 13.1668 12.5809H8.83343C7.63851 12.5809 6.66676 13.5527 6.66676 14.7476V20.1643H4.50009V9.77945L11.0001 3.27945Z" fill="#0A1E46"/>
+									</svg>
 								</a>
 							</li>
 							<li class="breadcrumb-item">
@@ -34,7 +36,9 @@
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
 								<li class="nav-item" role="presentation">
 									<button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-tab-pane" type="button" role="tab" aria-controls="dashboard-tab-pane" aria-selected="true">
-										<x-icon name="tablet"/>
+										<svg aria-label="dashboard" width="31" height="29" viewBox="0 0 31 29">
+                                            <use xlink:href="/css/common-icons.svg#tablet"></use>
+                                        </svg>
 										<span>Dashboard</span>
 									</button>
 								</li>
@@ -48,73 +52,97 @@
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule-tab-pane" type="button" role="tab" aria-controls="schedule-tab-panel" aria-selected="false">
-										<x-icon name="gray-calendar"/>
+										<svg aria-label="schedule" width="30" height="29" viewBox="0 0 30 29">
+                                            <use xlink:href="/css/common-icons.svg#gray-calendar"></use>
+                                        </svg>
 										<span>Schedule</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="service-requests-tab" data-bs-toggle="tab" data-bs-target="#service-requests-tab-pane" type="button" role="tab" aria-controls="service-requests-tab-panel" aria-selected="false">
-										<x-icon name="gray-journal"/>
+										<svg aria-label="service-request" width="28" height="31" viewBox="0 0 28 31">
+                                            <use xlink:href="/css/common-icons.svg#gray-journal"></use>
+                                        </svg>
 										<span>Service Requests</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="permission-tab" data-bs-toggle="tab" data-bs-target="#drive-tab-pane" type="button" role="tab" aria-controls="drive-tab-panel" aria-selected="false">
-										<x-icon name="gray-drive"/>
+										<svg aria-label="drive" width="35" height="30" viewBox="0 0 35 30">
+                                            <use xlink:href="/css/common-icons.svg#gray-drive"></use>
+                                        </svg>
 										<span>Drive</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="department-feedback-tab" data-bs-toggle="tab" data-bs-target="#department-feedback-tab-pane" type="button" role="tab" aria-controls="department-feedback-tab-panel" aria-selected="false">
-										<x-icon name="gray-rated-user"/>
+										<svg aria-label="feedback" width="24" height="29" viewBox="0 0 24 29">
+                                            <use xlink:href="/css/common-icons.svg#gray-rated-user"></use>
+                                        </svg>
 										<span>Feedback</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="invoices-tab" data-bs-toggle="tab" data-bs-target="#invoices-tab-pane" type="button" role="tab" aria-controls="invoices-tab-panel" aria-selected="false">
-										<x-icon name="gray-invoice"/>
+										<svg aria-label="invoices" width="29" height="31" viewBox="0 0 29 31">
+                                            <use xlink:href="/css/common-icons.svg#gray-invoice"></use>
+                                        </svg>
 										<span>Invoices</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments-tab-pane" type="button" role="tab" aria-controls="payments-tab-panel" aria-selected="false">
-										<x-icon name="gray-payment"/>
+										<svg aria-label="payments" width="27" height="31" viewBox="0 0 27 31">
+                                            <use xlink:href="/css/common-icons.svg#gray-payment"></use>
+                                        </svg>
 										<span>Payments</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="referrals-tab" data-bs-toggle="tab" data-bs-target="#referrals-tab-pane" type="button" role="tab" aria-controls="referrals-tab-panel" aria-selected="false">
-										<x-icon name="gray-referral"/>
+										<svg aria-label="referrals" width="27" height="29" viewBox="0 0 27 29">
+                                            <use xlink:href="/css/common-icons.svg#gray-referral"></use>
+                                        </svg>
 										<span>Referrals</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes-tab-pane" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">
-										<x-icon name="gray-note"/>
+										<svg aria-label="notes" width="28" height="29" viewBox="0 0 28 29">
+                                            <use xlink:href="/css/common-icons.svg#gray-note"></use>
+                                        </svg>
 										<span>Notes</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports-tab-pane" type="button" role="tab" aria-controls="reports-tab-panel" aria-selected="false">
-										<x-icon name="gray-bar-chart"/>
+										<svg aria-label="reports" width="30" height="28" viewBox="0 0 30 28">
+                                            <use xlink:href="/css/common-icons.svg#gray-bar-chart"></use>
+                                        </svg>
 										<span>Reports</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications-tab-pane" type="button" role="tab" aria-controls="notifications-tab-panel" aria-selected="false">
-										<x-icon name="gray-bell"/>
+										<svg aria-label="notifications" width="26" height="29" viewBox="0 0 26 29">
+                                            <use xlink:href="/css/common-icons.svg#gray-bell"></use>
+                                        </svg>
 										<span>Notifications</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="log-tab" data-bs-toggle="tab" data-bs-target="#log-tab-pane" type="button" role="tab" aria-controls="log-tab-panel" aria-selected="false">
-										<x-icon name="gray-log"/>
+										<svg aria-label="logs" width="27" height="27" viewBox="0 0 27 27">
+                                            <use xlink:href="/css/common-icons.svg#gray-log"></use>
+                                        </svg>
 										<span>Log</span>
 									</button>
 								</li>
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-tab-pane" type="button" role="tab" aria-controls="settings-tab-panel" aria-selected="false">
-										<x-icon name="gray-cog"/>
+										<svg aria-label="Log" width="26" height="27" viewBox="0 0 26 27" fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#gray-cog"></use>
+                                        </svg>
 										<span>Settings</span>
 									</button>
 								</li>
@@ -220,11 +248,21 @@
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		<x-icon name="filled-star"/>
-																		<x-icon name="filled-star"/>
-																		<x-icon name="filled-star"/>
-																		<x-icon name="star"/>
-																		<x-icon name="star"/>
+																		<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#filled-star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
+																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
+                                                                    </svg>
 																	</div>
 																</div>
 															</div>

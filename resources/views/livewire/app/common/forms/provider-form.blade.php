@@ -239,9 +239,9 @@
                                         <label class="form-label" for="country">
                                             Country
                                         </label>
-                                        <select class="select2 form-select" id="country">
-                                            <option value="">Select Country</option>
-                                        </select>
+                                        {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
+                                        'name', '', '', 'name', false, 'country',
+                                        '','country') !!}
                                     </div>
                                     <div class="col-lg-6 mb-4 ps-lg-5">
                                         <label class="form-label" for="state">
@@ -416,21 +416,17 @@
                                         <label class="form-label" for="preferred-language-column">
                                             Preferred Language
                                         </label>
-                                        <select class="select2 form-select" id="preferred-language-column">
-                                            <option value="preferred-language-column">
-                                                Select Preferred Language
-                                            </option>
-                                        </select>
+                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
+                                        '','languages') !!}
                                     </div>
                                     <div class="col-lg-6 ps-lg-5">
                                         <label class="form-label" for="set-time-zone-column">
                                             Set Time Zone
                                         </label>
-                                        <select class="select2 form-select" id="set-time-zone-column">
-                                            <option value="set-time-zone-column">
-                                                Select Time Zone
-                                            </option>
-                                        </select>
+                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                        'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                        '','timezone') !!}
                                     </div>
                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                         <label class="form-label" for="preferred-colleagues-column">

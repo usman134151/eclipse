@@ -51,7 +51,7 @@
 														<option value="2">%</option>
 													</select>
 												</div>
-											</div>                                                       
+											</div>
 									</div>
 									<div class="mb-4">
 										<label class="form-label"
@@ -64,15 +64,11 @@
 									<div class="mb-4">
 										<label class="form-label"
 										for="select-accommodations-column"> Select Accommodations <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Select one or more accommodations for which this coupon may be redeemed."></i></label>
-										<select class="form-control chosen chosen-select" data-placeholder="Please Choose Accommodation" id="select-accommodations-column" multiple="true" tabindex="" name="">
-										  <option value="1">Sign Language Interpreting Services</option>
-										  <option value="2">Accessible Media Services</option>
-										  <option value="3">Caption and Transcription Services</option>
-										  <option value="5">ICS Administrative Accommodations</option>
-										  <option value="6">Spoken Language Interpreting Service</option>
-										  <option value="8">Chicago</option>
-										  <option value="9">Alberta</option>
-										</select>
+										 {{-- Updated by Shanila to add dropdown--}}
+                                         {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                         'name', '', '', 'name', false, 'accommodation',
+                                         '','accommodation') !!}
+                                         {{-- End of update by Shanila --}}
 									</div>
 								</div>
 								<div class="col-md-6 col-12">

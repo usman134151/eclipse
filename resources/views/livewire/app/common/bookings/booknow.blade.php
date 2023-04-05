@@ -225,9 +225,9 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select">
-                                                <option>Select Accommodation</option>
-                                            </select>
+                                                    {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                    'name', '', '', 'name', false, 'accommodation',
+                                                    '','accommodation') !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Service <span class="mandatory">*</span> <i
@@ -521,9 +521,11 @@
                                         <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                             <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select form-select-md" id="set_time_zone">
-                                                <option>Set Time Zone</option>
-                                            </select>
+                                                    {{-- updated by shanila to add dropdown --}}
+                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                    'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                                    '','timezone') !!}
+                                                    {{-- end updated --}}
                                         </div>
                                         <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
                                             <label class="form-label-sm" for="set_start_date">Start Date <span

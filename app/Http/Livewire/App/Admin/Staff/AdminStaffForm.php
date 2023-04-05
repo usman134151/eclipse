@@ -6,7 +6,6 @@ use Livewire\Component;
 
 class AdminStaffForm extends Component
 {
-
 	public function showList()
 	{
 		$this->emit("showList");

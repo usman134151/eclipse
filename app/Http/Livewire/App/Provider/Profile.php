@@ -16,12 +16,12 @@ class Profile extends Component
 
     public function mount()
     {
-       
-       
+
+
     }
 
     function showForm()
-    {     
+    {
        $this->showForm=true;
     }
     public function resetForm()

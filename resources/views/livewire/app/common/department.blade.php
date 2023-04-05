@@ -22,7 +22,9 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-										<x-icon name="home"/>
+										<svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                            <use xlink:href="/css/common-icons.svg#home"></use>
+                                        </svg>
 									</a>
 								</li>
 								<li class="breadcrumb-item">
@@ -40,7 +42,9 @@
 		<div class="content-body">
 			<div class="d-flex justify-content-end mt-4 mb-3">
 				<a href="javascript:void(0)" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-					<x-icon name="plus"/>
+					<svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
+                        <use xlink:href="/css/common-icons.svg#plus"></use>
+                    </svg>
 					<span>Add Department</span>
 				</a>
 			</div>
@@ -85,7 +89,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -102,13 +106,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>
@@ -120,7 +130,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -136,15 +146,23 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
-				</a>
+				<div class="d-flex actions">
+					<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+							<use xlink:href="/css/common-icons.svg#pencil"></use>
+						</svg>
+					</a>
+					<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+						<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+						  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+						</svg>
+					</a>
+					<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+							<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+						</svg>
+					</a>
+				</div>
 			</div>
 		  </td>
 		</tr>
@@ -155,7 +173,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -171,15 +189,23 @@
 		   <td class="text-center">5</td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
-				</a>
+				<div class="d-flex actions">
+					<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+							<use xlink:href="/css/common-icons.svg#pencil"></use>
+						</svg>
+					</a>
+					<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+						<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+						  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+						</svg>
+					</a>
+					<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+							<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+						</svg>
+					</a>
+				</div>
 			</div>
 		  </td>
 		</tr>
@@ -190,7 +216,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -207,13 +233,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>
@@ -225,7 +257,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -242,15 +274,23 @@
 		  </td>
 		  <td>
 			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
-				</a>
+				<div class="d-flex actions">
+					<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+							<use xlink:href="/css/common-icons.svg#pencil"></use>
+						</svg>
+					</a>
+					<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
+						<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+						  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+						</svg>
+					</a>
+					<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+							<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+						</svg>
+					</a>
+				</div>
 			</div>
 		  </td>
 		</tr>
@@ -261,7 +301,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -278,13 +318,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>
@@ -296,7 +342,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -313,13 +359,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>
@@ -331,7 +383,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -348,13 +400,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>
@@ -366,7 +424,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -383,13 +441,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
-				<a href="javascript:void(0)" title="Delete " aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>
@@ -401,7 +465,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -418,13 +482,19 @@
 		  <td>
 			<div class="d-flex actions">
 				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="pencil"/>
+					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#pencil"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<x-icon name="view"/>
+					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+					</svg>
 				</a>
 				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<x-icon name="recycle-bin"/>
+					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+					</svg>
 				</a>
 			</div>
 		  </td>

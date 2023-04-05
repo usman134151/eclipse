@@ -1,4 +1,4 @@
-<div> 
+<div>
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
@@ -40,19 +40,19 @@
 								Profile
 							</a>
 						</li>
-						 
+
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">2</span> 
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'system-permissions' }" @click.prevent="tab = 'system-permissions'" id="system-permissions-tab" role="tab" aria-controls="system-permissions" aria-selected="false"><span class="number">2</span>
 								System Permissions
 							</a>
 						</li>
 						<li class="nav-item" role="presentation">
-							<a href="#" class="nav-link" :class="{ 'active': tab === 'user-access' }" @click.prevent="tab = 'user-access'" id="user-access-tab" role="tab" aria-controls="user-access" aria-selected="false"><span class="number">3</span> 
+							<a href="#" class="nav-link" :class="{ 'active': tab === 'user-access' }" @click.prevent="tab = 'user-access'" id="user-access-tab" role="tab" aria-controls="user-access" aria-selected="false"><span class="number">3</span>
 								User Access
 							</a>
-						</li>  
+						</li>
 					</ul>
-	
+
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<!-- BEGIN: Profile -->
@@ -125,9 +125,9 @@
 													</small>
 												</a>
 											</div>
-											<select class="form-select" id="gender">
-												<option>Select Gender</option>
-											</select>
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
+                                            '','gender') !!}
 										</div>
 									</div>
 									<div class="row inner-section-segment-spacing">
@@ -146,9 +146,9 @@
 													</small>
 												</a>
 											</div>
-											<select class="form-select" id="ethnicity">
-												<option>Select Ethnicity</option>
-											</select>
+											{!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity',
+                                                '','ethnicity') !!}
 										</div>
 									</div>
 									<div class="col-md-6 col-12">
@@ -282,9 +282,9 @@
 									<div class="col-md-6 col-12">
 										<div class="mb-4">
 											<label class="form-label" for="set_time_zone">Set Time Zone</label>
-											<select class="form-select" id="set_time_zone">
-												<option>Select Time Zone</option>
-											</select>
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                            '','timezone') !!}
 										</div>
 									</div>
 									<div class="col-md-6 col-12">
@@ -320,7 +320,7 @@
 								</div>
 							</form>
 						</div><!-- END: Profile -->
-	{{-- 
+	{{--
 						<!-- BEGIN: System Permissions -->
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'system-permissions' }" id="system-permissions" role="tabpanel" aria-labelledby="system-permissions-tab" tabindex="0" x-show="tab === 'system-permissions'">
 							 <div class="row mb-4">
@@ -1098,10 +1098,10 @@
 							<div class="col-12 justify-content-center form-actions d-flex">
 								<button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
 								<button type="submit" class="btn btn-primary rounded">Next</button>
-							</div><!-- /Form Actions -->   
+							</div><!-- /Form Actions -->
 
 						</div><!-- END: System Permissions -->
-	
+
 						<!-- BEGIN: User Access -->
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'user-access' }" id="user-access" role="tabpanel" aria-labelledby="user-access-tab" tabindex="0" x-show="tab === 'user-access'">
 							<div class="row mb-4">
@@ -1476,7 +1476,7 @@
 													<a href="#" class="btn btn-primary rounded me-5">
 														<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 															<path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z" fill="white"/>
-														</svg>	
+														</svg>
 														<span class="ms-2">Add Provider</span>
 													</a>
 												</div>
@@ -1879,8 +1879,8 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -1920,8 +1920,8 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -1962,8 +1962,8 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2004,8 +2004,8 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2046,8 +2046,8 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2087,8 +2087,8 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
-	
+
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2216,7 +2216,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2256,7 +2256,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2297,7 +2297,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2338,7 +2338,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"
@@ -2379,7 +2379,7 @@
 																<td>
 																	<a @click="offcanvasOpen = true">Example Company</a>
 																</td>
-	
+
 																<td>
 																	<div class="form-check form-switch">
 																		<input class="form-check-input" type="checkbox"

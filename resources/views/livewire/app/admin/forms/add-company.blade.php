@@ -77,7 +77,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
-                                            <div class="row mt-2 mb-5">
+                                            <div class="row mt-2 between-section-segment-spacing">
                                                 <div class="col-12 text-center">
                                                     <div class="d-inline-block position-relative">
                                                         <img src="/tenant/images/portrait/small/testing.png" width="150"
@@ -94,7 +94,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row inner-section-segment-spacing">
                                                 <div class="col-lg-12 mb-md-2">
                                                     <h2>Company Info</h2>
                                                 </div>
@@ -112,45 +112,42 @@
                                                             name="company-name" placeholder="Enter Company Name"
                                                             required aria-required="true" />
                                                     </div>
-                                                    <div class="mb-4">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="hide-user-details-providers"
-                                                                id="hide-user-details-providers">
-                                                            <label class="form-check-label"
-                                                                for="hide-user-details-providers">
-                                                                Hide All Comapny Users' Details from Providers
-                                                            </label>
-                                                        </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="hide-user-details-providers"
+                                                            id="hide-user-details-providers">
+                                                        <label class="form-check-label"
+                                                            for="hide-user-details-providers">
+                                                            Hide All Comapny Users' Details from Providers
+                                                        </label>
                                                     </div>
                                                 </div>
 
                                                 {{-- Industry --}}
                                                 <div class="col-lg-6 ps-lg-5 col-12">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="industry-column">
-                                                            Industry
-                                                            <span class="mandatory" aria-hidden="true">
-                                                                *
-                                                            </span>
-                                                        </label>
-                                                        <select class="select2 form-select" id="industry-column">
-                                                            <option>Select Industry</option>
-                                                        </select>
-                                                    </div>
+                                                    <label class="form-label" for="industry-column">
+                                                        Industry
+                                                        <span class="mandatory" aria-hidden="true">
+                                                            *
+                                                        </span>
+                                                    </label>
+                                                    {{-- Updated by Shanila to add dropdown--}}
+                                                    {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+                                                    'name', '', '', 'name', false, 'industry',
+                                                    '','industry') !!}
+                                                    {{-- End of update by Shanila --}}
                                                 </div>
-
+                                            </div>
+                                            <div class="row">
                                                 {{-- Department Website --}}
-                                                <div class="row">
+                                                <div class="row inner-section-segment-spacing">
                                                     <div class="col-lg-6 pe-lg-5 col-12">
-                                                        <div class="mb-4">
-                                                            <label class="form-label" for="company-website">
-                                                                Company Website
-                                                            </label>
-                                                            <input type="text" id="company-website" class="form-control"
-                                                                name="company-website" placeholder="Enter Website URL"
-                                                                required aria-required="true" />
-                                                        </div>
+                                                        <label class="form-label" for="company-website">
+                                                            Company Website
+                                                        </label>
+                                                        <input type="text" id="company-website" class="form-control"
+                                                            name="company-website" placeholder="Enter Website URL"
+                                                            required aria-required="true" />
                                                     </div>
                                                 </div>
 
@@ -184,11 +181,10 @@
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
                                                         </label>
-                                                        <select class="select2 form-select" id="preferred-language">
-                                                            <option>
-                                                                Select Preferred Language
-                                                            </option>
-                                                        </select>
+                                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false,
+                                                        'languages',
+                                                        '','languages') !!}
                                                     </div>
                                                 </div>
                                                 {{-- Service Start Date --}}
@@ -223,13 +219,13 @@
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY" aria-label=""
                                                                 aria-describedby="" id="service-end-date-column">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg aria-label="Date" class="icon-date" width="20"
-                                                             height="21" viewBox="0 0 20 21">
-                                                             <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                             </use>
-                                                         </svg>
-                                                         {{-- End of update by Shanila --}}
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Date" class="icon-date" width="20"
+                                                                height="21" viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -354,24 +350,21 @@
                                                 </div>
 
                                                 {{-- Select Default Timesheet --}}
-                                                <div class="col-lg-12 mb-5">
-                                                    <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="row between-section-segment-spacing">
                                                         <div class="col-lg-6 pe-lg-5 col-12">
-                                                            <div class="mb-4">
-                                                                <label class="form-label"
-                                                                    for="select-default-timesheet">
+                                                            <label class="form-label" for="select-default-timesheet">
+                                                                Select Default Timesheet
+                                                            </label>
+                                                            <select class="select2 form-select"
+                                                                id="select-default-timesheet">
+                                                                <option>
                                                                     Select Default Timesheet
-                                                                </label>
-                                                                <select class="select2 form-select"
-                                                                    id="select-default-timesheet">
-                                                                    <option>
-                                                                        Select Default Timesheet
-                                                                    </option>
-                                                                </select>
-                                                            </div>
+                                                                </option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-lg-6 ps-lg-5 col-12">
-                                                            <div class="mb-4 mx-2">
+                                                            <div class="mx-2">
                                                                 <label class="form-label" for="tags-column">
                                                                     Tags
                                                                 </label>
@@ -383,65 +376,68 @@
                                                 </div>
 
                                                 {{-- Department Phone Number --}}
-                                                <div class="col-lg-12 mb-5">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <h2>Phone Number</h2>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-8">
-                                                            <div class="border p-3">
-                                                                <div class="row">
-                                                                    <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
-                                                                        <label class="form-label" for="title">
-                                                                            Title
-                                                                        </label>
-                                                                        <input type="text" id="title"
-                                                                            class="form-control" name=""
-                                                                            placeholder="Enter Title" />
-                                                                    </div>
-                                                                    <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
-                                                                        <label class="form-label" for="phone">
-                                                                            Phone Number
-                                                                        </label>
-                                                                        <input type="text" id="phone"
-                                                                            class="form-control" name=""
-                                                                            placeholder="Enter Phone Number" />
-                                                                    </div>
-                                                                    <div class="col-lg-2 col-md-4 align-self-end">
-                                                                        <button class="btn btn-primary rounded">
-                                                                            Add
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                <div class="row between-section-segment-spacing">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h2>Phone Number</h2>
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-8 d-flex justify-content-end md-2 mt-4 mb-4">
-                                                            <button type="button"
-                                                                class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                                                <svg aria-label="Add Phone Number" width="20" height="20" viewBox="0 0 20 20">
-                                                                    <use xlink:href="/css/common-icons.svg#plus">
-                                                                    </use>
-                                                                </svg>
-                                                                <span>Add Phone Number</span>
-                                                            </button>
+                                                        <div class="row">
+                                                            <div class="col-lg-8">
+                                                                <div class="border p-3">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
+                                                                            <label class="form-label" for="title">
+                                                                                Title
+                                                                            </label>
+                                                                            <input type="text" id="title"
+                                                                                class="form-control" name=""
+                                                                                placeholder="Enter Title" />
+                                                                        </div>
+                                                                        <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
+                                                                            <label class="form-label" for="phone">
+                                                                                Phone Number
+                                                                            </label>
+                                                                            <input type="text" id="phone"
+                                                                                class="form-control" name=""
+                                                                                placeholder="Enter Phone Number" />
+                                                                        </div>
+                                                                        <div class="col-lg-2 col-md-4 align-self-end">
+                                                                            <button class="btn btn-primary rounded">
+                                                                                Add
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
+                                                                <button type="button"
+                                                                    class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                                                                    <svg aria-label="Add Phone Number" width="20"
+                                                                        height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#plus">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <span>Add Phone Number</span>
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 {{-- Default Billing Address --}}
-                                                <div class="col-lg-12 mb-4">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 pe-lg-5 mb-4">
+                                                <div class="col-lg-12">
+                                                    <div class="row between-section-segment-spacing">
+                                                        <div class="col-lg-6 pe-lg-5">
                                                             <h2>Default Billing Address</h2>
                                                             <button type="button"
                                                                 class="btn btn-primary btn-has-icon rounded mb-4"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#addAddressModal">
-                                                                <svg aria-label="Add Address" width="20" height="20" viewBox="0 0 20 20">
+                                                                <svg aria-label="Add Address" width="20" height="20"
+                                                                    viewBox="0 0 20 20">
                                                                     <use xlink:href="/css/common-icons.svg#plus">
                                                                     </use>
                                                                 </svg>
@@ -521,7 +517,7 @@
                                                             </table>
                                                         </div>
 
-                                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                                        <div class="col-lg-6 ps-lg-5">
                                                             <h2>Default Service Address</h2>
                                                             <div
                                                                 class="d-lg-flex justify-content-between align-items-center">
@@ -538,7 +534,8 @@
                                                                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2 mb-4"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#addAddressModal">
-                                                                    <svg aria-label="Add Address" width="20" height="20" viewBox="0 0 20 20">
+                                                                    <svg aria-label="Add Address" width="20" height="20"
+                                                                        viewBox="0 0 20 20">
                                                                         <use xlink:href="/css/common-icons.svg#plus">
                                                                         </use>
                                                                     </svg>

@@ -598,9 +598,11 @@
                                                 <label class="form-label" for="time-zone">
                                                     Accommodation
                                                 </label>
-                                                <select class="select2 form-select" id="time-zone">
-                                                    <option>Select Accommodations</option>
-                                                </select>
+                                                {{-- Updated by Shanila to add dropdown--}}
+                                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                'name', '', '', 'name', false, 'accommodation',
+                                                '','accommodation') !!}
+                                                {{-- End of update by Shanila --}}
                                             </div>
                                             <div class="col-5 mx-2">
                                                 <label class="form-label" for="time-zone">

@@ -12,7 +12,7 @@
 										Create a unique name to set up a new category by which to group your more specific services.
 									</p>
 									<div class="row">
-										<div class="col-12">
+										<div class="col-6">
 											<div class="mb-4">
 												<label class="form-label" for="accommodation-name">
 													Accommodation Name
@@ -35,7 +35,7 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-12">
+										<div class="col-6">
 											<div class="mb-4">
 												<label class="form-label" for="accommodation-description">
 													Accommodation Description
@@ -55,13 +55,17 @@
 								</div>
 							</div>
 						</form>
-						<div class="col-12 justify-content-center form-actions d-flex">
-							<button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save">
-								Submit
-							</button>
-							<button type="submit" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">
-								Back
-							</button>
+						<div class="col-6 justify-content-center form-actions d-flex justify-content-between">
+							<div>
+								<button type="submit" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">
+									Back
+								</button>
+							</div>
+							<div>
+								<button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save">
+									Submit
+								</button>
+							</div>		
 						</div>
 					</div>
 				</div>

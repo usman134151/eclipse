@@ -79,7 +79,11 @@
                             </div>
                             <div class="col-lg-6 mb-4 pe-lg-5">
                                 <label class="form-label">Industry <span class="mandatory">*</span></label>
-                                <input type="" class="form-control" placeholder="Select Industry">
+                                {{-- Updated by Shanila to add dropdown--}}
+                             {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+                             'name', '', '', 'name', false, 'industry',
+                             '','industry') !!}
+                             {{-- End of update by Shanila --}}
                             </div>
                             <div class="col-lg-12 mb-4">
                                 <div class="d-lg-flex align-items-center mb-4 gap-3">
@@ -140,9 +144,11 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select">
-                                                <option>Select Accommodation</option>
-                                            </select>
+                                                    {{-- Updated by Shanila to add dropdown--}}
+                                                    {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                    'name', '', '', 'name', false, 'accommodation',
+                                                    '','accommodation') !!}
+                                                    {{-- End of update by Shanila --}}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Service <span class="mandatory">*</span> <i
@@ -276,9 +282,9 @@
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label">Accommodation <span
                                                             class="mandatory">*</span></label>
-                                                    <select class="form-select">
-                                                        <option>Select Accommodation</option>
-                                                    </select>
+                                                            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                            'name', '', '', 'name', false, 'accommodation',
+                                                            '','accommodation') !!}
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label">Service <span class="mandatory">*</span>
@@ -614,9 +620,11 @@
                                                 <div class="col-lg-3">
                                                     <label class="form-label-sm" for="set_time_zone">Set
                                                         Time Zone <span class="mandatory">*</span></label>
-                                                    <select class="form-select form-select-md" id="set_time_zone">
-                                                        <option>Set Time Zone</option>
-                                                    </select>
+                                                        {{-- updated by shanila to add dropdown --}}
+                                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                        'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                                        '','timezone') !!}
+                                                        {{-- end updated --}}
                                                 </div>
                                                 <div class="">
                                                     <label class="form-label-sm" for="set_start_date">Set Date <span
@@ -739,7 +747,7 @@
                                                 <div class="col-lg-11 align-self-center d-flex">
                                                     <h2 class="mb-lg-0">Date & Time 2</h2>
                                                 </div>
-                                                <div class="col-lg" style="margin-left: 37px">
+                                                <div class="col-lg" style="margin-left: 25px">
                                                     <a href="#" title="Edit Company" aria-label="Edit Company"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
@@ -754,9 +762,11 @@
                                                 <div class="col-lg-3">
                                                     <label class="form-label-sm" for="set_time_zone">Set
                                                         Time Zone <span class="mandatory">*</span></label>
-                                                    <select class="form-select form-select-md" id="set_time_zone">
-                                                        <option>Set Time Zone</option>
-                                                    </select>
+                                                    {{-- updated by shanila to add dropdown --}}
+                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                    'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                                    '','timezone') !!}
+                                                    {{-- end updated --}}
                                                 </div>
                                                 <div class="">
                                                     <label class="form-label-sm" for="set_start_date">Set Date <span
