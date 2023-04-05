@@ -1851,3 +1851,11 @@ hr.border-separate-sm {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
     color: #ffffff;
 }
+
+.dropdown.dropdown-user .dropdown-item, .dropdown.dropdown-user .dropdown-toggle {
+	display: block;
+}
+.dropdown.dropdown-user .dropdown-menu {
+	background: #ffffff;
+    box-shadow: 0 5px 25px rgba(34, 41, 47, 0.1);
+}
