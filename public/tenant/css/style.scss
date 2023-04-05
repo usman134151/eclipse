@@ -1452,7 +1452,7 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 
 
 
-.main-menu.menu-light .navigation > li > a {
+.main-menu .navigation > li > a {
 	font-size: 0.9375rem;
 	margin: 0 0.5rem;
 	padding: 10px 25px 10px 25px;
@@ -1665,13 +1665,13 @@ linear-gradient(0deg, #FAEA95, #FAEA95);
 	}
 }
 
-.main-menu.menu-light .navigation > li ul li > a {
+.main-menu .navigation > li ul li > a {
 	@media (max-width: 991px) {
     	padding-left: 1rem;
 	}
 }
 
-.main-menu.menu-light .navigation > li ul li ul a {
+.main-menu .navigation > li ul li ul a {
 	@media (max-width: 991px) {
     	padding-left: 1rem;
 	}
@@ -1809,10 +1809,10 @@ hr.border-separate-sm {
     margin: 0;
 }
 
-.main-menu.menu-light .navigation > li.nav-item.has-sub.open > a {
+.main-menu .navigation > li.nav-item.has-sub.open > a {
 	font-weight: 700;
 }
-.main-menu.menu-light .navigation > li.nav-item.has-sub.open .menu-content li.nav-item.has-sub.open > a {
+.main-menu .navigation > li.nav-item.has-sub.open .menu-content li.nav-item.has-sub.open > a {
 	font-weight: 700;
 }
 .main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub > .menu-content {
@@ -1832,24 +1832,30 @@ hr.border-separate-sm {
 .main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub.open a {
     background: #d7d3d3;
 }
-.main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub.open a:hover {
+.main-menu .navigation li.nav-item.has-sub li.nav-item.has-sub.open a:hover {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
     color: #ffffff;
 }
 .main-menu.menu-light .navigation li ul li ul li.nav-item.has-sub.open a, .main-menu.menu-light .navigation li ul li ul li.nav-item.has-sub.open ul {
     background: #cac6c6 !important;
 }
-.main-menu.menu-light .navigation li ul li ul li.nav-item.has-sub.open a:hover {
+.main-menu .navigation li ul li ul li.nav-item.has-sub.open a:hover {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
     color: #ffffff;
 }
-.main-menu.menu-light .navigation li.nav-item.has-sub li.nav-item.has-sub.open .active a {
+.main-menu .navigation li.nav-item.has-sub li.nav-item.has-sub.open .active a {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
     color: #ffffff;
 }
-.main-menu.menu-light .navigation li ul li ul li.nav-item.has-sub.open .active a {
+.main-menu .navigation li ul li ul li.nav-item.has-sub.open .active a {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%) !important;
     color: #ffffff;
+}
+
+.dropdown.dropdown-user .dropdown-toggle {
+	background: none !important;
+	padding: 0 0.5rem !important;
+	color: #6e6b7b !important;
 }
 
 .dropdown.dropdown-user .dropdown-item, .dropdown.dropdown-user .dropdown-toggle {
