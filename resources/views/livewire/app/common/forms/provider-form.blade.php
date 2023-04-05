@@ -239,9 +239,9 @@
                                         <label class="form-label" for="country">
                                             Country
                                         </label>
-                                        <select class="select2 form-select" id="country">
-                                            <option value="">Select Country</option>
-                                        </select>
+                                        {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
+                                        'name', '', '', 'name', false, 'country',
+                                        '','country') !!}
                                     </div>
                                     <div class="col-lg-6 mb-4 ps-lg-5">
                                         <label class="form-label" for="state">
