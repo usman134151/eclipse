@@ -7,6 +7,10 @@ use Livewire\Component;
 class Profile extends Component
 {
     public $showForm;
+    public $ethnicity;
+    public $languages;
+    public $timezone;
+    public $gender;
     protected $listeners = ['showList' => 'resetForm'];
     public $component = 'profile';
     public function render()
@@ -16,12 +20,12 @@ class Profile extends Component
 
     public function mount()
     {
-       
-       
+
+
     }
 
     function showForm()
-    {     
+    {
        $this->showForm=true;
     }
     public function resetForm()
