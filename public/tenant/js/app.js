@@ -258,6 +258,7 @@ $('.js-show-start-service-hidden-content').click(function(){
 // Dark- Light Theme Script
 
     var $html = $('html');
+$( document ).ready(function() {    
     function getCurrentLayout() {
     var currentLayout = '';
     if ($html.hasClass('dark-layout')) {
@@ -349,3 +350,5 @@ $('.js-show-start-service-hidden-content').click(function(){
       navLinkStyle.find('.ficon').replaceWith(feather.icons['moon'].toSvg({ class: 'ficon' }));
     }
   }
+
+  });
