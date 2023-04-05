@@ -127,7 +127,7 @@
                 <span class="avatar-status-online"></span>
               </span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end show" aria-labelledby="dropdown-user" data-bs-popper="static">
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user" data-bs-popper="static">
               <a class="dropdown-item" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user me-50">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
