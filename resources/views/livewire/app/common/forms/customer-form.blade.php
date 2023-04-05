@@ -240,28 +240,27 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6 pe-lg-5 mb-4">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <label class="form-label" for="gender-column">
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                                    <label class="form-label mb-lg-0" for="gender-column">
                                                         Gender
                                                     </label>
                                                     <a href="#" class="fw-bold">
                                                         <small>
-                                                            <svg width="16" height="16" viewBox="0 0 16 16"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                    d="M8 0C3.58182 0 0 3.58182 0 8C0 12.4182 3.58182 16 8 16C12.4182 16 16 12.4182 16 8C16 3.58182 12.4182 0 8 0ZM8.72727 10.9091C8.72727 11.102 8.65065 11.287 8.51426 11.4234C8.37787 11.5597 8.19289 11.6364 8 11.6364C7.80712 11.6364 7.62213 11.5597 7.48574 11.4234C7.34935 11.287 7.27273 11.102 7.27273 10.9091V8.72727H5.09091C4.89802 8.72727 4.71304 8.65065 4.57665 8.51426C4.44026 8.37787 4.36364 8.19289 4.36364 8C4.36364 7.80712 4.44026 7.62213 4.57665 7.48574C4.71304 7.34935 4.89802 7.27273 5.09091 7.27273H7.27273V5.09091C7.27273 4.89802 7.34935 4.71304 7.48574 4.57665C7.62213 4.44026 7.80712 4.36364 8 4.36364C8.19289 4.36364 8.37787 4.44026 8.51426 4.57665C8.65065 4.71304 8.72727 4.89802 8.72727 5.09091V7.27273H10.9091C11.102 7.27273 11.287 7.34935 11.4234 7.48574C11.5597 7.62213 11.6364 7.80712 11.6364 8C11.6364 8.19289 11.5597 8.37787 11.4234 8.51426C11.287 8.65065 11.102 8.72727 10.9091 8.72727H8.72727V10.9091Z"
-                                                                    fill="#0A1E46" />
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                                viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                             </svg>
+                                                            {{-- End of update by Shanila --}}
+
                                                             Add New
                                                         </small>
                                                     </a>
                                                 </div>
-                                                <select class="select2 form-select" id="gender-column">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                    <option>Others</option>
-                                                </select>
+                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
+                                                '','gender') !!}
                                             </div>
 
                                             <div class="col-lg-6 ps-lg-5 mb-4">
@@ -281,9 +280,9 @@
                                                         </small>
                                                     </a>
                                                 </div>
-                                                <select class="select2 form-select" id="ethnicity-column">
-                                                    <option>Select Ethnicity</option>
-                                                </select>
+                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity',
+                                                '','ethnicity') !!}
                                             </div>
 
                                             <div class="col-lg-6 pe-lg-5 mb-4">
@@ -309,18 +308,18 @@
                                                 <label class="form-label" for="preferred-language">
                                                     Preferred Language
                                                 </label>
-                                                <select class="select2 form-select" id="preferred-language">
-                                                    <option>English</option>
-                                                </select>
+                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
+                                                '','languages') !!}
                                             </div>
 
                                             <div class="col-lg-6 ps-lg-5 mb-4">
                                                 <label class="form-label" for="time-zone">
                                                     Time Zone
                                                 </label>
-                                                <select class="select2 form-select" id="time-zone">
-                                                    <option>Select Time Zone</option>
-                                                </select>
+                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                                '','timezone') !!}
                                             </div>
 
                                             <div class="col-lg-6 pe-lg-5 mb-4">
@@ -595,7 +594,7 @@
                                             </button>
                                         </div>
                                         {{-- Action Buttons End --}}
-                                        
+
                                     </div>
                                 </div>
                             </section>
