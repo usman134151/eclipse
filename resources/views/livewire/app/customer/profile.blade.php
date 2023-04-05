@@ -198,12 +198,12 @@
                             <label class="form-label" for="industry">
                                 Industry
                             </label>
-                            <select class="select2 form-select" id="state">
-                                <option value="Al">
-                                    Legal
-                                </option>
-                            </select>
-                        </div>.
+                             {{-- Updated by Shanila to add dropdown--}}
+                             {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+                             'name', '', '', 'name', false, 'industry',
+                             '','industry') !!}
+                             {{-- End of update by Shanila --}}
+                        </div>
                         <div class="col-lg-12 mb-4">
                             <h2>Billing Address</h2>
                         </div>

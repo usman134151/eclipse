@@ -225,9 +225,9 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select">
-                                                <option>Select Accommodation</option>
-                                            </select>
+                                                    {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                    'name', '', '', 'name', false, 'accommodation',
+                                                    '','accommodation') !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Service <span class="mandatory">*</span> <i

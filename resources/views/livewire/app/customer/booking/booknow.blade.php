@@ -79,7 +79,11 @@
                             </div>
                             <div class="col-lg-6 mb-4 pe-lg-5">
                                 <label class="form-label">Industry <span class="mandatory">*</span></label>
-                                <input type="" class="form-control" placeholder="Select Industry">
+                                {{-- Updated by Shanila to add dropdown--}}
+                             {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+                             'name', '', '', 'name', false, 'industry',
+                             '','industry') !!}
+                             {{-- End of update by Shanila --}}
                             </div>
                             <div class="col-lg-12 mb-4">
                                 <div class="d-lg-flex align-items-center mb-4 gap-3">
@@ -140,9 +144,11 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select">
-                                                <option>Select Accommodation</option>
-                                            </select>
+                                                    {{-- Updated by Shanila to add dropdown--}}
+                                                    {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                    'name', '', '', 'name', false, 'accommodation',
+                                                    '','accommodation') !!}
+                                                    {{-- End of update by Shanila --}}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Service <span class="mandatory">*</span> <i
@@ -276,9 +282,9 @@
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label">Accommodation <span
                                                             class="mandatory">*</span></label>
-                                                    <select class="form-select">
-                                                        <option>Select Accommodation</option>
-                                                    </select>
+                                                            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                            'name', '', '', 'name', false, 'accommodation',
+                                                            '','accommodation') !!}
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label">Service <span class="mandatory">*</span>
