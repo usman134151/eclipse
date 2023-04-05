@@ -47,7 +47,7 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 				  <div class="tab-pane fade {{ $component == 'configuration-setting' ? 'active show' : '' }}" id="configuration-setting" role="tabpanel" aria-labelledby="configuration-setting-tab" tabindex="0">
-					<div class="row">
+					<div class="row between-section-segment-spacing">
 					  <div class="col-lg-12">
 						  <h2 class="mb-4">Configuration Setting</h2>
 						  <div class="row inner-section-segment-spacing">
@@ -154,8 +154,8 @@
 									/>
 							</div>
 						  </div>
-						  <div class="row">
-							<div class="col-lg-6 mb-4">
+						  <div class="row inner-section-segment-spacing">
+							<div class="col-lg-6">
 								<h3>Assign Email to Receive Customer Responses</h3>
 								<label class="form-label" for="EmailAddressCustomerResponses">Email Address</label>
 								  <input
@@ -246,7 +246,7 @@
 						  <p>Your set hours determine when "Business hours" and "After-hours" rates are in effect for customer billing and Provider payroll and prevents services from being scheduled during your "closed" hours.You can also set the times which you are closed and not providing services; this will restrict customers from scheduling.</p>
 					  </div>
 					</div>
-					<div class="row inner-section-segment-spacing">
+					<div class="row between-section-segment-spacing">
 						<div class="col-lg-12">
 							<h3>Time Configuration</h3>
 							<div class="row">
@@ -272,7 +272,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row mb-4">
+					<div class="row between-section-segment-spacing">
 						<div class="col-lg-12">
 							<h3>Add Hours Slot In Schedule</h3>
 							<div class="row mb-2">
@@ -340,7 +340,7 @@
 									<button class="btn btn-primary btn-sm rounded">Submit</button>
 								</div>
 							</div>
-							<div class="row mb-4">
+							<div class="row inner-section-segment-spacing">
 								<div class="col-12">
 									<div class="d-lg-flex justify-content-between mb-4">
 										<h3 class="mb-lg-0">Business Schedule</h3>
@@ -510,7 +510,7 @@
 									<button class="btn btn-primary btn-sm rounded">Submit</button>
 								</div>
 							</div>
-							<div class="row between-section-segment-spacing">
+							<div class="row">
 								<div class="col-lg-9">
 									<h3>Listed Holidays</h3>
 									<table class="table table-hover">
@@ -663,7 +663,7 @@
 
 														<input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
 													</div>
-													<div class="col-lg-10 mb-4">
+													<div class="col-lg-12 mb-4">
 														<div class="d-lg-flex ">
 															<label class="form-label" for="compensatedTravelTime">
 																Rate To Reimburse Compensated Travel Time
@@ -1001,7 +1001,7 @@
 										</div>
 										{{-- End: Right Column --}}
 									</div>
-									<div class="mb-5">
+									<div class="between-section-segment-spacing">
 									<div class="row">
 										<div class="col-lg-12">
 											<h3>Service Agreements / Terms of Service</h3>
@@ -1034,7 +1034,7 @@
 										</div>
 									</div>
 									</div>
-									<div class="mb-5">
+									<div class="between-section-segment-spacing">
 									<div class="row">
 										<div class="col-lg-12">
 											<h3>Privacy Policy</h3>
@@ -1077,7 +1077,7 @@
 									</div>
 									<!-- Duplicate Block -->
 									<div>
-										<div class="row mb-4">
+										<div class="row between-section-segment-spacing">
 											<div class="col-lg-12 mb-4">
 												<h3>Additional Policies</h3>
 												<div class="duplicate-block mb-3">
@@ -1122,13 +1122,13 @@
 														</div>
 													</div>
 											</div>
-											<div class="row mb-4">
+											<div class="row between-section-segment-spacing">
 												<div class="col-lg-12 text-lg-end mt-2">
 													<button type="button" class="btn btn-primary btn rounded"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Policy
 													</button>
 												</div>
 											</div>
-												<div class="row mb-4">
+												<div class="row">
 												   <h3>Request Feedback</h3>
 													<div class="col-lg-12">
 														<div class="form-check">
