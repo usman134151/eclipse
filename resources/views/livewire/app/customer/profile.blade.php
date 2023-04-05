@@ -15,7 +15,7 @@
                                             fill="#0A1E46" />
                                     </svg>
                                 </a>
-                            </li> 
+                            </li>
                             <li class="breadcrumb-item">
                                 <a href="http://127.0.0.1:8000">
                                     Profile
@@ -95,16 +95,16 @@
                                             <div class=" col-lg-6 font-family-tertiary value">
                                                 <div class="d-flex col-lg-12 ">
                                                     <div class="col-lg-8">
-                                                <h6 class=" fw-semibold"> Pending Invoices:</h6>
-                                                <h6 class=" fw-semibold">Total Invoices:</h6>
-                                                <h6 class=" fw-semibold">Overdue Invoices:</h6>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <h6 class=" fw-semibold"> <span>$253</span></h6>
-                                                    <h6 class=" fw-semibold"><span>$3734</span></h6>
-                                                    <h6 class=" fw-semibold"><span>$368</span></h6>
+                                                        <h6 class=" fw-semibold"> Pending Invoices:</h6>
+                                                        <h6 class=" fw-semibold">Total Invoices:</h6>
+                                                        <h6 class=" fw-semibold">Overdue Invoices:</h6>
                                                     </div>
-                                            </div>
+                                                    <div class="col-lg-4">
+                                                        <h6 class=" fw-semibold"> <span>$253</span></h6>
+                                                        <h6 class=" fw-semibold"><span>$3734</span></h6>
+                                                        <h6 class=" fw-semibold"><span>$368</span></h6>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -117,21 +117,22 @@
                                         <div class="row">
                                             <div class="col-lg-3 ">
                                                 <div class="w-100">
-                                                 <span class="fw-semibold">Open Service Requests:</span>
-                                                 <span>10</span>
+                                                    <span class="fw-semibold">Open Service Requests:</span>
+                                                    <span>10</span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="w-100">
                                                     <span class="fw-semibold">Total Service Requests:</span>
                                                     <span>10</span>
-                                                   </div>
+                                                </div>
                                             </div>
                                             <div class="col-lg-5">
                                                 <div class="w-100 mx-5">
-                                                    <span class="fw-semibold">Total Number of Assigned Supervisor:</span>
+                                                    <span class="fw-semibold">Total Number of Assigned
+                                                        Supervisor:</span>
                                                     <span>15</span>
-                                                   </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -157,15 +158,16 @@
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="frist-name">First Name</label>
-                            <input type="text" id="first-name" class="form-control" name="frist-name" placeholder="Alex" />
+                            <input type="text" id="first-name" class="form-control" name="frist-name"
+                                placeholder="Alex" />
                         </div>
                         <div class="col-lg-6 mb-4 pe-lg-5">
                             <label class="form-label" for="last-name">
                                 Last Name
 
                             </label>
-                            <input type="text" id="last-name" class="form-control" name="last-name" placeholder="Wonderland"
-                                required aria-required="true" />
+                            <input type="text" id="last-name" class="form-control" name="last-name"
+                                placeholder="Wonderland" required aria-required="true" />
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="pronouns">Pronouns</label>
@@ -176,20 +178,21 @@
                                 Email
 
                             </label>
-                            <input type="text" id="email" class="form-control" name="email" placeholder="alex@dispostable.com"
-                                required aria-required="true" />
+                            <input type="text" id="email" class="form-control" name="email"
+                                placeholder="alex@dispostable.com" required aria-required="true" />
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="phone">Phone Number</label>
-                            <input type="text" id="phone" class="form-control" name="phone" placeholder="(343) 424-6564" />
+                            <input type="text" id="phone" class="form-control" name="phone"
+                                placeholder="(343) 424-6564" />
                         </div>
                         <div class="col-lg-6 mb-4 pe-lg-5">
                             <label class="form-label" for="preferred-language">
                                 Preferred Language
                             </label>
-                            <select class="select2 form-select" id="preferred-language">
-                                <option value="">English</option>
-                            </select>
+                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
+                                        '','languages') !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="industry">
@@ -223,9 +226,9 @@
                             <label class="form-label" for="country">
                                 Country
                             </label>
-                            <select class="select2 form-select" id="country">
-                                <option value="">USA</option>
-                            </select>
+                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
+                            'name', '', '', 'name', false, 'country',
+                            '','country') !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="state">
@@ -273,9 +276,9 @@
                             <label class="form-label" for="country">
                                 Country
                             </label>
-                            <select class="select2 form-select" id="country">
-                                <option value="">USA</option>
-                            </select>
+                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
+                            'name', '', '', 'name', false, 'country',
+                            '','country') !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="state">
@@ -305,7 +308,8 @@
                     </div>
                     <div class="col-12 justify-content-center form-actions d-flex gap-3">
 
-                        <button type="button" class="btn btn-primary rounded" x-on:click="$wire.switch('provider-service')">
+                        <button type="button" class="btn btn-primary rounded"
+                            x-on:click="$wire.switch('provider-service')">
                             Save Changes
                         </button>
                     </div>
