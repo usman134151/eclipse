@@ -6,10 +6,6 @@ use Livewire\Component;
 
 class AdminStaffForm extends Component
 {
-
-    public $ethnicity;
-    public $timezone;
-    public $gender;
 	public function showList()
 	{
 		$this->emit("showList");
