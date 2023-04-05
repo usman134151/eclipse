@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class BookingDetails extends Component
 {
+    public $gender;
+    public $ethnicity;
 	public $component = 'booking-details';
 
 	public function render()
