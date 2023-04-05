@@ -10,7 +10,7 @@
                           <h1>{{$label}} Industry</h1>
                           <p>Create a industry to add to your service catalog.</p>
                           <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                               <div class="mb-4">
                                 <label class="form-label" for="industry-name" >Industry Name 
                                   <span class="text-danger">*</span> </label>
@@ -25,13 +25,16 @@
                                   @error('industry.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
                               </div>
                             </div>
-
                           </div>
                         </div>                        
                         </div>
-                        <div class="col-12 justify-content-center form-actions d-flex">
-                          <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save">Submit</button>
-                          <button class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList" >Back</button>
+                        <div class="col-6 justify-content-center form-actions col-6 form-actions d-flex justify-content-between">
+                          <div>
+                            <button class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList" >Back</button>
+                          </div>
+                          <div>
+                            <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save">Submit</button>
+                          </div>
                         </div>
                       </div>
                     </form>
