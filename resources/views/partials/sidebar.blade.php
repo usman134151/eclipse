@@ -49,7 +49,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
           <li class="nav-item" id="dashboard">
             <a href="/admin/dashboard">
-              <svg aria-label="Dashboard" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg aria-label="Dashboard" width="18" height="18" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/admin-menu.svg#dashboard-icon"></use>
               </svg>
               <span class="menu-item">Dashboard</span>

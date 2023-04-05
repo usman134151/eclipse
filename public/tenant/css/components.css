@@ -837,8 +837,7 @@ footer.footer-border {
 .main-menu.menu-light .navigation > li ul .open > a,
 .main-menu.menu-light .navigation > li ul .sidebar-group-active > a {
   color: #6e6b7b;
-  background: #ededed;
-  border-radius: 6px; }
+  background: #ededed; }
   .main-menu.menu-light .navigation > li ul .open > a:hover {
     background: linear-gradient(90deg, #213969 50%, #204387 90.12%);
     color: #ffffff;
