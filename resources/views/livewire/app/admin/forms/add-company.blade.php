@@ -94,7 +94,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row inner-section-segment-spacing">
+                                            <div class="row mb-4">
                                                 <div class="col-lg-12 mb-md-2">
                                                     <h2>Company Info</h2>
                                                 </div>
@@ -140,7 +140,7 @@
                                             </div>
                                             <div class="row">
                                                 {{-- Department Website --}}
-                                                <div class="row inner-section-segment-spacing">
+                                                <div class="row mb-4">
                                                     <div class="col-lg-6 pe-lg-5 col-12">
                                                         <label class="form-label" for="company-website">
                                                             Company Website
@@ -648,14 +648,12 @@
                                 <div class="row">
                                     <div class="card-body">
                                         <form class="form">
-                                            <div class="col-md-8 mb-md-2">
-                                                <div class="mb-5">
+                                            <div class="col-md-10">
                                                     <h2>Service Catalog</h2>
-                                                </div>
                                             </div>
-                                            <div class="col-md-12 mb-md-2">
+                                            <div class="col-md-12 between-section-segment-spacing">
                                                 <div class="row">
-                                                    <div class="col-md-4 mb-md-2">
+                                                    <div class="col-lg-5">
                                                         <div class="mb-3">
                                                             <p class="fs-5">
                                                                 Filter By Accommodation
@@ -730,7 +728,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6 mb-md-2">
+                                                    <div class="col-lg-7">
                                                         <div class="mb-3">
                                                             <p class="fs-5">
                                                                 Select Service

@@ -41,8 +41,8 @@
                         </div>
                       </div>
                       </div>
-
-                      <div class="col-md-8 mb-4 border border-primary p-2">
+                      <div class="row between-section-segment-spacing ms-1">
+                      <div class="col-md-8 border border-primary p-2">
                         <div class="col-md-12 mb-3 ps-3">
                           <label class="form-label" for="Customer-invoices-summary">Customer invoices summary</label>
                         </div>
@@ -68,10 +68,12 @@
                         </div>
 
                       </div>
-                      
+                    </div>
+                    <div class="row between-section-segment-spacing">
                         <x-advancefilters type="invoice-filters"/>
+                      </div>
                        
-                      <div class="d-flex justify-content-between mb-2 mt-5">
+                      <div class="d-flex justify-content-between mb-2">
                         <div class="d-inline-flex align-items-center gap-4">
                           <label for="show_records" class="form-label">Show</label>
                           <select class="form-select" id="show_records">
@@ -767,6 +769,7 @@
                               </div>
                               </div>
                              {{-- icon bar start end--}}
+                             <div class="row between-section-segment-spacing">
                     <div class="d-flex justify-content-between mt-4">
                       <div>
                         <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
@@ -790,6 +793,7 @@
                         </ul>
                       </nav>
                     </div>
+                  </div>
 
                     <div class="d-flex justify-content-center">
                       <button class="btn btn-primary rounded">Resend Invoice</button>
