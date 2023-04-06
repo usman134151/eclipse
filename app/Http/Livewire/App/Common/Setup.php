@@ -14,12 +14,14 @@ class Setup extends Component
 	public $listTitle="Setup";
 	public $listDescription="";
 	public $showDetails = true;
+	public $setupLabel='';
 	
 
 	// Property for holding the ID of the record being edited / deleted
 	public $recordId;
 	public $setupId;
 	public $counter=0;
+	public $setupDetails=false;
 
 	// Define event listeners for this component
 	protected $listeners = [
@@ -29,11 +31,13 @@ class Setup extends Component
 		'updateRecordId' => 'updateRecordId', // Update the ID of the record being edited / deleted
 		'refreshSetupDetails'=>'refreshDetails'
 	];
-    public function refreshDetails($setupId){
+    public function refreshDetails($setupId,$setupLabel){
 	if($this->counter==0){
 		$this->setupId=0;
-		$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId]);
+		$this->setupLabel=$setupLabel;
+		$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId,'setupLabel'=>$setupLabel]);
 		$this->counter=1;
+		$this->setupDetails=true;
 
 	}
 	else{

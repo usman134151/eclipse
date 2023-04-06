@@ -99,15 +99,16 @@ final class SetupList extends PowerGridComponent
 			return ($model->status);
 		})
 		->addColumn('edit', function(Setup $model) {
-			return '<div class="d-flex actions"><a x-on:click="setupDetails = true" wire:click.prevent="showDetails('.$model->id.')"href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
+			
+			return '<div class="d-flex actions"><a  wire:click.prevent="showDetails('.$model->id.',\''.$model->setup_value.'\')" x-on:click="setupDetails = true" href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
 		});
 	} 
 
-	public function showDetails($setupId)
+	public function showDetails($setupId,$setupLabel)
 	{
 		$this->selectedSetupId = $setupId;
 		
-		$this->emitUp('refreshSetupDetails',$setupId);
+		$this->emitUp('refreshSetupDetails',$setupId,$setupLabel);
 		
 	}
 
