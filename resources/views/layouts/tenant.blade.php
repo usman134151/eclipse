@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="/tenant/css/daterangepicker.css">
 		<link rel="stylesheet" href="/tenant/css/select2.min.css"/>
 		<link rel="stylesheet" href="/tenant/css/pikaday.css">
+		<link rel="stylesheet" href="/tenant/css/dark-layout.css">
 		<link rel="stylesheet" href="/tenant/css/style.css">
 		<link rel="stylesheet" href='/tenant/css/bootstrap-icons.css'/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
