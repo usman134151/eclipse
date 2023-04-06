@@ -76,15 +76,13 @@
                                 <option>Payment Status-1</option>
                                 <option>Payment Status-2</option>
                               </select>
-            </div>                  
+            </div>
             @endif
             <div class="col-lg-5 pe-lg-3 mb-5">
               <label class="form-label">Specialization</label>
-              <select data-placeholder="Select Specialization" multiple class="form-select chosen-select" tabindex="" id="specialization">
-                <option value=""></option>
-                <option selected>Deaf-Blind Tactile</option>
-                <option selected>Closed-Captioning</option>
-              </select>
+              {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
+'name', 'status', 1, 'name', true, '',
+'','specialization_filter') !!}
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
               <label class="form-label">Service Type</label>
@@ -121,9 +119,9 @@
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
               <label class="form-label">Industry</label>
-              <select data-placeholder="Select Industry" multiple class="form-select chosen-select" tabindex="" id="industry">
-                <option value=""></option>
-              </select>
+              {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+              'name', 'status', 1, 'name', true, '',
+              '','industry_filter') !!}
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
               <label class="form-label">Status</label>
