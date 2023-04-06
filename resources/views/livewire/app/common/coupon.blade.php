@@ -33,7 +33,10 @@
                         <div class="d-flex actions gap-3 justify-content-end mb-2 mt-2">
                            <div class="d-flex gap-2 align-items-center">
                               <a href="#" title="Edit Provider" aria-label="Edit Provider" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="pencil"/>
+                                <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+									<use xlink:href="/css/common-icons.svg#pencil">
+									</use>
+								</svg>
                               </a>
                               <span class="text-sm">
                              Edit

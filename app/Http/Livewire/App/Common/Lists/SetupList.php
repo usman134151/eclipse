@@ -11,8 +11,9 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class SetupList extends PowerGridComponent
 {
 	use ActionButton;
-	protected $listeners = ['refresh' => 'setUp'];
-	public $name;
+	
+	public $selectedSetupId;
+	public $setup_value_label;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -97,10 +98,19 @@ final class SetupList extends PowerGridComponent
 		->addColumn('status', function (Setup $model) {
 			return ($model->status);
 		})
-		->addColumn('edit', function() {
-			return '<div class="d-flex actions"><a x-on:click="setupDetails = true" href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
+		->addColumn('edit', function(Setup $model) {
+			return '<div class="d-flex actions"><a x-on:click="setupDetails = true" wire:click.prevent="showDetails('.$model->id.')"href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
 		});
+	} 
+
+	public function showDetails($setupId)
+	{
+		$this->selectedSetupId = $setupId;
+		
+		$this->emitUp('refreshSetupDetails',$setupId);
+		
 	}
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -127,46 +137,7 @@ final class SetupList extends PowerGridComponent
 		];
 	}
 
-	// A method to handle the edit button click event
-	function edit($id) {
-		// Emits an event to show the form for editing a record
-		$this->emit('showForm', Setup::find($id));
-	}
-
-	// A method to handle the delete button click event
-	public function deleteRecord($id) {
-		// Sets the ID of the record to be deleted
-		$this->deleteRecordId = $id;
-		// Emits an event to update the ID of the record to be deleted
-		$this->emit('updateRecordId', $id);
-		// Dispatches a browser event to show a confirmation modal
-		$this->dispatchBrowserEvent('swal:confirm', [
-			'type' => 'warning',
-			'title' => 'Delete Operation',
-			'text' => 'Are you sure you want to delete this record?',
-		]);
-	}
-
-	// A method to handle the toggleable columns update event
-	public function onUpdatedToggleable(string $id, string $field, string $value): void
-	{
-		// Updates the specified field of the record with the new value
-		Setup::query()->find($id)->update([
-			$field => $value,
-		]);
-	}
-
-	// A method to handle the editable columns update event
-	public function onUpdatedEditable(string $id, string $field, string $value): void
-	{
-		// Dumps the name of the field being updated
-
-		// Updates the specified field of the record with the new value
-		Setup::query()->find($id)->update([
-			$field => $value,
-		]);
-	}
-
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Actions Method

@@ -38,7 +38,18 @@ class SetupSeeder extends Seeder
                 'setup_value' => 'Timezone',
                 'created_at' => now(),
                 'updated_at' => now()
-            ]
+            ],
+            [
+                'setup_value' => 'Service Types',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'setup_value' => 'Scheduling Frequencies',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            
         ]);
         
     }

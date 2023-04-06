@@ -751,16 +751,11 @@
                                                                 <label class="form-label" for="ApplyTo">
                                                                     Accommodation
                                                                 </label>
-                                                                <select
-                                                                    class="chosen-select form-select form control w-auto"
-                                                                    id="copy_provider" multiple>
-                                                                    <option selected>
-                                                                        Shelby Sign Language
-                                                                    </option>
-                                                                    <option selected>
-                                                                        Language Translation Services
-                                                                    </option>
-                                                                </select>
+                                                                {!!
+                                                                App\Helpers\SetupHelper::createDropDown('Accommodation',
+                                                                'id',
+                                                                'name', 'status', 1, 'name', true, '',
+                                                                '','accommodation_filter') !!}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -771,9 +766,8 @@
                                                                 <h3 class="mb-lg-0">Service</h3>
                                                                 {{-- Updated by Shanila to Add svg
                                                                 icon--}}
-                                                                <svg aria-label=" Service"
-                                                                width="20" height="20" viewBox="0 0 20 20"
-                                                                fill="none">
+                                                                <svg aria-label=" Service" width="20" height="20"
+                                                                    viewBox="0 0 20 20" fill="none">
                                                                     <use
                                                                         xlink:href="/css/common-icons.svg#fill-question">
                                                                     </use>

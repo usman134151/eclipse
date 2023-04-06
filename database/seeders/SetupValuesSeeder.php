@@ -51,6 +51,21 @@ class SetupValuesSeeder extends Seeder
             'Prefer Not to Say'
         ];
 
+        $serviceTypes= [
+            'In-Person',
+            'Virtual',
+            'Phone',
+            'Teleconference'
+        ];
+
+        $frequencies=[
+            'One-Time Request',
+            'Daily',
+            'Weekly',
+            'Weekdaily (Business Days)',
+            'Monthly'
+        ];
+
         // Insert languages
         $setup = DB::table('setup')->where('setup_value', 'Languages')->first();
         foreach ($languages as $language) {
@@ -83,6 +98,27 @@ class SetupValuesSeeder extends Seeder
                 'updated_at' => now()
             ]);
         }
+
+       //Insert service types
+       
+       $setup = DB::table('setup')->where('setup_value', 'Service Types')->first();
+       foreach ($serviceTypes as $service) {
+           DB::table('setup_values')->insert([
+               'setup_id' => $setup->id,
+               'setup_value_label' => $service,
+               'created_at' => now(),
+               'updated_at' => now()
+           ]);
+       }
+       $setup = DB::table('setup')->where('setup_value', 'Scheduling Frequencies')->first();
+       foreach ($frequencies as $frequency) {
+           DB::table('setup_values')->insert([
+               'setup_id' => $setup->id,
+               'setup_value_label' => $frequency,
+               'created_at' => now(),
+               'updated_at' => now()
+           ]);
+       }  
     }
 }
 

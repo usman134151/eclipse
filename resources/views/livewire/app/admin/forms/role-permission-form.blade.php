@@ -1,39 +1,1954 @@
-<div
-	x-data="
-	{
-		accommodationServicesAccess: false,
-		teamsProviderAccess: false,
-		companiesCustomers: false
-	}"
->
+<div x-data="{ accommodationServicesAccess: false, teamsProviderAccess: false, companiesCustomers: false }">
 	<div class="content-header row">
 		<div class="content-header-left col-md-9 col-12 mb-2">
-		  <div class="row breadcrumbs-top">
-			<div class="col-12">
-			  <h1 class="content-header-title float-start mb-0">Create New Role</h1>
-			  <div class="breadcrumb-wrapper">
-				<ol class="breadcrumb">
-				  <li class="breadcrumb-item">
-					<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
-						{{-- Updated by Shanila to Add svg icon--}}
-                        <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
-                            <use xlink:href="/css/common-icons.svg#home"></use>
-                        </svg>
-                        {{-- End of update by Shanila --}}
-					</a>
-				  </li>
-				  <li class="breadcrumb-item">
-					Settings
-				  </li>
-				  <li class="breadcrumb-item">
-					Create New Role
-				  </li>
-				</ol>
+			<div class="row breadcrumbs-top">
+				<div class="col-12">
+					<h1 class="content-header-title float-start mb-0">Create New Role</h1>
+					<div class="breadcrumb-wrapper">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
+									{{-- Updated by Shanila to Add svg icon--}}
+									<svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+										<use xlink:href="/css/common-icons.svg#home"></use>
+									</svg>
+									{{-- End of update by Shanila --}}
+								</a>
+							</li>
+							<li class="breadcrumb-item">
+								Settings
+							</li>
+							<li class="breadcrumb-item">
+								Create New Role
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content-body">
+		<div class="card">
+			<div class="card-body">
+				<div class="mt-4">
+					<h2>Create New Roles and Permissions</h2>
+					<div class="row ms-1">
+						<div class="row align-items-center">
+							<div class="col-auto">
+								<label for="label" class="col-form-label">Label</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="label" placeholder="Marketing Manager" class="form-control">
+							</div>
+						</div>
+						<p class="mt-3 mb-4">
+							Create a predefined set of permissions to quickly deploy to one or multiple users.
+						</p>
+					</div>
+				</div>
+				{{-- Hoverable rows start --}}
+				<div class="row" id="table-hover-row">
+					<div class="col-12">
+						<div class="card">
+							<div class="table-responsive">
+								<table class="table table-hover mb-3">
+									<thead>
+										<tr>
+											<th scope="col">
+												Section
+											</th>
+											{{-- Updated by Sohail Asghar to fetch rights dynamically from DB --}}
+											@foreach ($rights as $right)
+											<th scope="col">
+												<div class="form-check">
+													<input
+														class="form-check-input"
+														id="{{ $right->right_type }}"
+														name="{{ $right->right_type }}"
+														type="checkbox"
+													>
+													<label for="{{ $right->right_type }}" class="mt-1">
+														{{ $right->right_type }}
+													</label>
+												</div>
+											</th>
+											@endforeach
+										</tr>
+									</thead>
+									<tbody>
+										{{-- Updated by Sohail Asghar to fetch section names dynamically from DB --}}
+										@foreach ($sections as $title => $section)
+										@php $count = $loop->iteration; @endphp
+										<tr>
+											<td data-bs-toggle="collapse" href="#collapseExample{{ $count }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $count }}">
+												<strong>{{ $title }}</strong>
+												<svg aria-label="" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+													<use xlink:href="/css/common-icons.svg#collapse-row"></use>
+												</svg>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select View" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select Add" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input"  aria-label="Select Delete" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input"  aria-label="Select All" type="checkbox">
+												</div>
+											</td>
+										</tr>
+										@if ($section->count())
+										<div>
+										@foreach ($section as $childSection)
+										<tr class="collapse" id="collapseExample{{ $count }}">
+											<td class="align-middle">
+												{{ $childSection->section_name }}
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select View" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select Add" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select Delete" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select All" type="checkbox">
+												</div>
+											</td>
+										</tr>
+										@endforeach
+										</div>
+										@endif
+										@endforeach
+										{{-- End of updateEnd of update by Sohail Asghar --}}
+										@php /*
+										<tr>
+											<td data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+												<strong>Assignments</strong>
+												<svg aria-label="" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+													<use xlink:href="/css/common-icons.svg#collapse-row"></use>
+												</svg>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select View" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" aria-label="Select Add" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input"  aria-label="Select Delete" type="checkbox">
+												</div>
+											</td>
+											<td>
+												<div class="form-check">
+													<input class="form-check-input"  aria-label="Select All" type="checkbox">
+												</div>
+											</td>
+										</tr>
+										<div>
+											<tr class="collapse" id="collapseExample1">
+												<td class="align-middle">
+													Assignments (Today, Upcoming, Past, Pending)
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select View" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select Add" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select Delete" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select All" type="checkbox">
+													</div>
+												</td>
+											</tr>
+											<tr class="collapse" id="collapseExample1">
+												<td>Booking Form</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select View" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select Add" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select Delete" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select All" type="checkbox">
+													</div>
+												</td>
+											</tr>
+											<tr class="collapse" id="collapseExample1">
+												<td>Quotes & Leads Module</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select View" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select Add" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select Delete" type="checkbox">
+													</div>
+												</td>
+												<td>
+													<div class="form-check">
+														<input class="form-check-input" aria-label="Select All" type="checkbox">
+													</div>
+												</td>
+											</tr>
+											<tr>
+			<td data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+			  <strong>Customers</strong>
+
+			  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+				</svg>
+
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
 			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <div >
+		  <tr class="collapse " id="collapseExample2">
+			<td class="align-middle">
+			  Add/Edit/Deactivate Company & Customers
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="collapseExample2">
+			<td class="">
+			  Companies (List, Profiles)
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="collapseExample2">
+			<td class="">
+			  Customers (List, Profiles)
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="collapseExample2">
+			<td class="">
+			  Customer Pricing
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <tr class="collapse " id="collapseExample2">
+			<td class="">
+			  Invoice Generator
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <tr class="collapse " id="collapseExample2">
+			<td class="">
+			  Customer Invoices
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr>
+			<td data-bs-toggle="collapse" href="#providers" role="button" aria-expanded="false" aria-controls="providers">
+			  <strong>Providers</strong>
+			  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+				</svg>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <div >
+		  <tr class="collapse " id="providers">
+			<td class="align-middle">
+			  Add/Edit/Deactivate Provider & Provider Teams
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Provider Teams (List)
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Providers (List, Profiles)
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Provider Rates
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Applications & Screenings
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Reimbursements
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Remittance Generator
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+		  <tr class="collapse " id="providers">
+			<td class="">
+			  Payment Manager
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+		  </tr>
+
+		  <tr>
+			<td >
+			  <strong>Reports</strong>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			<td>
+			  <div class="form-check">
+				<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+			  </div>
+			</td>
+			</tr>
+
+			<tr>
+			  <td >
+				<strong>System Logs</strong>
+			  </td>
+			  <td>
+				<div class="form-check">
+				  <input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				</div>
+			  </td>
+			  <td>
+				<div class="form-check">
+				  <input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				</div>
+			  </td>
+			  <td>
+				<div class="form-check">
+				  <input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				</div>
+			  </td>
+			  <td>
+				<div class="form-check">
+				  <input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				</div>
+			  </td>
+			  <td>
+				<div class="form-check">
+				  <input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				</div>
+			  </td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
+				  <strong>Business Profile & Settings </strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="collapseExample4">
+				<td class="align-middle">
+				  Account Profile
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="collapseExample4">
+				<td class="align-middle">
+				  Business Setup
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="collapseExample4">
+				<td class="align-middle">
+				  Notification Controls
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="collapseExample4">
+				<td class="align-middle">
+				  Email Notifications
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="collapseExample4">
+				<td class="align-middle">
+				  SMS Notifications
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="collapseExample4">
+				<td class="align-middle">
+				  Password Reset
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExample5">
+				  <strong>Accommodations & Services Setup </strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="collapseExample5">
+				<td class="align-middle">
+				  View Services & Accommodations
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="collapseExample5">
+				<td class="align-middle">
+				  Add/Edit Services & Accommodations
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#specializations" role="button" aria-expanded="false" aria-controls="specializations">
+				  <strong>Specializations</strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="specializations">
+				<td class="align-middle">
+				  View Specializations
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="specializations">
+				<td class="align-middle">
+				  View/Edit Specializations
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#industries" role="button" aria-expanded="false" aria-controls="industries">
+				  <strong>Industries</strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="industries">
+				<td class="align-middle">
+				  View Industries
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="industries">
+				<td class="align-middle">
+				  View/Edit Industries
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#saved-forms" role="button" aria-expanded="false" aria-controls="saved-forms">
+				  <strong>Saved Forms</strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="saved-forms">
+				<td class="align-middle">
+				  View Customized Forms
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="saved-forms">
+				<td class="align-middle">
+				  View/Edit Customized Forms
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#coupons-&-referrals-setup" role="button" aria-expanded="false" aria-controls="coupons-&-referrals-setup">
+				  <strong>Coupons & Referrals Setup </strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="coupons-&-referrals-setup">
+				<td class="align-middle">
+				  View Coupons
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="coupons-&-referrals-setup">
+				<td class="align-middle">
+				  Add/Edit Coupons
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="coupons-&-referrals-setup">
+				<td class="align-middle">
+				  View Referrals
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="coupons-&-referrals-setup">
+				<td class="align-middle">
+				  Add/Edit Referrals
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#platform-integrations" role="button" aria-expanded="false" aria-controls="platform-integrations">
+				  <strong>Platform Integrations</strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="platform-integrations">
+				<td class="align-middle">
+				  QuickBooks
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="platform-integrations">
+				<td class="align-middle">
+				  Stripe
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="platform-integrations">
+				<td class="align-middle">
+				  Calendar Sync
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="platform-integrations">
+				<td class="align-middle">
+				  Drive Sync
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td data-bs-toggle="collapse" href="#admin-staff" role="button" aria-expanded="false" aria-controls="admin-staff">
+				  <strong>Admin-Staff</strong>
+				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.0498 7.5L8.02506 0.5L0.000320435 7.5L16.0498 7.5Z" fill="#6E6B7B"/>
+					</svg>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <div >
+			  <tr class="collapse " id="admin-staff">
+				<td class="align-middle">
+				  Add/Edit/Deactivate Admin-Staff
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr class="collapse " id="admin-staff">
+				<td class="align-middle">
+				  View Admin-Staff
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="admin-staff">
+				<td class="align-middle">
+				  Add/Edit/Deactivate Admin-Staff Teams
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+			  <tr class="collapse " id="admin-staff">
+				<td class="align-middle">
+				  View Admin-Staff Teams
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+			  </tr>
+
+			  <tr>
+				<td >
+				  <strong>Support Tickets</strong>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select View" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Add" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Edit" type="checkbox" tabindex="" checked>
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select Delete" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				<td>
+				  <div class="form-check">
+					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
+				  </div>
+				</td>
+				</tr>
+		</div>*/ @endphp
+		</tbody>
+	  </table>
 			</div>
 		  </div>
 		</div>
 	  </div>
+
+	  <div class="col-12 justify-content-center form-actions d-flex">
+		<button type="button" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">
+			Cancel
+		</button>
+		<button type="submit" class="btn btn-primary rounded">Add</button>
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+	@php /*
 	<div class="content-body">
 		<div class="card">
 			<div class="card-body">
@@ -133,11 +2048,11 @@
 				<td data-bs-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="dashboard">
 				  <strong>Dashboard</strong>
 				  {{-- Updated by Shanila to Add svg icon--}}
-                  <svg aria-label="Dashboard" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
-                    <use xlink:href="/css/common-icons.svg#collapse-row">
-                    </use>
-                </svg>
-                {{-- End of update by Shanila --}}
+				  <svg aria-label="Dashboard" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+					<use xlink:href="/css/common-icons.svg#collapse-row">
+					</use>
+				</svg>
+				{{-- End of update by Shanila --}}
 
 				</td>
 				<td class="">
@@ -202,12 +2117,12 @@
 			<tr>
 				<td data-bs-toggle="collapse" href="#chat" role="button" aria-expanded="false" aria-controls="chat">
 				  <strong>Chat</strong>
-                    {{-- Updated by Shanila to Add svg icon--}}
-                    <svg aria-label="chat" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
-                    <use xlink:href="/css/common-icons.svg#collapse-row">
-                    </use>
-                </svg>
-                {{-- End of update by Shanila --}}
+					{{-- Updated by Shanila to Add svg icon--}}
+					<svg aria-label="chat" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+					<use xlink:href="/css/common-icons.svg#collapse-row">
+					</use>
+				</svg>
+				{{-- End of update by Shanila --}}
 				</td>
 				<td class="">
 				  <div class="form-check">
@@ -238,11 +2153,11 @@
 			<td data-bs-toggle="collapse" href="#assignments" role="button" aria-expanded="false" aria-controls="assignments">
 			  <strong>Assignments</strong>
 			  {{-- Updated by Shanila to Add svg icon--}}
-              <svg aria-label="Assignments" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
-                <use xlink:href="/css/common-icons.svg#collapse-row">
-                </use>
-            </svg>
-            {{-- End of update by Shanila --}}
+			  <svg aria-label="Assignments" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+				<use xlink:href="/css/common-icons.svg#collapse-row">
+				</use>
+			</svg>
+			{{-- End of update by Shanila --}}
 			</td>
 			<td class="">
 			  <div class="form-check">
@@ -369,11 +2284,11 @@
 			  <strong>Customers</strong>
 
 			  {{-- Updated by Shanila to Add svg icon--}}
-              <svg aria-label="Customers" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
-                <use xlink:href="/css/common-icons.svg#collapse-row">
-                </use>
-            </svg>
-            {{-- End of update by Shanila --}}
+			  <svg aria-label="Customers" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+				<use xlink:href="/css/common-icons.svg#collapse-row">
+				</use>
+			</svg>
+			{{-- End of update by Shanila --}}
 
 			</td>
 			<td>
@@ -591,11 +2506,11 @@
 			<td data-bs-toggle="collapse" href="#providers" role="button" aria-expanded="false" aria-controls="providers">
 			  <strong>Providers</strong>
 			  {{-- Updated by Shanila to Add svg icon--}}
-              <svg aria-label="Providers" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
-                <use xlink:href="/css/common-icons.svg#collapse-row">
-                </use>
-            </svg>
-            {{-- End of update by Shanila --}}
+			  <svg aria-label="Providers" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+				<use xlink:href="/css/common-icons.svg#collapse-row">
+				</use>
+			</svg>
+			{{-- End of update by Shanila --}}
 			</td>
 			<td>
 			  <div class="form-check">
@@ -935,11 +2850,11 @@
 				<td data-bs-toggle="collapse" href="#settings" role="button" aria-expanded="false" aria-controls="settings">
 				  <strong> Settings</strong>
 				  {{-- Updated by Shanila to Add svg icon--}}
-                  <svg aria-label="Settings" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
-                    <use xlink:href="/css/common-icons.svg#collapse-row">
-                    </use>
-                </svg>
-                {{-- End of update by Shanila --}}
+				  <svg aria-label="Settings" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+					<use xlink:href="/css/common-icons.svg#collapse-row">
+					</use>
+				</svg>
+				{{-- End of update by Shanila --}}
 				</td>
 				<td>
 				  <div class="form-check">
@@ -998,8 +2913,7 @@
 				  </div>
 				</td>
 			  </tr>
-  {{--
-			  <tr>
+ 			  <tr>
 				<td data-bs-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
 				  <strong>Business Profile & Settings </strong>
 				  <svg class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2097,7 +4011,7 @@
 					<input class="form-check-input" aria-label="Select All" type="checkbox" tabindex="">
 				  </div>
 				</td>
-				</tr> --}}
+				</tr>
 		</div>
 		</tbody>
 	  </table>
@@ -2141,11 +4055,11 @@
 													<div>Companies & Customer Access</div>
 													<a href="#" class="btn btn-primary rounded me-5">
 														{{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="add department" width="20" height="20" viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#plus">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
+														<svg aria-label="add department" width="20" height="20" viewBox="0 0 20 20">
+															<use xlink:href="/css/common-icons.svg#plus">
+															</use>
+														</svg>
+														{{-- End of update by Shanila --}}
 														<span class="ms-2">Add Customer</span>
 													</a>
 												</div>
@@ -2219,11 +4133,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2253,11 +4167,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2287,11 +4201,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2321,11 +4235,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2354,11 +4268,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2388,11 +4302,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2511,11 +4425,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2545,11 +4459,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2579,11 +4493,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2613,11 +4527,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2646,11 +4560,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2680,11 +4594,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2801,11 +4715,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2834,11 +4748,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2867,11 +4781,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2900,11 +4814,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2932,11 +4846,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -2965,11 +4879,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3083,11 +4997,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3115,11 +5029,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3147,11 +5061,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3179,11 +5093,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3210,11 +5124,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3241,11 +5155,11 @@
 																	<a href="#"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
 																		{{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
-                                                                            <use xlink:href="/css/common-icons.svg#role-user">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
+																		<svg aria-label="manage" width="19" height="20" viewBox="0 0 19 20">
+																			<use xlink:href="/css/common-icons.svg#role-user">
+																			</use>
+																		</svg>
+																		{{-- End of update by Shanila --}}
 																	</a>
 																</td>
 															</tr>
@@ -3298,7 +5212,8 @@
 			{{-- Card Body --}}
 			{{-- END: Steps --}}
 		</div>
-	</div>
+	</div> */
+	@endphp
 	@include('panels.user-access.accommodation-service-access')
 	@include('panels.user-access.teams-provider-access')
 	@include('panels.user-access.companies-customer-acess')
