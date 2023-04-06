@@ -101,18 +101,8 @@ final class SetupDetails extends PowerGridComponent
             ->addColumn('setup_value_label')
             ->addColumn('status', function (SetupValue $model) {
                 return ($model->status);
-            })
-            ->addColumn('edit',function(SetupValue $model){
-                return '<div class="d-flex actions">
-                <a href="#" title="Edit SetupValue" wire:click="edit('.$model->id.')"  aria-label="Edit SetupValue" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                   <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
-                </a>
-        
-            <a href="#" title="Delete SetupValue" aria-label="Delete SetupValue" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
-            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-            </a>
-              </div>';
             });
+            
     }
 
     /*
@@ -132,8 +122,7 @@ final class SetupDetails extends PowerGridComponent
         return [
             Column::make('Setup Value Label', 'setup_value_label', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
             Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
-                ->toggleable(1, 'Deactivated', 'Activated'),
-            Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action column from export
+                ->toggleable(1, 'Deactivated', 'Activated')
         ];
     }
 
