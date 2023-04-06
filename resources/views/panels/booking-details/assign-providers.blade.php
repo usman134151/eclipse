@@ -30,12 +30,9 @@
                     <div class="row">
                         <div class="col-lg-6 mb-4">
                             <label class="form-label">Accommodation</label>
-                            <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select"
-                                tabindex="8">
-                                <option value=""></option>
-                                <option selected>Shelby Sign Language</option>
-                                <option selected>Language Translation Services</option>
-                            </select>
+                            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                            'name', 'status', 1, 'name', true, '',
+                            '','accommodation_filter') !!}
                         </div>
                         <div class="col-lg-6 mb-4">
                             <label class="form-label">Service</label>
@@ -48,12 +45,9 @@
                         </div>
                         <div class="col-lg-6 mb-4">
                             <label class="form-label">Specialization</label>
-                            <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select"
-                                tabindex="8">
-                                <option value=""></option>
-                                <option selected>Medical</option>
-                                <option selected>Conference</option>
-                            </select>
+                            {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
+                            'name', 'status', 1, 'name', true, '',
+                            '','specialization_filter') !!}
                         </div>
                         <div class="col-lg-6 mb-4">
                             <div class="d-lg-flex justify-content-between align-items-center">
