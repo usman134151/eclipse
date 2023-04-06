@@ -16,23 +16,23 @@
             <input type="text" id="assignment-no" class="form-control" name="assignment-no" placeholder="100995-6"/>
         </div>
     </div>
-    <div class="row mb-4">
+    <div class="row">
         <div class=" col-md-10 mb-4">
             <label class="form-label" for="reason-for-reimbursement">
                 Reason for Reimbursement
             </label>
-            <div class="mb-3">
+            <div class="mb-2">
                 <div class="d-inline-flex">
                     <input class="form-check-input" type="radio" name="reason-for-reimbursement" id="mileage" checked>
                     <label for="mileage" class="form-label mx-2">Mileage</label>
                 </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
                 <div class="d-inline-flex">
                     <input class="form-check-input" type="radio" name="reason-for-reimbursement" id="compensated-travel-time" checked>
                     <label for="compensated-travel-time" class="form-label mx-2">Compensated Travel Time</label>
                 </div>
-                <div class=" mb-1">
+                <div class=" mb-3">
                     <div class="mx-4 d-inline-flex col-md-2">
                         <div>
                             <label for="hours">Hours</label>
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="row mb-4">
+    <div class="row mb-2">
         <div class="col-md-10">
             <label class="form-label" for="upload-document">
                 Receipt for Reimbursement
