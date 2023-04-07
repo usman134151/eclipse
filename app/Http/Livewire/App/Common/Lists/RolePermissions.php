@@ -54,7 +54,7 @@ final class RolePermissions extends PowerGridComponent
 			$systemRoles->on('system_roles.system_role_id', '=', 'section_rights.system_role_id');
 		})
 		->selectRaw(
-			'system_roles.system_role_name as role_name, COUNT(*) as number_of_permissions'
+			'system_roles.system_role_name as role_name, COUNT(section_rights.system_role_id) as number_of_permissions'
 		)
 		->groupBy('system_roles.system_role_id', 'system_roles.system_role_name');
 	}
