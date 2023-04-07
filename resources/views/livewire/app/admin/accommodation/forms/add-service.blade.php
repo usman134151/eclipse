@@ -101,9 +101,10 @@
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                         </label>
                                         <div>
-                                        {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', '5', 'id',[],1,'form-check form-check-inline') !!}
- 
+                                            {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', '5', 'id',[],1,'form-check
+                                            form-check-inline') !!}
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
@@ -111,8 +112,8 @@
                                             Description <i class="fa fa-question-circle" aria-hidden="true"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                         </label>
-                                        <textarea rows="4" cols="4" id="description" class="form-control" name="description"
-                                            placeholder=""></textarea>
+                                        <textarea rows="4" cols="4" id="description" class="form-control"
+                                            name="description" placeholder=""></textarea>
                                     </div>
                                     <div class="col-lg-6 mb-4">
                                         <label class="form-label" for="service-name">
@@ -120,32 +121,10 @@
                                                 aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title=""></i>
                                         </label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="one-time-request" name="one-time-request"
-                                                type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="one-time-request">One-Time Request</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="Daily-frequency" name="" type="checkbox"
-                                                tabindex="" />
-                                            <label class="form-check-label" for="Daily-frequency"> Daily</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="Weekly" name="Weekly" type="checkbox"
-                                                tabindex="" />
-                                            <label class="form-check-label" for="Weekly"> Weekly</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="WeekdailyBusinessDays"
-                                                name="WeekdailyBusinessDays" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="WeekdailyBusinessDays"> Weekdaily (Business
-                                                Days)</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="Monthly" name="Monthly" type="checkbox"
-                                                tabindex="" />
-                                            <label class="form-check-label" for="Monthly"> Monthly</label>
-                                        </div>
+                                        {{-- updated by shanila to add dropdown --}}
+                                        {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
+                                        'setup_value_label', 'setup_id', '6', 'id',[],1,'form-check ') !!}
+                                        {{--ended updated--}}
                                     </div>
                                 </div>
                             </div>
@@ -165,8 +144,8 @@
                                             <label class="form-check-label" for="DayRate"> Day Rate</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="FixedRate" name="FixedRate"
-                                                type="radio" tabindex="" />
+                                            <input class="form-check-input" id="FixedRate" name="FixedRate" type="radio"
+                                                tabindex="" />
                                             <label class="form-check-label" for="FixedRate"> Fixed Rate</label>
                                         </div>
                                     </div>
@@ -205,8 +184,7 @@
                                                 </h3>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="MultiplyProvidersInPerson"
-                                                        name="MultiplyProvidersInPerson" type="checkbox"
-                                                        tabindex="" />
+                                                        name="MultiplyProvidersInPerson" type="checkbox" tabindex="" />
                                                     <label class="form-check-label" for="MultiplyProvidersInPerson">
                                                         Multiply by No. of Providers</label>
                                                 </div>
@@ -220,38 +198,36 @@
                                                 </span>
                                                 <input type="text" class="form-control rounded-0 text-center px-0"
                                                     placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label=""
-                                                    aria-describedby="BusinessHoursperhour">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="BusinessHoursperhour">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-secondary col-lg-7"
                                                     id="AfterHoursperhour">
                                                     After-Hours (per hour)
                                                 </span>
-                                                <input type="text" class="form-control text-center px-0"
-                                                    placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label=""
-                                                    aria-describedby="AfterHoursperhour">
+                                                <input type="text" class="form-control text-center px-0" placeholder="$"
+                                                    aria-label="" aria-describedby="">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="AfterHoursperhour">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
                                                     Day Rate
                                                 </span>
-                                                <input type="text" class="form-control text-center px-0"
-                                                    placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label="" aria-describedby="DayRate">
+                                                <input type="text" class="form-control text-center px-0" placeholder="$"
+                                                    aria-label="" aria-describedby="">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="DayRate">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
                                                     Fixed Rate
                                                 </span>
-                                                <input type="text" class="form-control text-center px-0"
-                                                    placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label="" aria-describedby="FixedRate">
+                                                <input type="text" class="form-control text-center px-0" placeholder="$"
+                                                    aria-label="" aria-describedby="">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="FixedRate">
                                             </div>
                                         </div>
                                         <!-- /In-Person Rates -->
@@ -265,8 +241,7 @@
                                                 </label>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" id="MultiplyProvidersVirtual"
-                                                        name="MultiplyProvidersVirtual" type="checkbox"
-                                                        tabindex="" />
+                                                        name="MultiplyProvidersVirtual" type="checkbox" tabindex="" />
                                                     <label class="form-check-label" for="MultiplyProvidersVirtual">
                                                         Multiply by No. of Providers</label>
                                                 </div>
@@ -290,38 +265,36 @@
                                                 </span>
                                                 <input type="text" class="form-control rounded-0 text-center px-0"
                                                     placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label=""
-                                                    aria-describedby="BusinessHoursperhour">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="BusinessHoursperhour">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-secondary col-lg-7"
                                                     id="AfterHoursperhour">
                                                     After-Hours (per hour)
                                                 </span>
-                                                <input type="text" class="form-control text-center px-0"
-                                                    placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label=""
-                                                    aria-describedby="AfterHoursperhour">
+                                                <input type="text" class="form-control text-center px-0" placeholder="$"
+                                                    aria-label="" aria-describedby="">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="AfterHoursperhour">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
                                                     Day Rate
                                                 </span>
-                                                <input type="text" class="form-control text-center px-0"
-                                                    placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label="" aria-describedby="DayRate">
+                                                <input type="text" class="form-control text-center px-0" placeholder="$"
+                                                    aria-label="" aria-describedby="">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="DayRate">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
                                                     Fixed Rate
                                                 </span>
-                                                <input type="text" class="form-control text-center px-0"
-                                                    placeholder="$" aria-label="" aria-describedby="">
-                                                <input type="text" class="form-control text-center"
-                                                    placeholder="00.00" aria-label="" aria-describedby="FixedRate">
+                                                <input type="text" class="form-control text-center px-0" placeholder="$"
+                                                    aria-label="" aria-describedby="">
+                                                <input type="text" class="form-control text-center" placeholder="00.00"
+                                                    aria-label="" aria-describedby="FixedRate">
                                             </div>
                                         </div>
                                         <!-- /Virtual Rates -->
@@ -356,11 +329,9 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -378,11 +349,9 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -432,8 +401,7 @@
                                                         </label>
                                                         <div class="col-lg-6">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="100" aria-label="100"
-                                                                aria-describedby="">
+                                                                placeholder="100" aria-label="100" aria-describedby="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -462,8 +430,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input"
-                                                            id="ExcludeAfterHoursInPerson"
+                                                        <input class="form-check-input" id="ExcludeAfterHoursInPerson"
                                                             name="ExcludeAfterHoursInPerson" type="checkbox"
                                                             tabindex="" />
                                                         <label class="form-check-label"
@@ -471,8 +438,7 @@
                                                             After-hours</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input"
-                                                            id="ExcludeClosedHoursInPerson"
+                                                        <input class="form-check-input" id="ExcludeClosedHoursInPerson"
                                                             name="ExcludeClosedHoursInPerson" type="checkbox"
                                                             tabindex="" />
                                                         <label class="form-check-label"
@@ -500,8 +466,7 @@
                                             </div>
                                             <div>
                                                 <div>
-                                                    <a href="#"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                         {{-- Updated by Shanila to Add svg icon--}}
                                                         <svg aria-label="Duplicate" width="19" height="19"
                                                             viewBox="0 0 19 19">
@@ -528,11 +493,9 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -550,11 +513,9 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00" aria-label="00"
-                                                                aria-describedby="">
+                                                                placeholder="00" aria-label="00" aria-describedby="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -604,8 +565,7 @@
                                                         </label>
                                                         <div class="col-lg-6">
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="100" aria-label="100"
-                                                                aria-describedby="">
+                                                                placeholder="100" aria-label="100" aria-describedby="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -634,8 +594,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input"
-                                                            id="ExcludeAfterHoursVirtual"
+                                                        <input class="form-check-input" id="ExcludeAfterHoursVirtual"
                                                             name="ExcludeAfterHoursVirtual" type="checkbox"
                                                             tabindex="" />
                                                         <label class="form-check-label"
@@ -643,12 +602,11 @@
                                                             After-hours</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input"
-                                                            id="ExcludeClosedHoursVirtual"
+                                                        <input class="form-check-input" id="ExcludeClosedHoursVirtual"
                                                             name="ExcludeClosedHoursVirtual" type="checkbox"
                                                             tabindex="" />
-                                                        <label class="form-check-label"
-                                                            for="ExcludeClosedHoursVirtual"> Exclude
+                                                        <label class="form-check-label" for="ExcludeClosedHoursVirtual">
+                                                            Exclude
                                                             Closed-hours</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
@@ -2448,8 +2406,8 @@
                                                 Add New Form
                                                 {{-- Updated by Shanila to Add svg
                                                 icon--}}
-                                                <svg aria-label=" Add New Form" class="me-1" width="20"
-                                                    height="21" viewBox="0 0 20 21">
+                                                <svg aria-label=" Add New Form" class="me-1" width="20" height="21"
+                                                    viewBox="0 0 20 21">
                                                     <use xlink:href="/css/common-icons.svg#add-new">
                                                     </use>
                                                 </svg>
@@ -2527,7 +2485,7 @@
                                         <a href="#" class="fw-bold">
                                             <small>
                                                 Add New Template Form
-                                                 {{-- Updated by Shanila to Add svg
+                                                {{-- Updated by Shanila to Add svg
                                                 icon--}}
                                                 <svg aria-label=" Add New Template Form" class="me-1" width="20"
                                                     height="21" viewBox="0 0 20 21">
@@ -2554,7 +2512,7 @@
                                         <a href="#" class="fw-bold">
                                             <small>
                                                 Add new Template Form
-                                                 {{-- Updated by Shanila to Add svg
+                                                {{-- Updated by Shanila to Add svg
                                                 icon--}}
                                                 <svg aria-label=" Add New Template Form" class="me-1" width="20"
                                                     height="21" viewBox="0 0 20 21">
@@ -3493,30 +3451,36 @@
                                                 <div class="js-auto-notify-content hidden">
                                                     <div class="d-flex flex-column gap-3">
                                                         <div class="form-check">
-                                                            <label class="form-check-label" for="FirstAvailableAssign">First
+                                                            <label class="form-check-label"
+                                                                for="FirstAvailableAssign">First
                                                                 Available</label>
                                                             <input class="form-check-input" id="FirstAvailableAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                         <div class="form-check">
                                                             <label class="form-check-label"
                                                                 for="PriorityAssign">Priority</label>
                                                             <input class="form-check-input" id="PriorityAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                         <div class="form-check">
                                                             <label class="form-check-label"
-                                                                for="PriorityPreferredProvidersAssign">Priority & Preferred
+                                                                for="PriorityPreferredProvidersAssign">Priority &
+                                                                Preferred
                                                                 Providers</label>
                                                             <input class="form-check-input"
                                                                 id="PriorityPreferredProvidersAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                         <div class="form-check">
                                                             <label class="form-check-label"
                                                                 for="ClosestProviderAssign">Closest Provider</label>
                                                             <input class="form-check-input" id="ClosestProviderAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3526,7 +3490,8 @@
                                             <div class="d-lg-flex align-items-center gap-5">
                                                 <label class="form-label mb-lg-0">Broadcast via</label>
                                                 <div class="form-check mb-lg-0">
-                                                    <label class="form-check-label" for="emailBroadcastvia">Email</label>
+                                                    <label class="form-check-label"
+                                                        for="emailBroadcastvia">Email</label>
                                                     <input class="form-check-input" id="emailBroadcastvia"
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
                                                 </div>
@@ -3536,7 +3501,8 @@
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
                                                 </div>
                                                 <div class="form-check mb-lg-0">
-                                                    <label class="form-check-label" for="pushNotificationBroadcastvia">Push
+                                                    <label class="form-check-label"
+                                                        for="pushNotificationBroadcastvia">Push
                                                         Notification</label>
                                                     <input class="form-check-input" id="pushNotificationBroadcastvia"
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
@@ -3554,7 +3520,8 @@
                                                 </div>
                                                 <div class="form-check mb-lg-0">
                                                     <label class="form-check-label"
-                                                        for="ProximitytoServiceAddress">Proximity to Service Address</label>
+                                                        for="ProximitytoServiceAddress">Proximity to Service
+                                                        Address</label>
                                                     <input class="form-check-input" id="ProximitytoServiceAddress"
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
                                                 </div>
@@ -3628,30 +3595,36 @@
                                                 <div class="js-auto-notify-content hidden">
                                                     <div class="d-flex flex-column gap-3">
                                                         <div class="form-check">
-                                                            <label class="form-check-label" for="FirstAvailableAssign">First
+                                                            <label class="form-check-label"
+                                                                for="FirstAvailableAssign">First
                                                                 Available</label>
                                                             <input class="form-check-input" id="FirstAvailableAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                         <div class="form-check">
                                                             <label class="form-check-label"
                                                                 for="PriorityAssign">Priority</label>
                                                             <input class="form-check-input" id="PriorityAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                         <div class="form-check">
                                                             <label class="form-check-label"
-                                                                for="PriorityPreferredProvidersAssign">Priority & Preferred
+                                                                for="PriorityPreferredProvidersAssign">Priority &
+                                                                Preferred
                                                                 Providers</label>
                                                             <input class="form-check-input"
                                                                 id="PriorityPreferredProvidersAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                         <div class="form-check">
                                                             <label class="form-check-label"
                                                                 for="ClosestProviderAssign">Closest Provider</label>
                                                             <input class="form-check-input" id="ClosestProviderAssign"
-                                                                name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                                name="RequestStartTimeforServices" type="radio"
+                                                                tabindex="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3661,7 +3634,8 @@
                                             <div class="d-lg-flex align-items-center gap-5">
                                                 <label class="form-label mb-lg-0">Broadcast via</label>
                                                 <div class="form-check mb-lg-0">
-                                                    <label class="form-check-label" for="emailBroadcastvia">Email</label>
+                                                    <label class="form-check-label"
+                                                        for="emailBroadcastvia">Email</label>
                                                     <input class="form-check-input" id="emailBroadcastvia"
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
                                                 </div>
@@ -3671,7 +3645,8 @@
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
                                                 </div>
                                                 <div class="form-check mb-lg-0">
-                                                    <label class="form-check-label" for="pushNotificationBroadcastvia">Push
+                                                    <label class="form-check-label"
+                                                        for="pushNotificationBroadcastvia">Push
                                                         Notification</label>
                                                     <input class="form-check-input" id="pushNotificationBroadcastvia"
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
@@ -3689,7 +3664,8 @@
                                                 </div>
                                                 <div class="form-check mb-lg-0">
                                                     <label class="form-check-label"
-                                                        for="ProximitytoServiceAddress">Proximity to Service Address</label>
+                                                        for="ProximitytoServiceAddress">Proximity to Service
+                                                        Address</label>
                                                     <input class="form-check-input" id="ProximitytoServiceAddress"
                                                         name="RequestStartTimeforServices" type="checkbox" tabindex="">
                                                 </div>

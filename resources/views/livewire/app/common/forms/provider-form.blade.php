@@ -794,40 +794,11 @@
                                                                 Service Types
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-7 d-flex col-12 mb-md-2 gap-3">
-                                                                <div class="form-check mb-3">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="in-person" id="first-in-person">
-                                                                    <label class="form-check-label"
-                                                                        for="first-in-person">
-                                                                        In-Person
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check mb-3">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="virtual" id="first-virtual">
-                                                                    <label class="form-check-label" for="first-virtual">
-                                                                        Virtual
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check mb-3">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="phone" id="first-phone">
-                                                                    <label class="form-check-label" for="first-phone">
-                                                                        Phone
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check mb-3">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="teleconferencing"
-                                                                        id="first-teleconferencing">
-                                                                    <label class="form-check-label"
-                                                                        for="first-teleconferencing">
-                                                                        Teleconferencing
-                                                                    </label>
-                                                                </div>
-                                                            </div>
+                                                        <div>
+                                                            {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
+                                                            'setup_value_label', 'setup_id', '5', 'id',[],1,'form-check
+                                                            form-check-inline') !!}
+
                                                         </div>
                                                     </div>
 
