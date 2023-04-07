@@ -1155,9 +1155,12 @@
                                         <h3>Computer Science</h3>
                                     </div>
                                     <div class="col-md-6 col-12">
-                                        <div class="mb-3">
+                                        <div class="mb-3" >
                                             <label for="formFile" class="form-label"><b>Req_info:</b></label>
-                                            <input class="form-control" type="file" id="formFile">
+                                            <a href="#" @click="addDocuments = true"
+                                            class="position-absolute w-100 h-100 d-block"></a>
+                                            <label for="AddDocuments" class="form-label">Add Documents</label>
+                                <input class="form-control" type="file" id="AddDocuments">
                                         </div>
                                     </div>
                                 </div>

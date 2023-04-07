@@ -30,7 +30,7 @@
 	<div class="content-body">
 		<div class="card">
 			<div class="card-body">
-				{{--
+				
 				<!-- BEGIN: Steps -->
 				<div x-data="{ tab: 'profile' }" id="tab_wrapper">
 					<!-- Nav tabs -->
@@ -57,7 +57,7 @@
 					<div class="tab-content">
 						<!-- BEGIN: Profile -->
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile" role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
-							--}}
+						
 							<form class="form">
 								<div class="row between-section-segment-spacing">
 									<div class="col-12 text-center">
@@ -322,7 +322,7 @@
 								</div>
 							</form>
 						</div><!-- END: Profile -->
-	{{--
+	
 						<!-- BEGIN: System Permissions -->
 						<div class="tab-pane fade" :class="{ 'active show': tab === 'system-permissions' }" id="system-permissions" role="tabpanel" aria-labelledby="system-permissions-tab" tabindex="0" x-show="tab === 'system-permissions'">
 							 <div class="row mb-4">
@@ -2493,7 +2493,7 @@
 								<button type="submit" class="btn btn-primary rounded">Next</button>
 							</div>
 						</div>
-					</div> --}}
+					</div> 
 					{{-- END: User Access --}}
 				</div>
 			</div>
