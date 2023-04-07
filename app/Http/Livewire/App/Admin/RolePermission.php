@@ -14,8 +14,17 @@ class RolePermission extends Component
 		$this->showForm=true;
 	}
 
-	public function resetForm()
+	public function resetForm($message)
 	{
+		if ($message) {
+			// $this->confirmationMessage = $message;
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
 		$this->showForm=false;
 	}
 

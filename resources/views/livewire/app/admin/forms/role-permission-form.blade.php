@@ -35,11 +35,16 @@
 					<div class="row ms-1">
 						<div class="row align-items-center">
 							<div class="col-auto">
-								<label for="label" class="col-form-label">Label</label>
+								<label for="system-role-name" class="col-form-label">Label</label>
 							</div>
 							<div class="col-sm-3">
-								<input type="text" id="label" placeholder="Marketing Manager" class="form-control">
+								<input type="text" id="system-role-name" placeholder="Marketing Manager" class="form-control" wire:model.defer="roleName">
 							</div>
+							@error('roleName')
+							<span class="d-inline-block invalid-feedback mt-2">
+								{{ $message }}
+							</span>
+							@enderror
 						</div>
 						<p class="mt-3 mb-4">
 							Create a predefined set of permissions to quickly deploy to one or multiple users.
@@ -77,73 +82,62 @@
 									</thead>
 									<tbody>
 										{{-- Updated by Sohail Asghar to fetch section names dynamically from DB --}}
-										@foreach ($sections as $title => $section)
-										@php $count = $loop->iteration; @endphp
+										@foreach ($sections as $section)
+										@php
+											$count = $loop->iteration;
+											$childSections = $section->childSection;
+										@endphp
 										<tr>
 											<td data-bs-toggle="collapse" href="#collapseExample{{ $count }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ $count }}">
-												<strong>{{ $title }}</strong>
-												<svg aria-label="" class="ms-2 mb-1" width="17" height="8" viewBox="0 0 17 8">
+												<strong>{{ $section->section_name }}</strong>
+												@if ($childSections->count())
+												<svg
+													aria-label="{{ $section->section_name }}"
+													class="ms-2 mb-1"
+													width="17"
+													height="8"
+													viewBox="0 0 17 8"
+												>
 													<use xlink:href="/css/common-icons.svg#collapse-row"></use>
 												</svg>
+												@endif
 											</td>
+											{{-- Updated by Sohail Asghar to save permissions in DB --}}
+											@foreach ($rights as $right)
 											<td>
 												<div class="form-check">
-													<input class="form-check-input" aria-label="Select View" type="checkbox">
+													<input
+														class="form-check-input"
+														type="checkbox"
+														value="{{ $section->id . '-' . $right->id }}"
+														wire:model.defer="sectionRights"
+													>
 												</div>
 											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input" aria-label="Select Add" type="checkbox">
-												</div>
-											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
-												</div>
-											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input"  aria-label="Select Delete" type="checkbox">
-												</div>
-											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input"  aria-label="Select All" type="checkbox">
-												</div>
-											</td>
+											@endforeach
+											{{-- End of update by Sohail Asghar --}}
 										</tr>
-										@if ($section->count())
+										@if ($childSections->count())
 										<div>
-										@foreach ($section as $childSection)
+										@foreach ($childSections as $childSection)
 										<tr class="collapse" id="collapseExample{{ $count }}">
 											<td class="align-middle">
 												{{ $childSection->section_name }}
 											</td>
+											{{-- Updated by Sohail Asghar to save permissions in DB --}}
+											@foreach ($rights as $right)
 											<td>
 												<div class="form-check">
-													<input class="form-check-input" aria-label="Select View" type="checkbox">
+													<input
+														class="form-check-input"
+														type="checkbox"
+														value="{{ $childSection->id . '-' . $right->id }}"
+														wire:model.defer="sectionRights"
+													>
 												</div>
 											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input" aria-label="Select Add" type="checkbox">
-												</div>
-											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" aria-label="Select Edit" checked>
-												</div>
-											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input" aria-label="Select Delete" type="checkbox">
-												</div>
-											</td>
-											<td>
-												<div class="form-check">
-													<input class="form-check-input" aria-label="Select All" type="checkbox">
-												</div>
-											</td>
+											@endforeach
+											{{-- End of update by Sohail Asghar --}}
 										</tr>
 										@endforeach
 										</div>
@@ -1937,15 +1931,16 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
-
-	  <div class="col-12 justify-content-center form-actions d-flex">
+	</div>
+	<div class="col-12 justify-content-center form-actions d-flex">
 		<button type="button" class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">
 			Cancel
 		</button>
-		<button type="submit" class="btn btn-primary rounded">Add</button>
-	  </div>
-	  </div>
+		<button type="submit" class="btn btn-primary rounded" wire:click.prevent="save">
+			Add
+		</button>
+	</div>
+</div>
 	  </div>
 	  </div>
 	@php /*
@@ -5214,7 +5209,7 @@
 		</div>
 	</div> */
 	@endphp
-	@include('panels.user-access.accommodation-service-access')
+	{{-- @include('panels.user-access.accommodation-service-access')
 	@include('panels.user-access.teams-provider-access')
-	@include('panels.user-access.companies-customer-acess')
+	@include('panels.user-access.companies-customer-acess') --}}
 </div>
