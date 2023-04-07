@@ -38,7 +38,7 @@
 								<label for="system-role-name" class="col-form-label">Label</label>
 							</div>
 							<div class="col-sm-3">
-								<input type="text" id="system-role-name" placeholder="Marketing Manager" class="form-control" wire:model.defer="roleName">
+								<input type="text" id="system-role-name" placeholder="Enter Role Name / Label" class="form-control" wire:model.defer="roleName">
 							</div>
 							@error('roleName')
 							<span class="d-inline-block invalid-feedback mt-2">
