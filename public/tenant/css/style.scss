@@ -1691,6 +1691,20 @@ footer.footer {
 
 .swal-button {
     background-color: #0a1e46 !important;
+    &.swal-button--danger {
+    	background-color: #e64942 !important;
+    }
+    &.swal-button--danger {
+    	background-color: #e64942 !important;
+    }
+    &.swal-button--cancel {
+    	background-color: transparent !important;
+    	color: #4b4b4b !important;
+    	border: 2px solid #4b4b4b !important;
+    }
+    &:focus {
+    	box-shadow: none !important;	
+	}
 }
 
 .fc-prev-button .bi, .fc-next-button .bi{
