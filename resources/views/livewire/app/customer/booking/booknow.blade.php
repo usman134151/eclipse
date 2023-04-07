@@ -191,19 +191,10 @@
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Specializations</label>
                                             <div class="">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="BlogWriting"
-                                                        name="Specializations" type="checkbox" tabindex="" />
-                                                    <label class="form-check-label" for="BlogWriting">Blog
-                                                        Writing</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="DeafBlindTactileInterpreting"
-                                                        name="Specializations" type="checkbox" tabindex="" />
-                                                    <label class="form-check-label"
-                                                        for="DeafBlindTactileInterpreting">Deaf-Blind
-                                                        Tactile Interpreting</label>
-                                                </div>
+                                                {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createCheckboxes('Specialization', 'id',
+                                                'name', 'status', 1, 'name', [],1,'form-check') !!}
+                                                {{--ended updated--}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
