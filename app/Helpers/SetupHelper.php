@@ -110,7 +110,7 @@ class SetupHelper
     
         return $html;
     }
-    public static function createCheckboxes(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, array $selectedValues = []): string
+    public static function createCheckboxes(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, array $selectedValues = [],$tabIndex=0,$divClass="form-check"): string
     {
         $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
 
@@ -119,16 +119,18 @@ class SetupHelper
         foreach ($values as $value) {
             $isChecked = in_array($value->{$valueCol}, $selectedValues) ? 'checked' : '';
 
-            $html .= '<div>';
-            $html .= '<input type="checkbox" id="' . $value->{$valueCol} . '" name="' . $displayCol . '[]" value="' . $value->{$valueCol} . '" ' . $isChecked . '>';
-            $html .= '<label for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
+            $html .= '<div class="'.$divClass.'">';
+            $html .= '<input class="form-check-input" type="checkbox" id="' . $value->{$valueCol} . '" name="' . $displayCol . '[]" value="' . $value->{$valueCol} . '" ' . $isChecked . ' tabindex='.$tabIndex.'>';
+            $html .= '<label class="form-check-label"  for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
             $html .= '</div>';
+
+
         }
 
         return $html;
     }
 
-    public static function createRadio(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, string $radioName = '', $selectedValue = ''): string
+    public static function createRadio(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, string $radioName = '', $selectedValue = '',$tabIndex=0,$divClass="form-check"): string
     {
 
         $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
@@ -136,7 +138,12 @@ class SetupHelper
 
         foreach ($values as $value) {
             $checked = ($selectedValue == $value->{$valueCol}) ? 'checked' : '';
-            $html .= '<label><input type="radio" name="' . $radioName . '" value="' . $value->{$valueCol} . '" '.$checked.'>' . $value->{$displayCol} . '</label>';
+          
+    
+            $html .= '<div class="'.$divClass.'">';
+            $html .= '<input class="form-check-input" type="radio" name="' . $radioName . '" value="' . $value->{$valueCol} . '" '.$checked.' tabindex='.$tabIndex.'>';
+            $html .= '<label class="form-check-label"  for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
+            $html .= '</div>';
         }
 
         return $html;

@@ -101,31 +101,9 @@
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                         </label>
                                         <div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="All" name="All" type="checkbox"
-                                                    tabindex="" />
-                                                <label class="form-check-label" for="All">All</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="InPerson" name="InPerson"
-                                                    type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="InPerson"> In-Person</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Virtual" name="Virtual" type="checkbox"
-                                                    tabindex="" />
-                                                <label class="form-check-label" for="Virtual"> Virtual</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Phone" name="Phone" type="checkbox"
-                                                    tabindex="" />
-                                                <label class="form-check-label" for="Phone"> Phone</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Teleconference" name="Teleconference"
-                                                    type="checkbox" tabindex="" />
-                                                <label class="form-check-label" for="Teleconference"> Teleconference</label>
-                                            </div>
+                                        {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
+                                                    'setup_value_label', 'setup_id', '5', 'id',[],1,'form-check form-check-inline') !!}
+ 
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-4">
