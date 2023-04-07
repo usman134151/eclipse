@@ -27,7 +27,7 @@
 		  </label>
 			<input type="email" class="form-control" id="ReasonforPayment" placeholder="Reason for Payment">
 		</div>
-		<div class="mb-4">
+		<div class="mb-2">
 		  <label class="form-label" for="Amount">
 			Amount <span class="mandatory">*</span>
 		  </label>
