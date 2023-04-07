@@ -42,34 +42,14 @@
                             <label class="form-label form-label-highlighted">Permitted Scheduling
                                 Frequencies <i class="fa fa-question-circle text-muted" aria-hidden="true"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
-                            <div class="d-flex gap-3 flex-column flex-lg-row">
-                                <div class="form-check form-check-highlighted">
-                                    <input class="form-check-input" id="oneTimeRequest"
-                                        name="PermittedSchedulingFrequencies" type="radio" tabindex="" checked />
-                                    <label class="form-check-label" for="oneTimeRequest">One-Time
-                                        Request</label>
-                                </div>
-                                <div class="form-check form-check-highlighted">
-                                    <input class="form-check-input" id="Daily" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="Daily">Daily</label>
-                                </div>
-                                <div class="form-check form-check-highlighted">
-                                    <input class="form-check-input" id="Weekly" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="Weekly">Weekly</label>
-                                </div>
-                                <div class="form-check form-check-highlighted">
-                                    <input class="form-check-input" id="WeekDaily" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="WeekDaily">WeekDaily</label>
-                                </div>
-                                <div class="form-check form-check-highlighted">
-                                    <input class="form-check-input" id="Monthly" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="Monthly">Monthly</label>
-                                </div>
-                            </div>
+                                    <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
+                                        {{-- updated by shanila to add dropdown --}}
+                                        {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                        'setup_value_label', 'setup_id', '6', 'id','',1,'form-check-input ')
+                                        !!}
+
+                                        {{-- ended update --}}
+                                    </div>
                         </div>
                         <div class="row">
                            <div class="row between-section-segment-spacing">
@@ -163,29 +143,11 @@
                                             <label class="form-label">Service Type <span
                                                     class="mandatory">*</span></label>
                                             <div class="d-grid grid-cols-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="inPerson" name="" type="radio"
-                                                        tabindex="" />
-                                                    <label class="form-check-label" for="inPerson">In-Person</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="Virtual" name="" type="radio"
-                                                        tabindex="" />
-                                                    <label class="form-check-label" for="Virtual">
-                                                        Virtual</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="Phone" name="" type="radio"
-                                                        tabindex="" />
-                                                    <label class="form-check-label" for="Phone">
-                                                        Phone</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="Teleconference" name=""
-                                                        type="radio" tabindex="" />
-                                                    <label class="form-check-label" for="Teleconference">
-                                                        Teleconference</label>
-                                                </div>
+                                                {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', '5', 'id','',1,'form-check-input ')
+                                                !!}
+                                                {{--ended updated--}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
@@ -290,49 +252,20 @@
                                                     <label class="form-label">Service Type <span
                                                             class="mandatory">*</span></label>
                                                     <div class="d-grid grid-cols-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="inPerson" name=""
-                                                                type="radio" tabindex="" />
-                                                            <label class="form-check-label"
-                                                                for="inPerson">In-Person</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="Virtual" name=""
-                                                                type="radio" tabindex="" />
-                                                            <label class="form-check-label" for="Virtual">
-                                                                Virtual</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="Phone" name=""
-                                                                type="radio" tabindex="" />
-                                                            <label class="form-check-label" for="Phone">
-                                                                Phone</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="Teleconference" name=""
-                                                                type="radio" tabindex="" />
-                                                            <label class="form-check-label" for="Teleconference">
-                                                                Teleconference</label>
-                                                        </div>
+                                                        {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', '5', 'id','',1,'form-check-input ')
+                                                !!}
+                                                {{--ended updated--}}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label">Specializations</label>
                                                     <div class="">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="BlogWriting"
-                                                                name="Specializations" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="BlogWriting">Blog
-                                                                Writing</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input"
-                                                                id="DeafBlindTactileInterpreting" name="Specializations"
-                                                                type="checkbox" tabindex="" />
-                                                            <label class="form-check-label"
-                                                                for="DeafBlindTactileInterpreting">Deaf-Blind
-                                                                Tactile Interpreting</label>
-                                                        </div>
+                                                            {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createCheckboxes('Specialization', 'id',
+                                                'name', 'status', 1, 'name', [],1,'form-check') !!}
+                                                {{--ended updated--}}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
