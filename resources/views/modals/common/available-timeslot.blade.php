@@ -31,6 +31,7 @@
 										</div>
 										<div class="form-check form-switch form-switch-column mb-0">
 											<input checked class="form-check-input" type="checkbox" role="switch" id="pm" aria-label="PM">
+											<label class="form-check-label" for="pm">AM</label>
 											<label class="form-check-label" for="pm">PM</label>
 										</div>
 									</div>
@@ -52,6 +53,7 @@
 										<div class="form-check form-switch form-switch-column mb-0">
 											<input class="form-check-input" type="checkbox" role="switch" id="am" aria-label="AM">
 											<label class="form-check-label" for="am">AM</label>
+											<label class="form-check-label" for="am">PM</label>
 										</div>
 									</div>
 								</div>
