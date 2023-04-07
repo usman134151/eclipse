@@ -11,6 +11,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class RolePermissions extends PowerGridComponent
 {
 	use ActionButton;
+	public string $sortField = 'section_rights.system_role_id';
 	protected $listeners = ['refresh'=>'setUp'];
 	/*
 	|--------------------------------------------------------------------------
