@@ -77,7 +77,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
-                                            <div class="row mt-2 between-section-segment-spacing">
+                                            <div class="row between-section-segment-spacing">
                                                 <div class="col-12 text-center">
                                                     <div class="d-inline-block position-relative">
                                                         <img src="/tenant/images/portrait/small/testing.png" width="150"

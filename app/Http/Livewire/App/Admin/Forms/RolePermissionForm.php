@@ -3,54 +3,104 @@
 namespace App\Http\Livewire\App\Admin\Forms;
 
 use App\Models\Tenant\Right;
+use App\Models\Tenant\SectionRight;
+use App\Models\Tenant\SystemRole;
 use App\Models\Tenant\SystemSection;
 use Livewire\Component;
 
 class RolePermissionForm extends Component
 {
-	public $component = 'system-permissions';
+	// public $component = 'system-permissions';
+	public $roleName = '';
+	public $sectionRights = [];
 
 	public function render()
 	{
 		$data['rights'] = $this->getRights();
 		$data['sections'] = $this->getSectionNames();
+
 		return view('livewire.app.admin.forms.role-permission-form', $data);
 	}
 
-	public function showList()
+	public function showList($message = "")
 	{
-		$this->emit("showList");
+		$this->emit("showList", $message);
 	}
 
-	public function switch($component)
+	// public function switch($component)
+	// {
+	// 	$this->component = $component;
+	// }
+
+	// Validation Rules
+	public function rules()
 	{
-		$this->component = $component;
+		return [
+			'roleName' => 'required|string|max:64|unique:system_roles,system_role_name',
+		];
+	}
+
+	public function save()
+	{
+		$this->validate();
+
+		$systemRole = SystemRole::create([
+			'system_role_name' => $this->roleName,
+			'status' => 1,
+		]);
+
+		if ($systemRole->count())
+		{
+			$sectionRightsArray = [];
+
+			foreach ($this->sectionRights as $index => $sectionRight)
+			{
+				$systemRoleID = $systemRole->id;
+
+				$sectionRightPieces = explode("-", $sectionRight);
+				$sectiondID = $sectionRightPieces[0];
+				$rightID = $sectionRightPieces[1];
+
+				$sectionRightsArray[$index] = [
+					'system_role_id' => $systemRoleID,
+					'section_id' => $sectiondID,
+					'right_id' => $rightID,
+					'created_at' => now(),
+					'updated_at' => now(),
+				];
+			}
+		}
+
+		$success = SectionRight::insert($sectionRightsArray);
+		if ($success)
+		{
+			$this->clearFields();
+			$this->showList("Role and permissions saved successfully");
+		}
 	}
 	
 	private function getRights()
 	{
-		return Right::select(['right_type'])->get();
+		return Right::select(['id', 'right_type'])->get();
 	}
 
 	private function getSectionNames()
 	{
-		$collection = SystemSection::query()
-			->join('system_sections as s', function ($childSection) {
-				$childSection->on('system_sections.id', '=', 's.parent_id');
-			})
+		$sections = SystemSection::query()
+			->whereNull('parent_id')
 			->select([
-				's.section_name',
-				's.parent_id',
+				'section_name',
+				'id'
 			])
-			->with('parentSection')
-			->get()
-			->groupBy('parent_id');
-
-		$sections = $collection->mapWithKeys(function ($item, $key) {
-			$newKey = $item->first()->parentSection->section_name;
-			return [$newKey => $item];
-		});
+			->with('childSection')
+			->get();
 
 		return $sections;
+	}
+
+	private function clearFields()
+	{
+		$this->roleName = '';
+		$this->sectionRights = [];
 	}
 }

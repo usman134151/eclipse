@@ -70,32 +70,13 @@
                             <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i
                                     class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip"
                                     data-bs-placement="top" title=""></i></label>
-                            <div class="d-flex gap-3 flex-column flex-lg-row">
-                                <div class="form-check form-check-highlighted mb-0">
-                                    <input class="form-check-input" id="oneTimeRequest"
-                                        name="PermittedSchedulingFrequencies" type="radio" tabindex="" checked />
-                                    <label class="form-check-label" for="oneTimeRequest">One-Time Request</label>
-                                </div>
-                                <div class="form-check form-check-highlighted mb-0">
-                                    <input class="form-check-input" id="Daily" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="Daily">Daily</label>
-                                </div>
-                                <div class="form-check form-check-highlighted mb-0">
-                                    <input class="form-check-input" id="Weekly" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="Weekly">Weekly</label>
-                                </div>
-                                <div class="form-check form-check-highlighted mb-0">
-                                    <input class="form-check-input" id="WeekDaily" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="WeekDaily">WeekDaily</label>
-                                </div>
-                                <div class="form-check form-check-highlighted mb-0">
-                                    <input class="form-check-input" id="Monthly" name="PermittedSchedulingFrequencies"
-                                        type="radio" tabindex="" />
-                                    <label class="form-check-label" for="Monthly">Monthly</label>
-                                </div>
+                            <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
+                                {{-- updated by shanila to add dropdown --}}
+                                {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                'setup_value_label', 'setup_id', '6', 'id','',1,'form-check-input ')
+                                !!}
+
+                                {{-- ended update --}}
                             </div>
                         </div>
                         <div class="row between-section-segment-spacing">
@@ -225,9 +206,9 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
                                                     class="mandatory">*</span></label>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-                                                    'name', '', '', 'name', false, 'accommodation',
-                                                    '','accommodation') !!}
+                                            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                            'name', '', '', 'name', false, 'accommodation',
+                                            '','accommodation') !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Service <span class="mandatory">*</span> <i
@@ -242,45 +223,21 @@
                                             <label class="form-label">Service Type <span
                                                     class="mandatory">*</span></label>
                                             <div class="d-grid grid-cols-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="inPerson" name="" type="radio"
-                                                        tabindex="" />
-                                                    <label class="form-check-label" for="inPerson">In-Person</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="Virtual" name="" type="radio"
-                                                        tabindex="" />
-                                                    <label class="form-check-label" for="Virtual"> Virtual</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="Phone" name="" type="radio"
-                                                        tabindex="" />
-                                                    <label class="form-check-label" for="Phone"> Phone</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="Teleconference" name=""
-                                                        type="radio" tabindex="" />
-                                                    <label class="form-check-label" for="Teleconference">
-                                                        Teleconference</label>
-                                                </div>
+                                                {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', '5', 'id','',1,'form-check-input ')
+                                                !!}
+                                                {{--ended updated--}}
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label">Specializations</label>
                                             <div class="">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="BlogWriting"
-                                                        name="Specializations" type="checkbox" tabindex="" />
-                                                    <label class="form-check-label" for="BlogWriting">Blog
-                                                        Writing</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="DeafBlindTactileInterpreting"
-                                                        name="Specializations" type="checkbox" tabindex="" />
-                                                    <label class="form-check-label"
-                                                        for="DeafBlindTactileInterpreting">Deaf-Blind Tactile
-                                                        Interpreting</label>
-                                                </div>
+                                                {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createCheckboxes('Specialization', 'id',
+                                                'name', 'status', 1, 'name', [],1,'form-check') !!}
+                                                {{--ended updated--}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
@@ -521,11 +478,11 @@
                                         <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                             <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                     class="mandatory">*</span></label>
-                                                    {{-- updated by shanila to add dropdown --}}
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
-                                                    '','timezone') !!}
-                                                    {{-- end updated --}}
+                                            {{-- updated by shanila to add dropdown --}}
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                            '','timezone') !!}
+                                            {{-- end updated --}}
                                         </div>
                                         <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
                                             <label class="form-label-sm" for="set_start_date">Start Date <span
@@ -716,14 +673,14 @@
                                                         <!-- for active class row integrated with JS  -->
                                                         <td class="align-middle">
                                                             {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add" class="d-none js-tick" width="24" height="19"
-                                                                viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
+                                                            svg icon--}}
+                                                            <svg aria-label="Add" class="d-none js-tick" width="24"
+                                                                height="19" viewBox="0 0 24 19" fill="none">
+                                                                <use xlink:href="/css/common-icons.svg#check-add">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila
+                                                            --}}
                                                         </td>
                                                     </tr>
                                                     <tr class="even js-selected-row">
@@ -737,14 +694,14 @@
                                                         <!-- for active class row integrated with JS  -->
                                                         <td class="align-middle">
                                                             {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add " class="d-none js-tick" width="24" height="19"
-                                                                viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
+                                                            svg icon--}}
+                                                            <svg aria-label="Add " class="d-none js-tick" width="24"
+                                                                height="19" viewBox="0 0 24 19" fill="none">
+                                                                <use xlink:href="/css/common-icons.svg#check-add">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila
+                                                            --}}
                                                         </td>
                                                     </tr>
                                                     <tr class="odd js-selected-row">
@@ -758,14 +715,14 @@
                                                         <!-- for active class row integrated with JS  -->
                                                         <td class="align-middle">
                                                             {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add" class="d-none js-tick" width="24" height="19"
-                                                                viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
+                                                            svg icon--}}
+                                                            <svg aria-label="Add" class="d-none js-tick" width="24"
+                                                                height="19" viewBox="0 0 24 19" fill="none">
+                                                                <use xlink:href="/css/common-icons.svg#check-add">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila
+                                                            --}}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -820,8 +777,8 @@
                                                             <td class="align-middle">
                                                                 {{-- Updated by Shanila to Add
                                                                 svg icon--}}
-                                                                <svg aria-label="Add " class="d-none js-tick" width="24" height="19"
-                                                                viewBox="0 0 24 19" fill="none">
+                                                                <svg aria-label="Add " class="d-none js-tick" width="24"
+                                                                    height="19" viewBox="0 0 24 19" fill="none">
                                                                     <use xlink:href="/css/common-icons.svg#check-add">
                                                                     </use>
                                                                 </svg>
@@ -842,8 +799,8 @@
                                                             <td class="align-middle">
                                                                 {{-- Updated by Shanila to Add
                                                                 svg icon--}}
-                                                                <svg aria-label="Add " class="d-none js-tick" width="24" height="19"
-                                                                viewBox="0 0 24 19" fill="none">
+                                                                <svg aria-label="Add " class="d-none js-tick" width="24"
+                                                                    height="19" viewBox="0 0 24 19" fill="none">
                                                                     <use xlink:href="/css/common-icons.svg#check-add">
                                                                     </use>
                                                                 </svg>
@@ -861,10 +818,10 @@
                                                             </td>
                                                             <!-- for active class row integrated with JS  -->
                                                             <td class="align-middle">
-                                                                 {{-- Updated by Shanila to Add
+                                                                {{-- Updated by Shanila to Add
                                                                 svg icon--}}
-                                                                <svg aria-label="Add" class="d-none js-tick" width="24" height="19"
-                                                                viewBox="0 0 24 19" fill="none">
+                                                                <svg aria-label="Add" class="d-none js-tick" width="24"
+                                                                    height="19" viewBox="0 0 24 19" fill="none">
                                                                     <use xlink:href="/css/common-icons.svg#check-add">
                                                                     </use>
                                                                 </svg>

@@ -38,9 +38,11 @@
             </div>
             <div class="col-lg-6 mb-4">
               <label class="form-label" for="country">Country</label>
-              <select class="form-select">
-                <option>Select Country</option>
-              </select>
+               {{-- updated by shanila to add dropdown --}}
+              {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
+              'name', '', '', 'name', false, 'country',
+              '','country') !!}
+               {{--ended updated by shanila --}}
             </div>
             <div class="col-lg-6 mb-4">
               <label class="form-label" for="zip-code">Zip Code</label>
