@@ -91,7 +91,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="dateRange" id="piad">
                                             <label class="form-check-label-sm" for="piad">
-                                                Piad
+                                                Paid
                                             </label>
                                         </div>
                                     </div>
