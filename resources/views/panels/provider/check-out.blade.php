@@ -5,7 +5,7 @@
       <div class="js-checkout-step-1-content">
         <label class="form-label mb-0">Check-in Time 10:25AM</label>
         <hr>
-        <div class="mb-4">
+        <div class="between-segment-spacing">
           <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
             <div>
               <label class="form-label mb-0">Check-out</label>
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-11 mb-4">
+            <div class="col-lg-11 inner-section-segment-spacing">
               <h3 class="text-primary">Step 1:</h3>
               <div class="border-bottom border-dark border-start-0 border-end-0 border-top-0 py-3">
                 <div class="row">
@@ -202,7 +202,7 @@
         </div>
         <hr>
         <div class="mb-4">
-          <div class="form-actions d-flex gap-3 justify-content-center mt-5">
+          <div class="form-actions d-flex gap-3 justify-content-center ">
             <button type="button" class="btn btn-outline-dark rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>
             <button type="submit" class="btn btn-primary rounded js-checkout-go-step-2">Next</button>
           </div>
@@ -227,7 +227,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row inner-section-segment-spacing">
             <div class="col-lg-12">
               <h3 class="text-primary">Step 2:</h3>
               <h3 class="text-primary">Check-Out Form</h3>
@@ -272,7 +272,7 @@
       <div class="hidden js-checkout-step-3-content">
         <label class="form-label mb-0">Check-in Time 10:25AM</label>
         <hr>
-        <div class="mb-4">
+        <div class="between-section-segment-spacing">
           <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
             <div>
               <label class="form-label mb-0">Check-out</label>
@@ -289,7 +289,6 @@
           <div class="row">
             <div class="col-lg-12">
               <h3 class="text-primary">Step 3:</h3>
-              <h3 class="text-primary">Check-Out Form</h3>
               <div class="row">
                 <div class="col-lg-6 mb-4">
                   <label class="form-label-sm">Entry Notes</label>
@@ -303,8 +302,9 @@
               </div>
             </div>
           </div>
+          <hr>
         </div>
-        <hr>
+        
         <div class="mb-4">
           <div class="form-actions d-flex gap-3 justify-content-center mt-5">
             <button type="submit" class="btn btn-primary rounded" x-on:click="offcanvasOpenCheckOut = !offcanvasOpenCheckOut">Back</button>

@@ -632,14 +632,15 @@
 									<h3>Provider Payments & Preferences</h3>
 									<div class="row between-section-segment-spacing">
 										<div class="col-lg-12 mb-4">
-											<div class="form-check form-switch">
-												<input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="providerPayroll" checked>
-												<label class="form-check-label" >Provider Payroll</label>
+											<div class="d-flex align-items-center">
+											<div class="form-check form-switch mb-0">
+											<input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch" id="providerPayroll" checked="">
+											<input class="form-check-input" aria-label="Toggle Provider Payroll" type="checkbox" role="switch">												
 											</div>
-										</div>
+											<label class="form-label mb-0">Provider Payroll</label></div></div>
 										<div class="col-lg-6">
 											<div class="row">
-												<div class="col-lg-12 mb-4">
+												<div class="col-lg-12 mb-2">
 													<label class="form-label" for="directDepositFormUpload">
 														Direct Deposit Form Upload
 													</label>
@@ -651,6 +652,7 @@
 															<label class="form-check-label" for="enrollDirectDepositProvider">Require Provider to Acknowledge to Enroll in Direct Deposit</label>
 														</div>
 												</div>
+												 <div class="between-section-segment-spacing">
 													<div class="col-lg-12 mb-4">
 														<div class="d-lg-flex justify-content-between mb-2 mb-lg-0">
 															<label class="form-label" for="reimburseProviders">
@@ -681,7 +683,7 @@
 															<div class="text-nowrap col-lg-4 ms-2 mt-3"><span>Per hour</span></div>
 														</div>
 													</div>
-													<div class="row ms-2 mt-2">
+													<div class="row ms-1 mt-2">
 														<div class="form-check">
 															<input class="form-check-input" id="SameAsServiceRate" name="SameAsServiceRate" type="checkbox" tabindex="" />
 															<label class="form-check-label" for="SameAsServiceRate">Same as Service Rate</label>
@@ -696,17 +698,17 @@
 															<option>Select Currency</option>
 														</select>
 													</div>
+												</div>
 													<div class="col-lg-12 mb-4">
 														<div class="form-check form-switch">
-															<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Customer Billing" id="customerBilling" checked>
+															<input class="form-check-input" type="checkbox" role="switch" aria-label="Toggle Customer Billing" id="customerBilling">
 															<label class="form-check-label" >Customer Billing</label>
 														</div>
 													</div>
 													<div class="col-lg-12 mb-4">
 														<label class="form-label" for="billingSchedule">
-															Billing Schedule (Days After Invoice)
+															Billing Schedule (Days After Invoice) <br>Net
 														</label>
-														<p>Net</p>
 														<div class="col-3 d-flex gap-2 align-items-center">
 															<input class="form-control" type="" id="billingSchedule" placeholder="10"> <span>Days</span>
 														</div>
