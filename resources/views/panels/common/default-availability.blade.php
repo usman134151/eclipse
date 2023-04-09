@@ -1,7 +1,7 @@
 {{-- Default Availibility Off Canvas - Start --}}
 <x-off-canvas show="defaultAvailability">
 	<x-slot name="title">Change Your Default Availability</x-slot>
-    <div class="row mb-4">
+    <div class="row ">
         <div class="col-lg-12">
             <h3>Add Hours Slot In Schedule</h3>
             <div class="row mb-4">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-4">
+            <div class="row between-section-segment-spacing">
                 <div class="col-lg-12">
                     <label class="form-label">Select Days & Time</label>
                     <div class="d-lg-flex gap-3 align-items-center mb-3">
@@ -60,7 +60,7 @@
                     <button class="btn btn-primary btn-sm rounded">Submit</button>
                 </div>
             </div>
-            <div class="row mb-4">
+            <div class="row between-section-segment-spacing">
                 <div class="col-12">
                     <div class="d-lg-flex justify-content-between mb-4">
                         <h3 class="mb-lg-0">Business Schedule</h3>
@@ -175,7 +175,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-4">
+            <div class="row between-section-segment-spacing">
                 <div class="col-12">
                     <h3>Add Holidays / Days Off</h3>
                     <div class="d-lg-flex gap-3 mb-3">
@@ -199,7 +199,7 @@
                     <button class="btn btn-primary btn-sm rounded">Submit</button>
                 </div>
             </div>
-            <div class="row">
+            <div class="row between-section-segment-spacing">
                 <div class="col-lg-9">
                     <h3>Listed Holidays / Days Off</h3>
                     <table class="table table-hover">
