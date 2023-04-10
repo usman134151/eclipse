@@ -1,6 +1,10 @@
 {{-- Add New Payment - Start --}}
 <x-off-canvas show="addNewPayment">
 	<x-slot name="title">Add New Payment</x-slot>
+    <form class="form">
+         {{-- updated by shanila to add csrf--}}
+         @csrf
+         {{-- update ended by shanila --}}
 	<div class="inner-section-segment-spacing">
     <p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new payment for the team you can split the amount equally in the team or pay the same to each team member.</p>
     </div>
@@ -69,6 +73,7 @@
 		  <button type="button" class="btn btn-outline-dark rounded">CANCEL</button>
 		  <button type="submit" class="btn btn-primary rounded">ADD</button>
 		</div>
+    </form>
 </x-off-canvas>
 {{-- Add New Payment - End --}}
 <!-- BEGIN: Modal - Providers Or Team -->
