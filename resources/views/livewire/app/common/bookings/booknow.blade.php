@@ -65,681 +65,598 @@
                 <div class="tab-content">
                     <div class="tab-pane fade {{ $component == 'requester-info' ? 'active show' : '' }}"
                         id="requester-info" role="tabpanel" aria-labelledby="requester-info-tab" tabindex="0">
-                        <h2>Requester Information</h2>
-                        <div class="mb-4">
-                            <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i
-                                    class="fa fa-question-circle text-muted" aria-hidden="true" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title=""></i></label>
-                            <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
-                                {{-- updated by shanila to add dropdown --}}
-                                {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
-                                'setup_value_label', 'setup_id', '6', 'id','',1,'form-check-input ')
-                                !!}
+                        {{-- updated by shanila to add csrf and add form tag --}}
+                        <form class="form">
+                            @csrf
 
-                                {{-- ended update --}}
+                            <h2>Requester Information</h2>
+                            <div class="mb-4">
+                                <label class="form-label form-label-highlighted">Permitted Scheduling Frequencies <i
+                                        class="fa fa-question-circle text-muted" aria-hidden="true"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title=""></i></label>
+                                <div class="d-flex gap-3 flex-column flex-lg-row mb-0">
+                                    {{-- updated by shanila to add dropdown --}}
+                                    {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                    'setup_value_label', 'setup_id', '6', 'id','',1,'form-check-input ')
+                                    !!}
+
+                                    {{-- ended update --}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="row between-section-segment-spacing">
-                            <div class="col-lg-6 mb-4 pe-lg-5">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <label class="form-label">Company <span class="mandatory">*</span></label>
-                                    <a href="#" class="fw-bold">
-                                        <small>
+                            <div class="row between-section-segment-spacing">
+                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label class="form-label">Company <span class="mandatory">*</span></label>
+                                        <a href="#" class="fw-bold">
+                                            <small>
+                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                    viewBox="0 0 20 21">
+                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Add New Company
+                                            </small>
+                                        </a>
+                                    </div>
+                                    <select class="form-select">
+                                        <option>Select Company</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                    <label class="form-label">Department <span class="mandatory">*</span></label>
+                                    <div>
+                                        <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                            data-bs-toggle="modal" data-bs-target="#departmentModal">
                                             {{-- Updated by Shanila to Add svg icon--}}
-                                            <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                                viewBox="0 0 20 21">
-                                                <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                            <svg aria-label=" Select Department" width="25" height="18"
+                                                viewBox="0 0 25 18">
+                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                </use>
                                             </svg>
                                             {{-- End of update by Shanila --}}
-                                            Add New Company
-                                        </small>
-                                    </a>
+                                            Select Department
+                                        </button>
+                                    </div>
                                 </div>
-                                <select class="form-select">
-                                    <option>Select Company</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6 mb-4 ps-lg-5">
-                                <label class="form-label">Department <span class="mandatory">*</span></label>
-                                <div>
-                                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                        data-bs-toggle="modal" data-bs-target="#departmentModal">
-                                        {{-- Updated by Shanila to Add svg icon--}}
-                                        <svg aria-label=" Select Department" width="25" height="18" viewBox="0 0 25 18">
-                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                            </use>
-                                        </svg>
-                                        {{-- End of update by Shanila --}}
-                                        Select Department
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4 pe-lg-5">
-                                <label class="form-label">Industry <span class="mandatory">*</span></label>
-                                <div>
-                                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                        data-bs-toggle="modal" data-bs-target="#industryModal">
-                                        {{-- Updated by Shanila to Add svg icon--}}
-                                        <svg aria-label=" Select Industry" width="25" height="18" viewBox="0 0 25 18">
-                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                            </use>
-                                        </svg>
-                                        {{-- End of update by Shanila --}}
-                                        Select Industry
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4 ps-lg-5">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <label class="form-label">Requester <span class="mandatory">*</span></label>
-                                    <a href="#" class="fw-bold" data-bs-toggle="modal" data-bs-target="#addNewCustomer">
-                                        <small>
+                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                    <label class="form-label">Industry <span class="mandatory">*</span></label>
+                                    <div>
+                                        <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                            data-bs-toggle="modal" data-bs-target="#industryModal">
                                             {{-- Updated by Shanila to Add svg icon--}}
-                                            <svg aria-label="Add New Requester" class="me-1" width="20" height="21"
-                                                viewBox="0 0 20 21">
-                                                <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                            <svg aria-label=" Select Industry" width="25" height="18"
+                                                viewBox="0 0 25 18">
+                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                </use>
                                             </svg>
                                             {{-- End of update by Shanila --}}
-                                            Add New Requester
-                                        </small>
-                                    </a>
-                                </div>
-                                <select class="form-select mb-2">
-                                    <option>Select Requester</option>
-                                </select>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="HideRequesterInfofromProviders"
-                                        name="HideRequesterInfofromProviders" type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="HideRequesterInfofromProviders"><small>Hide
-                                            Requester's Info from Providers</small></label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4 pe-lg-5">
-                                <label class="form-label">Point of Contact <span class="mandatory">*</span></label>
-                                <input type="" class="form-control" placeholder="Enter Name">
-                            </div>
-                            <div class="col-lg-6 mb-4 ps-lg-5">
-                                <label class="form-label">Phone Number <span class="mandatory">*</span></label>
-                                <input type="" class="form-control" placeholder="Enter Phone Number">
-                            </div>
-                        </div>
-                        <div class="row between-section-segment-spacing">
-                            <div class="col-lg-12" x-data="{ open: true }">
-                                <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
-                                    <div class="form-check form-switch form-switch-column mb-lg-0">
-                                        <input class="form-check-input" type="checkbox" role="switch" id=""
-                                            @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
-                                    </div>
-                                    <h3 class="mb-lg-0">Add Supervisor & Billing Manager</h3>
-                                </div>
-                                <div class="row switch-toggle-content" x-show="open">
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label">Supervisor <span class="mandatory">*</span></label>
-                                        <select class="form-select">
-                                            <option>Select Supervisor</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label">Billing Manager</label>
-                                        <select class="form-select">
-                                            <option>Select Billing Manager</option>
-                                        </select>
+                                            Select Industry
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row between-section-segment-spacing">
-                            <!-- Service Information -->
-                            <div class="col-lg-12 mb-4">
-                                <h2>Service Information</h2>
-                                <div class="row">
-                                    <div class="col-lg-6 pe-lg-5 mb-4">
-                                        <label class="form-label">Booking Title</label>
-                                        <input type="text" class="form-control" placeholder="Enter Booking Title">
+                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label class="form-label">Requester <span class="mandatory">*</span></label>
+                                        <a href="#" class="fw-bold" data-bs-toggle="modal"
+                                            data-bs-target="#addNewCustomer">
+                                            <small>
+                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                <svg aria-label="Add New Requester" class="me-1" width="20" height="21"
+                                                    viewBox="0 0 20 21">
+                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Add New Requester
+                                            </small>
+                                        </a>
+                                    </div>
+                                    <select class="form-select mb-2">
+                                        <option>Select Requester</option>
+                                    </select>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="HideRequesterInfofromProviders"
+                                            name="HideRequesterInfofromProviders" type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="HideRequesterInfofromProviders"><small>Hide
+                                                Requester's Info from Providers</small></label>
                                     </div>
                                 </div>
-
-                                <!-- Services Duplicate Block -->
-                                <div class="duplicate-block mb-3">
-                                    <h3 class="text-primary">Services 1</h3>
-                                    <div class="row mb-5">
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label">Accommodation <span
-                                                    class="mandatory">*</span></label>
-                                            {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-                                            'name', '', '', 'name', false, 'accommodation',
-                                            '','accommodation') !!}
+                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                    <label class="form-label">Point of Contact <span class="mandatory">*</span></label>
+                                    <input type="" class="form-control" placeholder="Enter Name">
+                                </div>
+                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                    <label class="form-label">Phone Number <span class="mandatory">*</span></label>
+                                    <input type="" class="form-control" placeholder="Enter Phone Number">
+                                </div>
+                            </div>
+                            <div class="row between-section-segment-spacing">
+                                <div class="col-lg-12" x-data="{ open: true }">
+                                    <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
+                                        <div class="form-check form-switch form-switch-column mb-lg-0">
+                                            <input class="form-check-input" type="checkbox" role="switch" id=""
+                                                @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                                         </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label">Service <span class="mandatory">*</span> <i
-                                                    class="fa fa-question-circle text-muted" aria-hidden="true"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title=""></i></label>
+                                        <h3 class="mb-lg-0">Add Supervisor & Billing Manager</h3>
+                                    </div>
+                                    <div class="row switch-toggle-content" x-show="open">
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label">Supervisor <span
+                                                    class="mandatory">*</span></label>
                                             <select class="form-select">
-                                                <option>Select Service</option>
+                                                <option>Select Supervisor</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label">Service Type <span
-                                                    class="mandatory">*</span></label>
-                                            <div class="d-grid grid-cols-3">
-                                                {{-- updated by shanila to add dropdown --}}
-                                                {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
-                                                'setup_value_label', 'setup_id', '5', 'id','',1,'form-check-input ')
-                                                !!}
-                                                {{--ended updated--}}
-
-                                            </div>
-                                        </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label">Specializations</label>
-                                            <div class="">
-                                                {{-- updated by shanila to add dropdown --}}
-                                                {!! App\Helpers\SetupHelper::createCheckboxes('Specialization', 'id',
-                                                'name', 'status', 1, 'name', [],1,'form-check') !!}
-                                                {{--ended updated--}}
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label">Number of Providers <span
-                                                    class="mandatory">*</span></label>
-                                            <input type="" class="form-control" placeholder="Enter Number of Providers">
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <div class="row">
-                                                <div class="col-lg-5 col-md-6 mb-4">
-                                                    <div class="d-flex gap-3">
-                                                        <label class="form-label-sm">
-                                                            Broadcast
-                                                        </label>
-                                                        <div class="form-check form-switch form-switch-column">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="AutoNotifyBroadcast" checked>
-                                                            <label class="form-check-label"
-                                                                for="AutoNotifyBroadcast">Auto-notify</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-7 col-md-6 mb-4">
-                                                    <div class="d-flex gap-3">
-                                                        <label class="form-label-sm">
-                                                            Assign
-                                                        </label>
-                                                        <div class="form-check form-switch form-switch-column">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="AutoNotifyAssign" checked>
-                                                            <label class="form-check-label"
-                                                                for="AutoNotifyAssign">Manual-assign</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <label class="form-label">Billing Manager</label>
+                                            <select class="form-select">
+                                                <option>Select Billing Manager</option>
+                                            </select>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row between-section-segment-spacing">
+                                <!-- Service Information -->
+                                <div class="col-lg-12 mb-4">
+                                    <h2>Service Information</h2>
                                     <div class="row">
-                                        <div class="col-lg-12" x-data="{ open: true }">
-                                            <div class="row inner-section-segment-spacing">
-                                                <div class="col-lg-12">
-                                                    <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
-                                                        <div class="form-check form-switch form-switch-column mb-lg-0">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="" @click="open = !open"
-                                                                x-text="open==true  ? 'hide' : 'show'" checked>
+                                        <div class="col-lg-6 pe-lg-5 mb-4">
+                                            <label class="form-label">Booking Title</label>
+                                            <input type="text" class="form-control" placeholder="Enter Booking Title">
+                                        </div>
+                                    </div>
+
+                                    <!-- Services Duplicate Block -->
+                                    <div class="duplicate-block mb-3">
+                                        <h3 class="text-primary">Services 1</h3>
+                                        <div class="row mb-5">
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <label class="form-label">Accommodation <span
+                                                        class="mandatory">*</span></label>
+                                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                'name', '', '', 'name', false, 'accommodation',
+                                                '','accommodation') !!}
+                                            </div>
+                                            <div class="col-lg-6 mb-4 ps-lg-5">
+                                                <label class="form-label">Service <span class="mandatory">*</span> <i
+                                                        class="fa fa-question-circle text-muted" aria-hidden="true"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title=""></i></label>
+                                                <select class="form-select">
+                                                    <option>Select Service</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <label class="form-label">Service Type <span
+                                                        class="mandatory">*</span></label>
+                                                <div class="d-grid grid-cols-3">
+                                                    {{-- updated by shanila to add dropdown --}}
+                                                    {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
+                                                    'setup_value_label', 'setup_id', '5', 'id','',1,'form-check-input ')
+                                                    !!}
+                                                    {{--ended updated--}}
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-4 ps-lg-5">
+                                                <label class="form-label">Specializations</label>
+                                                <div class="">
+                                                    {{-- updated by shanila to add dropdown --}}
+                                                    {!! App\Helpers\SetupHelper::createCheckboxes('Specialization',
+                                                    'id',
+                                                    'name', 'status', 1, 'name', [],1,'form-check') !!}
+                                                    {{--ended updated--}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                <label class="form-label">Number of Providers <span
+                                                        class="mandatory">*</span></label>
+                                                <input type="" class="form-control"
+                                                    placeholder="Enter Number of Providers">
+                                            </div>
+                                            <div class="col-lg-6 mb-4 ps-lg-5">
+                                                <div class="row">
+                                                    <div class="col-lg-5 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <label class="form-label-sm">
+                                                                Broadcast
+                                                            </label>
+                                                            <div class="form-check form-switch form-switch-column">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="AutoNotifyBroadcast" checked>
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyBroadcast">Auto-notify</label>
+                                                            </div>
                                                         </div>
-                                                        <h3 class="mb-lg-0">Add Consumers & Participants</h3>
                                                     </div>
-                                                    <div class="row mb-4 switch-toggle-content" x-show="open">
-                                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <label class="form-label">Service Consumer(s)</label>
-                                                                <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                                                    data-bs-target="#addNewCustomer">
-                                                                    <small>
-                                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="Add New Service Consumer"
-                                                                            class="me-1" width="20" height="21"
-                                                                            viewBox="0 0 20 21">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#add-new">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
-                                                                        Add New Service Consumer
-                                                                    </small>
-                                                                </a>
-                                                            </div>
-                                                            <div class="js-wrapper-manual-entry">
-                                                                <select
-                                                                    class="form-select mb-2 js-form-select-manual-entry"
-                                                                    aria-label="Select Service Consumer(s)">
-                                                                    <option>Select Service Consumer(s)</option>
-                                                                </select>
-                                                                <input type="" name=""
-                                                                    class="form-control mb-2 hidden js-form-input-manual-entry"
-                                                                    placeholder="Enter Service Consumer(s)">
-                                                                <div class="form-check">
-                                                                    <input
-                                                                        class="form-check-input js-form-check-input-manual-entry"
-                                                                        id="ManualEntryServiceConsumer" name=""
-                                                                        type="checkbox" tabindex="">
-                                                                    <label class="form-check-label"
-                                                                        for="ManualEntryServiceConsumer"><small>Manual
-                                                                            Entry</small></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <label class="form-label">Participant(s)</label>
-                                                                <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                                                    data-bs-target="#addNewCustomer">
-                                                                    <small>
-                                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="Add New Participant"
-                                                                            class="me-1" width="20" height="21"
-                                                                            viewBox="0 0 20 21">
-                                                                            <use
-                                                                                xlink:href="/css/common-icons.svg#add-new">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
-                                                                        Add New Participant
-                                                                    </small>
-                                                                </a>
-                                                            </div>
-                                                            <div class="js-wrapper-manual-entry">
-                                                                <select
-                                                                    class="form-select mb-2 js-form-select-manual-entry"
-                                                                    aria-label="Select Participant(s)">
-                                                                    <option>Select Participant(s)</option>
-                                                                </select>
-                                                                <input type="" name=""
-                                                                    class="form-control mb-2 hidden js-form-input-manual-entry"
-                                                                    placeholder="Enter Participant(s)">
-                                                                <div class="form-check">
-                                                                    <input
-                                                                        class="form-check-input js-form-check-input-manual-entry"
-                                                                        id="ManualEntryParticipant" name=""
-                                                                        type="checkbox" tabindex="">
-                                                                    <label class="form-check-label"
-                                                                        for="ManualEntryParticipant"><small>Manual
-                                                                            Entry</small></label>
-                                                                </div>
+                                                    <div class="col-lg-7 col-md-6 mb-4">
+                                                        <div class="d-flex gap-3">
+                                                            <label class="form-label-sm">
+                                                                Assign
+                                                            </label>
+                                                            <div class="form-check form-switch form-switch-column">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="AutoNotifyAssign" checked>
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyAssign">Manual-assign</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row mb-md-4">
-                                                <div class="col-lg-6 align-self-center">
-                                                    <h2 class="mb-lg-0">Meeting Information</h2>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12" x-data="{ open: true }">
+                                                <div class="row inner-section-segment-spacing">
+                                                    <div class="col-lg-12">
+                                                        <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
+                                                            <div
+                                                                class="form-check form-switch form-switch-column mb-lg-0">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="" @click="open = !open"
+                                                                    x-text="open==true  ? 'hide' : 'show'" checked>
+                                                            </div>
+                                                            <h3 class="mb-lg-0">Add Consumers & Participants</h3>
+                                                        </div>
+                                                        <div class="row mb-4 switch-toggle-content" x-show="open">
+                                                            <div class="col-lg-6 mb-4 pe-lg-5">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <label class="form-label">Service
+                                                                        Consumer(s)</label>
+                                                                    <a href="#" class="fw-bold" data-bs-toggle="modal"
+                                                                        data-bs-target="#addNewCustomer">
+                                                                        <small>
+                                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                                            <svg aria-label="Add New Service Consumer"
+                                                                                class="me-1" width="20" height="21"
+                                                                                viewBox="0 0 20 21">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#add-new">
+                                                                                </use>
+                                                                            </svg>
+                                                                            {{-- End of update by Shanila --}}
+                                                                            Add New Service Consumer
+                                                                        </small>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="js-wrapper-manual-entry">
+                                                                    <select
+                                                                        class="form-select mb-2 js-form-select-manual-entry"
+                                                                        aria-label="Select Service Consumer(s)">
+                                                                        <option>Select Service Consumer(s)</option>
+                                                                    </select>
+                                                                    <input type="" name=""
+                                                                        class="form-control mb-2 hidden js-form-input-manual-entry"
+                                                                        placeholder="Enter Service Consumer(s)">
+                                                                    <div class="form-check">
+                                                                        <input
+                                                                            class="form-check-input js-form-check-input-manual-entry"
+                                                                            id="ManualEntryServiceConsumer" name=""
+                                                                            type="checkbox" tabindex="">
+                                                                        <label class="form-check-label"
+                                                                            for="ManualEntryServiceConsumer"><small>Manual
+                                                                                Entry</small></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 mb-4 ps-lg-5">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <label class="form-label">Participant(s)</label>
+                                                                    <a href="#" class="fw-bold" data-bs-toggle="modal"
+                                                                        data-bs-target="#addNewCustomer">
+                                                                        <small>
+                                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                                            <svg aria-label="Add New Participant"
+                                                                                class="me-1" width="20" height="21"
+                                                                                viewBox="0 0 20 21">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#add-new">
+                                                                                </use>
+                                                                            </svg>
+                                                                            {{-- End of update by Shanila --}}
+                                                                            Add New Participant
+                                                                        </small>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="js-wrapper-manual-entry">
+                                                                    <select
+                                                                        class="form-select mb-2 js-form-select-manual-entry"
+                                                                        aria-label="Select Participant(s)">
+                                                                        <option>Select Participant(s)</option>
+                                                                    </select>
+                                                                    <input type="" name=""
+                                                                        class="form-control mb-2 hidden js-form-input-manual-entry"
+                                                                        placeholder="Enter Participant(s)">
+                                                                    <div class="form-check">
+                                                                        <input
+                                                                            class="form-check-input js-form-check-input-manual-entry"
+                                                                            id="ManualEntryParticipant" name=""
+                                                                            type="checkbox" tabindex="">
+                                                                        <label class="form-check-label"
+                                                                            for="ManualEntryParticipant"><small>Manual
+                                                                                Entry</small></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <div class="row">
-                                                        <div class="col-md-6 mb-4 mb-md-0">
-                                                            <a href="#"
-                                                                class="btn btn-primary rounded w-100 btn-has-icon">
-                                                                {{-- Updated by Shanila to Add
-                                                                svg icon--}}
-                                                                <svg aria-label="Add Manually" width="24" height="19"
-                                                                    viewBox="0 0 24 19" fill="none">
-                                                                    <use xlink:href="/css/common-icons.svg#check-add">
-                                                                    </use>
+                                                <div class="row mb-md-4">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <h2 class="mb-lg-0">Meeting Information</h2>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-4 mb-md-0">
+                                                                <a href="#"
+                                                                    class="btn btn-primary rounded w-100 btn-has-icon">
+                                                                    {{-- Updated by Shanila to Add
+                                                                    svg icon--}}
+                                                                    <svg aria-label="Add Manually" width="24"
+                                                                        height="19" viewBox="0 0 24 19" fill="none">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#check-add">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                                    --}}
+                                                                    Add Manually
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-6 mb-4 mb-md-0">
+                                                                <a href="#" class="btn btn-primary rounded w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#RequestfromUserModal">
+                                                                    Request from User
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="border-dashed rounded p-3 mb-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="align-items-center gap-4">
+                                                            <h3 class="text-primary">Meeting Link 1</h3>
+                                                        </div>
+                                                        <div class="align-items-center gap-4">
+                                                            <a href="#" title="Delete" aria-label="Delete"
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                <svg class="delete-icon" width="20" height="20"
+                                                                    viewBox="0 0 20 20" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                                 </svg>
-                                                                {{-- End of update by Shanila
-                                                                --}}
-                                                                Add Manually
                                                             </a>
                                                         </div>
-                                                        <div class="col-md-6 mb-4 mb-md-0">
-                                                            <a href="#" class="btn btn-primary rounded w-100"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#RequestfromUserModal">
-                                                                Request from User
-                                                            </a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label class="form-label">Meeting Name</label>
+                                                            <input type="" class="form-control"
+                                                                placeholder="Enter Meeting Name">
+                                                        </div>
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label class="form-label">Phone Number</label>
+                                                            <input type="" class="form-control"
+                                                                placeholder="Enter Phone Number">
+                                                        </div>
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label class="form-label">Access Code</label>
+                                                            <input type="" class="form-control"
+                                                                placeholder="Enter Access Code">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="border-dashed rounded p-3 mb-3">
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="align-items-center gap-4">
-                                                        <h3 class="text-primary">Meeting Link 1</h3>
-                                                    </div>
-                                                    <div class="align-items-center gap-4">
-                                                        <a href="#" title="Delete" aria-label="Delete"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            <svg class="delete-icon" width="20" height="20"
-                                                                viewBox="0 0 20 20" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                <div class="row justify-content-end">
+                                                    <div class="col-md-6 col-lg-3">
+                                                        <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
+                                                            <svg aria-label="Add Link" width="20" height="20"
+                                                                viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#plus">
+                                                                </use>
                                                             </svg>
+                                                            Add Link
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4 mb-3">
-                                                        <label class="form-label">Meeting Name</label>
-                                                        <input type="" class="form-control"
-                                                            placeholder="Enter Meeting Name">
-                                                    </div>
-                                                    <div class="col-lg-4 mb-3">
-                                                        <label class="form-label">Phone Number</label>
-                                                        <input type="" class="form-control"
-                                                            placeholder="Enter Phone Number">
-                                                    </div>
-                                                    <div class="col-lg-4 mb-3">
-                                                        <label class="form-label">Access Code</label>
-                                                        <input type="" class="form-control"
-                                                            placeholder="Enter Access Code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Services Duplicate Block -->
+                                    <div class="row justify-content-end">
+                                        <div class="col-md-6 col-lg-3">
+                                            <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
+                                                <svg aria-label=" Add Service" width="20" height="20"
+                                                    viewBox="0 0 20 20">
+                                                    <use xlink:href="/css/common-icons.svg#plus">
+                                                    </use>
+                                                </svg>
+                                                Add Service
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Service Information -->
+                            </div>
+                            <div class="row between-section-segment-spacing">
+                                <!-- Select Dates & Times -->
+                                <div class="col-lg-12 mb-4">
+                                    <h2>Select Dates & Times</h2>
+                                    <!-- Select Dates & Times Duplicate Block -->
+                                    <div class="duplicate-block">
+                                        <h3 class="text-primary">Date & Time 1</h3>
+                                        <div class="d-md-flex flex-md-wrap justify-content-between">
+                                            <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
+                                                <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
+                                                        class="mandatory">*</span></label>
+                                                {{-- updated by shanila to add dropdown --}}
+                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                                'setup_value_label', 'setup_id', 4, 'setup_value_label', false,
+                                                'timezone',
+                                                '','timezone') !!}
+                                                {{-- end updated --}}
+                                            </div>
+                                            <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
+                                                <label class="form-label-sm" for="set_start_date">Start Date <span
+                                                        class="mandatory">*</span></label>
+                                                <div class="position-relative">
+                                                    <input type="" name=""
+                                                        class="form-control form-control-md js-single-date"
+                                                        placeholder="MM/DD/YYYY" id="set_start_date"
+                                                        aria-label="Set Start Date">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Date" class="icon-date md" width="20" height="20"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex col-lg-auto mb-4">
+                                                <div class="d-flex flex-column justify-content-between">
+                                                    <label class="form-label-sm" for="set_start_time">Start Time</label>
+                                                    <div class="d-flex gap-2">
+                                                        <div class="time d-flex align-items-center gap-2">
+                                                            <div class="hours">12</div>
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="colon" width="5" height="19"
+                                                                viewBox="0 0 5 19">
+                                                                <use xlink:href="/css/common-icons.svg#date-colon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            <div class="mins">59</div>
+                                                        </div>
+                                                        <div class="form-check form-switch form-switch-column mb-0">
+                                                            <input checked="" class="form-check-input" type="checkbox"
+                                                                role="switch" id="startTimeAMPM">
+                                                            <label class="form-check-label"
+                                                                for="startTimeAMPM">AM</label>
+                                                            <label class="form-check-label"
+                                                                for="startTimeAMPM">PM</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row justify-content-end">
-                                                <div class="col-md-6 col-lg-3">
-                                                    <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
-                                                        <svg aria-label="Add Link" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#plus">
+                                            <div class="col-lg-auto mb-4">
+                                                <label class="form-label-sm" for="set_end_date">End Date<span
+                                                        class="mandatory">*</span></label>
+                                                <div class="position-relative">
+                                                    <input type="" name=""
+                                                        class="form-control form-control-md js-single-date"
+                                                        placeholder="MM/DD/YYYY" id="set_end_date"
+                                                        aria-label="Set End Date">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Date" class="icon-date md" width="20" height="20"
+                                                        viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </div>
+                                            </div>
+                                            <div class="d-flex col-lg-auto mb-4">
+                                                <div class="d-flex flex-column justify-content-between">
+                                                    <label class="form-label-sm" for="set_start_time">End Time</label>
+                                                    <div class="d-flex gap-2">
+                                                        <div class="time d-flex align-items-center gap-2">
+                                                            <div class="hours">12</div>
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="colon" width="5" height="19"
+                                                                viewBox="0 0 5 19">
+                                                                <use xlink:href="/css/common-icons.svg#date-colon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            <div class="mins">59</div>
+                                                        </div>
+                                                        <div class="form-check form-switch form-switch-column mb-0">
+                                                            <input checked="" class="form-check-input" type="checkbox"
+                                                                role="switch" id="endTimeAMPM">
+                                                            <label class="form-check-label" for="endTimeAMPM">AM</label>
+                                                            <label class="form-check-label" for="endTimeAMPM">PM</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-md-flex align-items-center gap-5">
+                                            <label class="form-label mb-lg-0">Total Billable Service Duration</label>
+                                            <div>
+                                                <label class="form-label-sm"
+                                                    for="total_billable_service_duration_days">Days</label>
+                                                <input type="" class="form-control form-control-md text-center"
+                                                    aria-label="Days" placeholder="0"
+                                                    id="total_billable_service_duration_days">
+                                            </div>
+                                            <div>
+                                                <label class="form-label-sm">Hours</label>
+                                                <input type=""
+                                                    class="form-control form-control-md form-control-md text-center"
+                                                    aria-label="Hours" placeholder="00"
+                                                    id="total_billable_service_duration_hours">
+                                            </div>
+                                            <div>
+                                                <label class="form-label-sm">Minutes</label>
+                                                <input type="" class="form-control form-control-md text-center"
+                                                    aria-label="Minutes" placeholder="00"
+                                                    id="total_billable_service_duration_minutes">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Select Dates & Times Duplicate Block -->
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button class="btn btn-primary rounded">
+                                            <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
+                                                <use xlink:href="/css/common-icons.svg#plus">
+                                                </use>
+                                            </svg>
+                                            <span class="mx-2">Add Date</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /Select Dates & Times -->
+                            </div>
+                            <div class="row between-section-segment-spacing">
+                                <div class="col-lg-12">
+                                    <!-- Physical Address -->
+                                    <div class="row mb-4">
+                                        <div class="col-lg-6 mb-4 align-self-center">
+                                            <h2 class="mb-lg-0">Physical Address</h2>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
+                                                        {{-- Updated by Shanila to Add
+                                                        svg icon--}}
+                                                        <svg aria-label="Add Manually" width="24" height="19"
+                                                            viewBox="0 0 24 19" fill="none">
+                                                            <use xlink:href="/css/common-icons.svg#check-add">
                                                             </use>
                                                         </svg>
-                                                        Add Link
+                                                        {{-- End of update by Shanila
+                                                        --}}
+                                                        Add Manually
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 mb-4">
+                                                    <a href="#" class="btn btn-primary rounded w-100"
+                                                        data-bs-toggle="modal" data-bs-target="#RequestfromUserModal">
+                                                        Request from User
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- /Services Duplicate Block -->
-                                <div class="row justify-content-end">
-                                    <div class="col-md-6 col-lg-3">
-                                        <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
-                                            <svg aria-label=" Add Service" width="20" height="20" viewBox="0 0 20 20">
-                                                <use xlink:href="/css/common-icons.svg#plus">
-                                                </use>
-                                            </svg>
-                                            Add Service
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Service Information -->
-                        </div>
-                        <div class="row between-section-segment-spacing">
-                            <!-- Select Dates & Times -->
-                            <div class="col-lg-12 mb-4">
-                                <h2>Select Dates & Times</h2>
-                                <!-- Select Dates & Times Duplicate Block -->
-                                <div class="duplicate-block">
-                                    <h3 class="text-primary">Date & Time 1</h3>
-                                    <div class="d-md-flex flex-md-wrap justify-content-between">
-                                        <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
-                                            <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
-                                                    class="mandatory">*</span></label>
-                                            {{-- updated by shanila to add dropdown --}}
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
-                                            '','timezone') !!}
-                                            {{-- end updated --}}
-                                        </div>
-                                        <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
-                                            <label class="form-label-sm" for="set_start_date">Start Date <span
-                                                    class="mandatory">*</span></label>
-                                            <div class="position-relative">
-                                                <input type="" name=""
-                                                    class="form-control form-control-md js-single-date"
-                                                    placeholder="MM/DD/YYYY" id="set_start_date"
-                                                    aria-label="Set Start Date">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date md" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </div>
-                                        </div>
-                                        <div class="d-flex col-lg-auto mb-4">
-                                            <div class="d-flex flex-column justify-content-between">
-                                                <label class="form-label-sm" for="set_start_time">Start Time</label>
-                                                <div class="d-flex gap-2">
-                                                    <div class="time d-flex align-items-center gap-2">
-                                                        <div class="hours">12</div>
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="colon" width="5" height="19"
-                                                            viewBox="0 0 5 19">
-                                                            <use xlink:href="/css/common-icons.svg#date-colon"></use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        <div class="mins">59</div>
-                                                    </div>
-                                                    <div class="form-check form-switch form-switch-column mb-0">
-                                                        <input checked="" class="form-check-input" type="checkbox"
-                                                            role="switch" id="startTimeAMPM">
-                                                        <label class="form-check-label" for="startTimeAMPM">AM</label>
-                                                        <label class="form-check-label" for="startTimeAMPM">PM</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-auto mb-4">
-                                            <label class="form-label-sm" for="set_end_date">End Date<span
-                                                    class="mandatory">*</span></label>
-                                            <div class="position-relative">
-                                                <input type="" name=""
-                                                    class="form-control form-control-md js-single-date"
-                                                    placeholder="MM/DD/YYYY" id="set_end_date"
-                                                    aria-label="Set End Date">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date md" width="20" height="20"
-                                                    viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </div>
-                                        </div>
-                                        <div class="d-flex col-lg-auto mb-4">
-                                            <div class="d-flex flex-column justify-content-between">
-                                                <label class="form-label-sm" for="set_start_time">End Time</label>
-                                                <div class="d-flex gap-2">
-                                                    <div class="time d-flex align-items-center gap-2">
-                                                        <div class="hours">12</div>
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="colon" width="5" height="19"
-                                                            viewBox="0 0 5 19">
-                                                            <use xlink:href="/css/common-icons.svg#date-colon"></use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        <div class="mins">59</div>
-                                                    </div>
-                                                    <div class="form-check form-switch form-switch-column mb-0">
-                                                        <input checked="" class="form-check-input" type="checkbox"
-                                                            role="switch" id="endTimeAMPM">
-                                                        <label class="form-check-label" for="endTimeAMPM">AM</label>
-                                                        <label class="form-check-label" for="endTimeAMPM">PM</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-md-flex align-items-center gap-5">
-                                        <label class="form-label mb-lg-0">Total Billable Service Duration</label>
-                                        <div>
-                                            <label class="form-label-sm"
-                                                for="total_billable_service_duration_days">Days</label>
-                                            <input type="" class="form-control form-control-md text-center"
-                                                aria-label="Days" placeholder="0"
-                                                id="total_billable_service_duration_days">
-                                        </div>
-                                        <div>
-                                            <label class="form-label-sm">Hours</label>
-                                            <input type=""
-                                                class="form-control form-control-md form-control-md text-center"
-                                                aria-label="Hours" placeholder="00"
-                                                id="total_billable_service_duration_hours">
-                                        </div>
-                                        <div>
-                                            <label class="form-label-sm">Minutes</label>
-                                            <input type="" class="form-control form-control-md text-center"
-                                                aria-label="Minutes" placeholder="00"
-                                                id="total_billable_service_duration_minutes">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Select Dates & Times Duplicate Block -->
-                                <div class="d-flex justify-content-end mt-3">
-                                    <button class="btn btn-primary rounded">
-                                        <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
-                                            <use xlink:href="/css/common-icons.svg#plus">
-                                            </use>
-                                        </svg>
-                                        <span class="mx-2">Add Date</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- /Select Dates & Times -->
-                        </div>
-                        <div class="row between-section-segment-spacing">
-                            <div class="col-lg-12">
-                                <!-- Physical Address -->
-                                <div class="row mb-4">
-                                    <div class="col-lg-6 mb-4 align-self-center">
-                                        <h2 class="mb-lg-0">Physical Address</h2>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <a href="#" class="btn btn-primary rounded w-100 btn-has-icon">
-                                                    {{-- Updated by Shanila to Add
-                                                    svg icon--}}
-                                                    <svg aria-label="Add Manually" width="24" height="19"
-                                                        viewBox="0 0 24 19" fill="none">
-                                                        <use xlink:href="/css/common-icons.svg#check-add">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila
-                                                    --}}
-                                                    Add Manually
-                                                </a>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <a href="#" class="btn btn-primary rounded w-100" data-bs-toggle="modal"
-                                                    data-bs-target="#RequestfromUserModal">
-                                                    Request from User
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-4">
-                                            <p class="mt-3">List of most recently used address from the requester</p>
-                                        </div>
-                                        <!-- Button trigger modal | Add Address POPUP-->
-                                        <div class="col-lg-12 text-lg-end">
+                                        <div class="col-lg-6">
                                             <div class="mb-4">
-                                                <button type="button" class="btn btn-primary btn-sm rounded gap-2"
-                                                    data-bs-toggle="modal" data-bs-target="#addAddressModal">
-                                                    <svg aria-label="Add New Address" width="20" height="20"
-                                                        viewBox="0 0 20 20">
-                                                        <use xlink:href="/css/common-icons.svg#plus">
-                                                        </use>
-                                                    </svg>
-                                                    <span>Add New Address</span>
-                                                </button>
+                                                <p class="mt-3">List of most recently used address from the requester
+                                                </p>
                                             </div>
-                                        </div>
-                                        <!-- #Address Tables-->
-                                        <div class="col-lg-12 mb-4 border">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Address</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="odd js-selected-row">
-                                                        <td>
-                                                            1
-                                                        </td>
-                                                        <td>
-                                                            <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-                                                            </p>
-                                                        </td>
-                                                        <!-- for active class row integrated with JS  -->
-                                                        <td class="align-middle">
-                                                            {{-- Updated by Shanila to Add
-                                                            svg icon--}}
-                                                            <svg aria-label="Add" class="d-none js-tick" width="24"
-                                                                height="19" viewBox="0 0 24 19" fill="none">
-                                                                <use xlink:href="/css/common-icons.svg#check-add">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila
-                                                            --}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="even js-selected-row">
-                                                        <td>
-                                                            2
-                                                        </td>
-                                                        <td>
-                                                            <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-                                                            </p>
-                                                        </td>
-                                                        <!-- for active class row integrated with JS  -->
-                                                        <td class="align-middle">
-                                                            {{-- Updated by Shanila to Add
-                                                            svg icon--}}
-                                                            <svg aria-label="Add " class="d-none js-tick" width="24"
-                                                                height="19" viewBox="0 0 24 19" fill="none">
-                                                                <use xlink:href="/css/common-icons.svg#check-add">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila
-                                                            --}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="odd js-selected-row">
-                                                        <td>
-                                                            3
-                                                        </td>
-                                                        <td>
-                                                            <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-                                                            </p>
-                                                        </td>
-                                                        <!-- for active class row integrated with JS  -->
-                                                        <td class="align-middle">
-                                                            {{-- Updated by Shanila to Add
-                                                            svg icon--}}
-                                                            <svg aria-label="Add" class="d-none js-tick" width="24"
-                                                                height="19" viewBox="0 0 24 19" fill="none">
-                                                                <use xlink:href="/css/common-icons.svg#check-add">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila
-                                                            --}}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- #Address Tables-->
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-4">
-                                            <div class="d-lg-flex justify-content-between align-items-center">
-                                                <h3 class="mb-lg-0">Start Service Address</h3>
-                                                <a href="#"
-                                                    class="btn btn-primary btn-sm rounded js-show-start-service-hidden-content">End
-                                                    Address</a>
-                                            </div>
-                                        </div>
-                                        <div class="js-start-service-hidden-content hidden">
                                             <!-- Button trigger modal | Add Address POPUP-->
                                             <div class="col-lg-12 text-lg-end">
                                                 <div class="mb-4">
@@ -771,20 +688,20 @@
                                                             </td>
                                                             <td>
                                                                 <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA</p>
+                                                                    AUSTRALIA
+                                                                </p>
                                                             </td>
                                                             <!-- for active class row integrated with JS  -->
                                                             <td class="align-middle">
                                                                 {{-- Updated by Shanila to Add
                                                                 svg icon--}}
-                                                                <svg aria-label="Add " class="d-none js-tick" width="24"
+                                                                <svg aria-label="Add" class="d-none js-tick" width="24"
                                                                     height="19" viewBox="0 0 24 19" fill="none">
                                                                     <use xlink:href="/css/common-icons.svg#check-add">
                                                                     </use>
                                                                 </svg>
                                                                 {{-- End of update by Shanila
                                                                 --}}
-
                                                             </td>
                                                         </tr>
                                                         <tr class="even js-selected-row">
@@ -793,7 +710,8 @@
                                                             </td>
                                                             <td>
                                                                 <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA</p>
+                                                                    AUSTRALIA
+                                                                </p>
                                                             </td>
                                                             <!-- for active class row integrated with JS  -->
                                                             <td class="align-middle">
@@ -814,7 +732,8 @@
                                                             </td>
                                                             <td>
                                                                 <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA</p>
+                                                                    AUSTRALIA
+                                                                </p>
                                                             </td>
                                                             <!-- for active class row integrated with JS  -->
                                                             <td class="align-middle">
@@ -834,22 +753,137 @@
                                             </div>
                                             <!-- #Address Tables-->
                                         </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-4">
+                                                <div class="d-lg-flex justify-content-between align-items-center">
+                                                    <h3 class="mb-lg-0">Start Service Address</h3>
+                                                    <a href="#"
+                                                        class="btn btn-primary btn-sm rounded js-show-start-service-hidden-content">End
+                                                        Address</a>
+                                                </div>
+                                            </div>
+                                            <div class="js-start-service-hidden-content hidden">
+                                                <!-- Button trigger modal | Add Address POPUP-->
+                                                <div class="col-lg-12 text-lg-end">
+                                                    <div class="mb-4">
+                                                        <button type="button"
+                                                            class="btn btn-primary btn-sm rounded gap-2"
+                                                            data-bs-toggle="modal" data-bs-target="#addAddressModal">
+                                                            <svg aria-label="Add New Address" width="20" height="20"
+                                                                viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#plus">
+                                                                </use>
+                                                            </svg>
+                                                            <span>Add New Address</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- #Address Tables-->
+                                                <div class="col-lg-12 mb-4 border">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Address</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="odd js-selected-row">
+                                                                <td>
+                                                                    1
+                                                                </td>
+                                                                <td>
+                                                                    <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
+                                                                        AUSTRALIA</p>
+                                                                </td>
+                                                                <!-- for active class row integrated with JS  -->
+                                                                <td class="align-middle">
+                                                                    {{-- Updated by Shanila to Add
+                                                                    svg icon--}}
+                                                                    <svg aria-label="Add " class="d-none js-tick"
+                                                                        width="24" height="19" viewBox="0 0 24 19"
+                                                                        fill="none">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#check-add">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                                    --}}
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="even js-selected-row">
+                                                                <td>
+                                                                    2
+                                                                </td>
+                                                                <td>
+                                                                    <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
+                                                                        AUSTRALIA</p>
+                                                                </td>
+                                                                <!-- for active class row integrated with JS  -->
+                                                                <td class="align-middle">
+                                                                    {{-- Updated by Shanila to Add
+                                                                    svg icon--}}
+                                                                    <svg aria-label="Add " class="d-none js-tick"
+                                                                        width="24" height="19" viewBox="0 0 24 19"
+                                                                        fill="none">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#check-add">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                                    --}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="odd js-selected-row">
+                                                                <td>
+                                                                    3
+                                                                </td>
+                                                                <td>
+                                                                    <p>Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
+                                                                        AUSTRALIA</p>
+                                                                </td>
+                                                                <!-- for active class row integrated with JS  -->
+                                                                <td class="align-middle">
+                                                                    {{-- Updated by Shanila to Add
+                                                                    svg icon--}}
+                                                                    <svg aria-label="Add" class="d-none js-tick"
+                                                                        width="24" height="19" viewBox="0 0 24 19"
+                                                                        fill="none">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#check-add">
+                                                                        </use>
+                                                                    </svg>
+                                                                    {{-- End of update by Shanila
+                                                                    --}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- #Address Tables-->
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /Physical Address -->
                                 </div>
-                                <!-- /Physical Address -->
+                                <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                    <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
+                                    <button type="button" class="btn btn-primary rounded">Save as Draft</button>
+                                    <button type="submit" class="btn btn-primary rounded"
+                                        x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
+                                </div>
                             </div>
-                            <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
-                                <button type="button" class="btn btn-primary rounded">Save as Draft</button>
-                                <button type="submit" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
-                            </div>
-                        </div>
+                        </form>
+                        {{-- ended updated by shanila --}}
                     </div>
                     <!-- END: requester-info -->
                     <div class="tab-pane fade {{ $component == 'request-details' ? 'active show' : '' }}"
                         id="request-details" role="tabpanel" aria-labelledby="request-details-tab" tabindex="0">
+                        {{-- updated by shanila to add csrf and add form tag --}}
                         <form class="form">
+                            @csrf
                             <div class="col-md-12 mb-md-2">
                                 <h2>Industry Form</h2>
                                 <!-- Industry Form Begin -->
@@ -925,950 +959,982 @@
                     </div>
                     <div class="tab-pane fade {{ $component == 'payment-info' ? 'active show' : '' }}" id="payment-info"
                         role="tabpanel" aria-labelledby="payment-info-tab" tabindex="0">
-                        <h2>Payment Summary</h2>
-                        <div class="row">
-                            <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
-                                <div class="col-lg-10 mb-5">
-                                    <div class="d-flex flex-column gap-5">
-                                        <div class="row">
-                                            <label class="form-label mb-2 col-lg-6">Service 1 Total Rate:</label>
-                                            <label
-                                                class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">$00.00</label>
-                                            <div class="col-lg-3 col-6">
-                                                <input type="" name="" class="form-control form-control-md text-center"
-                                                    placeholder="$00.00">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="form-label mb-2 col-lg-6">Service 2 Total Rate:</label>
-                                            <label
-                                                class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
-                                            <div class="col-lg-3 col-md-6">
-                                                <input type="" name="" class="form-control form-control-md text-center"
-                                                    placeholder="$00.00">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="form-label mb-2 col-lg-6">Additional Charges:</label>
-                                            <label
-                                                class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
-                                            <div class="col-lg-3 col-md-6">
-                                                <input type="" name="" class="form-control form-control-md text-center"
-                                                    placeholder="$00.00">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-10 mb-5">
-                                    <h2>Discounts</h2>
-                                    <div class="d-flex gap-3 flex-column flex-md-row mb-4">
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" id="Coupon" name="discounts" type="radio"
-                                                tabindex="" checked="">
-                                            <label class="form-check-label" for="Coupon">Coupon</label>
-                                        </div>
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" id="$Amount" name="discounts" type="radio"
-                                                tabindex="">
-                                            <label class="form-check-label" for="$Amount">$ Amount</label>
-                                        </div>
-                                        <div class="form-check mb-0">
-                                            <input class="form-check-input" id="%Amount" name="discounts" type="radio"
-                                                tabindex="">
-                                            <label class="form-check-label" for="%Amount">% Amount</label>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center">Coupon
-                                            Code</label>
-                                        <div class="col-lg-4 col-md-3 mb-3 mb-md-0">
-                                            <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Code">
-                                        </div>
-                                        <div class="col-md-3 align-self-center">
-                                            <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-10 mb-5">
-                                    <h2>Additional Customer Charge</h2>
-                                    <div class="input-group">
-                                        <input type="" name="" class="form-control form-control-md"
-                                            placeholder="Enter Charge Label">
-                                        <input type="" name="" class="form-control form-control-md text-center"
-                                            placeholder="$00.00">
-                                    </div>
-                                    <div class="text-lg-end">
-                                        <a href="#" class="fw-bold">
-                                            <small>
-                                                Add Additional Charges
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Add Additional Charges" class="me-1" width="20"
-                                                    height="21" viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </small>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-10 mb-5">
-                                    <h2>Additional Provider Payment</h2>
-                                    <div class="input-group mb-2">
-                                        <input type="" name="" class="form-control form-control-md"
-                                            placeholder="Enter Charge Label">
-                                        <input type="" name="" class="form-control form-control-md text-center"
-                                            placeholder="$00.00">
-                                    </div>
-                                    <div
-                                        class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="ChargetoCustomer" name=""
-                                                type="checkbox" tabindex="">
-                                            <label class="form-check-label" for="ChargetoCustomer"><small>Charge to
-                                                    Customer</small></label>
-                                        </div>
-                                        <a href="#" class="fw-bold">
-                                            <small>
-                                                Add Additional Charges
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Add Additional Charges" class="me-1" width="20"
-                                                    height="21" viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </small>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 ps-lg-5 d-md-flex flex-md-wrap" style="
-                  ">
-                                <!-- Booking Schedule -->
-                                <div class="col-md-12 border p-3 tabular-nums mb-lg-5 mb-4">
-                                    <div class="text-center">
-                                        <h3 class="text-primary">Booking Schedule</h3>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3 mb-lg-0">
-                                            <div class="title">Service 1 Bookings</div>
-                                            <div class="d-flex flex-column gap-3">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 1:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 2:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 3:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 4:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 5:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
+                        {{-- updated by shanila to add csrf and add form tag --}}
+                        <form class="form">
+                            @csrf
+                            <h2>Payment Summary</h2>
+                            <div class="row">
+                                <div class="col-lg-6 mb-4 pe-lg-5 pt-5">
+                                    <div class="col-lg-10 mb-5">
+                                        <div class="d-flex flex-column gap-5">
+                                            <div class="row">
+                                                <label class="form-label mb-2 col-lg-6">Service 1 Total Rate:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-6 align-self-center">$00.00</label>
+                                                <div class="col-lg-3 col-6">
+                                                    <input type="" name=""
+                                                        class="form-control form-control-md text-center"
+                                                        placeholder="$00.00">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="title">Service 2 Bookings</div>
-                                            <div class="d-flex flex-column gap-3">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 1:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
+                                            <div class="row">
+                                                <label class="form-label mb-2 col-lg-6">Service 2 Total Rate:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <input type="" name=""
+                                                        class="form-control form-control-md text-center"
+                                                        placeholder="$00.00">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 2:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 3:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 4:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 5:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr class="border-separate-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="label">Booking 5:</div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="date">01/12/2022</div>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="form-label mb-2 col-lg-6">Additional Charges:</label>
+                                                <label
+                                                    class="form-label-sm mb-0 col-lg-3 col-md-6 align-self-center">$00.00</label>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <input type="" name=""
+                                                        class="form-control form-control-md text-center"
+                                                        placeholder="$00.00">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- /Booking Schedule -->
-                                <!-- Billing Notes -->
-                                <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-0">
-                                    <label class="form-label">
-                                        Billing Notes
-                                    </label>
-                                    <textarea class="form-control" rows="5" cols="5"></textarea>
-                                </div>
-                                <!-- /Billing Notes -->
-                                <!-- Payment Notes -->
-                                <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
-                                    <label class="form-label">
-                                        Payment Notes
-                                    </label>
-                                    <textarea class="form-control" rows="5" cols="5"></textarea>
-                                </div>
-                                <!-- /Payment Notes -->
-                            </div>
-                        </div>
-                        <div class="row between-section-segment-spacing">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="d-flex gap-3 p-2">
-                                            <label class="form-label mb-0">Discount:</label>
-                                            <div class="align-self-center text-black">$00.00</div>
+                                    <div class="col-lg-10 mb-5">
+                                        <h2>Discounts</h2>
+                                        <div class="d-flex gap-3 flex-column flex-md-row mb-4">
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" id="Coupon" name="discounts"
+                                                    type="radio" tabindex="" checked="">
+                                                <label class="form-check-label" for="Coupon">Coupon</label>
+                                            </div>
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" id="$Amount" name="discounts"
+                                                    type="radio" tabindex="">
+                                                <label class="form-check-label" for="$Amount">$ Amount</label>
+                                            </div>
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" id="%Amount" name="discounts"
+                                                    type="radio" tabindex="">
+                                                <label class="form-check-label" for="%Amount">% Amount</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-lg-12">
-                                        <div class="d-flex gap-3 bg-gray p-2">
-                                            <label class="form-label mb-0">Total Price:</label>
-                                            <div class="align-self-center text-black">$00.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="row">
-                                            <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter Override
-                                                Amount:</label>
-                                            <div class="col-md-3 mb-3 mb-md-0">
-                                                <input type="" name="" class="form-control form-control-md text-center"
-                                                    placeholder="$00.00">
+                                        <div class="row mb-4">
+                                            <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center">Coupon
+                                                Code</label>
+                                            <div class="col-lg-4 col-md-3 mb-3 mb-md-0">
+                                                <input type="" name="" class="form-control form-control-md"
+                                                    placeholder="Enter Code">
                                             </div>
                                             <div class="col-md-3 align-self-center">
                                                 <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <!-- Payment Preference -->
-                                <div class="row mb-5">
-                                    <h2>Payment Preference:</h2>
-                                    <div class="mb-4">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="PayLater" name="PaymentPreference"
-                                                type="radio" tabindex="" />
-                                            <label class="form-check-label" for="PayLater"> Pay Later</label>
+                                    <div class="col-lg-10 mb-5">
+                                        <h2>Additional Customer Charge</h2>
+                                        <div class="input-group">
+                                            <input type="" name="" class="form-control form-control-md"
+                                                placeholder="Enter Charge Label">
+                                            <input type="" name="" class="form-control form-control-md text-center"
+                                                placeholder="$00.00">
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="PayNow" name="PaymentPreference"
-                                                type="radio" tabindex="" />
-                                            <label class="form-check-label" for="PayNow"> Pay Now</label>
-                                        </div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <input type="" name="" class="form-control form-control-md"
-                                            placeholder="Enter Card number">
-                                        <input type="" name="" class="form-control form-control-md text-center"
-                                            placeholder="MM/YY">
-                                        <input type="" name="" class="form-control form-control-md text-center"
-                                            placeholder="CVC">
-                                    </div>
-                                    <div class="text-lg-end">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" id="SaveforFuturePayments"
-                                                name="PaymentPreference" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="SaveforFuturePayments"> Save for Future
-                                                Payments</label>
+                                        <div class="text-lg-end">
+                                            <a href="#" class="fw-bold">
+                                                <small>
+                                                    Add Additional Charges
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Add Additional Charges" class="me-1" width="20"
+                                                        height="21" viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </small>
+                                            </a>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- /Payment Preference -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <div class="row between-section-segment-spacing">
-                                    <div class="col-lg-6 mb-4">
-                                        <!-- Provider Notes -->
-                                        <div class="my-lg-5">
-                                            <label class="form-label">
-                                                Provider Notes
-                                            </label>
-                                            <textarea class="form-control" rows="4" cols="4"></textarea>
+                                    <div class="col-lg-10 mb-5">
+                                        <h2>Additional Provider Payment</h2>
+                                        <div class="input-group mb-2">
+                                            <input type="" name="" class="form-control form-control-md"
+                                                placeholder="Enter Charge Label">
+                                            <input type="" name="" class="form-control form-control-md text-center"
+                                                placeholder="$00.00">
                                         </div>
-                                        <!-- /Provider Notes -->
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <!-- Customer Notes -->
-                                        <div class="my-lg-5">
-                                            <label class="form-label">
-                                                Customer Notes
-                                            </label>
-                                            <textarea class="form-control" rows="4" cols="4"></textarea>
-                                        </div>
-                                        <!-- /Customer Notes -->
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <!-- Private Notes -->
-                                        <div class="my-lg-5">
-                                            <label class="form-label">
-                                                Private Notes
-                                            </label>
-                                            <textarea class="form-control" rows="4" cols="4"></textarea>
-                                        </div>
-                                        <!-- /Private Notes -->
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <!-- Tags -->
-                                        <div class="my-lg-5">
-                                            <label class="form-label" for="tags">
-                                                Tags
-                                            </label>
-                                            <div class="mb-3">
-                                                <select data-placeholder="" multiple class="form-select chosen-select"
-                                                    tabindex="" id="tags">
-                                                    <option value=""></option>
-                                                    <option selected>Option 1</option>
-                                                    <option selected>Option 2</option>
-                                                </select>
+                                        <div
+                                            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" id="ChargetoCustomer" name=""
+                                                    type="checkbox" tabindex="">
+                                                <label class="form-check-label" for="ChargetoCustomer"><small>Charge to
+                                                        Customer</small></label>
                                             </div>
-                                            <div class="d-lg-flex flex-wrap gap-3 mb-3">
-                                                <div class="tag">@admin_company</div>
-                                                <div class="tag">@booking_start_at</div>
-                                                <div class="tag">@consumer</div>
-                                                <div class="tag">@booking_end_at</div>
-                                                <div class="tag">@booking_duration</div>
-                                            </div>
-                                            <div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" id="Requester" name=""
-                                                        type="checkbox" tabindex="" />
-                                                    <label class="form-check-label" for="Requester">Requester</label>
+                                            <a href="#" class="fw-bold">
+                                                <small>
+                                                    Add Additional Charges
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Add Additional Charges" class="me-1" width="20"
+                                                        height="21" viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 ps-lg-5 d-md-flex flex-md-wrap" style="">
+                                    <!-- Booking Schedule -->
+                                    <div class="col-md-12 border p-3 tabular-nums mb-lg-5 mb-4">
+                                        <div class="text-center">
+                                            <h3 class="text-primary">Booking Schedule</h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3 mb-lg-0">
+                                                <div class="title">Service 1 Bookings</div>
+                                                <div class="d-flex flex-column gap-3">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 1:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 2:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 3:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 4:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 5:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" id="ServiceConsumers" name=""
-                                                        type="checkbox" tabindex="" />
-                                                    <label class="form-check-label" for="ServiceConsumers">Service
-                                                        Consumer(s)</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="title">Service 2 Bookings</div>
+                                                <div class="d-flex flex-column gap-3">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 1:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 2:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 3:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 4:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 5:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <hr class="border-separate-sm">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="label">Booking 5:</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="date">01/12/2022</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" id="Participants" name=""
-                                                        type="checkbox" tabindex="" />
-                                                    <label class="form-check-label"
-                                                        for="Participants">Participant(s)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Booking Schedule -->
+                                    <!-- Billing Notes -->
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-0">
+                                        <label class="form-label">
+                                            Billing Notes
+                                        </label>
+                                        <textarea class="form-control" rows="5" cols="5"></textarea>
+                                    </div>
+                                    <!-- /Billing Notes -->
+                                    <!-- Payment Notes -->
+                                    <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
+                                        <label class="form-label">
+                                            Payment Notes
+                                        </label>
+                                        <textarea class="form-control" rows="5" cols="5"></textarea>
+                                    </div>
+                                    <!-- /Payment Notes -->
+                                </div>
+                            </div>
+                            <div class="row between-section-segment-spacing">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex gap-3 p-2">
+                                                <label class="form-label mb-0">Discount:</label>
+                                                <div class="align-self-center text-black">$00.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex gap-3 bg-gray p-2">
+                                                <label class="form-label mb-0">Total Price:</label>
+                                                <div class="align-self-center text-black">$00.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter
+                                                    Override
+                                                    Amount:</label>
+                                                <div class="col-md-3 mb-3 mb-md-0">
+                                                    <input type="" name=""
+                                                        class="form-control form-control-md text-center"
+                                                        placeholder="$00.00">
+                                                </div>
+                                                <div class="col-md-3 align-self-center">
+                                                    <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /Tags -->
-                                    </div>
-                                </div>
-                                <!-- Add Document -->
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-5 mb-4">
-                                        <a href="#" class="btn btn-primary rounded btn-has-icon w-100"
-                                            data-bs-toggle="modal" data-bs-target="#addDocument">
-                                            <svg aria-label="Add Document" width="20" height="20" viewBox="0 0 20 20">
-                                                <use xlink:href="/css/common-icons.svg#plus">
-                                                </use>
-                                            </svg>
-                                            Add Document
-                                        </a>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 col-md-3 col-lg-2">
-                                            <img src="/tenant/images/img-placeholder-document.jpg"
-                                                alt="img-placeholder-document" class="w-100">
-                                            <p class="font-family-secondary"><small>File Name</small></p>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-2">
-                                            <img src="/tenant/images/img-placeholder-document.jpg"
-                                                alt="img-placeholder-document" class="w-100">
-                                            <p class="font-family-secondary"><small>File Name</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Add Document -->
-                            </div>
-                        </div>
-                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                            <button type="button" class="btn btn-outline-dark rounded"
-                                x-on:click="$wire.switch('request-details')">Back</button>
-                            <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
-                            <button type="button" class="btn btn-primary rounded"
-                                x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}"
-                        id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
-                        <!-- Scheduling Details -->
-                        <div class="mb-5">
-                            <h2>Scheduling Details</h2>
-                            <div class="d-flex flex-column gap-3 mt-5">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4">
-                                        <label class="col-form-label">Date & Time:</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-8 align-self-center">
-                                        <div class="font-family-tertiary">(10/25/2022 13:35 - 10/25/2022 13:35)</div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4">
-                                        <label class="col-form-label">Frequency:</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-8 align-self-center">
-                                        <div class="font-family-tertiary">One-Time Request</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- /Scheduling Details -->
-                        <!-- Service Request -->
-                        <div class="mb-5">
-                            <h2>Service Request (10/25/2022 13:35 - 10/25/2022 13:35)</h2>
-                            <!-- Services 1 -->
-                            <div class="my-5">
-                                <h2>Services 1</h2>
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Accommodation:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">Sign Language Interpreting Services</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Service:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">English to Arabic Sign Language</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Specialization:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">Medical, Conference</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Service Type:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">In person</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Number of Providers:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">13</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Total Billable Time:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">1 hour(s) 0 minute(s)</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Total Cost:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$00.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Services 1 -->
-                            <!-- Services 2 -->
-                            <div class="my-5">
-                                <h2>Services 2</h2>
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Accommodation:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">Sign Language Interpreting Services</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Service:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">English to Arabic Sign Language</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Specialization:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">Medical, Conference</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Service Type:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">In person</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Number of Providers:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">13</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Service Consumer:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">John Wick</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Participant(s):</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">Scott Hall</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Total Billable Time:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">1 hour(s) 0 minute(s)</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Total Cost:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$00.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Services 2 -->
-                            <!-- Service Billing -->
-                            <div class="my-5">
-                                <h2>Service Billing</h2>
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Total Service Rate:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$6,500.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Differentials:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$70.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Specializations:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$70.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label">Total Service Charges:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$26.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4">
-                                            <label class="col-form-label fw-semibold">Service Total:</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary fw-medium">$6,596.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Service Billing -->
-                            <!-- Booking Total -->
-                            <div class="my-5">
-                                <h2>Booking Total</h2>
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4">
-                                            <label class="col-form-label">Total Service Rate:</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$6,500.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4">
-                                            <label class="col-form-label">Total Differentials:</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$70.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4">
-                                            <label class="col-form-label">Total Service Charges:</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$27.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4">
-                                            <label class="col-form-label">Additional Customer Charges:</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 align-self-center">
-                                            <div class="font-family-tertiary">$26.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Booking Total -->
-                            <!-- Gross Total - Discount - Net Total -->
-                            <div class="my-5">
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-3">
-                                            <div class="fw-semibold text-primary fs-5 font-family-tertiary">Gross Total:
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 align-self-center">
-                                            <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,500.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-3">
-                                            <div class="fw-semibold text-primary fs-5 font-family-tertiary">Discount:
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 align-self-center">
-                                            <div class="fw-semibold text-primary fs-5 font-family-tertiary">$00.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-3">
-                                            <div class="fw-semibold text-primary fs-5 font-family-tertiary">Net Total:
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 align-self-center">
-                                            <div class="fw-semibold text-primary fs-5 font-family-tertiary">$6,596.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Gross Total - Discount - Net Total -->
-                            <!-- Assign Admin-Staff & admin-Staff Team -->
-                            <div class="my-5">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="AssignAdminStaff&adminStaffTeam" name=""
-                                        type="checkbox" tabindex="" />
-                                    <label class="form-check-label" for="AssignAdminStaff&adminStaffTeam">Assign
-                                        Admin-Staff & admin-Staff Team</label>
-                                </div>
-                                <div class="d-flex flex-column flex-md-row gap-2 mb-4">
-                                    <a href="#" class="btn btn-outline-dark btn-sm rounded" data-bs-toggle="modal"
-                                        data-bs-target="#assignAdminStaffModal">
-                                        Assign Admin-Staff
-                                    </a>
-                                    <!-- Programming note: only show on admin-end -->
-                                    <a href="#" class="btn btn-primary btn-sm rounded" data-bs-toggle="modal"
-                                        data-bs-target="#assignAdminStaffTeamModal">
-                                        Assign Admin-Staff Team
-                                    </a>
-                                    <!-- /Programming note: only show on admin-end -->
-                                </div>
-                                <!-- Programming note: only show on admin-end -->
+                            <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="d-flex justify-content-end mb-1">
-                                        <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            {{-- Updated by Shanila to Add
-                                            svg icon--}}
-                                            <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                </use>
-                                            </svg>
-                                            {{-- End of update by Shanila
-                                            --}}
-                                        </a>
+                                    <!-- Payment Preference -->
+                                    <div class="row mb-5">
+                                        <h2>Payment Preference:</h2>
+                                        <div class="mb-4">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" id="PayLater" name="PaymentPreference"
+                                                    type="radio" tabindex="" />
+                                                <label class="form-check-label" for="PayLater"> Pay Later</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" id="PayNow" name="PaymentPreference"
+                                                    type="radio" tabindex="" />
+                                                <label class="form-check-label" for="PayNow"> Pay Now</label>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="" name="" class="form-control form-control-md"
+                                                placeholder="Enter Card number">
+                                            <input type="" name="" class="form-control form-control-md text-center"
+                                                placeholder="MM/YY">
+                                            <input type="" name="" class="form-control form-control-md text-center"
+                                                placeholder="CVC">
+                                        </div>
+                                        <div class="text-lg-end">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" id="SaveforFuturePayments"
+                                                    name="PaymentPreference" type="checkbox" tabindex="" />
+                                                <label class="form-check-label" for="SaveforFuturePayments"> Save for
+                                                    Future
+                                                    Payments</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover border">
-                                            <thead>
-                                                <tr>
-                                                    <th class="align-middle">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex="" />
-                                                        </div>
-                                                    </th>
-                                                    <th class="align-middle">
-                                                        ADMIN-STAFF TEAM
-                                                    </th>
-                                                    <th class="align-middle">
-                                                        PERMISSION
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="align-middle">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex="" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="d-flex gap-2 align-items-center">
-                                                            <div>
-                                                                <img width="50" height="50"
-                                                                    src="/tenant/images/portrait/small/image.png"
-                                                                    class="rounded-circle" alt="Image">
-                                                            </div>
-                                                            <div class="pt-2">
-                                                                <div class="font-family-secondary leading-none">Fast
-                                                                    Talkers</div>
-                                                                <a href="#"
-                                                                    class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="form-check form-switch">
-                                                            <label class="form-check-label"
-                                                                for="Visible">Visible</label>
-                                                            <input class="form-check-input" type="checkbox"
-                                                                role="switch" id="Visible">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="align-middle">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex="" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="d-flex gap-2 align-items-center">
-                                                            <div>
-                                                                <img width="50" height="50"
-                                                                    src="/tenant/images/portrait/small/image.png"
-                                                                    class="rounded-circle" alt="Image">
-                                                            </div>
-                                                            <div class="pt-2">
-                                                                <div class="font-family-secondary leading-none">Fast
-                                                                    Talkers</div>
-                                                                <a href="#"
-                                                                    class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="form-check form-switch">
-                                                            <label class="form-check-label" for="Manage">Manage</label>
-                                                            <input checked class="form-check-input" type="checkbox"
-                                                                role="switch" id="Manage">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- Programming note: only show on admin-end -->
-                            </div>
-                            <!-- /Assign Admin-Staff & admin-Staff Team -->
-                            <!-- Checkbox Options -->
-                            <div class="d-grid lg:grid-cols-3 sm:grid-cols-2 gap-2 my-5 col-lg-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ExcludeAllNotifications" name="" type="checkbox"
-                                        tabindex="">
-                                    <label class="form-check-label form-check-label-sm fw-semibold"
-                                        for="ExcludeAllNotifications">Exclude All Notifications</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ExcludeParticipantNotifications" name=""
-                                        type="checkbox" tabindex="">
-                                    <label class="form-check-label form-check-label-sm fw-semibold"
-                                        for="ExcludeParticipantNotifications">Exclude Participant Notifications</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ExcludeRequesterNotifications" name=""
-                                        type="checkbox" tabindex="">
-                                    <label class="form-check-label form-check-label-sm fw-semibold"
-                                        for="ExcludeRequesterNotifications">Exclude Requester Notifications</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ExcludeProviderNotifications" name=""
-                                        type="checkbox" tabindex="">
-                                    <label class="form-check-label form-check-label-sm fw-semibold"
-                                        for="ExcludeProviderNotifications">Exclude Provider Notifications</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ExcludeServiceConsumerNotifications" name=""
-                                        type="checkbox" tabindex="">
-                                    <label class="form-check-label form-check-label-sm fw-semibold"
-                                        for="ExcludeServiceConsumerNotifications">Exclude Service Consumer
-                                        Notifications</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="ExcludeAdminNotifications" name=""
-                                        type="checkbox" tabindex="">
-                                    <label class="form-check-label form-check-label-sm fw-semibold"
-                                        for="ExcludeAdminNotifications">Exclude Admin Notifications</label>
+                                    <!-- /Payment Preference -->
                                 </div>
                             </div>
-                            <!-- /Checkbox Options -->
+                            <div class="row">
+                                <div class="col-lg-11">
+                                    <div class="row between-section-segment-spacing">
+                                        <div class="col-lg-6 mb-4">
+                                            <!-- Provider Notes -->
+                                            <div class="my-lg-5">
+                                                <label class="form-label">
+                                                    Provider Notes
+                                                </label>
+                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                            </div>
+                                            <!-- /Provider Notes -->
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <!-- Customer Notes -->
+                                            <div class="my-lg-5">
+                                                <label class="form-label">
+                                                    Customer Notes
+                                                </label>
+                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                            </div>
+                                            <!-- /Customer Notes -->
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <!-- Private Notes -->
+                                            <div class="my-lg-5">
+                                                <label class="form-label">
+                                                    Private Notes
+                                                </label>
+                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                            </div>
+                                            <!-- /Private Notes -->
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <!-- Tags -->
+                                            <div class="my-lg-5">
+                                                <label class="form-label" for="tags">
+                                                    Tags
+                                                </label>
+                                                <div class="mb-3">
+                                                    <select data-placeholder="" multiple
+                                                        class="form-select chosen-select" tabindex="" id="tags">
+                                                        <option value=""></option>
+                                                        <option selected>Option 1</option>
+                                                        <option selected>Option 2</option>
+                                                    </select>
+                                                </div>
+                                                <div class="d-lg-flex flex-wrap gap-3 mb-3">
+                                                    <div class="tag">@admin_company</div>
+                                                    <div class="tag">@booking_start_at</div>
+                                                    <div class="tag">@consumer</div>
+                                                    <div class="tag">@booking_end_at</div>
+                                                    <div class="tag">@booking_duration</div>
+                                                </div>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" id="Requester" name=""
+                                                            type="checkbox" tabindex="" />
+                                                        <label class="form-check-label"
+                                                            for="Requester">Requester</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" id="ServiceConsumers" name=""
+                                                            type="checkbox" tabindex="" />
+                                                        <label class="form-check-label" for="ServiceConsumers">Service
+                                                            Consumer(s)</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" id="Participants" name=""
+                                                            type="checkbox" tabindex="" />
+                                                        <label class="form-check-label"
+                                                            for="Participants">Participant(s)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /Tags -->
+                                        </div>
+                                    </div>
+                                    <!-- Add Document -->
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-5 mb-4">
+                                            <a href="#" class="btn btn-primary rounded btn-has-icon w-100"
+                                                data-bs-toggle="modal" data-bs-target="#addDocument">
+                                                <svg aria-label="Add Document" width="20" height="20"
+                                                    viewBox="0 0 20 20">
+                                                    <use xlink:href="/css/common-icons.svg#plus">
+                                                    </use>
+                                                </svg>
+                                                Add Document
+                                            </a>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 col-md-3 col-lg-2">
+                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                    alt="img-placeholder-document" class="w-100">
+                                                <p class="font-family-secondary"><small>File Name</small></p>
+                                            </div>
+                                            <div class="col-6 col-md-3 col-lg-2">
+                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                    alt="img-placeholder-document" class="w-100">
+                                                <p class="font-family-secondary"><small>File Name</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Add Document -->
+                                </div>
+                            </div>
                             <div
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click="$wire.switch('payment-info')">Back</button>
-                                <button type="" class="btn btn-primary rounded">Save as Draft</button>
-                                <button type="" class="btn btn-primary rounded">Request Feedback</button>
-                                <div class="dropdown">
-                                    <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"
-                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">Confirm</button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
-                                        <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
-                                    </ul>
+                                    x-on:click="$wire.switch('request-details')">Back</button>
+                                <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
+                                <button type="button" class="btn btn-primary rounded"
+                                    x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
+                            </div>
+                        </form>
+                        {{-- ended update by shanila --}}
+                    </div>
+                    <div class="tab-pane fade {{ $component == 'booking-summary' ? 'active show' : '' }}"
+                        id="booking-summary" role="tabpanel" aria-labelledby="booking-summary-tab" tabindex="0">
+                        {{-- updated by shanila to add csrf and add form tag --}}
+                        <form class="form">
+                            @csrf
+
+                            <!-- Scheduling Details -->
+                            <div class="mb-5">
+                                <h2>Scheduling Details</h2>
+                                <div class="d-flex flex-column gap-3 mt-5">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label">Date & Time:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-8 align-self-center">
+                                            <div class="font-family-tertiary">(10/25/2022 13:35 - 10/25/2022 13:35)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4">
+                                            <label class="col-form-label">Frequency:</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-8 align-self-center">
+                                            <div class="font-family-tertiary">One-Time Request</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- /Service Request -->
+                            <!-- /Scheduling Details -->
+                            <!-- Service Request -->
+                            <div class="mb-5">
+                                <h2>Service Request (10/25/2022 13:35 - 10/25/2022 13:35)</h2>
+                                <!-- Services 1 -->
+                                <div class="my-5">
+                                    <h2>Services 1</h2>
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Accommodation:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">Sign Language Interpreting Services
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Service:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">English to Arabic Sign Language</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Specialization:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">Medical, Conference</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Service Type:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">In person</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Number of Providers:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">13</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Total Billable Time:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">1 hour(s) 0 minute(s)</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Total Cost:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$00.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Services 1 -->
+                                <!-- Services 2 -->
+                                <div class="my-5">
+                                    <h2>Services 2</h2>
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Accommodation:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">Sign Language Interpreting Services
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Service:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">English to Arabic Sign Language</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Specialization:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">Medical, Conference</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Service Type:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">In person</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Number of Providers:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">13</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Service Consumer:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">John Wick</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Participant(s):</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">Scott Hall</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Total Billable Time:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">1 hour(s) 0 minute(s)</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Total Cost:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$00.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Services 2 -->
+                                <!-- Service Billing -->
+                                <div class="my-5">
+                                    <h2>Service Billing</h2>
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Total Service Rate:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$6,500.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Differentials:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$70.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Specializations:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$70.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label">Total Service Charges:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$26.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <label class="col-form-label fw-semibold">Service Total:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary fw-medium">$6,596.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Service Billing -->
+                                <!-- Booking Total -->
+                                <div class="my-5">
+                                    <h2>Booking Total</h2>
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <label class="col-form-label">Total Service Rate:</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$6,500.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <label class="col-form-label">Total Differentials:</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$70.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <label class="col-form-label">Total Service Charges:</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$27.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <label class="col-form-label">Additional Customer Charges:</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 align-self-center">
+                                                <div class="font-family-tertiary">$26.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Booking Total -->
+                                <!-- Gross Total - Discount - Net Total -->
+                                <div class="my-5">
+                                    <div class="d-flex flex-column gap-3">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3">
+                                                <div class="fw-semibold text-primary fs-5 font-family-tertiary">Gross
+                                                    Total:
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 align-self-center">
+                                                <div class="fw-semibold text-primary fs-5 font-family-tertiary">
+                                                    $6,500.00
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3">
+                                                <div class="fw-semibold text-primary fs-5 font-family-tertiary">
+                                                    Discount:
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 align-self-center">
+                                                <div class="fw-semibold text-primary fs-5 font-family-tertiary">$00.00
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3">
+                                                <div class="fw-semibold text-primary fs-5 font-family-tertiary">Net
+                                                    Total:
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 align-self-center">
+                                                <div class="fw-semibold text-primary fs-5 font-family-tertiary">
+                                                    $6,596.00
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Gross Total - Discount - Net Total -->
+                                <!-- Assign Admin-Staff & admin-Staff Team -->
+                                <div class="my-5">
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="AssignAdminStaff&adminStaffTeam" name=""
+                                            type="checkbox" tabindex="" />
+                                        <label class="form-check-label" for="AssignAdminStaff&adminStaffTeam">Assign
+                                            Admin-Staff & admin-Staff Team</label>
+                                    </div>
+                                    <div class="d-flex flex-column flex-md-row gap-2 mb-4">
+                                        <a href="#" class="btn btn-outline-dark btn-sm rounded" data-bs-toggle="modal"
+                                            data-bs-target="#assignAdminStaffModal">
+                                            Assign Admin-Staff
+                                        </a>
+                                        <!-- Programming note: only show on admin-end -->
+                                        <a href="#" class="btn btn-primary btn-sm rounded" data-bs-toggle="modal"
+                                            data-bs-target="#assignAdminStaffTeamModal">
+                                            Assign Admin-Staff Team
+                                        </a>
+                                        <!-- /Programming note: only show on admin-end -->
+                                    </div>
+                                    <!-- Programming note: only show on admin-end -->
+                                    <div class="col-lg-6">
+                                        <div class="d-flex justify-content-end mb-1">
+                                            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                {{-- Updated by Shanila to Add
+                                                svg icon--}}
+                                                <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                    <use xlink:href="/css/common-icons.svg#pencil">
+                                                    </use>
+                                                </svg>
+                                                {{-- End of update by Shanila
+                                                --}}
+                                            </a>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover border">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="align-middle">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="" name=""
+                                                                    type="checkbox" tabindex="" />
+                                                            </div>
+                                                        </th>
+                                                        <th class="align-middle">
+                                                            ADMIN-STAFF TEAM
+                                                        </th>
+                                                        <th class="align-middle">
+                                                            PERMISSION
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="align-middle">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="" name=""
+                                                                    type="checkbox" tabindex="" />
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                <div>
+                                                                    <img width="50" height="50"
+                                                                        src="/tenant/images/portrait/small/image.png"
+                                                                        class="rounded-circle" alt="Image">
+                                                                </div>
+                                                                <div class="pt-2">
+                                                                    <div class="font-family-secondary leading-none">Fast
+                                                                        Talkers</div>
+                                                                    <a href="#"
+                                                                        class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="form-check form-switch">
+                                                                <label class="form-check-label"
+                                                                    for="Visible">Visible</label>
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    role="switch" id="Visible">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-middle">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" id="" name=""
+                                                                    type="checkbox" tabindex="" />
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                <div>
+                                                                    <img width="50" height="50"
+                                                                        src="/tenant/images/portrait/small/image.png"
+                                                                        class="rounded-circle" alt="Image">
+                                                                </div>
+                                                                <div class="pt-2">
+                                                                    <div class="font-family-secondary leading-none">Fast
+                                                                        Talkers</div>
+                                                                    <a href="#"
+                                                                        class="font-family-secondary"><small>fasttalker@gmail.com</small></a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="form-check form-switch">
+                                                                <label class="form-check-label"
+                                                                    for="Manage">Manage</label>
+                                                                <input checked class="form-check-input" type="checkbox"
+                                                                    role="switch" id="Manage">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Programming note: only show on admin-end -->
+                                </div>
+                                <!-- /Assign Admin-Staff & admin-Staff Team -->
+                                <!-- Checkbox Options -->
+                                <div class="d-grid lg:grid-cols-3 sm:grid-cols-2 gap-2 my-5 col-lg-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="ExcludeAllNotifications" name=""
+                                            type="checkbox" tabindex="">
+                                        <label class="form-check-label form-check-label-sm fw-semibold"
+                                            for="ExcludeAllNotifications">Exclude All Notifications</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="ExcludeParticipantNotifications" name=""
+                                            type="checkbox" tabindex="">
+                                        <label class="form-check-label form-check-label-sm fw-semibold"
+                                            for="ExcludeParticipantNotifications">Exclude Participant
+                                            Notifications</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="ExcludeRequesterNotifications" name=""
+                                            type="checkbox" tabindex="">
+                                        <label class="form-check-label form-check-label-sm fw-semibold"
+                                            for="ExcludeRequesterNotifications">Exclude Requester Notifications</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="ExcludeProviderNotifications" name=""
+                                            type="checkbox" tabindex="">
+                                        <label class="form-check-label form-check-label-sm fw-semibold"
+                                            for="ExcludeProviderNotifications">Exclude Provider Notifications</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="ExcludeServiceConsumerNotifications" name=""
+                                            type="checkbox" tabindex="">
+                                        <label class="form-check-label form-check-label-sm fw-semibold"
+                                            for="ExcludeServiceConsumerNotifications">Exclude Service Consumer
+                                            Notifications</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="ExcludeAdminNotifications" name=""
+                                            type="checkbox" tabindex="">
+                                        <label class="form-check-label form-check-label-sm fw-semibold"
+                                            for="ExcludeAdminNotifications">Exclude Admin Notifications</label>
+                                    </div>
+                                </div>
+                                <!-- /Checkbox Options -->
+                                <div
+                                    class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                    <button type="button" class="btn btn-outline-dark rounded"
+                                        x-on:click="$wire.switch('payment-info')">Back</button>
+                                    <button type="" class="btn btn-primary rounded">Save as Draft</button>
+                                    <button type="" class="btn btn-primary rounded">Request Feedback</button>
+                                    <div class="dropdown">
+                                        <button type="" class="btn btn-primary rounded dropdown-toggle w-100 h-100"
+                                            type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Confirm</button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Confirm + Invite</a></li>
+                                            <li><a class="dropdown-item" href="#">Confirm + Assign</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Service Request -->
+                        </form>
+                        {{-- ended update by shanila --}}
+
                     </div>
                 </div>
                 <!-- END: Assignment Booking Form -->

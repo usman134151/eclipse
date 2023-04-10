@@ -68,284 +68,116 @@
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile"
                             role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
                             {{-- Tab Panes --}}
-                            <div class="row mt-2 mb-5">
-                                {{-- BEGIN: Profile --}}
-                                <div class="col-12 text-center">
-                                    <div class="d-inline-block position-relative">
-                                        <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
-                                            class="img-fluid rounded-circle" alt="Provider Profile Image" />
-                                        {{-- <div>
-                                            <input class="position-absolute form-control" type="file" />
-                                        </div> --}}
-                                        <div
-                                            class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                            <svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57"
-                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <use xlink:href="/css/provider.svg#camera"></use>
-                                            </svg>
+                            {{-- updated by shanila to add csrf and add form tag --}}
+                            <form class="form">
+                                @csrf
+                                <div class="row mt-2 mb-5">
+                                    {{-- BEGIN: Profile --}}
+                                    <div class="col-12 text-center">
+                                        <div class="d-inline-block position-relative">
+                                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
+                                                class="img-fluid rounded-circle" alt="Provider Profile Image" />
+                                            {{-- <div>
+                                                <input class="position-absolute form-control" type="file" />
+                                            </div> --}}
+                                            <div
+                                                class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
+                                                <svg aria-label="Upload Picture" width="57" height="57"
+                                                    viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/provider.svg#camera"></use>
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 mb-4">
-                                    <h2>Provider Information</h2>
-                                </div>
-                                <div class="row between-section-segment-spacing">
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="f-name">
-                                            First Name
-                                            <span class="mandatory" aria-hidden="true">
-                                                *
-                                            </span>
-                                        </label>
-                                        <input type="text" id="f-name" class="form-control" name="f-name"
-                                            placeholder="Enter First Name" required aria-required="true" />
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <h2>Provider Information</h2>
                                     </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="l-name">
-                                            Last Name
-                                            <span class="mandatory" aria-hidden="true">
-                                                *
-                                            </span>
-                                        </label>
-                                        <input type="text" id="l-name" class="form-control" name="l-name"
-                                            placeholder="Enter Last Name" required aria-required="true" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="pronouns-column">
-                                            Pronouns
-                                        </label>
-                                        <input type="text" id="pronouns-column" class="form-control"
-                                            placeholder="Enter Pronouns" name="pronouns" />
-                                    </div>
-                                    <div class="col-lg-6 ps-lg-5 mb-4">
-                                        <label class="form-label" for="">
-                                            Date of Birth
-                                        </label>
-                                        <div class="d-flex align-items-center w-100">
-                                            <div class="position-relative flex-grow-1">
-                                                <input type="text" class="form-control js-single-date"
-                                                    placeholder="Select Date of Birth" aria-label=""
-                                                    aria-describedby="">
-                                                <!-- Begin : it will be replaced with livewire module-->
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date" width="20" height="21"
-                                                    viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </div>
-                                            <button type="button" class="btn px-2">
-                                                <!-- Begin : it will be replaced with livewire module-->
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="show" width="24" height="17" viewBox="0 0 24 17">
-                                                    <use xlink:href="/css/common-icons.svg#eye-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <div class="d-flex justify-content-between align-items-center mb-1">
-                                            <label class="form-label mb-lg-0" for="gender-column">
-                                                Gender
+                                    <div class="row between-section-segment-spacing">
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="f-name">
+                                                First Name
+                                                <span class="mandatory" aria-hidden="true">
+                                                    *
+                                                </span>
                                             </label>
-                                            <a href="#" class="fw-bold">
-                                                <small>
+                                            <input type="text" id="f-name" class="form-control" name="f-name"
+                                                placeholder="Enter First Name" required aria-required="true" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="l-name">
+                                                Last Name
+                                                <span class="mandatory" aria-hidden="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <input type="text" id="l-name" class="form-control" name="l-name"
+                                                placeholder="Enter Last Name" required aria-required="true" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="pronouns-column">
+                                                Pronouns
+                                            </label>
+                                            <input type="text" id="pronouns-column" class="form-control"
+                                                placeholder="Enter Pronouns" name="pronouns" />
+                                        </div>
+                                        <div class="col-lg-6 ps-lg-5 mb-4">
+                                            <label class="form-label" for="">
+                                                Date of Birth
+                                            </label>
+                                            <div class="d-flex align-items-center w-100">
+                                                <div class="position-relative flex-grow-1">
+                                                    <input type="text" class="form-control js-single-date"
+                                                        placeholder="Select Date of Birth" aria-label=""
+                                                        aria-describedby="">
+                                                    <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                    <svg aria-label="Date" class="icon-date" width="20" height="21"
                                                         viewBox="0 0 20 21">
-                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                        </use>
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
-
-                                                    Add New
-                                                </small>
-                                            </a>
-                                        </div>
-                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
-                                        '','gender') !!}
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <div class="d-flex justify-content-between align-items-center mb-1">
-                                            <label class="form-label" for="ethnicity-column">
-                                                Ethnicity
-                                            </label>
-                                            <a href="#" class="fw-bold">
-                                                <small>
+                                                </div>
+                                                <button type="button" class="btn px-2">
+                                                    <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                                        viewBox="0 0 20 21">
-                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                    <svg aria-label="show" width="24" height="17" viewBox="0 0 24 17">
+                                                        <use xlink:href="/css/common-icons.svg#eye-icon">
+                                                        </use>
                                                     </svg>
                                                     {{-- End of update by Shanila --}}
-                                                    Add New
-                                                </small>
-                                            </a>
+                                                </button>
+                                            </div>
                                         </div>
-                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity',
-                                        '','ethnicity') !!}
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <label class="form-label mb-lg-0" for="gender-column">
+                                                    Gender
+                                                </label>
+                                                <a href="#" class="fw-bold">
+                                                    <small>
+                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                            viewBox="0 0 20 21">
+                                                            <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                        </svg>
+                                                        {{-- End of update by Shanila --}}
 
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="providerID-column">
-                                            Provider ID
-                                        </label>
-                                        <input type="email" id="providerID-column" class="form-control"
-                                            name="providerID-column" placeholder="Enter Provider ID" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label mb-3" for="assign-provider-teams">
-                                            Assign Provider Teams
-                                        </label>
-                                        <button type="button"
-                                            class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1"
-                                            data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
-                                            <div>
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label=" Add Provider Teams" width="25" height="18"
-                                                    viewBox="0 0 25 18">
-                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
+                                                        Add New
+                                                    </small>
+                                                </a>
                                             </div>
-                                            <div class="text-primary fw-semibold">
-                                                Add Provider Teams
-                                            </div>
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="email">
-                                            Email
-                                            <span class="mandatory" aria-hidden="true">
-                                                *
-                                            </span>
-                                        </label>
-                                        <input type="text" id="email" class="form-control" name="email"
-                                            placeholder="Enter Email" required aria-required="true" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="phone">Phone Number</label>
-                                        <input type="text" id="phone" class="form-control" name="phone"
-                                            placeholder="Enter Phone Number" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="country">
-                                            Country
-                                        </label>
-                                        {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
-                                        'name', '', '', 'name', false, 'country',
-                                        '','country') !!}
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="state">
-                                            State / Province
-                                        </label>
-                                        <select class="select2 form-select" id="state">
-                                            <option value="Al">
-                                                Select State / Province
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="city">
-                                            City
-                                        </label>
-                                        <select class="select2 form-select" id="city">
-                                            <option value="">Select City</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="zip-code">
-                                            Zip Code
-                                        </label>
-                                        <input type="text" id="zip-code" class="form-control" name="zipCode"
-                                            placeholder="Enter Zip Code" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="address-line-1">
-                                            Address Line 1
-                                        </label>
-                                        <input type="text" id="address-line-1" class="form-control"
-                                            name="address-line-1" placeholder="Enter Address Line 1" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="address-line-2">
-                                            Address Line 2
-                                        </label>
-                                        <input type="text" id="address-line-2" class="form-control" name="addressLine2"
-                                            placeholder="Enter Address Line 2" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="start-date-column">
-                                            Start Date
-                                        </label>
-                                        <div class="d-flex align-items-center w-100">
-                                            <div class="position-relative flex-grow-1">
-                                                <input type="text" class="form-control js-single-date"
-                                                    placeholder="Select Date of Birth" aria-label="" aria-describedby=""
-                                                    id="start-date-column">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date" width="20" height="21"
-                                                    viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </div>
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
+                                            '','gender') !!}
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="end-date-column">
-                                            End Date
-                                        </label>
-                                        <div class="d-flex align-items-center w-100">
-                                            <div class="position-relative flex-grow-1">
-                                                <input type="text" class="form-control js-single-date"
-                                                    placeholder="Select Date of Birth" aria-label="" aria-describedby=""
-                                                    id="end-date-column">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date" width="20" height="21"
-                                                    viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <label class="form-label" for="education-column">
-                                                Education
-                                            </label>
-                                            <a @click="addDocument = true" href="#" class="fw-bold">
-                                                <small>
-                                                    <svg class="me-1" width="21" height="16" viewBox="0 0 21 16"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
-                                                            fill="#0A1E46" />
-                                                    </svg>
-                                                    Upload Supporting Documents
-                                                </small>
-                                            </a>
-                                        </div>
-                                        <input type="text" id="education-column" class="form-control"
-                                            name="education-column" placeholder="Enter Education" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <label class="form-label mb-lg-0" for="certification-column">
-                                                Certification(s)
-                                            </label>
-                                            <div class="d-flex align-items-center gap-3">
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <label class="form-label" for="ethnicity-column">
+                                                    Ethnicity
+                                                </label>
                                                 <a href="#" class="fw-bold">
                                                     <small>
                                                         {{-- Updated by Shanila to Add svg icon--}}
@@ -357,6 +189,145 @@
                                                         Add New
                                                     </small>
                                                 </a>
+                                            </div>
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity',
+                                            '','ethnicity') !!}
+
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="providerID-column">
+                                                Provider ID
+                                            </label>
+                                            <input type="email" id="providerID-column" class="form-control"
+                                                name="providerID-column" placeholder="Enter Provider ID" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label mb-3" for="assign-provider-teams">
+                                                Assign Provider Teams
+                                            </label>
+                                            <button type="button"
+                                                class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1"
+                                                data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
+                                                <div>
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label=" Add Provider Teams" width="25" height="18"
+                                                        viewBox="0 0 25 18">
+                                                        <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </div>
+                                                <div class="text-primary fw-semibold">
+                                                    Add Provider Teams
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="email">
+                                                Email
+                                                <span class="mandatory" aria-hidden="true">
+                                                    *
+                                                </span>
+                                            </label>
+                                            <input type="text" id="email" class="form-control" name="email"
+                                                placeholder="Enter Email" required aria-required="true" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="phone">Phone Number</label>
+                                            <input type="text" id="phone" class="form-control" name="phone"
+                                                placeholder="Enter Phone Number" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="country">
+                                                Country
+                                            </label>
+                                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
+                                            'name', '', '', 'name', false, 'country',
+                                            '','country') !!}
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="state">
+                                                State / Province
+                                            </label>
+                                            <select class="select2 form-select" id="state">
+                                                <option value="Al">
+                                                    Select State / Province
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="city">
+                                                City
+                                            </label>
+                                            <select class="select2 form-select" id="city">
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="zip-code">
+                                                Zip Code
+                                            </label>
+                                            <input type="text" id="zip-code" class="form-control" name="zipCode"
+                                                placeholder="Enter Zip Code" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="address-line-1">
+                                                Address Line 1
+                                            </label>
+                                            <input type="text" id="address-line-1" class="form-control"
+                                                name="address-line-1" placeholder="Enter Address Line 1" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="address-line-2">
+                                                Address Line 2
+                                            </label>
+                                            <input type="text" id="address-line-2" class="form-control"
+                                                name="addressLine2" placeholder="Enter Address Line 2" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="start-date-column">
+                                                Start Date
+                                            </label>
+                                            <div class="d-flex align-items-center w-100">
+                                                <div class="position-relative flex-grow-1">
+                                                    <input type="text" class="form-control js-single-date"
+                                                        placeholder="Select Date of Birth" aria-label=""
+                                                        aria-describedby="" id="start-date-column">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Date" class="icon-date" width="20" height="21"
+                                                        viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="end-date-column">
+                                                End Date
+                                            </label>
+                                            <div class="d-flex align-items-center w-100">
+                                                <div class="position-relative flex-grow-1">
+                                                    <input type="text" class="form-control js-single-date"
+                                                        placeholder="Select Date of Birth" aria-label=""
+                                                        aria-describedby="" id="end-date-column">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Date" class="icon-date" width="20" height="21"
+                                                        viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <label class="form-label" for="education-column">
+                                                    Education
+                                                </label>
                                                 <a @click="addDocument = true" href="#" class="fw-bold">
                                                     <small>
                                                         <svg class="me-1" width="21" height="16" viewBox="0 0 21 16"
@@ -369,146 +340,181 @@
                                                     </small>
                                                 </a>
                                             </div>
+                                            <input type="text" id="education-column" class="form-control"
+                                                name="education-column" placeholder="Enter Education" />
                                         </div>
-                                        <div>
-                                            <select class="select2 form-select" id="certification-column">
-                                                <option value="certification-column">
-                                                    Enter Certification(s)
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <label class="form-label mb-lg-0" for="certification-column">
+                                                    Certification(s)
+                                                </label>
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <a href="#" class="fw-bold">
+                                                        <small>
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Add New" class="me-1" width="20"
+                                                                height="21" viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Add New
+                                                        </small>
+                                                    </a>
+                                                    <a @click="addDocument = true" href="#" class="fw-bold">
+                                                        <small>
+                                                            <svg class="me-1" width="21" height="16" viewBox="0 0 21 16"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
+                                                                    fill="#0A1E46" />
+                                                            </svg>
+                                                            Upload Supporting Documents
+                                                        </small>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <select class="select2 form-select" id="certification-column">
+                                                    <option value="certification-column">
+                                                        Enter Certification(s)
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-2">
+                                                <input class="form-check-input" type="checkbox" value="display-provider"
+                                                    id="display-provider">
+                                                <label class="form-check-label" for="display-provider">
+                                                    Display Provider as Certified
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <label class="form-label" for="education-column">
+                                                    Experience
+                                                </label>
+                                                <a @click="addDocument = true" href="#" class="fw-bold">
+                                                    <small>
+                                                        <svg class="me-1" width="21" height="16" viewBox="0 0 21 16"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
+                                                                fill="#0A1E46" />
+                                                        </svg>
+                                                        Upload Supporting Documents
+                                                    </small>
+                                                </a>
+                                            </div>
+                                            <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                name="experienceColumn" id="experience-column"></textarea>
+                                        </div>
+                                        <div class="col-lg-6 ps-lg-5">
+                                            <label class="form-label" for="notes-column">
+                                                Notes
+                                            </label>
+                                            <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
+                                                id="notes-column"></textarea>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="preferred-language-column">
+                                                Preferred Language
+                                            </label>
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
+                                            '','languages') !!}
+                                        </div>
+                                        <div class="col-lg-6 ps-lg-5">
+                                            <label class="form-label" for="set-time-zone-column">
+                                                Set Time Zone
+                                            </label>
+                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
+                                            'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
+                                            '','timezone') !!}
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="preferred-colleagues-column">
+                                                Preferred Colleagues
+                                            </label>
+                                            <select class="select2 form-select" id="preferred-colleagues-column">
+                                                <option value="preferred-colleagues-column">
+                                                    Select Preferred Colleagues
                                                 </option>
                                             </select>
                                         </div>
-                                        <div class="mt-2">
-                                            <input class="form-check-input" type="checkbox" value="display-provider"
-                                                id="display-provider">
-                                            <label class="form-check-label" for="display-provider">
-                                                Display Provider as Certified
+                                        <div class="col-lg-6 ps-lg-5">
+                                            <label class="form-label" for="disfavored-colleagues-column">
+                                                Disfavored Colleagues
                                             </label>
+                                            <select class="select2 form-select" id="disfavored-colleagues-column">
+                                                <option value="disfavored-colleagues-column">
+                                                    Select Disfavored Colleagues
+                                                </option>
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <label class="form-label" for="education-column">
-                                                Experience
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="provider-introduction">
+                                                Provider Introduction
                                             </label>
-                                            <a @click="addDocument = true" href="#" class="fw-bold">
-                                                <small>
-                                                    <svg class="me-1" width="21" height="16" viewBox="0 0 21 16"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
-                                                            fill="#0A1E46" />
-                                                    </svg>
-                                                    Upload Supporting Documents
-                                                </small>
-                                            </a>
+                                            <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                name="provider- introduction" id="provider-introduction"></textarea>
                                         </div>
-                                        <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                            name="experienceColumn" id="experience-column"></textarea>
-                                    </div>
-                                    <div class="col-lg-6 ps-lg-5">
-                                        <label class="form-label" for="notes-column">
-                                            Notes
-                                        </label>
-                                        <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                            id="notes-column"></textarea>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="preferred-language-column">
-                                            Preferred Language
-                                        </label>
-                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
-                                        '','languages') !!}
-                                    </div>
-                                    <div class="col-lg-6 ps-lg-5">
-                                        <label class="form-label" for="set-time-zone-column">
-                                            Set Time Zone
-                                        </label>
-                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
-                                        '','timezone') !!}
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="preferred-colleagues-column">
-                                            Preferred Colleagues
-                                        </label>
-                                        <select class="select2 form-select" id="preferred-colleagues-column">
-                                            <option value="preferred-colleagues-column">
-                                                Select Preferred Colleagues
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 ps-lg-5">
-                                        <label class="form-label" for="disfavored-colleagues-column">
-                                            Disfavored Colleagues
-                                        </label>
-                                        <select class="select2 form-select" id="disfavored-colleagues-column">
-                                            <option value="disfavored-colleagues-column">
-                                                Select Disfavored Colleagues
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="provider-introduction">
-                                            Provider Introduction
-                                        </label>
-                                        <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                            name="provider- introduction" id="provider-introduction"></textarea>
-                                    </div>
-                                    <div class="col-lg-6 ps-lg-5">
-                                        <label class="form-label" for="provider-introduction-media">
-                                            Provider Introduction Media
-                                        </label>
-                                        <input type="file" id="provider-introduction-media" class="form-control"
-                                            name="companeyAdmins" placeholder="Add Admins" />
-                                    </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label" for="payment-settings">
-                                            Payment Settings
-                                        </label>
-                                        <select class="select2 form-select" id="payment-settings">
-                                            <option value="Al">
-                                                Select Payment Settings
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 ps-lg-5">
-                                        <label class="form-label" for="default-remittance-temp">
-                                            Select Default Remittance Template
-                                        </label>
-                                        <select class="select2 form-select" id="default-remittance-temp">
-                                            <option value="Al">
+                                        <div class="col-lg-6 ps-lg-5">
+                                            <label class="form-label" for="provider-introduction-media">
+                                                Provider Introduction Media
+                                            </label>
+                                            <input type="file" id="provider-introduction-media" class="form-control"
+                                                name="companeyAdmins" placeholder="Add Admins" />
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="payment-settings">
+                                                Payment Settings
+                                            </label>
+                                            <select class="select2 form-select" id="payment-settings">
+                                                <option value="Al">
+                                                    Select Payment Settings
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 ps-lg-5">
+                                            <label class="form-label" for="default-remittance-temp">
                                                 Select Default Remittance Template
-                                            </option>
-                                        </select>
+                                            </label>
+                                            <select class="select2 form-select" id="default-remittance-temp">
+                                                <option value="Al">
+                                                    Select Default Remittance Template
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label">
+                                                Tags
+                                            </label>
+                                            <select data-placeholder="" multiple class="form-select chosen-select">
+                                                <option selected>Customer</option>
+                                                <option selected>Companies</option>
+                                                <option selected>Teams</option>
+                                            </select>
+                                        </div>
+                                        {{-- Input Fields End --}}
                                     </div>
-                                    <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label">
-                                            Tags
-                                        </label>
-                                        <select data-placeholder="" multiple class="form-select chosen-select">
-                                            <option selected>Customer</option>
-                                            <option selected>Companies</option>
-                                            <option selected>Teams</option>
-                                        </select>
-                                    </div>
-                                    {{-- Input Fields End --}}
                                 </div>
-                            </div>
-                            {{-- Action Buttons - Start --}}
-                            <div class="col-12 justify-content-center form-actions d-flex gap-3">
-                                <button type="button" class="btn btn-outline-dark rounded"
-                                    wire:click.prevent="showList">
-                                    Cancel
-                                </button>
-                                <button type="submit" class="btn btn-primary rounded">
-                                    Save & Exit
-                                </button>
-                                <button type="button" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('provider-service')">
-                                    Next
-                                </button>
-                            </div>
+                                {{-- Action Buttons - Start --}}
+                                <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                                    <button type="button" class="btn btn-outline-dark rounded"
+                                        wire:click.prevent="showList">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary rounded">
+                                        Save & Exit
+                                    </button>
+                                    <button type="button" class="btn btn-primary rounded"
+                                        x-on:click="$wire.switch('provider-service')">
+                                        Next
+                                    </button>
+                                </div>
+                            </form>
+                            {{-- ended update by shanila --}}
+
                         </div>
                         {{-- END: Profile --}}
 
@@ -520,6 +526,9 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
+                                            {{-- updated by shanila to add csrf--}}
+                                            @csrf
+                                            {{-- update ended by shanila --}}
                                             <div class="row">
                                                 <div class="col-md-12 mb-md-2">
                                                     <div class="col-md-12 col-12 mb-md-2">
@@ -795,7 +804,8 @@
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
+                                                            {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue',
+                                                            'id',
                                                             'setup_value_label', 'setup_id', '5', 'id',[],1,'form-check
                                                             form-check-inline') !!}
 
@@ -2329,6 +2339,9 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
+                                            {{-- updated by shanila to add csrf--}}
+                                            @csrf
+                                            {{-- update ended by shanila --}}
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <h2>Attach Document</h2>
