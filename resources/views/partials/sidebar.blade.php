@@ -363,7 +363,7 @@
                 </a>
                 <ul role="menu" class="menu-content " id="Business-rofile-settings">
                   <li role="menuitem" class="nav-item  " id="profile">
-                    <a class="nav-link" href="/admin/admin-staff/create-staff">
+                    <a class="nav-link" href="/admin/profile">
                       <svg aria-label="Account Profile" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#account-profile-icon"></use>
                     </svg>
