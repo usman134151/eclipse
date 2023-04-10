@@ -11,8 +11,13 @@ use Livewire\Component;
 class RolePermissionForm extends Component
 {
 	// public $component = 'system-permissions';
+	public $label = "Create New";
 	public $roleName = '';
+	public $roleID = '';
 	public $sectionRights = [];
+	public $message = '';
+
+	protected $listeners = ['editRecord' => 'edit'];
 
 	public function render()
 	{
@@ -36,46 +41,65 @@ class RolePermissionForm extends Component
 	public function rules()
 	{
 		return [
-			'roleName' => 'required|string|max:64|unique:system_roles,system_role_name',
+			'roleName' => 'required|string|max:64',
 		];
 	}
 
-	public function save()
+	public function edit($id) {
+		$rightsArray = [];
+		$userRolePermission = SectionRight::with('systemRole')
+			->where('system_role_id', $id)
+			->get();
+		
+		$this->roleName = $userRolePermission->first()->systemRole->system_role_name;
+		foreach ($userRolePermission as $key => $permission)
+		{
+			$rightsArray[$key] = $permission->section_id . '-' . $permission->right_id;
+		}
+		$this->sectionRights = $rightsArray;
+		$this->roleID = $id;
+		$this->label = "Edit";
+	}
+
+	public function save($id = null)
 	{
 		$this->validate();
 
-		$systemRole = SystemRole::create([
-			'system_role_name' => $this->roleName,
-			'status' => 1,
-		]);
-
-		if ($systemRole->count())
+		if ($id)
 		{
-			$sectionRightsArray = [];
-
-			foreach ($this->sectionRights as $index => $sectionRight)
+			$systemRole = SystemRole::find($id);
+			$systemRole->system_role_name = $this->roleName;
+			$roleNameChanged = $systemRole->save();
+			if ($roleNameChanged)
 			{
-				$systemRoleID = $systemRole->id;
+				$deleteSectionRights = SectionRight::where('system_role_id', $id)->delete();
+				if ($deleteSectionRights)
+				{
+					$sectionRightsArray = $this->fetchSectionRights($id);
 
-				$sectionRightPieces = explode("-", $sectionRight);
-				$sectiondID = $sectionRightPieces[0];
-				$rightID = $sectionRightPieces[1];
-
-				$sectionRightsArray[$index] = [
-					'system_role_id' => $systemRoleID,
-					'section_id' => $sectiondID,
-					'right_id' => $rightID,
-					'created_at' => now(),
-					'updated_at' => now(),
-				];
+					$success = SectionRight::insert($sectionRightsArray);
+					$this->message = 'Role and permissions updated successfully';
+				}
 			}
 		}
-
-		$success = SectionRight::insert($sectionRightsArray);
+		else
+		{
+			$systemRole = SystemRole::create([
+				'system_role_name' => $this->roleName,
+				'status' => 1,
+			]);
+	
+			if ($systemRole->count())
+			{
+				$sectionRightsArray = $this->fetchSectionRights($systemRole->system_role_id);
+				$success = SectionRight::insert($sectionRightsArray);
+				$this->message = 'Role and permissions saved successfully';
+			}
+		}
 		if ($success)
 		{
 			$this->clearFields();
-			$this->showList("Role and permissions saved successfully");
+			$this->showList($this->message);
 		}
 	}
 	
@@ -96,6 +120,26 @@ class RolePermissionForm extends Component
 			->get();
 
 		return $sections;
+	}
+
+	private function fetchSectionRights($id)
+	{
+		$sectionRightsArray = [];
+		foreach ($this->sectionRights as $index => $sectionRight)
+		{
+			$sectionRightPieces = explode("-", $sectionRight);
+			$sectionID = $sectionRightPieces[0];
+			$rightID = $sectionRightPieces[1];
+
+			$sectionRightsArray[$index] = [
+				'system_role_id' => $id,
+				'section_id' => $sectionID,
+				'right_id' => $rightID,
+				'created_at' => now(),
+				'updated_at' => now(),
+			];
+		}
+		return $sectionRightsArray;
 	}
 
 	private function clearFields()

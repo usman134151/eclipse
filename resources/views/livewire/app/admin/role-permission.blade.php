@@ -64,241 +64,9 @@
 							</div>
 						</div>
 						@livewire('app.common.lists.role-permissions', key(Str::random(10)))
-						{{-- <div class="d-flex justify-content-between mb-2">
-							<div class="d-inline-flex align-items-center gap-4">
-								<label for="show_records_number" class="form-label">Show</label>
-								<select class="form-select" id="show_records_number">
-									<option>10</option>
-									<option>15</option>
-									<option>20</option>
-									<option>25</option>
-								</select>
-							</div>
-							<div class="d-inline-flex align-items-center gap-4">
-								<label for="search" class="form-label fw-semibold">Search</label>
-								<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-							</div>
-						</div> --}}
-						@php /*
-						<div class="table-responsive">
-							<table id="" class="table table-hover" aria-label="Roles and Permissions">
-								<thead>
-									<tr role="row">
-										<th scope="col">Name</th>
-										<th scope="col" class="text-center">No. of Permissions</th>
-										<th scope="col" class="text-center">Users</th>
-										<th scope="col" class="text-center">Date</th>
-										<th scope="col">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr role="row" class="odd">
-										<td>Agency Admin</td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr role="row" class="even">
-										<td>All-Access Service Coordinator </td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr role="row" class="odd">
-										<td>Restricted Service Coordinator</td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr role="row" class="even">
-										<td>All-Access Accounts Payable</td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr role="row" class="odd">
-										<td>Restricted Accounts Payable</td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr role="row" class="even">
-										<td>All-Access Accounts Billable</td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin">
-														</use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr role="row" class="odd">
-										<td>Restricted Accounts Billable</td>
-										<td class="text-center">5</td>
-										<td class="text-center">2</td>
-										<td class="text-center">04/22/2016</td>
-										<td>
-											<div class="d-flex actions">
-												<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-													{{-- Updated by Shanila to Add svg icon--}}
-													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-														<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-													</svg>
-													{{-- End of update by Shanila --}}
-												</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div> */ @endphp
 					</div>
-					{{-- <div class="d-flex justify-content-between mt-4">
-						<div>
-							<p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
-						</div>
-						<nav aria-label="Page Navigation">
-							<ul class="pagination">
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">Previous
-										<span aria-hidden="true">&laquo;</span>
-									</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">1</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">2</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">3</a>
-								</li>
-								<li class="page-item active">
-									<a class="page-link" href="#">4</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
-										Next
-										<span aria-hidden="true">&raquo;</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div> --}}
 					{{-- Icon Legend Bar Start --}}
-					<div style="margin-right:10px" class="d-flex actions gap-3 justify-content-end mb-2">
+					<div class="d-flex actions justify-content-end gap-3 mb-2 me-4">
 						<div class="d-flex gap-2 align-items-center">
 							<a href="#" title="Edit staff" aria-label="Edit staff" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 								{{-- Updated by Shanila to Add svg icon--}}
@@ -331,3 +99,15 @@
 	</section>
 	@endif
 </div>
+@push('scripts')
+	<script>
+		$(document).ready(function() {
+			$('#view-all').click(function() {
+				var checked = this.checked;
+				$('input[name="select-view"]').each(function() {
+					this.checked = checked;
+				});
+			})
+		});
+	</script>
+@endpush
