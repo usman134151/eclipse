@@ -6,6 +6,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="form">
+                                         {{-- updated by shanila to add csrf--}}
+                                         @csrf
+                                         {{-- update ended by shanila --}}
                                         <div class="row">
                                             <div class="col-md-12 mb-md-2">
                                                 <h1>Add Customized Form</h1>
@@ -27,7 +30,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
                                             <!-- <div class="col-md-6 col-12">
                                                 <div class="mb-4">
@@ -61,15 +64,15 @@
                                                        <option value="16">OGS</option>
                                                        <option value="17">FRBNY CART</option>
                                                        <option value="18">Skillr</option>
-                                                       <option value="19">Spoken Language Interpreting</option> 
+                                                       <option value="19">Spoken Language Interpreting</option>
                                                        <option value="20">Translation</option>
-                                                       <option value="21">New Industry</option> 
+                                                       <option value="21">New Industry</option>
                                                        <option value="22">Johnn tooth</option>
                                                       </select>
                                                 </div>
                                             </div> -->
                                             <!-- End: This is conditional, link with select "Form" / option "Customer Lead & Quote Form"   -->
-                                            
+
                                             <!-- Begin: This is conditional, link with select "Form" / option "New Provider Screening"   -->
                                             <!-- <div class="col-md-6 col-12">
                                                 <div class="mb-4">
@@ -82,7 +85,7 @@
                                                 </div>
                                             </div> -->
                                             <!-- End: This is conditional, link with select "Form" / option "New Provider Screening"   -->
-                                            
+
                                             <!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
                                             <!-- <div class="col-md-12">
                                                 <div class="mb-4">
@@ -95,7 +98,7 @@
                                                 </div>
                                             </div> -->
                                               <!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-                                        
+
                                               <div class="col-md-12">
                                                 <div class="mb-4">
                                                         <div class="form-group">
@@ -205,7 +208,7 @@
                                                     <button type="submit"
                                                     class="btn btn-primary rounded">- Remove Question</button>
                                                 </div>
-                                            </div> 
+                                            </div>
                                             <div class="col-md-12">
                                                 <div class="mb-4">
                                                         <div class="form-group">
@@ -240,7 +243,7 @@
                                                 </div>
                                             </div>
 
-                                            Begin: This is conditional, link with select "Form" / option "Customer Request Form"  
+                                            Begin: This is conditional, link with select "Form" / option "Customer Request Form"
                                             <div class="col-md-12">
                                                 <div class="mb-4">
                                                     <div class="mb-4">
@@ -252,8 +255,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> 
-                                            End: This is conditional, link with select "Form" / option "Customer Request Form"  
+                                            </div>
+                                            End: This is conditional, link with select "Form" / option "Customer Request Form"
 
                                             <div class="col-md-12">
                                                 <div class="mb-4">
@@ -269,13 +272,13 @@
                                             </div> -->
 
                                              <!-- End: This is conditional, link with "+Add Question" button   -->
-                                        
+
                                                     <div class="col-12 justify-content-center form-actions d-flex">
                                                         <button type="submit"
                                                         class="btn btn-primary rounded">Publish Form</button>
                                                         <button type="button"
                                                             class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Cancel</button>
-                                                    </div>                                               
+                                                    </div>
                                         </div>
                                     </form>
                                 </div>
