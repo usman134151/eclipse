@@ -59,7 +59,7 @@ class RolePermission extends Component
 		SectionRight::where('system_role_id', $this->systemRoleID)->delete();
 		SystemRole::where('system_role_id', $this->systemRoleID)->delete();
 		// Emit an event to reset the form and display a confirmation message
-		$this->emitSelf('showList', 'Record has been deleted');
+		$this->emitSelf('showList', 'Role and permissions have been deleted');
 	}
 
 	public function mount()

@@ -99,15 +99,3 @@
 	</section>
 	@endif
 </div>
-@push('scripts')
-	<script>
-		$(document).ready(function() {
-			$('#view-all').click(function() {
-				var checked = this.checked;
-				$('input[name="select-view"]').each(function() {
-					this.checked = checked;
-				});
-			})
-		});
-	</script>
-@endpush
