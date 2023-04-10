@@ -68,7 +68,7 @@
 												<div class="form-check">
 													<input
 														class="form-check-input"
-														id="{{ $right->right_type }}-all"
+														id="{{ $right->right_type }}"
 														name="{{ $right->right_type }}"
 														type="checkbox"
 													>
@@ -109,7 +109,6 @@
 													<input
 														class="form-check-input"
 														type="checkbox"
-														name="select-{{ $right->right_type }}"
 														value="{{ $section->id . '-' . $right->id }}"
 														wire:model.defer="sectionRights"
 													>
