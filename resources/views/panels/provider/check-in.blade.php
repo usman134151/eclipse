@@ -1,6 +1,7 @@
 <x-off-canvas show="offcanvasOpenCheckIn">
 	<x-slot name="title">Check-In # 100995-</x-slot>
-        <div class="accordion mb-4" id="accordionAssignment">
+      <div class="row between-section-segment-spacing">
+        <div class="accordion" id="accordionAssignment">
           <div class="accordion-item">
             <h2 class="accordion-header" id="AssignmentNo">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssignmentNo" aria-expanded="true" aria-controls="collapseAssignmentNo">
@@ -51,7 +52,8 @@
             </div>
           </div>
         </div>
-        <div class="mb-4">
+      </div>
+        <div class="between-section-segment-spacing">
           <div class="d-flex justify-content-between gap-3 align-items-center mb-3">
             <div>
               <label class="form-label mb-0">Check-in</label>
@@ -155,7 +157,7 @@
             </div>
           </div>
           <hr>
-          <div class="mb-5">
+          <div class="between-section-segment-spacing">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="15" cy="15" r="15" fill="url(#paint0_linear_9222_203708)"/>
               <path d="M7.35297 15.7661L12.451 21.119L22.6471 9.64844" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

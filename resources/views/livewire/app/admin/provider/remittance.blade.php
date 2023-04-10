@@ -32,7 +32,7 @@
     <div class="content-body">
         <div class="card">
             <div class="card-body">
-                <div class="mb-4">
+                <div class="between-section-segment-spacing">
                     <p>Here you will manage your Providers' payment based on the assignments they work. Select the
                         bookings you wish to include on the remittance and when remittances are ready, issue one or all
                         remittances to the respective Providers. Once issued, you can manage remittance payments from
@@ -74,7 +74,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="dateRange" id="piad">
                                         <label class="form-check-label-sm" for="piad">
-                                        Piad
+                                        Paid
                                         </label>
                                     </div>
                                 </div>

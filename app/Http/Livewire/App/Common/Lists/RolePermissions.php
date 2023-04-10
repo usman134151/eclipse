@@ -11,6 +11,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class RolePermissions extends PowerGridComponent
 {
 	use ActionButton;
+	public string $sortField = 'section_rights.system_role_id';
 	protected $listeners = ['refresh'=>'setUp'];
 	/*
 	|--------------------------------------------------------------------------
@@ -54,9 +55,9 @@ final class RolePermissions extends PowerGridComponent
 			$systemRoles->on('system_roles.system_role_id', '=', 'section_rights.system_role_id');
 		})
 		->selectRaw(
-			'system_roles.system_role_name as role_name, COUNT(*) as number_of_permissions'
+			'section_rights.system_role_id, system_roles.system_role_name as role_name, COUNT(section_rights.system_role_id) as number_of_permissions'
 		)
-		->groupBy('system_roles.system_role_id', 'system_roles.system_role_name');
+		->groupBy('system_roles.system_role_id', 'system_roles.system_role_name', 'section_rights.system_role_id');
 	}
 
 	/*
@@ -96,8 +97,8 @@ final class RolePermissions extends PowerGridComponent
 			->addColumn('users', function () {
 				return '2';
 			})
-			->addColumn('edit', function() {
-				return "<div class='d-flex actions'><a href='#' title='Edit' aria-label='Edit' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' title='Delete' aria-label='Delete' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Delete' width='21' height='21' viewBox='0 0 21 21'>
+			->addColumn('edit', function(SectionRight $model) {
+				return "<div class='d-flex actions'><a href='#' wire:click='edit(". $model->system_role_id .")' title='Edit' aria-label='Edit' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' wire:click='deleteRecord(". $model->system_role_id .")' title='Delete' aria-label='Delete' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Delete' width='21' height='21' viewBox='0 0 21 21'>
 				<use xlink:href='/css/common-icons.svg#recycle-bin'></use></svg></a></div>";
 			});
 	}
@@ -128,8 +129,26 @@ final class RolePermissions extends PowerGridComponent
 				->sortable(),
 			Column::make('Users', 'users', ''),
 			Column::make('Actions', 'edit')->visibleInExport(false),
-		]
-;
+		];
+	}
+
+	function edit($id) {
+		// Emits an event to show the form for editing a record
+		$this->emit('showForm', $id);
+	}
+
+	// A method to handle the delete button click event
+	public function deleteRecord($id) {
+		// Sets the ID of the record to be deleted
+		$this->systemRoleID = $id;
+		// Emits an event to update the ID of the record to be deleted
+		$this->emit('updateRecordId', $id);
+		// Dispatches a browser event to show a confirmation modal
+		$this->dispatchBrowserEvent('swal:confirm', [
+			'type' => 'warning',
+			'title' => 'Delete Operation',
+			'text' => 'Are you sure you want to delete this record?',
+		]);
 	}
 
 	/*

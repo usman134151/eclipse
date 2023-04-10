@@ -3,6 +3,6 @@
 @section('content')
 	{{-- BEGIN: Content --}}
 	
-		@livewire('app.common.forms.profile', ['showForm'=>$showForm])
+		@livewire('app.admin.staff.admin-staff-form')
 	{{-- End: Content --}}
 @endsection

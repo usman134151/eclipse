@@ -1,10 +1,14 @@
 {{-- Add New Payment - Start --}}
 <x-off-canvas show="addNewPayment">
 	<x-slot name="title">Add New Payment</x-slot>
+    <form class="form">
+         {{-- updated by shanila to add csrf--}}
+         @csrf
+         {{-- update ended by shanila --}}
 	<div class="inner-section-segment-spacing">
     <p>Add new payment for an individual provider, multiple providers and or for a team. When adding a new payment for the team you can split the amount equally in the team or pay the same to each team member.</p>
     </div>
-    <div class="row inner-section-segment-spacing">
+    <div class="row ">
 		<div class="mb-4">
 		  <label class="form-label" for="">
 			Select Providers Or Team <span class="mandatory">*</span>
@@ -27,13 +31,13 @@
 		  </label>
 			<input type="email" class="form-control" id="ReasonforPayment" placeholder="Reason for Payment">
 		</div>
-		<div class="mb-2">
+		<div class="between-section-segment-spacing">
 		  <label class="form-label" for="Amount">
 			Amount <span class="mandatory">*</span>
 		  </label>
 			<input type="email" class="form-control" id="Amount" placeholder="$00.00">
 		</div>
-		<div class="">
+		<div class="mb-4">
 		  <div class="form-check">
 			<input class="form-check-input" type="checkbox" value="" id="ChargetoCustomer">
 			<label class="form-check-label" for="ChargetoCustomer">
@@ -42,18 +46,17 @@
 		  </div>
 		</div>
     </div>
-    <div>
-		<div class="inner-section-segment-spacing">
+		<div class="mb-5">
 		  <label class="form-label" for="PaymentOptions">
 			Payment Options
 		  </label>
-		  <div class="form-check">
+		  <div class="form-check mx-3">
 			<input class="form-check-input" type="radio" name="PaymentOptions" id="SplitBetweenProviders">
 			<label class="form-check-label" for="SplitBetweenProviders">
 			  Split between providers
 			</label>
 		  </div>
-		  <div class="form-check">
+		  <div class="form-check mx-3">
 			<input class="form-check-input" type="radio" name="PaymentOptions" id="MultipleByProviders" checked>
 			<label class="form-check-label" for="MultipleByProviders">
 			  Multiple by providers
@@ -70,7 +73,7 @@
 		  <button type="button" class="btn btn-outline-dark rounded">CANCEL</button>
 		  <button type="submit" class="btn btn-primary rounded">ADD</button>
 		</div>
-	  </div>
+    </form>
 </x-off-canvas>
 {{-- Add New Payment - End --}}
 <!-- BEGIN: Modal - Providers Or Team -->
