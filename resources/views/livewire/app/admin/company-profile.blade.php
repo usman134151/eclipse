@@ -1552,6 +1552,33 @@
                                                 </ul>
                                             </nav>
                                         </div>
+                                        {{-- Icon Legend Bar - Start --}}
+						                <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+						                		<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Edit Company" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                                        </use>
+                                                    </svg>
+						                		</a>
+						                		<span class="text-sm">
+						                			Edit
+						                		</span>
+						                	</div>
+						                	<div class="d-flex gap-2 align-items-center">
+						                		<a href="#" title="View" aria-label="View"
+						                			class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="View" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#view">
+                                                        </use>
+                                                    </svg>
+						                		</a>
+						                		<span class="text-sm">
+                                                    View
+						                		</span>
+						                	</div>
+						                </div>
+						                {{-- Icon Legend Bar - End --}}
                                     </div>
                                 </div>
                                 {{-- Departments Tab - End --}}
@@ -1679,36 +1706,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4 mb-5">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                               {{-- Updated by Shanila to Add svg icon--}}
-                                               <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
-                                                <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                                </use>
-                                            </svg>
-                                            {{-- End of update by Shanila --}}
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                     <div class="row mb-2">
                                         <div class="col-md-2">
                                             <div class="d-inline-flex">
@@ -1724,7 +1721,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-7">
                                             <button class="btn btn-primary rounded">
                                                 Feedback Received
                                             </button>
@@ -1732,13 +1729,34 @@
                                                 Feedback Given
                                             </button>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="d-inline-flex align-items-center ">
-                                                <label for="search" class="form-label fw-semibold mt-1">
-                                                    Search
-                                                </label>
-                                                <input type="search" class="form-control py-2 ms-2" id="search"
-                                                    name="search" placeholder="Search here" autocomplete="on" />
+                                        <div class="col-md-3 d-flex justify-content-end">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                   {{-- Updated by Shanila to Add svg icon--}}
+                                                   <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
+                                                    <use xlink:href="/css/common-icons.svg#document-dropdown">
+                                                    </use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Another action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Something else here
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -2336,6 +2354,46 @@
                                                 </ul>
                                             </nav>
                                         </div>
+                                        {{-- Icon Legend Bar - Start --}}
+						                <div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+						                		<a href="#" title="Hide" aria-label="Hide" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Hide Company" width="24" height="19" viewBox="0 0 24 19">
+                                                        <use
+                                                            xlink:href="/css/common-icons.svg#hide-icon">
+                                                        </use>
+                                                    </svg>
+						                		</a>
+						                		<span class="text-sm">
+						                			Hide
+						                		</span>
+						                	</div>
+						                	<div class="d-flex gap-2 align-items-center">
+						                		<a href="#" title="Edit" aria-label="Edit"
+						                			class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                    <svg aria-label="Edit Company" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                                        </use>
+                                                    </svg>
+						                		</a>
+						                		<span class="text-sm">
+                                                    Edit
+						                		</span>
+						                	</div>
+						                	<div class="d-flex gap-2 align-items-center">
+						                		<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						                			<svg aria-label="Delete"  width="21" height="21" viewBox="0 0 21 21">
+                                                        <use
+                                                            xlink:href="/css/common-icons.svg#recycle-bin">
+                                                        </use>
+                                                    </svg>
+						                		</a>
+						                		<span class="text-sm">
+						                			Delete
+						                		</span>
+						                	</div>
+						                </div>
+						                {{-- Icon Legend Bar - End --}}
                                     </div>
                                 </div>
                                 {{-- Feedback Tab - End --}}
@@ -2346,65 +2404,13 @@
                                     <h3>
                                         Company Invoices
                                     </h3>
-                                    <div class="col-md-12 d-flex col-12 gap-4 mb-4">
-                                        <div class="col-md-3 col-12 mb-4">
-                                            <label class="form-label" for="search-column">
-                                                Search
-                                            </label>
-                                            <input type="text" id="search-column" class="form-control"
-                                                name="search-column" placeholder="Search here" required
-                                                aria-required="true" />
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <div class="row gap-4">
+                                            <x-advancefilters type="invoice-filters"/>
                                         </div>
-                                        <div class="col-md-3 col-12">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="payment-status-column">
-                                                    Payment Status
-                                                </label>
-                                                <select class="select2 form-select" id="payment-status-column">
-                                                    <option>Select Payment Status</option>
-                                                    <option>Payment Status-1</option>
-                                                    <option>Payment Status-2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        {{-- Date Range --}}
-                                        <div class="col-md-3 col-12">
-                                            <div>
-                                                <label class="form-label" for="set_set_date">
-                                                    Date Range
-                                                </label>
-                                                <div class="d-flex gap-3">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="Issued">
-                                                        <label class="form-check-label" for="Issued">
-                                                            Issued
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="Due">
-                                                        <label class="form-check-label" for="Due">
-                                                            Due
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="position-relative">
-                                                    <input type="" name="" class="form-control js-single-date"
-                                                        placeholder="Select Date" id="">
-                                                    <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4 mb-4">
-                                        <div class="dropdown">
+                                        <div class="d-inline-flex align-items-center gap-4">
+                                             <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
                                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{-- Updated by Shanila to Add svg icon--}}
@@ -2432,25 +2438,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="show_records_number" class="form-label">
-                                                Show
-                                            </label>
-                                            <select class="form-select" id="show_records_number">
-                                                <option>10</option>
-                                                <option>15</option>
-                                                <option>20</option>
-                                                <option>25</option>
-                                            </select>
-                                        </div>
-                                        <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="search" class="form-label fw-semibold">
-                                                Search
-                                            </label>
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search here" autocomplete="on" />
                                         </div>
                                     </div>
                                     <div class="table-responses">
@@ -2482,7 +2469,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -2530,7 +2517,7 @@
                                                     <td>
                                                         <div class="d-flex actions">
                                                             <a href="#" title="back" aria-label="back"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" >
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
                                                                 <use xlink:href="/css/common-icons.svg#round-arrow">
@@ -2540,7 +2527,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2551,10 +2538,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2568,7 +2554,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -2626,7 +2612,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2637,10 +2623,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2654,7 +2639,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -2712,7 +2697,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2723,10 +2708,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2740,7 +2724,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -2798,7 +2782,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2809,10 +2793,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2826,7 +2809,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -2884,7 +2867,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2895,10 +2878,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2912,7 +2894,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -2970,7 +2952,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive"  width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2981,10 +2963,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2998,7 +2979,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -3056,7 +3037,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -3067,10 +3048,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF"  width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -3084,7 +3064,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -3142,7 +3122,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -3153,10 +3133,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -3170,7 +3149,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -3228,7 +3207,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -3239,10 +3218,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -3256,7 +3234,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a @click="offcanvasOpen = true">
+                                                        <a>
                                                             87109
                                                         </a>
                                                         <p class="mt-1">
@@ -3314,7 +3292,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                   {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -3325,10 +3303,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -3368,6 +3345,43 @@
                                             </ul>
                                         </nav>
                                     </div>
+                                    {{-- Icon Legend Bar - Start --}}
+					                	<div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Revert" aria-label="Revert" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20">
+                                                        <use xlink:href="/css/common-icons.svg#round-arrow">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Revert
+					                			</span>
+					                		</div>
+					                		<div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Record Payment" aria-label="Record Payment"
+					                				class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
+                                                        <use xlink:href="/css/common-icons.svg#dollar-assignment">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Record Payment
+					                			</span>
+					                		</div>
+					                		<div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Download Invoice" aria-label="Download Invoice" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Download Invoice
+					                			</span>
+					                		</div>
+					                	</div>
+					                	{{-- Icon Legend Bar - End --}}
                                 </div>
                                 {{-- Invoices Tab : End --}}
 
@@ -3377,40 +3391,12 @@
                                     <div class="row">
                                         <h3>Payments</h3>
                                     </div>
-                                    <div class="col-md-12 d-flex col-12 gap-4 mb-4">
-                                        {{-- Search --}}
-                                        <div class="col-md-3 col-12">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="search-column">
-                                                    Search
-                                                </label>
-                                                <input type="text" id="search-column" class="form-control"
-                                                    name="search-column" placeholder="Search here" required
-                                                    aria-required="true" />
-                                            </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="row gap-4">
+                                            <x-advancefilters type="invoice-filters"/>
                                         </div>
-                                        {{-- Date Range --}}
-                                        <div class="col-md-3 col-12">
-                                            <div>
-                                                <label class="form-label" for="set_set_date">
-                                                    Date Range
-                                                </label>
-                                                <div class="position-relative">
-                                                    <input type="" name="" class="form-control js-single-date"
-                                                        placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
-                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4 mb-4">
-                                        <div class="dropdown">
+                                        <div class="d-inline-flex align-items-center gap-4">
+                                             <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
                                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {{-- Updated by Shanila to Add svg icon--}}
@@ -3438,18 +3424,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="show_records_number" class="form-label">
-                                                Show
-                                            </label>
-                                            <select class="form-select" id="show_records_number">
-                                                <option>10</option>
-                                                <option>15</option>
-                                                <option>20</option>
-                                                <option>25</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="table-responses">
@@ -4428,6 +4402,66 @@
                                             </ul>
                                         </nav>
                                     </div>
+                                    {{-- Icon Legend Bar - Start --}}
+					                	<div class="d-flex actions gap-3 justify-content-end mb-2">
+                                            <div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="View Receipt" aria-label="View Receipt" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="view" width="24" height="17" viewBox="0 0 24 17">
+                                                        <use xlink:href="/css/common-icons.svg#eye-icon">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				View Receipt
+					                			</span>
+					                		</div>
+                                            <div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Send Receipt" aria-label="Send Receipt" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="send" width="20" height="21" viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#mapview">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Send Receipt
+					                			</span>
+					                		</div>
+                                            <div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Edit Payment" aria-label="Edit Payment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="edit" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#pencil">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Edit Payment
+					                			</span>
+					                		</div>
+					                		<div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Issue Refund" aria-label="Issue Refund"
+					                				class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="Issue Refund" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20">
+                                                        <use xlink:href="/css/common-icons.svg#round-arrow">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Issue Refund
+					                			</span>
+					                		</div>
+					                		<div class="d-flex gap-2 align-items-center">
+					                			<a href="#" title="Delete Payment" aria-label="Delete Payment" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					                				<svg aria-label="Delete Payment" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
+                                                        </use>
+                                                    </svg>
+					                			</a>
+					                			<span class="text-sm">
+					                				Delete Payment
+					                			</span>
+					                		</div>
+					                	</div>
+					                	{{-- Icon Legend Bar - End --}}
                                 </div>
                                 {{-- Payments Tab - End --}}
 
@@ -4457,36 +4491,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
-                                                    <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
                                             <label for="show_records_number" class="form-label">
@@ -4500,11 +4504,34 @@
                                             </select>
                                         </div>
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="search" class="form-label fw-semibold">
-                                                Search
-                                            </label>
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search here" autocomplete="on" />
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
+                                                        <use xlink:href="/css/common-icons.svg#document-dropdown">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Another action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Something else here
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responses">
@@ -4742,6 +4769,24 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    {{-- Icon Legend Bar - Start --}}
+						<div class="d-flex actions gap-3 justify-content-end mb-2">
+							<div class="d-flex gap-2 align-items-center">
+								<a href="#" title="Delete" aria-label="Delete"
+									class="btn btn-sm btn-secondary rounded btn-hs-icon">
+									{{-- Updated by Shanila to Add svg icon--}}
+									<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                        <use xlink:href="/css/common-icons.svg#recycle-bin">
+                                        </use>
+                                    </svg>
+								{{-- End of update by Shanila --}}
+								</a>
+								<span class="text-sm">
+									Delete
+								</span>
+							</div>
+						</div>
+						{{-- Icon Legend Bar - End --}}
                                 </div>
                                 {{-- Referrals Tab - End --}}
 
@@ -5116,7 +5161,7 @@
                                 {{-- Settings Tab - Start --}}
                                 <div class="tab-pane fade" id="settings-tab-pane" role="tabpanel"
                                     aria-labelledby="settings-tab" tabindex="0">
-                                    <div class="row mb-4">
+                                    <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
                                             <h2>Business Hours Setup</h2>
                                             <p>
@@ -5128,7 +5173,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row between-section-segment-spacing">
                                         <div class="col-lg-12">
                                             <h3>Time Configuration</h3>
                                             <div class="row">
@@ -5161,8 +5206,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="col-lg-12">
+                                    <div class="row between-section-segment-spacing">
+                                        <div class="col-lg-12 ">
                                             <h3>Add Hours Slot In Schedule</h3>
                                             <div class="row mb-4">
                                                 <div class="col-lg-6">
@@ -5185,7 +5230,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row mb-4">
+                                            <div class="row inner-section-segment-spacing">
                                                 <div class="col-lg-12">
                                                     <label class="form-label">
                                                         Select Days & Time
@@ -5259,7 +5304,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="row mb-4">
+                                            <div class="row inner-section-segment-spacing">
                                                 <div class="col-12">
                                                     <div class="d-lg-flex justify-content-between mb-4">
                                                         <h3 class="mb-lg-0">Business Schedule</h3>
@@ -5445,7 +5490,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row mb-4">
+                                            <div class="row inner-section-segment-spacing">
                                                 <div class="col-12">
                                                     <h3>Add Holidays / Days Closed</h3>
                                                     <div class="d-lg-flex gap-3 mb-3">
@@ -5702,36 +5747,6 @@
                                     <div class="row mb-4">
                                         <h3>Logs</h3>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
-                                                    <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
                                             <label for="show_records_number" class="form-label">
@@ -5745,11 +5760,34 @@
                                             </select>
                                         </div>
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="search" class="form-label fw-semibold">
-                                                Search
-                                            </label>
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search here" autocomplete="on" />
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
+                                                        <use xlink:href="/css/common-icons.svg#document-dropdown">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Another action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Something else here
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -5867,5 +5905,6 @@
     </div>
     @include('modals.mark-as-paid')
     @include('panels.common.add-document')
+    @include('modals.mark-as-paid')
     @endif
 </div>
