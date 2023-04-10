@@ -77,6 +77,9 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
+                                            {{-- updated by shanila to add csrf--}}
+                                            @csrf
+                                            {{-- update ended by shanila --}}
                                             <div class="row between-section-segment-spacing">
                                                 <div class="col-12 text-center">
                                                     <div class="d-inline-block position-relative">
@@ -648,8 +651,11 @@
                                 <div class="row">
                                     <div class="card-body">
                                         <form class="form">
+                                            {{-- updated by shanila to add csrf--}}
+                                            @csrf
+                                            {{-- update ended by shanila --}}
                                             <div class="col-md-10">
-                                                    <h2>Service Catalog</h2>
+                                                <h2>Service Catalog</h2>
                                             </div>
                                             <div class="col-md-12 between-section-segment-spacing">
                                                 <div class="row">
@@ -1043,22 +1049,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
-                                    <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                                        <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                            x-on:click="$wire.switch('company-info')">
-                                            Back
-                                        </button>
-                                        <button type="submit" class="btn btn-primary rounded px-4 py-2">
-                                            Save & Exit
-                                        </button>
-                                        <button type="submit" class="btn btn-primary rounded px-4 py-2"
-                                            x-on:click="$wire.switch('drive-documents')">
-                                            Next
-                                        </button>
+
+                                            <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                                                <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                    x-on:click="$wire.switch('company-info')">
+                                                    Back
+                                                </button>
+                                                <button type="submit" class="btn btn-primary rounded px-4 py-2">
+                                                    Save & Exit
+                                                </button>
+                                                <button type="submit" class="btn btn-primary rounded px-4 py-2"
+                                                    x-on:click="$wire.switch('drive-documents')">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                </form>
+
                             </section>
                         </div>
                         {{-- End: Service Catalog --}}
@@ -1071,6 +1079,9 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <form class="form">
+                                            {{-- updated by shanila to add csrf--}}
+                                            @csrf
+                                            {{-- update ended by shanila --}}
                                             <div class="col-md-8 mb-md-2">
                                                 <h2>Drive Documents</h2>
                                             </div>

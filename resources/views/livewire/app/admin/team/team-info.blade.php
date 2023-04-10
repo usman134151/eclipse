@@ -1,5 +1,8 @@
 <div>
 	<form class="form">
+        {{-- updated by shanila to add csrf--}}
+        @csrf
+        {{-- update ended by shanila --}}
 		<div class="row mt-2 between-section-segment-spacing">
 		  <div class="col-12 text-center">
 			<div class="d-inline-block position-relative">
