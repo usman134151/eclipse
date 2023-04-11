@@ -32,6 +32,12 @@
   margin-right: 1.1rem;
   flex-shrink: 0; }
 
+.main-menu .navigation li > ul > li a svg,
+.main-menu .navigation li > ul > li a i,
+.main-menu .navigation li > ul > li a .icon_img {
+  width: 20px;
+  margin-right: 10px; }  
+
 .vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a svg,
 .vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a i {
   margin-right: 1.2rem;

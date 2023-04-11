@@ -167,7 +167,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="d-lg-flex gap-3 justify-content-center">
+                                    <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
                                         <a href="#" class="btn btn-has-icon btn-primary rounded" data-bs-toggle="modal"
                                             data-bs-target="#ProviderMessageModal">
                                             {{-- Updated by Shanila to Add svg icon--}}
@@ -215,7 +215,7 @@
                         <div>
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-12">
-                                    <div class="d-lg-flex gap-3 justify-content-center">
+                                    <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center">
                                         <a href="#" class="btn btn-has-icon btn-primary rounded">
                                             {{-- Updated by Shanila to Add svg icon--}}
                                             <svg aria-label="Message Requester" width="18" height="18"
@@ -284,7 +284,7 @@
                                 <div class="col-lg-12">
                                     <div class="d-lg-flex justify-content-between align-items-center header-row">
                                         <h2 class="mb-lg-0">Requester Detail </h2>
-                                        <div class="d-flex gap-3">
+                                        <div class="d-flex flex-md-row flex-column gap-3">
                                             <div>
                                                 <button
                                                     class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
@@ -1201,7 +1201,7 @@
                             </div>
                             <!-- /Notes -->
                         </div>
-                        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded" wire:click.prevent="showList">
                                 Cancel
                             </button>
@@ -1218,7 +1218,7 @@
                         <div class="between-section-segment-spacing">
                             <div class="d-lg-flex align-items-center justify-content-between header-row">
                                 <h2 class="mb-lg-0">Service 1 Assigned Providers</h2>
-                                <div class="d-flex gap-3">
+                                <div class="d-flex flex-md-row flex-column gap-3">
                                     <a class="btn btn-has-icon btn-outline-dark rounded" @click="assignProvider = true">
                                         {{-- Updated by Shanila to Add
                                         svg icon--}}
@@ -1680,7 +1680,7 @@
                         <div class="between-section-segment-spacing">
                             <div class="d-lg-flex align-items-center justify-content-between mb-4">
                                 <h2 class="mb-lg-0">Service 2 Assigned Providers</h2>
-                                <div class="d-flex gap-3">
+                                <div class="d-flex flex-md-row flex-column gap-3">
                                     <a class="btn btn-has-icon btn-outline-dark rounded" @click="assignProvider = true">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -2238,7 +2238,7 @@
                                 </nav>
                             </div>
                         </div><!-- /Service 2 Assigned Providers -->
-                        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('booking-details')">Back</button>
                             <button type="" class="btn btn-primary rounded"
@@ -2268,7 +2268,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('assigned-providers')">Back</button>
                             <button type="" class="btn btn-primary rounded"
@@ -2282,128 +2282,128 @@
                             <div class="col-lg-6">
                                 <div class="d-lg-flex flex-lg-column gap-3">
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Total Service Rate:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Total Service Rate:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Override:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Override:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Total Additional Charges:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Total Additional Charges:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Service Total:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Service Total:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Discount:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Discount:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Net Total:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Net Total:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Cancel/Modify/Reschedule Fees
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Cancel/Modify/Reschedule Fees
                                                 (list):</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Provider Rate Sum:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Provider Rate Sum:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Additional Provider Payments:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Additional Provider Payments:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-md-12">
                                             <hr class="border-separate-sm">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <label class="form-label mb-lg-0">Profit Margin:</label>
+                                        <div class="col-md-9">
+                                            <label class="form-label mb-md-0">Profit Margin:</label>
                                         </div>
-                                        <div class="col-lg-3 align-self-center">
+                                        <div class="col-md-3 align-self-center">
                                             <div class="font-family-tertiary">$00.00</div>
                                         </div>
                                     </div>
@@ -2428,7 +2428,7 @@
                                 </div><!-- /Payment Notes -->
                             </div>
                         </div>
-                        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('attachments')">Back</button>
                             <button type="" class="btn btn-primary rounded"
@@ -3468,7 +3468,7 @@
                                 </nav>
                             </div>
                         </div><!-- /Assignment Log -->
-                        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                        <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                             <button type="" class="btn btn-outline-dark rounded"
                                 x-on:click="$wire.switch('payment-details')">Back</button>
                             <button type="" class="btn btn-primary rounded" wire:click.prevent="showList">Exit</button>

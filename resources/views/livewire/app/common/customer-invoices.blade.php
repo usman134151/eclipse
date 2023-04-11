@@ -41,28 +41,32 @@
                         </div>
                       </div>
                       </div>
-                      <div class="row between-section-segment-spacing ms-1">
-                      <div class="col-md-8 border border-primary p-2">
-                        <div class="col-md-12 mb-3 ps-3">
-                          <label class="form-label" for="Customer-invoices-summary">Customer invoices summary</label>
-                        </div>
-                        <div class="row ps-3">
-                          <div class="col-md-4">
-                            <div>
-                              <h2>$1735.6</h2>
-                              <p>Overdue</p>
-                            </div>
+                      <div class="row between-section-segment-spacing">
+                      <div class="col-lg-8">
+                        <div class="border border-primary p-3">
+                          
+                        
+                          <div class="col-md-12 mb-3">
+                            <label class="form-label" for="Customer-invoices-summary">Customer invoices summary</label>
                           </div>
-                          <div class="col-md-4">
-                            <div>
-                              <h2>$6298.8</h2>
-                              <p>Coming in the Next 30 Days</p>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div>
+                                <h2>$1735.6</h2>
+                                <p>Overdue</p>
+                              </div>
                             </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div>
-                              <h2>20 Days</h2>
-                              <p>Average Payment Timeline</p>
+                            <div class="col-md-4">
+                              <div>
+                                <h2>$6298.8</h2>
+                                <p>Coming in the Next 30 Days</p>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div>
+                                <h2>20 Days</h2>
+                                <p>Average Payment Timeline</p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -736,7 +740,7 @@
                               </table>
                           </div>
                              {{-- icon bar start--}}
-                          <div class="d-flex actions gap-3 justify-content-end mb-2">
+                          <div class="d-flex actions gap-3 justify-content-end mb-2 flex-wrap">
                               <div class="d-flex gap-2 align-items-center">
                                 <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
                                   <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -770,12 +774,12 @@
                               </div>
                              {{-- icon bar start end--}}
                              <div class="row between-section-segment-spacing">
-                    <div class="d-flex justify-content-between mt-4">
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
                       <div>
                         <p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
                       </div>
                       <nav aria-label="Page Navigation">
-                        <ul class="pagination">
+                        <ul class="pagination justify-content-start justify-content-lg-end">
                           <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">Previous
                               <span aria-hidden="true">&laquo;</span>
@@ -795,10 +799,10 @@
                     </div>
                   </div>
 
-                    <div class="d-flex justify-content-center">
+                    <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                       <button class="btn btn-primary rounded">Resend Invoice</button>
-                      <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#payInvoice">Record Payment</button>
-                      <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#revertBackModal">Revert Invoice</button>
+                      <button class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#payInvoice">Record Payment</button>
+                      <button class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#revertBackModal">Revert Invoice</button>
                     </div>
                     </div>
 

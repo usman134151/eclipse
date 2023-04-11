@@ -1541,6 +1541,10 @@ small {
 
 hr.border-separate-sm {
   margin: 0; }
+  @media (max-width: 991px) {
+    hr.border-separate-sm {
+      margin-top: 1rem;
+      margin-bottom: 1rem; } }
 
 .main-menu .navigation > li.nav-item.has-sub.open > a {
   font-weight: 700; }

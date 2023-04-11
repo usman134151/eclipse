@@ -935,7 +935,7 @@
                                                 Back
                                             </button>
                                             <a href="/admin/customer">
-                                                <button type="submit" class="btn btn-primary rounded">
+                                                <button type="submit" class="btn btn-primary rounded w-100">
                                                     Save & Exit
                                                 </button>
                                             </a>
@@ -1475,7 +1475,7 @@
                                                 Back
                                             </button>
                                             <a href="/admin/customer">
-                                                <button type="submit" class="btn btn-primary rounded">
+                                                <button type="submit" class="btn btn-primary rounded w-100">
                                                     Save & Exit
                                                 </button>
                                             </a>
@@ -1549,7 +1549,7 @@
                                                             Back
                                                         </button>
                                                         <a href="/admin/customer">
-                                                            <button type="button" class="btn btn-primary rounded">
+                                                            <button type="button" class="btn btn-primary rounded w-100">
                                                                 Submit
                                                             </button>
                                                         </a>
