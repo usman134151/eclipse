@@ -51,11 +51,11 @@ final class RolePermissions extends PowerGridComponent
 	public function datasource(): Builder
 	{
 		return SectionRight::query()
-		->join('system_roles', function ($systemRoles) {
+		->rightJoin('system_roles', function ($systemRoles) {
 			$systemRoles->on('system_roles.system_role_id', '=', 'section_rights.system_role_id');
 		})
 		->selectRaw(
-			'section_rights.system_role_id, system_roles.system_role_name as role_name, COUNT(section_rights.system_role_id) as number_of_permissions'
+			'system_roles.system_role_id as role, section_rights.system_role_id, system_roles.system_role_name as role_name, COUNT(section_rights.system_role_id) as number_of_permissions'
 		)
 		->groupBy('system_roles.system_role_id', 'system_roles.system_role_name', 'section_rights.system_role_id');
 	}
@@ -98,7 +98,8 @@ final class RolePermissions extends PowerGridComponent
 				return '2';
 			})
 			->addColumn('edit', function(SectionRight $model) {
-				return "<div class='d-flex actions'><a href='#' wire:click='edit(". $model->system_role_id .")' title='Edit' aria-label='Edit' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' wire:click='deleteRecord(". $model->system_role_id .")' title='Delete' aria-label='Delete' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Delete' width='21' height='21' viewBox='0 0 21 21'>
+				$id = $model->system_role_id ?? $model->role;
+				return "<div class='d-flex actions'><a href='#' wire:click='edit(". $id .")' title='Edit' aria-label='Edit' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' wire:click='deleteRecord(". $id .")' title='Delete' aria-label='Delete' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Delete' width='21' height='21' viewBox='0 0 21 21'>
 				<use xlink:href='/css/common-icons.svg#recycle-bin'></use></svg></a></div>";
 			});
 	}

@@ -13,7 +13,7 @@ class RolePermissionForm extends Component
 	// public $component = 'system-permissions';
 	public $label = "Create New";
 	public $roleName = '';
-	public $roleID = '';
+	public $roleID = null;
 	public $sectionRights = [];
 	public $message = '';
 
@@ -42,19 +42,32 @@ class RolePermissionForm extends Component
 	{
 		return [
 			'roleName' => 'required|string|max:64',
+			'sectionRights' => 'required',
 		];
 	}
+
+	protected $messages = [
+		'roleName' => 'The role name is required.',
+		'sectionRights.required' => 'Please check at least one permission.',
+	];
 
 	public function edit($id) {
 		$rightsArray = [];
 		$userRolePermission = SectionRight::with('systemRole')
 			->where('system_role_id', $id)
 			->get();
-		
-		$this->roleName = $userRolePermission->first()->systemRole->system_role_name;
-		foreach ($userRolePermission as $key => $permission)
+
+		if ($userRolePermission->count())
 		{
-			$rightsArray[$key] = $permission->section_id . '-' . $permission->right_id;
+			$this->roleName = $userRolePermission->first()->systemRole->system_role_name;
+			foreach ($userRolePermission as $key => $permission)
+			{
+				$rightsArray[$key] = $permission->section_id . '-' . $permission->right_id;
+			}
+		}
+		else
+		{
+			$this->roleName = SystemRole::find($id)->system_role_name;
 		}
 		$this->sectionRights = $rightsArray;
 		$this->roleID = $id;
@@ -70,16 +83,13 @@ class RolePermissionForm extends Component
 			$systemRole = SystemRole::find($id);
 			$systemRole->system_role_name = $this->roleName;
 			$roleNameChanged = $systemRole->save();
+
 			if ($roleNameChanged)
 			{
-				$deleteSectionRights = SectionRight::where('system_role_id', $id)->delete();
-				if ($deleteSectionRights)
-				{
-					$sectionRightsArray = $this->fetchSectionRights($id);
-
-					$success = SectionRight::insert($sectionRightsArray);
-					$this->message = 'Role and permissions updated successfully';
-				}
+				SectionRight::where('system_role_id', $id)->delete();
+				$sectionRightsArray = $this->fetchSectionRights($id);
+				$success = SectionRight::insert($sectionRightsArray);
+				$this->message = 'Role and permissions updated successfully';
 			}
 		}
 		else
@@ -145,6 +155,7 @@ class RolePermissionForm extends Component
 	private function clearFields()
 	{
 		$this->roleName = '';
+		$this->roleID = null;
 		$this->sectionRights = [];
 	}
 }
