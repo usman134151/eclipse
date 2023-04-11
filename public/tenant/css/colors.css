@@ -344,7 +344,7 @@ input:focus ~ .bg-light {
 
 .btn_submit:hover,
 .btn-primary:hover {
-  background: #204387 !important;
+  background: linear-gradient(95.17deg, #0055FC -4.43%, #083897 95.81%) !important;
   color: #fff;
 }
 
