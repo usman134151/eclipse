@@ -44,7 +44,7 @@
             </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">50</div>
+			<div class="text-center block-number">22</div>
 		  </div>
 		</a>
 	  </li>
@@ -57,7 +57,7 @@
             </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">200</div>
+			<div class="text-center block-number">150</div>
 		  </div>
 		</a>
 	  </li>
@@ -70,7 +70,7 @@
 		</svg>
 		</div>
 		  <div>
-			<div class="text-center block-number">50</div>
+			<div class="text-center block-number">10</div>
 		  </div>
 		</a>
 	  </li>
@@ -109,7 +109,7 @@
 			   </svg>
 		  </div>
 		  <div>
-			<div class="text-center block-number">50</div>
+			<div class="text-center block-number">10</div>
 		  </div>
 		</a>
 	  </li>
