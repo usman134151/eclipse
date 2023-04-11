@@ -283,10 +283,11 @@
                                     <h2>Roles and Permissions</h2>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <select class="form-select" id="roles-permissions">
-                                                <option>Select Roles and Permissions</option>
-                                            </select>
-                                        </div>
+                                            {{-- Updated by Shanila to add dropdown--}}
+                                            {!! App\Helpers\SetupHelper::createDropDown('SystemRole', 'system_role_id',
+                                            'system_role_name', '', '', '', false, 'system_roles',
+                                            '','system_roles') !!}
+                                            {{-- End of update by Shanila --}}
                                     </div>
                                 </div>
                                 <div class="col-12 justify-content-center form-actions d-flex">
