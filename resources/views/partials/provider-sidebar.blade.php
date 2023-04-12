@@ -53,9 +53,9 @@
 		<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 			<li class="nav-item" id="dashboard">
 				<a href="/provider/dashboard">
-					<svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/provider-menu.svg#dashboard-icon"></use>
-                    </svg>
+					<svg aria-label="Home" width="20" height="20" viewBox="0 0 20 20">
+						<use xlink:href="/css/common-icons.svg#dashboard-icon"></use>
+					  </svg>
 					<span class="menu-item">Dashboard</span>
 				</a>
 			</li>
@@ -101,9 +101,9 @@
 			</li>
 			<li class="nav-item" id="past">
 			  <a class="nav-link" href="/provider/bookings/past">
-				<svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/provider-menu.svg#past-icon"></use>
-                </svg>
+				<svg aria-label="Past Assignments" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#past_assignment"></use>
+                  </svg>
 				<span class="menu-item">Past</span>
 			  </a>
 			</li>

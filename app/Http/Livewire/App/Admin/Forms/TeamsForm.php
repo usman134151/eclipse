@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\App\Admin;
+namespace App\Http\Livewire\App\Admin\Forms;
 
 use Livewire\Component;
 
-class Teams extends Component
+class TeamsForm extends Component
 {
     public $showForm;
-    public $showProfile;
+    protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
     {
-        return view('livewire.app.admin.teams');
+        return view('livewire.app.admin.forms.teams-form');
     }
 
     public function mount()
@@ -20,6 +20,11 @@ class Teams extends Component
        
     }
 
+    public function showList()
+	{
+		$this->emit('showList');
+	}
+
     function showForm()
     {     
        $this->showForm=true;
@@ -27,12 +32,6 @@ class Teams extends Component
     public function resetForm()
     {
         $this->showForm=false;
-        $this->showProfile = false;
     }
-    
-    public function showProfile()
-	{
-		$this->showProfile = true;
-	}
 
 }
