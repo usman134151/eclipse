@@ -7,6 +7,7 @@ use Livewire\Component;
 class TeamDetails extends Component
 {
     public $showForm;
+    public $showList;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -19,7 +20,10 @@ class TeamDetails extends Component
        
        
     }
-
+    public function showList()
+	{
+		$this->emit('showList');
+	}
     function showForm()
     {     
        $this->showForm=true;
