@@ -48,6 +48,21 @@
               <label class="form-label" for="zip-code">Zip Code</label>
               <input type="text" id="zip-code" class="form-control" name="zip-code-column" placeholder="Enter Zip Code">
             </div>
+            <div class="col-lg-6 mb-4">
+              <label class="form-label" for="phone">Phone</label>
+              <input type="text" id="phone" class="form-control" name="phone" placeholder="(000) 000-0000">
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <label class="form-label" for="arrival-notes">Arrival Notes</label>
+                <textarea
+                class="form-control"
+                placeholder="Enter Notes"
+                name="arrival-notes"
+                id="arrival-notes"
+                ></textarea>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
