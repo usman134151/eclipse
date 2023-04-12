@@ -121,7 +121,7 @@
               </li>
               <li class="nav-item  " id="unassigned">
                 <a class="nav-link" href="/admin/bookings/unassigned">
-                  <svg aria-label="Unassigned Assignments" width="17" height="20" viewBox="0 0 17 20" class="fill-none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Unassigned Assignments" width="17" height="20" viewBox="0 0 17 20"  fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#unassigned-icon"></use>
                   </svg>
                   <span class="menu-item">Unassigned</span>
@@ -137,7 +137,7 @@
               </li>
               <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg class="fill-none" aria-label="Quotes And Leads" width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
+                  <svg  aria-label="Quotes And Leads" width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#qoutes-icon"></use>
 
                   </svg>
@@ -154,7 +154,7 @@
                   </li>
                   <li class="nav-item " id="quotes">
                     <a class="nav-link" href="/admin/quotes">
-                      <svg class="fill-none" aria-label="Quotes" width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
+                      <svg  aria-label="Quotes" width="18" height="22" viewBox="0 0 18 22" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#qoutes-icon"></use>
                     </svg>
                       <span class="menu-item">Quotes</span>
@@ -174,7 +174,7 @@
             <ul class="menu-content " id="Customers">
               <li class="nav-item " id="create-customer">
                 <a class="nav-link" href="/admin/customer/create-customer">
-                  <svg class="fill-none" aria-label="Add Customer User" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg  aria-label="Add Customer User" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#add-customer-icon"></use>
                   </svg>
                   <span class="menu-item">Add Customer User</span>
@@ -182,7 +182,7 @@
               </li>
               <li class="nav-item  " id="customer">
                 <a class="nav-link" href="/admin/customer">
-                  <svg class="fill-none" aria-label="All Customers" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg  aria-label="All Customers" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#all-customer-icon"></use>
                   </svg>
                   <span class="menu-item">All Customers</span>
@@ -190,7 +190,7 @@
               </li>
               <li class="nav-item  " id="company">
                 <a class="nav-link" href="/admin/company">
-                  <svg class="fill-none" aria-label="All Companies" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg  aria-label="All Companies" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#all-companies-icon"></use>
                   </svg>
                   <span class="menu-item">All Companies</span>
@@ -198,7 +198,7 @@
               </li>
               <li class="nav-item" id="deactivated-customer">
                 <a class="nav-link" href="/admin/deactivated-customer">
-                  <svg class="fill-none" aria-label="Deactivated Customers" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg  aria-label="Deactivated Customers" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#deactivated-customer-icon"></use>
                   </svg>
                   <span class="menu-item">Deactivated Customers</span>
@@ -232,7 +232,7 @@
             <ul role="menu" class="menu-content  " id="Providers">
               <li role="menuitem" class="nav-item " id="create-provider">
                 <a class="nav-link" href="/admin/provider/create-provider">
-                  <svg aria-label="Add Provider" class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Add Provider"  width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#add-provider-icon"></use>
                   </svg>
                   <span class="menu-item">Add Provider</span>
@@ -248,7 +248,7 @@
               </li>
               <li role="menuitem" class="nav-item  " id="provider">
                 <a class="nav-link" href="/admin/provider">
-                  <svg aria-label="All Providers" class="fill-none" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="All Providers"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#all-provider-icon"></use>
 
                   </svg>
@@ -273,7 +273,7 @@
               </li>
               <li role="menuitem" class="nav-item  " id="pending-payments">
                 <a class="nav-link" href="/admin/provider/pending-payments">
-                  <svg class="fill-stroke" aria-label="Payment Manager" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg  aria-label="Payment Manager" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#payment-manager-icon"></use>
                   </svg>
                   <span class="menu-item">Payment Manager</span>
@@ -281,7 +281,7 @@
               </li>
               <li role="menuitem" class="nav-item  " id="deactivated-provider">
                 <a class="nav-link" href="/admin/deactivated-provider">
-                  <svg aria-label="Deactivated Providers" class="fill-none" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Deactivated Providers"  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#deactivated-providers-icon"></use>
                   </svg>
                   <span class="menu-item">Deactivated Providers</span>
@@ -309,7 +309,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="provider-screenings">
                     <a class="nav-link" href="/admin/provider-screenings">
-                      <svg aria-label="Provider Screenings" class="fill-none" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Provider Screenings"  width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#provider-screenings-icon"></use>
                       </svg>
                       <span class="menu-item">Provider Screenings</span>
@@ -337,7 +337,7 @@
           </li>
           <li class="nav-item has-sub">
             <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-              <svg class="fill-none" aria-label="Settings" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg fill="none" aria-label="Settings" width="20" height="20" viewBox="0 0 20 20"  xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/admin-menu.svg#settings"></use>
               </svg>
               <span class="menu-item">Settings</span>
@@ -364,7 +364,7 @@
                 <ul role="menu" class="menu-content " id="Business-rofile-settings">
                   <li role="menuitem" class="nav-item  " id="profile">
                     <a class="nav-link" href="/admin/profile">
-                      <svg class="fill-none" aria-label="Account Profile" width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg  aria-label="Account Profile" width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#account-profile"></use>
                     </svg>
                       <span class="menu-item">Account Profile</span>
@@ -380,7 +380,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="settings">
                     <a class="nav-link" href="/admin/settings">
-                      <svg aria-label="Notifications" class="fill-none" width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Notifications"  width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#notification-icon"></use>
                       </svg>
                       <span class="menu-item">Notifications</span>
@@ -388,7 +388,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="templates">
                     <a class="nav-link" href="/admin/templates">
-                      <svg aria-label="Email Templates" class="fill-none" width="22" height="19" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Email Templates"  width="22" height="19" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#email-template-icon"></use>
                       </svg>
                       <span class="menu-item">Email Templates</span>
@@ -432,7 +432,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="change-password">
                     <a class="nav-link" href="/admin/change-password">
-                      <svg aria-label="Password Reset" class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Password Reset"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#reset-password-icon"></use>
                       </svg>
                       <span class="menu-item">Password Reset</span>
@@ -442,7 +442,7 @@
               </li>
               <li class="nav-item has-sub">
                 <a class="d-flex align-items-start" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Accommodations & Services Setup" class="fill-none" width="21" height="18" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Accommodations & Services Setup"  width="21" height="18" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#accommodations-services-setup-icon"></use>
 
                   </svg>
@@ -451,7 +451,7 @@
                 <ul role="menu" class="menu-content " id="Accommodation">
                   <li role="menuitem" class="nav-item  " id="all-accommodation">
                     <a class="nav-link" href="/admin/all-accommodation">
-                      <svg aria-label="All Accommodations" class="fill-none" width="23" height="19" viewBox="0 0 23 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="All Accommodations"  width="23" height="19" viewBox="0 0 23 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#all-accommodations"></use>
                       </svg>
                       <span class="menu-item">All Accommodations</span>
@@ -459,7 +459,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="create-accommodation">
                     <a class="nav-link" href="/admin/accommodation/create-accommodation">
-                      <svg aria-label="Create Accommodations" class="fill-stroke" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Create Accommodations"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#create-accommodations"></use>
 
                       </svg>
@@ -468,7 +468,7 @@
                   </li>
                   <li class="nav-item" id="all-services">
                     <a class="nav-link" href="/admin/accommodation/all-services">
-                      <svg aria-label="All Services" class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="All Services"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#services-icon"></use>
                       </svg>
                       <span class="menu-item">All Services</span>
@@ -476,7 +476,7 @@
                   </li>
                   <li class="nav-item" id="create-service">
                     <a class="nav-link" href="/admin/accommodation/create-service">
-                      <svg aria-label="Create Services" class="fill-none" width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Create Services"  width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#create-service"></use>
                       </svg>
                       <span class="menu-item">Create Services</span>
@@ -486,7 +486,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Specializations" class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Specializations"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#specialization-icon"></use>
                   </svg>
                   <span class="menu-item">Specializations</span>
@@ -494,7 +494,7 @@
                 <ul role="menu" class="menu-content " id="Specialization">
                   <li role="menuitem" class="nav-item " id="create-specialization">
                     <a class="nav-link" href="/admin/specialization/create-specialization">
-                      <svg aria-label="Add Specialization" class="fill-none" width="13" height="19" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Specialization"  width="13" height="19" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#add-specialization-icon"></use>
                       </svg>
                       <span class="menu-item">Add Specialization</span>
@@ -502,7 +502,7 @@
                   </li>
                   <li role="menuitem" class="nav-item  " id="all-specialization">
                     <a class="nav-link" href="/admin/all-specialization">
-                      <svg aria-label="Specializations" class="fill-stroke" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Specializations"  width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#specialiazation"></use>
                       </svg>
                       <span class="menu-item">Specializations</span>
@@ -512,7 +512,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Industries" class="fill-none" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Industries"  width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#industries-icon"></use>
                   </svg>
                   <span class="menu-item">Industries</span>
@@ -520,7 +520,7 @@
                 <ul role="menu" class="menu-content " id="Industry">
                   <li role="menuitem" class="nav-item " id="create-industry">
                     <a class="nav-link" href="/admin/industry/create-industry">
-                      <svg aria-label="Add Industry" class="fill-none" width="16" height="19" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Industry"  width="16" height="19" viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#add-industries"></use>
                       </svg>
                       <span class="menu-item">Add Industry</span>
@@ -528,7 +528,7 @@
                   </li>
                   <li role="menuitem" class="nav-item  " id="all-industry">
                     <a class="nav-link" href="/admin/all-industry">
-                      <svg aria-label="Industries" class="fill-stroke" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Industries"  width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#industries"></use>
                       </svg>
                       <span class="menu-item">Industries</span>
@@ -538,7 +538,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Saved Forms" class="fill-none" width="21" height="19" viewBox="0 0 21 19" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Saved Forms"  width="21" height="19" viewBox="0 0 21 19" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#saved-forms-icon"></use>
                   </svg>
                   <span class="menu-item">Saved Forms</span>
@@ -546,7 +546,7 @@
                 <ul role="menu" class="menu-content " id="CustomizeForm">
                   <li role="menuitem" class="nav-item " id="create-form">
                     <a class="nav-link" href="/admin/customize-form/create-form">
-                      <svg aria-label="Add Customized Form" class="fill-none" width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Customized Form"  width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#add-form-icon"></use>
                       </svg>
                       <span class="menu-item">Add Customized Form</span>
@@ -565,7 +565,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Coupons & Referrals Setup" class="fill-none" width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Coupons & Referrals Setup"  width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#coupon-reffrerals-icon"></use>
                 </svg>
                   <span class="menu-item">Coupons & Referrals Setup
@@ -574,7 +574,7 @@
                 <ul role="menu" class="menu-content " id="Coupon">
                   <li role="menuitem" class="nav-item" id="all-coupon">
                     <a class="nav-link" href="/admin/all-coupon">
-                      <svg aria-label="Coupons" class="fill-none" width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Coupons"  width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#coupons-icon"></use>
                     </svg>
                       <span class="menu-item">Coupons
@@ -583,7 +583,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="referral-setting">
                     <a class="nav-link" href="/admin/referral-setting">
-                      <svg aria-label="Referral Settings" class="fill-none" width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Referral Settings"  width="19" height="19" viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#refferrals-setting-icon"></use>
                       </svg>
                       <span class="menu-item">Referral Settings</span>
@@ -593,7 +593,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Platform Integrations" class="fill-none" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Platform Integrations"  width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#plateform-integration-icon"></use>
                   </svg>
                   <span class="menu-item">Platform Integrations</span>
@@ -601,7 +601,7 @@
                 <ul role="menu" class="list-unstyled flex-column quickbooks collapse " id="thirdParty">
                   <li role="menuitem" class="nav-item has-sub">
                     <a class="d-flex align-items-center" href="#">
-                      <svg aria-label="Quickbooks" class="fill-none" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Quickbooks"  width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#quick-book-icon"></use>
                     </svg>
                       <span class="menu-item">Quickbooks</span>
@@ -609,7 +609,7 @@
                     <ul role="menu" class="list-unstyled quickbooksInner flex-column collapse " id="quickbook">
                       <li role="menuitem" class=" nav-item" id="quickbook-setup">
                         <a class="nav-link nav-links-padding" href="/admin/quickbook-setup">
-                          <svg aria-label="Add Setup" class="fill-none" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                          <svg aria-label="Add Setup"  width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/admin-menu.svg#add-setup-icon"></use>
                         </svg>
                           <span class="menu-item">Add Setup</span>
@@ -617,7 +617,7 @@
                       </li>
                       <li role="menuitem" class=" nav-item" id="quickbook-connect">
                         <a class="nav-link nav-links-padding" href="/admin/quickbook-connect">
-                          <svg aria-label="Quickbooks" class="fill-none" width="20" height="18" viewBox="0 0 20 18">
+                          <svg aria-label="Quickbooks"  width="20" height="18" viewBox="0 0 20 18">
                             <use xlink:href="/css/admin-menu.svg#quickbooks"></use>
                           </svg>
                           <span class="menu-item">Quickbooks</span>
@@ -627,7 +627,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="stripe-setup">
                     <a class="nav-link" href="/admin/stripe-setup">
-                      <svg aria-label="Stripe Setup" class="fill-none" width="18" height="25" viewBox="0 0 18 25" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Stripe Setup"  width="18" height="25" viewBox="0 0 18 25" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#stripe-setup"></use>
                     </svg>
                       <span class="menu-item">Stripe Setup</span>
@@ -637,7 +637,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Admin Staff" class="fill-none" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Admin Staff"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#admin-staff-icon"></use>
                 </svg>
                   <span class="menu-item">Admin Staff</span>
@@ -645,7 +645,7 @@
                 <ul role="menu" class="menu-content " id="Admin-Staff">
                   <li role="menuitem" class="nav-item" id="role-permission">
                     <a class="nav-link" href="/admin/role-permission">
-                      <svg aria-label="Roles And Permissions" class="fill-stroke" width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Roles And Permissions"  width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#roles-permission-icon"></use>
                     </svg>    
                       <span class="menu-item">Roles &amp; Permissions</span>
@@ -653,7 +653,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="create-admin-team">
                     <a class="nav-link" href="/admin/admin-team/create-admin-team">
-                      <svg aria-label="Add Admin Teams" class="fill-stroke" width="29" height="20" viewBox="0 0 29 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Admin Teams"  width="29" height="20" viewBox="0 0 29 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#admin-teams-icon"></use>
                     </svg>
                       <span class="menu-item">Add Admin Teams</span>
@@ -661,7 +661,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="admin-team">
                     <a class="nav-link" href="/admin/admin-team">
-                      <svg aria-label="List Admin Teams" class="fill-stroke" width="25" height="20" viewBox="0 0 25 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="List Admin Teams"  width="25" height="20" viewBox="0 0 25 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#list-admin-teams"></use>
                       </svg>
                       <span class="menu-item">List Admin Teams</span>
@@ -669,7 +669,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="create-staff">
                     <a class="nav-link" href="/admin/admin-staff/create-staff">
-                      <svg aria-label="Add Admin Staff" class="fill-stroke" width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Admin Staff"  width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#add-admin-staff"></use>
                     </svg>
                       <span class="menu-item">Add Admin Staff</span>
@@ -677,7 +677,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="admin-staff">
                     <a class="nav-link" href="/admin/admin-staff">
-                      <svg aria-label="All Admin-Staff" class="fill-stroke" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="All Admin-Staff"  width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#all-admin-staff"></use>
                       </svg>
                       <span class="menu-item">All Admin-Staff</span>
@@ -685,7 +685,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="deactivated-admin-staff">
                     <a class="nav-link" href="/admin/deactivated-admin-staff">
-                      <svg aria-label="Deactivated Admin-Staff" class="fill-none" width="20" height="21" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Deactivated Admin-Staff"  width="20" height="21" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#deactivated-icon"></use>
                     </svg>
                       <span class="menu-item">Deactivated Admin-Staff</span>
@@ -695,7 +695,7 @@
               </li>
               <li role="menuitem" class="nav-item" id="jira-status">
                 <a class="nav-link" href="/admin/jira-status">
-                  <svg aria-label="Support Tickets" class="fill-none" width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Support Tickets"  width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#support-tickets-icon"></use>
                   </svg>
                   <span class="menu-item">Support Tickets</span>
