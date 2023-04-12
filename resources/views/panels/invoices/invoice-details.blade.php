@@ -799,7 +799,7 @@
             </div>
             </div>
            {{-- icon bar start end--}}
-           <div class="d-flex justify-content-center">
+           <div class="justify-content-center col-12 d-flex flex-column flex-md-row gap-2">
             <button class="btn btn-primary rounded">Resend Invoice</button>
             <button class="btn btn-primary rounded mx-2" data-bs-toggle="modal" data-bs-target="#payInvoice">Record Payment</button>
             <button class="btn btn-primary rounded mx-2">Revert Invoice</button>
