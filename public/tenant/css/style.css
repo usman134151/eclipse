@@ -317,7 +317,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-actions {
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center; }
+  @media (min-width: 992px) {
+    .form-actions {
+      flex-direction: row; } }
 
 .navigation.navbar-nav .dropdown-menu {
   position: absolute !important;
