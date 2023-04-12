@@ -11,9 +11,10 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class SetupList extends PowerGridComponent
 {
 	use ActionButton;
-	
+
 	public $selectedSetupId;
 	public $setup_value_label;
+    public $setupDeleteable;  // updated by shanila to add a new column in tables which can be deletable
 
 	/*
 	|--------------------------------------------------------------------------
@@ -99,17 +100,20 @@ final class SetupList extends PowerGridComponent
 			return ($model->status);
 		})
 		->addColumn('edit', function(Setup $model) {
-			
-			return '<div class="d-flex actions"><a  wire:click.prevent="showDetails('.$model->id.',\''.$model->setup_value.'\')" x-on:click="setupDetails = true" href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
-		});
-	} 
+            $model = Setup::find($model->id);
+			return '<div class="d-flex actions"><a  wire:click.prevent="showDetails('.$model->id.',\''.$model->setup_value.'\',\''.$model->setup_deleteable.'\')" x-on:click="setupDetails = true" href="#" title="View Setup" aria-label="View Setup" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Setup" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
+		});   // updated by shanila to add a new column in tables which can be deletable
 
-	public function showDetails($setupId,$setupLabel)
+	}
+
+	public function showDetails($setupId,$setupLabel, $setupDeleteable)
 	{
+        //dd($setupDeleteable);
 		$this->selectedSetupId = $setupId;
-		
-		$this->emitUp('refreshSetupDetails',$setupId,$setupLabel);
-		
+        $this->setupDeleteable = $setupDeleteable; // updated by shanila to add a new column in tables which can be deletable
+
+		$this->emitUp('refreshSetupDetails',$setupId,$setupLabel,$setupDeleteable); // updated by shanila to add a new column in tables which can be deletable
+
 	}
 
 
@@ -138,7 +142,7 @@ final class SetupList extends PowerGridComponent
 		];
 	}
 
-	
+
 	/*
 	|--------------------------------------------------------------------------
 	| Actions Method

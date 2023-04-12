@@ -15,13 +15,16 @@ class Setup extends Component
 	public $listDescription="";
 	public $showDetails = true;
 	public $setupLabel='';
-	
+    public $setupDeleteable=false; // updated by shanila to add a new column in tables which can be deletable
+
+
 
 	// Property for holding the ID of the record being edited / deleted
 	public $recordId;
 	public $setupId;
 	public $counter=0;
-	public $setupDetails=false;
+	public $setupDetails=false; // updated by shanila to add a new column in tables which can be deletable
+
 
 	// Define event listeners for this component
 	protected $listeners = [
@@ -31,20 +34,24 @@ class Setup extends Component
 		'updateRecordId' => 'updateRecordId', // Update the ID of the record being edited / deleted
 		'refreshSetupDetails'=>'refreshDetails'
 	];
-    public function refreshDetails($setupId,$setupLabel){
+    public function refreshDetails($setupId,$setupLabel,$setupDeleteable ){  // updated by shanila to add a new column in tables which can be deletable
 	if($this->counter==0){
 		$this->setupId=0;
 		$this->setupLabel=$setupLabel;
-		$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId,'setupLabel'=>$setupLabel]);
+		$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId,'setupLabel'=>$setupLabel,'setupDeleteable'=>$setupDeleteable]); // updated by shanila to add a new column in tables which can be deletable
 		$this->counter=1;
 		$this->setupDetails=true;
+        $this->setupDeleteable=$setupDeleteable; // updated by shanila to add a new column in tables which can be deletable
+
 
 	}
 	else{
 		$this->setupId=$setupId;
 		$this->counter=0;
+        $this->setupDeleteable=$setupDeleteable;   // updated by shanila to add a new column in tables which can be deletable
+
 	}
-	
+
 
 		//$this->dispatchBrowserEvent('refresh-details', ['setupId' => $setupId]);
 	 }
@@ -58,7 +65,7 @@ class Setup extends Component
 		// Set the showForm property to true to display the form
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/setup/create-setup']);  //updated by Amna Bilal to set url
-		
+
 	}
 
 	// Reset the form and display a confirmation message

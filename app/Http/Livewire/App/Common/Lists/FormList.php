@@ -1,4 +1,5 @@
 <?php
+// updated by shanila
 
 namespace App\Http\Livewire\App\Common\Lists;
 
@@ -9,13 +10,12 @@ use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class SetupDetails extends PowerGridComponent
+final class FormList extends PowerGridComponent
 {
     use ActionButton;
     protected $listeners = ['refresh'=>'setUp','refreshDetailList' => 'refreshList'];
     public $setup_value_label;
     public $setupId;
-    public $setupDeleteable;// updated by shanila to add a new column in tables which can be deletable
 
     /*
     |--------------------------------------------------------------------------
@@ -24,10 +24,8 @@ final class SetupDetails extends PowerGridComponent
     | Setup Table's general features
     |--------------------------------------------------------------------------
     */
-    public function refreshList($setupDeleteable)
+    public function refreshList($setupId)
     {
-        // updated by shanila to add a new column in tables which can be deletable
-        $this->setupDeleteable = $setupDeleteable;
         // Handle the event data
         // ...
         //dd($setupId);
@@ -66,7 +64,7 @@ final class SetupDetails extends PowerGridComponent
     {
 
 
-        return SetupValue::query()->where('setup_id',$this->setupId);
+        return SetupValue::query()->where('setup_id',7);
     }
 
     /*
@@ -104,16 +102,6 @@ final class SetupDetails extends PowerGridComponent
             ->addColumn('setup_value_label')
             ->addColumn('status', function (SetupValue $model) {
                 return ($model->status);
-            })
-            // updated by shanila to add a new column in tables which can be deletable
-            ->addColumn('setup_deleteable', function(SetupValue $model) {
-
-                if($this->setupDeleteable){
-                    return '<div class="d-flex actions"> <a href="#" title="Delete Setupvalue" aria-label="Delete Setupvalue" wire:click="deleteRecord('.$model->setup_deleteable.'\')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
-                                </a> </div>';
-                }
-
             });
 
     }
@@ -129,20 +117,16 @@ final class SetupDetails extends PowerGridComponent
      *
      * @return array<int, Column>
      */
-
     public function columns(): array
     {
-        $columns = [
-            Column::make('Setup Value Label', 'setup_value_label', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')->toggleable(1, 'Deactivated', 'Activated')
+        // Returns an array of columns for the PowerGrid component
+        return [
+            Column::make('Form Types', 'setup_value_label', '')->editOnClick(),
+            Column::make('Status', 'status', '')
+                ->toggleable(1, 'Deactivated', 'Activated')
         ];
-
-        if ($this->setupDeleteable) {
-            $columns[] = Column::make('Action', 'setup_deleteable', '');// updated by shanila to make column
-        }
-
-        return $columns;
     }
+
     // A method to handle the edit button click event
     function edit($id){
         // Emits an event to show the form for editing a record
