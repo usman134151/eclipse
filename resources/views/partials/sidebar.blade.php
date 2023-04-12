@@ -50,7 +50,7 @@
           <li class="nav-item" id="dashboard">
             <a href="/admin/dashboard">
               <svg aria-label="Home" width="20" height="20" viewBox="0 0 20 20">
-                <use xlink:href="/css/common-icons.svg#dashboard-icon"></use>
+                <use xlink:href="/css/admin-menu.svg#dashboard_icon"></use>
               </svg>
               <span class="menu-item">Dashboard</span>
             </a>
@@ -98,7 +98,7 @@
               <li class="nav-item  " id="past">
                 <a class="nav-link" href="/admin/bookings/past">
                   <svg aria-label="Past Assignments" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/admin-menu.svg#past_assignment"></use>
+                    <use xlink:href="/css/admin-menu.svg#past-icon"></use>
                   </svg>
                   <span class="menu-item">Past</span>
                 </a>
@@ -364,7 +364,7 @@
                 <ul role="menu" class="menu-content " id="Business-rofile-settings">
                   <li role="menuitem" class="nav-item  " id="profile">
                     <a class="nav-link" href="/admin/profile">
-                      <svg class="fill-none" aria-label="Account Profile" width="21" height="18" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg class="fill-none" aria-label="Account Profile" width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#account-profile"></use>
                     </svg>
                       <span class="menu-item">Account Profile</span>
@@ -404,9 +404,20 @@
                   </li>
                   <li role="menuitem" class="nav-item  " id="profile">
                     <a class="nav-link" href="/admin/setup-values">
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/admin-menu.svg#setup-values-icon"></use>
-                      </svg>
+                      <svg id="setup-values-icon" hight="20" width="20" viewBox="0 0 20 20" fill="none">
+                        <mask id="" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="1" width="19" height="19">
+                        <path d="M1 1.83838H18.194V19.0129H1V1.83838Z" fill="" stroke="" stroke-width="0.6"></path>
+                        </mask>
+                        <g mask="">
+                        <path d="M17.615 8.36573L16.5934 8.21374L15.6256 9.17962L16.9899 9.38736V11.5095L15.5699 11.6999C15.3795 11.7367 15.2099 11.8519 15.1331 12.0404L14.6214 13.2911C14.5465 13.462 14.5656 13.67 14.679 13.822L15.5315 14.9573L14.0347 16.4541L12.8977 15.6018C12.7457 15.4897 12.5379 15.469 12.3683 15.5457L11.1352 16.0575C10.9659 16.1327 10.8331 16.2847 10.7947 16.4748L10.587 17.8948H8.48401L8.27444 16.4748C8.25678 16.2847 8.12428 16.1327 7.9339 16.0575L6.68322 15.5457C6.51386 15.469 6.3043 15.4897 6.15413 15.6018L5.01706 16.4541L3.52026 14.9573L4.37253 13.822C4.48614 13.67 4.50533 13.462 4.42857 13.2911L3.93603 12.0404C3.8608 11.8692 3.7088 11.7367 3.50107 11.6999L2.09869 11.5095V9.38736L3.50107 9.17962C3.68961 9.16043 3.8608 9.02763 3.93603 8.83908L4.44776 7.58839C4.52452 7.41721 4.50533 7.20947 4.39172 7.05748L3.53945 5.92041L5.03472 4.4236L6.17149 5.2777C6.32348 5.39132 6.53305 5.41051 6.70241 5.35294L7.95309 4.84121C8.12428 4.76597 8.25678 4.61398 8.27597 4.40624L8.48401 2.98437H10.6062L10.8139 4.34867L11.7798 3.38279L11.6278 2.35933C11.5912 2.09372 11.364 1.88599 11.0795 1.88599H8.00914C7.74505 1.88599 7.49893 2.09372 7.46055 2.35933L7.23332 3.93107L6.55072 4.21587L5.28236 3.26917C5.0731 3.09799 4.77064 3.13637 4.56138 3.32522L2.42004 5.48544C2.23119 5.67429 2.212 5.97798 2.364 6.20521L3.31069 7.47478L3.02772 8.15617L1.47335 8.36573C1.20774 8.40411 1 8.63104 1 8.91401V11.9844C1 12.0596 1.01919 12.154 1.05757 12.2293C1.07524 12.2868 1.11362 12.3444 1.17118 12.381C1.24612 12.4577 1.35973 12.5153 1.47335 12.533L3.04691 12.7602L3.32988 13.4236L2.38319 14.6935C2.19281 14.9012 2.23119 15.2052 2.42004 15.4129L4.58057 17.5719C4.77064 17.7623 5.09229 17.7815 5.30003 17.6295L6.56991 16.6828L7.25251 16.9658L7.47974 18.5394C7.5166 18.8031 7.74505 19.0127 8.02833 19.0127H11.0987C11.364 19.0127 11.6104 18.8031 11.647 18.5394L11.8742 16.9658L12.5571 16.6828L13.8267 17.6295C14.0539 17.8007 14.3561 17.7623 14.5465 17.5719L16.7067 15.4129C16.8955 15.2229 16.9147 14.9204 16.7627 14.6935L15.816 13.4236L16.099 12.7602L17.6726 12.533C17.9382 12.4961 18.1459 12.2676 18.1459 12.0036V8.91401C18.0902 8.6487 17.8806 8.40411 17.615 8.36573Z" fill="" stroke="" stroke-width="0.6"></path>
+                        </g>
+                        <mask id="" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="7" y="0" width="13" height="13">
+                        <path d="M7.19922 1H19V12.8331H7.19922V1Z" fill="" stroke="" stroke-width="0.2"></path>
+                        </mask>
+                        <g mask="">
+                        <path d="M17.7476 3.81791L11.5526 10.0144L9.98058 8.44082L16.1563 2.24587C16.3644 2.03783 16.7256 2.03783 16.9337 2.24587L17.7284 3.0421C17.8435 3.15571 17.8996 3.28852 17.8996 3.43868C17.8996 3.57149 17.8435 3.72348 17.7476 3.81791ZM8.38783 11.6056L9.24162 9.23734L10.7384 10.7341L8.38783 11.6056ZM18.5249 2.26506L17.7284 1.46853C17.103 0.843496 16.0238 0.843496 15.3985 1.46853L8.42621 8.44082C8.37016 8.49839 8.33178 8.57362 8.2934 8.64886L7.27147 11.4536C7.13897 11.8136 7.23309 12.2118 7.4987 12.4963C7.68725 12.6851 7.93367 12.7795 8.19898 12.7795C8.31259 12.7795 8.42621 12.7603 8.53983 12.7235L11.3446 11.7C11.4198 11.6808 11.4966 11.6248 11.5526 11.5672L18.5249 4.59494C18.8286 4.29126 18.9982 3.87548 18.9982 3.43868C18.9982 2.98453 18.8286 2.56722 18.5249 2.26506Z" fill="" stroke="" stroke-width="0.2"></path>
+                        </g>
+                    </svg>
                         
                       <span class="menu-item">Setup Values</span>
                     </a>
@@ -448,8 +459,8 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="create-accommodation">
                     <a class="nav-link" href="/admin/accommodation/create-accommodation">
-                      <svg aria-label="Create Accommodations" class="fill-stroke" width="23" height="19" viewBox="0 0 23 19" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/admin-menu.svg#accommodation-icon"></use>
+                      <svg aria-label="Create Accommodations" class="fill-stroke" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/css/admin-menu.svg#create-accommodations"></use>
 
                       </svg>
                       <span class="menu-item">Create Accommodations</span>
@@ -501,7 +512,7 @@
               </li>
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                  <svg aria-label="Industries" class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Industries" class="fill-none" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#industries-icon"></use>
                   </svg>
                   <span class="menu-item">Industries</span>
@@ -544,7 +555,7 @@
                   <li role="menuitem" class="nav-item  " id="customize-form">
                     <a class="nav-link" href="/admin/customize-form">
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/admin-menu.svg#saved-forms"></use>
+                        <use xlink:href="/css/admin-menu.svg#saved-form"></use>
                         </svg>
                         
                       <span class="menu-item">Saved Forms</span>
@@ -616,7 +627,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="stripe-setup">
                     <a class="nav-link" href="/admin/stripe-setup">
-                      <svg aria-label="Stripe Setup" class="fill-none" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Stripe Setup" class="fill-none" width="18" height="25" viewBox="0 0 18 25" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#stripe-setup"></use>
                     </svg>
                       <span class="menu-item">Stripe Setup</span>
