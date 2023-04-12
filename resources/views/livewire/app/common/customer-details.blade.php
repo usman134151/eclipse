@@ -237,60 +237,42 @@
                                                             <div class="col-md-12">
                                                                 <div class="row mb-1">
                                                                     <div
-                                                                        class="col-md-12 d-flex font-family-tertiary fw-medium">
-                                                                        <div class="col-md-3">
-                                                                            <span class="fw-bold">
-                                                                                Position:
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="col-md-9">
-                                                                            <p>Supervisor</p>
-                                                                        </div>
+                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                        <span class="fw-medium">
+                                                                            Position:
+                                                                        </span>
+                                                                        <p>Supervisor</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-1">
                                                                     <div
-                                                                        class="col-md-12 d-flex gap-2 font-family-tertiary fw-medium">
-                                                                        <div class="col-md-4">
-                                                                            <span class="fw-bold">
-                                                                                Company:
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="col-md-10">
-                                                                            <p>
-                                                                                Example Company
-                                                                            </p>
-                                                                        </div>
+                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                        <span class="fw-medium">
+                                                                            Company:
+                                                                        </span>
+                                                                        <p>Example Company</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-1">
                                                                     <div
-                                                                        class="col-md-12 d-flex gap font-family-tertiary fw-medium">
-                                                                        <div class="col-md-6">
-                                                                            <span class="fw-bold">
-                                                                                Department(s):
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <p>
-                                                                                Language Interpreting
-                                                                            </p>
-                                                                        </div>
+                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                        <span class="fw-bold">
+                                                                            Department(s):
+                                                                        </span>
+                                                                        <p>
+                                                                            Language Interpreting
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-1">
                                                                     <div
-                                                                        class="col-md-12 d-flex gap-1 font-family-tertiary fw-medium">
-                                                                        <div class="col-md-5">
-                                                                            <span class="fw-bold">
-                                                                                Access Role:
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="col-md-7">
-                                                                            <p>
-                                                                                Service Consumer
-                                                                            </p>
-                                                                        </div>
+                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                        <span class="fw-bold">
+                                                                            Access Role:
+                                                                        </span>
+                                                                        <p>
+                                                                            Service Consumer
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -300,45 +282,45 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-12 mt-4">
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Phone Number:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     (987) 653-5875
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Email Address:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">English</div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Primary Language:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">jamesmary@gmail.com
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Physical Address:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
                                                                     AUSTRALIA
@@ -346,12 +328,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Billing Address:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
                                                                     AUSTRALIA
@@ -359,12 +341,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Provider Experience:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                                     <svg aria-label="rating" width="18" height="16"
@@ -400,48 +382,48 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Supervisor:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     Thomas Charles , Peter Henry
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Billing Manager:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     Wade Dave , Seth Ivan
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Completed Requests:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     60 Hours
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-6">
                                                                 <label class="col-form-label" for="">
                                                                     Open Requests:
                                                                 </label>
                                                             </div>
-                                                            <div class="col-md-7 align-self-center">
+                                                            <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
                                                                     20 Hours
                                                                 </div>
@@ -452,7 +434,7 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-12">
                                                         <div class="row mb-1">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Total Invoiced:
                                                                 </label>
@@ -464,7 +446,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Total Paid:
                                                                 </label>
@@ -476,7 +458,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Total Due:
                                                                 </label>
@@ -488,7 +470,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Total Overdue:
                                                                 </label>
@@ -500,7 +482,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Account Credit:
                                                                 </label>
@@ -520,19 +502,19 @@
                                                         <div class="card">
                                                             <div class="table-responsive">
                                                                 <!-- table one -->
-                                                                <table id="unassigned_data" class="table table-hover"
-                                                                    aria-label="Admin Staff Teams Table">
+                                                                <table id="" class="table table-hover"
+                                                                    aria-label="American Sign Language Interpreting Table">
                                                                     <thead>
                                                                         <tr role="row">
-                                                                            <th class="align-middle col-md-7"
+                                                                            <th class="align-middle text-nowrap"
                                                                                 scope="col">
                                                                                 American Sign Language Interpreting
                                                                             </th>
-                                                                            <th class="text-center align-middle col-md-3"
+                                                                            <th class="text-center align-middle"
                                                                                 scope="col">
                                                                                 Service Rate
                                                                             </th>
-                                                                            <th class="text-center align-middle col-md-2"
+                                                                            <th class="text-end align-middle"
                                                                                 scope="col">
                                                                                 <div aria-expanded="true"
                                                                                     data-bs-toggle="collapse"
@@ -553,70 +535,76 @@
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody class="collapse.show"
-                                                                        id="collapseAmericanSignLanguageInterpreting">
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Blog Writing
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Closed-Captioning
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Deaf-Blind Tactile
-                                                                                            Interpreting
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                    </tbody>
                                                                 </table>
+                                                                <div class="collapse show" 
+                                                                        id="collapseAmericanSignLanguageInterpreting">
+                                                                    <table class="table table-hover">
+                                                                        
+                                                                    
+                                                                        <tbody>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Blog Writing
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr role="row" class="even">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Closed-Captioning
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Deaf-Blind Tactile
+                                                                                                Interpreting
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                                 <!-- table two -->
-                                                                <table id="unassigned_data" class="table table-hover"
-                                                                    aria-label="Admin Staff Teams Table">
+                                                                <table id="" class="table table-hover"
+                                                                    aria-label="International Sign Interpreting Table">
                                                                     <thead>
                                                                         <tr role="row">
-                                                                            <th class="align-middle col-md-7"
+                                                                            <th class="align-middle text-nowrap"
                                                                                 scope="col">
                                                                                 International Sign Interpreting
                                                                             </th>
-                                                                            <th class="text-center align-middle col-md-3"
+                                                                            <th class="text-center align-middle"
                                                                                 scope="col">
                                                                                 Service Rate
                                                                             </th>
-                                                                            <th class="text-center align-middle col-md-2"
+                                                                            <th class="text-end align-middle"
                                                                                 scope="col">
                                                                                 <div data-bs-toggle="collapse"
                                                                                     href="#collapseInternationalSignInterpreting"
@@ -636,70 +624,74 @@
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody class="collapse"
-                                                                        id="collapseInternationalSignInterpreting">
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Blog Writing
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Closed-Captioning
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Deaf-Blind Tactile
-                                                                                            Interpreting
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                    </tbody>
                                                                 </table>
+                                                                <div class="collapse" 
+                                                                        id="collapseInternationalSignInterpreting">
+                                                                    <table class="table table-hover">
+                                                                        <tbody>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Blog Writing
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr role="row" class="even">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Closed-Captioning
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Deaf-Blind Tactile
+                                                                                                Interpreting
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                                 <!-- table three -->
-                                                                <table id="unassigned_data" class="table table-hover"
-                                                                    aria-label="Admin Staff Teams Table">
+                                                                <table id="" class="table table-hover"
+                                                                    aria-label="Sign Language Interpreting Services Table">
                                                                     <thead>
                                                                         <tr role="row">
-                                                                            <th class="align-middle col-md-7"
+                                                                            <th class="align-middle text-nowrap"
                                                                                 scope="col">
                                                                                 Sign Language Interpreting Services
                                                                             </th>
-                                                                            <th class="text-center align-middle col-md-3"
+                                                                            <th class="text-center align-middle"
                                                                                 scope="col">
                                                                                 Service Rate
                                                                             </th>
-                                                                            <th class="text-center align-middle col-md-2"
+                                                                            <th class="text-end align-middle"
                                                                                 scope="col">
                                                                                 <div data-bs-toggle="collapse"
                                                                                     href="#collapseSignLanguageInterpretingServices"
@@ -719,56 +711,60 @@
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody class="collapse"
-                                                                        id="collapseSignLanguageInterpretingServices">
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Blog Writing
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Closed-Captioning
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-10">
-                                                                                        <p>
-                                                                                            Deaf-Blind Tactile
-                                                                                            Interpreting
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center align-middle">
-                                                                                $10.00
-                                                                            </td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                    </tbody>
                                                                 </table>
+                                                                <div class="collapse" 
+                                                                        id="collapseSignLanguageInterpretingServices">
+                                                                    <table class="table table-hover">
+                                                                        <tbody>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Blog Writing
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr role="row" class="even">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Closed-Captioning
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="align-middle">
+                                                                                    <div class="row g-2">
+                                                                                        <div class="col-md-10">
+                                                                                            <p>
+                                                                                                Deaf-Blind Tactile
+                                                                                                Interpreting
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="text-center align-middle">
+                                                                                    $10.00
+                                                                                </td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
