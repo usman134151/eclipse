@@ -60,6 +60,12 @@ class SetupSeeder extends Seeder
                 'setup_deleteable'=>0,
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'setup_value' => 'Provider Certifications',
+                'setup_deleteable'=>1,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
 
