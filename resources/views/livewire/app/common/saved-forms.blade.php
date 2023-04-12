@@ -33,7 +33,7 @@
 									</div>
 								</div>
 							</div>
-                            {{-- updated by shanila
+                            {{-- updated by shanila to list of saved forms --}}
 							@livewire('app.common.lists.form-list', key(Str::random(10)))
 						</form>
 						{{-- Icon Legend Bar - Start --}}
