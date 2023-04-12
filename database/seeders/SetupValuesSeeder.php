@@ -72,6 +72,10 @@ class SetupValuesSeeder extends Seeder
             'New Provider Application',
             'New Provider Screening',
         ];
+        $providerCertificates = [
+            'National Certification',
+            'State Certification',
+        ];
 
         // Insert languages
         $setup = DB::table('setup')->where('setup_value', 'Languages')->first();
@@ -107,7 +111,7 @@ class SetupValuesSeeder extends Seeder
         }
 
        //Insert service types
-       
+
        $setup = DB::table('setup')->where('setup_value', 'Service Types')->first();
        foreach ($serviceTypes as $service) {
            DB::table('setup_values')->insert([
@@ -125,12 +129,22 @@ class SetupValuesSeeder extends Seeder
                'created_at' => now(),
                'updated_at' => now()
            ]);
-       }  
+       }
        $setup = DB::table('setup')->where('setup_value', 'Customer Form Name')->first();
        foreach ($customerFormNames as $customerFormName) {
            DB::table('setup_values')->insert([
                'setup_id' => $setup->id,
                'setup_value_label' => $customerFormName,
+               'created_at' => now(),
+               'updated_at' => now()
+           ]);
+       }
+        //Insert Provider Certifications
+       $setup = DB::table('setup')->where('setup_value', 'Provider Certifications')->first();
+       foreach ($providerCertificates as $providerCertificates) {
+           DB::table('setup_values')->insert([
+               'setup_id' => $setup->id,
+               'setup_value_label' => $providerCertificates,
                'created_at' => now(),
                'updated_at' => now()
            ]);
