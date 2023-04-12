@@ -57,7 +57,7 @@ class SetupSeeder extends Seeder
             ],
             [
                 'setup_value' => 'Customer Form Name',
-                'setup_deleteable'=>1,
+                'setup_deleteable'=>0,
                 'created_at' => now(),
                 'updated_at' => now()
             ]
