@@ -205,7 +205,7 @@
 				</svg>
 			</div>
 		</div>
-		<div class="d-inline-flex">
+		<div class="col-12 d-flex flex-column flex-md-row gap-2">
 			<button type="btn" class="btn btn-sm btn-outline-primary mx-2">
 				Net 15
 			</button>
@@ -230,9 +230,9 @@
 			<input class="form-control" type="file" id="upload-file">
 		</div>
 	</div>
-	<div class="d-inline-flex mb-4">
+	<div class="col-12 d-flex flex-column flex-md-row gap-2 mb-4">
 		<div>
-			<button class="btn btn-outline-primary">Attachment 1</button>
+			<button class="btn btn-outline-primary mx-2">Attachment 1</button>
 		</div>
 		<div>
 			<button class="btn btn-outline-primary mx-2">Attachment 2</button>
@@ -264,7 +264,7 @@
 				</label>
 			</div>
 		</div>
-		<div class="col-12 justify-content-center form-actions d-flex gap-3">
+		<div class="col-12 justify-content-center d-flex flex-column flex-md-row gap-2">
 			<button type="button" class="btn btn-outline-primary rounded">
 				Cancel
 			</button>
