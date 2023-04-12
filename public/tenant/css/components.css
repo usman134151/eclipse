@@ -713,6 +713,24 @@ footer.footer-border {
   }
   .main-menu.menu-light .navigation li a svg.fill-none {
     stroke: #6E6B7B !important;
+    fill: none !important;
+  }
+  .main-menu.menu-light .navigation li a svg.fill-none path {
+    fill: none;
+  }
+  .main-menu.menu-light .navigation li a:hover svg.fill-none path,
+  .main-menu.menu-light .navigation li.active a svg.fill-none path {
+    fill: none;
+    stroke: #fff;
+  }
+  .main-menu.menu-light .navigation li a svg.fill-stroke path {
+     fill: #6E6B7B;
+     stroke: #6E6B7B;
+  }
+  .main-menu.menu-light .navigation li a:hover svg.fill-stroke path,
+  .main-menu.menu-light .navigation li.active a svg.fill-stroke path {
+    fill: #fff;
+     stroke: #fff;
   }
 .main-menu.menu-light .navigation li a svg.fill-none-tenants-svg-icon {
   fill: none !important;

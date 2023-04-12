@@ -214,7 +214,7 @@
               </li>
               <li class="nav-item  " id="customer-invoices">
                 <a class="nav-link" href="/admin/customer-invoices">
-                  <svg aria-label="Customer Invoices" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Customer Invoices" width="18" height="20" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#customer-invoices"></use>
                   </svg>
                   <span class="menu-item">Customer Invoices</span>
@@ -273,7 +273,7 @@
               </li>
               <li role="menuitem" class="nav-item  " id="pending-payments">
                 <a class="nav-link" href="/admin/provider/pending-payments">
-                  <svg aria-label="Payment Manager" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="fill-stroke" aria-label="Payment Manager" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#payment-manager-icon"></use>
                   </svg>
                   <span class="menu-item">Payment Manager</span>
@@ -337,7 +337,7 @@
           </li>
           <li class="nav-item has-sub">
             <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-              <svg aria-label="Reports" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="fill-none" aria-label="Settings" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/admin-menu.svg#settings"></use>
               </svg>
               <span class="menu-item">Settings</span>
@@ -364,7 +364,7 @@
                 <ul role="menu" class="menu-content " id="Business-rofile-settings">
                   <li role="menuitem" class="nav-item  " id="profile">
                     <a class="nav-link" href="/admin/profile">
-                      <svg aria-label="Account Profile" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg class="fill-none" aria-label="Account Profile" width="21" height="18" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#account-profile"></use>
                     </svg>
                       <span class="menu-item">Account Profile</span>
@@ -405,20 +405,8 @@
                   <li role="menuitem" class="nav-item  " id="profile">
                     <a class="nav-link" href="/admin/setup-values">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0_11363_352886" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="1" width="19" height="19">
-                        <path d="M1 1.83838H18.194V19.0129H1V1.83838Z" fill="white" stroke="white" stroke-width="0.6"/>
-                        </mask>
-                        <g mask="url(#mask0_11363_352886)">
-                        <path d="M17.615 8.36573L16.5934 8.21374L15.6256 9.17962L16.9899 9.38736V11.5095L15.5699 11.6999C15.3795 11.7367 15.2099 11.8519 15.1331 12.0404L14.6214 13.2911C14.5465 13.462 14.5656 13.67 14.679 13.822L15.5315 14.9573L14.0347 16.4541L12.8977 15.6018C12.7457 15.4897 12.5379 15.469 12.3683 15.5457L11.1352 16.0575C10.9659 16.1327 10.8331 16.2847 10.7947 16.4748L10.587 17.8948H8.48401L8.27444 16.4748C8.25678 16.2847 8.12428 16.1327 7.9339 16.0575L6.68322 15.5457C6.51386 15.469 6.3043 15.4897 6.15413 15.6018L5.01706 16.4541L3.52026 14.9573L4.37253 13.822C4.48614 13.67 4.50533 13.462 4.42857 13.2911L3.93603 12.0404C3.8608 11.8692 3.7088 11.7367 3.50107 11.6999L2.09869 11.5095V9.38736L3.50107 9.17962C3.68961 9.16043 3.8608 9.02763 3.93603 8.83908L4.44776 7.58839C4.52452 7.41721 4.50533 7.20947 4.39172 7.05748L3.53945 5.92041L5.03472 4.4236L6.17149 5.2777C6.32348 5.39132 6.53305 5.41051 6.70241 5.35294L7.95309 4.84121C8.12428 4.76597 8.25678 4.61398 8.27597 4.40624L8.48401 2.98437H10.6062L10.8139 4.34867L11.7798 3.38279L11.6278 2.35933C11.5912 2.09372 11.364 1.88599 11.0795 1.88599H8.00914C7.74505 1.88599 7.49893 2.09372 7.46055 2.35933L7.23332 3.93107L6.55072 4.21587L5.28236 3.26917C5.0731 3.09799 4.77064 3.13637 4.56138 3.32522L2.42004 5.48544C2.23119 5.67429 2.212 5.97798 2.364 6.20521L3.31069 7.47478L3.02772 8.15617L1.47335 8.36573C1.20774 8.40411 1 8.63104 1 8.91401V11.9844C1 12.0596 1.01919 12.154 1.05757 12.2293C1.07524 12.2868 1.11362 12.3444 1.17118 12.381C1.24612 12.4577 1.35973 12.5153 1.47335 12.533L3.04691 12.7602L3.32988 13.4236L2.38319 14.6935C2.19281 14.9012 2.23119 15.2052 2.42004 15.4129L4.58057 17.5719C4.77064 17.7623 5.09229 17.7815 5.30003 17.6295L6.56991 16.6828L7.25251 16.9658L7.47974 18.5394C7.5166 18.8031 7.74505 19.0127 8.02833 19.0127H11.0987C11.364 19.0127 11.6104 18.8031 11.647 18.5394L11.8742 16.9658L12.5571 16.6828L13.8267 17.6295C14.0539 17.8007 14.3561 17.7623 14.5465 17.5719L16.7067 15.4129C16.8955 15.2229 16.9147 14.9204 16.7627 14.6935L15.816 13.4236L16.099 12.7602L17.6726 12.533C17.9382 12.4961 18.1459 12.2676 18.1459 12.0036V8.91401C18.0902 8.6487 17.8806 8.40411 17.615 8.36573Z" fill="#6E6B7B" stroke="#6E6B7B" stroke-width="0.6"/>
-                        </g>
-                        <mask id="mask1_11363_352886" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="7" y="0" width="13" height="13">
-                        <path d="M7.19922 1H19V12.8331H7.19922V1Z" fill="white" stroke="white" stroke-width="0.2"/>
-                        </mask>
-                        <g mask="url(#mask1_11363_352886)">
-                        <path d="M17.7476 3.81791L11.5526 10.0144L9.98058 8.44082L16.1563 2.24587C16.3644 2.03783 16.7256 2.03783 16.9337 2.24587L17.7284 3.0421C17.8435 3.15571 17.8996 3.28852 17.8996 3.43868C17.8996 3.57149 17.8435 3.72348 17.7476 3.81791ZM8.38783 11.6056L9.24162 9.23734L10.7384 10.7341L8.38783 11.6056ZM18.5249 2.26506L17.7284 1.46853C17.103 0.843496 16.0238 0.843496 15.3985 1.46853L8.42621 8.44082C8.37016 8.49839 8.33178 8.57362 8.2934 8.64886L7.27147 11.4536C7.13897 11.8136 7.23309 12.2118 7.4987 12.4963C7.68725 12.6851 7.93367 12.7795 8.19898 12.7795C8.31259 12.7795 8.42621 12.7603 8.53983 12.7235L11.3446 11.7C11.4198 11.6808 11.4966 11.6248 11.5526 11.5672L18.5249 4.59494C18.8286 4.29126 18.9982 3.87548 18.9982 3.43868C18.9982 2.98453 18.8286 2.56722 18.5249 2.26506Z" fill="#6E6B7B" stroke="#6E6B7B" stroke-width="0.2"/>
-                        </g>
-                        </svg>
-                        
+                        <use xlink:href="/css/admin-menu.svg#setup-values-icon"></use>
+                      </svg>
                         
                       <span class="menu-item">Setup Values</span>
                     </a>
@@ -460,7 +448,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="create-accommodation">
                     <a class="nav-link" href="/admin/accommodation/create-accommodation">
-                      <svg aria-label="Create Accommodations" class="fill-none" width="23" height="19" viewBox="0 0 23 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Create Accommodations" class="fill-stroke" width="23" height="19" viewBox="0 0 23 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#accommodation-icon"></use>
 
                       </svg>
@@ -503,7 +491,7 @@
                   </li>
                   <li role="menuitem" class="nav-item  " id="all-specialization">
                     <a class="nav-link" href="/admin/all-specialization">
-                      <svg aria-label="Specializations" class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Specializations" class="fill-stroke" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#specialiazation"></use>
                       </svg>
                       <span class="menu-item">Specializations</span>
@@ -529,7 +517,7 @@
                   </li>
                   <li role="menuitem" class="nav-item  " id="all-industry">
                     <a class="nav-link" href="/admin/all-industry">
-                      <svg aria-label="Industries" class="fill-none" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Industries" class="fill-stroke" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#industries"></use>
                       </svg>
                       <span class="menu-item">Industries</span>
@@ -554,11 +542,9 @@
                     </a>
                   </li>
                   <li role="menuitem" class="nav-item  " id="customize-form">
-                    <a class="nav-link" href="/admin/customize-form">
+                    <a class="nav-link" href="/admin/saved-forms">
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.72002 9.84007C6.72002 10.4129 6.49245 10.9623 6.08737 11.3674C5.6823 11.7725 5.13289 12.0001 4.56002 12.0001C3.98716 12.0001 3.43775 11.7725 3.03267 11.3674C2.6276 10.9623 2.40002 10.4129 2.40002 9.84007C2.40002 9.2672 2.6276 8.7178 3.03267 8.31272C3.43775 7.90764 3.98716 7.68007 4.56002 7.68007C5.13289 7.68007 5.6823 7.90764 6.08737 8.31272C6.49245 8.7178 6.72002 9.2672 6.72002 9.84007ZM5.52002 9.84007C5.52002 9.58546 5.41888 9.34128 5.23885 9.16125C5.05881 8.98121 4.81463 8.88007 4.56002 8.88007C4.30542 8.88007 4.06124 8.98121 3.8812 9.16125C3.70117 9.34128 3.60002 9.58546 3.60002 9.84007C3.60002 10.0947 3.70117 10.3389 3.8812 10.5189C4.06124 10.6989 4.30542 10.8001 4.56002 10.8001C4.81463 10.8001 5.05881 10.6989 5.23885 10.5189C5.41888 10.3389 5.52002 10.0947 5.52002 9.84007ZM2.40002 4.92007C2.40002 4.58887 2.66882 4.32007 3.00002 4.32007H12.84C12.9992 4.32007 13.1518 4.38328 13.2643 4.4958C13.3768 4.60833 13.44 4.76094 13.44 4.92007C13.44 5.0792 13.3768 5.23181 13.2643 5.34433C13.1518 5.45685 12.9992 5.52007 12.84 5.52007H3.00002C2.66882 5.52007 2.40002 5.25127 2.40002 4.92007ZM8.28002 9.36007C8.12089 9.36007 7.96828 9.42328 7.85576 9.5358C7.74324 9.64833 7.68002 9.80094 7.68002 9.96007C7.68002 10.1192 7.74324 10.2718 7.85576 10.3843C7.96828 10.4969 8.12089 10.5601 8.28002 10.5601H12.84C12.9992 10.5601 13.1518 10.4969 13.2643 10.3843C13.3768 10.2718 13.44 10.1192 13.44 9.96007C13.44 9.80094 13.3768 9.64833 13.2643 9.5358C13.1518 9.42328 12.9992 9.36007 12.84 9.36007H8.28002Z" fill="#6E6B7B"/>
-                        <path d="M2.76 0C2.028 0 1.32599 0.290785 0.808385 0.808385C0.290785 1.32599 0 2.028 0 2.76V13.08C0 13.812 0.290785 14.514 0.808385 15.0316C1.32599 15.5492 2.028 15.84 2.76 15.84H13.08C13.812 15.84 14.514 15.5492 15.0316 15.0316C15.5492 14.514 15.84 13.812 15.84 13.08V2.76C15.84 2.028 15.5492 1.32599 15.0316 0.808385C14.514 0.290785 13.812 0 13.08 0H2.76ZM1.2 2.76C1.2 2.34626 1.36436 1.94947 1.65691 1.65691C1.94947 1.36436 2.34626 1.2 2.76 1.2H13.08C13.4937 1.2 13.8905 1.36436 14.1831 1.65691C14.4756 1.94947 14.64 2.34626 14.64 2.76V13.08C14.64 13.2989 14.5949 13.5072 14.5133 13.6968C14.3931 13.9772 14.1932 14.2161 13.9384 14.3838C13.6835 14.5515 13.3851 14.6406 13.08 14.64H2.76C2.45224 14.6407 2.1512 14.55 1.89496 14.3796C1.63872 14.2091 1.4388 13.9665 1.32048 13.6824C1.24067 13.4916 1.19971 13.2868 1.2 13.08V2.76Z" fill="#6E6B7B"/>
-                        <path d="M4.91992 18.0002C4.47096 18.0005 4.02872 17.8911 3.63163 17.6817C3.23453 17.4722 2.8946 17.169 2.64136 16.7982C2.68072 16.7997 2.72008 16.8002 2.75992 16.8002H13.0799C14.0665 16.8002 15.0127 16.4082 15.7104 15.7106C16.408 15.013 16.7999 14.0668 16.7999 13.0802V2.76016C16.7999 2.7208 16.799 2.68096 16.798 2.6416C17.1687 2.89484 17.472 3.23478 17.6814 3.63187C17.8909 4.02897 18.0002 4.47121 17.9999 4.92016V13.0802C17.9999 15.797 15.7967 18.0002 13.0799 18.0002H4.91992Z" fill="#6E6B7B"/>
+                        <use xlink:href="/css/admin-menu.svg#saved-forms"></use>
                         </svg>
                         
                       <span class="menu-item">Saved Forms</span>
@@ -648,7 +634,7 @@
                 <ul role="menu" class="menu-content " id="Admin-Staff">
                   <li role="menuitem" class="nav-item" id="role-permission">
                     <a class="nav-link" href="/admin/role-permission">
-                      <svg aria-label="Roles And Permissions" class="fill-none" width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Roles And Permissions" class="fill-stroke" width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#roles-permission-icon"></use>
                     </svg>    
                       <span class="menu-item">Roles &amp; Permissions</span>
@@ -656,7 +642,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="create-admin-team">
                     <a class="nav-link" href="/admin/admin-team/create-admin-team">
-                      <svg aria-label="Add Admin Teams" class="fill-none" width="29" height="20" viewBox="0 0 29 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Admin Teams" class="fill-stroke" width="29" height="20" viewBox="0 0 29 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#admin-teams-icon"></use>
                     </svg>
                       <span class="menu-item">Add Admin Teams</span>
@@ -664,7 +650,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="admin-team">
                     <a class="nav-link" href="/admin/admin-team">
-                      <svg aria-label="List Admin Teams" class="fill-none" width="25" height="20" viewBox="0 0 25 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="List Admin Teams" class="fill-stroke" width="25" height="20" viewBox="0 0 25 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#list-admin-teams"></use>
                       </svg>
                       <span class="menu-item">List Admin Teams</span>
@@ -672,7 +658,7 @@
                   </li>
                   <li role="menuitem" class="nav-item " id="create-staff">
                     <a class="nav-link" href="/admin/admin-staff/create-staff">
-                      <svg aria-label="Add Admin Staff" class="fill-none" width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Add Admin Staff" class="fill-stroke" width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#add-admin-staff"></use>
                     </svg>
                       <span class="menu-item">Add Admin Staff</span>
@@ -680,7 +666,7 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="admin-staff">
                     <a class="nav-link" href="/admin/admin-staff">
-                      <svg aria-label="All Admin-Staff" class="fill-none" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="All Admin-Staff" class="fill-stroke" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#all-admin-staff"></use>
                       </svg>
                       <span class="menu-item">All Admin-Staff</span>
