@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
+use App\Models\Tenant\Company;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,40 +17,72 @@ class CompaniesSeeder extends Seeder
 	public function run()
 	{
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-		DB::table('companies')->truncate();
+		Company::truncate();
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-		DB::table('companies')->updateOrInsert(
-			['name' => 'Acme Corporation'],
+		$companies = [
 			[
 				'name' => 'Acme Corporation',
-				'status' => '1',
 				'added_by' => '1',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now(),
-			]
-		);
-
-		DB::table('companies')->updateOrInsert(
-			['name' => 'Globex Corporation'],
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
 			[
-				'name' => 'Globex Corporation',
-				'status' => '1',
+				'name' => 'Steuber LLC',
 				'added_by' => '1',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now(),
-			]
-		);
-
-		DB::table('companies')->updateOrInsert(
-			['name' => 'Soylent Corp'],
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
 			[
-				'name' => 'Soylent Corp',
-				'status' => '1',
+				'name' => 'Padberg-Schmitt',
 				'added_by' => '1',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now(),
-			]
-		);
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Keeling-Bogisich',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Wolff-Schmeler',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Gislason, Schmitt and Ledner',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'McGlynn, Donnelly and Jones',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Dickinson and Sons',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Skiles Inc',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Nikolaus-Wisoky',
+				'added_by' => '1',
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+		];
+
+		Company::insert($companies);
 	}
 }

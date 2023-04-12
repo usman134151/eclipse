@@ -49,7 +49,11 @@ class SetupSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            
+            [
+                'setup_value' => 'Customer Form Name',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
         
     }

@@ -66,6 +66,13 @@ class SetupValuesSeeder extends Seeder
             'Monthly'
         ];
 
+        $customerFormNames = [
+            'Customer Request Form',
+            'Customer Lead & Quote Form',
+            'New Provider Application',
+            'New Provider Screening',
+        ];
+
         // Insert languages
         $setup = DB::table('setup')->where('setup_value', 'Languages')->first();
         foreach ($languages as $language) {
@@ -119,6 +126,15 @@ class SetupValuesSeeder extends Seeder
                'updated_at' => now()
            ]);
        }  
+       $setup = DB::table('setup')->where('setup_value', 'Customer Form Name')->first();
+       foreach ($customerFormNames as $customerFormName) {
+           DB::table('setup_values')->insert([
+               'setup_id' => $setup->id,
+               'setup_value_label' => $customerFormName,
+               'created_at' => now(),
+               'updated_at' => now()
+           ]);
+       }
     }
 }
 
