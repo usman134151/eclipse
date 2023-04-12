@@ -4,30 +4,35 @@
 
 
 
-	
+
 
           <section id="multiple-column-form">
             <div class="row">
               <div class="col-12">
-			            @if($setupId>0) @livewire('app.common.lists.setup-details', ['key' =>'details'.$setupId, 'setupId' => $setupId,'id'=>$setupId]) @endif</div> 
+                {{-- updated by shanila to add a new column in tables which can be deletable --}}
+                     @if($setupId>0) @livewire('app.common.lists.setup-details', ['key' =>'details'.$setupId, 'setupId' => $setupId,'setupDeleteable'=>$setupDeleteable,]) @endif</div>
 			        </div>
 
             </div>
-					
+
           </section>
 
     <!-- end of list -->
-  
 
-   
+
+
 </x-off-canvas>
 <script>
   window.addEventListener('refresh-details', function(event) {
     var setupId = event.detail.setupId;
     var setupLabel=event.detail.setupLabel;
-  
-    Livewire.emit('refreshSetupDetails', setupId,setupLabel);
+    var setupDeleteable=event.detail.setupDeleteable;// updated by shanila to add a new column in tables which can be deletable
+    console.log('event.detail',event.detail)
+console.log('setupDeleteable',setupDeleteable)
+    Livewire.emit('refreshSetupDetails', setupId, setupLabel,setupDeleteable); // updated by shanila to add a new column in tables which can be deletable
+    Livewire.emit('refreshDetailList', setupDeleteable); // updated by shanila to add a new column in tables which can be deletable
   });
+
 </script>
 
 {{-- Setup Details end - End --}}
