@@ -542,7 +542,7 @@
                     </a>
                   </li>
                   <li role="menuitem" class="nav-item  " id="customize-form">
-                    <a class="nav-link" href="/admin/saved-forms">
+                    <a class="nav-link" href="/admin/customize-form">
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#saved-forms"></use>
                         </svg>
