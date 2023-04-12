@@ -109,7 +109,7 @@ final class SetupDetails extends PowerGridComponent
             ->addColumn('setup_deleteable', function(SetupValue $model) {
 
                 if($this->setupDeleteable){
-                    return '<div class="d-flex actions"> <a href="#" title="Delete Setupvalue" aria-label="Delete Setupvalue" wire:click="deleteRecord('.$model->setup_deleteable.'\')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                    return '<div class="d-flex actions"> <a href="#" title="Delete Setupvalue" aria-label="Delete Setupvalue" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
                                 </a> </div>';
                 }

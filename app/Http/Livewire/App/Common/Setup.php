@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
-use App\Models\Tenant\Setup as TenantAccommodation;
+use App\Models\Tenant\SetupValue as Setupvalues;
 use Livewire\Component;
 
 class Setup extends Component
@@ -95,7 +95,7 @@ class Setup extends Component
 	public function deleteRecord()
 	{
 		// Delete the record from the database using the model
-		TenantAccommodation::where('id', $this->recordId)->delete();
+		Setupvalues::where('id', $this->recordId)->delete();
 		// Emit an event to reset the form and display a confirmation message
 		$this->emitSelf('showList', 'Record has been deleted');
 	}
