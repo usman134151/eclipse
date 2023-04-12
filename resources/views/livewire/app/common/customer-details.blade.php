@@ -235,44 +235,40 @@
                                                         </h3>
                                                         <div class="row mb-4">
                                                             <div class="col-md-12">
-                                                                <div class="row mb-1">
-                                                                    <div
-                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                <div class="row mb-2">
+                                                                    <div class="col-md-12 d-flex font-family-tertiary gap-2">
                                                                         <span class="fw-medium">
                                                                             Position:
                                                                         </span>
-                                                                        <p>Supervisor</p>
+                                                                        <div>Supervisor</div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row mb-1">
-                                                                    <div
-                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                <div class="row mb-2">
+                                                                    <div class="col-md-12 d-flex font-family-tertiary gap-2">
                                                                         <span class="fw-medium">
                                                                             Company:
                                                                         </span>
-                                                                        <p>Example Company</p>
+                                                                        <div>Example Company</div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row mb-1">
-                                                                    <div
-                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
-                                                                        <span class="fw-bold">
+                                                                <div class="row mb-2">
+                                                                    <div class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                        <span class="fw-medium">
                                                                             Department(s):
                                                                         </span>
-                                                                        <p>
+                                                                        <div class="text-nowrap">
                                                                             Language Interpreting
-                                                                        </p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row mb-1">
-                                                                    <div
-                                                                        class="col-md-12 d-flex font-family-tertiary gap-2">
-                                                                        <span class="fw-bold">
+                                                                <div class="row mb-2">
+                                                                    <div class="col-md-12 d-flex font-family-tertiary gap-2">
+                                                                        <span class="fw-medium">
                                                                             Access Role:
                                                                         </span>
-                                                                        <p>
+                                                                        <div>
                                                                             Service Consumer
-                                                                        </p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

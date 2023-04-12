@@ -1890,3 +1890,15 @@ hr.border-separate-sm {
 	background: #ffffff;
     box-shadow: 0 5px 25px rgba(34, 41, 47, 0.1);
 }
+
+.table-hover > tbody > tr.js-selected-row.selected .js-tick,
+.table-hover > tbody > tr.js-selected-row.selected:hover .js-tick {
+	display: block;
+}
+
+.table-hover > tbody > tr.js-selected-row:hover .js-tick {
+	display: none;
+}
+    .table-hover > tbody > tr .js-tick {
+        display: none;
+    }
