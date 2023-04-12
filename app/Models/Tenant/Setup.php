@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Setup extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +16,7 @@ class Setup extends Model
      */
     protected $table='setup';
     protected $fillable = [
-        'setup_value'
+        'setup_value',
+        'setup_deleteable'
     ];
 }

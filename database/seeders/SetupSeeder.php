@@ -21,40 +21,47 @@ class SetupSeeder extends Seeder
         DB::table('setup')->insert([
             [
                 'setup_value' => 'Languages',
+                'setup_deleteable'=>1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'setup_value' => 'Gender',
+                'setup_deleteable'=>1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'setup_value' => 'Ethnicity',
+                'setup_deleteable'=>1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'setup_value' => 'Timezone',
+                'setup_deleteable'=>1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'setup_value' => 'Service Types',
+                'setup_deleteable'=>0,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'setup_value' => 'Scheduling Frequencies',
+                'setup_deleteable'=>0,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'setup_value' => 'Customer Form Name',
+                'setup_deleteable'=>1,
                 'created_at' => now(),
                 'updated_at' => now()
             ]
         ]);
-        
+
     }
 }
