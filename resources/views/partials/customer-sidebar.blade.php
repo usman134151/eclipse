@@ -105,7 +105,7 @@
             <li class="nav-item">
                 <a href="/customer/dashboard">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/menu.svg#dashboard-icon"></use>
+                        <use xlink:href="/css/admin-menu.svg#dashboard_icon"></use>
                     </svg>
                     <span class="menu-item">Dashboard</span>
                 </a>
@@ -169,7 +169,7 @@
                         <a class="nav-link" href="/customer/booking/past">
                             <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="/css/menu.svg#past-icon"></use>
+                                <use xlink:href="/css/admin-menu.svg#past-icon"></use>
                             </svg>
                             <span class="menu-item">Past Services </span>
                         </a>
