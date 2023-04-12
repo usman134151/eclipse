@@ -54,7 +54,7 @@
 			<li class="nav-item" id="dashboard">
 				<a href="/provider/dashboard">
 					<svg aria-label="Home" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#dashboard-icon"></use>
+						<use xlink:href="/css/admin-menu.svg#dashboard_icon"></use>
 					  </svg>
 					<span class="menu-item">Dashboard</span>
 				</a>
@@ -102,7 +102,7 @@
 			<li class="nav-item" id="past">
 			  <a class="nav-link" href="/provider/bookings/past">
 				<svg aria-label="Past Assignments" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/admin-menu.svg#past_assignment"></use>
+                    <use xlink:href="/css/admin-menu.svg#past-icon"></use>
                   </svg>
 				<span class="menu-item">Past</span>
 			  </a>
@@ -110,7 +110,7 @@
             <li class="nav-item" id="active">
                 <a class="nav-link" href="/provider/bookings/active">
                   <svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
-                      <use xlink:href="/css/provider-menu.svg#past-icon"></use>
+                      <use xlink:href="/css/provider-menu.svg#active-assignment"></use>
                   </svg>
                   <span class="menu-item">Active</span>
                 </a>
@@ -118,7 +118,7 @@
               <li class="nav-item" id="cancelled">
                 <a class="nav-link" href="/provider/bookings/cancelled">
                   <svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
-                      <use xlink:href="/css/provider-menu.svg#past-icon"></use>
+                      <use xlink:href="/css/provider-menu.svg#cancelled-assignment"></use>
                   </svg>
                   <span class="menu-item">Cancelled</span>
                 </a>
@@ -222,7 +222,7 @@
 			<li class="nav-item" id="payment-preferences">
 				<a href="/provider/payment-preferences" title="Payment Preferences" aria-label="Payment Preferences">
 					<svg aria-label="Payment Preferences" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="/css/provider-menu.svg#remittances-icon"></use>
+                        <use xlink:href="/css/provider-menu.svg#payment-prefference"></use>
                     </svg>
 				  <span class="menu-item">Payment Preferences</span>
 				</a>
