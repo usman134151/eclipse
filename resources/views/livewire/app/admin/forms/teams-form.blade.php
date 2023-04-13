@@ -78,12 +78,9 @@
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
                                 <label class="form-label">Accommodation</label>
-                                <select data-placeholder="" multiple
-                                    class="form-select chosen-select" tabindex="">
-                                    <option value=""></option>
-                                    <option selected>Shelby Sign Language</option>
-                                    <option selected>Language Translation Services</option>
-                                </select>    
+                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+        'name', 'status', 1, 'name', true, '',
+        '','accommodation_filter') !!}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -94,18 +91,17 @@
                             <option value=""></option>
                             <option selected>Language Translation</option>
                             <option selected>Real Time Captioning</option>
-                        </select> 
+                        </select>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label">Specialization</label>
-                        <select data-placeholder="" multiple
-                            class="form-select chosen-select" tabindex="">
-                            <option value=""></option>
-                            <option selected>Shelby Sign Language</option>
-                            <option selected>Language Translation Services</option>
-                        </select> 
+                      {{-- updated by shanila to add multiselectdropdown --}}
+                {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
+                'name', 'status', 1, 'name', true, '',
+                '','specialization_filter') !!}
+                 {{--ended updated--}}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -116,7 +112,7 @@
                             <option value=""></option>
                             <option selected>@admin_company</option>
                             <option selected>@booking_start_at</option>
-                        </select> 
+                        </select>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
