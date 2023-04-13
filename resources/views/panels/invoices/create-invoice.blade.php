@@ -264,7 +264,7 @@
 				</label>
 			</div>
 		</div>
-		<div class="col-12 justify-content-center d-flex flex-column flex-md-row gap-2">
+		<div class="col-12 form-actions">
 			<button type="button" class="btn btn-outline-primary rounded">
 				Cancel
 			</button>
