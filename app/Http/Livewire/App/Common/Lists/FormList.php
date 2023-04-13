@@ -102,7 +102,10 @@ final class FormList extends PowerGridComponent
             ->addColumn('setup_value_label')
             ->addColumn('status', function (SetupValue $model) {
                 return ($model->status);
-            });
+            })
+            ->addColumn('view',function(){
+                return '<div class="d-flex actions"><a   href="#" title="View Form" aria-label="View Form" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Form" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
+            });// updated by shanila to add a show details
 
     }
 
@@ -123,10 +126,15 @@ final class FormList extends PowerGridComponent
         return [
             Column::make('Form Types', 'setup_value_label', '')->editOnClick(),
             Column::make('Status', 'status', '')
-                ->toggleable(1, 'Deactivated', 'Activated')
+                ->toggleable(1, 'Deactivated', 'Activated'),
+            Column::make('Action', 'view', '')
         ];
     }
-
+     // A method to show details
+     function view($id){
+        // Emits an event to show details
+        $this->emit('showForm', SetupValue::find($id));
+    }
     // A method to handle the edit button click event
     function edit($id){
         // Emits an event to show the form for editing a record
