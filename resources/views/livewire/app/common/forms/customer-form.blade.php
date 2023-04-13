@@ -589,7 +589,7 @@
                                             </div>
                                             {{-- Action Buttons Start --}}
                                             <div
-                                                class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                                class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
                                                     wire:click.prevent="showList">
                                                     Cancel
@@ -929,7 +929,7 @@
                                         </div>
                                         {{-- Action Buttons Start --}}
                                         <div
-                                            class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                            class="col-12 form-actions">
                                             <button type="button" class="btn btn-outline-dark rounded"
                                                 x-on:click="$wire.switch('customer-info')">
                                                 Back
@@ -1469,7 +1469,7 @@
                                         </div>
                                         {{-- Action Buttons Start --}}
                                         <div
-                                            class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                            class="col-12 form-actions">
                                             <button type="button" class="btn btn-outline-dark rounded"
                                                 x-on:click="$wire.switch('permission-configurations')">
                                                 Back

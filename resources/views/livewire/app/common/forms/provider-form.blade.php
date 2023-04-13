@@ -497,7 +497,7 @@
                                     </div>
                                 </div>
                                 {{-- Action Buttons - Start --}}
-                                <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                                <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                         wire:click.prevent="showList">
                                         Cancel
@@ -2307,7 +2307,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- cancel/next (buttons) -->
-                                                <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                                                <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded"
                                                         x-on:click="$wire.switch('profile')">
                                                         Back
@@ -2471,7 +2471,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 justify-content-center form-actions d-flex gap-3">
+                                            <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
                                                     x-on:click="$wire.switch('provider-service')">
                                                     Back

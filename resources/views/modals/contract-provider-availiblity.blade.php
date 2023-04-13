@@ -313,7 +313,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <div class="col-12 justify-content-center form-actions d-flex gap-3">
+        <div class="col-12 form-actions">
           <button type="button"
             class="btn btn-outline-dark rounded">Cancel</button>
             <button type="submit"

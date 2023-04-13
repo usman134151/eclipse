@@ -622,7 +622,7 @@
                                                 </div>
 
                                                 <div
-                                                    class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                                    class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="showList">
                                                         Cancel
@@ -1050,7 +1050,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                            <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                     x-on:click="$wire.switch('company-info')">
                                                     Back
@@ -1117,7 +1117,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                            <div class="col-12 form-actions">
                                                 <button type="button"
                                                     class="btn btn-outline-dark rounded px-4 py-2 mx-2"
                                                     x-on:click="$wire.switch('service-catalog')">

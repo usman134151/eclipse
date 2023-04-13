@@ -38,7 +38,7 @@
 			<label class="form-label" for="set_set_date">Upload File</label>
 		</div>
 		<div class="col-lg-8 mb-4">
-			<div class="row">
+			<div class="row d-flex flex-column flex-md-row gap-2">
 				<div class="col-lg-3 d-flex text-center">
 					<a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
 						<svg class="mb-2" width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
