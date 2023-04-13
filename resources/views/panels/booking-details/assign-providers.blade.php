@@ -152,9 +152,9 @@
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         <label class="form-label">Certification</label>
-                                        <select class="form-select">
-                                            <option>Select Certification</option>
-                                        </select>
+                                         {{-- updated by shanila to add multiselectdropdown --}}
+                                   {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, '','','form-check') !!}
+                                   {{--ended updated--}}
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         <div class="d-lg-flex justify-content-between align-items-center mb-2">
