@@ -37,7 +37,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -50,7 +53,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -63,7 +69,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -76,7 +85,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -89,7 +101,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -102,7 +117,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -115,7 +133,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>
@@ -128,7 +149,10 @@
 					<td>Issued</td>
 					<td>
 						<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-							<x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 					</td>
 				</tr>

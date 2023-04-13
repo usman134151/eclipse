@@ -99,21 +99,31 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="green-dot"/>
+						<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                        </svg>
 							 Paid
 					</td>
 					<td class="align-middle">
-					  <div class="d-flex actions justify-content-center">
-						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
-						</a>
-						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
-						</a>
-						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
-						</a>
-					  </div>
+						<div class="d-flex actions justify-content-center">
+							<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
+								<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+									<use xlink:href="/css/common-icons.svg#view">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
+								<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+									<use xlink:href="/css/common-icons.svg#round-arrow">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+								xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+								</svg>
+							</a>
+						  </div>
 					</td>
 				  </tr>
 				  <tr role="row" class="even">
@@ -135,21 +145,31 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="green-dot"/>
+						<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                        </svg>
 							 Paid
 					</td>
 					<td class="align-middle">
-					  <div class="d-flex actions justify-content-center">
-						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
-						</a>
-						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
-						</a>
-						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
-						</a>
-					  </div>
+						<div class="d-flex actions justify-content-center">
+							<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
+								<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+									<use xlink:href="/css/common-icons.svg#view">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
+								<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+									<use xlink:href="/css/common-icons.svg#round-arrow">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+								xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+								</svg>
+							</a>
+						  </div>
 					</td>
 				  </tr>
 				  <tr role="row" class="even">
@@ -171,21 +191,31 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="green-dot"/>
+						<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                        </svg>
 							 Paid
 					</td>
 					<td class="align-middle">
-					  <div class="d-flex actions justify-content-center">
-						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
-						</a>
-						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
-						</a>
-						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
-						</a>
-					  </div>
+						<div class="d-flex actions justify-content-center">
+							<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
+								<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+									<use xlink:href="/css/common-icons.svg#view">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
+								<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+									<use xlink:href="/css/common-icons.svg#round-arrow">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+								xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+								</svg>
+							</a>
+						  </div>
 					</td>
 				  </tr>
 				  <tr role="row" class="odd">
@@ -207,21 +237,31 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="yellow-dot"/>				
+						<svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
+                        </svg>			
 							 issued
 					</td>
 					<td class="align-middle">
-					  <div class="d-flex actions justify-content-center">
-						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
-						</a>
-						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
-						</a>
-						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
-						</a>
-					  </div>
+						<div class="d-flex actions justify-content-center">
+							<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
+								<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+									<use xlink:href="/css/common-icons.svg#view">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
+								<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+									<use xlink:href="/css/common-icons.svg#round-arrow">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+								xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+								</svg>
+							</a>
+						  </div>
 					</td>
 				  </tr>
 				  <tr role="row" class="even">
@@ -243,21 +283,31 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="yellow-dot"/>
+						<svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
+                        </svg>
 							 Paid
 					</td>
 					<td class="align-middle">
-					  <div class="d-flex actions justify-content-center">
-						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
-						</a>
-						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
-						</a>
-						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
-						</a>
-					  </div>
+						<div class="d-flex actions justify-content-center">
+							<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
+								<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+									<use xlink:href="/css/common-icons.svg#view">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
+								<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+									<use xlink:href="/css/common-icons.svg#round-arrow">
+									</use>
+								</svg>
+							</a>
+							<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+								<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+								xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+								</svg>
+							</a>
+						  </div>
 					</td>
 				  </tr>
 				  <tr role="row" class="odd">
@@ -279,19 +329,29 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="yellow-dot"/>							
+						<svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
+                        </svg>						
 							 issued
 					</td>
 					<td class="align-middle">
 					  <div class="d-flex actions justify-content-center">
 						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
+						    <svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
+							<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+								<use xlink:href="/css/common-icons.svg#round-arrow">
+								</use>
+							</svg>
 						</a>
 						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
+							<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+							xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+							</svg>
 						</a>
 					  </div>
 					</td>
@@ -315,25 +375,69 @@
 					</td>
 					<td class="text-center align-middle">Direct Deposit</td>
 					<td class="text-center align-middle">
-						<x-icon name="green-dot"/>
+						<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
+                        </svg>
 							 Paid
 					</td>
 					<td class="align-middle">
 					  <div class="d-flex actions justify-content-center">
 						<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-						  <x-icon name="view"/>
+							<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+								<use xlink:href="/css/common-icons.svg#view">
+								</use>
+							</svg>
 						</a>
 						<a href="javascript:void(0)" title="Return" aria-label="Return" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
-							<x-icon name="round-arrow"/>
+							<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+								<use xlink:href="/css/common-icons.svg#round-arrow">
+								</use>
+							</svg>
 						</a>
 						<a href="javascript:void(0)" title="Objection" aria-label="Objection" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						 <x-icon name="download-file"/>
+							<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+							xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+							</svg>
 						</a>
 					  </div>
 					</td>
 				  </tr>
 				</tbody>
 			  </table>
+			  <div class="d-flex actions gap-3 justify-content-end mb-2">
+				<div class="d-flex gap-2 align-items-center">
+					<a href="#" title="Revert" aria-label="Revert" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+						<svg aria-label="View Company" width="20" height="20" viewBox="0 0 20 20">
+							<use xlink:href="/css/common-icons.svg#view">
+							</use>
+						</svg>       
+					</a> 
+					<span class="text-sm">
+					  View
+					</span>
+				  </div>
+				<div class="d-flex gap-2 align-items-center">
+				  <a href="#" title="Revert" aria-label="Revert" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					<svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
+						<use xlink:href="/css/common-icons.svg#round-arrow">
+						</use>
+					</svg>       
+				  </a> 
+				  <span class="text-sm">
+					Revert
+				  </span>
+				</div>
+				<div class="d-flex gap-2 align-items-center">
+				  <a href="#" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+					<svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+						xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+					</svg>
+				  </a>
+				  <span class="text-sm">
+					Download PDF
+				  </span>
+				</div>
+			  </div>
 		</div>
 	  </div>
 	  <!-- Hoverable rows end -->
@@ -357,13 +461,11 @@
 		  </label>
 		</div>
 	  </div>
-	  <div class="row justify-content-center mb-4">
-		<div class="col-lg-7 d-flex gap-2">
-		  <a href="#" class="btn btn-primary rounded w-100">Revert Selected Remittances</a>
-		  <a href="#" class="btn btn-primary rounded w-100" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
+	  <div class="col-12 form-actions mb-4">
+		  <a href="#" class="btn btn-primary rounded ">Revert Selected Remittances</a>
+		  <a href="#" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 			Mark Selected Remittances as Paid
 		</a>
-		</div>
 	  </div>
 </x-off-canvas>
 {{-- Remittance Generator Booking - End --}}
