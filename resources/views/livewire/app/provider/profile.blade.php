@@ -314,11 +314,9 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <select class="select2 form-select" id="certification-column">
-                                        <option value="certification-column">
-                                            Enter Certification(s)
-                                        </option>
-                                    </select>
+                                   {{-- updated by shanila to add multiselectdropdown --}}
+                                   {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, '','','form-check') !!}
+                                   {{--ended updated--}}
                                 </div>
                                 <div class="mt-2">
                                     <input class="form-check-input" type="checkbox" value="display-provider"
