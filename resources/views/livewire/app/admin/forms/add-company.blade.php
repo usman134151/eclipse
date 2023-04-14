@@ -386,9 +386,9 @@
                                                                 <h2>Phone Number</h2>
                                                             </div>
                                                         </div>
-
+                                                        @foreach($phoneNumbers as $phoneNumber)        
                                                         <div class="row">
-                                                            <div class="col-lg-8">
+                                                            <div class="col-lg-8 mb-2">
                                                                 <div class="border p-3">
                                                                     <div class="row">
                                                                         <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
@@ -415,9 +415,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
-                                                                <button type="button"
+                                                           
+                                                        </div>
+                                                        @endforeach
+                                                        <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
+                                                                <button type="button" wire:click.prevent="addPhone"
                                                                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
                                                                     <svg aria-label="Add Phone Number" width="20"
                                                                         height="20" viewBox="0 0 20 20">
@@ -428,7 +430,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 {{-- Default Billing Address --}}
                                                 <div class="col-lg-12">

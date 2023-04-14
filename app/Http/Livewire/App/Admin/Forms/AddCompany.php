@@ -7,6 +7,7 @@ use Livewire\Component;
 class AddCompany extends Component
 {
 	public $component = 'company-info';
+	public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
 	public function showList()
 	{
 		$this->emit('showList');
@@ -19,5 +20,11 @@ class AddCompany extends Component
 	public function switch($component)
 	{
 		$this->component = $component;
+	}
+
+	//front function
+
+	function addPhone(){
+		$this->phoneNumbers[]=['phone_title'=>'','phone_number'=>''];
 	}
 }
