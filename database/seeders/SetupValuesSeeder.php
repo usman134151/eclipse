@@ -73,8 +73,12 @@ class SetupValuesSeeder extends Seeder
             'New Provider Screening',
         ];
         $providerCertificates = [
-            'National Certification',
-            'State Certification',
+            'National Board of Certification for Medical Interpreters (NBCMI',
+            'Certification Commission for Healthcare Interpreters (CCHI)',
+            'American Translators Association (ATA) Certification',
+            'Court Interpreter Certification Programs',
+            'Conference Interpreter Certification Programs',
+            'Certified Interpretive Guide (CIG) Certification'
         ];
 
         // Insert languages
