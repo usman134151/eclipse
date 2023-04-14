@@ -1778,24 +1778,24 @@
                                                                                     <!-- /Virtual Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="text-end">
-                                                                            <a href="#" class="fw-bold">
-                                                                                <small>
-                                                                                    Add Additional Parameter
-                                                                                    {{-- Updated by Shanila to Add
-                                                                                    svg icon--}}
-                                                                                    <svg aria-label="Add Additional Parameter"
-                                                                                        class="me-1" width="20"
-                                                                                        height="21" viewBox="0 0 20 21">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#add-new">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila
-                                                                                    --}}
-                                                                                </small>
-                                                                            </a>
+                                                                            <div class="text-end">
+                                                                                <a href="#" class="fw-bold">
+                                                                                    <small>
+                                                                                        Add Additional Parameter
+                                                                                        {{-- Updated by Shanila to Add
+                                                                                        svg icon--}}
+                                                                                        <svg aria-label="Add Additional Parameter"
+                                                                                            class="me-1" width="20"
+                                                                                            height="21" viewBox="0 0 20 21">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#add-new">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        {{-- End of update by Shanila
+                                                                                        --}}
+                                                                                    </small>
+                                                                                </a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
