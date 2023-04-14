@@ -535,8 +535,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -588,8 +588,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -648,8 +648,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -701,8 +701,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -772,8 +772,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -838,8 +838,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -911,8 +911,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
@@ -977,8 +977,8 @@
                                         Parameter 1 <small>(Hour)</small>
                                         </span>
                                         <input type="text" class="form-control text-center" placeholder="00 Hour" aria-label="" aria-describedby="">
-                                        <div class="col-lg-2">
-                                          <select class="form-select rounded-0">
+                                        <div class="col-lg-2 d-flex">
+                                          <select class="form-select rounded-0 pe-lg-0">
                                             <option>$</option>
                                           </select>
                                         </div>
