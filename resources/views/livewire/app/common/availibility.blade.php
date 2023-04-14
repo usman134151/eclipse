@@ -12,8 +12,8 @@
             <!-- End : it will be replaced with livewire module -->
         </div>
         <div class="col-lg mb-4 mb-lg-0">
-            <label class="form-label-sm">Booking No</label>
-            <input type="" name="" class="form-control form-control-md" placeholder="Search">
+            <label class="form-label-sm" for="booking-no">Booking No</label>
+            <input type="" name="" class="form-control form-control-md" placeholder="Search" id="booking-no">
         </div>
         <div class="col-lg mb-4 mb-lg-0">
             <label class="form-label-sm">Filter By Provider</label>
