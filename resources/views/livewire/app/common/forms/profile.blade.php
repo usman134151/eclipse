@@ -465,7 +465,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-12 mb-md-2 text-center gap-2 mt-5">
+                                                <div class="col-12 form-actions mt-5">
                                                     <button type="button"
                                                         class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 

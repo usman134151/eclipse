@@ -2277,7 +2277,9 @@
                     </div><!-- END: attachments-tab -->
                     <div class="tab-pane fade {{ $component == 'payment-details' ? 'active show' : '' }}"
                         id="payment-details" role="tabpanel" aria-labelledby="payment-details-tab" tabindex="0">
-                        <h2>Payment Detail</h2>
+                        <div class="row inner-section-segment-spacing">
+                            <h2>Payment Detail</h2>
+                        </div>
                         <div class="row between-section-segment-spacing">
                             <div class="col-lg-6">
                                 <div class="d-lg-flex flex-lg-column gap-3">
@@ -2411,7 +2413,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <!-- Billing Notes -->
-                                <div class="mb-4">
+                                <div class="between-section-segment-spacing">
                                     <label class="form-label">
                                         Billing Notes
                                     </label>
@@ -2439,7 +2441,9 @@
                         id="assignment-log" role="tabpanel" aria-labelledby="assignment-log-tab" tabindex="0">
                         <!-- Assignment Discussions -->
                         <div class="between-section-segment-spacing">
-                            <h2>Assignment Discussions</h2>
+                            <div class="mb-4">
+                                <h2>Assignment Discussions</h2>
+                            </div>
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
                                 <button class="btn btn-outline-primary btn-has-icon btn-sm dropdown-toggle h-100"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">

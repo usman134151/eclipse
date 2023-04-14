@@ -651,9 +651,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 justify-content-center form-actions d-flex gap-2">
-                                    <a href="/admin/accommodation/all-services"><button type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</button></a>
+                                <div class="col-12 form-actions">
+                                    <a href="/admin/accommodation/all-services" type="button" class="btn btn-primary rounded">
+                                            Save & Exit</></a>
                                     <button type="submit" class="btn btn-primary rounded"
                                         x-on:click="$wire.switch('advanced-service-rate')">Next</button>
 

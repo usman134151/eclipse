@@ -2086,7 +2086,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <div class="row justify-content-center">
+                <div class=" form-actions">
                     <div class="col-lg-6">
                         <button type="button" class="btn rounded w-100 btn-outline-dark"
                             data-bs-dismiss="modal">Cancel</button>

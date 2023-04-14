@@ -829,7 +829,7 @@
 	                                              </div>
 	                                              <!-- Assigned Teams colums (end) -->                                               
 	                                              <!-- in line / side by side buttons (start) -->
-	                                              <div class="col-md-12 mb-md-2 text-center gap-2 mt-4">
+	                                              <div class="col-12 form-actions mt-4">
 	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
                                             
 	                                            		 <span>Lock Account</span>
@@ -3202,8 +3202,8 @@
 												<button type="submit"  class="btn btn-outline-primary active" id="direct-deposit-tab" data-bs-toggle="tab" data-bs-target="#direct-deposit" type="button" role="tab" aria-controls="direct-deposit" aria-selected="true">Direct Deposit</button>
 												<button type="button"  class="btn btn-primary mx-2"  id="mail-a-check-tab" data-bs-toggle="tab" data-bs-target="#mail-a-check" type="button" role="tab" aria-controls="mail-a-check" aria-selected="false">Mail a Check</button>
 											</div>
-												<a href="#" class="text-sm">Bank Account Information</a>
 										</div>
+										<div><a href="#" class="text-sm">Bank Account Information</a></div>
 										<div class="tab-content" id="myTabContent">
 											<div class="tab-pane fade show active" id="direct-deposit" role="tabpanel" aria-labelledby="direct-deposit-tab">
 												<div class="row">

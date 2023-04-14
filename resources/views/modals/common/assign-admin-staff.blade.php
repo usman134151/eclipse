@@ -135,7 +135,7 @@
             </div>
         </div>
         <div class="modal-footer">
-          <div class="row form-actions">
+          <div class="col-12 form-actions">
             <div class="col-lg-3">
               <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
             </div>
