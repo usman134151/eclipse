@@ -2,19 +2,19 @@
 	<x-slot name="title">Add Document</x-slot>
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="col-lg-8 mb-4">
+			<div class="col-lg-8 inner-section-segment-spacing">
 				<label class="form-label" for="document-title">
 					Document Title
 				</label>
 				<input type="text" id="document-title" class="form-control" name="document-title" placeholder="Enter Document Title" required aria-required="true"/>
 			</div>
-			<div class="col-lg-8 mb-4">
+			<div class="col-lg-8 inner-section-segment-spacing">
 				<label class="form-label" for="country">Document Type</label>
 				<select class="select2 form-select" id="country">
 					<option value="">Select Document Type</option>
 				</select>
 			</div>
-			<div class="col-lg-8 mb-4">
+			<div class="col-lg-8 mb-2">
 				<label class="form-label" for="expiration-date-column">Expiration Date</label>
 				<div class="d-flex align-items-center w-100">
 					<div class="position-relative flex-grow-1">
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-8 mb-4">
+			<div class="col-lg-8 inner-section-segment-spacing">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="no-expiration" id="no-expiration">
 					<label class="form-check-label" for="no-expiration">
@@ -37,7 +37,7 @@
 		<div class="col-lg-8 mb-4">
 			<label class="form-label" for="set_set_date">Upload File</label>
 		</div>
-		<div class="col-lg-8 mb-4">
+		<div class="col-lg-8 inner-section-segment-spacing">
 			<div class="row d-flex flex-column flex-md-row gap-2">
 				<div class="col-lg-3 d-flex text-center">
 					<a href="#" class="btn btn-outline-dark d-block px-2 pb-0">
@@ -92,13 +92,13 @@
 
 			</div>
 		</div>
-		<div class="col-lg-8 mb-4">
+		<div class="col-lg-8 inner-section-segment-spacing">
 			<label class="form-label" for="tags-column">
 				Tags
 			</label>
 			<textarea class="form-control" rows="4" placeholder="" name="tagsColumn" id="tags-column"></textarea>
 		</div>
-		<div class="col-lg-8 mb-4">
+		<div class="col-lg-8 inner-section-segment-spacing">
 			<label class="form-label" for="notes-column">
 				Note
 			</label>
