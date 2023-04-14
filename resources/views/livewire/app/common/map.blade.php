@@ -11,12 +11,12 @@
 			<!-- End : it will be replaced with livewire module -->
 		  </div>
 		  <div class="col-lg mb-4 mb-lg-0">
-			<label class="form-label-sm">Address</label>
-			<input type="" name="" class="form-control form-control-md" placeholder="Search">
+			<label class="form-label-sm" for="address">Address</label>
+			<input type="" name="" class="form-control form-control-md" placeholder="Search" id="address">
 		  </div>
 		  <div class="col-lg mb-4 mb-lg-0">
-			<label class="form-label-sm">Booking No</label>
-			<input type="" name="" class="form-control form-control-md" placeholder="Search">
+			<label class="form-label-sm" for="booking_no">Booking No</label>
+			<input type="" name="" class="form-control form-control-md" placeholder="Search" id="booking_no">
 		  </div>
 		  <div class="col-lg mb-4 mb-lg-0">
 			<div class="d-flex flex-column -mt-5">

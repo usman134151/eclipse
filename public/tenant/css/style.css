@@ -1268,12 +1268,12 @@ small {
 .table > :not(caption) > .bg-gray .time-date {
   color: #ffffff; }
 .table > :not(caption) > .bg-gray > * {
-  background-color: #989587;
+  background-color: #7a7769;
   color: #ffffff; }
 .table > :not(caption) > .bg-warning .time-date {
   color: #ffffff; }
 .table > :not(caption) > .bg-warning > * {
-  background-color: #be7d0f;
+  background-color: #a96800;
   color: #ffffff; }
 
 :root {

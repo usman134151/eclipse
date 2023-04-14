@@ -3,8 +3,8 @@
     <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
         <div class="d-inline-flex flex-column flex-md-row align-items-center gap-lg-4 gap-1 mb-2 mb-md-0">
             <div class="d-inline-flex align-items-center gap-4">
-                <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                <select class="form-select form-select-sm" id="show_records_number">
+                <label for="show" class="form-label-sm mb-0">Show</label>
+                <select class="form-select form-select-sm" id="show">
                     <option>10</option>
                     <option>15</option>
                     <option>20</option>
@@ -13,8 +13,8 @@
             </div>
         </div>
         <div class="d-inline-flex align-items-center gap-4">
-            <label for="search" class="form-label-sm mb-0">Search</label>
-            <input type="search" class="form-control form-control-sm" id="search" name="search"
+            <label for="search_record" class="form-label-sm mb-0">Search</label>
+            <input type="search" class="form-control form-control-sm" id="search_record" name="search"
                 placeholder="Search here" autocomplete="on">
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <tr>
                     <th class="align-middle">
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select All Notification">
                         </div>
                     </th>
                     <th class="align-middle">
@@ -43,7 +43,7 @@
                 <tr class="odd">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -83,7 +83,7 @@
                 <tr class="even">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -123,7 +123,7 @@
                 <tr class="odd">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -163,7 +163,7 @@
                 <tr class="even">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -203,7 +203,7 @@
                 <tr class="odd">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -243,7 +243,7 @@
                 <tr class="even">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -283,7 +283,7 @@
                 <tr class="odd">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
@@ -323,7 +323,7 @@
                 <tr class="even">
                     <td>
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" name="" id="">
+                            <input class="form-check-input" type="checkbox" name="" id="" aria-label="Select Notification">
                         </div>
                     </td>
                     <td>
