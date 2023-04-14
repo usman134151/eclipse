@@ -114,7 +114,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -180,7 +182,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -246,7 +250,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -312,7 +318,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -378,7 +386,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -444,7 +454,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -510,7 +522,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a  @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -576,7 +590,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a  @click="associateCompanies = true">
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -642,7 +658,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true" >
-                                                                        <x-icon name="chain" />
+                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+														                </svg>
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-md-10">
@@ -776,7 +794,7 @@
 
                         </div>
                         <!-- ....Back/next (buttons)... -->
-                        <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                        <div class="col-12 form-actions">
                             <button type="button" class="btn btn-outline-dark rounded px-4 py-2">Back</button>
                             <button type="submit" class="btn btn-primary rounded px-4 py-2">Save & Exit</button>
                             <button type="submit" class="btn btn-primary rounded px-4 py-2">Next</button>
