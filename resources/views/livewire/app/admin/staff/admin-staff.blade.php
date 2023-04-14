@@ -105,6 +105,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -197,6 +198,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -289,6 +291,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -335,6 +338,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -381,6 +385,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -427,6 +432,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -473,6 +479,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
@@ -519,6 +526,7 @@
 										<label class="form-check-label">
 											Deactivate
 										</label>
+										<label class="form-check-label">Active</label>
 									</div>
 								</td>
 								<td>
