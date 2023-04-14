@@ -68,7 +68,7 @@
                         <div class="col-12">
                           <div class="border p-3">
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="d-flex gap-2">
                                     <h4 class="mb-lg-0">In-Person Rates</h4><input class="form-check-input" type="checkbox" value="" aria-label="Select Team">Multiply by No. of Providers
                                 </div>
@@ -165,7 +165,7 @@
                         <div class="col-lg-12">
                           <div class="border p-3">
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="text-primary fw-bold">
                                   In-Person
                                 </div>
@@ -248,7 +248,7 @@
                                   <!-- /Additional Payment Additional Service Charges -->
                                 </div>
                               </div>
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 ps-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Virtual
                                 </div>
@@ -338,7 +338,7 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Phone
                                 </div>
@@ -421,7 +421,7 @@
                                   <!-- /Additional Payment Additional Service Charges -->
                                 </div>
                               </div>
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 ps-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Teleconference
                                 </div>
@@ -522,7 +522,7 @@
                         <div class="col-lg-12">
                           <div class="border p-3">
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="text-primary fw-bold">
                                   In-Person
                                 </div>
@@ -575,7 +575,7 @@
                                   <!-- /In-Person Additional Service Charges -->
                                 </div>
                               </div>
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 ps-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Virtual
                                 </div>
@@ -635,7 +635,7 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Phone
                                 </div>
@@ -688,7 +688,7 @@
                                   <!-- /Phone Additional Service Charges -->
                                 </div>
                               </div>
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 ps-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Teleconference
                                 </div>
@@ -759,7 +759,7 @@
                         <div class="col-lg-12">
                           <div class="border p-3">
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="text-primary fw-bold">
                                   In-Person
                                 </div>
@@ -825,7 +825,7 @@
                                   <!-- /In-Person Additional Service Charges -->
                                 </div>
                               </div>
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 ps-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Virtual
                                 </div>
@@ -898,7 +898,7 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 pe-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Phone
                                 </div>
@@ -964,7 +964,7 @@
                                   <!-- /Phone Additional Service Charges -->
                                 </div>
                               </div>
-                              <div class="col-lg-6 pe-lg-5">
+                              <div class="col-xxl-6 ps-xxl-5">
                                 <div class="text-primary fw-bold">
                                   Teleconference
                                 </div>

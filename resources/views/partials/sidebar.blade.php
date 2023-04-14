@@ -190,7 +190,7 @@
               </li>
               <li class="nav-item  " id="company">
                 <a class="nav-link" href="/admin/company">
-                  <svg  aria-label="All Companies" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="fill-none" aria-label="All Companies" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#all-companies-icon"></use>
                   </svg>
                   <span class="menu-item">All Companies</span>
