@@ -267,6 +267,8 @@
                                                                     role="switch" id="AutoNotifyBroadcast" checked>
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Auto-notify</label>
+                                                                <label class="form-check-label"
+                                                                    for="AutoNotifyBroadcast">Auto-notify</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -277,9 +279,11 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyAssign" checked>
+                                                                    role="switch" id="ManualAssignAssign" checked>
                                                                 <label class="form-check-label"
-                                                                    for="AutoNotifyAssign">Manual-assign</label>
+                                                                    for="ManualAssignAssign">Manual-assign</label>
+                                                                <label class="form-check-label"
+                                                                    for="ManualAssignAssign">Manual-assign</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -654,6 +658,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
+                                                <h3 class="mb-lg-0">Start Service Address</h3>
                                                 <p class="mt-3">List of most recently used address from the requester
                                                 </p>
                                             </div>
@@ -756,7 +761,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <div class="d-lg-flex justify-content-between align-items-center">
-                                                    <h3 class="mb-lg-0">Start Service Address</h3>
+                                                    <h3 class="mb-lg-0">Start End Address</h3>
                                                     <a href="#"
                                                         class="btn btn-primary btn-sm rounded js-show-start-service-hidden-content">End
                                                         Address</a>
@@ -1637,10 +1642,26 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4">
-                                                <label class="col-form-label">Differentials:</label>
+                                                <label class="col-form-label pb-0">Differentials:</label>
                                             </div>
                                             <div class="col-lg-9 col-md-8 align-self-center">
                                                 <div class="font-family-tertiary">$70.00</div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 ps-lg-4">
+                                                <label class="form-label-sm fw-normal mb-0">
+                                                    Specializations Service Charges:
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center value">
+                                                $50.00
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 ps-lg-4">
+                                                <label class="form-label-sm fw-normal mb-0">
+                                                    Expedited Service Charges
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center value">
+                                                $20.00
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1653,10 +1674,26 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4">
-                                                <label class="col-form-label">Total Service Charges:</label>
+                                                <label class="col-form-label pb-0">Total Service Charges:</label>
                                             </div>
                                             <div class="col-lg-9 col-md-8 align-self-center">
                                                 <div class="font-family-tertiary">$26.00</div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 ps-lg-4">
+                                                <label class="form-label-sm fw-normal mb-0">
+                                                    Fuel Charges:
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center value">
+                                                $10.00
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 ps-lg-4">
+                                                <label class="form-label-sm fw-normal mb-0">
+                                                    Travel Charges:
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-8 align-self-center value">
+                                                $16.00
                                             </div>
                                         </div>
                                         <div class="row">
