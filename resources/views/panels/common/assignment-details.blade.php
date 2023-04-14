@@ -33,7 +33,7 @@
 						</h2>
 					</div>
 					<div class="col-auto ms-2">
-						<div class="d-flex gap-2">
+						<div class="d-flex flex-column flex-md-row gap-2">
 							<button type="button" class="btn btn-outline-primary text-primary rounded text-sm d-inline-flex gap-1 align-items-center px-3">
 								<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M8 21V24.766L9.515 23.857L14.277 21H19C20.103 21 21 20.103 21 19V11C21 9.897 20.103 9 19 9H7C5.897 9 5 9.897 5 11V19C5 20.103 5.897 21 7 21H8ZM7 11H19V19H13.723L10 21.234V19H7V11Z" fill="url(#paint0_linear_3838_133679)"/>
@@ -758,7 +758,9 @@
 						<div class="d-lg-flex align-items-center gap-5 mb-5">
 							<h2 class="mb-lg-0">Attachments</h2>
 							<button type="button" class="btn btn-primary rounded d-inline-flex align-items-center gap-1" x-on:click="addReimbursement = true">
-								<x-icon name="plus"/>
+								<svg  width="20" height="21" viewBox="0 0 20 21">
+									<use xlink:href="/css/common-icons.svg#plus"></use>
+								</svg>
 								<span>Add Reimbursement</span>
 							</button>
 						</div>
