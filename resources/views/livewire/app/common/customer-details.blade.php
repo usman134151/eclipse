@@ -197,7 +197,7 @@
                                     aria-labelledby="dashboard-tab" tabindex="0">
                                     <div class="col-md-12 mb-md-2 mt-5">
                                         <div class="row mt-2 mb-5">
-                                            <div class="col-lg-5 me-lg-5">
+                                            <div class="col-lg-5 me-lg-5 between-section-segment-spacing">
                                                 <div class="row mb-4">
                                                     <div class="col-md-4">
                                                         <div class="d-inline-block position-relative">
@@ -229,7 +229,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-7 ms-4">
+                                                    <div class="col-md-7 ms-4 mt-4">
                                                         <h3 class="font-family-tertiary fw-medium">
                                                             James Mary (He)
                                                         </h3>
@@ -477,7 +477,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-1">
+                                                        <div class="row">
                                                             <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Account Credit:
@@ -492,7 +492,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 between-section-segment-spacing">
                                                 <div class="row" id="table-hover-row">
                                                     <div class="col-12">
                                                         <div class="card">
@@ -767,6 +767,7 @@
                                                 </div>
                                                 <!-- table e -->
                                             </div>
+                                            
                                             <!-- Last Login colums (start) -->
                                             <div class="col-lg-6 mb-md-2">
                                                 <div class="mb-3">
@@ -980,7 +981,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 mb-4">
+                                            <div class="col-md-12 inner-section-segment-spacing">
                                                 <h2>Last Login:</h2>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex mb-md-2">
@@ -1046,9 +1047,10 @@
                                 <!-- Dashboard tab end -->
                                 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel"
                                     aria-labelledby="schedule-tab" tabindex="0">
-                                    <div class="row mb-3">
+                                    <div class="row mb-2">
                                         <h3>Schedule</h3>
                                     </div>
+                                    <div class="inner-section-segment-spacing">
                                     <div class="d-lg-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
                                             <div class="mb-4 mb-lg-0">
@@ -1096,6 +1098,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                     <div>
                                         <img src="/html-prototype/images/temp/img-placeholder-calendar.png"
                                             class="w-100" alt="Dashboard Calendar" />
@@ -1104,7 +1107,7 @@
                                 <!-- Schedule tab end -->
                                 <div class="tab-pane fade" id="customer-feedback-tab-pane" role="tabpanel"
                                     aria-labelledby="customer-feedback-tab" tabindex="0">
-                                    <div class="row mb-4">
+                                    <div class="row mb-2">
                                         <h3>Feedback</h3>
                                     </div>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
@@ -1137,7 +1140,8 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                   
+                                    {{-- 
                                     <div class="col-md-6 mb-4">
                                         <button class="btn btn-primary rounded">
                                             Feedback Given
@@ -1146,37 +1150,7 @@
                                             Feedback Received
                                         </button>
                                     </div>
-                                    <div class="row mb-4 mb-5">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Export Button" width="23" height="26"
-                                                    viewBox="0 0 23 26">
-                                                    <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                      --}}
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
                                             <label for="show_records_number" class="form-label">
@@ -1190,11 +1164,35 @@
                                             </select>
                                         </div>
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="search" class="form-label fw-semibold">
-                                                Search
-                                            </label>
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search here" autocomplete="on" />
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Export Button" width="23" height="26"
+                                                        viewBox="0 0 23 26">
+                                                        <use xlink:href="/css/common-icons.svg#document-dropdown">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Another action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Something else here
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card">
@@ -1791,11 +1789,12 @@
                                 </div>
                                 <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel"
                                     aria-labelledby="my-drive-tab" tabindex="0">
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <h3>My Drive</h3>
                                     </div>
+                                    <div class="inner-section-segment-spacing">
                                     <div class="col-md-12 d-lg-flex col-12 gap-4">
-                                        <div class="col-md-3 mb-4 col-12">
+                                        <div class="col-md-3 col-12">
                                             <div>
                                                 <label class="form-label" for="keyword-search">
                                                     Search
@@ -1804,7 +1803,7 @@
                                                     placeholder="Keyword Search" />
                                             </div>
                                         </div>
-                                        <div class="col-md-3 mb-4 col-12">
+                                        <div class="col-md-3 col-12">
                                             <label class="form-label" for="payment-status">
                                                 Document Type
                                             </label>
@@ -1812,7 +1811,7 @@
                                                 <option>Select Document Type</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3 mb-4 col-12">
+                                        <div class="col-md-3  col-12">
                                             <label class="form-label" for="set_set_date">
                                                 Date Range
                                             </label>
@@ -1828,7 +1827,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                </div>
+                                    <div class="row inner-section-segment-spacing">
                                         <div class="col-md-3">
                                             <label class="form-label" for="search">
                                                 Upload Document
@@ -1838,7 +1838,7 @@
                                                 File</button>
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row inner-section-segment-spacing">
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
                                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -1868,18 +1868,42 @@
                                     <div class="row">
                                         <div class="d-lg-inline-flex">
                                             <div class="mx-2">
-                                                <img src="/tenant/images/img-placeholder-document.jpg"
-                                                    alt="Image Certification">
+                                                <div class="position-relative">
+													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<div class="position-absolute top-0 end-0">
+													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+														</svg>
+													  </a>
+													</div>
+												  </div>
                                                 <p>Certification</p>
                                             </div>
                                             <div class="mx-2">
-                                                <img src="/tenant/images/img-placeholder-document.jpg"
-                                                    alt="Image Certification">
+                                                <div class="position-relative">
+													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<div class="position-absolute top-0 end-0">
+													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+														</svg>
+													  </a>
+													</div>
+												  </div>
                                                 <p>Certification</p>
                                             </div>
                                             <div class="mx-2">
-                                                <img src="/tenant/images/img-placeholder-document.jpg"
-                                                    alt="Image Certification">
+                                                <div class="position-relative">
+													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<div class="position-absolute top-0 end-0">
+													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
+														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
+														</svg>
+													  </a>
+													</div>
+												  </div>
                                                 <p>Certification</p>
                                             </div>
                                         </div>
@@ -1920,33 +1944,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-4 mb-4">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                                                    </svg>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
                                             <label for="show_records_number" class="form-label">
@@ -1960,11 +1957,31 @@
                                             </select>
                                         </div>
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="search" class="form-label fw-semibold">
-                                                Search
-                                            </label>
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search here" autocomplete="on" />
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
+                                                        </svg>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Another action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Something else here
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responses">
@@ -3179,33 +3196,6 @@
                                     <div class="row mb-4">
                                         <h3>Logs</h3>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                                                    </svg>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
                                             <label for="show_records_number" class="form-label">
@@ -3219,11 +3209,31 @@
                                             </select>
                                         </div>
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="search" class="form-label fw-semibold">
-                                                Search
-                                            </label>
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search here" autocomplete="on" />
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
+                                                        </svg>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Another action
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#">
+                                                            Something else here
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -4469,9 +4479,76 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel"
-                                    aria-labelledby="disabled-tab" tabindex="0">...</div>
-
+                                <div class="tab-pane fade" id="reports-tab-pane" role="tabpanel"
+                                    aria-labelledby="reports-tab" tabindex="0">
+                                    <div class="row mb-3">
+										<h3>
+											Reports
+										</h3>
+									</div>
+									<div class="row mb-4">
+										<div class="col-md-3 col-12">
+											<div>
+												<label class="form-label" for="setDate">
+													Date Range
+												</label>
+												<div class="position-relative">
+													<input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+													<svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
+													</svg>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="mb-5">
+										<div class="d-flex justify-content-between">
+											<div class="d-inline-flex align-items-center gap-4">
+											  <h2>Assignment</h2>
+											</div>
+											<div class="dropdown me-5">           
+												<button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+													<svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
+													xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
+											       </svg>                                 
+												</button>
+												<ul class="dropdown-menu">
+												  <li><a class="dropdown-item" href="#">Action</a></li>
+												  <li><a class="dropdown-item" href="#">Another action</a></li>
+												  <li><a class="dropdown-item" href="#">Something else here</a></li>
+												</ul>
+											  </div>
+										</div>
+										<hr>
+				                        <div>
+											<img src="/html-prototype/images/temp/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Pending Payment image">
+										</div>
+									  </div>
+									<div class="mb-4">
+										<div class="d-flex justify-content-between">
+											<div class="d-inline-flex align-items-center gap-4">
+											  <h2>Payments</h2>
+											</div>
+											<div class="dropdown me-5">           
+												<button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+													<svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
+													xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
+											      </svg>                                 
+												</button>
+												<ul class="dropdown-menu">
+												  <li><a class="dropdown-item" href="#">Action</a></li>
+												  <li><a class="dropdown-item" href="#">Another action</a></li>
+												  <li><a class="dropdown-item" href="#">Something else here</a></li>
+												</ul>
+											  </div>
+										</div>
+										<hr>
+				                        <div>
+											<img src="/html-prototype/images/temp/img-placeholder-pending-payment.png" class="img-fluid" alt="Pending Payment image">
+										</div>
+									  </div>
+                                </div>
+                             <!-- Reports tab ends -->
 
                             </div> <!-- tab-content -->
                             <!-- END: Provider Details ................... -->
