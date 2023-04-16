@@ -8,6 +8,58 @@ use Illuminate\Support\Facades\Storage;
 
 class FileService
 {
+    //Updated by Amna Bilal to add file upload service and validations
+    /**
+     * Upload a file to the specified storage directory.
+     *
+     * @param string $fileTmpPath
+     * @param string $storageDirectory
+     * @param string $fileStoreName
+     * @param string $columnName
+     * @param string $modelName
+     * @param int $recordId
+     * @return string|null
+     */
+    public function uploadFile(string $fileTmpPath, string $storageDirectory, string $fileStoreName, string $columnName, string $modelName, int $recordId): ?string
+    {
+        // Validate the file extension
+        if (!$this->isValidFileExtension($fileTmpPath)) {
+            return "Invalid file format. Only images and documents are allowed.";
+        }
+
+        // Upload the file to the specified storage directory
+        $path = Storage::putFileAs($storageDirectory, $fileTmpPath, $fileStoreName);
+
+        // Update the model record with the file path
+        $model = $modelName::find($recordId);
+        $model->$columnName = $path;
+        $model->save();
+
+        return null;
+    }
+
+    /**
+     * Validate a file extension.
+     *
+     * @param string $fileTmpPath
+     * @return bool
+     */
+    protected function isValidFileExtension(string $fileTmpPath): bool
+    {
+        $validExtensions = [
+            'jpg', 'jpeg', 'png', 'gif', // Images
+            'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', // Documents
+        ];
+
+        $extension = strtolower(pathinfo($fileTmpPath, PATHINFO_EXTENSION));
+
+        return in_array($extension, $validExtensions);
+    }
+
+
+  
+  
+  
     /**
      *  Request: document_title,no_expiration_date,expiration_date,title,record_id 
      */

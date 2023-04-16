@@ -28,15 +28,15 @@ return [
          * https://github.com/snapappointments/bootstrap-select
          */
         'bootstrap-select' => [
-            'js'  => '/public/js/bootstrap-select.min.js',
-            'css' => '/public/css/bootstrap-select.min.css',
+            'js'  => '/js/bootstrap-select.min.js',
+            'css' => '/css/bootstrap-select.min.css',
         ],
         /*
          * https://flatpickr.js.org
          */
         'flatpickr'        => [
             'js'      => '',
-            'css'     => '/public/css/flatpickr.min.css',
+            'css'     => '/css/flatpickr.min.css',
             'locales' => [
                 'pt_BR' => [
                     'locale'     => 'pt',
