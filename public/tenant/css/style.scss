@@ -1899,6 +1899,11 @@ hr.border-separate-sm {
 .table-hover > tbody > tr.js-selected-row:hover .js-tick {
 	display: none;
 }
-    .table-hover > tbody > tr .js-tick {
-        display: none;
-    }
+
+.table-hover > tbody > tr .js-tick {
+    display: none;
+}
+
+.ql-toolbar.ql-snow .ql-formats{
+    font-size: 15px;
+}

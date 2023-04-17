@@ -304,15 +304,3 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      $(document).on("keypress", "input.js-search-by-keyword", function(e){
-        if(e.which == 13){
-            $('#searchByKeywordModal').modal('show');
-        }
-      });
-      $(document).on("keypress", "input.js-search-by-no", function(e){
-        if(e.which == 13){
-            $('#searchByNoModal').modal('show');
-        }
-      });
-    </script>

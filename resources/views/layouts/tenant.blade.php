@@ -89,7 +89,6 @@
 		<script src="/tenant/js/perfect-scrollbar.min.js"></script>
 		<script src="/tenant/js/feather-icons.min.js"></script>
 		<script src="/tenant/js/chosen.jquery.min.js"></script>
-		<script src="/tenant/js/tinymce.min.js"></script>
 		<script src="/tenant/js/app.js"></script>
 		<script src="/tenant/js/app-menu.js"></script>
 		<script src="/tenant/js/app-new.js"></script>
@@ -120,6 +119,18 @@
 	function pushStateToUrl(url) {
   history.pushState(null, null, url);
 }
+</script>
+<script>
+	$(document).on("keypress", "input.js-search-by-keyword", function(e){
+        if(e.which == 13){
+            $('#searchByKeywordModal').modal('show');
+        }
+      });
+      $(document).on("keypress", "input.js-search-by-no", function(e){
+        if(e.which == 13){
+            $('#searchByNoModal').modal('show');
+        }
+      });
 </script>
 	</body>
 </html>
