@@ -88,7 +88,7 @@
                                     <div class="row mb-1">
                                         <div class="col-md-5">
                                             <label class="col-form-label" for="">
-                                                Socialization:
+                                                Specialization:
                                             </label>
                                         </div>
                                         <div class="col-md-7 align-self-center">

@@ -86,7 +86,7 @@
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <label class="form-label">Company <span class="mandatory">*</span></label>
+                                        <label class="form-label" for="company">Company <span class="mandatory">*</span></label>
                                         <a href="#" class="fw-bold">
                                             <small>
                                                 {{-- Updated by Shanila to Add svg icon--}}
@@ -99,7 +99,7 @@
                                             </small>
                                         </a>
                                     </div>
-                                    <select class="form-select">
+                                    <select class="form-select" id="company">
                                         <option>Select Company</option>
                                     </select>
                                 </div>
@@ -107,7 +107,7 @@
                                     <label class="form-label">Department <span class="mandatory">*</span></label>
                                     <div>
                                         <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                            data-bs-toggle="modal" data-bs-target="#departmentModal">
+                                            data-bs-toggle="modal" data-bs-target="#departmentModal" aria-label="Department">
                                             {{-- Updated by Shanila to Add svg icon--}}
                                             <svg aria-label=" Select Department" width="25" height="18"
                                                 viewBox="0 0 25 18">
@@ -120,10 +120,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-4 pe-lg-5">
-                                    <label class="form-label">Industry <span class="mandatory">*</span></label>
+                                    <label class="form-label" >Industry <span class="mandatory">*</span></label>
                                     <div>
                                         <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                            data-bs-toggle="modal" data-bs-target="#industryModal">
+                                            data-bs-toggle="modal" data-bs-target="#industryModal" aria-label="Industry">
                                             {{-- Updated by Shanila to Add svg icon--}}
                                             <svg aria-label=" Select Industry" width="25" height="18"
                                                 viewBox="0 0 25 18">
@@ -137,9 +137,9 @@
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <label class="form-label">Requester <span class="mandatory">*</span></label>
+                                        <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
                                         <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                            data-bs-target="#addNewCustomer">
+                                            data-bs-target="#addNewCustomer" aria-label="Requester">
                                             <small>
                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                 <svg aria-label="Add New Requester" class="me-1" width="20" height="21"
@@ -151,7 +151,7 @@
                                             </small>
                                         </a>
                                     </div>
-                                    <select class="form-select mb-2">
+                                    <select class="form-select mb-2" id="requestor">
                                         <option>Select Requester</option>
                                     </select>
                                     <div class="form-check form-check-inline">
@@ -162,12 +162,12 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-4 pe-lg-5">
-                                    <label class="form-label">Point of Contact <span class="mandatory">*</span></label>
-                                    <input type="" class="form-control" placeholder="Enter Name">
+                                    <label class="form-label" for="point-of-contact">Point of Contact <span class="mandatory">*</span></label>
+                                    <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact">
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
-                                    <label class="form-label">Phone Number <span class="mandatory">*</span></label>
-                                    <input type="" class="form-control" placeholder="Enter Phone Number">
+                                    <label class="form-label" for="ph-number">Phone Number <span class="mandatory">*</span></label>
+                                    <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number">
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
@@ -181,15 +181,15 @@
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
                                         <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label">Supervisor <span
+                                            <label class="form-label" for="supervisor">Supervisor <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select">
+                                            <select class="form-select" id="supervisor">
                                                 <option>Select Supervisor</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label">Billing Manager</label>
-                                            <select class="form-select">
+                                            <label class="form-label" for="billing-manager">Billing Manager</label>
+                                            <select class="form-select" id="billing-manager">
                                                 <option>Select Billing Manager</option>
                                             </select>
                                         </div>
@@ -202,8 +202,8 @@
                                     <h2>Service Information</h2>
                                     <div class="row">
                                         <div class="col-lg-6 pe-lg-5 mb-4">
-                                            <label class="form-label">Booking Title</label>
-                                            <input type="text" class="form-control" placeholder="Enter Booking Title">
+                                            <label class="form-label" for="booking-title">Booking Title</label>
+                                            <input type="text" class="form-control" placeholder="Enter Booking Title" id="booking-title">
                                         </div>
                                     </div>
 
@@ -219,11 +219,11 @@
                                                 '','accommodation') !!}
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
-                                                <label class="form-label">Service <span class="mandatory">*</span> <i
+                                                <label class="form-label" for="service">Service <span class="mandatory">*</span> <i
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title=""></i></label>
-                                                <select class="form-select">
+                                                        title="" ></i></label>
+                                                <select class="form-select" id="service">
                                                     <option>Select Service</option>
                                                 </select>
                                             </div>
@@ -250,10 +250,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4 pe-lg-5">
-                                                <label class="form-label">Number of Providers <span
+                                                <label class="form-label" for="number-of-provider">Number of Providers <span
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
-                                                    placeholder="Enter Number of Providers">
+                                                    placeholder="Enter Number of Providers" id="number-of-provider">
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <div class="row">
@@ -264,7 +264,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked>
+                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast">
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Auto-notify</label>
                                                                 <label class="form-check-label"
@@ -279,7 +279,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ManualAssignAssign" checked>
+                                                                    role="switch" id="ManualAssignAssign" checked aria-label="Manual Assign">
                                                                 <label class="form-check-label"
                                                                     for="ManualAssignAssign">Manual-assign</label>
                                                                 <label class="form-check-label"
@@ -438,19 +438,19 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4 mb-3">
-                                                            <label class="form-label">Meeting Name</label>
+                                                            <label class="form-label" for="meeting-name">Meeting Name</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Meeting Name">
+                                                                placeholder="Enter Meeting Name" id="meeting-name">
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
-                                                            <label class="form-label">Phone Number</label>
+                                                            <label class="form-label" for="phone-number">Phone Number</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Phone Number">
+                                                                placeholder="Enter Phone Number" id="phone-number">
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
-                                                            <label class="form-label">Access Code</label>
+                                                            <label class="form-label" for="access-code">Access Code</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Access Code">
+                                                                placeholder="Enter Access Code" id="access-code">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -537,7 +537,7 @@
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="startTimeAMPM">
+                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
@@ -914,9 +914,9 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="first-name-column">First
+                                            <label class="form-label" for="first-name">First
                                                 Name</label>
-                                            <input type="text" id="first-name-column" class="form-control"
+                                            <input type="text" id="first-name" class="form-control"
                                                 placeholder="First Name" name="fname-column" />
                                         </div>
                                     </div>
@@ -938,8 +938,8 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="severity-column">Severity</label>
-                                            <select class="form-select" id="severity-column">
+                                            <label class="form-label" for="severity">Severity</label>
+                                            <select class="form-select" id="severity">
                                                 <option selected>Select Severity</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -979,7 +979,7 @@
                                                 <div class="col-lg-3 col-6">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"
-                                                        placeholder="$00.00">
+                                                        placeholder="$00.00" aria-label="Service 1 Total Rate">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -989,7 +989,7 @@
                                                 <div class="col-lg-3 col-md-6">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"
-                                                        placeholder="$00.00">
+                                                        placeholder="$00.00" aria-label="Service 2 Total Rate">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -999,7 +999,7 @@
                                                 <div class="col-lg-3 col-md-6">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"
-                                                        placeholder="$00.00">
+                                                        placeholder="$00.00" aria-label="Additional Charges">
                                                 </div>
                                             </div>
                                         </div>
@@ -1008,9 +1008,9 @@
                                         <h2>Discounts</h2>
                                         <div class="d-flex gap-3 flex-column flex-md-row mb-4">
                                             <div class="form-check mb-0">
-                                                <input class="form-check-input" id="Coupon" name="discounts"
+                                                <input class="form-check-input" id="Coupon-radio-btn" name="discounts"
                                                     type="radio" tabindex="" checked="">
-                                                <label class="form-check-label" for="Coupon">Coupon</label>
+                                                <label class="form-check-label" for="Coupon-radio-btn">Coupon</label>
                                             </div>
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="$Amount" name="discounts"
@@ -1024,11 +1024,11 @@
                                             </div>
                                         </div>
                                         <div class="row mb-4">
-                                            <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center">Coupon
+                                            <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center" for="coupon-code">Coupon
                                                 Code</label>
                                             <div class="col-lg-4 col-md-3 mb-3 mb-md-0">
                                                 <input type="" name="" class="form-control form-control-md"
-                                                    placeholder="Enter Code">
+                                                    placeholder="Enter Code" id="coupon-code">
                                             </div>
                                             <div class="col-md-3 align-self-center">
                                                 <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
@@ -1039,9 +1039,9 @@
                                         <h2>Additional Customer Charge</h2>
                                         <div class="input-group">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Charge Label">
+                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label">
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="$00.00">
+                                                placeholder="$00.00" aria-label="Additional Customer Charges in dollars">
                                         </div>
                                         <div class="text-lg-end">
                                             <a href="#" class="fw-bold">
@@ -1061,9 +1061,9 @@
                                         <h2>Additional Provider Payment</h2>
                                         <div class="input-group mb-2">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Charge Label">
+                                                placeholder="Enter Charge Label" aria-label="Enter Charge Label">
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="$00.00">
+                                                placeholder="$00.00" aria-label="Additional Provider Payment">
                                         </div>
                                         <div
                                             class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-1 gap-md-0">
@@ -1242,18 +1242,18 @@
                                     <!-- /Booking Schedule -->
                                     <!-- Billing Notes -->
                                     <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 pe-md-3 pe-lg-0">
-                                        <label class="form-label">
+                                        <label class="form-label" for="billing-notes">
                                             Billing Notes
                                         </label>
-                                        <textarea class="form-control" rows="5" cols="5"></textarea>
+                                        <textarea class="form-control" rows="5" cols="5" id="billing-notes"></textarea>
                                     </div>
                                     <!-- /Billing Notes -->
                                     <!-- Payment Notes -->
                                     <div class="mb-lg-5 mb-4 col-lg-12 col-md-6 ps-md-3 ps-lg-0">
-                                        <label class="form-label">
+                                        <label class="form-label" for="payment-notes">
                                             Payment Notes
                                         </label>
-                                        <textarea class="form-control" rows="5" cols="5"></textarea>
+                                        <textarea class="form-control" rows="5" cols="5" id="payment-notes"></textarea>
                                     </div>
                                     <!-- /Payment Notes -->
                                 </div>
@@ -1279,13 +1279,13 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="row">
-                                                <label class="form-label mb-lg-0 col-lg-6 align-self-center">Enter
+                                                <label class="form-label mb-lg-0 col-lg-6 align-self-center" for="enter-override-amount">Enter
                                                     Override
                                                     Amount:</label>
                                                 <div class="col-md-3 mb-3 mb-md-0">
                                                     <input type="" name=""
                                                         class="form-control form-control-md text-center"
-                                                        placeholder="$00.00">
+                                                        placeholder="$00.00" id="enter-override-amount">
                                                 </div>
                                                 <div class="col-md-3 align-self-center">
                                                     <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
@@ -1314,11 +1314,11 @@
                                         </div>
                                         <div class="input-group mb-3">
                                             <input type="" name="" class="form-control form-control-md"
-                                                placeholder="Enter Card number">
+                                                placeholder="Enter Card number" aria-label="Enter Card number">
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="MM/YY">
+                                                placeholder="MM/YY" aria-label="Enter Month/Year">
                                             <input type="" name="" class="form-control form-control-md text-center"
-                                                placeholder="CVC">
+                                                placeholder="CVC" aria-label="Enter CVC">
                                         </div>
                                         <div class="text-lg-end">
                                             <div class="form-check form-check-inline">
@@ -1339,30 +1339,30 @@
                                         <div class="col-lg-6 mb-4">
                                             <!-- Provider Notes -->
                                             <div class="my-lg-5">
-                                                <label class="form-label">
+                                                <label class="form-label" for="provider_notes">
                                                     Provider Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="provider_notes"></textarea>
                                             </div>
                                             <!-- /Provider Notes -->
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <!-- Customer Notes -->
                                             <div class="my-lg-5">
-                                                <label class="form-label">
+                                                <label class="form-label" for="customer-notes">
                                                     Customer Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="customer-notes"></textarea>
                                             </div>
                                             <!-- /Customer Notes -->
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <!-- Private Notes -->
                                             <div class="my-lg-5">
-                                                <label class="form-label">
+                                                <label class="form-label" for="private-notes">
                                                     Private Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="private-notes"></textarea>
                                             </div>
                                             <!-- /Private Notes -->
                                         </div>
@@ -1828,7 +1828,7 @@
                                                         <th class="align-middle">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="" />
+                                                                    type="checkbox" tabindex="" aria-label="Select All Admin Staff Team"/>
                                                             </div>
                                                         </th>
                                                         <th class="align-middle">
@@ -1844,7 +1844,7 @@
                                                         <td class="align-middle">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="" />
+                                                                    type="checkbox" tabindex="" aria-label="Select Admin Staff Team"/>
                                                             </div>
                                                         </td>
                                                         <td class="align-middle">
@@ -1867,7 +1867,7 @@
                                                                 <label class="form-check-label"
                                                                     for="Visible">Visible</label>
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="Visible">
+                                                                    role="switch" id="Visible" aria-label="Permission Toggle">
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -1875,7 +1875,7 @@
                                                         <td class="align-middle">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="" />
+                                                                    type="checkbox" tabindex="" aria-label="Select Admin Staff Team"/>
                                                             </div>
                                                         </td>
                                                         <td class="align-middle">
@@ -1898,7 +1898,7 @@
                                                                 <label class="form-check-label"
                                                                     for="Manage">Manage</label>
                                                                 <input checked class="form-check-input" type="checkbox"
-                                                                    role="switch" id="Manage">
+                                                                    role="switch" id="Manage" aria-label="Permission Toggle">
                                                             </div>
                                                         </td>
                                                     </tr>

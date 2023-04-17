@@ -233,7 +233,7 @@
                                                             </svg>
                                                         </div>
                                                         <button type="button" class="btn px-2">
-                                                            <svg width="24" height="17" viewBox="0 0 24 17" fill="none"
+                                                            <svg aria-label="View" width="24" height="17" viewBox="0 0 24 17" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <path
                                                                     d="M12 0C6.54545 0 1.88727 3.52467 0 8.5C1.88727 13.4753 6.54545 17 12 17C17.4545 17 22.1127 13.4753 24 8.5C22.1127 3.52467 17.4545 0 12 0ZM12 14.1667C8.98909 14.1667 6.54545 11.628 6.54545 8.5C6.54545 5.372 8.98909 2.83333 12 2.83333C15.0109 2.83333 17.4545 5.372 17.4545 8.5C17.4545 11.628 15.0109 14.1667 12 14.1667ZM12 5.1C10.1891 5.1 8.72727 6.61867 8.72727 8.5C8.72727 10.3813 10.1891 11.9 12 11.9C13.8109 11.9 15.2727 10.3813 15.2727 8.5C15.2727 6.61867 13.8109 5.1 12 5.1Z"
@@ -303,10 +303,10 @@
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
-                                                    <label class="form-label" for="phone">
+                                                    <label class="form-label" for="phone-number">
                                                         Phone Number
                                                     </label>
-                                                    <input type="text" id="phone" class="form-control" name="phone"
+                                                    <input type="text" id="phone-number" class="form-control" name="phone"
                                                         placeholder="Enter Phone Number" />
                                                 </div>
 
@@ -671,8 +671,8 @@
                                                 </button>
                                                 <div class="form-check mb-lg-0">
                                                     <input class="form-check-input" type="checkbox" value=""
-                                                        id="AssignSameUser">
-                                                    <label class="form-check-label" for="AssignSameUser">
+                                                        id="AssignSame_User">
+                                                    <label class="form-check-label" for="AssignSame_User" >
                                                         Assign Same User
                                                     </label>
                                                 </div>
@@ -748,8 +748,8 @@
                                                 </button>
                                                 <div class="form-check mb-lg-0">
                                                     <input class="form-check-input" type="checkbox" value=""
-                                                        id="AssignSameUser">
-                                                    <label class="form-check-label" for="AssignSameUser">
+                                                        id="Assign-Same-User">
+                                                    <label class="form-check-label" for="Assign-Same-User">
                                                         Assign Same User
                                                     </label>
                                                 </div>
@@ -758,8 +758,8 @@
                                         <div class="col-lg-12 mb-4">
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" type="checkbox" value=""
-                                                    id="ServiceConsumer">
-                                                <label class="form-check-label" for="ServiceConsumer">
+                                                    id="Service-Consumer">
+                                                <label class="form-check-label" for="Service-Consumer">
                                                     Service Consumer
                                                 </label>
                                             </div>
@@ -767,8 +767,8 @@
                                         <div class="col-lg-12 mb-4">
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" type="checkbox" value=""
-                                                    id="ServiceConsumer">
-                                                <label class="form-check-label" for="ServiceConsumer">
+                                                    id="participant">
+                                                <label class="form-check-label" for="participant">
                                                     Participant
                                                 </label>
                                             </div>
@@ -1084,7 +1084,8 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            id="Languageinterpreting">
+                                                                                            id="Languageinterpreting"
+                                                                                            aria-label="Toggle active">
                                                                                         <label
                                                                                             class="form-check-label text-nowrap"
                                                                                             for="Languageinterpreting">
@@ -1101,7 +1102,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1131,7 +1132,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1145,7 +1146,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1173,7 +1174,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1187,7 +1188,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1215,7 +1216,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1229,7 +1230,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1257,7 +1258,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1271,7 +1272,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1299,7 +1300,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1313,7 +1314,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1341,7 +1342,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1355,7 +1356,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1383,7 +1384,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1397,7 +1398,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add
@@ -1425,7 +1426,7 @@
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
                                                                                             role="switch"
-                                                                                            aria-label="Toggle Team Status"
+                                                                                            aria-label="Toggle active"
                                                                                             checked>
                                                                                         <label class="form-check-label">
                                                                                             In-Active
@@ -1439,7 +1440,7 @@
                                                                                     <div class="d-flex actions">
                                                                                         <a @click="associateservice = true"
                                                                                             href="#" title=""
-                                                                                            aria-label=""
+                                                                                            aria-label="associate service"
                                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                             {{-- Updated by Shanila to
                                                                                             Add

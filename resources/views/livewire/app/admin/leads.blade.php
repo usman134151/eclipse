@@ -60,7 +60,7 @@
 			<td>
 			  <div class="d-flex actions">
 				<div class="dropdown ac-cstm">
-				  <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				  <a href="javascript:void(0)" aria-label="Action Button Dropdown" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
 					<svg class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
 						xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
 					 </svg>
@@ -83,7 +83,7 @@
 			<td>
 			  <div class="d-flex actions">
 				<div class="dropdown ac-cstm">
-				  <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				  <a href="javascript:void(0)" aria-label="Action Button Dropdown" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
 					<svg class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
 					 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
 					</svg>
@@ -106,7 +106,7 @@
 			<td>
 			  <div class="d-flex actions">
 				<div class="dropdown ac-cstm">
-				  <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				  <a href="javascript:void(0)" aria-label="Action Button Dropdown" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
 					<svg class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
 					 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
 					</svg>
@@ -129,7 +129,7 @@
 			<td>
 			  <div class="d-flex actions">
 				<div class="dropdown ac-cstm">
-				  <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				  <a href="javascript:void(0)" aria-label="Action Button Dropdown" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
 					<svg class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
 					 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
 					 </svg>
@@ -152,7 +152,7 @@
 			<td>
 			  <div class="d-flex actions">
 				<div class="dropdown ac-cstm">
-				  <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				  <a href="javascript:void(0)" aria-label="Action Button Dropdown" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
 					<svg class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
 					 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
 					</svg>
@@ -175,7 +175,7 @@
 			<td>
 			  <div class="d-flex actions">
 				<div class="dropdown ac-cstm">
-				  <a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
+				  <a href="javascript:void(0)" aria-label="Action Button Dropdown" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
 					<svg class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
 					xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
 					</svg>
