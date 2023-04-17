@@ -386,7 +386,7 @@
                                                                 <h2>Phone Number</h2>
                                                             </div>
                                                         </div>
-                                                        @foreach($phoneNumbers as $phoneNumber)        
+                                                        @foreach($phoneNumbers as $index=>$phoneNumber)        
                                                         <div class="row">
                                                             <div class="col-lg-8 mb-2">
                                                                 <div class="border p-3">
@@ -397,7 +397,7 @@
                                                                             </label>
                                                                             <input type="text" id="title"
                                                                                 class="form-control" name=""
-                                                                                placeholder="Enter Title" />
+                                                                                placeholder="Enter Title" wire:key="title-{{ $index }}" />
                                                                         </div>
                                                                         <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
                                                                             <label class="form-label" for="phone">
@@ -405,7 +405,7 @@
                                                                             </label>
                                                                             <input type="text" id="phone"
                                                                                 class="form-control" name=""
-                                                                                placeholder="Enter Phone Number" />
+                                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}"/>
                                                                         </div>
                                                                         <div class="col-lg-2 col-md-4 align-self-end">
                                                                             <button class="btn btn-primary rounded">
