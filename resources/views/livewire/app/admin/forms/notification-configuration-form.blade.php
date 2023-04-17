@@ -122,9 +122,12 @@
                             name="SubjectColumn" id="SubjectColumn">Enter Subject</textarea>
                         </div>
                       </div>
-                      <div class="col-lg-8 col-12 mb-4">
-                        <textarea rows="10" cols="10" id="" class="form-control" placeholder="Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard"></textarea>
-                      </div>
+                     {{-- added by shanila to add text-editor --}}
+                     <div class="col-lg-8 col-12 mb-4" style="height: 340px">
+                        <div class="quill-editor" >
+                        </div>
+                    </div>
+                    {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
                           <label class="form-label">Tag Key</label>
@@ -249,9 +252,12 @@
                     <!-- ....   section 2 ends.... -->
                     <!-- ..... section 3 start.... -->
                     <div class="row">
-                      <div class="col-lg-8 col-12 mb-4">
-                        <textarea rows="10" cols="10" id="" class="form-control" placeholder="Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard"></textarea>
-                      </div>
+                      {{-- added by shanila to add text-editor --}}
+                      <div class="col-lg-8 col-12 mb-4" style="height: 340px">
+                        <div class="quill-editor" >
+                        </div>
+                    </div>
+                    {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
                           <label class="form-label">Tag Key</label>
@@ -395,9 +401,12 @@
                     <!-- ....   section 3 ends.... -->
                     <!-- ....   section 4 start.... -->
                     <div class="row mb-4">
-                      <div class="col-lg-8 col-12 mb-4">
-                        <textarea rows="10" cols="10" id="" class="form-control" placeholder="Hello @admin_company @consumer has submitted a new request for services! Start Time: @booking_start_at End Time: @booking_end_at Duration: @booking_duration Location: @booking_location Consumers : @consumers Service: @services Service_Type : @service_type To see more information or to assign a provider, log into your Eclipse portal. @dashboard"></textarea>
+                        {{-- added by shanila to add text-editor --}}
+                      <div class="col-lg-8 col-12 mb-4" style="height: 340px">
+                          <div class="quill-editor" >
+                          </div>
                       </div>
+                      {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
                         <div class="p-3 border rounded">
                           <label class="form-label">Tag Key</label>
@@ -446,3 +455,12 @@
       </div>
     </section>
 </div>
+ {{-- added by shanila to add js and css files for editor--}}
+<link rel="stylesheet" href='/css/quill.imageUploader.min.css'/>
+<link rel="stylesheet" href='/css/quill.snow.css'/>
+ <script src="/js/quill.js"></script>
+ <script src="/js/quill.htmlEditButton.min.js"></script>
+ <script src="/js/quill.imageUploader.min.js"></script>
+{{-- added by shanila to add link of js editor js --}}
+<script src="/tenant/js/editor.js"></script>
+{{-- ended updated by shanila --}}

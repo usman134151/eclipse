@@ -90,6 +90,8 @@ Route::group([
 			// Admin Setting Routes
 			Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
 			Route::view('/admin/settings', 'tenant/settings/notification-configuration', ["showForm"=>false]);
+            Route::view('/admin/settings/create-notifications', 'tenant/settings/notification-configuration', ["showForm"=>true]);
+
 			Route::view('/admin/settings/create', 'tenant/settings/notification-configuration', ["showForm"=>true]);
 			Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
 			Route::view('/admin/templates', 'tenant/settings/email-templates', ["showForm"=>false]);
