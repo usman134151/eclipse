@@ -2510,11 +2510,11 @@
                                         </div>
                                     </div>
                                 </div><!-- /Specialization Rates -->
-                                <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                                <div class="col-12 form-actions ">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                         x-on:click="$wire.switch('basic-service-setup')">Back</button>
-                                    <a href="/admin/accommodation/all-services"><button type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</button></a>
+                                    <a href="/admin/accommodation/all-services" type="submit"
+                                            class="btn btn-primary rounded">Save & Exit</a>
                                     <button type="submit" class="btn btn-primary rounded"
                                         x-on:click="$wire.switch('service-forms')">Next</button>
                                 </div>
@@ -2670,11 +2670,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                                <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                         x-on:click="$wire.switch('advanced-service-rate')">Back</button>
-                                    <a href="/admin/accommodation/all-services"><button type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</button></a>
+                                    <a href="/admin/accommodation/all-services" type="submit"
+                                            class="btn btn-primary rounded">Save & Exit</a>
                                     <button type="button" class="btn btn-primary rounded"
                                         x-on:click="$wire.switch('service-configuration')">Next</button>
                                 </div>
@@ -2832,11 +2832,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                                <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                         x-on:click="$wire.switch('service-forms')">Back</button>
-                                    <a href="/admin/accommodation/all-services"><button type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</button></a>
+                                    <a href="/admin/accommodation/all-services" type="submit"
+                                            class="btn btn-primary rounded">Save & Exit</a>
                                     <button type="submit" class="btn btn-primary rounded"
                                         x-on:click="$wire.switch('advance-options')">Next</button>
 
@@ -3582,11 +3582,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                                <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                         x-on:click="$wire.switch('service-configuration')">Back</button>
-                                    <a href="/admin/accommodation/all-services"><button type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</button></a>
+                                    <a href="/admin/accommodation/all-services" type="submit"
+                                            class="btn btn-primary rounded">Save & Exit</a>
                                     <button type="submit" class="btn btn-primary rounded"
                                         x-on:click="$wire.switch('notification-setting')">Next</button>
                                 </div>
@@ -3919,11 +3919,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 justify-content-center form-actions d-flex gap-2">
+                                <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                         x-on:click="$wire.switch('advance-options')">Back</button>
-                                    <a href="/admin/accommodation/all-services"><button type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</button></a>
+                                    <a href="/admin/accommodation/all-services" type="submit"class="btn btn-primary rounded">
+                                            Save & Exit</a>
                                 </div>
                             </div>
                         </form>
