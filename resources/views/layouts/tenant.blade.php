@@ -113,6 +113,10 @@
     window.addEventListener('update-url', function(event) {
       pushStateToUrl(event.detail.url);
     });
+	window.addEventListener('refreshSelects', function(event) {
+
+	  $(".chosen-select").chosen();
+    });
 	function pushStateToUrl(url) {
   history.pushState(null, null, url);
 }

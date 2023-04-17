@@ -23,6 +23,7 @@ class Teams extends Component
     function showForm()
     {     
        $this->showForm=true;
+       $this->dispatchBrowserEvent('refreshSelects');
     }
     public function resetForm()
     {

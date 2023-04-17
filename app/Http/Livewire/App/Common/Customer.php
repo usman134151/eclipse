@@ -36,6 +36,8 @@ class Customer extends Component
 	function showForm()
 	{
 		$this->showForm=true;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/customer/create-customer']);
+		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
 	public function resetForm()
