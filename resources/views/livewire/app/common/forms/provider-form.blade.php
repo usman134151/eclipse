@@ -1,4 +1,4 @@
-<div x-data="{addDocument: false}">
+<div x-data="{addDocument: false , addNew: false}">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -156,7 +156,7 @@
                                                 <label class="form-label mb-lg-0" for="gender-column">
                                                     Gender
                                                 </label>
-                                                <a href="#" class="fw-bold">
+                                                <a @click="addNew = true" href="#" class="fw-bold">
                                                     <small>
                                                         {{-- Updated by Shanila to Add svg icon--}}
                                                         <svg aria-label="Add New" class="me-1" width="20" height="21"
@@ -178,7 +178,7 @@
                                                 <label class="form-label" for="ethnicity-column">
                                                     Ethnicity
                                                 </label>
-                                                <a href="#" class="fw-bold">
+                                                <a @click="addNew = true" href="#" class="fw-bold">
                                                     <small>
                                                         {{-- Updated by Shanila to Add svg icon--}}
                                                         <svg aria-label="Add New" class="me-1" width="20" height="21"
@@ -349,7 +349,7 @@
                                                     Certification(s)
                                                 </label>
                                                 <div class="d-flex align-items-center gap-3">
-                                                    <a href="#" class="fw-bold">
+                                                    <a @click="addNew = true" href="#" class="fw-bold">
                                                         <small>
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Add New" class="me-1" width="20"
@@ -2498,4 +2498,5 @@
     @include('modals.assign-provider-team')
     @include('modals.contract-provider-availiblity')
     @include('modals.staff-provider-availiblity')
+    @include('panels.common.add-new')
 </div>

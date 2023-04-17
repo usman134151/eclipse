@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content-header row">
-    <div class="content-header-left col-md-9 col-12 mb-2">
+    <div class="content-header-left col-md-9 col-12 mb-4">
       <div class="row breadcrumbs-top">
         <div class="col-12">
           <h1 class="content-header-title float-start mb-0">{{ $bookingType }} Assignments</h1>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <!-- /Filters -->
-  <div class="bg-muted rounded p-4 mb-5">
+  <div class="bg-muted rounded p-4 between-section-segment-spacing">
     <div class="d-flex gap-5 align-items-center">
       <div class="mb-4 mb-lg-0">
         <label class="form-label-sm">Search</label>

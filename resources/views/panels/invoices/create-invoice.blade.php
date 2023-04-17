@@ -278,5 +278,6 @@
 			</button>
 		</div>
 	</div>
+	@include('modals.common.add-address')
 </x-off-canvas>
 {{-- Create Invoice - End --}}
