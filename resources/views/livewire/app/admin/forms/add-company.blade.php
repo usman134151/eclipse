@@ -400,10 +400,10 @@
                                                                                 placeholder="Enter Title" wire:key="title-{{ $index }}" />
                                                                         </div>
                                                                         <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
-                                                                            <label class="form-label" for="phone">
+                                                                            <label class="form-label" for="phone-number">
                                                                                 Phone Number
                                                                             </label>
-                                                                            <input type="text" id="phone"
+                                                                            <input type="text" id="phone-number"
                                                                                 class="form-control" name=""
                                                                                 placeholder="Enter Phone Number" wire:key="phone-{{ $index }}"/>
                                                                         </div>

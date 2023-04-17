@@ -57,13 +57,13 @@
                                                 <div class="bg-muted rounded p-4 mb-1">
                                                     <div class="d-lg-flex gap-5 align-items-center mb-4">
                                                         <div class="mb-4 mb-lg-0">
-                                                            <label class="form-label-sm">Search</label>
+                                                            <label class="form-label-sm" for="search-reimbursement">Search</label>
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div class="position-relative">
                                                                     <input type="text"
                                                                         class="form-control form-control-md is-search"
                                                                         id="search" aria-describedby="search"
-                                                                        placeholder="Provider Name or Email">
+                                                                        placeholder="Provider Name or Email" id="s">
                                                                     {{-- Updated by Shanila to Add
                                                                     svg icon--}}
                                                                     <svg aria-label="search"

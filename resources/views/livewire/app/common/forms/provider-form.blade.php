@@ -305,14 +305,14 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="end-date-column">
+                                            <label class="form-label" for="end-date">
                                                 End Date
                                             </label>
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date of Birth" aria-label=""
-                                                        aria-describedby="" id="end-date-column">
+                                                        placeholder="Select Date of Birth" aria-label="End Date"
+                                                        aria-describedby="" id="end-date-">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date" width="20" height="21"
                                                         viewBox="0 0 20 21">
@@ -325,7 +325,7 @@
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <label class="form-label" for="education-column">
+                                                <label class="form-label" for="education">
                                                     Education
                                                 </label>
                                                 <a @click="addDocument = true" href="#" class="fw-bold">
@@ -340,12 +340,12 @@
                                                     </small>
                                                 </a>
                                             </div>
-                                            <input type="text" id="education-column" class="form-control"
+                                            <input type="text" id="education" class="form-control"
                                                 name="education-column" placeholder="Enter Education" />
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <label class="form-label mb-lg-0" for="certification-column">
+                                                <label class="form-label mb-lg-0" for="certification">
                                                     Certification(s)
                                                 </label>
                                                 <div class="d-flex align-items-center gap-3">
@@ -388,7 +388,7 @@
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <label class="form-label" for="education-column">
+                                                <label class="form-label" for="experience">
                                                     Experience
                                                 </label>
                                                 <a @click="addDocument = true" href="#" class="fw-bold">
@@ -404,14 +404,14 @@
                                                 </a>
                                             </div>
                                             <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                name="experienceColumn" id="experience-column"></textarea>
+                                                name="experienceColumn" id="experience"></textarea>
                                         </div>
                                         <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="notes-column">
+                                            <label class="form-label" for="notes_column">
                                                 Notes
                                             </label>
                                             <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                                id="notes-column"></textarea>
+                                                id="notes_column"></textarea>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="preferred-language-column">
@@ -484,10 +484,10 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label">
+                                            <label class="form-label" for="tags">
                                                 Tags
                                             </label>
-                                            <select data-placeholder="" multiple class="form-select chosen-select">
+                                            <select data-placeholder="tags" multiple class="form-select chosen-select" id="tags">
                                                 <option selected>Customer</option>
                                                 <option selected>Companies</option>
                                                 <option selected>Teams</option>
@@ -1024,7 +1024,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Hour"
                                                                                                     aria-describedby="">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
@@ -1038,7 +1038,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Enter charges"
                                                                                                     aria-describedby="">
                                                                                             </div>
                                                                                             <div class="d-flex">
@@ -1046,13 +1046,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="x-by-duration"
+                                                                                                        id="x-By-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="x-by-duration">
+                                                                                                        for="x-By-duration">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1060,13 +1060,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="exclude-after-hours"
+                                                                                                        id="exclude-after-hours-1"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="exclude-after-hours">
+                                                                                                        for="exclude-after-hours-1">
                                                                                                         Exclude
                                                                                                         After-hours
                                                                                                     </label>
@@ -1135,7 +1135,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Hour"
                                                                                                     aria-describedby="">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
@@ -1149,7 +1149,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Enter Charges"
                                                                                                     aria-describedby="">
                                                                                             </div>
                                                                                             <div class="d-flex">
@@ -1157,13 +1157,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="x-by-duration"
+                                                                                                        id="x_by_duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="x-by-duration">
+                                                                                                        for="x_by_duration">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1171,13 +1171,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="exclude-after-hours"
+                                                                                                        id="exclude_after_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="exclude-after-hours">
+                                                                                                        for="exclude_after_hours">
                                                                                                         Exclude
                                                                                                         After-hours
                                                                                                     </label>
@@ -1186,13 +1186,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="exclude-closed-hours"
+                                                                                                        id="exclude_closed_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="exclude-closed-hours">
+                                                                                                        for="exclude_closed_hours">
                                                                                                         Exclude
                                                                                                         Closed-hours
                                                                                                     </label>
@@ -1247,7 +1247,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Hours"
                                                                                                     aria-describedby="">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
@@ -1261,7 +1261,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Enter Charges"
                                                                                                     aria-describedby="">
                                                                                             </div>
                                                                                             <div class="d-flex">
@@ -1269,13 +1269,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="x-by-duration"
+                                                                                                        id="x-by-duration-2"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="x-by-duration">
+                                                                                                        for="x-by-duration-2">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1298,13 +1298,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="exclude-closed-hours"
+                                                                                                        id="excludeclosedhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="exclude-closed-hours">
+                                                                                                        for="excludeclosedhours">
                                                                                                         Exclude
                                                                                                         Closed-hours
                                                                                                     </label>
@@ -1357,7 +1357,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Hours"
                                                                                                     aria-describedby="">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
@@ -1371,7 +1371,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Enter Charges"
                                                                                                     aria-describedby="">
                                                                                             </div>
                                                                                             <div class="d-flex">
@@ -1379,13 +1379,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="x-by-duration"
+                                                                                                        id="x-By-Duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="x-by-duration">
+                                                                                                        for="x-By-Duration">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1393,13 +1393,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="exclude-after-hours"
+                                                                                                        id="exclude-After-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="exclude-after-hours">
+                                                                                                        for="exclude-After-Hours">
                                                                                                         Exclude
                                                                                                         After-hours
                                                                                                     </label>
@@ -1408,13 +1408,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="exclude-closed-hours"
+                                                                                                        id="exclude-Closed-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="exclude-closed-hours">
+                                                                                                        for="exclude-Closed-Hours">
                                                                                                         Exclude
                                                                                                         Closed-hours
                                                                                                     </label>
@@ -1481,7 +1481,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Hour"
                                                                                                     aria-describedby="">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
@@ -1495,7 +1495,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Enter Charges"
                                                                                                     aria-describedby="">
                                                                                             </div>
                                                                                             <div
@@ -1504,13 +1504,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-closed-hours"
+                                                                                                        id="cancellations"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-closed-hours">
+                                                                                                        for="cancellations">
                                                                                                         Cancellations
                                                                                                     </label>
                                                                                                 </div>
@@ -1518,13 +1518,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-multiply-by-duration"
+                                                                                                        id="excludeAfterHours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-multiply-by-duration">
+                                                                                                        for="excludeAfterHours">
                                                                                                         Exclude
                                                                                                         After-hours
                                                                                                     </label>
@@ -1533,13 +1533,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="modification_column"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="modification_column">
                                                                                                         Modifications
                                                                                                     </label>
                                                                                                 </div>
@@ -1547,13 +1547,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-pay-service-minimum"
+                                                                                                        id="exclude_closed_Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-pay-service-minimum">
+                                                                                                        for="exclude_closed_Hours">
                                                                                                         Exclude
                                                                                                         Closed-hours
                                                                                                     </label>
@@ -1562,13 +1562,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="rescheduling_column"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="rescheduling_column">
                                                                                                         Rescheduling
                                                                                                     </label>
                                                                                                 </div>
@@ -1576,13 +1576,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="bill-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="bill-service-minimum">
                                                                                                         Bill Service
                                                                                                         Minimum
                                                                                                     </label>
@@ -1594,13 +1594,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="1-x-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="1-x-by-duration">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1649,7 +1649,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Hour"
                                                                                                     aria-describedby="">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
@@ -1663,7 +1663,7 @@
                                                                                                 <input type="text"
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
-                                                                                                    aria-label=""
+                                                                                                    aria-label="Enter charges"
                                                                                                     aria-describedby="">
                                                                                             </div>
                                                                                             <div
@@ -1672,13 +1672,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-closed-hours"
+                                                                                                        id="cancellations-column"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-closed-hours">
+                                                                                                        for="cancellations-column">
                                                                                                         Cancellations
                                                                                                     </label>
                                                                                                 </div>
@@ -1686,13 +1686,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-multiply-by-duration"
+                                                                                                        id="2-multiply-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-multiply-by-duration">
+                                                                                                        for="2-multiply-by-duration">
                                                                                                         Exclude
                                                                                                         After-hours
                                                                                                     </label>
@@ -1701,13 +1701,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="2-exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="2-exclude-after-hours">
                                                                                                         Modifications
                                                                                                     </label>
                                                                                                 </div>
@@ -1715,13 +1715,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-pay-service-minimum"
+                                                                                                        id="2-pay-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-pay-service-minimum">
+                                                                                                        for="2-pay-service-minimum">
                                                                                                         Exclude
                                                                                                         Closed-hours
                                                                                                     </label>
@@ -1730,13 +1730,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="rescheduling"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="rescheduling">
                                                                                                         Rescheduling
                                                                                                     </label>
                                                                                                 </div>
@@ -1744,13 +1744,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="bill-service"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="bill-service">
                                                                                                         Bill Service
                                                                                                         Minimum
                                                                                                     </label>
@@ -1762,13 +1762,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="5-exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="5-exclude-after-hours">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1841,13 +1841,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-closed-hours"
+                                                                                                        id="cancellations-checkbox"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-closed-hours">
+                                                                                                        for="cancellations-checkbox">
                                                                                                         Cancellations
                                                                                                     </label>
                                                                                                 </div>
@@ -1855,13 +1855,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-multiply-by-duration"
+                                                                                                        id="multiplybyduration"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-multiply-by-duration">
+                                                                                                        for="multiplybyduration">
                                                                                                         Exclude
                                                                                                         After-hours
                                                                                                     </label>
@@ -1870,13 +1870,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="1_exclude_after_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="1_exclude_after_hours">
                                                                                                         Modifications
                                                                                                     </label>
                                                                                                 </div>
@@ -1884,13 +1884,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-pay-service-minimum"
+                                                                                                        id="Pay-Service-Minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-pay-service-minimum">
+                                                                                                        for="Pay-Service-Minimum">
                                                                                                         Exclude
                                                                                                         Closed-hours
                                                                                                     </label>
@@ -1899,13 +1899,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="Exclude-After-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="Exclude-After-Hours">
                                                                                                         Rescheduling
                                                                                                     </label>
                                                                                                 </div>
@@ -1913,13 +1913,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="billServiceMinimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="billServiceMinimum">
                                                                                                         Bill Service
                                                                                                         Minimum
                                                                                                     </label>
@@ -1931,13 +1931,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="1exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="1exclude-after-hours">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -2009,13 +2009,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-closed-hours"
+                                                                                                        id="1-exclude-closedHhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-closed-hours">
+                                                                                                        for="1-exclude-closedHhours">
                                                                                                         Cancellations
                                                                                                     </label>
                                                                                                 </div>
@@ -2038,13 +2038,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="1-excludeAfter-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="1-excludeAfter-hours">
                                                                                                         Modifications
                                                                                                     </label>
                                                                                                 </div>
@@ -2067,13 +2067,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="1-exclude-After-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="1-exclude-After-hours">
                                                                                                         Rescheduling
                                                                                                     </label>
                                                                                                 </div>
@@ -2081,13 +2081,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="1-bill-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="1-bill-service-minimum">
                                                                                                         Bill Service
                                                                                                         Minimum
                                                                                                     </label>
@@ -2099,13 +2099,13 @@
                                                                                                     class="form-check form-check-inline">
                                                                                                     <input
                                                                                                         class="form-check-input"
-                                                                                                        id="1-exclude-after-hours"
+                                                                                                        id="x-by-duration-column"
                                                                                                         name=""
                                                                                                         type="checkbox"
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1-exclude-after-hours">
+                                                                                                        for="x-by-duration-column">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -2172,7 +2172,7 @@
                                                                                 </label>
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
-                                                                                    placeholder="00.00" aria-label=""
+                                                                                    placeholder="00.00" aria-label="In-Person"
                                                                                     aria-describedby="">
                                                                             </div>
                                                                             <div class="align-self-end">
@@ -2181,7 +2181,7 @@
                                                                                 </label>
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
-                                                                                    placeholder="00.00" aria-label=""
+                                                                                    placeholder="00.00" aria-label="Virtual"
                                                                                     aria-describedby="">
                                                                             </div>
                                                                             <div class="align-self-end">
@@ -2190,7 +2190,7 @@
                                                                                 </label>
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
-                                                                                    placeholder="00.00" aria-label=""
+                                                                                    placeholder="00.00" aria-label="Phone"
                                                                                     aria-describedby="">
                                                                             </div>
                                                                             <div class="align-self-end">
@@ -2199,7 +2199,7 @@
                                                                                 </label>
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
-                                                                                    placeholder="00.00" aria-label=""
+                                                                                    placeholder="00.00" aria-label="Teleconference"
                                                                                     aria-describedby="">
                                                                             </div>
                                                                         </div>
@@ -2410,8 +2410,8 @@
                                                 <div class="col-lg-12 mb-4">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
-                                                            value="no-expiration" id="no-expiration">
-                                                        <label class="form-check-label" for="no-expiration">
+                                                            value="no-expiration" id="no-expiration-column">
+                                                        <label class="form-check-label" for="no-expiration-column">
                                                             No Expiration
                                                         </label>
                                                     </div>
@@ -2449,9 +2449,9 @@
                                                         name="notesColumn" id="notes"></textarea>
                                                 </div>
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
-                                                    <label class="form-label">Tags</label>
+                                                    <label class="form-label" for="tags">Tags</label>
                                                     <select data-placeholder="" multiple
-                                                        class="form-select chosen-select" tabindex="">
+                                                        class="form-select chosen-select" tabindex="" id="tags">
                                                         <option value=""></option>
                                                     </select>
                                                 </div>
