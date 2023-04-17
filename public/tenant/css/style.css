@@ -1268,12 +1268,12 @@ small {
 .table > :not(caption) > .bg-gray .time-date {
   color: #ffffff; }
 .table > :not(caption) > .bg-gray > * {
-  background-color: #7a7769;
+  background-color: #989587;
   color: #ffffff; }
 .table > :not(caption) > .bg-warning .time-date {
   color: #ffffff; }
 .table > :not(caption) > .bg-warning > * {
-  background-color: #a96800;
+  background-color: #be7d0f;
   color: #ffffff; }
 
 :root {
@@ -1613,3 +1613,7 @@ hr.border-separate-sm {
 .table-hover > tbody > tr .js-tick {
   display: none; }
 
+.ql-toolbar.ql-snow .ql-formats {
+  font-size: 15px; }
+
+/*# sourceMappingURL=style.css.map */
