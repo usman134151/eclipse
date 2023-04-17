@@ -420,10 +420,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @foreach($meetings as $meeting)
                                                 <div class="border-dashed rounded p-3 mb-3">
                                                     <div class="d-flex justify-content-between">
+
                                                         <div class="align-items-center gap-4">
-                                                            <h3 class="text-primary">Meeting Link 1</h3>
+                                                            <h3 class="text-primary">{{ $meeting['name'] }}</h3>
                                                         </div>
                                                         <div class="align-items-center gap-4">
                                                             <a href="#" title="Delete" aria-label="Delete"
@@ -454,9 +456,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                                 <div class="row justify-content-end">
                                                     <div class="col-md-6 col-lg-3">
-                                                        <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
+                                                        <a href="#" wire:click.prevent="addMeeting" class="btn btn-primary rounded btn-has-icon w-100">
                                                             <svg aria-label="Add Link" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#plus">
