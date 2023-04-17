@@ -208,8 +208,9 @@
                                     </div>
 
                                     <!-- Services Duplicate Block -->
+                                    @foreach($services as $services)
                                     <div class="duplicate-block mb-3">
-                                        <h3 class="text-primary">Services 1</h3>
+                                        <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
                                         <div class="row mb-5">
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Accommodation <span
@@ -425,7 +426,7 @@
                                                     <div class="d-flex justify-content-between">
 
                                                         <div class="align-items-center gap-4">
-                                                            <h3 class="text-primary">{{ $meeting['name'] }}</h3>
+                                                            <h3 class="text-primary">Meeting Link {{ $loop->index + 1 }}</h3>
                                                         </div>
                                                         <div class="align-items-center gap-4">
                                                             <a href="#" title="Delete" aria-label="Delete"
@@ -472,10 +473,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                     <!-- /Services Duplicate Block -->
                                     <div class="row justify-content-end">
                                         <div class="col-md-6 col-lg-3">
-                                            <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
+                                            <a wire:click.prevent="addService" href="#" class="btn btn-primary rounded btn-has-icon w-100">
                                                 <svg aria-label=" Add Service" width="20" height="20"
                                                     viewBox="0 0 20 20">
                                                     <use xlink:href="/css/common-icons.svg#plus">
@@ -493,8 +495,9 @@
                                 <div class="col-lg-12 mb-4">
                                     <h2>Select Dates & Times</h2>
                                     <!-- Select Dates & Times Duplicate Block -->
+                                    @foreach($dates as $dates)
                                     <div class="duplicate-block">
-                                        <h3 class="text-primary">Date & Time 1</h3>
+                                        <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="d-md-flex flex-md-wrap justify-content-between">
                                             <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
@@ -615,9 +618,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                     <!-- /Select Dates & Times Duplicate Block -->
                                     <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary rounded">
+                                        <button class="btn btn-primary rounded" wire:click.prevent="adddate">
                                             <svg aria-label="Add Date" width="20" height="20" viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#plus">
                                                 </use>

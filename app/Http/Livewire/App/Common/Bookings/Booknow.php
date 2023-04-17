@@ -10,11 +10,19 @@ class Booknow extends Component
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
     public $meetings = [[
-        'name' => 'Meeting Link 1',
         'meeting_name' => '',
         'phone_number' => '',
         'access_code' => '',
     ]];
+    public $dates=[[
+        'set_time_zone'=>'',
+        'start_date'=>'',
+        'start_time'=>'',
+        'end_time'=>'',
+        'Total_Billable_Service_duration'=>''
+
+    ]];
+    public $services=[[]];
         public function render()
     {
         return view('livewire.app.common.bookings.booknow');
@@ -40,12 +48,20 @@ class Booknow extends Component
 	}
     public function addMeeting()
     {
-        $count = count($this->meetings) + 1;
         $this->meetings[] = [
-            'name' => "Meeting Link $count",
             'meeting_name' => '',
             'phone_number' => '',
             'access_code' => '',
         ];
+    }
+    public function adddate(){
+        $this->dates[] = [
+            'meeting_name' => '',
+            'phone_number' => '',
+            'access_code' => '',
+        ];
+    }
+    public function addService(){
+        $this->services[]=[];
     }
 }
