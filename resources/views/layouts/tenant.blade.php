@@ -80,7 +80,7 @@
 		{{-- @include('partials/modals') --}}
 		{{-- End of update by Sohail Asghar --}}
 		@include('modals/global/savebrowserpopup')
-		
+
 		<script src="/tenant/js/jquery-3.6.3.min.js"></script>
 		<script src="/tenant/js/bootstrap.bundle.min.js"></script>
 		<script src="/tenant/js/moment.min.js"></script>
@@ -99,7 +99,7 @@
 
 		@auth
 		@if(!request()->cookie('savedBrowser'))
-		
+
 			<script>
 			//openSaveBrowserPopup();
 			</script>
@@ -120,7 +120,6 @@
 	function pushStateToUrl(url) {
   history.pushState(null, null, url);
 }
-  </script>
-		
+</script>
 	</body>
 </html>

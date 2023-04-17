@@ -25,11 +25,12 @@ class NotificationConfiguration extends Component
         }
        $this->showForm=true;
        $this->dispatchBrowserEvent('update-url', ['url' => '/admin/settings/create-notifications']);
+       $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function resetForm($message)
     {
-        
+
         if ($message) {
             $this->confirmationMessage = $message;
             // emit an event to display a success message using the SweetAlert package
@@ -39,7 +40,7 @@ class NotificationConfiguration extends Component
                 'text' => $message,
             ]);
         }
-    
+
         // set the showForm property to false to hide the form
         $this->showForm = false;
         $this->dispatchBrowserEvent('update-url', ['url' => '/admin/settings']);
