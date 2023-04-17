@@ -397,7 +397,7 @@
                                                                             </label>
                                                                             <input type="text" id="title"
                                                                                 class="form-control" name=""
-                                                                                placeholder="Enter Title" wire:key="title-{{ $index }}" />
+                                                                                placeholder="Enter Title" wire:key="title-{{ $index }}" wire:model.lazy="phoneNumbers.{{$index}}.phone_title"/>
                                                                         </div>
                                                                         <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
                                                                             <label class="form-label" for="phone-number">
@@ -405,12 +405,14 @@
                                                                             </label>
                                                                             <input type="text" id="phone-number"
                                                                                 class="form-control" name=""
-                                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}"/>
+                                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}" wire:model.lazy="phoneNumbers.{{$index}}.phone_number"/>
                                                                         </div>
-                                                                        <div class="col-lg-2 col-md-4 align-self-end">
-                                                                            <button class="btn btn-primary rounded">
-                                                                                Add
-                                                                            </button>
+                                                                        <div class="col-lg-2 col-md-4">
+                                                                        <a href="#" wire:click.prevent="removePhone({{$index}})" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                </svg>
+                                                            </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>

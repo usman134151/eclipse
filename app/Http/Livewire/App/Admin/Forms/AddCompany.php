@@ -24,7 +24,12 @@ class AddCompany extends Component
 
 	//front function
 
-	function addPhone(){
+	public function addPhone(){
 		$this->phoneNumbers[]=['phone_title'=>'','phone_number'=>''];
 	}
+	public function removePhone($index)
+    {
+        unset($this->phoneNumbers[$index]);
+        $this->phoneNumbers = array_values($this->phoneNumbers);
+    }
 }
