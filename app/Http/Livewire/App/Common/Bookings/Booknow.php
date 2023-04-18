@@ -9,11 +9,6 @@ class Booknow extends Component
     public $component = 'requester-info';
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
-    public $meetings = [[
-        'meeting_name' => '',
-        'phone_number' => '',
-        'access_code' => '',
-    ]];
     public $dates=[[
         'set_time_zone'=>'',
         'start_date'=>'',
@@ -23,7 +18,14 @@ class Booknow extends Component
 
     ]];
 
-    public $services=[[]];
+    public $services=[
+        [
+            'meetings' => 
+            [
+                ['meeting_name' => '','phone_number' => '','access_code' => ''] //updated by Amna Bilal to define meeting links array within services array
+            ]
+        ]
+    ];
         public function render()
     {
         return view('livewire.app.common.bookings.booknow');
@@ -47,18 +49,18 @@ class Booknow extends Component
 	{
 		$this->component = $component;
 	}
-    public function addMeeting()
+    public function addMeeting($serviceIndex)
     {
-        $this->meetings[] = [
+        $this->services[$serviceIndex]['meetings'][] = [
             'meeting_name' => '',
             'phone_number' => '',
             'access_code' => '',
-        ];
+        ]; //updated by Amna Bilal to add new item in meetings array within service array on index passed
     }
-    public function removeMeeting($index)
+    public function removeMeeting($index,$serviceIndex)
     {
-        unset($this->meetings[$index]);
-        $this->meetings = array_values($this->meetings);
+        unset($this->services[$serviceIndex]['meetings'][$index]);
+        $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array 
     }
     public function adddate(){
         $this->dates[] = [
@@ -75,7 +77,8 @@ class Booknow extends Component
         $this->dates = array_values($this->dates);
     }
     public function addService(){
-        $this->services[]=[];
+        $this->services[]= ['meetings' => [['meeting_name' => '','phone_number' => '','access_code' => '']]]; //updated by Amna Bilal to define meeting links array within services array
+       
     }
     public function removeServices($index)
     {

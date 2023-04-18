@@ -433,7 +433,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @foreach($meetings as $index=>$meeting)
+                                                @foreach($service['meetings'] as $meetingIndex=>$meeting)
                                                 <div class="border-dashed rounded p-3 mb-3" >
                                                     <div class="d-flex justify-content-between">
 
@@ -441,7 +441,7 @@
                                                             <h3 class="text-primary">Meeting Link {{ $loop->index + 1 }}</h3>
                                                         </div>
                                                         <div class="align-items-center gap-4">
-                                                            <a wire:click.prevent="removeMeeting({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                            <a wire:click.prevent="removeMeeting({{$meetingIndex}},{{$index}})" href="#" title="Delete" aria-label="Delete"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg class="delete-icon" width="20" height="20"
                                                                     viewBox="0 0 20 20" fill="none"
@@ -455,24 +455,24 @@
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="meeting-name" >Meeting Name</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Meeting Name" wire:key="name-{{ $index }}" wire:model.lazy="meetings.{{$index}}.meeting_name" >
+                                                                placeholder="Enter Meeting Name" wire:key="name-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.meeting_name" >
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="phone-number">Phone Number</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}" wire:model.lazy="meetings.{{$index}}.phone_number">
+                                                                placeholder="Enter Phone Number" wire:key="phone-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.phone_number">
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="access-code">Access Code</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Access Code" wire:key="access-{{ $index }}" wire:model.lazy="meetings.{{$index}}.access_code">
+                                                                placeholder="Enter Access Code" wire:key="access-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.access_code">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 @endforeach
                                                 <div class="row justify-content-end">
                                                     <div class="col-md-6 col-lg-3">
-                                                        <a href="#" wire:click.prevent="addMeeting" class="btn btn-primary rounded btn-has-icon w-100">
+                                                        <a href="#" wire:click.prevent="addMeeting({{$index}})" class="btn btn-primary rounded btn-has-icon w-100">
                                                             <svg aria-label="Add Link" width="20" height="20"
                                                                 viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#plus">
