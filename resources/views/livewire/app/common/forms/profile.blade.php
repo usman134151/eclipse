@@ -9,13 +9,9 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="">
-                                        <svg width="22" height="23" viewBox="0 0 22 23" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M1.24997 12.5849H2.33331V20.1682C2.33331 21.3631 3.30506 22.3349 4.49997 22.3349H17.5C18.6949 22.3349 19.6666 21.3631 19.6666 20.1682V12.5849H20.75C20.9642 12.5848 21.1736 12.5212 21.3517 12.4022C21.5298 12.2832 21.6686 12.114 21.7506 11.9161C21.8326 11.7181 21.8541 11.5004 21.8123 11.2902C21.7705 11.0801 21.6674 10.8871 21.5159 10.7356L11.7659 0.985603C11.6654 0.884912 11.546 0.805029 11.4146 0.750526C11.2831 0.696023 11.1423 0.667969 11 0.667969C10.8577 0.667969 10.7168 0.696023 10.5854 0.750526C10.454 0.805029 10.3346 0.884912 10.2341 0.985603L0.484056 10.7356C0.332596 10.8871 0.229455 11.0801 0.187674 11.2902C0.145892 11.5004 0.167346 11.7181 0.249322 11.9161C0.331297 12.114 0.470115 12.2832 0.648226 12.4022C0.826337 12.5212 1.03574 12.5848 1.24997 12.5849ZM8.83331 20.1682V14.7515H13.1666V20.1682H8.83331ZM11 3.28335L17.5 9.78335V14.7515L17.5011 20.1682H15.3333V14.7515C15.3333 13.5566 14.3616 12.5849 13.1666 12.5849H8.83331C7.63839 12.5849 6.66664 13.5566 6.66664 14.7515V20.1682H4.49997V9.78335L11 3.28335Z"
-                                                fill="#0A1E46" />
+                                        <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
+                                            <use xlink:href="/css/common-icons.svg#home"></use>
                                         </svg>
-
                                     </a>
                                 </li>
 
@@ -520,7 +516,7 @@
                                                 <div class="dropdown">
                                                     <button
                                                         class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Export Button">
                                                         <svg  width="23" height="26"
                                                             viewBox="0 0 23 26">
                                                             <use xlink:href="/css/common-icons.svg#document-dropdown">
@@ -605,10 +601,10 @@
                                                 {{-- End of update by Shanila --}}
                                             </div>
                                             <div class="col-5 mx-2">
-                                                <label class="form-label" for="time-zone">
+                                                <label class="form-label" for="service">
                                                     Service
                                                 </label>
-                                                <select class="select2 form-select" id="time-zone">
+                                                <select class="select2 form-select" id="service">
                                                     <option>Service</option>
                                                 </select>
                                             </div>
@@ -620,11 +616,11 @@
                                             <div class="d-flex justify-content-between mb-2">
                                                 <div class="d-inline-flex align-items-center gap-4">
                                                     <div class="d-inline-flex align-items-center gap-4">
-                                                        <label for="show_records_number" class="form-label-sm mb-0">
+                                                        <label for="show_records" class="form-label-sm mb-0">
                                                             Show
                                                         </label>
                                                         <select class="form-select form-select-sm"
-                                                            id="show_records_number">
+                                                            id="show_records">
                                                             <option>10</option>
                                                             <option>15</option>
                                                             <option>20</option>
@@ -633,11 +629,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-inline-flex align-items-center gap-4">
-                                                    <label for="search" class="form-label-sm mb-0">
+                                                    <label for="search-record" class="form-label-sm mb-0">
                                                         Search
                                                     </label>
                                                     <input type="search" class="form-control form-control-sm"
-                                                        id="search" name="search" placeholder="Search here"
+                                                        id="search-record" name="search" placeholder="Search here"
                                                         autocomplete="on" />
                                                 </div>
                                             </div>
@@ -1083,7 +1079,7 @@
                                                 <p class="mb-0">Copy permissions from another user</p>
                                             </div>
                                             <div class="col-lg-12 d-lg-flex gap-3 mb-3">
-                                                <select class="form-select w-auto">
+                                                <select class="form-select w-auto" aria-label="Select User">
                                                     <option>Select User</option>
                                                 </select>
                                                 <a href="#" class="btn btn-primary rounded">Apply</a>
@@ -4434,7 +4430,7 @@
                                                         <th>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select All companies">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -4454,7 +4450,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select company">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4480,7 +4476,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select company">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4506,7 +4502,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select company">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4542,7 +4538,7 @@
                                                         <th>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select All Teams">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -4562,7 +4558,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Team">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4588,7 +4584,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Teams">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4614,7 +4610,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Team">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4650,7 +4646,7 @@
                                                         <th>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select All Accommodations">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -4667,7 +4663,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Accommodation">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4693,7 +4689,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Accommodation">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4730,7 +4726,7 @@
                                                         <th>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select All Industry">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -4747,7 +4743,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Industry">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4773,7 +4769,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Industry">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4799,7 +4795,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Industry">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4837,7 +4833,7 @@
                                                         <th>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select All Accommodations">
                                                             </div>
                                                         </th>
                                                         <th>
@@ -4854,7 +4850,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Accommodation">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4880,7 +4876,7 @@
                                                         <td>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" id="" name=""
-                                                                    type="checkbox" tabindex="">
+                                                                    type="checkbox" tabindex="" aria-label="Select Accommodation">
                                                             </div>
                                                         </td>
                                                         <td>
@@ -4914,11 +4910,11 @@
                                         <div class="row">
                                             <h3>Notes</h3>
                                             <div class="col-md-6 col-12 mb-4">
-                                                <label class="form-label" for="notes-column">
+                                                <label class="form-label" for="notes-column-1">
                                                     Add Notes
                                                 </label>
                                                 <textarea class="form-control" rows="3" placeholder=""
-                                                    name="notesColumn" id="notes-column"></textarea>
+                                                    name="notesColumn" id="notes-column-1"></textarea>
                                             </div>
                                             <div class="row mb-4">
                                                 <div class="col-md-6 col-12 d-flex justify-content-end">
@@ -4936,7 +4932,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="d-flex actions mx-2">
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Edit" aria-label="Edit"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
@@ -4945,7 +4941,7 @@
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
                                                         </a>
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Delete" aria-label="Delete"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
@@ -4974,7 +4970,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="d-flex actions mx-2">
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Edit" aria-label="Edit"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
@@ -4983,7 +4979,7 @@
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
                                                         </a>
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Delete" aria-label="Delete"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
                                                              {{-- Updated by Shanila to Add svg icon--}}
                                                              <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
@@ -5013,7 +5009,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="d-flex actions mx-2">
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Edit" aria-label="Edit"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
@@ -5022,7 +5018,7 @@
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
                                                         </a>
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Delete" aria-label="Delete"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
@@ -5052,7 +5048,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="d-flex actions mx-2">
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Edit" aria-label="Edit"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
@@ -5061,7 +5057,7 @@
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
                                                         </a>
-                                                        <a href="#" title="Inactive" aria-label="Inactive"
+                                                        <a href="#" title="Delete" aria-label="Delete"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
@@ -5140,7 +5136,7 @@
                                                         <div class="d-inline-flex align-items-center gap-4">
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ToggleText" checked>
+                                                                    role="switch" id="ToggleText" checked aria-label="Toggle ONN OFF">
                                                                 <label class="form-check-label"
                                                                     for="ToggleText">OFF</label>
                                                                 <label class="form-check-label"
@@ -5165,7 +5161,7 @@
                                                         <div class="d-inline-flex align-items-center gap-4">
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="ToggleEmail" checked>
+                                                                    role="switch" id="ToggleEmail" checked aria-label="Toggle ONN OFF">
                                                                 <label class="form-check-label" for="ToggleEmail">
                                                                     OFF
                                                                 </label>
@@ -5195,7 +5191,7 @@
                                                         <div class="d-inline-flex align-items-center gap-4">
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="NotificationToggle" checked>
+                                                                    role="switch" id="NotificationToggle" checked aria-label="Toggle ONN OFF">
                                                                 <label class="form-check-label"
                                                                     for="NotificationToggle">OFF</label>
                                                                 <label class="form-check-label"
@@ -5226,7 +5222,7 @@
                                                         <td>
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="permissions-toggle" checked>
+                                                                    role="switch" id="permissions-toggle" checked aria-label="Permission Toggle Button">
                                                                 <label class="form-check-label"
                                                                     for="permissions-toggle">
                                                                     Disable
@@ -5248,7 +5244,7 @@
                                                         <td>
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="permissions-toggle">
+                                                                    role="switch" id="permissions-toggle" aria-label="Permission Toggle Button">
                                                                 <label class="form-check-label"
                                                                     for="permissions-toggle">
                                                                     Disable
@@ -5270,7 +5266,7 @@
                                                         <td>
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="permissions-toggle">
+                                                                    role="switch" id="permissions-toggle" aria-label="Permission Toggle Button">
                                                                 <label class="form-check-label"
                                                                     for="permissions-toggle">
                                                                     Disable
@@ -5293,7 +5289,7 @@
                                                         <td>
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="permissions-toggle" checked>
+                                                                    role="switch" id="permissions-toggle" checked aria-label="Permission Toggle Button">
                                                                 <label class="form-check-label"
                                                                     for="permissions-toggle">
                                                                     Disable
@@ -5316,7 +5312,7 @@
                                                         <td>
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="permissions-toggle" checked>
+                                                                    role="switch" id="permissions-toggle" checked aria-label="Permission Toggle Button">
                                                                 <label class="form-check-label"
                                                                     for="permissions-toggle">
                                                                     Disable
@@ -5341,7 +5337,7 @@
                                         <div class="row mb-4">
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Export Button Dropdown">
                                                     <svg width="23" height="26" viewBox="0 0 23 26" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
