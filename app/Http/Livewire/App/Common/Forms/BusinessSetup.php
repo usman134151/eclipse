@@ -72,4 +72,8 @@ class BusinessSetup extends Component
             'acknowledgeInitialLoginproviderDrive'=>''
         ];
     }
+    public function removePolicy($index){
+        unset($this->policies[$index]);
+        $this->policies = array_values($this->policies);
+    }
 }

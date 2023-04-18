@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class DepartmentForm extends Component
 {
+    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
 	public $component = 'department-info';
 	public function showList()
 	{
@@ -24,4 +25,12 @@ class DepartmentForm extends Component
 	{
 		return view('livewire.app.common.forms.department-form');
 	}
+    public function addPhone(){
+		$this->phoneNumbers[]=['phone_title'=>'','phone_number'=>''];
+	}
+	public function removePhone($index)
+    {
+        unset($this->phoneNumbers[$index]);
+        $this->phoneNumbers = array_values($this->phoneNumbers);
+    }
 }

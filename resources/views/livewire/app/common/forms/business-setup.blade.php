@@ -1382,7 +1382,19 @@
                                                             <h3>Additional Policies</h3>
                                                             @foreach($policies as $index=>$policy)
                                                             <div class="duplicate-block mb-3">
+                                                                <div class="d-flex justify-content-between">
                                                                 <h3 class="text-primary">Policy {{ $loop->index + 1 }}</h3>
+                                                                <div class="align-items-center gap-2">
+                                                                     <a wire:click.prevent="removePolicy({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-6 mb-4">
                                                                         <label class="form-label"
