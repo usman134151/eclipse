@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="/tenant/css/font-awesome.min.css" type="text/css"/>
 		<link rel="stylesheet" href="/tenant/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/tenant/css/perfect-scrollbar.css">
+		<link rel="stylesheet" href="/tenant/css/chosen.min.css">
 		<link rel="stylesheet" href="/tenant/css/colors.css">
 		<link rel="stylesheet" href="/tenant/css/components.css">
 		<link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
@@ -87,6 +88,7 @@
 		<script src="/tenant/js/unison-js.min.js"></script>
 		<script src="/tenant/js/perfect-scrollbar.min.js"></script>
 		<script src="/tenant/js/feather-icons.min.js"></script>
+		<script src="/tenant/js/chosen.jquery.min.js"></script>
 		<script src="/tenant/js/app.js"></script>
 		<script src="/tenant/js/app-menu.js"></script>
 		<script src="/tenant/js/app-new.js"></script>
