@@ -9,7 +9,7 @@
                 <label class="form-label" for="provider">
                     Provider
                 </label>
-                <input type="text" id="provider" class="form-control" name="provider" placeholder="Imogene Guthrie" />
+                <input type="text"  class="form-control" name="provider" placeholder="Imogene Guthrie"  aria-label="Provider"/>
             </div>
         </div>
         <div class="row">
@@ -82,8 +82,8 @@
             </div>
         </div>
         <div class="form-check mb-4">
-            <input class="form-check-input" type="checkbox" value="" id="charge-to-customer" checked>
-            <label class="form-check-label" for="charge-to-customer">
+            <input class="form-check-input" type="checkbox" value="" id="charge-To-customer" checked>
+            <label class="form-check-label" for="charge-To-customer">
                 Charge to Customer
             </label>
         </div>
