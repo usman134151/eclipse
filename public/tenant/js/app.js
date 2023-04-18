@@ -352,3 +352,13 @@ $( document ).ready(function() {
   }
 
   });
+
+// Select2 Multiple
+
+var selectedValuesTest = ["AS","CU"];
+$(document).ready(function() {
+        $(".js-select2-multiple").select2({
+                multiple: true,
+            });
+            $('.js-select2-multiple').select2('val', selectedValuesTest);
+    });

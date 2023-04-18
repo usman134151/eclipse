@@ -3069,9 +3069,6 @@ body:after {
 
 .select2-container--classic .select2-selection--multiple .select2-selection__choice,
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-  background-color: #0A1E46 !important;
-  border-color: #0A1E46 !important;
-  color: #fff;
   padding: 2px 5px; }
 
 .select2-container--classic .select2-selection--multiple .select2-selection__rendered,
@@ -3084,7 +3081,7 @@ body:after {
 
 .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove,
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  /* float: right; */
+   float: right; 
   /* margin-left: 0.7rem; */
   /* margin-right: 0.5rem; */
   font-size: 0px;

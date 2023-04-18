@@ -280,8 +280,8 @@
                 </a>
               </li>
               <li role="menuitem" class="nav-item  " id="deactivated-provider">
-                <a class="fill-none" class="nav-link" href="/admin/deactivated-provider">
-                  <svg aria-label="Deactivated Providers"  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <a class="nav-link" href="/admin/deactivated-provider">
+                  <svg class="fill-none" aria-label="Deactivated Providers"  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#deactivated-providers-icon"></use>
                   </svg>
                   <span class="menu-item">Deactivated Providers</span>

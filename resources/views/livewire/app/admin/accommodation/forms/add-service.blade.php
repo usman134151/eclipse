@@ -709,7 +709,7 @@
                                         <div class="col-12">
                                             <div class="border p-3">
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5 mb-5 mb-xxl-0">
                                                         <div class="d-flex flex-column gap-5">
                                                             <!-- In-Person Billing Increment -->
                                                             <div>
@@ -839,7 +839,7 @@
                                                             <!-- /Phone Billing Increment -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 ps-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="d-flex flex-column gap-5">
                                                             <!-- Virtual Billing Increment -->
                                                             <div>
@@ -991,7 +991,7 @@
                                         <div class="col-lg-12">
                                             <div class="border p-3">
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             In-Person
                                                         </div>
@@ -1133,7 +1133,7 @@
                                                             <!-- /Additional Payment Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Virtual
                                                         </div>
@@ -1282,7 +1282,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Phone
                                                         </div>
@@ -1424,7 +1424,7 @@
                                                             <!-- /Additional Payment Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Teleconference
                                                         </div>
@@ -1586,7 +1586,7 @@
                                         <div class="col-lg-12">
                                             <div class="border p-3">
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             In-Person
                                                         </div>
@@ -1604,7 +1604,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -1665,7 +1665,7 @@
                                                             <!-- /In-Person Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Virtual
                                                         </div>
@@ -1683,7 +1683,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -1751,7 +1751,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Phone
                                                         </div>
@@ -1769,7 +1769,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -1830,7 +1830,7 @@
                                                             <!-- /Phone Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Teleconference
                                                         </div>
@@ -1848,7 +1848,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -1931,7 +1931,7 @@
                                         <div class="col-lg-12">
                                             <div class="border p-3">
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             In-Person
                                                         </div>
@@ -1949,7 +1949,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -2047,7 +2047,7 @@
                                                             <!-- /In-Person Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Virtual
                                                         </div>
@@ -2065,7 +2065,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -2170,7 +2170,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 pe-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Phone
                                                         </div>
@@ -2188,7 +2188,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
@@ -2286,7 +2286,7 @@
                                                             <!-- /Phone Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                    <div class="col-xxl-6 ps-xxl-5">
                                                         <div class="text-primary fw-bold">
                                                             Teleconference
                                                         </div>
@@ -2304,7 +2304,7 @@
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
                                                                             aria-describedby="">
-                                                                        <div class="col-lg-2">
+                                                                        <div class="col-lg-2 d-flex">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
                                                                             </select>
