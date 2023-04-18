@@ -97,7 +97,7 @@ class SetupHelper
             $attributes = ['tab-index' => $tabIndex];
         }
     
-        $html = '<select ' . self::getHtmlAttributes($attributes) . '>';
+        $html = '<select ' . self::getHtmlAttributes($attributes) . ' aria-label="Select '.str_replace('_',' ',$selectName).'">';
     
         $html .= '<option value="">Select an option</option>';
     
