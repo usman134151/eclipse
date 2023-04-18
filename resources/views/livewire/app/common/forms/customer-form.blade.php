@@ -349,9 +349,9 @@
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-6 pe-lg-5">
-                                                            <label class="form-label">Tags</label>
+                                                            <label class="form-label" for="tags">Tags</label>
                                                             <select data-placeholder="" multiple
-                                                                class="form-select chosen-select" tabindex="">
+                                                                class="form-select chosen-select" tabindex="" id="tags" aria-label="Select Tags">
                                                                 <option value=""></option>
                                                                 <option selected>Admin staff</option>
                                                                 <option selected>Customers</option>

@@ -5,8 +5,8 @@
     @if($type=='invoice-filters')
     <div class="col-lg-5 pe-lg-3 mb-5">
         <div>
-            <label class="form-label" for="company">Company</label>
-            <select class="select2 form-select" id="company">
+            <label class="form-label" for="company-column-1">Company</label>
+            <select class="select2 form-select" id="company-column-1">
                 <option>Select Company</option>
                 <option>Company-1</option>
                 <option>Comapany-2</option>
