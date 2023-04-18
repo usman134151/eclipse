@@ -135,9 +135,7 @@
                                                         </span>
                                                     </label>
                                                     {{-- Updated by Shanila to add dropdown--}}
-                                                    {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
-                                                    'name', '', '', 'name', false, 'industry',
-                                                    '','industry') !!}
+                                                    {!! $setupValues['industries']['rendered'] !!}
                                                     {{-- End of update by Shanila --}}
                                                 </div>
                                             </div>
