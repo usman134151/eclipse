@@ -208,9 +208,21 @@
                                     </div>
 
                                     <!-- Services Duplicate Block -->
-                                    @foreach($services as $services)
-                                    <div class="duplicate-block mb-3">
+                                    @foreach($services as $index=>$service)
+                                    <div class="duplicate-block mb-3" >
+                                        <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Services {{ $loop->index + 1 }}</h3>
+                                        <div class="align-items-center gap-4">
+                                            <a wire:click.prevent="removeServices({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <svg class="delete-icon" width="20" height="20"
+                                                    viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
                                         <div class="row mb-5">
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Accommodation <span
@@ -224,13 +236,13 @@
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="" ></i></label>
-                                                <select class="form-select" id="service">
+                                                <select class="form-select" id="service" wire:key="service-{{ $index }}" wire:model.lazy="services.{{$index}}.services">
                                                     <option>Select Service</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Service Type <span
-                                                        class="mandatory">*</span></label>
+                                                        class="mandatory" >*</span></label>
                                                 <div class="d-grid grid-cols-3">
                                                     {{-- updated by shanila to add dropdown --}}
                                                     {!! App\Helpers\SetupHelper::createRadio('SetupValue', 'id',
@@ -241,8 +253,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
-                                                <label class="form-label">Specializations</label>
-                                                <div class="">
+                                                <label class="form-label" >Specializations</label>
+                                                <div class="" >
                                                     {{-- updated by shanila to add dropdown --}}
                                                     {!! App\Helpers\SetupHelper::createCheckboxes('Specialization',
                                                     'id',
@@ -254,7 +266,7 @@
                                                 <label class="form-label" for="number-of-provider">Number of Providers <span
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
-                                                    placeholder="Enter Number of Providers" id="number-of-provider">
+                                                    placeholder="Enter Number of Providers" id="number-of-provider" >
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <div class="row">
@@ -265,7 +277,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast">
+                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Broadcast" >
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Auto-notify</label>
                                                                 <label class="form-check-label"
@@ -339,7 +351,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryServiceConsumer" name=""
-                                                                            type="checkbox" tabindex="">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.lazy="services.{{$index}}.services">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryServiceConsumer"><small>Manual
                                                                                 Entry</small></label>
@@ -379,7 +391,7 @@
                                                                         <input
                                                                             class="form-check-input js-form-check-input-manual-entry"
                                                                             id="ManualEntryParticipant" name=""
-                                                                            type="checkbox" tabindex="">
+                                                                            type="checkbox" tabindex="" wire:key="manual-{{ $index }}" wire:model.lazy="services.{{$index}}.services">
                                                                         <label class="form-check-label"
                                                                             for="ManualEntryParticipant"><small>Manual
                                                                                 Entry</small></label>
@@ -389,7 +401,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-md-4">
+                                                <div class="row mb-md-4" >
                                                     <div class="col-lg-6 align-self-center">
                                                         <h2 class="mb-lg-0">Meeting Information</h2>
                                                     </div>
@@ -421,15 +433,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @foreach($meetings as $meeting)
-                                                <div class="border-dashed rounded p-3 mb-3">
+                                                @foreach($meetings as $index=>$meeting)
+                                                <div class="border-dashed rounded p-3 mb-3" >
                                                     <div class="d-flex justify-content-between">
 
                                                         <div class="align-items-center gap-4">
                                                             <h3 class="text-primary">Meeting Link {{ $loop->index + 1 }}</h3>
                                                         </div>
                                                         <div class="align-items-center gap-4">
-                                                            <a href="#" title="Delete" aria-label="Delete"
+                                                            <a wire:click.prevent="removeMeeting({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 <svg class="delete-icon" width="20" height="20"
                                                                     viewBox="0 0 20 20" fill="none"
@@ -439,21 +451,21 @@
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row" >
                                                         <div class="col-lg-4 mb-3">
-                                                            <label class="form-label" for="meeting-name">Meeting Name</label>
+                                                            <label class="form-label" for="meeting-name" >Meeting Name</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Meeting Name" id="meeting-name">
+                                                                placeholder="Enter Meeting Name" wire:key="name-{{ $index }}" wire:model.lazy="meetings.{{$index}}.meeting_name" >
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="phone-number">Phone Number</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Phone Number" id="phone-number">
+                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}" wire:model.lazy="meetings.{{$index}}.phone_number">
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="access-code">Access Code</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Access Code" id="access-code">
+                                                                placeholder="Enter Access Code" wire:key="access-{{ $index }}" wire:model.lazy="meetings.{{$index}}.access_code">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -495,9 +507,21 @@
                                 <div class="col-lg-12 mb-4">
                                     <h2>Select Dates & Times</h2>
                                     <!-- Select Dates & Times Duplicate Block -->
-                                    @foreach($dates as $dates)
+                                    @foreach($dates as $index=>$date)
                                     <div class="duplicate-block">
+                                        <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
+                                        <div class="align-items-center gap-2">
+                                            <a wire:click.prevent="removeDate({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                <svg class="delete-icon" width="20" height="20"
+                                                    viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
                                         <div class="d-md-flex flex-md-wrap justify-content-between">
                                             <div class="col-lg-3 col-md-6 pe-md-2 pe-lg-0 mb-4">
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
@@ -516,7 +540,7 @@
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
                                                         placeholder="MM/DD/YYYY" id="set_start_date"
-                                                        aria-label="Set Start Date">
+                                                        aria-label="Set Start Date" wire:key="start-{{ $index }}" wire:model.lazy="dates.{{$index}}.start_date">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -543,7 +567,7 @@
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button">
+                                                                role="switch" id="startTimeAMPM" aria-label="AM PM Toggle button" wire:key="starttime-{{ $index }}" wire:model.lazy="dates.{{$index}}.start_time">
                                                             <label class="form-check-label"
                                                                 for="startTimeAMPM">AM</label>
                                                             <label class="form-check-label"
@@ -559,7 +583,7 @@
                                                     <input type="" name=""
                                                         class="form-control form-control-md js-single-date"
                                                         placeholder="MM/DD/YYYY" id="set_end_date"
-                                                        aria-label="Set End Date">
+                                                        aria-label="Set End Date" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date md" width="20" height="20"
                                                         viewBox="0 0 20 20">
@@ -571,7 +595,7 @@
                                             </div>
                                             <div class="d-flex col-lg-auto mb-4">
                                                 <div class="d-flex flex-column justify-content-between">
-                                                    <label class="form-label-sm" for="set_start_time">End Time</label>
+                                                    <label class="form-label-sm" for="set_start_time" >End Time</label>
                                                     <div class="d-flex gap-2">
                                                         <div class="time d-flex align-items-center gap-2">
                                                             <div class="hours">12</div>
@@ -586,7 +610,7 @@
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="endTimeAMPM">
+                                                                role="switch" id="endTimeAMPM" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time">
                                                             <label class="form-check-label" for="endTimeAMPM">AM</label>
                                                             <label class="form-check-label" for="endTimeAMPM">PM</label>
                                                         </div>
@@ -601,20 +625,20 @@
                                                     for="total_billable_service_duration_days">Days</label>
                                                 <input type="" class="form-control form-control-md text-center"
                                                     aria-label="Days" placeholder="0"
-                                                    id="total_billable_service_duration_days">
+                                                    id="total_billable_service_duration_days" wire:key="total-{{ $index }}" wire:model.lazy="dates.{{$index}}.Total_Billable_Service_duration">
                                             </div>
                                             <div>
                                                 <label class="form-label-sm">Hours</label>
                                                 <input type=""
                                                     class="form-control form-control-md form-control-md text-center"
                                                     aria-label="Hours" placeholder="00"
-                                                    id="total_billable_service_duration_hours">
+                                                    id="total_billable_service_duration_hours" wire:key="total-{{ $index }}" wire:model.lazy="dates.{{$index}}.Total_Billable_Service_duration">
                                             </div>
                                             <div>
                                                 <label class="form-label-sm">Minutes</label>
                                                 <input type="" class="form-control form-control-md text-center"
                                                     aria-label="Minutes" placeholder="00"
-                                                    id="total_billable_service_duration_minutes">
+                                                    id="total_billable_service_duration_minutes" wire:key="total-{{ $index }}" wire:model.lazy="dates.{{$index}}.Total_Billable_Service_duration">
                                             </div>
                                         </div>
                                     </div>
