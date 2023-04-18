@@ -35,8 +35,8 @@
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="show_records_number" class="form-label mb-0">Show</label>
-					<select class="form-select" id="show_records_number">
+					<label for="show_records" class="form-label mb-0">Show</label>
+					<select class="form-select" id="show_records">
 					  <option>10</option>
 					  <option>15</option>
 					  <option>20</option>
@@ -44,8 +44,8 @@
 					</select>
 				  </div>
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label fw-semibold mb-0">Search</label>
-					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+					<label for="search-column" class="form-label fw-semibold mb-0">Search</label>
+					<input type="search" class="form-control" id="search-column" name="search" placeholder="Search here" autocomplete="on"/>
 				  </div>
 				</div>
 				<table class="table table-hover mb-3">
@@ -53,7 +53,7 @@
 					<tr>
 					  <th>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select All Companies">
 						</div>
 					  </th>
 					  <th>
@@ -72,7 +72,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Company">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -83,7 +83,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage">Manage</label>
 						</div>
 					  </td>
@@ -98,7 +98,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Company">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -109,7 +109,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage1">Manage</label>
 						</div>
 					  </td>
@@ -125,7 +125,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Company">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -136,7 +136,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage2">Manage</label>
 						</div>
 					  </td>
@@ -151,7 +151,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Company">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -162,7 +162,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage3">Manage</label>
 						</div>
 					  </td>
@@ -177,7 +177,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Company">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -188,7 +188,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4">
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4" aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage4">Visible</label>
 						</div>
 					  </td>
@@ -203,7 +203,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Company">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -214,7 +214,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage5">Manage</label>
 						</div>
 					  </td>
@@ -270,8 +270,8 @@
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="show_records_number" class="form-label mb-0">Show</label>
-					<select class="form-select" id="show_records_number">
+					<label for="show_record_numbers" class="form-label mb-0">Show</label>
+					<select class="form-select" id="show_record_numbers">
 					  <option>10</option>
 					  <option>15</option>
 					  <option>20</option>
@@ -279,8 +279,8 @@
 					</select>
 				  </div>
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label fw-semibold mb-0">Search</label>
-					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+					<label for="search-teams" class="form-label fw-semibold mb-0">Search</label>
+					<input type="search" class="form-control" id="search" name="search-teams" placeholder="Search here" autocomplete="on"/>
 				  </div>
 				</div>
 				<table class="table table-hover mb-3">
@@ -288,7 +288,7 @@
 					<tr>
 					  <th>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select All Teams">
 						</div>
 					  </th>
 					  <th>
@@ -307,7 +307,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Teams">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -318,7 +318,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage">Manage</label>
 						</div>
 					  </td>
@@ -333,7 +333,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Teams">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -344,7 +344,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage1">Manage</label>
 						</div>
 					  </td>
@@ -359,7 +359,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Teams">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -370,7 +370,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage2">Manage</label>
 						</div>
 					  </td>
@@ -385,7 +385,7 @@
 					<tr>
 					  <td class="align-middle">
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Teams">
 						</div>
 					  </td>
 					  <td class="align-middle">
@@ -396,7 +396,7 @@
 					  </td>
 					  <td class="align-middle">
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage3">Manage</label>
 						</div>
 					  </td>
@@ -411,7 +411,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Teams">
 						</div>
 					  </td>
 					  <td>
@@ -422,7 +422,7 @@
 					  </td>
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4">
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4" aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage4">Visible</label>
 						</div>
 					  </td>
@@ -437,7 +437,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Teams">
 						</div>
 					  </td>
 					  <td>
@@ -448,7 +448,7 @@
 					  </td>
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage5">Manage</label>
 						</div>
 					  </td>
@@ -504,8 +504,8 @@
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="show_records_number" class="form-label mb-0">Show</label>
-					<select class="form-select" id="show_records_number">
+					<label for="show_records_numbers" class="form-label mb-0">Show</label>
+					<select class="form-select" id="show_records_numbers">
 					  <option>10</option>
 					  <option>15</option>
 					  <option>20</option>
@@ -513,8 +513,8 @@
 					</select>
 				  </div>
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label fw-semibold mb-0">Search</label>
-					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+					<label for="search-accommodation" class="form-label fw-semibold mb-0">Search</label>
+					<input type="search" class="form-control" id="search-accommodation" name="search" placeholder="Search here" autocomplete="on"/>
 				  </div>
 				</div>
 				<table class="table table-hover mb-3">
@@ -522,7 +522,7 @@
 					<tr>
 					  <th>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select All Accommodations">
 						</div>
 					  </th>
 					  <th>
@@ -538,7 +538,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Accommodation">
 						</div>
 					  </td>
 					  <td>
@@ -548,7 +548,7 @@
 
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage">Manage</label>
 						</div>
 					  </td>
@@ -563,7 +563,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Accommodation">
 						</div>
 					  </td>
 					  <td>
@@ -573,7 +573,7 @@
 
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage1">Manage</label>
 						</div>
 					  </td>
@@ -588,7 +588,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Accommodation">
 						</div>
 					  </td>
 					  <td>
@@ -598,7 +598,7 @@
 
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage2">Manage</label>
 						</div>
 					  </td>
@@ -613,7 +613,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Accommodation">
 						</div>
 					  </td>
 					  <td>
@@ -638,7 +638,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Accommodation">
 						</div>
 					  </td>
 					  <td>
@@ -648,7 +648,7 @@
 
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4">
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4" aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage4">Visible</label>
 						</div>
 					  </td>
@@ -663,7 +663,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Accommodation">
 						</div>
 					  </td>
 					  <td>
@@ -673,7 +673,7 @@
 
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage5">Manage</label>
 						</div>
 					  </td>
@@ -729,8 +729,8 @@
 			  <div class="accordion-body p-0">
 				<div class="d-flex justify-content-between my-2">
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="show_records_number" class="form-label mb-0">Show</label>
-					<select class="form-select" id="show_records_number">
+					<label for="show-records-numbers" class="form-label mb-0">Show</label>
+					<select class="form-select" id="show-records-numbers">
 					  <option>10</option>
 					  <option>15</option>
 					  <option>20</option>
@@ -738,8 +738,8 @@
 					</select>
 				  </div>
 				  <div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label fw-semibold mb-0">Search</label>
-					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
+					<label for="search-industry" class="form-label fw-semibold mb-0">Search</label>
+					<input type="search" class="form-control" id="search-industry" name="search" placeholder="Search here" autocomplete="on"/>
 				  </div>
 				</div>
 				<table class="table table-hover mb-3">
@@ -747,7 +747,7 @@
 					<tr>
 					  <th>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select All Industries">
 						</div>
 					  </th>
 					  <th>
@@ -763,7 +763,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Industry">
 						</div>
 					  </td>
 					  <td>
@@ -772,7 +772,7 @@
 					  
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage">Manage</label>
 						</div>
 					  </td>
@@ -787,7 +787,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Industry">
 						</div>
 					  </td>
 					  <td>
@@ -796,7 +796,7 @@
 					  
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage1">Manage</label>
 						</div>
 					  </td>
@@ -811,7 +811,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Industry">
 						</div>
 					  </td>
 					  <td>
@@ -820,7 +820,7 @@
 					  
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage2">Manage</label>
 						</div>
 					  </td>
@@ -835,7 +835,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Industry">
 						</div>
 					  </td>
 					  <td>
@@ -844,7 +844,7 @@
 					  
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage3">Manage</label>
 						</div>
 					  </td>
@@ -859,7 +859,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Industry">
 						</div>
 					  </td>
 					  <td>
@@ -868,7 +868,7 @@
 					  
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4">
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4" aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage4">Visible</label>
 						</div>
 					  </td>
@@ -883,7 +883,7 @@
 					<tr>
 					  <td>
 						<div class="form-check">
-						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="">
+						  <input class="form-check-input" id="" name="" type="checkbox" tabindex="" aria-label="Select Industry">
 						</div>
 					  </td>
 					  <td>
@@ -891,7 +891,7 @@
 					  </td>
 					  <td>
 						<div class="form-check form-switch">
-						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked>
+						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage5" checked aria-label="Permission Toggle">
 						  <label class="form-check-label" for="CustomerAccessManage5">Manage</label>
 						</div>
 					  </td>
