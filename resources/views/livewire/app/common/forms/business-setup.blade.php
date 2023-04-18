@@ -198,14 +198,27 @@
                                             <h3>Announcements & Communications</h3>
                                         </div>
                                     </div>
-                                    <div class="border-dashed col-lg-6 p-4 rounded">
+                                    @foreach($messages as $index=>$message)
+                                    <div class="border-dashed col-lg-6 p-4 rounded mb-3">
                                         <div class="row">
                                             <div class="col-lg-12 mb-4">
-                                                <label class="form-label" for="AnnouncementsCommunications">Message
-                                                    1</label>
+                                                <div class="d-flex justify-content-between">
+                                                  <label class="form-label" for="AnnouncementsCommunications">Message
+                                                    {{ $loop->index + 1 }}</label>
+                                                    <div class="align-items-center gap-2">
+                                                        <a wire:click.prevent="removeMessage({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            <svg class="delete-icon" width="20" height="20"
+                                                                viewBox="0 0 20 20" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                                 <textarea class="form-control" rows="4" cols="3"
                                                     placeholder="Enter Message"
-                                                    id="AnnouncementsCommunications"></textarea>
+                                                    id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.lazy="messages.{{$index}}.message_text"></textarea>
                                             </div>
                                         </div>
 
@@ -231,7 +244,7 @@
                                                             <label class="form-label-sm" for="Days"> Days</label>
                                                             <input class="form-control form-control-sm text-center w-25"
                                                                 id="Days" name="DisplayToProviders" value="5" type=""
-                                                                tabindex="" />
+                                                                tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.duration"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -263,8 +276,9 @@
 
                                         </div>
                                     </div>
+                                    @endforeach
                                     <div class="col-lg-8 mt-3">
-                                        <a href="#" class="btn btn-primary btn-sm rounded">
+                                        <a href="#" class="btn btn-primary btn-sm rounded" wire:click.prevent="addMessage">
                                             <svg class="mx-2" aria-label="Add Message" width="20" height="20"
                                                 viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#plus">
@@ -281,6 +295,7 @@
                                     x-on:click="$wire.switch('business-hours')">Next</button>
                             </div>
                         </form>
+
                     </div>
 
                     <div class="tab-pane fade {{ $component == 'business-hours' ? 'active show' : '' }}"
@@ -1361,12 +1376,13 @@
                                                     </div>
                                                 </div>
                                                 <!-- Duplicate Block -->
-                                                <div>
+
                                                     <div class="row between-section-segment-spacing">
                                                         <div class="col-lg-12 mb-4">
                                                             <h3>Additional Policies</h3>
+                                                            @foreach($policies as $index=>$policy)
                                                             <div class="duplicate-block mb-3">
-                                                                <h3 class="text-primary">Policy 1</h3>
+                                                                <h3 class="text-primary">Policy {{ $loop->index + 1 }}</h3>
                                                                 <div class="row">
                                                                     <div class="col-lg-6 mb-4">
                                                                         <label class="form-label"
@@ -1375,7 +1391,7 @@
                                                                         </label>
                                                                         <input type="" name="" class="form-control"
                                                                             placeholder="Enter Title"
-                                                                            id="privacyPolicyTitle">
+                                                                            id="privacyPolicyTitle" wire:key="title-{{ $index }}" wire:model.lazy="policies.{{$index}}.policy_title">
                                                                     </div>
 
                                                                     <div class="col-lg-6 mb-4">
@@ -1384,21 +1400,21 @@
                                                                             Upload File
                                                                         </label>
                                                                         <input class="form-control" type="file"
-                                                                            id="privacyPolicyUpload">
+                                                                            id="privacyPolicyUpload" wire:key="upload-{{ $index }}" wire:model.lazy="policies.{{$index}}.upload_file">
                                                                     </div>
                                                                     <div class="col-lg-6 mb-4">
                                                                         <label class="form-label" for="URL-Link">
                                                                             URL Link
                                                                         </label>
                                                                         <input type="" name="" class="form-control"
-                                                                            placeholder="Enter URL link" id="URL-Link">
+                                                                            placeholder="Enter URL link" id="URL-Link" wire:key="url-{{ $index }}" wire:model.lazy="policies.{{$index}}.url_link">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-lg-12">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input"
                                                                             id="customerDrive" name="customerDrive"
-                                                                            type="checkbox" tabindex="" checked />
+                                                                            type="checkbox" tabindex="" checked  wire:key="drive_customer-{{ $index }}" wire:model.lazy="policies.{{$index}}.customer_drive"/>
                                                                         <label class="form-check-label"
                                                                             for="customerDrive">Add
                                                                             to Customer Drive</label>
@@ -1407,7 +1423,7 @@
                                                                         <input class="form-check-input"
                                                                             id="acknowledgeInitialLogincustomerDrive"
                                                                             name="acknowledgeInitialLogincustomerDrive"
-                                                                            type="checkbox" tabindex="" />
+                                                                            type="checkbox" tabindex="" wire:key="intiallogincustomer-{{ $index }}" wire:model.lazy="policies.{{$index}}.acknowledgeInitialLogincustomerDrive" />
                                                                         <label class="form-check-label"
                                                                             for="acknowledgeInitialLogincustomerDrive">Require
                                                                             Customer to Acknowledge on Initial
@@ -1416,7 +1432,7 @@
                                                                     <div class="form-check">
                                                                         <input class="form-check-input"
                                                                             id="providerDrive" name="providerDrive"
-                                                                            type="checkbox" tabindex="" checked />
+                                                                            type="checkbox" tabindex="" checked  wire:key="providerdrive-{{ $index }}" wire:model.lazy="policies.{{$index}}.provider_drive" />
                                                                         <label class="form-check-label"
                                                                             for="providerDrive">Add
                                                                             to Provider Drive</label>
@@ -1425,18 +1441,21 @@
                                                                         <input class="form-check-input"
                                                                             id="acknowledgeInitialLoginproviderDrive"
                                                                             name="acknowledgeInitialLoginproviderDrive"
-                                                                            type="checkbox" tabindex="" />
+                                                                            type="checkbox" tabindex=""  wire:key="intialloginprovider-{{ $index }}" wire:model.lazy="policies.{{$index}}.acknowledgeInitialLoginproviderDrive" />
                                                                         <label class="form-check-label"
                                                                             for="acknowledgeInitialLoginproviderDrive">Require
                                                                             Customer to Acknowledge on Initial
                                                                             Login</label>
                                                                     </div>
                                                                 </div>
+                                                                @endforeach
                                                             </div>
+
                                                             <div class="row between-section-segment-spacing">
                                                                 <div class="col-lg-12 text-lg-end mt-2">
-                                                                    <button type="button"
-                                                                        class="btn btn-primary btn rounded"><i
+                                                                    <button type="button" id="payments"
+                                                                        class="btn btn-primary btn rounded" wire:click.prevent="addPolicy">
+                                                                        <i
                                                                             class="fa fa-plus-circle"
                                                                             aria-hidden="true"></i>
                                                                         Add Policy
@@ -1484,7 +1503,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div><!-- /Duplicate Block -->
+                                               <!-- /Duplicate Block -->
                                                 <!-- Form Actions -->
                                                 <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                     <button type="button" class="btn btn-outline-dark rounded mx-2"
