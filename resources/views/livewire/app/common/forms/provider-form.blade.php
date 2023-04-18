@@ -2422,7 +2422,7 @@
                                                     <div class="d-flex align-items-center w-100">
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
-                                                                placeholder="Select Expiration Date" aria-label=""
+                                                                placeholder="Select Expiration Date" aria-label="Expiration Date"
                                                                 aria-describedby="" id="end-date-column">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Date" class="icon-date" width="20"
@@ -2451,7 +2451,7 @@
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
                                                     <label class="form-label" for="tags">Tags</label>
                                                     <select data-placeholder="" multiple
-                                                        class="form-select chosen-select" tabindex="" id="tags">
+                                                        class="form-select chosen-select" tabindex=""  aria-label="Tags">
                                                         <option value=""></option>
                                                     </select>
                                                 </div>
