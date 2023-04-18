@@ -70,8 +70,8 @@
         </div>
     </div>
         <div class="form-check mb-4">
-            <input class="form-check-input" type="checkbox" value="" id="charge-to-customer" checked>
-            <label class="form-check-label" for="charge-to-customer">
+            <input class="form-check-input" type="checkbox" value="" id="chargeToCustomer" checked>
+            <label class="form-check-label" for="chargeToCustomer">
                 Charge to Customer
             </label>
         </div>

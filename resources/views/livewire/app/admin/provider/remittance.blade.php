@@ -519,8 +519,8 @@
                 </div>
                 <div class="justify-content-center d-flex mb-4">
                     <div class="form-check mx-auto">
-                        <input class="form-check-input" type="checkbox" value="" id="ExcludeNotification">
-                        <label class="form-check-label" for="ExcludeNotification">
+                        <input class="form-check-input" type="checkbox" value="" id="Exclude-Notification">
+                        <label class="form-check-label" for="Exclude-Notification">
                             Exclude Notification
                         </label>
                     </div>
