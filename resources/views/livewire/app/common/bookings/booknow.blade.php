@@ -36,10 +36,10 @@
                 <!-- BEGIN: Assignment Booking Form -->
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" >
                         <button class="nav-link {{ $component == 'requester-info' ? 'active' : '' }}"
                             id="requester-info-tab" data-bs-toggle="tab" data-bs-target="#requester-info" type="button"
-                            role="tab" aria-controls="requester-info" aria-selected="true"><span class="number">1</span>
+                            role="tab"  aria-controls="requester-info" aria-selected="true"><span class="number">1</span>
                             Requester Info</button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -86,7 +86,7 @@
                             <div class="row between-section-segment-spacing">
                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <label class="form-label" for="company">Company <span class="mandatory">*</span></label>
+                                        <label class="form-label" for="company-column">Company <span class="mandatory">*</span></label>
                                         <a href="#" class="fw-bold">
                                             <small>
                                                 {{-- Updated by Shanila to Add svg icon--}}
@@ -99,7 +99,7 @@
                                             </small>
                                         </a>
                                     </div>
-                                    <select class="form-select" id="company">
+                                    <select class="form-select" id="company-column">
                                         <option>Select Company</option>
                                     </select>
                                 </div>
@@ -455,17 +455,17 @@
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="meeting-name" >Meeting Name</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Meeting Name" wire:key="name-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.meeting_name" >
+                                                                placeholder="Enter Meeting Name" id="meeting-name" wire:key="name-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.meeting_name" >
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="phone-number">Phone Number</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Phone Number" wire:key="phone-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.phone_number">
+                                                                placeholder="Enter Phone Number" id="phone-number" wire:key="phone-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.phone_number">
                                                         </div>
                                                         <div class="col-lg-4 mb-3">
                                                             <label class="form-label" for="access-code">Access Code</label>
                                                             <input type="" class="form-control"
-                                                                placeholder="Enter Access Code" wire:key="access-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.access_code">
+                                                                placeholder="Enter Access Code" id="access-code" wire:key="access-{{$index}}-{{ $meetingIndex }}" wire:model.lazy="meetings.{{$meetingIndex}}.access_code">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -610,7 +610,7 @@
                                                         </div>
                                                         <div class="form-check form-switch form-switch-column mb-0">
                                                             <input checked="" class="form-check-input" type="checkbox"
-                                                                role="switch" id="endTimeAMPM" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time">
+                                                                role="switch" id="endTimeAMPM" wire:key="endtime-{{ $index }}" wire:model.lazy="dates.{{$index}}.end_time" aria-label="Ante meridiem and Post meridiem toggle">
                                                             <label class="form-check-label" for="endTimeAMPM">AM</label>
                                                             <label class="form-check-label" for="endTimeAMPM">PM</label>
                                                         </div>
