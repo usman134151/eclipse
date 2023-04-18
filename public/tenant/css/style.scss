@@ -1907,3 +1907,21 @@ hr.border-separate-sm {
 .ql-toolbar.ql-snow .ql-formats{
     font-size: 15px;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	background-color: transparent;
+    padding: 0.1rem 0.3rem;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	border-right: transparent;
+	background-color: #888575;
+	padding: 0;
+	height: 1rem;
+	line-height: 1;
+	color: #fff;
+	border-radius: 100px;
+	width: 1rem;
+	font-weight: 400;
+	margin-top: 0.15rem;
+}
