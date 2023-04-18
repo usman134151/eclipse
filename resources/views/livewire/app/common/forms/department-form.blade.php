@@ -375,42 +375,55 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row between-section-segment-spacing">
+                                                        <div class="col-lg-12">
+                                                            @foreach($phoneNumbers as $index=>$phoneNumber)
+                                                            <div class="row">
+                                                                <div class="col-lg-8 mb-2">
+                                                                    <div class="border p-3">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
+                                                                                <label class="form-label" for="title">
+                                                                                    Title
+                                                                                </label>
+                                                                                <input type="text" id="title"
+                                                                                    class="form-control" name=""
+                                                                                    placeholder="Enter Title" wire:key="title-{{ $index }}" wire:model.lazy="phoneNumbers.{{$index}}.phone_title"/>
+                                                                            </div>
+                                                                            <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
+                                                                                <label class="form-label" for="phone-number">
+                                                                                    Phone Number
+                                                                                </label>
+                                                                                <input type="text" id="phone-number"
+                                                                                    class="form-control" name=""
+                                                                                    placeholder="Enter Phone Number" wire:key="phone-{{ $index }}" wire:model.lazy="phoneNumbers.{{$index}}.phone_number"/>
+                                                                            </div>
+                                                                            <div class="col-lg-2 col-md-4">
+                                                                            <a href="#" wire:click.prevent="removePhone({{$index}})" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
+                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                    <div class="row ms-1">
-                                                        <div class="col-8 border">
-                                                            <div class="row mt-3">
-                                                                <div class="col-5 ">
-                                                                    <div class="mb-4">
-                                                                        <label class="form-label"
-                                                                            for="title">Title</label>
-                                                                        <input type="text" id="title"
-                                                                            class="form-control" name=""
-                                                                            placeholder="Enter Title" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-5 ">
-                                                                    <div class="mb-4">
-                                                                        <label class="form-label" for="phone">Phone
-                                                                            Number</label>
-                                                                        <input type="text" id="phone"
-                                                                            class="form-control" name=""
-                                                                            placeholder="Enter Phone Number" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-2 mt-5"><button
-                                                                        class="btn btn-primary rounded">Add</button>
+                                                            </div>
+                                                            @endforeach
+                                                            <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
+                                                                    <button type="button" wire:click.prevent="addPhone"
+                                                                        class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                                                                        <svg aria-label="Add Phone Number" width="20"
+                                                                            height="20" viewBox="0 0 20 20">
+                                                                            <use xlink:href="/css/common-icons.svg#plus">
+                                                                            </use>
+                                                                        </svg>
+                                                                        <span>Add Phone Number</span>
+                                                                    </button>
                                                                 </div>
                                                             </div>
 
-                                                        </div>
-                                                        <div
-                                                            class="col-md-8 d-flex justify-content-end col-8 md-2 mt-4 mb-4">
-                                                            <button type="button"
-                                                                class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-
-                                                                <span>Add Phone Number</span>
-                                                            </button>
-                                                        </div>
                                                     </div>
                                                     <!-- Default Billing Address -->
                                                     <div class="col-md-6 col-12 mt-4">
