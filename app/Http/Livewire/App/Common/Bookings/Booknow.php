@@ -20,7 +20,7 @@ class Booknow extends Component
 
     public $services=[
         [
-            'meetings' => 
+            'meetings' =>
             [
                 ['meeting_name' => '','phone_number' => '','access_code' => ''] //updated by Amna Bilal to define meeting links array within services array
             ]
@@ -60,7 +60,7 @@ class Booknow extends Component
     public function removeMeeting($index,$serviceIndex)
     {
         unset($this->services[$serviceIndex]['meetings'][$index]);
-        $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array 
+        $this->services[$serviceIndex]['meetings'] = array_values($this->services[$serviceIndex]['meetings']); //updated by Amna Bilal to meeting remove link from service array
     }
     public function adddate(){
         $this->dates[] = [
@@ -78,7 +78,7 @@ class Booknow extends Component
     }
     public function addService(){
         $this->services[]= ['meetings' => [['meeting_name' => '','phone_number' => '','access_code' => '']]]; //updated by Amna Bilal to define meeting links array within services array
-       
+
     }
     public function removeServices($index)
     {
