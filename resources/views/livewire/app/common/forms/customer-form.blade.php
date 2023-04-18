@@ -351,7 +351,7 @@
                                                         <div class="col-lg-6 pe-lg-5">
                                                             <label class="form-label">Tags</label>
                                                             <select data-placeholder="" multiple
-                                                                class="form-select js-select2-multiple" tabindex="">
+                                                                class="form-select chosen-select" tabindex="">
                                                                 <option value=""></option>
                                                                 <option selected>Admin staff</option>
                                                                 <option selected>Customers</option>
