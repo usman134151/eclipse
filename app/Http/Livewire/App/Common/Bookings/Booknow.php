@@ -22,6 +22,7 @@ class Booknow extends Component
         'Total_Billable_Service_duration'=>''
 
     ]];
+
     public $services=[[]];
         public function render()
     {
@@ -54,14 +55,31 @@ class Booknow extends Component
             'access_code' => '',
         ];
     }
+    public function removeMeeting($index)
+    {
+        unset($this->meetings[$index]);
+        $this->meetings = array_values($this->meetings);
+    }
     public function adddate(){
         $this->dates[] = [
-            'meeting_name' => '',
-            'phone_number' => '',
-            'access_code' => '',
+            'set_time_zone'=>'',
+            'start_date'=>'',
+            'start_time'=>'',
+            'end_time'=>'',
+            'Total_Billable_Service_duration'=>''
         ];
+    }
+    public function removeDate($index)
+    {
+        unset($this->dates[$index]);
+        $this->dates = array_values($this->dates);
     }
     public function addService(){
         $this->services[]=[];
+    }
+    public function removeServices($index)
+    {
+        unset($this->services[$index]);
+        $this->services = array_values($this->services);
     }
 }
