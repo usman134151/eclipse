@@ -169,9 +169,7 @@
                                                     </small>
                                                 </a>
                                             </div>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
-                                            '','gender') !!}
+                                            {!! $setupValues['gender']['rendered'] !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <div class="d-flex justify-content-between align-items-center mb-1">
@@ -190,10 +188,7 @@
                                                     </small>
                                                 </a>
                                             </div>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 3, 'setup_value_label', false, 'ethnicity',
-                                            '','ethnicity') !!}
-
+                                            {!! $setupValues['ethnicities']['rendered'] !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="providerID-column">
@@ -242,9 +237,7 @@
                                             <label class="form-label" for="country">
                                                 Country
                                             </label>
-                                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
-                                            'name', '', '', 'name', false, 'country',
-                                            '','country') !!}
+                                            {!! $setupValues['countries']['rendered'] !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="state">
@@ -417,17 +410,13 @@
                                             <label class="form-label" for="preferred-language-column">
                                                 Preferred Language
                                             </label>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
-                                            '','languages') !!}
+                                            {!! $setupValues['languages']['rendered'] !!}
                                         </div>
                                         <div class="col-lg-6 ps-lg-5">
                                             <label class="form-label" for="set-time-zone-column">
                                                 Set Time Zone
                                             </label>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
-                                            '','timezone') !!}
+                                            {!! $setupValues['timezones']['rendered'] !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="preferred-colleagues-column">
