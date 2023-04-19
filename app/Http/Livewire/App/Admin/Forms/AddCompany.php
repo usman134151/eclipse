@@ -11,7 +11,7 @@ class AddCompany extends Component
 	public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'industry',	'','industry']],
-		
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'languages', '','languages']]
 	];
 	public function showList()
 	{
@@ -46,10 +46,10 @@ class AddCompany extends Component
 
 	public function loadSetupValues(){ //added by Amna Bilal function to get all setup values rendered on mount
 		foreach($this->setupValues as $key=>$setupValue){
-			
+
 			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
 		}
 
-		
+
 	}
 }

@@ -262,10 +262,7 @@
                                                             </small>
                                                         </a>
                                                     </div>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', 2, 'setup_value_label', false,
-                                                    'gender',
-                                                    '','gender') !!}
+                                                    {!! $setupValues['gender']['rendered'] !!}
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -285,10 +282,7 @@
                                                             </small>
                                                         </a>
                                                     </div>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', 3, 'setup_value_label', false,
-                                                    'ethnicity',
-                                                    '','ethnicity') !!}
+                                                    {!! $setupValues['ethnicities']['rendered'] !!}
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">
@@ -314,20 +308,14 @@
                                                     <label class="form-label" for="preferred-language">
                                                         Preferred Language
                                                     </label>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', 1, 'setup_value_label', false,
-                                                    'languages',
-                                                    '','languages') !!}
+                                                    {!! $setupValues['languages']['rendered'] !!}
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
                                                     <label class="form-label" for="time-zone">
                                                         Time Zone
                                                     </label>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                    'setup_value_label', 'setup_id', 4, 'setup_value_label', false,
-                                                    'timezone',
-                                                    '','timezone') !!}
+                                                    {!! $setupValues['timezones']['rendered'] !!}
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">

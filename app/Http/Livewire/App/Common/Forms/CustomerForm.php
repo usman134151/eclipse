@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
+use App\Helpers\SetupHelper;
 
 class CustomerForm extends Component
 {
@@ -11,10 +12,20 @@ class CustomerForm extends Component
     public $gender;
     public $languages;
 	public $component = 'customer-info';
+    public $setupValues = [
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'languages', '','languages']],
+        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'ethnicity','','ethnicity']],
+        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'gender','','gender']],
+        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'timezone','','timezone']],
+	];
 
 	public function render()
 	{
 		return view('livewire.app.common.forms.customer-form');
+	}
+    public function mount(){
+		$this->loadSetupValues();
+
 	}
 
 	public function showList()
@@ -25,5 +36,13 @@ class CustomerForm extends Component
 	public function switch($component)
 	{
 		$this->component = $component;
+	}
+    public function loadSetupValues(){ //added by Amna Bilal function to get all setup values rendered on mount
+		foreach($this->setupValues as $key=>$setupValue){
+
+			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
+		}
+
+
 	}
 }
