@@ -140,9 +140,7 @@
                                                     </small>
                                                 </a>
                                             </div>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 2, 'setup_value_label', false, 'gender',
-                                            '','gender') !!}
+                                            {!! $setupValues['gender']['rendered'] !!}
                                         </div>
                                     </div>
                                     <div class="row inner-section-segment-spacing">
@@ -164,10 +162,7 @@
                                                         </small>
                                                     </a>
                                                 </div>
-                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                'setup_value_label', 'setup_id', 3, 'setup_value_label', false,
-                                                'ethnicity',
-                                                '','ethnicity') !!}
+                                                {!! $setupValues['ethnicities']['rendered'] !!}
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
@@ -231,9 +226,7 @@
                                         <div class="mb-4">
                                             <label class="form-label" for="country">Country</label>
                                             {{-- updated by shanila to add dropdown --}}
-                                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
-                                            'name', '', '', 'name', false, 'country',
-                                            '','country') !!}
+                                            {!! $setupValues['countries']['rendered'] !!}
                                             {{-- ended update --}}
                                         </div>
                                     </div>
@@ -264,9 +257,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="set_time_zone">Set Time Zone</label>
-                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'timezone',
-                                            '','timezone') !!}
+                                            {!! $setupValues['timezones']['rendered'] !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -283,11 +274,9 @@
                                     <h2>Roles and Permissions</h2>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            {{-- Updated by Shanila to add dropdown--}}
-                                            {!! App\Helpers\SetupHelper::createDropDown('SystemRole', 'system_role_id',
-                                            'system_role_name', '', '', '', false, 'system_roles',
-                                            '','system_roles') !!}
-                                            {{-- End of update by Shanila --}}
+                                            {{-- updated by shanila to add dropdown --}}
+                                            {!! $setupValues['roles_permissions']['rendered'] !!}
+                                            {{-- ended update --}}
                                     </div>
                                 </div>
                                 <div class="col-12 justify-content-center form-actions d-flex">
