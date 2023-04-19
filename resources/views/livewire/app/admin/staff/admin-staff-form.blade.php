@@ -94,7 +94,7 @@
                                             <h2 class="mb-lg-0">User Profile</h2>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="userProfile" checked>
+                                                    id="userProfile" checked aria-label="User Profile Toggle">
                                                 <label class="form-check-label" for="userProfile">Active</label>
                                             </div>
                                         </div>
@@ -247,15 +247,15 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="city">City</label>
-                                            <select class="form-select" id="city">
+                                            <label class="form-label" for="city-column">City</label>
+                                            <select class="form-select" id="city-column">
                                                 <option>Select City</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="city">Zip Code / Postal Code</label>
+                                            <label class="form-label" for="zip_code_postal_code">Zip Code / Postal Code</label>
                                             <input type="text" id="zip_code_postal_code" class="form-control"
                                                 name="zip_code_postal_code" placeholder="Enter Zip Code / Postal Code"
                                                 required aria-required="true" />
