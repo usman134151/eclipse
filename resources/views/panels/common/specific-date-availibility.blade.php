@@ -10,12 +10,14 @@
                     <div class="d-lg-flex gap-3 align-items-center mb-3">
                       <div class="col-md-4 col-12">
                         <div>
-                          <label class="form-label" for="set_set_date">
+                          <label class="form-label" for="select-date">
                             Select Date & Time
                           </label>
                           <div class="position-relative">
-                            <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-                            <x-icon name="datefield-icon"/>
+                            <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="select-date">
+                            <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
+													</svg>
                           </div>
                         </div>
                       </div>
@@ -62,10 +64,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mb-4">
-                    <label class="form-label" for="notes-column">
+                    <label class="form-label" for="notes">
                         Note
                     </label>
-                    <textarea class="form-control" rows="4" placeholder="" name="notesColumn" id="notes-column"></textarea>
+                    <textarea class="form-control" rows="4" placeholder="" name="notesColumn" id="notes"></textarea>
                 </div>
                 <div>
                     <p>No Bookings Assigned from 11/02/2022 to 11/02/2022</p>
