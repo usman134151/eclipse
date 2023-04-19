@@ -182,10 +182,7 @@
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
                                                         </label>
-                                                        {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false,
-                                                        'languages',
-                                                        '','languages') !!}
+                                                        {!! $setupValues['languages']['rendered'] !!}
                                                     </div>
                                                 </div>
                                                 {{-- Service Start Date --}}
@@ -384,7 +381,7 @@
                                                                 <h2>Phone Number</h2>
                                                             </div>
                                                         </div>
-                                                        @foreach($phoneNumbers as $index=>$phoneNumber)        
+                                                        @foreach($phoneNumbers as $index=>$phoneNumber)
                                                         <div class="row">
                                                             <div class="col-lg-8 mb-2">
                                                                 <div class="border p-3">
@@ -415,7 +412,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                           
+
                                                         </div>
                                                         @endforeach
                                                         <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
@@ -430,7 +427,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    
+
                                                 </div>
                                                 {{-- Default Billing Address --}}
                                                 <div class="col-lg-12">
