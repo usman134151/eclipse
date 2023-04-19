@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Bookings;
 
 use Livewire\Component;
+use App\Helpers\SetupHelper;
 
 class Booknow extends Component
 {
@@ -17,6 +18,10 @@ class Booknow extends Component
         'Total_Billable_Service_duration'=>''
 
     ]];
+    public $setupValues = [
+        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'timezone','','timezone']],
+        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'accommodation','','accommodation']]
+	];
 
     public $services=[
         [
@@ -33,7 +38,7 @@ class Booknow extends Component
 
     public function mount()
     {
-
+        $this->loadSetupValues();
 
     }
 
@@ -85,4 +90,12 @@ class Booknow extends Component
         unset($this->services[$index]);
         $this->services = array_values($this->services);
     }
+    public function loadSetupValues(){ //added by shanila to add function to get all setup values rendered on mount
+		foreach($this->setupValues as $key=>$setupValue){
+
+			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
+		}
+
+
+	}
 }

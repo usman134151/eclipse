@@ -227,9 +227,7 @@
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Accommodation <span
                                                         class="mandatory">*</span></label>
-                                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-                                                'name', '', '', 'name', false, 'accommodation',
-                                                '','accommodation') !!}
+                                                        {!! $setupValues['accomodations']['rendered'] !!}
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" for="service">Service <span class="mandatory">*</span> <i
@@ -527,10 +525,7 @@
                                                 <label class="form-label-sm" for="set_time_zone">Set Time Zone <span
                                                         class="mandatory">*</span></label>
                                                 {{-- updated by shanila to add dropdown --}}
-                                                {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                                'setup_value_label', 'setup_id', 4, 'setup_value_label', false,
-                                                'timezone',
-                                                '','timezone') !!}
+                                                {!! $setupValues['timezones']['rendered'] !!}
                                                 {{-- end updated --}}
                                             </div>
                                             <div class="col-lg-auto col-md-6 ps-md-2 ps-lg-0 mb-4">
