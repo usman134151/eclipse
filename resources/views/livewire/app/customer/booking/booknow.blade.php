@@ -62,11 +62,9 @@
                                     </div>
                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                         <label class="form-label">Industry <span class="mandatory">*</span></label>
-                                        {{-- Updated by Shanila to add dropdown--}}
-                                        {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
-                                        'name', '', '', 'name', false, 'industry',
-                                        '','industry') !!}
-                                        {{-- End of update by Shanila --}}
+                                      {{-- Updated by Shanila to add dropdown--}}
+                                      {!! $setupValues['industries']['rendered'] !!}
+                                      {{-- End of update by Shanila --}}
                                     </div>
                                     <div class="col-lg-12 mb-4">
                                         <div class="d-lg-flex align-items-center mb-4 gap-3">
@@ -132,9 +130,7 @@
                                                 <label class="form-label">Accommodation <span
                                                         class="mandatory">*</span></label>
                                                 {{-- Updated by Shanila to add dropdown--}}
-                                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-                                                'name', '', '', 'name', false, 'accommodation',
-                                                '','accommodation') !!}
+                                                {!! $setupValues['accomodations']['rendered'] !!}
                                                 {{-- End of update by Shanila --}}
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
@@ -246,10 +242,9 @@
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                                         <label class="form-label">Accommodation <span
                                                                 class="mandatory">*</span></label>
-                                                        {!! App\Helpers\SetupHelper::createDropDown('Accommodation',
-                                                        'id',
-                                                        'name', '', '', 'name', false, 'accommodation',
-                                                        '','accommodation') !!}
+                                                        {{-- Updated by Shanila to add dropdown--}}
+                                                {!! $setupValues['accomodations']['rendered'] !!}
+                                                {{-- End of update by Shanila --}}
                                                     </div>
                                                     <div class="col-lg-6 mb-4 ps-lg-5">
                                                         <label class="form-label">Service <span
@@ -570,12 +565,8 @@
                                                             <label class="form-label-sm" for="set_time_zone">Set
                                                                 Time Zone <span class="mandatory">*</span></label>
                                                             {{-- updated by shanila to add dropdown --}}
-                                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue',
-                                                            'id',
-                                                            'setup_value_label', 'setup_id', 4, 'setup_value_label',
-                                                            false, 'timezone',
-                                                            '','timezone') !!}
-                                                            {{-- end updated --}}
+                                                {!! $setupValues['timezones']['rendered'] !!}
+                                                {{-- end updated --}}
                                                         </div>
                                                         <div class="">
                                                             <label class="form-label-sm" for="set_start_date">Set Date
@@ -723,12 +714,8 @@
                                                             <label class="form-label-sm" for="set_time_zone">Set
                                                                 Time Zone <span class="mandatory">*</span></label>
                                                             {{-- updated by shanila to add dropdown --}}
-                                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue',
-                                                            'id',
-                                                            'setup_value_label', 'setup_id', 4, 'setup_value_label',
-                                                            false, 'timezone',
-                                                            '','timezone') !!}
-                                                            {{-- end updated --}}
+                                                {!! $setupValues['timezones']['rendered'] !!}
+                                                {{-- end updated --}}
                                                         </div>
                                                         <div class="">
                                                             <label class="form-label-sm" for="set_start_date">Set Date
