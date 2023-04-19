@@ -19,7 +19,7 @@
                             </div>
                             <div class="d-inline-flex align-items-center gap-4">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="ToggleText" checked>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="ToggleText" checked aria-label="ONN OFF Toggle">
                                     <label class="form-check-label" for="ToggleText">OFF</label>
                                     <label class="form-check-label" for="ToggleText">ON</label>
                                 </div>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="d-inline-flex align-items-center gap-4">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="ToggleEmail" checked>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="ToggleEmail" checked aria-label="ONN OFF Toggle">
                                     <label class="form-check-label" for="ToggleEmail">
                                         OFF
                                     </label>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="d-inline-flex align-items-center gap-4">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="NotificationToggle" checked>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="NotificationToggle" checked aria-label="ONN OFF Toggle">
                                     <label class="form-check-label" for="NotificationToggle">OFF</label>
                                     <label class="form-check-label" for="NotificationToggle">ON</label>
                                 </div>
