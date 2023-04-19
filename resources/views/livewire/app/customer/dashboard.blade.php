@@ -30,7 +30,7 @@
                     aria-selected="true">
                     <div class="text-center block-text">Service Calendar</div>
                     <div class="text-center block-icon">
-                        <svg class="fill" width="57" height="57" viewBox="0 0 57 57" fill="none"
+                        <svg aria-label="Service Calendar" class="fill" width="57" height="57" viewBox="0 0 57 57" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#calendar-icon"></use>
                         </svg>
@@ -46,7 +46,7 @@
                     aria-controls="scheduled-services-tab-pane" aria-selected="false">
                     <div class="text-center block-text">Scheduled Services</div>
                     <div class="text-center block-icon">
-                        <svg class="fill" width="54" height="61" viewBox="0 0 54 61" fill="none"
+                        <svg aria-label="Scheduled Services" class="fill" width="54" height="61" viewBox="0 0 54 61" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#scheduled-services-icon"></use>
                         </svg>
@@ -62,7 +62,7 @@
                     aria-controls="submit-service-request-pane" aria-selected="false">
                     <div class="text-center block-text">Submit Service Request</div>
                     <div class="text-center block-icon">
-                        <svg class="fill icon-availability" height="" viewBox="0 0 1440 809.999993" fill="none"
+                        <svg aria-label="Submit Service Request" class="fill icon-availability" height="" viewBox="0 0 1440 809.999993" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#submit-service-icon"></use>
                         </svg>
@@ -78,7 +78,7 @@
                     aria-controls="assignments-tab-pane" aria-selected="false">
                     <div class="text-center block-text">Notifications List</div>
                     <div class="text-center block-icon">
-                        <svg class="stroke" width="54" height="61" viewBox="0 0 60 68" fill="none"
+                        <svg aria-label="Notifications List" class="stroke" width="54" height="61" viewBox="0 0 60 68" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#notification-icon"></use>
                         </svg>
@@ -93,7 +93,7 @@
                     type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
                     <div class="text-center block-text">My Profile</div>
                     <div class="text-center block-icon">
-                        <svg class="fill" width="55" height="55" viewBox="0 0 55 55" fill="none"
+                        <svg aria-label="My Profile" class="fill" width="55" height="55" viewBox="0 0 55 55" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="/css/customer.svg#myprofile"></use>
                         </svg>

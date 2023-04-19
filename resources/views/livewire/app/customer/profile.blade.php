@@ -47,7 +47,10 @@
                                     </div> --}}
                                     <div
                                         class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                        <x-icon name="camera" />
+                                        <svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/provider.svg#camera"></use>
+                                        </svg>
                                     </div>
                                 </div>
                                 <div>
@@ -182,8 +185,8 @@
                                 placeholder="alex@dispostable.com" required aria-required="true" />
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
-                            <label class="form-label" for="phone">Phone Number</label>
-                            <input type="text" id="phone" class="form-control" name="phone"
+                            <label class="form-label" for="phone_number-column">Phone Number</label>
+                            <input type="text" id="phone_number-column" class="form-control" name="phone"
                                 placeholder="(343) 424-6564" />
                         </div>
                         <div class="col-lg-6 mb-4 pe-lg-5">
@@ -209,17 +212,17 @@
                         </div>
 
                         <div class="col-lg-6 mb-4 pe-lg-5">
-                            <label class="form-label" for="address-line-1">
+                            <label class="form-label" for="address-line-column">
                                 Address Line 1
                             </label>
-                            <input type="text" id="address-line-1" class="form-control" name="address-line-1"
+                            <input type="text" id="address-line-column" class="form-control" name="address-line"
                                 placeholder="Seattle, WA, USA" />
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
-                            <label class="form-label" for="address-line-2">
+                            <label class="form-label" for="address-line-2-column">
                                 Address Line 2
                             </label>
-                            <input type="text" id="address-line-2" class="form-control" name="addressLine2"
+                            <input type="text" id="address-line-2-column" class="form-control" name="addressLine2"
                                 placeholder="house 21" />
                         </div>
                         <div class="col-lg-6 mb-4 pe-lg-5">
@@ -231,28 +234,28 @@
                             '','country') !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
-                            <label class="form-label" for="state">
+                            <label class="form-label" for="state-column">
                                 State / Province
                             </label>
-                            <select class="select2 form-select" id="state">
+                            <select class="select2 form-select" id="state-column">
                                 <option value="Al">
                                     Alabama
                                 </option>
                             </select>
                         </div>
                         <div class="col-lg-6 mb-4 pe-lg-5">
-                            <label class="form-label" for="city">
+                            <label class="form-label" for="city-column">
                                 City
                             </label>
-                            <select class="select2 form-select" id="city">
+                            <select class="select2 form-select" id="city-column">
                                 <option value="">Oxford</option>
                             </select>
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
-                            <label class="form-label" for="zip-code">
+                            <label class="form-label" for="zip-code-column">
                                 Zip Code
                             </label>
-                            <input type="text" id="zip-code" class="form-control" name="zipCode" placeholder="07481" />
+                            <input type="text" id="zip-code-column" class="form-control" name="zipCode" placeholder="07481" />
                         </div>
                         <div class="col-lg-12 mb-4">
                             <h2>Physical Address</h2>
@@ -299,10 +302,10 @@
                             </select>
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
-                            <label class="form-label" for="zip-code">
+                            <label class="form-label" for="zipcode">
                                 Zip Code
                             </label>
-                            <input type="text" id="zip-code" class="form-control" name="zipCode" placeholder="07481" />
+                            <input type="text" id="zipcode" class="form-control" name="zipCode" placeholder="07481" />
                         </div>
                         {{-- Input Fields End --}}
                     </div>
