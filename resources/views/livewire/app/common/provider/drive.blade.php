@@ -22,10 +22,10 @@
         </div>
         <div class="col-md-3 col-12">
             <div class="mb-4">
-                <label class="form-label" for="payment-status">
+                <label class="form-label" for="document-type">
                     Document Type
                 </label>
-                <select class="select2 form-select" id="payment-status">
+                <select class="select2 form-select" id="document-type">
                     <option>Select Document Type</option>
                 </select>	
             </div>
@@ -35,11 +35,11 @@
         
         <div class="col-md-3 col-12">
             <div>
-                <label class="form-label" for="set_set_date">
+                <label class="form-label" for="expiry-date">
                     Expiry Date
                 </label>
                 <div class="position-relative">
-                    <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+                    <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="expiry-date">
                     <x-icon name="datefield-icon"/>
                 </div>
             </div>

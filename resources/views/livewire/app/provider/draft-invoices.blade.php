@@ -40,11 +40,11 @@
                 {{-- Date Range --}}
                 <div class="col-md-4 col-12">
                     <div>
-                        <label class="form-label" for="set_set_date">
+                        <label class="form-label" for="set_date">
                             Date Range
                         </label>
                         <div class="position-relative">
-                            <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+                            <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="set_date">
                             <svg aria-label="Select Date" class="icon-date right cursor-pointer" width="20" height="20" viewBox="0 0 20 20"fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#input-calender"></use>
                               </svg>

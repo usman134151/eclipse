@@ -128,8 +128,8 @@
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#input-calender"></use>
                                               </svg>
                                     </div>
-                                    <button type="button" class="btn px-2">
-                                        <svg width="20" height="20" viewBox="0 0 20 20"fill="none"
+                                    <button aria-label="View" type="button" class="btn px-2">
+                                        <svg aria-label="View" width="20" height="20" viewBox="0 0 20 20"fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#black-eye"></use>
                                       </svg>
                                     </button>
