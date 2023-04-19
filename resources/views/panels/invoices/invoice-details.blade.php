@@ -1,6 +1,6 @@
 <x-off-canvas show="invoiceDetails" :allowBackdrop="false" size="fullscreen">
 	<x-slot name="title">Invoice Details</x-slot>
-     
+
     <div class="row">
         <div class="row">
             <p>Here you can view and manage invoices issued to customers.</p>
@@ -196,7 +196,7 @@
                           <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                           </svg>
-                        </a>                                  
+                        </a>
                       <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
                         <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -256,7 +256,7 @@
                           <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                           </svg>
-                        </a>                                  
+                        </a>
                       <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
                         <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -317,7 +317,7 @@
                           <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                           </svg>
-                        </a>                                  
+                        </a>
                       <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
                         <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -340,6 +340,13 @@
                     </div>
                 </td>
                 </tr>
+                {{-- updated by shanila to loop rows --}}
+                @php
+                $status = ['1', '2', '3'];
+                $statusCode = ['bg-success', 'bg-gray', 'bg-warning'];
+                @endphp
+                @for ($i = 1; $i <= 7; $i++) <tr role="row"
+                class="{{ ($i % 2 == 0) ? 'even' : 'odd' }} {{ $statusCode[array_rand($status)] }}">
                 <tr role="row" class="odd">
                   <td>
                       <div class="form-check">
@@ -366,18 +373,38 @@
                   </td>
                   <td class="text-center">Direct Deposit</td>
                   <td><div class="d-flex align-items-center gap-2">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="6" cy="6" r="6" fill="#32A35F"/>
+                    {{-- updated by shanila to add conditon in rows --}}
+                    <?php if ($i % 4 == 0): ?>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="6" cy="6" r="6" fill="#D42E2E"/>
+                        </svg>
+                        <p>Overdue</p>
+                    <?php elseif ($i % 4 == 1): ?>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="6" cy="6" r="6" fill="#32A35F"/>
                       </svg>
-                    <p>Paid</p>
-                  </div></td>
+                      <p>Paid</p>
+                    <?php elseif ($i % 4 == 2): ?>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="6" cy="6" r="6" fill="#F5D83E"/>
+                      </svg>
+                      <p>Partial</p>
+                    <?php else: ?>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="6" cy="6" r="6" fill="#023DB0"/>
+                      </svg>
+                      <p>Issued</p>
+                    <?php endif; ?>
+                    {{-- end updated by shanila --}}
+                  </div>
+                </td>
                   <td>
                     <div class="d-flex actions">
                         <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                           <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                           </svg>
-                        </a>                                  
+                        </a>
                       <a href="#"  title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
                         <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
@@ -400,368 +427,8 @@
                     </div>
                   </td>
                   </tr>
-                  <tr role="row" class="odd">
-                    <td>
-                        <div class="form-check">
-                        <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
-                      </div>
-                    </td>
-                    <td><a @click="offcanvasOpen = true">87109</a>
-                    <p class="mt-1">08/24/2022</p></td>
-                    <td><div class="text-sm">Example Company</div></td>
-                    <td class="align-middle"> <div class="row g-2">
-                      <div class="col-md-2">
-                        <div class="uploaded-data d-flex">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        </div>
-                      </div>
-                    </div></td>
-                    <td class="text-center">17837</td>
-                    <td class="text-center">$40.00</td>
-                    <td class="text-center">
-                      <x-icon name="doc"/>
-                    </td>
-                    <td class="text-center">Direct Deposit</td>
-                    <td><div class="d-flex align-items-center gap-2">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="6" cy="6" r="6" fill="#F5D83E"/>
-                        </svg>
-
-                      <p>Partial</p>
-                    </div></td>
-                    <td>
-                        <div class="d-flex actions">
-                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                              <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
-                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
-                              </svg>
-                            </a>                                  
-                          <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
-                            <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
-                                </svg>
-                          </a>
-                          <div class="d-flex actions">
-                            <div class="dropdown ac-cstm">
-                              <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                </svg>
-                                  </a>
-                              <!-- <div class="tablediv dropdown-menu">
-                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                              </div> -->
-                            </div>
-                          </div>
-                        </div>
-                    </td>
-                    </tr>
-                  <tr role="row" class="odd">
-                    <td>
-                        <div class="form-check">
-                        <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
-                      </div>
-                    </td>
-                    <td><a @click="offcanvasOpen = true">87109</a>
-                    <p class="mt-1">08/24/2022</p></td>
-                    <td><div class="text-sm">Example Company</div></td>
-                    <td class="align-middle"> <div class="row g-2">
-                      <div class="col-md-2">
-                        <div class="uploaded-data d-flex">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        </div>
-                      </div>
-                    </div></td>
-                    <td class="text-center">17837</td>
-                    <td class="text-center">$40.00</td>
-                    <td class="text-center">
-                      <x-icon name="doc"/>
-                    </td>
-                    <td class="text-center">Direct Deposit</td>
-                    <td><div class="d-flex align-items-center gap-2">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="6" cy="6" r="6" fill="#32A35F"/>
-                        </svg>
-                      <p>Paid</p>
-                    </div></td>
-                    <td>
-                        <div class="d-flex actions">
-                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                              <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
-                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
-                              </svg>
-                            </a>                                  
-                          <a href="#"  title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
-                            <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
-                                </svg>
-                          </a>
-                          <div class="d-flex actions">
-                            <div class="dropdown ac-cstm">
-                              <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                </svg>
-                                  </a>
-                              <!-- <div class="tablediv dropdown-menu">
-                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                              </div> -->
-                            </div>
-                          </div>
-                        </div>
-                    </td>
-                    </tr>
-                    <tr role="row" class="odd">
-                      <td>
-                          <div class="form-check">
-                          <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
-                        </div>
-                      </td>
-                      <td><a @click="offcanvasOpen = true">87109</a>
-                      <p class="mt-1">08/24/2022</p></td>
-                      <td><div class="text-sm">Example Company</div></td>
-                      <td class="align-middle"> <div class="row g-2">
-                        <div class="col-md-2">
-                          <div class="uploaded-data d-flex">
-                              <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                              <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                              <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                              <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                          </div>
-                        </div>
-                      </div></td>
-                      <td class="text-center">17837</td>
-                      <td class="text-center">$40.00</td>
-                      <td class="text-center">
-                        <x-icon name="doc"/>
-                      </td>
-                      <td class="text-center">Direct Deposit</td>
-                      <td><div class="d-flex align-items-center gap-2">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="6" cy="6" r="6" fill="#32A35F"/>
-                          </svg>
-                        <p>Paid</p>
-                      </div></td>
-                      <td>
-                        <div class="d-flex actions">
-                            <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                              <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
-                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
-                              </svg>
-                            </a>                                  
-                          <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
-                            <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
-                                </svg>
-                          </a>
-                          <div class="d-flex actions">
-                            <div class="dropdown ac-cstm">
-                              <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                </svg>
-                                  </a>
-                              <!-- <div class="tablediv dropdown-menu">
-                                <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                              </div> -->
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      </tr>
-                      <tr role="row" class="odd">
-                        <td>
-                            <div class="form-check">
-                            <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
-                          </div>
-                        </td>
-                        <td><a @click="offcanvasOpen = true">87109</a>
-                        <p class="mt-1">08/24/2022</p></td>
-                        <td><div class="text-sm">Example Company</div></td>
-                        <td class="align-middle"> <div class="row g-2">
-                          <div class="col-md-2">
-                            <div class="uploaded-data d-flex">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            </div>
-                          </div>
-                        </div></td>
-                        <td class="text-center">17837</td>
-                        <td class="text-center">$40.00</td>
-                        <td class="text-center">
-                          <x-icon name="doc"/>
-                        </td>
-                        <td class="text-center">Direct Deposit</td>
-                        <td><div class="d-flex align-items-center gap-2">
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="6" fill="#D42E2E"/>
-                            </svg>
-
-                          <p>Overdue</p>
-                        </div></td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
-                                  </svg>
-                                </a>                                  
-                              <a href="#"  title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
-                                <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
-                                    </svg>
-                              </a>
-                              <div class="d-flex actions">
-                                <div class="dropdown ac-cstm">
-                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                    </svg>
-                                      </a>
-                                  <!-- <div class="tablediv dropdown-menu">
-                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                    <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                  </div> -->
-                                </div>
-                              </div>
-                            </div>
-                        </td>
-                        </tr>
-                      <tr role="row" class="odd">
-                        <td>
-                            <div class="form-check">
-                            <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
-                          </div>
-                        </td>
-                        <td><a @click="offcanvasOpen = true">87109</a>
-                        <p class="mt-1">08/24/2022</p></td>
-                        <td><div class="text-sm">Example Company</div></td>
-                        <td class="align-middle"> <div class="row g-2">
-                          <div class="col-md-2">
-                            <div class="uploaded-data d-flex">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                            </div>
-                          </div>
-                        </div></td>
-                        <td class="text-center">17837</td>
-                        <td class="text-center">$40.00</td>
-                        <td class="text-center">
-                          <x-icon name="doc"/>
-                        </td>
-                        <td class="text-center">Direct Deposit</td>
-                        <td><div class="d-flex align-items-center gap-2">
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="6" r="6" fill="#32A35F"/>
-                            </svg>
-                          <p>Paid</p>
-                        </div></td>
-                        <td>
-                            <div class="d-flex actions">
-                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
-                                  </svg>
-                                </a>                                  
-                              <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
-                                <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
-                                    </svg>
-                              </a>
-                              <div class="d-flex actions">
-                                <div class="dropdown ac-cstm">
-                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                    </svg>
-                                      </a>
-                                  <!-- <div class="tablediv dropdown-menu">
-                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                    <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                  </div> -->
-                                </div>
-                              </div>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td>
-                              <div class="form-check">
-                              <input class="form-check-input" aria-label="Select Invoice" id="" name="" type="checkbox" tabindex="">
-                            </div>
-                          </td>
-                          <td><a @click="offcanvasOpen = true">87109</a>
-                          <p class="mt-1">08/24/2022</p></td>
-                          <td><div class="text-sm">Example Company</div></td>
-                          <td class="align-middle"> <div class="row g-2">
-                            <div class="col-md-2">
-                              <div class="uploaded-data d-flex">
-                                  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                                  <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                              </div>
-                            </div>
-                          </div></td>
-                          <td class="text-center">17837</td>
-                          <td class="text-center">$40.00</td>
-                          <td class="text-center">
-                            <x-icon name="doc"/>
-                          </td>
-                          <td class="text-center">Direct Deposit</td>
-                          <td><div class="d-flex align-items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="6" cy="6" r="6" fill="#32A35F"/>
-                              </svg>
-                            <p>Paid</p>
-                          </div></td>
-                          <td>
-                            <div class="d-flex actions">
-                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
-                                  </svg>
-                                </a>                                  
-                              <a href="#" title="Payment Details" aria-label="Payment Details" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#payInvoice">
-                                <svg aria-label="Payment Details" width="19" height="20" viewBox="0 0 19 20"  fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#dollar-assignment"></use>
-                                    </svg>
-                              </a>
-                              <div class="d-flex actions">
-                                <div class="dropdown ac-cstm">
-                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
-                                    </svg>
-                                      </a>
-                                  <!-- <div class="tablediv dropdown-menu">
-                                    <a title="Edit" aria-label="Edit" href="#" class="dropdown-item"><i class="fa fa-edit"></i>Save</a>
-                                    <a href="javascript:void(0)" aria-label="Deactivate" title="Deactivate" class="dropdown-item"><i class="fa fa-times-circle"></i>Save as</a>
-
-                                  </div> -->
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          </tr>
+                  @endfor
+                  {{-- ended updated by shanila --}}
                 </tbody>
             </table>
         </div>
@@ -772,7 +439,7 @@
                 <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                 </svg>
-              </a> 
+              </a>
                 <span class="text-sm">
                 Revert
                 </span>
