@@ -123,58 +123,53 @@
                 <span class="avatar-status-online"></span>
               </span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user" data-bs-popper="static">
-              <a class="dropdown-item" href="#">
+            <div class="dropdown-menu dropdown-menu-end p-0" aria-labelledby="dropdown-user" data-bs-popper="static" >
+              <a href="/admin/profile" class="dropdown-item" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user me-50">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 Profile
               </a>
-              <a class="dropdown-item" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail me-50">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                Inbox
+              <a href="{{ url('/admin/bookings/upcoming') }}" class="dropdown-item" href="#">
+                <svg aria-label="Upcoming Assignments" width="15" height="20" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="/css/common-icons.svg#upcoming-assignment-icons"></use>
+                </svg>    
+                Upcoming Assignments
               </a>
-              <a class="dropdown-item" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square me-50">
-                  <polyline points="9 11 12 14 22 4"></polyline>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                </svg>
-                Task
+              <a href="{{ url('/admin/bookings/pending-approval') }}" class="dropdown-item" href="#">
+                <svg aria-label="Pending Assignments" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="/css/common-icons.svg#pending-assignments-icon"></use>
+                </svg> 
+                Pending Assignments
               </a>
-              <a class="dropdown-item" href="#">
+              <a href="{{ url('/admin/chat') }}" class="dropdown-item" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square me-50">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
                 Chats
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings me-50">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              <a href="{{ url('/admin/business-setup') }}" class="dropdown-item" href="#">
+                <svg aria-label="Business Setup" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="/css/common-icons.svg#business-setup-icon"></use>
                 </svg>
-                Settings
+                Business Setup
               </a>
-              <a class="dropdown-item" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card me-50">
-                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                  <line x1="1" y1="10" x2="23" y2="10"></line>
+              <a href="{{ url('/admin/reports') }}" class="dropdown-item" href="#">
+                <svg aria-label="Business Setup" width="13" height="19" viewBox="0 0 13 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="/css/common-icons.svg#reports-header-icons"></use>
+                </svg>     
+                Reports
+              </a>
+              <a href="{{ url('/admin/jira-status') }}" class="dropdown-item" href="#">
+                <svg aria-label="Support Tickets" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use xlink:href="/css/common-icons.svg#support-ticket"></use>
                 </svg>
-                Pricing
+                Support Tickets
               </a>
-              <a class="dropdown-item" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle me-50">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
-                FAQ
-              </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="#" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power me-50">
                   <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
                   <line x1="12" y1="2" x2="12" y2="12"></line>
