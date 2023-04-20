@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\Industry;
-
+use Illuminate\Validation\Rule;
 
 use Livewire\Component;
 
@@ -16,13 +16,17 @@ class IndustriesForm extends Component
         $this->industry=$industry;
     }
 
-    
+
     // Validation Rules
     public function rules()
     {
         return [
-                'industry.name' => 'required|string|max:255|unique:industries,name',
-                
+                'industry.name' => [
+                    'required',
+                    'string',
+                    'max:255',
+                Rule::unique('industries','name')->ignore($this->industry->id)]
+
             ];
     }
     public function showList($message="")
@@ -47,9 +51,9 @@ class IndustriesForm extends Component
 
     public function render()
     {
-        
+
         return view('livewire.app.common.forms.industries-form');
     }
 
-  
+
 }
