@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire\App\Common\Forms;
+use Illuminate\Validation\Rule;
+
 
 use App\Models\Tenant\Accommodation;
 use Livewire\Component;
@@ -19,7 +21,11 @@ class AccommodationForm extends Component
 	public function rules()
 	{
 		return [
-			'accommodation.name' => 'required|string|max:255|unique:accommodations,name',
+			'accommodation.name' => [
+				'required',
+				'string',
+				'max:255',
+				Rule::unique('accommodations', 'name')->ignore($this->accommodation->id)],
 			'accommodation.description' => ''
 		];
 	}
