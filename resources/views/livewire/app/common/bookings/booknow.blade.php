@@ -506,7 +506,7 @@
                                     <h2>Select Dates & Times</h2>
                                     <!-- Select Dates & Times Duplicate Block -->
                                     @foreach($dates as $index=>$date)
-                                    <div class="duplicate-block">
+                                    <div class="duplicate-block mb-4">
                                         <div class="d-flex justify-content-between">
                                         <h3 class="text-primary">Date & Time {{ $loop->index + 1 }}</h3>
                                         <div class="align-items-center gap-2">
