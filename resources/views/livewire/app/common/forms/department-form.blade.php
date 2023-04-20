@@ -121,11 +121,9 @@
                                                     <div class="mb-4">
                                                         <label class="form-label" for="industry-column">Industry<span
                                                                 class="mandatory" aria-hidden="true">*</span></label>
-                                                        {{-- Updated by Shanila to add dropdown--}}
-                                                        {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
-                                                        'name', '', '', 'name', false, 'industry',
-                                                        '','industry') !!}
-                                                        {{-- End of update by Shanila --}}
+                                                         {{-- Updated by Shanila to add dropdown--}}
+                                                              {!! $setupValues['industries']['rendered'] !!}
+                                                                {{-- End of update by Shanila --}}
                                                     </div>
                                                 </div>
 
@@ -176,12 +174,7 @@
                                                             <label class="form-label" for="preferred-language">Preferred
                                                                 Language</label>
                                                             {{-- Updated by Shanila to add dropdown--}}
-                                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue',
-                                                            'id',
-                                                            'setup_value_label', 'setup_id', 1, 'setup_value_label',
-                                                            false,
-                                                            'languages',
-                                                            '','languages') !!}
+                                                            {!! $setupValues['languages']['rendered'] !!}
                                                             {{-- End of update by Shanila --}}
                                                         </div>
                                                     </div>
