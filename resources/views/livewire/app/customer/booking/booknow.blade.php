@@ -57,33 +57,35 @@
                             <div class="row">
                                 <div class="row between-section-segment-spacing">
                                     <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label">Department <span class="mandatory">*</span></label>
-                                        <input type="" class="form-control" placeholder="Select Department">
+                                        <label class="form-label" for="department">Department <span class="mandatory">*</span></label>
+                                        <input type="" class="form-control" placeholder="Select Department" id="department">
                                     </div>
                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                         <label class="form-label">Industry <span class="mandatory">*</span></label>
-                                      {{-- Updated by Shanila to add dropdown--}}
-                                      {!! $setupValues['industries']['rendered'] !!}
-                                      {{-- End of update by Shanila --}}
+                                        {{-- Updated by Shanila to add dropdown--}}
+                                        {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+                                        'name', '', '', 'name', false, 'industry',
+                                        '','industry') !!}
+                                        {{-- End of update by Shanila --}}
                                     </div>
                                     <div class="col-lg-12 mb-4">
                                         <div class="d-lg-flex align-items-center mb-4 gap-3">
                                             <div class="form-check form-switch form-switch-column mb-lg-0">
                                                 <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                    checked>
+                                                    checked aria-label="Choose a different point of contact">
                                             </div>
                                             <h3 class="mb-lg-0">Choose a different point of contact</h3>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 pe-lg-5">
-                                                <label class="form-label">Point of Contact <span
+                                                <label class="form-label" for="point-of-contact">Point of Contact <span
                                                         class="mandatory">*</span></label>
-                                                <input type="" class="form-control" placeholder="Enter Name  ">
+                                                <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact">
                                             </div>
                                             <div class="col-lg-6 ps-lg-5">
-                                                <label class="form-label">Phone Number<span
+                                                <label class="form-label" for="phone-number">Phone Number<span
                                                         class="mandatory">*</span></label>
-                                                <input type="" class="form-control" placeholder="Enter Phone Number">
+                                                <input type="" class="form-control" placeholder="Enter Phone Number" id="phone-number">
                                             </div>
                                         </div>
                                     </div>
@@ -93,21 +95,21 @@
                                         <div class="d-lg-flex align-items-center mb-4 gap-3">
                                             <div class="form-check form-switch form-switch-column mb-lg-0">
                                                 <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                    checked>
+                                                    checked aria-label="Add Supervisor & Billing Manager">
                                             </div>
                                             <h3 class="mb-lg-0">Add Supervisor & Billing Manager</h3>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 pe-lg-5">
-                                                <label class="form-label">Supervisor <span
+                                                <label class="form-label" for="supervisor">Supervisor <span
                                                         class="mandatory">*</span></label>
-                                                <select class="form-select">
+                                                <select class="form-select" id="supervisor">
                                                     <option>Select Supervisor</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-6 ps-lg-5">
-                                                <label class="form-label">Billing Manager</label>
-                                                <select class="form-select">
+                                                <label class="form-label" for="billing-manager">Billing Manager</label>
+                                                <select class="form-select" id="billing-manager">
                                                     <option>Select Billing Manager</option>
                                                 </select>
                                             </div>
@@ -119,8 +121,8 @@
                                     <h2>Service Information</h2>
                                     <div class="row">
                                         <div class="col-lg-6 pe-lg-5 mb-4">
-                                            <label class="form-label">Booking Title</label>
-                                            <input type="text" class="form-control" placeholder="Enter Booking Title">
+                                            <label class="form-label" for="booking-title">Booking Title</label>
+                                            <input type="text" class="form-control" placeholder="Enter Booking Title" id="booking-title">
                                         </div>
                                     </div>
                                     <div class="duplicate-block mb-3">
@@ -130,15 +132,17 @@
                                                 <label class="form-label">Accommodation <span
                                                         class="mandatory">*</span></label>
                                                 {{-- Updated by Shanila to add dropdown--}}
-                                                {!! $setupValues['accomodations']['rendered'] !!}
+                                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
+                                                'name', '', '', 'name', false, 'accommodation',
+                                                '','accommodation') !!}
                                                 {{-- End of update by Shanila --}}
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
-                                                <label class="form-label">Service <span class="mandatory">*</span> <i
+                                                <label class="form-label" for="service">Service <span class="mandatory">*</span> <i
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title=""></i></label>
-                                                <select class="form-select">
+                                                <select class="form-select" id="service">
                                                     <option>Select Service</option>
                                                 </select>
                                             </div>
@@ -164,16 +168,16 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-4 pe-lg-5">
-                                                <label class="form-label">Number of Providers <span
+                                                <label class="form-label" for="number-of-providers">Number of Providers <span
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
-                                                    placeholder="Enter Number of Providers">
+                                                    placeholder="Enter Number of Providers" id="number-of-providers">
                                             </div>
                                             <div class="col-lg-6 mb-4 pe-lg-5">
-                                                <label class="form-label">Number of Providers <span
+                                                <label class="form-label" for="number-of-providers-column">Number of Providers <span
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
-                                                    placeholder="Enter Number of Providers">
+                                                    placeholder="Enter Number of Providers" id="number-of-providers-column">
                                             </div>
                                             <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <div class="row">
@@ -184,7 +188,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked>
+                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Toggle">
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyBroadcast">Auto-notify</label>
                                                             </div>
@@ -197,7 +201,7 @@
                                                             </label>
                                                             <div class="form-check form-switch form-switch-column">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyAssign" checked>
+                                                                    role="switch" id="AutoNotifyAssign" checked aria-label="Assign Toggle">
                                                                 <label class="form-check-label"
                                                                     for="AutoNotifyAssign">Manual-assign</label>
                                                             </div>
@@ -208,7 +212,7 @@
                                             <div class="d-lg-flex align-items-center mb-4 gap-3">
                                                 <div class="form-check form-switch form-switch-column mb-lg-0">
                                                     <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                        checked>
+                                                        checked aria-label="Add Consumers & Participants">
                                                 </div>
                                                 <h2 class="mb-lg-0 text-dark">Add Consumers & Participants</h2>
                                             </div>
@@ -242,17 +246,18 @@
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                                         <label class="form-label">Accommodation <span
                                                                 class="mandatory">*</span></label>
-                                                        {{-- Updated by Shanila to add dropdown--}}
-                                                {!! $setupValues['accomodations']['rendered'] !!}
-                                                {{-- End of update by Shanila --}}
+                                                        {!! App\Helpers\SetupHelper::createDropDown('Accommodation',
+                                                        'id',
+                                                        'name', '', '', 'name', false, 'accommodation',
+                                                        '','accommodation') !!}
                                                     </div>
                                                     <div class="col-lg-6 mb-4 ps-lg-5">
-                                                        <label class="form-label">Service <span
+                                                        <label class="form-label" for="service-column">Service <span
                                                                 class="mandatory">*</span>
                                                             <i class="fa fa-question-circle text-muted"
                                                                 aria-hidden="true" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" title=""></i></label>
-                                                        <select class="form-select">
+                                                        <select class="form-select" id="service-column">
                                                             <option>Select Service</option>
                                                         </select>
                                                     </div>
@@ -280,10 +285,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
-                                                        <label class="form-label">Number of Providers <span
+                                                        <label class="form-label" for="numberofproviders">Number of Providers <span
                                                                 class="mandatory">*</span></label>
                                                         <input type="" class="form-control"
-                                                            placeholder="Enter Number of Providers">
+                                                            placeholder="Enter Number of Providers" id="numberofproviders">
                                                     </div>
                                                     <div class="col-lg-6 mb-4 ps-lg-5">
                                                         <div class="row">
@@ -296,7 +301,7 @@
                                                                         class="form-check form-switch form-switch-column">
                                                                         <input class="form-check-input" type="checkbox"
                                                                             role="switch" id="AutoNotifyBroadcast"
-                                                                            checked>
+                                                                            checked aria-label="Auto-notify Toggle">
                                                                         <label class="form-check-label"
                                                                             for="AutoNotifyBroadcast">Auto-notify</label>
                                                                     </div>
@@ -310,7 +315,7 @@
                                                                     <div
                                                                         class="form-check form-switch form-switch-column">
                                                                         <input class="form-check-input" type="checkbox"
-                                                                            role="switch" id="AutoNotifyAssign" checked>
+                                                                            role="switch" id="AutoNotifyAssign" checked aria-label="Manual-assign Toggle">
                                                                         <label class="form-check-label"
                                                                             for="AutoNotifyAssign">Manual-assign</label>
                                                                     </div>
@@ -323,7 +328,7 @@
                                                             <div
                                                                 class="form-check form-switch form-switch-column mb-lg-0">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="" checked>
+                                                                    role="switch" id="" checked aria-label="Add Consumers & Participants">
                                                             </div>
                                                             <h2 class="mb-lg-0">Add Consumers & Participants
                                                             </h2>
@@ -450,22 +455,22 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-lg-4 mb-3">
-                                                                    <label class="form-label">Meeting
+                                                                    <label class="form-label" for="meetingName">Meeting
                                                                         Name</label>
                                                                     <input type="" class="form-control"
-                                                                        placeholder="Enter Meeting Name">
+                                                                        placeholder="Enter Meeting Name" id="meetingName">
                                                                 </div>
                                                                 <div class="col-lg-4 mb-3">
-                                                                    <label class="form-label">Phone
+                                                                    <label class="form-label" for="phoneNumber">Phone
                                                                         Number</label>
                                                                     <input type="" class="form-control"
-                                                                        placeholder="Enter Phone Number">
+                                                                        placeholder="Enter Phone Number" id="phoneNumber">
                                                                 </div>
                                                                 <div class="col-lg-4 mb-3">
-                                                                    <label class="form-label">Access
+                                                                    <label class="form-label" for="accessCode">Access
                                                                         Code</label>
                                                                     <input type="" class="form-control"
-                                                                        placeholder="Enter Access Code">
+                                                                        placeholder="Enter Access Code" id="accessCode">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -491,22 +496,22 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-lg-4 mb-3">
-                                                                    <label class="form-label">Meeting
+                                                                    <label class="form-label" for="meeting-name">Meeting
                                                                         Name</label>
                                                                     <input type="" class="form-control"
-                                                                        placeholder="Enter Meeting Name">
+                                                                        placeholder="Enter Meeting Name" id="meeting-name">
                                                                 </div>
                                                                 <div class="col-lg-4 mb-3">
-                                                                    <label class="form-label">Phone
+                                                                    <label class="form-label" for="phnumber">Phone
                                                                         Number</label>
                                                                     <input type="" class="form-control"
-                                                                        placeholder="Enter Phone Number">
+                                                                        placeholder="Enter Phone Number" id="phnumber">
                                                                 </div>
                                                                 <div class="col-lg-4 mb-3">
-                                                                    <label class="form-label">Access
+                                                                    <label class="form-label" for="AcessCode">Access
                                                                         Code</label>
                                                                     <input type="" class="form-control"
-                                                                        placeholder="Enter Access Code">
+                                                                        placeholder="Enter Access Code" id="AcessCode">
                                                                 </div>
                                                             </div>
                                                             <div class="row justify-content-end">
@@ -565,16 +570,20 @@
                                                             <label class="form-label-sm" for="set_time_zone">Set
                                                                 Time Zone <span class="mandatory">*</span></label>
                                                             {{-- updated by shanila to add dropdown --}}
-                                                {!! $setupValues['timezones']['rendered'] !!}
-                                                {{-- end updated --}}
+                                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue',
+                                                            'id',
+                                                            'setup_value_label', 'setup_id', 4, 'setup_value_label',
+                                                            false, 'timezone',
+                                                            '','timezone') !!}
+                                                            {{-- end updated --}}
                                                         </div>
                                                         <div class="">
-                                                            <label class="form-label-sm" for="set_start_date">Set Date
+                                                            <label class="form-label-sm" for="start_date">Set Date
                                                                 <span class="mandatory">*</span></label>
                                                             <div class="position-relative">
                                                                 <input type="" name=""
                                                                     class="form-control form-control-md js-single-date"
-                                                                    placeholder="Select Date" id="set_start_date"
+                                                                    placeholder="Select Date" id="start_date"
                                                                     aria-label="Set Start Date">
                                                                 <svg class="icon-date md" width="20" height="20"
                                                                     viewBox="0 0 20 20" fill="none"
@@ -587,7 +596,7 @@
                                                         </div>
                                                         <div class="d-flex">
                                                             <div class="d-flex flex-column justify-content-between">
-                                                                <label class="form-label-sm" for="set_start_time">Start
+                                                                <label class="form-label-sm" for="start_time">Start
                                                                     Time</label>
                                                                 <div class="d-flex gap-2">
                                                                     <div class="time d-flex align-items-center gap-2">
@@ -605,7 +614,7 @@
                                                                         class="form-check form-switch form-switch-column mb-0">
                                                                         <input checked class="form-check-input"
                                                                             type="checkbox" role="switch"
-                                                                            id="startTimeAMPM">
+                                                                            id="startTimeAMPM" aria-label="AM PM Toggle">
                                                                         <label class="form-check-label"
                                                                             for="startTimeAMPM">AM</label>
                                                                         <label class="form-check-label"
@@ -615,12 +624,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="">
-                                                            <label class="form-label-sm" for="set_end_date">Set
+                                                            <label class="form-label-sm" for="set_end_date-column">Set
                                                                 Date <span class="mandatory">*</span></label>
                                                             <div class="position-relative">
                                                                 <input type="" name=""
                                                                     class="form-control form-control-md js-single-date"
-                                                                    placeholder="Select Date" id="set_end_date"
+                                                                    placeholder="Select Date" id="set_end_date-column"
                                                                     aria-label="Set End Date">
                                                                 <svg class="icon-date md" width="20" height="20"
                                                                     viewBox="0 0 20 20" fill="none"
@@ -651,7 +660,7 @@
                                                                         class="form-check form-switch form-switch-column mb-0">
                                                                         <input checked class="form-check-input"
                                                                             type="checkbox" role="switch"
-                                                                            id="endTimeAMPM">
+                                                                            id="endTimeAMPM" aria-label="AM PM Toggle">
                                                                         <label class="form-check-label"
                                                                             for="endTimeAMPM">AM</label>
                                                                         <label class="form-check-label"
@@ -666,11 +675,11 @@
                                                             Duration</label>
                                                         <div>
                                                             <label class="form-label-sm"
-                                                                for="total_billable_service_duration_days">Days</label>
+                                                                for="days">Days</label>
                                                             <input type=""
                                                                 class="form-control form-control-md text-center"
                                                                 aria-label="Days" placeholder="0"
-                                                                id="total_billable_service_duration_days">
+                                                                id="days">
                                                         </div>
                                                         <div>
                                                             <label class="form-label-sm">Hours</label>
@@ -714,8 +723,12 @@
                                                             <label class="form-label-sm" for="set_time_zone">Set
                                                                 Time Zone <span class="mandatory">*</span></label>
                                                             {{-- updated by shanila to add dropdown --}}
-                                                {!! $setupValues['timezones']['rendered'] !!}
-                                                {{-- end updated --}}
+                                                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue',
+                                                            'id',
+                                                            'setup_value_label', 'setup_id', 4, 'setup_value_label',
+                                                            false, 'timezone',
+                                                            '','timezone') !!}
+                                                            {{-- end updated --}}
                                                         </div>
                                                         <div class="">
                                                             <label class="form-label-sm" for="set_start_date">Set Date
@@ -754,7 +767,7 @@
                                                                         class="form-check form-switch form-switch-column mb-0">
                                                                         <input checked class="form-check-input"
                                                                             type="checkbox" role="switch"
-                                                                            id="startTimeAMPM">
+                                                                            id="startTimeAMPM" aria-label="AM PM Toggle">
                                                                         <label class="form-check-label"
                                                                             for="startTimeAMPM">AM</label>
                                                                         <label class="form-check-label"
@@ -800,7 +813,7 @@
                                                                         class="form-check form-switch form-switch-column mb-0">
                                                                         <input checked class="form-check-input"
                                                                             type="checkbox" role="switch"
-                                                                            id="endTimeAMPM">
+                                                                            id="endTimeAMPM" aria-label="AM PM Toggle">
                                                                         <label class="form-check-label"
                                                                             for="endTimeAMPM">AM</label>
                                                                         <label class="form-check-label"

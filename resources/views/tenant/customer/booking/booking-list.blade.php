@@ -37,16 +37,16 @@
 <div class="bg-muted rounded p-4 mb-5">
     <div class="d-flex gap-5 align-items-center mb-4">
       <div class="mb-4 mb-lg-0">
-        <label class="form-label-sm">Search</label>
+        <label class="form-label-sm" for="search-column">Search</label>
         <div class="d-flex gap-2 align-items-center">
           <div class="position-relative">
-            <input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Customer Name or Email">
+            <input type="text" class="form-control form-control-md is-search" id="search-column" aria-describedby="search" placeholder="Customer Name or Email">
             <svg class="icon-search position-absolute" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
               <path d="M290 323.515733a25.6 25.6 0 1 1 36.181334-36.181333l408.234666 408.234667a25.6 25.6 0 1 1-36.181333 36.181333l-408.234667-408.234667z" fill="#ffffff" />
               <path d="M320.365867 731.7504a25.6 25.6 0 1 1-36.181334-36.181333l408.234667-408.234667a25.6 25.6 0 1 1 36.181333 36.181333l-408.234666 408.234667z" fill="#ffffff" />
             </svg>
           </div>
-          <button class="btn btn-secondary rounded btn-sm btn-hs-icon">
+          <button aria-label="Search" class="btn btn-secondary rounded btn-sm btn-hs-icon">
             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.0043 14.977C18.5005 14.5284 18.01 14.0669 17.5336 13.593C17.1334 13.215 16.8924 12.94 16.8924 12.94L13.88 11.603C15.086 10.3316 15.7517 8.69499 15.752 7C15.752 3.141 12.3738 0 8.22098 0C4.06815 0 0.689941 3.141 0.689941 7C0.689941 10.859 4.06815 14 8.22098 14C10.1177 14 11.8466 13.34 13.1732 12.261L14.6116 15.061C14.6116 15.061 14.9075 15.285 15.3141 15.657C15.7305 16.02 16.2781 16.511 16.8031 17.024L18.2641 18.416L18.914 19.062L21.1959 16.941L20.5009 16.337C20.0931 15.965 19.5487 15.471 19.0043 14.977V14.977ZM8.22098 12C5.25482 12 2.84167 9.757 2.84167 7C2.84167 4.243 5.25482 2 8.22098 2C11.1871 2 13.6003 4.243 13.6003 7C13.6003 9.757 11.1871 12 8.22098 12Z" fill="black"/>
             </svg>
