@@ -81,9 +81,7 @@
                                                 data-bs-placement="top"
                                                 title="Select one or more accommodations for which this coupon may be redeemed."></i></label>
                                         {{-- Updated by Shanila to add dropdown--}}
-                                        {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-                                        'name', '', '', 'name', false, 'accommodation',
-                                        '','accommodation') !!}
+                                        {!! $setupValues['accomodations']['rendered'] !!}
                                         {{-- End of update by Shanila --}}
                                     </div>
                                 </div>
