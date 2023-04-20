@@ -81,6 +81,7 @@ class RolePermissionForm extends Component
 		else
 		{
 			$this->roleName = SystemRole::find($id)->system_role_name;
+            $this->showList($this->message);
 		}
 		$this->sectionRights = $rightsArray;
 		$this->roleID = $id;
