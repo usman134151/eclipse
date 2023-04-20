@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\Specialization;
+use Illuminate\Validation\Rule;
 
 
 use Livewire\Component;
@@ -17,14 +18,19 @@ class SpecializationForm extends Component
         $this->specialization=$specialization;
     }
 
-    
+
     // Validation Rules
     public function rules()
     {
         return [
-                'specialization.name' => 'required|string|max:255|unique:specializations,name',
-                'specialization.description'=>'' 
+                'specialization.name' =>[
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('specializations','name')->ignore($this->specialization->id)],
+                'specialization.description'=>''
             ];
+
     }
     public function showList($message="")
     {
@@ -35,8 +41,8 @@ class SpecializationForm extends Component
     public function edit(Specialization $specialization){
         $this->label="Edit";
         $this->specialization=$specialization;
-        
-       
+
+
     }
 
     public function save(){
@@ -53,5 +59,5 @@ class SpecializationForm extends Component
         return view('livewire.app.common.forms.specialization-form');
     }
 
-  
+
 }
