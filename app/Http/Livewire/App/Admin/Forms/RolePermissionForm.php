@@ -7,6 +7,7 @@ use App\Models\Tenant\SectionRight;
 use App\Models\Tenant\SystemRole;
 use App\Models\Tenant\SystemSection;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class RolePermissionForm extends Component
 {
@@ -40,10 +41,22 @@ class RolePermissionForm extends Component
 	// Validation Rules
 	public function rules()
 	{
-		return [
-			'roleName' => 'required|string|max:64',
-			'sectionRights' => 'required',
-		];
+        $rules = [
+            'roleName' => [
+                'required',
+                'string',
+                'max:64',
+            ],
+            'sectionRights' => 'required',
+        ];
+
+        if ($this->roleID) {
+            $rules['roleName'][] = Rule::unique('system_roles', 'system_role_name')->ignore($this->roleID);
+        } else {
+            $rules['roleName'][] = Rule::unique('system_roles', 'system_role_name');
+        }
+
+        return $rules;
 	}
 
 	protected $messages = [
@@ -98,7 +111,7 @@ class RolePermissionForm extends Component
 				'system_role_name' => $this->roleName,
 				'status' => 1,
 			]);
-	
+
 			if ($systemRole->count())
 			{
 				$sectionRightsArray = $this->fetchSectionRights($systemRole->system_role_id);
@@ -112,7 +125,7 @@ class RolePermissionForm extends Component
 			$this->showList($this->message);
 		}
 	}
-	
+
 	private function getRights()
 	{
 		return Right::select(['id', 'right_type'])->get();
