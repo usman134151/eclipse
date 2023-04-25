@@ -31,7 +31,7 @@
                     <div class="text-sm">11 November 2022</div>
                   </div>
                   <div class="col-lg-3 align-self-center">
-                    <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
+                    <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Date:</label>
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="position-relative">
@@ -52,7 +52,7 @@
                     <div class="text-sm">11 November 2022</div>
                   </div>
                   <div class="col-lg-3 align-self-center">
-                    <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
+                    <label class="form-label-sm fw-semibold mb-lg-0">Actual End Date:</label>
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="position-relative">
@@ -97,7 +97,7 @@
                     <div class="text-sm">09:00 PM</div>
                   </div>
                   <div class="col-lg-3 align-self-center">
-                    <label class="form-label-sm fw-semibold mb-lg-0">Actual Start Time:</label>
+                    <label class="form-label-sm fw-semibold mb-lg-0">Actual End Time:</label>
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="d-flex gap-2">
