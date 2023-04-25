@@ -404,7 +404,7 @@
                                                                         </div>
                                                                         <div class="col-lg-2 col-md-4">
                                                                         <a href="#" wire:click.prevent="removePhone({{$index}})" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                                 </svg>
                                                             </a>

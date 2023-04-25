@@ -1114,22 +1114,22 @@
                                         {{-- Search --}}
                                         <div class="col-md-3 col-12">
                                             <div class="mb-4">
-                                                <label class="form-label" for="search-column">
+                                                <label class="form-label" for="search-record-column">
                                                     Search
                                                 </label>
-                                                <input type="text" id="search-column" class="form-control"
+                                                <input type="text" id="search-record-column" class="form-control"
                                                     name="search-column" placeholder="Search here" required
                                                     aria-required="true" />
                                             </div>
                                         </div>
                                         {{-- Date Range --}}
                                         <div class="col-md-3 col-12">
-                                            <label class="form-label" for="set_set_date">
+                                            <label class="form-label" for="set_date-column">
                                                 Date Range
                                             </label>
                                             <div class="position-relative">
                                                 <input type="" name="" class="form-control js-single-date"
-                                                    placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+                                                    placeholder="Jan 1, 2022 - Oct 1, 2022" id="set_date-column">
                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                 <svg aria-label="Date" class="icon-date" width="20" height="20"
                                                     viewBox="0 0 20 20">
@@ -1153,10 +1153,10 @@
                                       --}}
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="show_records_number" class="form-label">
+                                            <label for="show_records" class="form-label">
                                                 Show
                                             </label>
-                                            <select class="form-select" id="show_records_number">
+                                            <select class="form-select" id="show_records">
                                                 <option>10</option>
                                                 <option>15</option>
                                                 <option>20</option>
@@ -1918,22 +1918,22 @@
                                     </h3>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         <div class="col-md-3 col-12 mb-4">
-                                            <label class="form-label" for="search-column">
+                                            <label class="form-label" for="search-records">
                                                 Search
                                             </label>
-                                            <input type="text" id="search-column" class="form-control"
+                                            <input type="text" id="search-records" class="form-control"
                                                 name="search-column" placeholder="Search here" required
                                                 aria-required="true" />
                                         </div>
                                         {{-- Date Range --}}
                                         <div class="col-md-3 col-12">
                                             <div>
-                                                <label class="form-label" for="set_set_date">
+                                                <label class="form-label" for="date-range">
                                                     Date Range
                                                 </label>
                                                 <div class="position-relative">
                                                     <input type="" name="" class="form-control js-single-date"
-                                                        placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+                                                        placeholder="Jan 1, 2022 - Oct 1, 2022" id="date-range">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
@@ -1946,10 +1946,10 @@
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
-                                            <label for="show_records_number" class="form-label">
+                                            <label for="show-records-number" class="form-label">
                                                 Show
                                             </label>
-                                            <select class="form-select" id="show_records_number">
+                                            <select class="form-select" id="show-records-number">
                                                 <option>10</option>
                                                 <option>15</option>
                                                 <option>20</option>
