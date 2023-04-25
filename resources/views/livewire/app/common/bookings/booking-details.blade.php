@@ -21,7 +21,7 @@
                             type="button" role="tab" aria-controls="assigned-providers" aria-selected="false">
 
                             {{-- Updated by Shanila to Add svg icon--}}
-                            <svg width="25" height="28" viewBox="0 0 25 28">
+                            <svg aria-label="Assigned Providers" width="25" height="28" viewBox="0 0 25 28">
                                 <use xlink:href="/css/common-icons.svg#gray-user"></use>
                             </svg>
                             {{-- End of update by Shanila --}}
@@ -88,11 +88,11 @@
                                         <div class="font-family-tertiary value">10 Days</div>
                                     </div>
                                     <div class="d-flex gap-3 align-items-center">
-                                        <label class="col-form-label text-primary mb-lg-0">
+                                        <label class="col-form-label text-primary mb-lg-0" for="status-column">
                                             Status:
                                         </label>
                                         <div>
-                                            <select class="form-select form-select-sm">
+                                            <select class="form-select form-select-sm" id="status-column">
                                                 <option>Pending</option>
                                             </select>
                                         </div>
@@ -134,7 +134,7 @@
                                         <div class="col-lg-7">
                                             <div class="form-check form-switch form-switch-column">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="AutoNotifyBroadcast">
+                                                    id="AutoNotifyBroadcast" aria-label="Auto-notify Toggle">
                                                 <label class="form-check-label" for="AutoNotifyBroadcast">
                                                     Manual-assign
                                                 </label>
@@ -153,7 +153,7 @@
                                         <div class="col-lg-7">
                                             <div class="form-check form-switch form-switch-column">
                                                 <input class="form-check-input" type="checkbox" role="switch"
-                                                    id="AutoNotifyAssign" checked>
+                                                    id="AutoNotifyAssign" checked aria-label="Auto-notify Toggle">
                                                 <label class="form-check-label" for="AutoNotifyAssign">
                                                     Manual-assign
                                                 </label>
@@ -257,7 +257,7 @@
                                         <a href="#" class="btn btn-has-icon btn-primary rounded">
                                             {{-- Updated by Shanila to Add
                                             svg icon--}}
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <svg aria-label="Cancel" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#cancel-icon">
                                                 </use>
                                             </svg>
@@ -269,7 +269,7 @@
                                             data-bs-target="#reviewFeedbackModal">
                                             {{-- Updated by Shanila to Add
                                             svg icon--}}
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <svg aria-label="Review Feedback" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                 <use xlink:href="/css/common-icons.svg#review-feedback">
                                                 </use>
                                             </svg>
@@ -301,7 +301,7 @@
                                                 </button>
                                             </div>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <input type="" name="" class="form-control" placeholder="Enter Email">
+                                                <input type="" name="" class="form-control" placeholder="Enter Email" aria-label="Enter Email">
                                                 <button class="btn btn-primary px-4 rounded">
                                                     Send
                                                 </button>
@@ -1260,8 +1260,8 @@
                             <div class="d-flex justify-content-between mb-2">
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <div class="d-inline-flex align-items-center gap-4">
-                                        <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                                        <select class="form-select form-select-sm" id="show_records_number">
+                                        <label for="show_records" class="form-label-sm mb-0">Show</label>
+                                        <select class="form-select form-select-sm" id="show_records">
                                             <option>10</option>
                                             <option>15</option>
                                             <option>20</option>
@@ -1271,19 +1271,19 @@
                                     <div class="d-flex gap-4 align-items-center">
                                         <div class="form-check form-switch mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
-                                                id="autoNotify" checked>
+                                                id="autoNotify" checked aria-label="Auto-notify Toggle">
                                             <label class="form-check-label" for="autoNotify">Auto-notify</label>
                                         </div>
                                         <div class="form-check form-switch mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
-                                                id="autoNotify">
+                                                id="autoNotify" aria-label="Auto-notify Toggle">
                                             <label class="form-check-label" for="autoNotify">Auto-Assign</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
-                                    <label for="search" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search" name="search"
+                                    <label for="search-coulmn" class="form-label-sm mb-0">Search</label>
+                                    <input type="search" class="form-control form-control-sm" id="search-coulmn" name="search"
                                         placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
@@ -1319,7 +1319,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -1400,7 +1400,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -1481,7 +1481,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -1562,7 +1562,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="Provider Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2253,7 +2253,7 @@
                                 <a href="#" @click="addDocuments = true"
                                     class="position-absolute w-100 h-100 d-block"></a>
                                 <label for="AddDocuments" class="form-label">Add Documents</label>
-                                <input class="form-control" type="file" id="AddDocuments">
+                                <input class="form-control" type="file" aria-label="Add Document">
                             </div>
                             <div class="row mb-4">
                                 <div class="col-lg-3">
@@ -2414,19 +2414,19 @@
                             <div class="col-lg-6">
                                 <!-- Billing Notes -->
                                 <div class="between-section-segment-spacing">
-                                    <label class="form-label">
+                                    <label class="form-label" for="billing-notes">
                                         Billing Notes
                                     </label>
                                     <textarea class="form-control" rows="4"
-                                        cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                                        cols="4" id="billing-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
                                 </div><!-- /Billing Notes -->
                                 <!-- Payment Notes -->
                                 <div class="mb-4">
-                                    <label class="form-label">
+                                    <label class="form-label" for="payment-notes">
                                         Payment Notes
                                     </label>
                                     <textarea class="form-control" rows="4"
-                                        cols="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
+                                        cols="4" id="payment-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</textarea>
                                 </div><!-- /Payment Notes -->
                             </div>
                         </div>
@@ -2467,8 +2467,8 @@
                             <div class="d-flex justify-content-between mb-2">
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <div class="d-inline-flex align-items-center gap-4">
-                                        <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                                        <select class="form-select form-select-sm" id="show_records_number">
+                                        <label for="show_records_number-coulmn" class="form-label-sm mb-0">Show</label>
+                                        <select class="form-select form-select-sm" id="show_records_number-coulmn">
                                             <option>10</option>
                                             <option>15</option>
                                             <option>20</option>
@@ -2477,8 +2477,8 @@
                                     </div>
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
-                                    <label for="search" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search" name="search"
+                                    <label for="search-record-column" class="form-label-sm mb-0">Search</label>
+                                    <input type="search" class="form-control form-control-sm" id="search-record-column" name="search"
                                         placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
@@ -2512,7 +2512,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2556,7 +2556,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2600,7 +2600,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2644,7 +2644,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2688,7 +2688,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2773,8 +2773,8 @@
                             <div class="d-flex justify-content-between mb-2">
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <div class="d-inline-flex align-items-center gap-4">
-                                        <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                                        <select class="form-select form-select-sm" id="show_records_number">
+                                        <label for="show_records_data" class="form-label-sm mb-0">Show</label>
+                                        <select class="form-select form-select-sm" id="show_records_data">
                                             <option>10</option>
                                             <option>15</option>
                                             <option>20</option>
@@ -2783,8 +2783,8 @@
                                     </div>
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
-                                    <label for="search" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search" name="search"
+                                    <label for="search-data" class="form-label-sm mb-0">Search</label>
+                                    <input type="search" class="form-control form-control-sm" id="search-data" name="search"
                                         placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
@@ -2821,7 +2821,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -2925,7 +2925,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -3009,7 +3009,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -3114,7 +3114,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -3198,7 +3198,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="User Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Dori
@@ -3344,8 +3344,8 @@
                             <div class="d-flex justify-content-between mb-2">
                                 <div class="d-inline-flex align-items-center gap-4">
                                     <div class="d-inline-flex align-items-center gap-4">
-                                        <label for="show_records_number" class="form-label-sm mb-0">Show</label>
-                                        <select class="form-select form-select-sm" id="show_records_number">
+                                        <label for="show-record-numbers" class="form-label-sm mb-0">Show</label>
+                                        <select class="form-select form-select-sm" id="show-record-numbers">
                                             <option>10</option>
                                             <option>15</option>
                                             <option>20</option>
@@ -3354,8 +3354,8 @@
                                     </div>
                                 </div>
                                 <div class="d-inline-flex align-items-center gap-4">
-                                    <label for="search" class="form-label-sm mb-0">Search</label>
-                                    <input type="search" class="form-control form-control-sm" id="search" name="search"
+                                    <label for="search_record" class="form-label-sm mb-0">Search</label>
+                                    <input type="search" class="form-control form-control-sm" id="search_record" name="search"
                                         placeholder="Search here" autocomplete="on" />
                                 </div>
                             </div>
