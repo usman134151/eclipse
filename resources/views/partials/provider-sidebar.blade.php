@@ -5,7 +5,7 @@
 			<li class="nav-item me-auto">
 				<a class="navbar-brand" href="/">
 					<span class="brand-logo">
-						<svg height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg aria-label="Eclipse Brand Logo" height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M24.596 0.0127934C23.5834 0.128856 22.932 0.341638 22.2096 0.799441C20.0361 2.17285 19.2944 4.95836 20.4811 7.27317C21.1777 8.63368 22.3966 9.54929 23.9381 9.86524C26.06 10.3037 28.3303 9.19465 29.3236 7.22158C29.7234 6.43494 29.8202 5.97068 29.8137 4.93901C29.8137 4.05565 29.8008 3.97182 29.6073 3.43665C29.1172 2.06324 28.311 1.14763 27.0468 0.52218C26.3245 0.167544 25.2538 -0.0581339 24.596 0.0127934Z" fill="black"/>
 							<path d="M35.2505 2.06994C35.3343 2.31496 35.3601 2.6567 35.3601 3.52072C35.3666 4.52015 35.3472 4.70714 35.2182 5.16495C35.0248 5.81619 34.5152 6.8543 34.1411 7.35079C33.6445 8.02138 31.8386 9.89128 28.33 13.3861L24.9375 16.7712L24.9826 17.8996C25.0794 20.4788 25.189 22.4776 25.2213 22.5099C25.2664 22.5615 31.7032 17.2032 32.4255 16.5133C33.4381 15.5526 35.5407 13.3022 35.9535 12.7477C37.2305 11.0326 37.8948 8.77579 37.7143 6.75758C37.5659 5.10047 36.8113 3.46914 35.6181 2.23758L35.1473 1.74754L35.2505 2.06994Z" fill="black"/>
 							<path d="M14.1338 2.231C13.1277 3.30136 12.515 4.44264 12.1796 5.84185C11.9796 6.69297 11.9732 8.09862 12.1731 9.04647C12.4182 10.2393 12.9342 11.4644 13.5727 12.4252C14.2822 13.4762 16.3654 15.7136 18.21 17.403C18.9517 18.0865 19.7257 18.7893 19.9192 18.9698C20.1127 19.1504 20.9576 19.9241 21.7896 20.685C22.6216 21.4458 23.4213 22.1745 23.5632 22.3034C23.7051 22.4324 23.8406 22.542 23.8599 22.542C23.8793 22.542 23.9179 22.2712 23.9437 21.9423C23.9695 21.6199 24.0405 20.7559 24.1114 20.0273C24.1824 19.2987 24.2791 18.2541 24.3307 17.706L24.421 16.7066L23.6664 15.9329C20.4996 12.6638 16.5202 8.45971 15.9526 7.77623C15.2754 6.96379 14.7852 6.02239 14.5273 5.03585C14.3144 4.22986 14.2886 2.97252 14.4628 2.30193C14.5208 2.07625 14.5531 1.87637 14.5402 1.86347C14.5208 1.84413 14.3402 2.01177 14.1338 2.231Z" fill="black"/>
@@ -28,7 +28,7 @@
 						</svg>
 					</span>
 					<h2 class="brand-text">
-						<svg width="124" height="19" viewBox="0 0 124 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg aria-label="Eclipse Brand Logo" width="124" height="19" viewBox="0 0 124 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0.14671 0.687832C0.120911 0.707176 0.101562 4.69845 0.101562 9.55374V18.3745H8.12493H16.1483L16.2837 17.9683C16.3547 17.7491 16.4385 17.4654 16.4708 17.3428C16.5095 17.2203 16.6901 16.6207 16.8707 16.021C17.0577 15.4149 17.2254 14.8604 17.2383 14.7766L17.2705 14.6347H10.8144H4.35833V13.0227V11.4107H9.84054H15.3227V9.54084V7.67094H9.84054H4.35833L4.37123 6.03962L4.39058 4.41474L10.2727 4.39539L16.1547 4.3825L16.4127 3.55716C16.5546 3.10581 16.7481 2.47391 16.8384 2.15796C16.9352 1.83556 17.0641 1.40355 17.1351 1.19722C17.1996 0.984438 17.2576 0.771656 17.2576 0.726521C17.2576 0.655592 15.7033 0.642696 8.72474 0.642696C4.0294 0.642696 0.166059 0.662041 0.14671 0.687832Z" fill="black"/>
 							<path d="M24.9344 0.713634C23.4123 0.932865 21.9805 1.65503 20.955 2.71894C19.8521 3.86023 19.0523 5.54959 18.7041 7.44528C18.5299 8.41892 18.5364 10.3468 18.7234 11.3785C19.2265 14.1447 20.6196 16.3434 22.6061 17.4976C23.1608 17.82 23.6896 18.0263 24.3862 18.2004C24.9667 18.3423 24.9925 18.3423 30.6359 18.3423H36.2987L36.6147 17.3106C36.7889 16.7432 36.9953 16.0726 37.0662 15.8276C37.1372 15.5761 37.2533 15.2086 37.3178 15.0087L37.4339 14.6412L31.6872 14.6218C25.9728 14.6025 25.9341 14.6025 25.5665 14.4606C24.1476 13.919 23.2833 12.5327 23.0576 10.4113C22.8189 8.15455 23.6574 5.75592 24.9925 4.90479C25.1666 4.78873 25.4762 4.63398 25.689 4.5566C26.0631 4.41475 26.0954 4.41475 31.1841 4.38251L36.3052 4.35027L36.4213 3.99563C36.4793 3.80219 36.7244 3.0091 36.9566 2.24179C37.1952 1.47449 37.4016 0.797459 37.421 0.739426C37.4597 0.655603 36.8405 0.642708 31.3776 0.649155C28.0303 0.655603 25.1279 0.681395 24.9344 0.713634Z" fill="black"/>
 							<path d="M39.2971 0.687832C39.2713 0.707176 39.252 4.69845 39.252 9.55374V18.3745H47.0496H54.8472L55.0536 17.7104C55.1632 17.3493 55.3309 16.8077 55.4212 16.5046C55.5115 16.2016 55.6663 15.6857 55.7695 15.3569C55.8727 15.028 55.9565 14.7314 55.9565 14.6992C55.9565 14.6541 53.7895 14.6347 49.7326 14.6347H43.5087V7.6387V0.642696H41.4255C40.2774 0.642696 39.3164 0.662041 39.2971 0.687832Z" fill="black"/>
@@ -61,7 +61,7 @@
 			</li>
 			<li class="nav-item" id="chat">
 				<a href="/provider/chat">
-					<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg aria-label="Chat" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#chat-icon"></use>
                     </svg>
 					<span class="menu-item">Chat</span>
@@ -69,7 +69,7 @@
 			</li>
 		<li class="nav-item" id="set-availability">
 		  <a href="/provider/set-availability">
-			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Manage Availability" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#manage-availability-icon"></use>
             </svg>
 			Manage Availability
@@ -77,7 +77,7 @@
 		</li>
 		<li class="nav-item has-sub">
 		  <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Assignments" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#assignments-icon"></use>
             </svg>
 			<span class="menu-item">Assignments</span>
@@ -85,7 +85,7 @@
 		  <ul class="menu-content " id="Bookings">
 			<li class="nav-item " id="today">
 			  <a class="nav-link" href="/provider/bookings/today">
-				<svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-label="Today's Assignments" width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#today-icon"></use>
                 </svg>
 				<span class="menu-item">Today's</span>
@@ -93,7 +93,7 @@
 			</li>
 			<li class="nav-item" id="upcoming">
 			  <a class="nav-link" href="/provider/bookings/upcoming">
-				<svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-label="Upcoming Assignment" width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#upcomming-icon"></use>
                 </svg>
 				<span class="menu-item">Upcoming</span>
@@ -109,7 +109,7 @@
 			</li>
             <li class="nav-item" id="active">
                 <a class="nav-link" href="/provider/bookings/active">
-                  <svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Active Assignments" width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                       <use xlink:href="/css/provider-menu.svg#active-assignment"></use>
                   </svg>
                   <span class="menu-item">Active</span>
@@ -117,7 +117,7 @@
               </li>
               <li class="nav-item" id="cancelled">
                 <a class="nav-link" href="/provider/bookings/cancelled">
-                  <svg width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-label="Cancelled Assignments" width="18" height="20" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
                       <use xlink:href="/css/provider-menu.svg#cancelled-assignment"></use>
                   </svg>
                   <span class="menu-item">Cancelled</span>
@@ -127,7 +127,7 @@
 		</li>
 		<li class="nav-item has-sub">
 		  <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-			<svg width="20" height="20" viewBox="0 0 20 20"xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Available Assignments" width="20" height="20" viewBox="0 0 20 20"xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#available-assignments-icon"></use>
             </svg>
 			<span class="menu-item">Available Assignments</span>
@@ -135,7 +135,7 @@
 		  <ul class="menu-content " id="Bookings">
 			<li class="nav-item" id="unassigned">
 			  <a class="nav-link" href="/provider/bookings/unassigned">
-				<svg width="17" height="20" viewBox="0 0 17 20" class="fill-none" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-label="Unassigned Assignments" width="17" height="20" viewBox="0 0 17 20" class="fill-none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#unassigned-icon"></use>
                 </svg>
 				<span class="menu-item">Unassigned</span>
@@ -143,7 +143,7 @@
 			</li>
 			<li class="nav-item" id="invitations">
 			  <a class="nav-link" href="/provider/bookings/invitations">
-				<svg width="18" height="16" viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-label="Invitations" width="18" height="16" viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#invitations-icon"></use>
                 </svg>
 				<span class="menu-item">Invitations</span>
@@ -153,7 +153,7 @@
 		</li>
 		<li class="nav-item has-sub">
 		  <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Payments" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#payments-icon"></use>
             </svg>
 			<span class="menu-item">Payments </span>
@@ -161,7 +161,7 @@
 		  <ul class="menu-content" >
 			<li class="nav-item" id="draft-invoices">
 			  <a class="nav-link"  href="/provider/draft-invoices">
-				<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg aria-label="Invoice generator" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/provider-menu.svg#invoice-generator-icon"></use>
                 </svg>
 				<span class="menu-item" >Invoice generator</span>
@@ -169,7 +169,7 @@
 			</li>
 			<li class="nav-item" id="remittances">
 				<a class="nav-link" href="/provider/remittances">
-					<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg aria-label="Remittances" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#remittances-icon"></use>
                     </svg>
 				  <span class="menu-item">Remittances</span>
@@ -177,7 +177,7 @@
 			  </li>
 			  <li class="nav-item" id="reimbursement">
 				<a class="nav-link" href="/provider/reimbursement">
-                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Reimbursement" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#reimbursement-icon"></use>
                     </svg>
 				  <span class="menu-item">Reimbursement</span>
@@ -187,7 +187,7 @@
 		</li>
 		<li class="nav-item" id="profile">
 		  <a href="/provider/profile">
-			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Profile" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#profile-icon"></use>
             </svg>
 			<span class="menu-item">Profile</span>
@@ -195,7 +195,7 @@
 		</li>
 		<li class="nav-item" id="drive">
 		  <a href="/provider/drive">
-			<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="My Drive" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#my-drive-icon"></use>
 			</svg>
 			<span class="menu-item">My Drive</span>
@@ -203,7 +203,7 @@
 		</li>
 		<li class="nav-item" id="system-logs">
 		  <a href="/provider/system-logs">
-			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="System Logs" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#system-logs-icon"></use>
 
 			</svg>
@@ -212,7 +212,7 @@
 		</li>
 		<li class="nav-item has-sub">
 		  <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-			<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Settings" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/css/provider-menu.svg#setting-icon"></use>
 
 			</svg>
@@ -229,7 +229,7 @@
 			  </li>
 			<li class="nav-item" id="settings">
 				<a href="/provider/settings">
-					<svg class="fill-none" width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+					<svg aria-label="Notifications" class="fill-none" width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#notification-icon"></use>
                       </svg>
 				  <span class="menu-item">Notifications</span>
@@ -237,10 +237,10 @@
 			  </li>
 			  <li class="nav-item" id="change-password">
 				<a href="/provider/change-password">
-					<svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<svg aria-label="Reset Password" class="fill-none" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/provider-menu.svg#reset-password-icon"></use>
                       </svg>
-				  <span class="menu-item">Reset Password</span>
+				    <span class="menu-item">Reset Password</span>
 				</a>
 			  </li>
 		  </ul>

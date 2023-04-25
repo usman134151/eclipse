@@ -6,7 +6,7 @@
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="/customer/dashboard" aria-label="Eclipse Scheduling Brand Logo">
                     <span class="brand-logo">
-                        <svg height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg aria-label="Eclipse Brand Logo" height="38" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M24.596 0.0127934C23.5834 0.128856 22.932 0.341638 22.2096 0.799441C20.0361 2.17285 19.2944 4.95836 20.4811 7.27317C21.1777 8.63368 22.3966 9.54929 23.9381 9.86524C26.06 10.3037 28.3303 9.19465 29.3236 7.22158C29.7234 6.43494 29.8202 5.97068 29.8137 4.93901C29.8137 4.05565 29.8008 3.97182 29.6073 3.43665C29.1172 2.06324 28.311 1.14763 27.0468 0.52218C26.3245 0.167544 25.2538 -0.0581339 24.596 0.0127934Z"
                                 fill="black" />
@@ -56,7 +56,7 @@
                         </svg>
                     </span>
                     <h2 class="brand-text">
-                        <svg width="124" height="19" viewBox="0 0 124 19" fill="none"
+                        <svg aria-label="Eclipse Brand Logo" width="124" height="19" viewBox="0 0 124 19" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M0.14671 0.687832C0.120911 0.707176 0.101562 4.69845 0.101562 9.55374V18.3745H8.12493H16.1483L16.2837 17.9683C16.3547 17.7491 16.4385 17.4654 16.4708 17.3428C16.5095 17.2203 16.6901 16.6207 16.8707 16.021C17.0577 15.4149 17.2254 14.8604 17.2383 14.7766L17.2705 14.6347H10.8144H4.35833V13.0227V11.4107H9.84054H15.3227V9.54084V7.67094H9.84054H4.35833L4.37123 6.03962L4.39058 4.41474L10.2727 4.39539L16.1547 4.3825L16.4127 3.55716C16.5546 3.10581 16.7481 2.47391 16.8384 2.15796C16.9352 1.83556 17.0641 1.40355 17.1351 1.19722C17.1996 0.984438 17.2576 0.771656 17.2576 0.726521C17.2576 0.655592 15.7033 0.642696 8.72474 0.642696C4.0294 0.642696 0.166059 0.662041 0.14671 0.687832Z"
@@ -104,7 +104,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="nav-item">
                 <a href="/customer/dashboard">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Dashboard" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#dashboard_icon"></use>
                     </svg>
                     <span class="menu-item">Dashboard</span>
@@ -112,7 +112,7 @@
             </li>
             <li class="nav-item" id="chat">
                 <a href="/customer/chat">
-                    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Chat" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#chat-icon"></use>
                     </svg>
                     <span class="menu-item">Chat</span>
@@ -120,7 +120,7 @@
             </li>
             <li class="nav-item" id="booknow">
                 <a href="/customer/booking/booknow">
-                    <svg class="fill-none" width="14" height="21" viewBox="0 0 14 21">
+                    <svg aria-label="Submit Service Request" class="fill-none" width="14" height="21" viewBox="0 0 14 21">
                         <use xlink:href="/css/menu.svg#submit-service-request-icon"></use>
                     </svg>
                     <span class="menu-item">Submit Service Request</span>
@@ -129,7 +129,7 @@
             <li class="nav-item" id="pending-reviews">
                 <a href="/customer/pending-reviews">
 
-                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Pending Review" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#pending-review-icon"></use>
                     </svg>
                     <span class="menu-item">Pending Review</span>
@@ -137,7 +137,7 @@
             </li>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Scheduled Services" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#schedule-service-icon"></use>
                     </svg>
                     <span class="menu-item">Scheduled Services</span>
@@ -145,7 +145,7 @@
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item " id="today">
                         <a class="nav-link" href="/customer/booking/today">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                            <svg aria-label="Today's Services" width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#today-icon"></use>
                             </svg>
@@ -156,7 +156,7 @@
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item " id="upcoming">
                         <a class="nav-link" href="/customer/booking/upcoming">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                            <svg aria-label="Upcoming Services" width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#upcomming-icon"></use>
                             </svg>
@@ -167,7 +167,7 @@
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item " id="past">
                         <a class="nav-link" href="/customer/booking/past">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                            <svg aria-label="Past Services" width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/admin-menu.svg#past-icon"></use>
                             </svg>
@@ -178,7 +178,7 @@
                 <ul class="menu-content " id="Scheduled-Services">
                     <li class="nav-item " id="draft">
                         <a class="nav-link" href="/customer/booking/draft">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                            <svg aria-label="Draft Service" width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#draft-icon"></use>
                             </svg>
@@ -191,7 +191,7 @@
 
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                    <svg width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Billing" width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#billing-icon"></use>
                     </svg>
                     <span class="menu-item">Billing</span>
@@ -199,7 +199,7 @@
                 <ul role="menu" class="menu-content" id="Billing">
                     <li role="menuitem" class="nav-item" id="invoices">
                         <a class="nav-link" href="/customer/invoices">
-                            <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
+                            <svg aria-label="Invoices" width="19" height="20" viewBox="0 0 19 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#inovice-icon"></use>
                             </svg>
@@ -210,7 +210,7 @@
                 <ul role="menu" class="menu-content" id="Billing">
                     <li role="menuitem" class="nav-item" id="payments-receipts">
                         <a class="nav-link" href="/customer/payments-receipts">
-                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                            <svg aria-label="Payments & Receipts" width="18" height="20" viewBox="0 0 18 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#payment-receipt-icon"></use>
                             </svg>
@@ -232,7 +232,7 @@
             </li>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Profile" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#profile-icon"></use>
                     </svg>
                     <span class="menu-item">Profile</span>
@@ -240,7 +240,7 @@
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item" id="myprofile">
                         <a class="nav-link" href="/customer/myprofile">
-                            <svg class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none"
+                            <svg aria-label="My Profile" class="fill-none" width="19" height="21" viewBox="0 0 19 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#myprofile-icon"></use>
                             </svg>
@@ -251,7 +251,7 @@
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item" id="company-profile">
                         <a class="nav-link" href="/customer/company-profile">
-                            <svg class="fill-none" width="19" height="18" viewBox="0 0 19 18" fill="none"
+                            <svg aria-label="Company Profile" class="fill-none" width="19" height="18" viewBox="0 0 19 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#company-profile-icon"></use>
                             </svg>
@@ -272,7 +272,7 @@
                 <ul role="menu" class="menu-content" id="Profile">
                     <li role="menuitem" class="nav-item" id="add-team">
                         <a class="nav-link" href="/customer/add-team">
-                            <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
+                            <svg aria-label="Add Team Profile" width="19" height="20" viewBox="0 0 19 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#add-team-icon"></use>
                             </svg>
@@ -283,7 +283,7 @@
             </li>
             <li class="nav-item" id="system-logs">
                 <a href="/customer/system-logs">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="System Logs" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#system-log-icon"></use>
                     </svg>
                     <span class="menu-item">System Logs</span>
@@ -291,7 +291,7 @@
             </li>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
-                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Settings" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/menu.svg#setting-icon"></use>
                     </svg>
                     <span class="menu-item">Settings</span>
@@ -299,7 +299,7 @@
                 <ul role="menu" class="menu-content" id="Settings">
                     <li role="menuitem" class="nav-item" id="settings">
                         <a class="nav-link" href="/customer/settings">
-                            <svg class="fill-none" width="16" height="20" viewBox="0 0 16 20" fill="none"
+                            <svg aria-label="Notifications" class="fill-none" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#notification-icon"></use>
                             </svg>
@@ -310,7 +310,7 @@
                 <ul role="menu" class="menu-content" id="Settings">
                     <li role="menuitem" class="nav-item" id="change-password">
                         <a class="nav-link" href="/customer/change-password">
-                            <svg class="fill-none" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            <svg aria-label="Password Reset" class="fill-none" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="/css/menu.svg#reset-password-icon"></use>
                             </svg>
