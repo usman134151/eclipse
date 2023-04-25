@@ -22,8 +22,8 @@ class CreateNavigatorUserNavigatorTables extends Migration
             $table->foreignId('user_id');
             $table->foreignId('navigator_id');
             $table->integer('position');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');           //updated by waqar
-            $table->foreign('navigator_id')->references('id')->on('navigators')->onDelete('set null'); //updated by waqar
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');           //updated by waqar
+            //$table->foreign('navigator_id')->references('id')->on('navigators')->onDelete('set null'); //updated by waqar
             $table->timestamps();
         });
     }
