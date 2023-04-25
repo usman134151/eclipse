@@ -1878,7 +1878,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/image.png"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="Admin staff Team Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Fast
@@ -1909,7 +1909,7 @@
                                                                 <div>
                                                                     <img width="50" height="50"
                                                                         src="/tenant/images/portrait/small/image.png"
-                                                                        class="rounded-circle" alt="Image">
+                                                                        class="rounded-circle" alt="Admin staff Team Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
                                                                     <div class="font-family-secondary leading-none">Fast
