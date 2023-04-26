@@ -181,7 +181,7 @@
                 <td class="text-center">17837</td>
                 <td class="text-center">$40.00</td>
                 <td class="text-center">
-                  <x-icon name="doc"/>
+                <svg aria-label="Document" width="17" height="21" viewBox="0 0 17 21"><use xlink:href="/css/common-icons.svg#doc"></use></svg>
                 </td>
                 <td class="text-center">Direct Deposit</td>
                 <td><div class="d-flex align-items-center gap-2">
@@ -241,7 +241,7 @@
                 <td class="text-center">17837</td>
                 <td class="text-center">$40.00</td>
                 <td class="text-center">
-                  <x-icon name="doc"/>
+                <svg aria-label="Document" width="17" height="21" viewBox="0 0 17 21"><use xlink:href="/css/common-icons.svg#doc"></use></svg>
                 </td>
                 <td class="text-center">Direct Deposit</td>
                 <td><div class="d-flex align-items-center gap-2">
@@ -301,7 +301,7 @@
                 <td class="text-center">17837</td>
                 <td class="text-center">$40.00</td>
                 <td class="text-center">
-                  <x-icon name="doc"/>
+                <svg aria-label="Document" width="17" height="21" viewBox="0 0 17 21"><use xlink:href="/css/common-icons.svg#doc"></use></svg>
                 </td>
                 <td class="text-center">Direct Deposit</td>
                 <td><div class="d-flex align-items-center gap-2">
@@ -369,7 +369,7 @@
                   <td class="text-center">17837</td>
                   <td class="text-center">$40.00</td>
                   <td class="text-center">
-                    <x-icon name="doc"/>
+                  <svg aria-label="Document" width="17" height="21" viewBox="0 0 17 21"><use xlink:href="/css/common-icons.svg#doc"></use></svg>
                   </td>
                   <td class="text-center">Direct Deposit</td>
                   <td><div class="d-flex align-items-center gap-2">
