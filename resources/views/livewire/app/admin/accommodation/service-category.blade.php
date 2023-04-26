@@ -85,7 +85,7 @@
                                                     <tr role="row">
                                                         <th scope="col" class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select All Teams">
+                                                                aria-label="Select All Services">
                                                         </th>
                                                         <th scope="col">Name</th>
                                                         <th scope="col"></th>
@@ -99,7 +99,7 @@
                                                     <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -114,7 +114,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -169,7 +169,7 @@
                                                     <tr role="row" class="even" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -182,7 +182,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -237,7 +237,7 @@
                                                     <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -250,7 +250,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -305,7 +305,7 @@
                                                     <tr role="row" class="even">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -318,7 +318,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -373,7 +373,7 @@
                                                     <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Services">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -386,7 +386,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -441,7 +441,7 @@
                                                     <tr role="row" class="odd">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -454,7 +454,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -509,7 +509,7 @@
                                                     <tr role="row" class="odd">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -577,7 +577,7 @@
                                                     <tr role="row" class="odd">
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -590,7 +590,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a  @click="associateCompanies = true">
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
@@ -645,7 +645,7 @@
                                                     <tr role="row" class="odd" >
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                aria-label="Select Team">
+                                                                aria-label="Select Service">
                                                         </td>
                                                         <td>
                                                             <div class="row g-2">
@@ -658,7 +658,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <a @click="associateCompanies = true" >
-                                                                        <svg width="60" height="41" viewBox="0 0 60 41" fill="none"
+                                                                        <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
 														                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
 														                </svg>
                                                                     </a>
