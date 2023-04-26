@@ -9,9 +9,9 @@ class Profile extends Component
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
     public $setupValues = [
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'customer.languges_id','','languages',0]],
-        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
-        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'provider.country_id','','country',4]]
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'profile.languges_id','','languages',0]],
+        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'profile.industry_id','','industry',1]],
+        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'profile.country_id','','country',4]]
 
 	];
 
