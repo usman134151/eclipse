@@ -44,12 +44,12 @@
                         <div class="bg-muted rounded p-4 mb-1">
                             <div class="d-lg-flex gap-5 align-items-center mb-4">
                                 <div class="mb-4 mb-lg-0">
-                                    <label class="form-label-sm">Search</label>
+                                    <label class="form-label-sm" for="search-record">Search</label>
                                     <div class="d-flex gap-2 align-items-center">
                                         <div class="position-relative">
                                             <input type="text" class="form-control form-control-md is-search"
-                                                id="search" aria-describedby="search"
-                                                placeholder="Provider Name or Email">
+                                                id="search-record" aria-describedby="search"
+                                                placeholder="Provider Name or Email" >
                                             {{-- Updated by Shanila to Add
                                             svg icon--}}
                                             <svg aria-label="search" class="icon-search position-absolute"
@@ -193,7 +193,7 @@
                                                     <div>
                                                         <img width="50" height="50"
                                                             src="/tenant/images/portrait/small/avatar-s-24.jpg"
-                                                            class="rounded-circle" alt="Image">
+                                                            class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">Wade Dave</div>
@@ -250,7 +250,7 @@
                                                     <div>
                                                         <img width="50" height="50"
                                                             src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                            class="rounded-circle" alt="Image">
+                                                            class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">Dori Griffiths
@@ -308,7 +308,7 @@
                                                     <div>
                                                         <img width="50" height="50"
                                                             src="/tenant/images/portrait/small/avatar-s-24.jpg"
-                                                            class="rounded-circle" alt="Image">
+                                                            class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">Wade Dave</div>
@@ -365,7 +365,7 @@
                                                     <div>
                                                         <img width="50" height="50"
                                                             src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                            class="rounded-circle" alt="Image">
+                                                            class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">Dori Griffiths
@@ -423,7 +423,7 @@
                                                     <div>
                                                         <img width="50" height="50"
                                                             src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                            class="rounded-circle" alt="Image">
+                                                            class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">Dori Griffiths
@@ -481,7 +481,7 @@
                                                     <div>
                                                         <img width="50" height="50"
                                                             src="/tenant/images/portrait/small/avatar-s-24.jpg"
-                                                            class="rounded-circle" alt="Image">
+                                                            class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">Wade Dave</div>
