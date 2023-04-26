@@ -39,7 +39,7 @@ class Teams extends Component
 		// Set the showForm property to false to hide the form
         $this->showForm=false;
         $this->showProfile = false;
-		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-accommodation']); //updated by Amna Bilal to set url
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/teams']); //updated by Amna Bilal to set url
 	}
 
     function showForm()
@@ -47,7 +47,7 @@ class Teams extends Component
        $this->showForm=true;
        $this->dispatchBrowserEvent('update-url', ['url' => '/admin/teams/create']);  //updated by Amna Bilal to set url
 
-    //    $this->dispatchBrowserEvent('refreshSelects');
+       $this->dispatchBrowserEvent('refreshSelects');
     }
 
 
