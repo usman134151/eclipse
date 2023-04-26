@@ -68,7 +68,7 @@
 												<th scope="col">
 													<div class="form-check">
 														<input
-															class="form-check-input"
+															class="form-check-input {{ $right->id}} maincheck"
 															id="{{ $right->right_type }}"
 															name="{{ $right->right_type }}"
 															type="checkbox"
@@ -108,7 +108,8 @@
 												<td>
 													<div class="form-check">
 														<input
-															class="form-check-input"
+															class="form-check-input {{ $right->id}} checkfild_{{ $right->id}}"
+															id="{{ $right->right_type }}"
 															type="checkbox"
 															value="{{ $section->id . '-' . $right->id }}"
 															wire:model.defer="sectionRights"
@@ -168,6 +169,33 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>
+
+		
+	
+		$('.maincheck').change(function () {
+
+		$('.checkfild').prop('checked',this.checked);
+		});
+		// 	if ($(this).prop('checked')) {
+        //     $('.checkfild').prop('checked', true);
+        // } else {
+        //     $('.checkfild').prop('checked', false);
+        // }				
+        //  $('.checkfild').prop('checked',this.checked);
+       //});
+
+		// $('.checkfild').change(function () {
+		// if ($('.checkfild:checked').length == $('.checkfild').length){
+		// $('.maincheck').prop('checked',true);
+		// }
+		// else {
+		// $('.maincheck').prop('checked',false);
+		// }
+		// });
+  
+  </script>
 	{{-- @include('panels.user-access.accommodation-service-access')
 	@include('panels.user-access.teams-provider-access')
 	@include('panels.user-access.companies-customer-acess') --}}
