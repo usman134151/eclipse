@@ -119,7 +119,9 @@
                                                     <p class="mt-1">08/24/2022</p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <x-icon name="doc" />
+                                                {{-- updated Sana to change x-icon to svg --}}
+                                                <svg aria-label="Document" width="17" height="21" viewBox="0 0 17 21"><use xlink:href="/css/common-icons.svg#doc"></use></svg>
+                                                {{-- end updated by Sana --}}
                                                 </td>
                                                 <td class="text-center">Direct Deposit</td>
                                                 <td>
@@ -135,8 +137,10 @@
                                                     <div class="d-flex actions">
                                                         <a @click="invoiceDetailsPanel = true" title="View Invoice" aria-label="View Invoice"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            <x-icon name="view" />
-                                                        </a>
+                                                            {{-- updated Sana to change x-icon to svg --}}
+                                                  <svg aria-label="View" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg>
+                                                  {{-- end updated by Sana --}}
+                                                </a>
 
                                                     </div>
                                                 </td>
@@ -174,7 +178,9 @@
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="View Invoice" aria-label="View Invoice"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="view" />
+                                        {{-- updated Sana to change x-icon to svg --}}
+                                        <svg aria-label="View" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg>
+                                        {{-- end updated by Sana --}}
                                     </a>
                                     <span class="text-sm">
                                         View Invoice
