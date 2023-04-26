@@ -383,7 +383,7 @@
                                                         <div class="col-md-3">
                                                             <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
                                                                 class="img-fluid rounded-circle"
-                                                                alt="Dori Griffiths, Reimbursement Image">
+                                                                alt="Provider Profile Image">
                                                         </div>
                                                         <div class="col-md-9">
                                                             <h6 class="fw-semibold">Dori Griffiths</h6>
@@ -449,7 +449,7 @@
                                                         <div class="col-md-3">
                                                             <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
                                                                 class="img-fluid rounded-circle"
-                                                                alt="Dori Griffiths, Reimbursement Image">
+                                                                alt="Provider Profile Image">
                                                         </div>
                                                         <div class="col-md-9">
                                                             <h6 class="fw-semibold">Dori Griffiths</h6>
@@ -515,7 +515,7 @@
                                                         <div class="col-md-3">
                                                             <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
                                                                 class="img-fluid rounded-circle"
-                                                                alt="Dori Griffiths, Reimbursement Image">
+                                                                alt="Provider Profile Image">
                                                         </div>
                                                         <div class="col-md-9">
                                                             <h6 class="fw-semibold">Dori Griffiths</h6>
