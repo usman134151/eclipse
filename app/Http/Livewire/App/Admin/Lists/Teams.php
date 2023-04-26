@@ -13,7 +13,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class Teams extends PowerGridComponent
 {
     use ActionButton;
-    protected $listeners = ['refresh'=>'setUp'];
+    protected $listeners = ['refresh' => 'setUp'];
     public $name;
 
     /*
@@ -31,7 +31,9 @@ final class Teams extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add column toggle
+            Header::make()
+                ->showSearchInput()
+                ->showToggleColumns(), //updated by Amna Bilal to add column toggle
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -53,9 +55,22 @@ final class Teams extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Team::query();
+        return Team::query()
+            // ->leftJoin('team_specializations', function ($team_specializations) {
+            //     $team_specializations->on('teams.id' , '=' , 'team_specializations.team_id');
+            // })
+            ->leftJoin('team_accommodations', function ($team_accommodations) {
+                $team_accommodations->on('teams.id', '=', 'team_accommodations.team_id');
+            })
+            ->selectRaw(
+                ' teams.id
+                , teams.name as name
+                , teams.status as status
+                , teams.provider_count as provider_count
+                , COALESCE(COUNT(team_accommodations.team_id), 0) as accommodation_count',
+            )
+            ->groupBy('teams.id', 'teams.name', 'teams.status', 'teams.provider_count');
     }
-
     /*
     |--------------------------------------------------------------------------
     |  Relationship Search
@@ -90,15 +105,19 @@ final class Teams extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('name')
             ->addColumn('status', function (Team $model) {
-                return ($model->status);
+                return $model->status;
             })
-            ->addColumn('edit',function(Team $model){
+            ->addColumn('edit', function (Team $model) {
                 return '<div class="d-flex actions">
-                <a href="#" title="Edit Provider Team" wire:click="edit('.$model->id.')"  aria-label="Edit Provider Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                <a href="#" title="Edit Provider Team" wire:click="edit(' .
+                    $model->id .
+                    ')"  aria-label="Edit Provider Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                    <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
                 </a>
 
-            <a href="#" title="Delete Provider Team" aria-label="Delete Provider Team" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+            <a href="#" title="Delete Provider Team" aria-label="Delete Provider Team" wire:click="deleteRecord(' .
+                    $model->id .
+                    ')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
             </a>
               </div>';
@@ -120,22 +139,33 @@ final class Teams extends PowerGridComponent
     {
         // Returns an array of columns for the PowerGrid component
         return [
-            Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
+            Column::make('Name', 'name', '')
+                ->searchable()
+                ->makeinputtext()
+                ->sortable()
+                ->editOnClick(),
+
+            Column::make('Specialization Count', '', ''),
+            Column::make('Accomodation Count', 'accommodation_count', ''),
+
             Column::make('Provider Count', 'provider_count', ''),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
+            Column::make('Status', 'status', '')
+                ->makeBooleanFilter('status', 'Deactivated', 'Activated')
                 ->toggleable(1, 'Deactivated', 'Activated'),
-            Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action column from export
+            Column::make('Actions', 'edit')->visibleInExport(false), //updated by Amna Bilal to hide action column from export
         ];
     }
 
     // A method to handle the edit button click event
-    function edit($id){
+    function edit($id)
+    {
         // Emits an event to show the form for editing a record
         $this->emit('showForm', Team::find($id));
     }
 
     // A method to handle the delete button click event
-    public function deleteRecord($id){
+    public function deleteRecord($id)
+    {
         // Sets the ID of the record to be deleted
         $this->deleteRecordId = $id;
         // Emits an event to update the ID of the record to be deleted
@@ -152,9 +182,11 @@ final class Teams extends PowerGridComponent
     public function onUpdatedToggleable(string $id, string $field, string $value): void
     {
         // Updates the specified field of the record with the new value
-        Team::query()->find($id)->update([
-            $field => $value,
-        ]);
+        Team::query()
+            ->find($id)
+            ->update([
+                $field => $value,
+            ]);
     }
 
     // A method to handle the editable columns update event
@@ -162,10 +194,10 @@ final class Teams extends PowerGridComponent
     {
         // Dumps the name of the field being updated
         // Updates the specified field of the record with the new value
-        Team::query()->find($id)->update([
-            $field => $value,
-        ]);
+        Team::query()
+            ->find($id)
+            ->update([
+                $field => $value,
+            ]);
     }
-
-
 }
