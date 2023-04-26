@@ -15,7 +15,7 @@
 		  </label>
 		  <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ProvidersOrTeamModal">
 			   <div>
-			       <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+			       <svg aria-label="Providers Or Team" width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 			           <path d="M6.80372 0.945312H1.09069L0 1.03113L7.99841 8.9915L0 16.9514L1.09069 17.0546H6.80372L14.9061 8.9915L6.80372 0.945312Z" fill="#0A1E46"></path>
 			           <path d="M16.8975 0.945312H11.1844L10.0938 1.03113L18.0922 8.9915L10.0938 16.9514L11.1844 17.0546H16.8975L24.9999 8.9915L16.8975 0.945312Z" fill="#0A1E46"></path>
 			       </svg>
