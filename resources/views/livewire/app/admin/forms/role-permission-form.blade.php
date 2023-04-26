@@ -68,8 +68,8 @@
 												<th scope="col">
 													<div class="form-check">
 														<input
-															class="form-check-input"
-															id="maincheck_{{ $right->right_type }}"
+															class="form-check-input maincheck"
+															id="{{ $right->right_type }}"
 															name="{{ $right->right_type }}"
 															type="checkbox"
 														>
@@ -108,7 +108,7 @@
 												<td>
 													<div class="form-check">
 														<input
-															class="form-check-input checkfile_{{ $right->id}}"
+															class="form-check-input subcheck-{{ $right->right_type}}"
 															type="checkbox"
 															value="{{ $section->id . '-' . $right->id }}"
 															wire:model.defer="sectionRights"
@@ -130,7 +130,7 @@
 												<td>
 													<div class="form-check">
 														<input
-															class="form-check-input"
+															class="form-check-input subcheck-{{ $right->right_type}}"
 															type="checkbox"
 															value="{{ $childSection->id . '-' . $right->id }}"
 															wire:model.defer="sectionRights"
@@ -173,13 +173,13 @@
 
 		
 	
-		$('#maincheck_{{ $right->right_type }}').change(function () {
+		$('.maincheck').change(function () {
 			
-	
+	       
 			if ($(this).prop('checked')) {
-            $('.checkfile_{{ $right->id }}').prop('checked', true);
+            $('.subcheck-'+$(this).attr('id')).prop('checked', true);
         } else {
-            $('.checkfile_{{ $right->id }}').prop('checked', false);
+			$('.subcheck-'+$(this).attr('id')).prop('checked', true);
         }				
          
        });
