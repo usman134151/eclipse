@@ -11,9 +11,9 @@ class Booknow extends Component
     public $showForm;
     protected $listeners = ['showList' => 'resetForm'];
     public $setupValues = [
-        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'industry',	'','industry']],
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'timezone','','timezone']],
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'accommodation','','accommodation']]
+        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'request.industry_id',	'','industry',0]],
+        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'request.timezone_id','','timezone',1]],
+        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'request.accommodation_id','','accommodation',2]]
 	];
 
     public function render()
@@ -23,7 +23,7 @@ class Booknow extends Component
 
     public function mount()
     {
-        $this->loadSetupValues();
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 
     }
 
@@ -38,14 +38,6 @@ class Booknow extends Component
     public function switch($component)
 	{
 		$this->component = $component;
-	}
-    public function loadSetupValues(){ //added by Amna Bilal function to get all setup values rendered on mount
-		foreach($this->setupValues as $key=>$setupValue){
-
-			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
-		}
-
-
 	}
 
 }

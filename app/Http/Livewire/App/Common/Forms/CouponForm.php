@@ -8,7 +8,7 @@ use Livewire\Component;
 class CouponForm extends Component
 {
     public $setupValues = [
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'accommodation','','accommodation']]
+        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'accommodation','','accommodation',0]]
 	];
 	public function showList()
 	{
@@ -16,20 +16,12 @@ class CouponForm extends Component
 	}
     public function mount()
     {
-        $this->loadSetupValues();
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 
     }
 	public function render()
 	{
 		return view('livewire.app.common.forms.coupon-form');
-	}
-    public function loadSetupValues(){ //added by shanila to add function to get all setup values rendered on mount
-		foreach($this->setupValues as $key=>$setupValue){
-
-			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
-		}
-
-
 	}
 
 }
