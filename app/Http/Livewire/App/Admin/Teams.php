@@ -9,6 +9,9 @@ class Teams extends Component
     public $showForm;
     public $showProfile;
     public $listTitle="Provider Teams";
+    protected $listeners = [
+        'showForm' => 'showForm', // show form when the parent component requests it
+    ];
 
     public function render()
     {
@@ -24,7 +27,9 @@ class Teams extends Component
     function showForm()
     {
        $this->showForm=true;
-       $this->dispatchBrowserEvent('refreshSelects');
+       $this->dispatchBrowserEvent('update-url', ['url' => '/admin/teams/create']);  //updated by Amna Bilal to set url
+
+    //    $this->dispatchBrowserEvent('refreshSelects');
     }
     public function resetForm()
     {

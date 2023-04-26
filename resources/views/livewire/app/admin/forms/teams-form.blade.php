@@ -50,7 +50,9 @@
                         placeholder="Enter Team Name"
                         required
                         aria-required="true"
+                        wire:model="team.name"
                         />
+                        @error('team.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -116,15 +118,18 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
-                    <label class="form-label" for="team_notes">
+                    <label class="form-label" for="team_description">
                         Team Description
                     </label>
                     <textarea
                     class="form-control"
                     placeholder="Add Team Description"
-                    name="team_notes"
-                    id="team_notes"
+                    name="team_description"
+                    id="team_description"
+                    wire:model="team.description"
                     ></textarea>
+                    @error('team.description') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
+
                 </div>
                   <div class="col-md-6 col-12">
                       <label class="form-label" for="team_notes">
@@ -135,6 +140,7 @@
                       placeholder="Add Team Notes"
                       name="team_notes"
                       id="team_notes"
+                      wire:model="team.notes"
                       ></textarea>
                   </div>
                 </div>
@@ -147,7 +153,8 @@
                     wire:click.prevent="showList"
                 >
                 Cancel</a>
-                <button type="submit" class="btn btn-primary rounded px-4">Add</button>
+                <button type="submit" class="btn btn-primary rounded px-4"
+                wire:click.prevent="save">Add</button>
               </div>
             </div>
           </form>
