@@ -68,8 +68,8 @@
 												<th scope="col">
 													<div class="form-check">
 														<input
-															class="form-check-input {{ $right->id}} maincheck"
-															id="{{ $right->right_type }}"
+															class="form-check-input"
+															id="maincheck_{{ $right->right_type }}"
 															name="{{ $right->right_type }}"
 															type="checkbox"
 														>
@@ -108,8 +108,7 @@
 												<td>
 													<div class="form-check">
 														<input
-															class="form-check-input {{ $right->id}} checkfild_{{ $right->id}}"
-															id="{{ $right->right_type }}"
+															class="form-check-input checkfile_{{ $right->id}}"
 															type="checkbox"
 															value="{{ $section->id . '-' . $right->id }}"
 															wire:model.defer="sectionRights"
@@ -174,24 +173,23 @@
 
 		
 	
-		$('.maincheck').change(function () {
+		$('#maincheck_{{ $right->right_type }}').change(function () {
+			
+	
+			if ($(this).prop('checked')) {
+            $('.checkfile_{{ $right->id }}').prop('checked', true);
+        } else {
+            $('.checkfile_{{ $right->id }}').prop('checked', false);
+        }				
+         
+       });
 
-		$('.checkfild').prop('checked',this.checked);
-		});
-		// 	if ($(this).prop('checked')) {
-        //     $('.checkfild').prop('checked', true);
-        // } else {
-        //     $('.checkfild').prop('checked', false);
-        // }				
-        //  $('.checkfild').prop('checked',this.checked);
-       //});
-
-		// $('.checkfild').change(function () {
-		// if ($('.checkfild:checked').length == $('.checkfild').length){
-		// $('.maincheck').prop('checked',true);
+		// $('.checkfile_{{ $right->id }}').change(function () {
+		// if ($('.checkfile_{{ $right->id }}:checked').length == $('.checkfile_{{ $right->id }}').length){
+		// $('#maincheck_{{ $right->right_type }}').prop('checked',true);
 		// }
 		// else {
-		// $('.maincheck').prop('checked',false);
+		// $('#maincheck_{{ $right->right_type }}').prop('checked',false);
 		// }
 		// });
   
