@@ -113,9 +113,24 @@
       pushStateToUrl(event.detail.url);
     });
 	window.addEventListener('refreshSelects', function(event) {
+		
+		$('.js-single-date').daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true,
+			autoApply: true
+		});
+		$('.js-single-date').val('');
+		$('.js-single-date').attr("placeholder","MM/DD/YYYY");
+		$('.js-select-day').daterangepicker({
+			singleDatePicker: true,
+			showDropdowns: true,
+			autoApply: true
+		});
+		$('.js-select-day').val('');
+		$('.js-select-day').attr("placeholder","Select Day");
 
-	  $(".chosen-select").chosen();
-    });
+			$(".chosen-select").chosen();
+	});
 	function pushStateToUrl(url) {
   history.pushState(null, null, url);
 }

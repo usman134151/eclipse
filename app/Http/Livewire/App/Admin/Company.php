@@ -26,6 +26,7 @@ class Company extends Component
 	{
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/company/create-company']);
+		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
 	public function resetForm()

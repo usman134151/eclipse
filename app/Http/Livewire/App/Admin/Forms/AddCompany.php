@@ -32,6 +32,7 @@ class AddCompany extends Component
 	public function mount(Company $company){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
+		
 
 	}
 
