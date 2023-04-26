@@ -166,6 +166,16 @@ class SetupHelper
 
         return $query->get([$valueCol, $displayCol]);
     }
+    public static function loadSetupValues($setupValues){ //added by Amna Bilal function to get all setup values rendered on mount
+		foreach($setupValues as $key=>$setupValue){
+
+			$setupValues[$key]['rendered'] = self::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9],$setupValue['parameters'][10]);
+		}
+
+        return $setupValues;
+
+
+	}
 
     
 }

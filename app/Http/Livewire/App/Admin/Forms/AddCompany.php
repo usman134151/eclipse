@@ -30,7 +30,7 @@ class AddCompany extends Component
 	}
 
 	public function mount(Company $company){
-		$this->loadSetupValues();
+		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
 
 	}
@@ -51,14 +51,7 @@ class AddCompany extends Component
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }
 
-	public function loadSetupValues(){ //added by Amna Bilal function to get all setup values rendered on mount
-		foreach($this->setupValues as $key=>$setupValue){
 
-			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9],$setupValue['parameters'][10]);
-		}
-
-
-	}
 	public function rules()
 	{
 		return [
