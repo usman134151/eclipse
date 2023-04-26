@@ -113,7 +113,14 @@
                                                         </label>
                                                         <input type="text" id="company-name" class="form-control"
                                                             name="company-name" placeholder="Enter Company Name"
-                                                            required aria-required="true" />
+                                                            required aria-required="true" 
+                                                            wire:model.defer="company.name"
+												/>
+												@error('company.name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox"
@@ -626,7 +633,7 @@
                                                         wire:click.prevent="showList">
                                                         Cancel
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2">
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save">
                                                         Save & Exit
                                                     </button>
                                                     <button type="button" class="btn btn-primary rounded px-4 py-2"

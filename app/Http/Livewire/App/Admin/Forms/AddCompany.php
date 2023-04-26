@@ -4,6 +4,9 @@ namespace App\Http\Livewire\App\Admin\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Services\App\CompanyService;
+use App\Models\Tenant\Company;
+use Illuminate\Validation\Rule;
 
 class AddCompany extends Component
 {
@@ -13,9 +16,12 @@ class AddCompany extends Component
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'industry',	'','industry']],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'languages', '','languages']]
 	];
-	public function showList()
+	public $company;
+
+	public function showList($message = "")
 	{
-		$this->emit('showList');
+		// Save data
+		$this->emit('showList', $message);
 	}
 
 	public function render()
@@ -23,8 +29,9 @@ class AddCompany extends Component
 		return view('livewire.app.admin.forms.add-company');
 	}
 
-	public function mount(){
+	public function mount(Company $company){
 		$this->loadSetupValues();
+		$this->company=$company;
 
 	}
 
@@ -51,5 +58,27 @@ class AddCompany extends Component
 		}
 
 
+	}
+	public function rules()
+	{
+		return [
+			'company.name' => [
+				'required',
+				'string',
+				'max:255',
+				Rule::unique('companies', 'name')->ignore($this->company->id)],
+			
+		];
+	}
+
+	public function save(){
+		//dd($this->company);
+		$this->validate();
+		$this->company->added_by = 1;
+		$companyService = new CompanyService;
+        $this->company = $companyService->createCompany($this->company);
+		//dd($this->company);
+		$this->showList("Company has been saved successfully");
+		$this->company = new Company;
 	}
 }
