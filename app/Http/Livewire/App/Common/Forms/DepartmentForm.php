@@ -10,8 +10,8 @@ class DepartmentForm extends Component
     public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
 	public $component = 'department-info';
     public $setupValues = [
-        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'industry',	'','industry']],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'languages', '','languages']]
+        'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'department.industry_id',	'','industry',0 ]],
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'department.languages_id', '','languages',1]]
 	];
 	public function showList()
 	{
@@ -20,7 +20,7 @@ class DepartmentForm extends Component
 
 	public function mount()
 	{
-        $this->loadSetupValues();
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
     }
 
 	public function switch($component)
@@ -40,12 +40,4 @@ class DepartmentForm extends Component
         unset($this->phoneNumbers[$index]);
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }
-    public function loadSetupValues(){ //added by Shanila to add function to get all setup values rendered on mount
-		foreach($this->setupValues as $key=>$setupValue){
-
-			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
-		}
-
-
-	}
 }
