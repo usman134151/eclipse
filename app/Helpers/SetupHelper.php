@@ -67,10 +67,9 @@ class SetupHelper
 
         return trim($html);
     }
-    public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = '',$tabIndex=0): string
+    public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = '',int $tabIndex=0): string
     {
         $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
-
         $attributes = [
             'name' => $selectName ?: $displayCol,
             'id' => $selectName ?: $displayCol,
@@ -80,23 +79,22 @@ class SetupHelper
         if ($multipleSelect) {
             $attributes['multiple'] = 'multiple';
         }
-    
+    //dd($wireVariable);
         if ($wireVariable) {
             $attributes['wire:model'] = $wireVariable;
         }
 
         if($multipleSelect){
-            $attributes = ['multiple class' => 'form-select chosen-select'];
+            $attributes['multiple class'] = 'form-select chosen-select';
 
         }
         else{
-            $attributes = ['class' => 'select2 form-select'];
+            $attributes['class'] = 'select2 form-select';
         }
 
         if($tabIndex){
-            $attributes = ['tab-index' => $tabIndex];
+            $attributes['tab-index'] = $tabIndex;
         }
-    
         $html = '<select ' . self::getHtmlAttributes($attributes) . ' aria-label="Select '.str_replace('_',' ',$selectName).'">';
     
         $html .= '<option value="">Select an option</option>';

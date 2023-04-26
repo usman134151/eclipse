@@ -13,8 +13,8 @@ class AddCompany extends Component
 	public $component = 'company-info';
 	public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
 	public $setupValues = [
-		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'industry',	'','industry']],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'languages', '','languages']]
+		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
 	];
 	public $company;
 
@@ -54,7 +54,7 @@ class AddCompany extends Component
 	public function loadSetupValues(){ //added by Amna Bilal function to get all setup values rendered on mount
 		foreach($this->setupValues as $key=>$setupValue){
 
-			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9]);
+			$this->setupValues[$key]['rendered'] = SetupHelper::createDropDown($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9],$setupValue['parameters'][10]);
 		}
 
 
@@ -67,12 +67,15 @@ class AddCompany extends Component
 				'string',
 				'max:255',
 				Rule::unique('companies', 'name')->ignore($this->company->id)],
-			
+			'company.industry_id'=>'required',
+			'company.company_website' => 'nullable|url',	
+			'company.language_id' => 'nullable',
+			'company.company_service_start_date' => 'nullable|date_format:m/d/Y',
+			'company.company_service_end_date' => 'nullable|date_format:m/d/Y',
 		];
 	}
 
 	public function save(){
-		//dd($this->company);
 		$this->validate();
 		$this->company->added_by = 1;
 		$companyService = new CompanyService;

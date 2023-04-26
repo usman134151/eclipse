@@ -143,6 +143,11 @@
                                                     </label>
                                                     {{-- Updated by Shanila to add dropdown--}}
                                                     {!! $setupValues['industries']['rendered'] !!}
+                                                    @error('company.industry_id')
+												    <span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												    </span>
+												@enderror
                                                     {{-- End of update by Shanila --}}
                                                 </div>
                                             </div>
@@ -155,7 +160,12 @@
                                                         </label>
                                                         <input type="text" id="company-website" class="form-control"
                                                             name="company-website" placeholder="Enter Website URL"
-                                                            required aria-required="true" />
+                                                            required aria-required="false" wire:model="company.company_website" />
+                                                            @error('company.company_website')
+												            <span class="d-inline-block invalid-feedback mt-2">
+													        {{ $message }}
+												            </span>
+												            @enderror
                                                     </div>
                                                 </div>
 
@@ -201,7 +211,7 @@
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY" aria-label=""
-                                                                aria-describedby="" id="service-start-date-column">
+                                                                aria-describedby="" id="service-start-date-column" wire:model="company.company_service_start_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Date" class="icon-date" width="20"
                                                                 height="21" viewBox="0 0 20 21">
@@ -209,6 +219,11 @@
                                                                 </use>
                                                             </svg>
                                                             {{-- End of update by Shanila --}}
+                                                            @error('company.company_service_start_date')
+												            <span class="d-inline-block invalid-feedback mt-2">
+													        {{ $message }}
+												            </span>
+												            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -223,13 +238,18 @@
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="MM/DD/YYYY" aria-label=""
-                                                                aria-describedby="" id="service-end-date-column">
+                                                                aria-describedby="" id="service-end-date-column"  wire:model="company.company_service_end_date">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Date" class="icon-date" width="20"
                                                                 height="21" viewBox="0 0 20 21">
                                                                 <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                                 </use>
                                                             </svg>
+                                                            @error('company.company_service_end_date')
+												            <span class="d-inline-block invalid-feedback mt-2">
+													        {{ $message }}
+												            </span>
+												            @enderror                                                           
                                                             {{-- End of update by Shanila --}}
                                                         </div>
                                                     </div>
