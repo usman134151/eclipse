@@ -109,15 +109,11 @@ final class Teams extends PowerGridComponent
             })
             ->addColumn('edit', function (Team $model) {
                 return '<div class="d-flex actions">
-                <a href="#" title="Edit Provider Team" wire:click="edit(' .
-                    $model->id .
-                    ')"  aria-label="Edit Provider Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                <a href="#" title="Edit Provider Team" wire:click="edit('.$model->id.')"  aria-label="Edit Provider Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                    <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
                 </a>
 
-            <a href="#" title="Delete Provider Team" aria-label="Delete Provider Team" wire:click="deleteRecord(' .
-                    $model->id .
-                    ')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+            <a href="#" title="Delete Provider Team" aria-label="Delete Provider Team" wire:click="deleteRecord('.$model->id .')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
             </a>
               </div>';
