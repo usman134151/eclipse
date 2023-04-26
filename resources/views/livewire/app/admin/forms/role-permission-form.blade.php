@@ -179,20 +179,11 @@
 			if ($(this).prop('checked')) {
             $('.subcheck-'+$(this).attr('id')).prop('checked', true);
         } else {
-			$('.subcheck-'+$(this).attr('id')).prop('checked', true);
+			$('.subcheck-'+$(this).attr('id')).prop('checked', false);
         }				
          
        });
 
-		// $('.checkfile_{{ $right->id }}').change(function () {
-		// if ($('.checkfile_{{ $right->id }}:checked').length == $('.checkfile_{{ $right->id }}').length){
-		// $('#maincheck_{{ $right->right_type }}').prop('checked',true);
-		// }
-		// else {
-		// $('#maincheck_{{ $right->right_type }}').prop('checked',false);
-		// }
-		// });
-  
   </script>
 	{{-- @include('panels.user-access.accommodation-service-access')
 	@include('panels.user-access.teams-provider-access')
