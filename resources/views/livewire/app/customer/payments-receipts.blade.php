@@ -112,7 +112,9 @@
                                             <td >17837</td>
                                             <td>$40.00</td>
                                             <td>
-                                                <x-icon name="doc" />
+                                            {{-- updated Sana to change x-icon to svg --}}
+                                            <svg aria-label="Document" width="17" height="21" viewBox="0 0 17 21"><use xlink:href="/css/common-icons.svg#doc"></use></svg>
+                                            {{-- end updated by Sana --}}
                                             </td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
@@ -127,7 +129,10 @@
                                                 <div class="d-flex actions">
                                                     <a @click="invoiceDetailsPanel = true" title="View Invoice" aria-label="View Invoice"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        <x-icon name="view" />
+                                                        {{-- updated Sana to change x-icon to svg --}}
+                                                        <svg aria-label="View" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg>
+                                                        {{-- end updated by Sana --}}
+
                                                     </a>
 
                                                 </div>
@@ -166,7 +171,9 @@
                                 <div class="d-flex gap-2 align-items-center">
                                     <a href="#" title="View Invoice" aria-label="View Invoice"
                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <x-icon name="view" />
+                                        {{-- updated Sana to change x-icon to svg --}}
+                                                        <svg aria-label="View" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg>
+                                                        {{-- end updated by Sana --}}
                                     </a>
                                     <span class="text-sm">
                                         View Invoice
