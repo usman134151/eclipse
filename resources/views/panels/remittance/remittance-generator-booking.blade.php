@@ -8,24 +8,33 @@
 				<div class="d-flex gap-2 align-items-center">
 					<div class="position-relative">
 						<input type="text" class="form-control form-control-md is-search" id="search" aria-describedby="search" placeholder="Provider Name or Email">
-						<x-icon name="cancel"/>
+				
+						{{-- updated Sana to change x-icon to svg --}}
+                     <svg aria-label="Cancel" class="icon-search position-absolute" width="1024" height="1024" viewBox="0 0 1024 1024"><use xlink:href="/css/common-icons.svg#cancel"></use></svg>
+                     {{-- end updated by Sana --}}
 					</div>
 					<button class="btn btn-secondary rounded btn-sm btn-hs-icon">
-						<x-icon name="search"/>
+					{{-- updated Sana to change x-icon to svg --}}
+                     <svg aria-label="Search" width="22" height="20" viewBox="0 0 22 20"><use xlink:href="/css/common-icons.svg#search"></use></svg>
+                     {{-- end updated by Sana --}}
 					</button>
 				</div>
 			</div>
 			<div class="mb-4 mb-lg-0">
 				<label class="form-label-sm">Date Range</label>
 				<div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-					<x-icon name="input-calender"/>
+				{{-- updated Sana to change x-icon to svg --}}
+                     <svg aria-label="Input-calender" class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#input-calender"></use></svg>
+                     {{-- end updated by Sana --}}
 					<input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
 				</div>
 			</div>
 			<div class="mb-4 mb-lg-0">
 				<label class="form-label-sm">scheduled payment</label>
 				<div class="mb-4 mb-lg-0 position-relative has-date-icon-left-side">
-					<x-icon name="input-calender"/>
+				{{-- updated Sana to change x-icon to svg --}}
+                     <svg aria-label="Input-calender" class="icon-date md left cursor-pointer" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#input-calender"></use></svg>
+                     {{-- end updated by Sana --}}
 					<input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY"  aria-label="scheduled payment">
 				</div>
 			</div>
