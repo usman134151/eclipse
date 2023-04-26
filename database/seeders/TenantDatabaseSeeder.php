@@ -39,6 +39,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(CompaniesSeeder::class); // Added records in companies table by Sohail
       $this->call(RightsSeeder::class); // Added records in rights table by Sohail
       $this->call(SystemSectionsSeeder::class); // Added records in system_sections table by Sohail
+      $this->call(TeamsSeeder::class); // Added records in teams table by huma
     }
 
 }

@@ -8,6 +8,7 @@ class Teams extends Component
 {
     public $showForm;
     public $showProfile;
+    public $listTitle="Provider Teams";
 
     public function render()
     {
@@ -16,12 +17,12 @@ class Teams extends Component
 
     public function mount()
     {
-       
-       
+
+
     }
 
     function showForm()
-    {     
+    {
        $this->showForm=true;
        $this->dispatchBrowserEvent('refreshSelects');
     }
@@ -30,7 +31,7 @@ class Teams extends Component
         $this->showForm=false;
         $this->showProfile = false;
     }
-    
+
     public function showProfile()
 	{
 		$this->showProfile = true;
