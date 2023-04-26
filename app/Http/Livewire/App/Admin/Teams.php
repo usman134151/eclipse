@@ -11,6 +11,7 @@ class Teams extends Component
     public $listTitle="Provider Teams";
     protected $listeners = [
         'showForm' => 'showForm', // show form when the parent component requests it
+        'showList' => 'resetForm', // Reset form when the parent component shows a list
     ];
 
     public function render()
@@ -23,6 +24,23 @@ class Teams extends Component
 
 
     }
+    // Reset the form and display a confirmation message
+	public function resetForm($message)
+	{
+		if ($message) {
+			$this->confirmationMessage = $message;
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
+		// Set the showForm property to false to hide the form
+        $this->showForm=false;
+        $this->showProfile = false;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-accommodation']); //updated by Amna Bilal to set url
+	}
 
     function showForm()
     {
@@ -31,11 +49,7 @@ class Teams extends Component
 
     //    $this->dispatchBrowserEvent('refreshSelects');
     }
-    public function resetForm()
-    {
-        $this->showForm=false;
-        $this->showProfile = false;
-    }
+
 
     public function showProfile()
 	{
