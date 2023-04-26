@@ -193,18 +193,14 @@
                             <label class="form-label" for="preferred-language">
                                 Preferred Language
                             </label>
-                            {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
-                                        'setup_value_label', 'setup_id', 1, 'setup_value_label', false, 'languages',
-                                        '','languages') !!}
+                            {!! $setupValues['languages']['rendered'] !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="industry">
                                 Industry
                             </label>
                              {{-- Updated by Shanila to add dropdown--}}
-                             {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
-                             'name', '', '', 'name', false, 'industry',
-                             '','industry') !!}
+                             {!! $setupValues['industries']['rendered'] !!}
                              {{-- End of update by Shanila --}}
                         </div>
                         <div class="col-lg-12 mb-4">
@@ -229,9 +225,7 @@
                             <label class="form-label" for="country">
                                 Country
                             </label>
-                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
-                            'name', '', '', 'name', false, 'country',
-                            '','country') !!}
+                            {!! $setupValues['countries']['rendered'] !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="state-column">
@@ -279,9 +273,7 @@
                             <label class="form-label" for="country">
                                 Country
                             </label>
-                            {!! App\Helpers\SetupHelper::createDropDown('Country', 'id',
-                            'name', '', '', 'name', false, 'country',
-                            '','country') !!}
+                            {!! $setupValues['countries']['rendered'] !!}
                         </div>
                         <div class="col-lg-6 mb-4 ps-lg-5">
                             <label class="form-label" for="state">
