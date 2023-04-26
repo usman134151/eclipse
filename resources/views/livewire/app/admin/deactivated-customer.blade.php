@@ -55,7 +55,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                       <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -77,7 +79,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -98,7 +102,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -119,7 +125,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -140,7 +148,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -161,7 +171,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -182,7 +194,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
@@ -203,7 +217,9 @@
                                   <div class="dropdown">
                                     <div class="dropdown ac-cstm">
                                       <a href="javascript:void(0)" aria-label="action" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                        <x-icon name='dropdown'/>
+                                        <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                          <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                        </svg>
                                       </a>
                                       <div class="tablediv dropdown-menu fadeIn">
                                         <a href="javascript:void(0)" aria-label="Delete" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i>Delete</a>
