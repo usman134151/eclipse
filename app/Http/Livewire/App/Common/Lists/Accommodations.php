@@ -95,12 +95,12 @@ final class Accommodations extends PowerGridComponent
 		->addColumn('edit',function(Accommodation $model){
 			return '<div class="d-flex actions">
 			<a href="#" title="Edit Accommodation" wire:click="edit('.$model->id.')" aria-label="Edit Accommodation" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-			<svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Delete Accommodation" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<use xlink:href="/css/sprite.svg#edit-icon"></use>
 			</svg>
 			</a>
 			<a href="#" title="Delete Accommodation" aria-label="Delete Accommodation" wire:click="deleteRecord('.$model->id.')" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-			<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-label="Delete Accommodation" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<use xlink:href="/css/sprite.svg#delete-icon"></use>
 			</svg>
 			</a>
