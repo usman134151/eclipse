@@ -12,7 +12,7 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="mb-4">
-                                <label class="form-label" for="specialization-name" >Specialization Name 
+                                <label class="form-label" for="specialization-name" >Specialization Name
                                   <span class="text-danger">*</span> </label>
                                 <input
                                   type="text"
@@ -20,7 +20,7 @@
                                   class="form-control"
                                   name="specialization.name"
                                   placeholder="Enter specialization name"
-                                  wire:model="specialization.name"
+                                  wire:model.defer="specialization.name"
                                   />
                                   @error('specialization.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
                               </div>
@@ -36,11 +36,11 @@
                                 rows="3"
                                 class="form-control"
                                 name="specialization-description"
-                                wire:model="specialization.description"></textarea>
+                                wire:model.defer="specialization.description"></textarea>
                               </div>
-                            </div>   
+                            </div>
                           </div>
-                        </div>                        
+                        </div>
                         </div>
                         <div class="col-6 form-actions d-flex justify-content-between">
                            <div>
