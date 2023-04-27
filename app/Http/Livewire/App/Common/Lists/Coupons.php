@@ -99,7 +99,7 @@ class Coupons extends PowerGridComponent
             ->addColumn('edit',function(Coupon $model){
                 return '<div class="d-flex actions">
                 <a href="#" title="Edit Coupon" wire:click="edit('.$model->id.')"  aria-label="Edit Coupon" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                   <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
+                   <svg aria-label="Edit Coupon" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
                 </a>';
                 
             });
