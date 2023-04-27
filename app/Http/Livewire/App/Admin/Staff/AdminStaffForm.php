@@ -4,9 +4,10 @@ namespace App\Http\Livewire\App\Admin\Staff;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
-
+use App\Models\Tenant\User;
 class AdminStaffForm extends Component
 {
+    public $user;
     public $setupValues = [
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'staff.ethnicity_id','','ethnicity',0]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'staff.gender_id','','gender',1]],
@@ -18,8 +19,9 @@ class AdminStaffForm extends Component
 	{
 		$this->emit("showList");
 	}
-    public function mount(){
+    public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->user=$user;
 
 	}
 
