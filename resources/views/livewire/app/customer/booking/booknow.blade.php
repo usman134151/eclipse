@@ -231,9 +231,9 @@
                                                         <h2 class="mb-lg-0">Services 2</h2>
                                                     </div>
                                                     <div class="col-lg" style="margin-left: 37px">
-                                                        <a href="#" title="Edit Company" aria-label="Edit Company"
+                                                        <a href="#" title="Delete" aria-label="Delete"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <use xlink:href="/css/customer.svg#delete-icon"></use>
                                                             </svg>
@@ -474,7 +474,7 @@
                                                                     <a href="#" title="Edit Company"
                                                                         aria-label="Edit Company"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        <svg width="21" height="21" viewBox="0 0 21 21"
+                                                                        <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21"
                                                                             fill="none"
                                                                             xmlns="http://www.w3.org/2000/svg">
                                                                             <use
@@ -509,7 +509,7 @@
                                                                 <div class="col-lg-2">
                                                                     <a href="#"
                                                                         class="btn btn-primary rounded btn-has-icon w-100">
-                                                                        <svg width="20" height="20" viewBox="0 0 20 20"
+                                                                        <svg aria-label="Add Link" width="20" height="20" viewBox="0 0 20 20"
                                                                             fill="none"
                                                                             xmlns="http://www.w3.org/2000/svg">
                                                                             <path fill-rule="evenodd"
@@ -532,7 +532,7 @@
                                             <div class="row justify-content-end">
                                                 <div class="col-lg-3">
                                                     <a href="#" class="btn btn-primary rounded btn-has-icon w-100">
-                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                        <svg aria-label="Add Service" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                                 d="M10 0C4.47727 0 0 4.47727 0 10C0 15.5227 4.47727 20 10 20C15.5227 20 20 15.5227 20 10C20 4.47727 15.5227 0 10 0ZM10.9091 13.6364C10.9091 13.8775 10.8133 14.1087 10.6428 14.2792C10.4723 14.4497 10.2411 14.5455 10 14.5455C9.75889 14.5455 9.52766 14.4497 9.35718 14.2792C9.18669 14.1087 9.09091 13.8775 9.09091 13.6364V10.9091H6.36364C6.12253 10.9091 5.8913 10.8133 5.72081 10.6428C5.55032 10.4723 5.45455 10.2411 5.45455 10C5.45455 9.75889 5.55032 9.52766 5.72081 9.35718C5.8913 9.18669 6.12253 9.09091 6.36364 9.09091H9.09091V6.36364C9.09091 6.12253 9.18669 5.8913 9.35718 5.72081C9.52766 5.55032 9.75889 5.45455 10 5.45455C10.2411 5.45455 10.4723 5.55032 10.6428 5.72081C10.8133 5.8913 10.9091 6.12253 10.9091 6.36364V9.09091H13.6364C13.8775 9.09091 14.1087 9.18669 14.2792 9.35718C14.4497 9.52766 14.5455 9.75889 14.5455 10C14.5455 10.2411 14.4497 10.4723 14.2792 10.6428C14.1087 10.8133 13.8775 10.9091 13.6364 10.9091H10.9091V13.6364Z"
@@ -685,9 +685,9 @@
                                                             <h2 class="mb-lg-0">Date & Time 2</h2>
                                                         </div>
                                                         <div class="col-lg" style="margin-left: 25px">
-                                                            <a href="#" title="Edit Company" aria-label="Edit Company"
+                                                            <a href="#" title="Delete" aria-label="Delete"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                <svg width="21" height="21" viewBox="0 0 21 21"
+                                                                <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21"
                                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <use xlink:href="/css/customer.svg#delete-icon">
                                                                     </use>
@@ -860,7 +860,7 @@
                                                             class="btn btn-primary btn-sm rounded gap-2"
                                                             data-bs-toggle="modal" data-bs-target="#addAddressModal">
                                                             {{-- updated Sana to change x-icon to svg --}}
-                                                            <svg class="mx-2" aria-label="Create Invoice" width="20" height="20" viewBox="0 0 20 20">
+                                                            <svg class="mx-2" aria-label="Add New Address" width="20" height="20" viewBox="0 0 20 20">
 								<use xlink:href="/css/common-icons.svg#plus"></use></svg>
                             {{-- end updated by Sana --}} 
                                                             <span>Add New Address</span>
@@ -947,7 +947,7 @@
                                                             class="btn btn-primary btn-sm rounded gap-2"
                                                             data-bs-toggle="modal" data-bs-target="#addAddressModal">
                                                             {{-- updated Sana to change x-icon to svg --}}
-                                                            <svg class="mx-2" aria-label="Create Invoice" width="20" height="20" viewBox="0 0 20 20">
+                                                            <svg class="mx-2" aria-label="Add New Address" width="20" height="20" viewBox="0 0 20 20">
 								<use xlink:href="/css/common-icons.svg#plus"></use></svg>
                             {{-- end updated by Sana --}} 
                                                             <span>Add New Address</span>
@@ -1165,7 +1165,7 @@
                                                     <input class="form-check-input" id="pay-later"
                                                         name="PermittedSchedulingFrequencies" type="radio"
                                                         tabindex="" />
-                                                    <label class="form-check-label" for="PayLater<">Pay Later</label>
+                                                    <label class="form-check-label" for="pay-later">Pay Later</label>
                                                 </div>
                                                 <div class="form-check form-check-highlighted">
                                                     <input class="form-check-input" id="PayNow"
@@ -1176,10 +1176,10 @@
                                             </div>
                                             <!-- Provider Notes -->
                                             <div class="my-5">
-                                                <label class="form-label">
+                                                <label class="form-label" for="customer-notes">
                                                     Customer Notes
                                                 </label>
-                                                <textarea class="form-control" rows="4" cols="4"></textarea>
+                                                <textarea class="form-control" rows="4" cols="4" id="customer-notes"></textarea>
                                             </div>
                                             <!-- /Provider Notes -->
                                         </div>
@@ -1192,7 +1192,7 @@
                                             <a @click="addDocuments = true"
                                                 class="btn btn-primary rounded btn-has-icon w-100">
                                                 {{-- updated Sana to change x-icon to svg --}}
-                                                            <svg class="mx-2" aria-label="Create Invoice" width="20" height="20" viewBox="0 0 20 20">
+                                                            <svg class="mx-2" aria-label="Add Document" width="20" height="20" viewBox="0 0 20 20">
 								<use xlink:href="/css/common-icons.svg#plus"></use></svg>
                             {{-- end updated by Sana --}} 
                                                 Add Document
