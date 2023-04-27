@@ -107,7 +107,9 @@
                                                     <td>$100</td>
                                                     <td>
                                                         <div class="d-flex align-items-center gap-1">
-                                                            <x-icon name="yellow-dot" />
+                                                            <svg aria-label="Canceled" width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
+                                                            </svg>
                                                             Unassigned
                                                         </div>
                                                     </td>
@@ -134,7 +136,9 @@
                                                                     data-bs-auto-close="outside"
                                                                     aria-label="Action dropdown"
                                                                     data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-                                                                    <x-icon name="dropdown" />
+                                                                    <svg aria-label="More Options" width="20" height="20" viewBox="0 0 20 20">
+                                                                        <use xlink:href="/css/common-icons.svg#dropdown"></use>
+                                                                    </svg>
                                                                 </a>
                                                                 <div class="tablediv dropdown-menu fadeIn">
                                                                     <a title="Duplicate" aria-label="Duplicate" href=""
@@ -167,7 +171,7 @@
                                                                     </a>
                                                                     <a href="javascript:void(0)" title="Cancel"
                                                                         aria-label="Cancel" class="dropdown-item">
-                                                                        <svg width="17" height="18" viewBox="0 0 17 18"
+                                                                        <svg aria-label="Cancel" width="17" height="18" viewBox="0 0 17 18"
                                                                             fill="none"
                                                                             xmlns="http://www.w3.org/2000/svg">
                                                                             <path
