@@ -16,6 +16,8 @@
                           <input type="text" id="name-column" class="form-control" name="name-column"
                             placeholder="Enter Name" wire:model.defer="notification.name" />
 
+                         
+
                       </div>
                       <div class="col-lg-5 ps-lg-4 mb-4">
                           <label class="form-label" for="gender-column">Select Trigger</label>
@@ -116,8 +118,8 @@
                       </div>
                      {{-- added by shanila to add text-editor --}}
                      <div class="col-lg-8 col-12 mb-4" style="height: 340px">
-                        <div class="quill-editor" >
-                        </div>
+                     <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
+                      name="SubjectColumn" id="SubjectColumn"></textarea>
                     </div>
                     {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
@@ -246,8 +248,8 @@
                     <div class="row">
                       {{-- added by shanila to add text-editor --}}
                       <div class="col-lg-8 col-12 mb-4" style="height: 340px">
-                        <div class="quill-editor" >
-                        </div>
+                      <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
+                      name="SubjectColumn" id="SubjectColumn"></textarea>
                     </div>
                     {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
@@ -395,8 +397,8 @@
                     <div class="row mb-4">
                         {{-- added by shanila to add text-editor --}}
                       <div class="col-lg-8 col-12 mb-4" style="height: 340px">
-                          <div class="quill-editor" >
-                          </div>
+                      <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
+                      name="SubjectColumn" id="SubjectColumn"></textarea>
                       </div>
                       {{-- ended updated by shanila --}}
                       <div class="col-lg-4 col-12 mb-4">
@@ -436,7 +438,7 @@
                   <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button" wire:click.prevent="showList">
                   Cancel
                   </a>
-                  <button type="submit" class="btn btn-primary rounded" wire:click.prevent="showList">Save</button>
+                  <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save">Save</button>
                   <button type="submit" class="btn btn-primary rounded">Next</button>
                 </div>
             </div>
