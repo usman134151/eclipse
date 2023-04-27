@@ -208,7 +208,7 @@
                                                     <div class="align-items-center gap-2">
                                                         <a wire:click.prevent="removeMessage({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            <svg class="delete-icon" width="20" height="20"
+                                                            <svg aria-label="Delete" class="delete-icon" width="20" height="20"
                                                                 viewBox="0 0 20 20" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                 <use xlink:href="/css/sprite.svg#delete-icon"></use>
@@ -1048,14 +1048,14 @@
                                                                                     class="form-select">
                                                                                     <option>14th</option>
                                                                                 </select>
-                                                                                <svg width="20" height="20"
+                                                                                <svg aria-label="Add" width="20" height="20"
                                                                                     viewBox="0 0 20 20" fill="none"
                                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                                     <use
                                                                                         xlink:href="/css/common-icons.svg#blue-plus">
                                                                                     </use>
                                                                                 </svg>
-                                                                                <svg width="20" height="20"
+                                                                                <svg aria-label="Delete" width="20" height="20"
                                                                                     viewBox="0 0 20 20" fill="none"
                                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                                     <use
@@ -1232,14 +1232,14 @@
                                                                                     class="form-select">
                                                                                     <option>14th</option>
                                                                                 </select>
-                                                                                <svg width="20" height="20"
+                                                                                <svg aria-label="Add" width="20" height="20"
                                                                                     viewBox="0 0 20 20" fill="none"
                                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                                     <use
                                                                                         xlink:href="/css/common-icons.svg#blue-plus">
                                                                                     </use>
                                                                                 </svg>
-                                                                                <svg width="20" height="20"
+                                                                                <svg aria-label="Delete" width="20" height="20"
                                                                                     viewBox="0 0 20 20" fill="none"
                                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                                     <use
@@ -1387,7 +1387,7 @@
                                                                 <div class="align-items-center gap-2">
                                                                      <a wire:click.prevent="removePolicy({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
                                                                                 viewBox="0 0 20 20" fill="none"
                                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                                 <use xlink:href="/css/sprite.svg#delete-icon"></use>
@@ -1469,7 +1469,7 @@
                                                                         class="btn btn-primary btn rounded" wire:click.prevent="addPolicy">
                                                                         <i
                                                                             class="fa fa-plus-circle"
-                                                                            aria-hidden="true"></i>
+                                                                            aria-hidden="true" aria-label="Add Policy"></i>
                                                                         Add Policy
                                                                     </button>
                                                                 </div>
