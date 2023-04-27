@@ -657,7 +657,8 @@
                                                         Save & Exit
                                                     </button>
                                                     <button type="button" class="btn btn-primary rounded px-4 py-2"
-                                                        x-on:click="$wire.switch('service-catalog')">
+                                                        wire:click.prevent="save(0)"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
                                                         Next
                                                     </button>
                                                 </div>

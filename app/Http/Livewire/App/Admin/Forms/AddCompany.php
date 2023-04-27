@@ -69,13 +69,16 @@ class AddCompany extends Component
 		];
 	}
 
-	public function save(){
+	public function save($redirect=1){
 		$this->validate();
 		$this->company->added_by = 1;
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company);
 		//dd($this->company);
-		$this->showList("Company has been saved successfully");
-		$this->company = new Company;
+		if($redirect){
+			$this->showList("Company has been saved successfully");
+			$this->company = new Company;
+		}
+
 	}
 }
