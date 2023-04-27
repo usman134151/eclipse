@@ -105,7 +105,7 @@
                                                 First Name <span class="mandatory" aria-hidden="true">*</span>
                                             </label>
                                             <input type="text" id="first_name" class="form-control" name="first_name"
-                                                placeholder="Enter First Name" required aria-required="true" />
+                                                placeholder="Enter First Name" required aria-required="true"  wire:model="user.first_name"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -114,7 +114,7 @@
                                                 Last Name <span class="mandatory" aria-hidden="true">*</span>
                                             </label>
                                             <input type="text" id="last_name" class="form-control" name="last_name"
-                                                placeholder="Enter Last Name" required aria-required="true" />
+                                                placeholder="Enter Last Name" required aria-required="true"  wire:model="user.last_name"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -189,7 +189,7 @@
                                             <label class="form-label" for="email">Email<span class="mandatory"
                                                     aria-hidden="true">*</span></label>
                                             <input type="text" id="email" class="form-control" placeholder="Enter Email"
-                                                name="email" />
+                                                name="email"  wire:model="user.email"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
