@@ -47,7 +47,7 @@
                             Service Distance Limit
                         </label>
                         <a href="#" class="mx-3">
-                            KM <svg aria-label="Home" width="20" height="20" viewBox="0 0 20 20">
+                            KM <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
                               <use xlink:href="/css/common-icons.svg#pencil"></use>
                             </svg>
                           </a>
