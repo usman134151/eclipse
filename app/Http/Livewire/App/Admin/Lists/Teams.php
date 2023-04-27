@@ -134,6 +134,7 @@ final class Teams extends PowerGridComponent
     public function columns(): array
     {
         // Returns an array of columns for the PowerGrid component
+        // currently specialization is getting accommodation count
         return [
             Column::make('Name', 'name', '')
                 ->searchable()
@@ -141,7 +142,7 @@ final class Teams extends PowerGridComponent
                 ->sortable()
                 ->editOnClick(),
 
-            Column::make('Specialization Count', '', ''),
+            Column::make('Specialization Count', 'accommodation_count', ''),
             Column::make('Accomodation Count', 'accommodation_count', ''),
 
             Column::make('Provider Count', 'provider_count', ''),
@@ -156,7 +157,7 @@ final class Teams extends PowerGridComponent
     function edit($id)
     {
         // Emits an event to show the form for editing a record
-        $this->emit('showForm', Team::find($id));
+        $this->emit('showForm', $id);
     }
 
     // A method to handle the delete button click event
@@ -166,6 +167,7 @@ final class Teams extends PowerGridComponent
         $this->deleteRecordId = $id;
         // Emits an event to update the ID of the record to be deleted
         $this->emit('updateRecordId', $id);
+        Team::where('id', $this->deleteRecordId)->delete();
         // Dispatches a browser event to show a confirmation modal
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',

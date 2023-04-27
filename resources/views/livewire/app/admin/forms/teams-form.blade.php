@@ -50,7 +50,7 @@
                         placeholder="Enter Team Name"
                         required
                         aria-required="true"
-                        wire:model="team.name"
+                        wire:model.defer="team.name"
                         />
                         @error('team.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
                     </div>
@@ -126,7 +126,7 @@
                     placeholder="Add Team Description"
                     name="team_description"
                     id="team_description"
-                    wire:model="team.description"
+                    wire:model.defer="team.description"
                     ></textarea>
                     @error('team.description') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 
@@ -140,8 +140,10 @@
                       placeholder="Add Team Notes"
                       name="team_notes"
                       id="team_notes"
-                      wire:model="team.notes"
+                      wire:model.defer="team.team_notes"
                       ></textarea>
+                    @error('team.team_notes') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
+
                   </div>
                 </div>
               </div>
@@ -180,7 +182,7 @@
 		  el.val(values).trigger('change.select2')
 		})*/
 
-		// Will come into play if and when wire:model is applied
+		// Will come into play if and when wire:model.defer is applied
 		// el.on('change', function (e) {
 		// 	@this.set('productCategories', el.select2("val"))
 		// })

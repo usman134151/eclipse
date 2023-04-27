@@ -9,13 +9,8 @@ use Livewire\Component;
 class TeamsForm extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm','editRecord' => 'edit'];
 	public $component = 'Team';
-    public $setupValues = [
-		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
-	];
-
     public function mount(Team $team)
     {
         // $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -39,7 +34,8 @@ class TeamsForm extends Component
                     'string',
                     'max:255',
                 Rule::unique('teams','name')->ignore($this->team->id)],
-                'team.description' => 'max:255',
+                'team.description' => ['max:255','nullable'],
+                'team.team_notes' => ['max:255','nullable'],
             ];
     }
     // functions
