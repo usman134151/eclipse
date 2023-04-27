@@ -12,7 +12,7 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="mb-4">
-                                <label class="form-label" for="industry-name" >Industry Name 
+                                <label class="form-label" for="industry-name" >Industry Name
                                   <span class="text-danger">*</span> </label>
                                 <input
                                   type="text"
@@ -20,13 +20,13 @@
                                   class="form-control"
                                   name="industry.name"
                                   placeholder="Enter industry name"
-                                  wire:model="industry.name"
+                                  wire:model.defer="industry.name"
                                   />
                                   @error('industry.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
                               </div>
                             </div>
                           </div>
-                        </div>                        
+                        </div>
                         </div>
                         <div class="col-6 justify-content-center form-actions col-6 form-actions d-flex justify-content-between">
                           <div>

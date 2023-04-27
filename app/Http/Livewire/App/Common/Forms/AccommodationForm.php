@@ -26,7 +26,7 @@ class AccommodationForm extends Component
 				'string',
 				'max:255',
 				Rule::unique('accommodations', 'name')->ignore($this->accommodation->id)],
-			'accommodation.description' => ''
+			'accommodation.description' => 'nullable'
 		];
 	}
 
