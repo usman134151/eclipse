@@ -110,9 +110,7 @@
                                                             *
                                                         </span>
                                                     </label>
-                                                    <select class="select2 form-select" id="company-column">
-                                                        <option>Select Company</option>
-                                                    </select>
+                                                    {!! $setupValues['companies']['rendered'] !!}
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">

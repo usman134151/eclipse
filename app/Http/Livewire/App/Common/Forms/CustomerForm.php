@@ -14,6 +14,7 @@ class CustomerForm extends Component
     public $languages;
 	public $component = 'customer-info';
     public $setupValues = [
+        'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'customer.company_id','','companies',0]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'customer.languges_id','','languages',1]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'customer.ethnicity_id','','ethnicity',2]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'customer.gender_id','','gender',3]],
