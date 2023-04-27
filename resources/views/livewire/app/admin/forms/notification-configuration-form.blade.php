@@ -14,7 +14,7 @@
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="name-column">Name</label>
                           <input type="text" id="name-column" class="form-control" name="name-column"
-                            placeholder="Enter Name" />
+                            placeholder="Enter Name" wire:model.defer="notification.name" />
 
                       </div>
                       <div class="col-lg-5 ps-lg-4 mb-4">
@@ -28,19 +28,11 @@
                           Trigger Description
                           </label>
                           <textarea class="form-control" rows="2" cols="3" placeholder="" name="trigger-description"
-                            id="trigger-description"></textarea>
-                      </div>
-                      <div class="col-lg-5 ps-lg-4 mb-4">
-                          <label class="form-label" for="select-role">Select Role</label>
-                          <select class="select2 form-select" id="select-role">
-                            <option>Select Role</option>
-                          </select>
+                            id="trigger-description" wire:model.defer="notification.trigger"></textarea>
                       </div>
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="select-role">Select Role</label>
-                          <select class="select2 form-select" id="select-role">
-                            <option>Select Role</option>
-                          </select>
+                          {!! $setupValues['roles']['rendered'] !!}
                       </div>
                     </div>
                     <div class="col-lg-12">
