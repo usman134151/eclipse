@@ -4,6 +4,10 @@ namespace App\Http\Livewire\App\Admin\Forms;
 use App\Helpers\SetupHelper;
 use Livewire\Component;
 use App\Models\Tenant\NotificationTemplates;
+use Illuminate\Validation\Rule;
+use App\Services\App\NotificationService;
+
+
 
 class NotificationConfigurationForm extends Component
 {
@@ -11,7 +15,7 @@ class NotificationConfigurationForm extends Component
 	protected $listeners = ['editRecord' => 'edit'];
 
 	public $setupValues = [
-        'roles'=>['parameters'=>['SystemRole', 'system_role_id', 'system_role_name', '', '', 'system_role_name', false, 'roles.industry_id','','roles',1]],
+        'roles'=>['parameters'=>['SystemRole', 'system_role_id', 'system_role_name', '', '', 'system_role_name', false, 'notification.role_id','','roles',1]],
 	];
 
 	public function mount(NotificationTemplates $notification){
@@ -22,7 +26,32 @@ class NotificationConfigurationForm extends Component
 
 	public function showList($message="")
 	{
+		
 		$this->emit('showList',$message);
+	}
+     
+	public function rules()
+	{
+		return [
+			'notification.name' => [
+				'required',
+				'string',
+				'max:255',
+				Rule::unique('notification_templates', 'name')->ignore($this->notification->id)],
+			'notification.trigger' => 'required',
+			'notification.role_id' => 'required',
+			
+		];
+	}
+
+	public function save(){
+		$this->validate();
+		$notificationService = new NotificationService;
+		$this->notification->slug = 1;
+		$this->notification->body = 1;
+        $this->notification = $notificationService ->createNotification($this->notification);
+		$this->showList("Company has been saved successfully");
+		$this->notification = new NotificationTemplates;
 	}
 
 	public function edit(NotificationTemplates $notification){
