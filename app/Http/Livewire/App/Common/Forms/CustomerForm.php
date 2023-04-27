@@ -4,9 +4,10 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
-
+use App\Models\Tenant\User;
 class CustomerForm extends Component
 {
+    public $user;
     public $ethnicity;
     public $timezone;
     public $gender;
@@ -23,8 +24,9 @@ class CustomerForm extends Component
 	{
 		return view('livewire.app.common.forms.customer-form');
 	}
-    public function mount(){
+    public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->user=$user;
 
 	}
 

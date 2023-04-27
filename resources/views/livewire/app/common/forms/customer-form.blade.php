@@ -182,7 +182,7 @@
                                                         Position
                                                     </label>
                                                     <input type="text" id="position-column" class="form-control"
-                                                        name="positionColumn" placeholder="Enter Position" />
+                                                        name="positionColumn" placeholder="Enter Position"  />
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">
@@ -193,7 +193,7 @@
                                                         </span>
                                                     </label>
                                                     <input type="text" id="f-name" class="form-control" name="f-name"
-                                                        placeholder="Enter First Name" required aria-required="true" />
+                                                        placeholder="Enter First Name" required aria-required="true"   wire:model.defer="user.first_name"/>
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -204,7 +204,7 @@
                                                         </span>
                                                     </label>
                                                     <input type="text" id="l-name" class="form-control" name="l-name"
-                                                        placeholder="Enter Last Name" required aria-required="true" />
+                                                        placeholder="Enter Last Name" required aria-required="true" wire:model.defer="user.last_name"/>
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">
@@ -293,7 +293,7 @@
                                                         </span>
                                                     </label>
                                                     <input type="text" id="email" class="form-control" name="email"
-                                                        placeholder="Enter Email" required aria-required="true" />
+                                                        placeholder="Enter Email" required aria-required="true" wire:model.defer="user.email"/>
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
