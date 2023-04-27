@@ -94,10 +94,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
-                                            <label class="form-label" for="serviceName">
+                                            <label class="form-label" for="service-name">
                                                 Service Name <span class="mandatory">*</span>
                                             </label>
-                                            <input type="text" id="serviceName" class="form-control" name="serviceName"
+                                            <input type="text" id="service-name" class="form-control" name="service-name"
                                                 placeholder="Enter Service Name" />
                                         </div>
                                         <div class="col-lg-6 mb-4">
@@ -113,12 +113,12 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
-                                            <label class="form-label" for="description">
+                                            <label class="form-label" for="service_category-description">
                                                 Description <i class="fa fa-question-circle" aria-hidden="true"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                             </label>
-                                            <textarea rows="4" cols="4" id="description" class="form-control"
-                                                name="description" placeholder=""></textarea>
+                                            <textarea rows="4" cols="4" id="service_category-description" class="form-control"
+                                                name="service_category-description" wire:model.defer="service_category-description" placeholder=""></textarea>
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service-name">
@@ -149,9 +149,9 @@
                                                 <label class="form-check-label" for="Day-Rate"> Day Rate</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Fixed-Rate" name="FixedRate"
-                                                    type="radio" tabindex="" />
-                                                <label class="form-check-label" for="Fixed-Rate"> Fixed Rate</label>
+                                                <input class="form-check-input" id="service_category-fixed_rate" name="service_category-fixed_rate"
+                                                    type="radio" tabindex="" wire:model.defer="service_category-fixed_rate" />
+                                                <label class="form-check-label" for="service_category-fixed_rate"> Fixed Rate</label>
                                             </div>
                                         </div>
                                     </div>
