@@ -142,7 +142,7 @@
                                     </label>
                                     <a href="#" class="fw-bold">
                                         <small>
-                                            <svg  width="19" height="19" viewBox="0 0 19 19"fill="none"
+                                            <svg aria-label="Add New" width="19" height="19" viewBox="0 0 19 19"fill="none"
                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#blue-plus"></use>
                                             </svg>
                                             Add New
@@ -158,7 +158,7 @@
                                     </label>
                                     <a href="#" class="fw-bold">
                                         <small>
-                                            <svg  width="19" height="19" viewBox="0 0 19 19"fill="none"
+                                            <svg aria-label="Add New" width="19" height="19" viewBox="0 0 19 19"fill="none"
                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#blue-plus"></use>
                                             </svg>
                                             Add New
@@ -273,7 +273,7 @@
                                     </label>
                                     <a href="#" class="fw-bold">
                                         <small>
-                                            <svg  class="me-1" width="21" height="16" viewBox="0 0 21 16"fill="none"
+                                            <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#upload-doc"></use>
                                               </svg>
                                             Upload Supporting Documents
@@ -291,7 +291,7 @@
                                     <div class="d-flex align-items-center gap-3">
                                         <a href="#" class="fw-bold">
                                             <small>
-                                                <svg  width="19" height="19" viewBox="0 0 19 19"fill="none"
+                                                <svg aria-label="Add New" width="19" height="19" viewBox="0 0 19 19"fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#blue-plus"></use>
                                              </svg>
                                                 Add New
@@ -299,7 +299,7 @@
                                         </a>
                                         <a href="#" class="fw-bold">
                                             <small>
-                                                <svg  class="me-1" width="21" height="16" viewBox="0 0 21 16"fill="none"
+                                                <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"fill="none"
                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#upload-doc"></use>
                                               </svg>
                                                 Upload Supporting Documents
@@ -327,7 +327,7 @@
                                     </label>
                                     <a href="#" class="fw-bold">
                                         <small>
-                                            <svg  class="me-1" width="21" height="16" viewBox="0 0 21 16"fill="none"
+                                            <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"fill="none"
                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#upload-doc"></use>
                                             </svg>
                                             Upload Supporting Documents

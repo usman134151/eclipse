@@ -54,7 +54,7 @@
                   <td>
                     <div class="d-flex actions"> 
                       <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                        <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                         </svg>
                       </a>     
@@ -84,7 +84,7 @@
                     <td>
                       <div class="d-flex actions"> 
                         <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                          <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                          <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                           </svg>
                         </a>     
@@ -114,7 +114,7 @@
                     <td>
                       <div class="d-flex actions"> 
                         <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                          <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                          <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                           </svg>
                         </a>     
@@ -144,7 +144,7 @@
                       <td>
                         <div class="d-flex actions"> 
                           <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                            <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                             </svg>
                           </a>     
@@ -174,7 +174,7 @@
                         <td>
                           <div class="d-flex actions"> 
                             <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                              <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                              <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                               </svg>
                             </a>     
@@ -204,7 +204,7 @@
                           <td>
                             <div class="d-flex actions"> 
                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
                               </a>     
@@ -233,7 +233,7 @@
                             <td>
                               <div class="d-flex actions"> 
                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
                                 </a>     
@@ -263,7 +263,7 @@
                               <td>
                                 <div class="d-flex actions"> 
                                   <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                     </svg>
                                   </a>     

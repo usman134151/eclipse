@@ -140,7 +140,7 @@
                           <td>$150.00</td>
                           <td>
                             <div class="d-inline-flex">
-                                <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                <div><svg aria-label="Completed" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                  </svg></div>
                                <div class="mx-1 text-sm mt-1">Completed</div>
@@ -149,12 +149,12 @@
                           <td>
                             <div class="d-flex actions"> 
                               <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                </svg>        
                               </a>
                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                </svg>
                               </a>     
@@ -194,7 +194,7 @@
                             </td>
                             <td>$150.00</td>
                             <td>
-                                <svg class="fill" width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                <svg aria-label="Underfilled" class="fill" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#red-dot"></use>
                                 </svg>
                               <span class="text-sm">Underfilled</span>
@@ -202,12 +202,12 @@
                             <td>
                               <div class="d-flex actions"> 
                                 <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                  <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                  </svg>        
                                 </a>
                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                  <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                  </svg>
                                 </a>     
@@ -247,7 +247,7 @@
                             </td>
                             <td>$150.00</td>
                             <td>
-                                <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                <div><svg aria-label="Canceled" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
                                    </svg>
                                    <span class="text-sm"> Canceled</span> 
@@ -257,12 +257,12 @@
                             <td>
                               <div class="d-flex actions"> 
                                 <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                  <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                  </svg>        
                                 </a>
                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                  <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                  </svg>
                                 </a>     
@@ -303,7 +303,7 @@
                               <td>$150.00</td>
                               <td>
                                 <div class="d-inline-flex">
-                                  <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                  <div><svg aria-label="Completed" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                    </svg></div>
                                  <div class="mx-1 text-sm mt-1">Completed</div>
@@ -312,12 +312,12 @@
                               <td>
                                 <div class="d-flex actions"> 
                                   <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                    <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                    <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                    </svg>        
                                   </a>
                                   <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                    </svg>
                                   </a>     
@@ -358,7 +358,7 @@
                                 <td>$150.00</td>
                                 <td>
                                   <div class="d-inline-flex">
-                                    <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    <div><svg aria-label="Completed" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                      </svg></div>
                                      <div class="mx-1 text-sm mt-1">Completed</div>
@@ -367,12 +367,12 @@
                                 <td>
                                   <div class="d-flex actions"> 
                                     <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                      <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                      <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                      </svg>        
                                     </a>
                                     <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                      <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                      <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                      </svg>
                                     </a>     
@@ -413,7 +413,7 @@
                                   <td>$150.00</td>
                                   <td>
                                     <div class="d-inline-flex">
-                                      <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                      <div><svg aria-label="Completed" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                        </svg></div>
                                        <div class="mx-1 text-sm mt-1">Completed</div>
@@ -422,12 +422,12 @@
                                   <td>
                                     <div class="d-flex actions"> 
                                       <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                        <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                        <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                        </svg>        
                                       </a>
                                       <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                        <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                        </svg>
                                       </a>     
@@ -468,7 +468,7 @@
                                     <td>$150.00</td>
                                     <td>
                                       <div class="d-inline-flex">
-                                        <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                        <div><svg aria-label="Completed" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                          </svg></div>
                                        <div class="mx-1 text-sm">Completed</div>
@@ -477,12 +477,12 @@
                                     <td>
                                       <div class="d-flex actions"> 
                                         <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                          <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                          <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                           xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                          </svg>        
                                         </a>
                                         <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                          <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                          <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                            xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                          </svg>
                                         </a>     
@@ -523,7 +523,7 @@
                                       <td>$150.00</td>
                                       <td>
                                         <div class="d-inline-flex">
-                                          <div><svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                          <div><svg aria-label="Completed" width="10" height="10" viewBox="0 0 10 10" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                                            </svg></div>
                                            <div class="mx-1 text-sm mt-1">Completed</div>
@@ -532,12 +532,12 @@
                                       <td>
                                         <div class="d-flex actions"> 
                                           <a @click="invoicesDetails = true" href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                            <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+                                            <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
                                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
                                            </svg>        
                                           </a>
                                           <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" x-on:click="assignmentDetails = true">
-                                            <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                            <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                            </svg>
                                           </a>     
@@ -551,7 +551,7 @@
         <div class="d-flex actions gap-3 justify-content-end mb-2">
           <div class="d-flex gap-2 align-items-center">
             <a href="#" title="Invoice Generate" aria-label="Invoice Generate" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-              <svg  width="22" height="19" viewBox="0 0 22 19" fill="none"
+              <svg aria-label="Invoice Generate" width="22" height="19" viewBox="0 0 22 19" fill="none"
               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#invoice-generate"></use>
              </svg>        
             </a> 
@@ -561,7 +561,7 @@
           </div>
           <div class="d-flex gap-2 align-items-center">
             <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-              <svg class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
+              <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20" fill="none"
                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
              </svg>
             </a>
