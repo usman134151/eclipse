@@ -40,12 +40,12 @@
                 {{-- Date Range --}}
                 <div class="col-md-4 col-12">
                     <div>
-                        <label class="form-label" for="set_set_date">
+                        <label class="form-label" for="set_date">
                             Date Range
                         </label>
                         <div class="position-relative">
-                            <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-                            <svg class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="set_date">
+                            <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
                             </svg>
                         </div>
@@ -126,7 +126,7 @@
                           </td>
                           <td>Direct Deposit</td>
                           <td>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                            <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                             </svg>
                             Paid
@@ -134,17 +134,17 @@
                           <td>
                             <div class="d-flex actions"> 
                               <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
                               </a>
                               <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                 </svg>  
                               </a>                               
                               <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon" >
-                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                 </svg>
                               </a>      
@@ -171,7 +171,7 @@
                            </td>
                            <td>Direct Deposit</td>
                            <td>
-                            <svg class="fill-warning" width="12" height="12" viewBox="0 0 512 512" fill="none"
+                            <svg aria-label="Pending" class="fill-warning" width="12" height="12" viewBox="0 0 512 512" fill="none"
                             xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
                             </svg>
                              Pending
@@ -179,17 +179,17 @@
                            <td>
                              <div class="d-flex actions"> 
                                <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                               </svg>
                                </a>
                                <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                 </svg> 
                                </a>                               
                                <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                 </svg>
                                </a>      
@@ -216,7 +216,7 @@
                             </td>
                             <td>Direct Deposit</td>
                             <td>
-                              <svg class="fill-warning" width="12" height="12" viewBox="0 0 512 512" fill="none"
+                              <svg aria-label="Pending" class="fill-warning" width="12" height="12" viewBox="0 0 512 512" fill="none"
                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#yellow-dot"></use>
                                </svg>
                               Pending
@@ -224,17 +224,17 @@
                             <td>
                               <div class="d-flex actions"> 
                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
                                 </a>
                                 <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg> 
                                 </a>                               
                                 <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                    xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                    </svg>
                                 </a>      
@@ -261,7 +261,7 @@
                              </td>
                              <td>Direct Deposit</td>
                              <td>
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                              <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                               </svg>
                                Paid
@@ -269,17 +269,17 @@
                              <td>
                                <div class="d-flex actions"> 
                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
                                  </a>
                                  <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg> 
                                  </a>                               
                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon" >
-                                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                   </svg>
                                  </a>      
@@ -314,17 +314,17 @@
                             <td>
                               <div class="d-flex actions"> 
                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
                                 </a>
                                 <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg>  
                                 </a>                               
                                 <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon " >
-                                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                   </svg>
                                 </a>      
@@ -351,7 +351,7 @@
                              </td>
                              <td>Direct Deposit</td>
                              <td>
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                              <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                               </svg>
                                Paid
@@ -359,17 +359,17 @@
                              <td>
                                <div class="d-flex actions"> 
                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
                                  </a>
                                  <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg> 
                                  </a>                               
                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon" >
-                                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                   </svg>
                                  </a>      
@@ -396,7 +396,7 @@
                             </td>
                             <td>Direct Deposit</td>
                             <td>
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                              <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                             </svg>
                               Paid
@@ -404,17 +404,17 @@
                             <td>
                               <div class="d-flex actions"> 
                                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                   </svg>
                                 </a>
                                 <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg> 
                                 </a>                               
                                 <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon" >
-                                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                   </svg>
                                 </a>      
@@ -441,7 +441,7 @@
                              </td>
                              <td>Direct Deposit</td>
                              <td>
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                              <svg aria-label="Paid" width="12" height="12" viewBox="0 0 12 12" fill="none"
                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#green-dot"></use>
                              </svg>
                                Paid
@@ -449,17 +449,17 @@
                              <td>
                                <div class="d-flex actions"> 
                                  <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#remittanceDetailModal">
-                                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>
                                  </a>
                                  <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                                   </svg>  
                                  </a>                               
                                  <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                  <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20" fill="none"
                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                                   </svg>
                                  </a>      
@@ -497,7 +497,7 @@
         <div class="d-flex actions gap-3 justify-content-end mb-2">
             <div class="d-flex gap-2 align-items-center">
                 <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                  <svg class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
+                  <svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                 </svg>
                   </a>
@@ -507,7 +507,7 @@
             </div>
             <div class="d-flex gap-2 align-items-center">
                 <a href="#" title="back" aria-label="back" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                  <svg class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
+                  <svg aria-label="Revert" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none"
                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#revert"></use>
                   </svg>
                 </a>
@@ -517,7 +517,7 @@
             </div>
             <div class="d-flex gap-2 align-items-center">
                 <a href="javascript:void(0)" title="Download PDF" aria-label="Download PDF" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                  <svg width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                  <svg aria-label="Download File" width="16" height="20" viewBox="0 0 16 20"  fill="none"
                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
                   </svg>
                     </a>
