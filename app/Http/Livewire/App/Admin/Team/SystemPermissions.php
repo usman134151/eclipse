@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class SystemPermissions extends Component
 {
+    public $component = 'team-info';
 	public $showForm;
 	protected $listeners = ['showList'=>'resetForm'];
 
@@ -25,5 +26,10 @@ class SystemPermissions extends Component
 	public function render()
 	{
 		return view('livewire.app.admin.team.system-permissions');
+	}
+
+	public function switch($component)
+	{
+		$this->component = $component;
 	}
 }

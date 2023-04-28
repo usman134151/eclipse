@@ -307,10 +307,11 @@
 					href="javascript:void(0);"
 					class="btn btn-outline-dark rounded px-4"
 					role="button"
+                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')"
 				>
 				Back</a>
 				<button type="submit" class="btn btn-primary rounded px-4">Save & Exit</button>
-				<button type="submit" class="btn btn-primary rounded px-4">Next</button>
+				<button type="submit" class="btn btn-primary rounded px-4"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('system-permissions')">Next</button>
 			</div>
 		</div>
 	</div>

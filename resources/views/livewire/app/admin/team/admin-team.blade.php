@@ -41,7 +41,7 @@
         <div class="content-body">
             <div class="card">
                 <div class="card-body">
-                    <div x-data="{ tab: 'team-info' }" id="tab_wrapper">
+                    <div x-data="{ tab: @entangle('component')}" id="tab_wrapper">
                         <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'team-info' }"
