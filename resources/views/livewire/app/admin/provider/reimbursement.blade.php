@@ -659,7 +659,7 @@
                                     <div
                                         class="d-flex form-actions flex-lg-row flex-column justify-content-center gap-2">
                                         <a href="#" class="btn btn-primary rounded">Approve Reimbursement</a>
-                                        <a href="#" class="btn btn-primary rounded">Decline Reimburement</a>
+                                        <button type="button"  class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#denyReimbursement">Decline Reimburement</button>
                                     </div>
                                 </div>
                             </div><!-- END: Card Body -->
@@ -669,6 +669,6 @@
             </section>
             @include('panels.common.add-reimbursement')
         </div>
-
         <!-- Basic Floating Label Form section end -->
+        @include('modals.common.deny-reimbursement')
     </div>
