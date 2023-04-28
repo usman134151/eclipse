@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 class TeamInfo extends Component
 {
     protected $listeners = ['editRecord' => 'edit'];
-
+    public $label = "Add";
     public $setupValues = [
 		'users'=>['parameters'=>['User', 'id', 'name', '', '', 'name', false, 'team.admin_id','','users',1]],
 	];
@@ -53,6 +53,7 @@ class TeamInfo extends Component
 		$this->team = new AdminTeam;
 	}
     public function edit(AdminTeam $team){
+        $this->label = "Edit";
         $this->team=$team;
 
     }
