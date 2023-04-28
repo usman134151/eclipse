@@ -495,7 +495,7 @@
                                         Save & Exit
                                     </button>
                                     <button type="button" class="btn btn-primary rounded"
-                                        x-on:click="$wire.switch('provider-service')">
+                                    x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
                                         Next
                                     </button>
                                 </div>
@@ -2298,14 +2298,14 @@
                                                 <!-- cancel/next (buttons) -->
                                                 <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded"
-                                                        x-on:click="$wire.switch('profile')">
+                                                    x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('profile')">
                                                         Back
                                                     </button>
                                                     <button type="submit" class="btn btn-primary rounded">
                                                         Save & Exit
                                                     </button>
                                                     <button type="button" class="btn btn-primary rounded"
-                                                        x-on:click="$wire.switch('upload-document')">
+                                                     x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('upload-document')">
                                                         Next
                                                     </button>
                                                 </div>
