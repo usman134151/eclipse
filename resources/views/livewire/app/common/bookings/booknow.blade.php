@@ -979,7 +979,7 @@
                                         <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                                         <button type="submit" class="btn btn-primary rounded">Request from User</button>
                                         <button type="button" class="btn btn-primary rounded"
-                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Proceed to Request Details</button>
+                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Proceed to  Payment Info</button>
                                     </div>
                                 </div>
                                 <!-- Service Form End -->

@@ -917,7 +917,7 @@
                                         <div
                                             class="col-12 form-actions">
                                             <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click="$wire.switch('customer-info')">
+                                            x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('customer-info')">
                                                 Back
                                             </button>
                                             <a href="/admin/customer">
@@ -925,8 +925,8 @@
                                                     Save & Exit
                                                 </button>
                                             </a>
-                                            <button type="submit" class="btn btn-primary rounded"
-                                                x-on:click="$wire.switch('service-catalog')">
+                                            <button type="button" class="btn btn-primary rounded"
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
                                                 Next
                                             </button>
                                         </div>
@@ -1458,7 +1458,7 @@
                                         <div
                                             class="col-12 form-actions">
                                             <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click="$wire.switch('permission-configurations')">
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
                                                 Back
                                             </button>
                                             <a href="/admin/customer">
@@ -1466,8 +1466,8 @@
                                                     Save & Exit
                                                 </button>
                                             </a>
-                                            <button type="submit" class="btn btn-primary rounded"
-                                                x-on:click="$wire.switch('drive-documents')">
+                                            <button type="button" class="btn btn-primary rounded"
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
                                                 Next
                                             </button>
                                         </div>
@@ -1532,7 +1532,7 @@
                                                     <div
                                                         class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                         <button type="button" class="btn btn-outline-dark rounded"
-                                                            x-on:click="$wire.switch('service-catalog')">
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
                                                             Back
                                                         </button>
                                                         <a href="/admin/customer">
