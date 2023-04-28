@@ -36,7 +36,12 @@
 					placeholder="Enter First Name"
 					required
 					aria-required="true"
-					/>
+					wire:model.defer="team.team_name"/>
+                    @error('team.team_name')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                    @enderror
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
@@ -44,16 +49,12 @@
 				  <label class="form-label">
 					Lead Admin(s) <span class="mandatory" aria-hidden="true">*</span>
 				  </label>
-				  <select class="form-select select2" aria-label="Select Lead Admin" name="lead-admin" id="lead-admin" required aria-required="true">
-					<option>Enter Lead Admin</option>
-					<option>Wade Dave</option>
-					<option>Dori Griffiths</option>
-					<option>Gilbert Dan</option>
-					<option>Ramon Miles</option>
-					<option>Alexis Griffiths</option>
-					<option>Tessa Leo</option>
-					<option>John Cris</option>
-				  </select>
+                  {!! $setupValues['users']['rendered'] !!}
+                  @error('team.admin_id')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                    @enderror
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
@@ -67,7 +68,12 @@
 					name="team_lead_email"
 					class="form-control"
 					placeholder="Enter Team Lead Email"
-					/>
+					wire:model.defer="team.team_email"/>
+                    @error('team.team_email')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                    @enderror
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
@@ -81,7 +87,13 @@
 					class="form-control"
 					placeholder="Enter Team Lead Phone Number"
 					name="team_lead_phone_number"
+                    wire:model.defer="team.team_phone"
 					/>
+                    @error('team.team_phone')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                    @enderror
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
@@ -94,7 +106,13 @@
 				  placeholder="Add Team Description"
 				  name="team_description"
 				  id="team_description"
-				  ></textarea>
+				  wire:model.defer="team.team_description"
+                  ></textarea>
+                  @error('team.team_description')
+                  <span class="d-inline-block invalid-feedback mt-2">
+                      {{ $message }}
+                  </span>
+                  @enderror
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
@@ -106,7 +124,13 @@
 				  placeholder="Add Team Notes"
 				  name="team_notes"
 				  id="team_notes"
-				  ></textarea>
+				  wire:model.defer="team.team_notes">
+                </textarea>
+                @error('team.team_notes')
+                  <span class="d-inline-block invalid-feedback mt-2">
+                      {{ $message }}
+                  </span>
+                  @enderror
 			  </div>
 			  <div class="col-md-6 col-12">
 				  <label class="form-label" for="tags">
@@ -131,7 +155,7 @@
 				wire:click.prevent="showList"
 			>
 			Back</a>
-			<button type="submit" class="btn btn-primary rounded px-4">Save & Exit</button>
+			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save">Save & Exit</button>
 			<button type="submit" class="btn btn-primary rounded px-4">Next</button>
 		  </div>
 		</div>
