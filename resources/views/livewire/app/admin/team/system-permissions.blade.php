@@ -544,7 +544,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 
 					  <td>
 						<div class="form-check form-switch">
@@ -569,7 +569,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 
 					  <td>
 						<div class="form-check form-switch">
@@ -594,7 +594,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 
 					  <td>
 						<div class="form-check form-switch">
@@ -619,7 +619,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 
 					  <td>
 						<div class="form-check form-switch">
@@ -644,7 +644,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 
 					  <td>
 						<div class="form-check form-switch">
@@ -669,7 +669,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 
 					  <td>
 						<div class="form-check form-switch">
@@ -769,7 +769,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 					  <td>
 						<div class="form-check form-switch">
 						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage" checked aria-label="Permission Toggle">
@@ -793,7 +793,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 					  <td>
 						<div class="form-check form-switch">
 						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage1" checked aria-label="Permission Toggle">
@@ -817,7 +817,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 					  <td>
 						<div class="form-check form-switch">
 						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage2" checked aria-label="Permission Toggle">
@@ -841,7 +841,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 					  <td>
 						<div class="form-check form-switch">
 						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage3" checked aria-label="Permission Toggle">
@@ -865,7 +865,7 @@
 					  <td>
 						<a @click="offcanvasOpen = true">Example Company</a>
 					  </td>
-					  
+
 					  <td>
 						<div class="form-check form-switch">
 						  <input class="form-check-input" type="checkbox" role="switch" id="CustomerAccessManage4" aria-label="Permission Toggle">
@@ -935,8 +935,7 @@
 	  </div>
 	</div>
 	<div class="d-flex justify-content-center col-12 form-actions">
-		<button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
+		<button type="button" class="btn btn-outline-dark rounded mx-2" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-members')">Back</button>
 		<button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
-		<button type="submit" class="btn btn-primary rounded">Next</button>
 	</div>
 </div>

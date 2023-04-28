@@ -9,6 +9,7 @@ use App\Services\App\AdminTeamService;
 use Illuminate\Validation\Rule;
 class TeamInfo extends Component
 {
+    public $component = 'team-info';
     protected $listeners = ['editRecord' => 'edit'];
     public $label = "Add";
     public $setupValues = [
@@ -57,4 +58,8 @@ class TeamInfo extends Component
         $this->team=$team;
 
     }
+    public function switch($component)
+	{
+		$this->component = $component;
+	}
 }

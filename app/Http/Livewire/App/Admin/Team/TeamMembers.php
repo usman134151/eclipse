@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class TeamMembers extends Component
 {
+    public $component = 'team-info';
 	public $showForm;
 	protected $listeners = ['showList'=>'resetForm'];
 
@@ -25,5 +26,9 @@ class TeamMembers extends Component
 	public function render()
 	{
 		return view('livewire.app.admin.team.team-members');
+	}
+    public function switch($component)
+	{
+		$this->component = $component;
 	}
 }

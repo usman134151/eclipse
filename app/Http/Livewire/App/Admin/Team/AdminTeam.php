@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class AdminTeam extends Component
 {
+    public $component = 'team-info';
     public $confirmationMessage;
 	public $showForm;
 	protected $listeners = [
@@ -59,5 +60,9 @@ class AdminTeam extends Component
     public function updateRecordId($id)
 	{
 		$this->recordId = $id;
+	}
+    public function switch($component)
+	{
+		$this->component = $component;
 	}
 }
