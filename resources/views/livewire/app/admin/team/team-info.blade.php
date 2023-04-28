@@ -4,21 +4,25 @@
         @csrf
         {{-- update ended by shanila --}}
 		<div class="row mt-2 between-section-segment-spacing">
-		  <div class="col-12 text-center">
-			<div class="d-inline-block position-relative">
-			  <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Admin Staff Team"/>
-			  <!-- <div>
-				<input class="position-absolute form-control" type="file" />
-			  </div> -->
-			  <div class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-				<svg aria-label="Upload Picture" width="57" height="57" viewBox="0 0 57 57"
-                  fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <use xlink:href="/css/provider.svg#camera"></use>
-                 </svg>
-			  </div>
-			</div>
-		  </div>
-		</div>
+
+		
+		<div class="provider_image_panel">
+    <div class="provider_image">
+        @if ($image)
+            <img class="user_img cropfile" src="{{ $image->temporaryUrl() }}">
+        @else
+            <img class="user_img cropfile" src="/tenant/images/img-placeholder-document.jpg">
+        @endif
+        <div class="input--file">
+            <span>
+                <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+            </span>
+            <label for="cropfile" class="form-label visually-hidden">Input File</label>
+            <input wire:model="image" wire:change="saveImage" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" wire:model="image">
+        </div>
+    </div>
+</div>
+</div>
 		<div class="row between-section-segment-spacing">
 		  <div class="col-md-12">
 			<h2 class="mb-5">Team Info</h2>
@@ -166,30 +170,11 @@
 <script>
 	document.addEventListener("livewire:load", () => {
 		let el = $('.select2')
-		initSelect()
-
-		Livewire.hook('message.processed', (message, component) => {
-			initSelect()
-		})
-
-		// Only needed if doing save without redirect
-		/* Livewire.on('setCategoriesSelect', values => {
-			el.val(values).trigger('change.select2')
-		})*/
-
-		// Will come into play if and when wire:model is applied
-		// el.on('change', function (e) {
-		// 	@this.set('productCategories', el.select2("val"))
-		// })
+		
         el.on('change', function (e) {
-            @this.set('team.admin_id', el.select2("val"))
+			@this.set('team.admin_id', el.select2("val"))
         })
-		function initSelect () {
-			el.select2({
-				placeholder: '{{__('Select your option')}}',
-				allowClear: !el.attr('required'),
-			})
-		}
+		
 	})
 </script>
 @endpush

@@ -7,9 +7,13 @@ use App\Helpers\SetupHelper;
 use App\Models\Tenant\AdminTeam;
 use App\Services\App\AdminTeamService;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
 class TeamInfo extends Component
 {
     public $component = 'team-info';
+	use WithFileUploads;
+
+    public $image;
     protected $listeners = ['editRecord' => 'edit'];
     public $label = "Add";
     public $setupValues = [
@@ -48,11 +52,23 @@ class TeamInfo extends Component
 	}
 	public function save(){
 		$this->validate();
+		if ($this->image) {
+			$path = $this->image->store('public/images');
+		}	
         $teamserivice = new AdminTeamService;
         $this->team = $teamserivice->createAdminTeam($this->team);
 		$this->showList("Customer has been saved successfully");
 		$this->team = new AdminTeam;
 	}
+	public function saveImage()
+	{
+    	if ($this->image) {
+        	$this->image->store('tmp');
+    	}
+	}
+
+
+
     public function edit(AdminTeam $team){
         $this->label = "Edit";
         $this->team=$team;
