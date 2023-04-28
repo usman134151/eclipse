@@ -1,4 +1,4 @@
-{{-- Add Department Modal- Start --}}
+{{-- Deny Reimbursement Modal- Start --}}
 <div class="modal fade" id="denyReimbursement" tabindex="-1" aria-labelledby="denyReimbursementLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
       <div class="modal-content">
@@ -78,5 +78,5 @@
       </div>
     </div>
   </div>
-  {{-- Add Department Modal - End --}}
+  {{-- Deny Reimbursement Modal - End --}}
   
