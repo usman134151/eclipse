@@ -9,5 +9,6 @@ class Dashboard extends Component
     public function render()
     {
         return view('livewire.app.common.dashboard');
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 }

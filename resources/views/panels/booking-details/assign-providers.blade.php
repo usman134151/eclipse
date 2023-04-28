@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-lg-6 mb-4">
                             <label class="form-label">Service</label>
-                            <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select"
+                            <select data-placeholder="Select Accommodation" multiple class="select2 form-select"
                                 tabindex="8">
                                 <option value=""></option>
                                 <option selected>Language Translation</option>
@@ -59,7 +59,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <select data-placeholder="Select Accommodation" multiple class="form-select chosen-select"
+                            <select data-placeholder="Select Accommodation" multiple class="select2 form-select"
                                 tabindex="8">
                                 <option value=""></option>
                                 <option selected>Medical</option>
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                         <select data-placeholder="Select Accommodation" multiple
-                                            class="form-select chosen-select" tabindex="8">
+                                            class="select2 form-select" tabindex="8">
                                             <option value=""></option>
                                             <option selected>Thomas Charles</option>
                                             <option selected>Paulie Durber</option>
@@ -124,7 +124,7 @@
                                     <div class="col-lg-6 mb-4">
                                         <label class="form-label">Preferred Team Providers</label>
                                         <select data-placeholder="Select Accommodation" multiple
-                                            class="form-select chosen-select" tabindex="8">
+                                            class="select2 form-select" tabindex="8">
                                             <option value=""></option>
                                             <option selected>Richard Payne</option>
                                             <option selected>Mr. Justin Richardson</option>

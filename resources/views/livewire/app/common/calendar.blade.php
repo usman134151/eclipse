@@ -2,8 +2,8 @@
 	<div id='calendar-container' wire:ignore>
 		<div id='calendar'></div>
 	</div>
-	{{-- Updated by Sohail Asghar to link bookings detail panel --}}
-	@include('panels.booking-details.admin-booking-details')
+	{{-- Updated by Sohail Asghar to link bookings detail panel 
+	@include('panels.booking-details.admin-booking-details')--}}
 	<template x-if="bookingDetails">
 		<div>
 			@include('modals.admin-staff')
@@ -88,7 +88,7 @@
 
 		calendar.render();
 		@this.on('refreshCalendar', () => {
-			calendar.refetchEvents()
+			//calendar.refetchEvents()
 		});
 	});
 </script>

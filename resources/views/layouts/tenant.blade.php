@@ -12,8 +12,7 @@
 		<link rel="stylesheet" href="/tenant/css/font-awesome.min.css" type="text/css"/>
 		<link rel="stylesheet" href="/tenant/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/tenant/css/perfect-scrollbar.css">
-		<link rel="stylesheet" href="/tenant/css/chosen.min.css">
-		<link rel="stylesheet" href="/tenant/css/colors.css">
+			<link rel="stylesheet" href="/tenant/css/colors.css">
 		<link rel="stylesheet" href="/tenant/css/components.css">
 		<link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
 		<link rel="stylesheet" href="/tenant/css/vertical-menu.css">
@@ -88,7 +87,6 @@
 		<script src="/tenant/js/unison-js.min.js"></script>
 		<script src="/tenant/js/perfect-scrollbar.min.js"></script>
 		<script src="/tenant/js/feather-icons.min.js"></script>
-		<script src="/tenant/js/chosen.jquery.min.js"></script>
 		<script src="/tenant/js/app.js"></script>
 		<script src="/tenant/js/app-menu.js"></script>
 		<script src="/tenant/js/app-new.js"></script>
@@ -112,8 +110,23 @@
     window.addEventListener('update-url', function(event) {
       pushStateToUrl(event.detail.url);
     });
-	window.addEventListener('refreshSelects', function(event) {
+	document.addEventListener('refreshSelects', function(event) {
 		
+		let el = $('.select2')
+		initSelect()
+
+		Livewire.hook('message.processed', (message, component) => {
+			initSelect()
+		})
+
+
+		function initSelect () {
+			
+			el.select2({
+				placeholder: '{{__('Select your option')}}',
+				allowClear: !el.attr('required'),
+			})
+		}
 		$('.js-single-date').daterangepicker({
 			singleDatePicker: true,
 			showDropdowns: true,
@@ -129,11 +142,30 @@
 		$('.js-select-day').val('');
 		$('.js-select-day').attr("placeholder","Select Day");
 
-			$(".chosen-select").chosen();
+			
 	});
 	function pushStateToUrl(url) {
   history.pushState(null, null, url);
 }
+window.addEventListener("livewire:load", () => {
+	
+		let el = $('.select2')
+		initSelect()
+
+		Livewire.hook('message.processed', (message, component) => {
+			initSelect()
+		})
+
+
+		function initSelect () {
+			
+			el.select2({
+				placeholder: '{{__('Select your option')}}',
+				allowClear: !el.attr('required'),
+			})
+		}
+	})
+	
 </script>
 <script>
 	$(document).on("keypress", "input.js-search-by-keyword", function(e){

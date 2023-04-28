@@ -476,7 +476,7 @@
                                             <label class="form-label" for="tags">
                                                 Tags
                                             </label>
-                                            <select data-placeholder="tags" multiple class="form-select chosen-select" id="tags">
+                                            <select data-placeholder="tags" multiple class="form-select  select2 form-select select2-hidden-accessible" id="tags">
                                                 <option selected>Customer</option>
                                                 <option selected>Companies</option>
                                                 <option selected>Teams</option>
@@ -2440,7 +2440,7 @@
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
                                                     <label class="form-label" for="tags">Tags</label>
                                                     <select data-placeholder="" multiple
-                                                        class="form-select chosen-select" tabindex=""  aria-label="Tags">
+                                                        class="form-select  select2 form-select select2-hidden-accessible" tabindex=""  aria-label="Tags">
                                                         <option value=""></option>
                                                     </select>
                                                 </div>

@@ -337,7 +337,7 @@
                                                         <div class="col-lg-6 pe-lg-5">
                                                             <label class="form-label" for="tags">Tags</label>
                                                             <select data-placeholder="" multiple
-                                                                class="form-select chosen-select" tabindex="" id="tags" aria-label="Select Tags">
+                                                                class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags" aria-label="Select Tags">
                                                                 <option value=""></option>
                                                                 <option selected>Admin staff</option>
                                                                 <option selected>Customers</option>

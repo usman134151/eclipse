@@ -53,7 +53,7 @@ class Teams extends Component
 			$this->emit('editRecord', $id);
 		}
        $this->showForm=true;
-       $this->dispatchBrowserEvent('update-url', ['url' => '/admin/teams/create']);  //updated by Amna Bilal to set url
+       $this->dispatchBrowserEvent('update-url', ['url' => '/admin/teams/create-team']);  //updated by Amna Bilal to set url
        $this->dispatchBrowserEvent('refreshSelects');
     }
 

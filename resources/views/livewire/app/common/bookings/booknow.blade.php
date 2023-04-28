@@ -1398,7 +1398,7 @@
                                                 </label>
                                                 <div class="mb-3">
                                                     <select data-placeholder="" multiple
-                                                        class="form-select chosen-select" tabindex="" id="tags">
+                                                        class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags">
                                                         <option value=""></option>
                                                         <option selected>Option 1</option>
                                                         <option selected>Option 2</option>

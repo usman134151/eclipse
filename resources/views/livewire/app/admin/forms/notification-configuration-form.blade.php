@@ -310,7 +310,7 @@
                         <div class="row">
                           <div class="col-lg-5 col-12 mb-4">
                               <label class="form-label" for="ApplyTo">Apply to:</label>
-                              <select class="form-control chosen chosen-select" data-placeholder="Please Choose Accommodation" aria-label="Please Choose Accommodation" multiple="true" tabindex="" name="">
+                              <select class="form-control  select2 form-select select2-hidden-accessible" data-placeholder="Please Choose Accommodation" aria-label="Please Choose Accommodation" multiple="true" tabindex="" name="">
                                 <option value="1" selected>Requester</option>
                                 <option value="2" selected>Billing Manager</option>
                                 <option value="3">Requester 2</option>

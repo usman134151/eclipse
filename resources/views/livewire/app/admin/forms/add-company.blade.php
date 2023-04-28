@@ -1172,3 +1172,15 @@
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
 </div>
+@push('scripts')
+<script>
+	document.addEventListener("livewire:load", () => {
+        
+        $('.select2').on('change', function (e) {
+         
+            let attrName=$(this).attr('id')+'_id';
+            @this.set('company.'+attrName, $(this).select2("val"))
+        })
+	})
+</script>
+@endpush

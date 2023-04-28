@@ -11,6 +11,8 @@ class TeamsForm extends Component
     public $showForm;
     protected $listeners = ['showList' => 'resetForm','editRecord' => 'edit'];
 	public $component = 'Team';
+    public $specializations=[];
+    public $accommodations=[];
     public function mount(Team $team)
     {
         // $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -41,6 +43,7 @@ class TeamsForm extends Component
     // functions
 
     public function save(){
+      
         $this->validate();
         $this->team->save();
         $this->showList("Record saved successfully");

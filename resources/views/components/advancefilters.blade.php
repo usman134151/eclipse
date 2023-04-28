@@ -32,7 +32,7 @@
     </div>
     <div class="col-lg-5 ps-lg-3 mb-5">
         <label class="form-label" for="service">Filter by Service</label>
-        <select data-placeholder="Select Service" multiple class="form-select chosen-select" tabindex="" id="service">
+        <select data-placeholder="Select Service" multiple class="select2 form-select" tabindex="" id="service">
             <option value=""></option>
             <option selected>Shelby Sign Language</option>
             <option selected>Language Translation Services</option>
@@ -102,7 +102,7 @@
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
                 <label class="form-label" for="OrgDeptUser">Organization(s) / Departments / User(s)</label>
-                <select data-placeholder="Select Company" multiple class="form-select chosen-select" tabindex=""
+                <select data-placeholder="Select Company" multiple class="select2 form-select" tabindex=""
                     id="OrgDeptUser">
                     <option value=""></option>
                     <option selected>AbmaSoft</option>
@@ -112,7 +112,7 @@
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label" for="provider">Provider</label>
-                <select data-placeholder="Select Provider" multiple class="form-select chosen-select" tabindex=""
+                <select data-placeholder="Select Provider" multiple class="select2 form-select" tabindex=""
                     id="provider">
                     <option value=""></option>
                     <option selected>Chandler Leach</option>
@@ -121,7 +121,7 @@
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
                 <label class="form-label" for="tags">Tags</label>
-                <select data-placeholder="Select Tags" multiple class="form-select chosen-select" tabindex="" id="tags">
+                <select data-placeholder="Select Tags" multiple class="select2 form-select" tabindex="" id="tags">
                     <option value=""></option>
                     <option selected>end_Assignment</option>
                     <option selected>end_date</option>
@@ -137,7 +137,7 @@
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">
                 <label class="form-label">Status</label>
-                <select data-placeholder="Select Booking Status" multiple class="form-select chosen-select" tabindex=""
+                <select data-placeholder="Select Booking Status" multiple class="select2 form-select" tabindex=""
                     id="bookingStatus">
                     <option value=""></option>
                     <option selected>Booking Status</option>

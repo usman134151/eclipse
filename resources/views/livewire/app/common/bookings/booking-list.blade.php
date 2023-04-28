@@ -86,7 +86,7 @@
             <div class="card-body">
                 <div class="row">
                     @if($bookingSection!='customer')
-                    <x-advancefilters /> @endif
+                     @endif
                     <div>
                         <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
 

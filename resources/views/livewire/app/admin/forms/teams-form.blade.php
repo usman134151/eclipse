@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -81,15 +81,15 @@
                     <div class="mb-4">
                                 <label class="form-label">Accommodation</label>
                                 {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-        'name', 'status', 1, 'name', true, '',
-        '','accommodation_filter') !!}
+        'name', 'status', 1, 'name', true, 'accommodations',
+        '','accommodations') !!}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label">Service</label>
                         <select data-placeholder="" multiple
-                            class="form-select chosen-select" tabindex="">
+                            class=" select2 form-select select2-hidden-accessible" tabindex="">
                             <option value=""></option>
                             <option selected>Language Translation</option>
                             <option selected>Real Time Captioning</option>
@@ -102,7 +102,7 @@
                       {{-- updated by shanila to add multiselectdropdown --}}
                 {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
                 'name', 'status', 1, 'name', true, '',
-                '','specialization_filter') !!}
+                '','specializations') !!}
                  {{--ended updated--}}
                     </div>
                   </div>
@@ -110,7 +110,7 @@
                     <div class="mb-4">
                         <label class="form-label">Team Tags</label>
                         <select data-placeholder="" multiple
-                            class="form-select chosen-select" tabindex="">
+                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="">
                             <option value=""></option>
                             <option selected>@admin_company</option>
                             <option selected>@booking_start_at</option>
@@ -166,38 +166,14 @@
 
 
 @push('scripts')
-
-<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <script>
-    document.addEventListener("livewire:load", () => {
-		let el = $('.select2')
-		initSelect()
-
-		Livewire.hook('message.processed', (message, component) => {
-			initSelect()
-		})
-
-		// Only needed if doing save without redirect
-		/* Livewire.on('setCategoriesSelect', values => {
-		  el.val(values).trigger('change.select2')
-		})*/
-
-		// Will come into play if and when wire:model.defer is applied
-		// el.on('change', function (e) {
-		// 	@this.set('productCategories', el.select2("val"))
-		// })
-
-		function initSelect () {
-			el.select2({
-				placeholder: '{{__('Select your option')}}',
-				allowClear: !el.attr('required'),
-			})
-		}
-	})
-
-	new Pikaday({
-		field: document.getElementById('service_start_date'),
-		format: 'MM/DD/YYYY'
+	document.addEventListener("livewire:load", () => {
+        
+        $('.select2').on('change', function (e) {
+         
+            let attrName=$(this).attr('id');
+            @this.set(attrName, $(this).select2("val"))
+        })
 	})
 </script>
 @endpush
