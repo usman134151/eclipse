@@ -1646,7 +1646,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -1725,7 +1725,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -1811,7 +1811,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -1890,7 +1890,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -2028,7 +2028,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -2144,7 +2144,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -2267,7 +2267,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -2383,7 +2383,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                                Add Additional Parameter
                                                                                 {{-- Updated by Shanila to Add svg
                                                                                 icon--}}
                                                                                 <svg aria-label="Add Additional Service Charges"
@@ -2693,7 +2693,8 @@
                             </div>
                             <div class="row mb-4">
                                 <div class="col-lg-6 pe-lg-5">
-                                    <div class="inner-section-segment-spacing border p-3">
+                                    <div class="inner-section-segment-spacing border p-1 px-2">
+                                        <div class="text-end text-sm m-0">compulsory</div>
                                         <h3>
                                             Request a Start Time for Services? <i
                                                 class="fa fa-question-circle text-muted" aria-hidden="true"
@@ -3871,49 +3872,9 @@
                                                             name="RequestStartTimeforServices" type="checkbox"
                                                             tabindex="">
                                                     </div>
-                                                    <div class="form-check mb-lg-0">
-                                                        <label class="form-check-label"
-                                                            for="ProximitytoServiceAddress">Proximity to Service
-                                                            Address</label>
-                                                        <input class="form-check-input" id="ProximitytoServiceAddress"
-                                                            name="RequestStartTimeforServices" type="checkbox"
-                                                            tabindex="">
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 mb-4">
-                                                <div class="d-lg-flex align-items-center gap-5">
-                                                    <div>
-                                                        <label class="form-label-sm" for="Max-radius">Max. Radius</label>
-                                                        <div class="input-group">
-                                                            <input type="" name=""
-                                                                class="form-control form-control-sm w-50"
-                                                                placeholder="00" aria-label="00">
-                                                            <select class="form-select form-select-sm" id="Max-radius">
-                                                                <option>Miles</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <label class="form-label-sm" for="provider-Count">Provider Count</label>
-                                                        <div class="input-group">
-                                                            <input type="" name="" class="form-control form-control-sm"
-                                                                placeholder="00" id="provider-Count">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <label class="form-label-sm" for="Interval">Interval</label>
-                                                        <div class="input-group">
-                                                            <input type="" name=""
-                                                                class="form-control form-control-sm w-50"
-                                                                placeholder="00" aria-label="00">
-                                                            <select class="form-select form-select-sm" id="Interval">
-                                                                <option>Min</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
