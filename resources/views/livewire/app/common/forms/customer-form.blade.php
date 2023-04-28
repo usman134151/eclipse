@@ -698,13 +698,13 @@
                                             </button>
                                             <div class="uploaded-data d-flex align-items-center">
                                                 <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                    alt="Image">
+                                                    alt="Profile Image">
                                                 <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                    alt="Image">
+                                                    alt="Profile Image">
                                                 <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                    alt="Image">
+                                                    alt="Profile Image">
                                                 <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                    alt="Image">
+                                                    alt="Profile Image">
                                                 <div class="more">
                                                     <span class="value">8</span> more
                                                 </div>
