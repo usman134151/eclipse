@@ -902,8 +902,8 @@
                                 <div class="justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="button" class="btn btn-outline-dark rounded">Cancel</button>
                                     <button type="button" class="btn btn-primary rounded">Save as Draft</button>
-                                    <button type="submit" class="btn btn-primary rounded"
-                                        x-on:click="$wire.switch('request-details')">Proceed to Request Details</button>
+                                    <button type="button" class="btn btn-primary rounded"
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Proceed to Request Details</button>
                                 </div>
                             </div>
                         </form>
@@ -975,13 +975,11 @@
                                     </div>
                                     <div
                                         class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                        <button type="button" class="btn btn-outline-dark rounded"
-                                            x-on:click="$wire.switch('requester-info')">Back</button>
+                                        <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('requester-info')">Back</button>
                                         <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
                                         <button type="submit" class="btn btn-primary rounded">Request from User</button>
                                         <button type="button" class="btn btn-primary rounded"
-                                            x-on:click="$wire.switch('payment-info')">Proceed to
-                                            Payment</button>
+                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Proceed to Request Details</button>
                                     </div>
                                 </div>
                                 <!-- Service Form End -->
@@ -1469,10 +1467,9 @@
                             <div
                                 class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click="$wire.switch('request-details')">Back</button>
+                                   x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('request-details')">Back</button>
                                 <button type="submit" class="btn btn-primary rounded">Save as Draft</button>
-                                <button type="button" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('booking-summary')">Booking Summary</button>
+                                <button type="button" class="btn btn-primary rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('booking-summary')">Booking Summary</button>
                             </div>
                         </form>
                         {{-- ended update by shanila --}}
@@ -1979,8 +1976,7 @@
                                 <!-- /Checkbox Options -->
                                 <div
                                     class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                    <button type="button" class="btn btn-outline-dark rounded"
-                                        x-on:click="$wire.switch('payment-info')">Back</button>
+                                    <button type="button" class="btn btn-outline-dark rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('payment-info')">Back</button>
                                     <button type="" class="btn btn-primary rounded">Save as Draft</button>
                                     <button type="" class="btn btn-primary rounded">Request Feedback</button>
                                     <div class="dropdown">
