@@ -45,108 +45,22 @@
 				<div class="d-flex justify-content-between mb-2">
 					<div class="d-inline-flex align-items-center gap-4">
 					<label for="show_records_number" class="form-label">Show</label>
-					<select class="form-select" id="show_records_number">
+					<!-- <select class="form-select" id="show_records_number">
 						<option>10</option>
 						<option>15</option>
 						<option>20</option>
 						<option>25</option>
-					</select>
+					</select> -->
+
 					</div>
 					<div class="d-inline-flex align-items-center gap-4">
 					<label for="search" class="form-label fw-semibold">Search</label>
 					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
 					</div>
 				</div>
-				<div class="table-responsive">
-					<table id="system-logs" class="table table-hover" aria-label="system-logs">
-					<thead>
-						<tr role="row">
-						<th scope="col">DATE & TIME</th>   
-						<th scope="col">ACTIVITY</th>
-						<th scope="col">IP ADDRESS</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr role="row" class="odd"> 
-							<td>11/23/2022 4:18 AM</td>
-							<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="even"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="odd"> 
-							<td>11/23/2022 4:18 AM</td>
-							<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-							</tr>
-						<tr role="row" class="even"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="odd"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="even"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="odd"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="even"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-						<tr role="row" class="odd"> 
-							<td>11/23/2022 4:18 AM</td>
-								<!-- it can be a buttton  -->
-							<td>Specific schedule added by Alex Wonderland</td>
-							<td>39.40.83.18</td>
-						</tr>
-					</tbody>
-					</table>
+				
 				</div>
-				<div class="d-flex justify-content-between">
-				<div>
-					<p class="fw-semibold">Showing 1 to 5 of 30 entries</p>
-				</div>
-				<nav aria-label="Page Navigation">
-					<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous">Previous
-						<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item Specific schedule added by Alex Wonderland"><a class="page-link" href="#">4</a></li>
-					<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next">Next
-						<span aria-hidden="true">&raquo;</span>
-						</a>
-					</li>
-					</ul>
-				</nav>
-				</div>
+				@livewire('app.common.lists.system-logs',key(Str::random(10)))
 			</div>
 		</div>
 		</div>
