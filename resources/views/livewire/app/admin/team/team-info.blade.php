@@ -180,7 +180,9 @@
 		// el.on('change', function (e) {
 		// 	@this.set('productCategories', el.select2("val"))
 		// })
-
+        el.on('change', function (e) {
+            @this.set('team.admin_id', el.select2("val"))
+        })
 		function initSelect () {
 			el.select2({
 				placeholder: '{{__('Select your option')}}',
