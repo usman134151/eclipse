@@ -2693,10 +2693,10 @@
                             </div>
                             <div class="row mb-4">
                                 <div class="col-lg-6 pe-lg-5">
-                                    <div class="inner-section-segment-spacing border p-1 px-2">
-                                        <div class="text-end text-sm m-0">compulsory</div>
+                                    <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Request a Start Time for Services? <i
+                                            Request a Start Time for Services?
+                                             <i
                                                 class="fa fa-question-circle text-muted" aria-hidden="true"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                         </h3>

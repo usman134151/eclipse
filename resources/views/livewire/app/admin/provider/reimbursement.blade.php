@@ -283,7 +283,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
                                                               {{-- Updated by Shanila to Add svg icon--}}
                                                               <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
                                                                 <use xlink:href="/css/common-icons.svg#check">
@@ -292,7 +292,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#cross">
@@ -349,7 +349,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
                                                               {{-- Updated by Shanila to Add svg icon--}}
                                                               <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
                                                                 <use xlink:href="/css/common-icons.svg#check">
@@ -358,7 +358,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#cross">
@@ -415,7 +415,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
                                                               {{-- Updated by Shanila to Add svg icon--}}
                                                               <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
                                                                 <use xlink:href="/css/common-icons.svg#check">
@@ -424,7 +424,73 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#cross">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
+                                                            name="" type="checkbox" tabindex="">
+                                                    </div>
+                                                </td>
+                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
+                                                            9:59 AM to 4:22 PM</p></a></td>
+                                                <td>
+                                                    <div class="row g-2">
+                                                        <div class="col-md-3">
+                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                class="img-fluid rounded-circle"
+                                                                alt="Provider Profile Image">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
+                                                            <p>dorigriffit@gmail.com</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Fuel Expenses<br>
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
+                                                        <use xlink:href="/css/common-icons.svg#doc">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </td>
+                                                <td>$100.00</td>
+                                                <td>Approved</td>
+                                                <td>10/20/2022 <br> 10/20/2022</td>
+                                                <td>Direct Deposit</td>
+                                                <td>
+                                                    <div class="d-flex actions">
+                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
+                                                             {{-- Updated by Shanila to Add svg icon--}}
+                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
+                                                                <use xlink:href="/css/common-icons.svg#pencil">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </a>
+                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
+                                                              {{-- Updated by Shanila to Add svg icon--}}
+                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
+                                                                <use xlink:href="/css/common-icons.svg#check">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </a>
+                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#cross">
@@ -481,7 +547,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#reimbursementReview">
                                                               {{-- Updated by Shanila to Add svg icon--}}
                                                               <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
                                                                 <use xlink:href="/css/common-icons.svg#check">
@@ -490,73 +556,7 @@
                                                             {{-- End of update by Shanila --}}
                                                         </a>
                                                         <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#cross">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" aria-label="List Checkbox" id=""
-                                                            name="" type="checkbox" tabindex="">
-                                                    </div>
-                                                </td>
-                                                <td><a @click="offcanvasOpen = true">100995-6<p>08/24/2022 <br>
-                                                            9:59 AM to 4:22 PM</p></a></td>
-                                                <td>
-                                                    <div class="row g-2">
-                                                        <div class="col-md-3">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Provider Profile Image">
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <h6 class="fw-semibold">Dori Griffiths</h6>
-                                                            <p>dorigriffit@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Fuel Expenses<br>
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg class="mx-2" aria-label="document" width="17" height="21" viewBox="0 0 17 21">
-                                                        <use xlink:href="/css/common-icons.svg#doc">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </td>
-                                                <td>$100.00</td>
-                                                <td>Approved</td>
-                                                <td>10/20/2022 <br> 10/20/2022</td>
-                                                <td>Direct Deposit</td>
-                                                <td>
-                                                    <div class="d-flex actions">
-                                                        <a href="javascript:void(0)" title="Edit" aria-label="Edit"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                             {{-- Updated by Shanila to Add svg icon--}}
-                                                             <svg title="Edit" width="20" height="20" viewBox="0 0 20 20">
-                                                                <use xlink:href="/css/common-icons.svg#pencil">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="Check" aria-label="Check"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                              {{-- Updated by Shanila to Add svg icon--}}
-                                                              <svg aria-label="Check" width="22" height="20" viewBox="0 0 22 20">
-                                                                <use xlink:href="/css/common-icons.svg#check">
-                                                                </use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                        <a href="javascript:void(0)" title="cross" aria-label="cross"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#denyReimbursement">
                                                             {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="cancel" width="20" height="20" viewBox="0 0 20 20">
                                                                 <use xlink:href="/css/common-icons.svg#cross">
@@ -658,7 +658,7 @@
                                     </div>
                                     <div
                                         class="d-flex form-actions flex-lg-row flex-column justify-content-center gap-2">
-                                        <a href="#" class="btn btn-primary rounded">Approve Reimbursement</a>
+                                        <a href="#" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#reimbursementReview">Approve Reimbursement</a>
                                         <button type="button"  class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#denyReimbursement">Decline Reimburement</button>
                                     </div>
                                 </div>
@@ -671,4 +671,5 @@
         </div>
         <!-- Basic Floating Label Form section end -->
         @include('modals.common.deny-reimbursement')
+        @include('modals.common.reimbursement-review')
     </div>
