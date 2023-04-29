@@ -18,8 +18,8 @@
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.5/index.global.min.js"></script>
+<script src="/tenant/js/index.global.min.js"></script>
+<script src="/tenant/js/bs-index.global.min.js"></script>
 
 <script>
 	document.addEventListener('livewire:load', function() {
