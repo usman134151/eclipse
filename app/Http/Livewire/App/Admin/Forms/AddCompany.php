@@ -16,6 +16,7 @@ class AddCompany extends Component
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
 	];
+	public $step=1;
 	public $company;
 
 	public function showList($message = "")

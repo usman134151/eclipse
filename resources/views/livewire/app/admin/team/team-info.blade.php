@@ -4,25 +4,23 @@
         @csrf
         {{-- update ended by shanila --}}
 		<div class="row mt-2 between-section-segment-spacing">
-
-		
-		<div class="provider_image_panel">
-    <div class="provider_image">
-        @if ($image)
-            <img class="user_img cropfile" src="{{ $image->temporaryUrl() }}">
-        @else
-            <img class="user_img cropfile" src="/tenant/images/img-placeholder-document.jpg">
-        @endif
-        <div class="input--file">
-            <span>
-                <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
-            </span>
-            <label for="cropfile" class="form-label visually-hidden">Input File</label>
-            <input wire:model="image" wire:change="saveImage" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" wire:model="image">
-        </div>
-    </div>
-</div>
-</div>
+			<div class="provider_image_panel">
+				<div class="provider_image">
+					@if ($image)
+						<img class="user_img cropfile" src="{{ $image->temporaryUrl() }}">
+					@else
+						<img class="user_img cropfile" src="/tenant/images/img-placeholder-document.jpg">
+					@endif
+					<div class="input--file">
+						<span>
+							<img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+						</span>
+						<label for="cropfile" class="form-label visually-hidden">Input File</label>
+						<input wire:model="image" wire:change="saveImage" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" wire:model="image">
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row between-section-segment-spacing">
 		  <div class="col-md-12">
 			<h2 class="mb-5">Team Info</h2>
