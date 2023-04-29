@@ -681,6 +681,7 @@
 
                             </section>
                         </div>
+                        @include('panels.common.customers')
                         {{-- End: Service Catalog --}}
                         @else
                         {{-- BEGIN: Drive Documents Pane --}}
@@ -700,6 +701,7 @@
     </div>
 
 </div>
+
 @push('scripts')
 <script>
 	document.addEventListener("livewire:load", () => {

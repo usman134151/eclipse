@@ -79,120 +79,8 @@
 								</div>
 							</div> --}}
 							@livewire('app.common.lists.companies', key(Str::random(10)))
-							@php /*
-							<div class="table-responsive mb-2">
-								<table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
-									<thead>
-										<tr role="row">
-											<th scope="col" class="text-center">
-												<input class="form-check-input" type="checkbox" value="" aria-label="Select All Companies">
-											</th>
-											<th scope="col">Name</th>
-											<th scope="col">Phone Number</th>
-											<th scope="col" class="text-center">Total Departments</th>
-											<th scope="col" class="text-center">Company User</th>
-											<th scope="col">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										@for ($i = 1; $i <= 10; $i++)
-										<tr role="row" class="{{ ($i % 2 == 0) ? 'even' : 'odd'}} align-middle">
-											<td class="text-center">
-												<input class="form-check-input" type="checkbox" value="" aria-label="Select Company">
-											</td>
-											<td>
-												<div class="row g-2">
-													<div class="col-md-2">
-														<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Company Profile Image">
-													</div>
-													<div class="col-md-10">
-														<h6 class="fw-semibold">
-															Testing Company
-														</h6>
-														<p>
-															www.software.com
-														</p>
-													</div>
-												</div>
-											</td>
-											<td>
-												<p>(923) 023-9683</p>
-											</td>
-											<td class="text-center">5</td>
-											<td class="text-center">5</td>
-											<td>
-												<div class="d-flex actions">
-													<a href="#" title="Edit Company" aria-label="Edit Company" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-															<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-																<use xlink:href="/css/sprite.svg#edit-icon"></use>
-															</svg>
-													</a>
-													<a href="javascript:void(0)" title="View Company" aria-label="View Company" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-														<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none" xmlns="http://www.w3.org/2000/svg">
-															<use xlink:href="/css/provider.svg#view"></use>
-														</svg>
-													</a>
-													<div class="d-flex actions">
-														<div class="dropdown ac-cstm">
-															<a href="javascript:void(0)" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" title="More Options" aria-label="More Options" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-																<svg aria-label="More Options" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none" xmlns="http://www.w3.org/2000/svg">
-																	<use xlink:href="/css/sprite.svg#dropdown"></use>
-																</svg>
-															</a>
-															<div class="tablediv dropdown-menu">
-																<a title="View Company Users" aria-label="View Company Users" href="#" class="dropdown-item">
-																	<i class="fa fa-users"></i>
-																	View Company Users
-																</a>
-																<a href="#" title="View Company Departments" aria-label="View Company Departments" class="dropdown-item" @click="departmentList = true">
-																	<i class="fa fa-building"></i>
-																	View Company Departments
-																</a>
-																<a href="javascript:void(0)" aria-label="Deactivate Company" title="Deactivate Company" class="dropdown-item">
-																	<i class="fa fa-trash"></i>
-																	Deactivate Company
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-										@endfor
-									</tbody>
-								</table>
-							</div> */ @endphp
-							{{-- <div class="d-flex flex-column flex-md-row justify-content-between">
-								<div>
-									<p class="fw-semibold">Showing 1 to 10 of 100 entries</p>
-								</div>
-								<nav aria-label="Page Navigation">
-									<ul class="pagination justify-content-start justify-content-lg-end">
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Previous">
-												<span aria-hidden="true">&laquo;</span>
-											</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">3</a>
-										</li>
-										<li class="page-item active">
-											<a class="page-link" href="#">4</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Next">
-												<span aria-hidden="true">&raquo;</span>
-											</a>
-										</li>
-									</ul>
-								</nav>
-							</div> --}}
+							
+							
 							{{-- Icon Legend Bar - Start --}}
 							<div class="d-flex actions gap-3 justify-content-md-end mb-2">
 								<div class="d-flex gap-2 align-items-center">
@@ -227,4 +115,7 @@
 	@endif
 	@include('panels.company.department-list')
 	@include('panels.company.department-profile')
+	
+    @include('modals.company-business-hours')
+    @include('modals.common.add-address')
 </div>

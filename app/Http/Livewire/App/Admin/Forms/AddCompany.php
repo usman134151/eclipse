@@ -75,11 +75,16 @@ class AddCompany extends Component
 		$this->company->added_by = 1;
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company);
+		$this->step=2;
 		//dd($this->company);
 		if($redirect){
 			$this->showList("Company has been saved successfully");
 			$this->company = new Company;
 		}
 
+	}
+
+	public function addServices(){
+		$this->step=3;
 	}
 }
