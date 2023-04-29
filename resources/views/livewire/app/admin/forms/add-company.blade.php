@@ -698,9 +698,7 @@
             </div>
         </div>
     </div>
-    @include('panels.common.customers')
-    @include('modals.company-business-hours')
-    @include('modals.common.add-address')
+
 </div>
 @push('scripts')
 <script>
