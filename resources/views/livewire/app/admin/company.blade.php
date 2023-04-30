@@ -118,4 +118,12 @@
 	
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
+	
 </div>
+<script>
+	function updateVal(attrName,val){
+	
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>

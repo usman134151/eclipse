@@ -22,4 +22,11 @@ class Company extends Model
 	{
 		return $this->hasMany(User::class);
 	}
+	
+	public function phones()
+	{
+		return $this->morphMany(Phone::class, 'model', 'model_type', 'model_id')
+					->where('model_type', '=', 'company');
+	}
+	
 }

@@ -654,7 +654,7 @@
                                                         wire:click.prevent="showList">
                                                         Cancel
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save">
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                         Save & Exit
                                                     </button>
                                                     <button type="button" class="btn btn-primary rounded px-4 py-2"
@@ -702,15 +702,13 @@
 
 </div>
 
+
 @push('scripts')
 <script>
-	document.addEventListener("livewire:load", () => {
-        
-        $('.select2').on('change', function (e) {
-         
-            let attrName=$(this).attr('id')+'_id';
-            @this.set('company.'+attrName, $(this).select2("val"))
-        })
-	})
+    Livewire.on('updateVal', (attrName, val) => {
+       
+        // Call the updateVal function with the attribute name and value
+        @this.call('updateVal', attrName, val);
+    });
 </script>
 @endpush

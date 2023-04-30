@@ -114,7 +114,7 @@
 		
 		let el = $('.select2')
 		initSelect()
-
+		
 		Livewire.hook('message.processed', (message, component) => {
 			initSelect()
 		})
@@ -123,9 +123,14 @@
 		function initSelect () {
 			
 			el.select2({
-				placeholder: '{{__('Select your option')}}',
+				placeholder: '{{__('Select your optioned')}}',
 				allowClear: !el.attr('required'),
-			})
+			});
+			el.on('change', function (e) {
+                let attrName = $(this).attr('id')+'_id';
+				
+				updateVal(attrName,  $(this).select2("val"));
+            });
 		}
 		$('.js-single-date').daterangepicker({
 			singleDatePicker: true,
@@ -147,6 +152,9 @@
 	function pushStateToUrl(url) {
   history.pushState(null, null, url);
 }
+       
+
+        
 window.addEventListener("livewire:load", () => {
 	
 		let el = $('.select2')
@@ -160,9 +168,14 @@ window.addEventListener("livewire:load", () => {
 		function initSelect () {
 			
 			el.select2({
-				placeholder: '{{__('Select your option')}}',
+				placeholder: '{{__('Select your options')}}',
 				allowClear: !el.attr('required'),
 			})
+			el.on('change', function (e) {
+                let attrName = $(this).attr('id')+'_id';
+				
+				updateVal(attrName,  $(this).select2("val"));
+            });
 		}
 	})
 	

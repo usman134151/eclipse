@@ -16,6 +16,7 @@ class AddCompany extends Component
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
 	];
+	protected $listeners = ['updateVal' => 'updateVal'];
 	public $step=1;
 	public $company;
 
@@ -27,16 +28,22 @@ class AddCompany extends Component
 
 	public function render()
 	{
+		
 		return view('livewire.app.admin.forms.add-company');
 	}
 
+	
 	public function mount(Company $company){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
-		
+
 
 	}
-
+	public function updateVal($attrName, $val)
+	{
+		
+		$this->company['industry_id'] = $val;
+	}
 	public function switch($component)
 	{
 		$this->component = $component;
@@ -74,7 +81,7 @@ class AddCompany extends Component
 		$this->validate();
 		$this->company->added_by = 1;
 		$companyService = new CompanyService;
-        $this->company = $companyService->createCompany($this->company);
+        $this->company = $companyService->createCompany($this->company,$this->phoneNumbers);
 		$this->step=2;
 		//dd($this->company);
 		if($redirect){
