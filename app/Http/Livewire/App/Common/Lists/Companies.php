@@ -151,7 +151,7 @@ final class Companies extends PowerGridComponent
     function edit($id){
 		
         // Emits an event to show the form for editing a record
-        $this->emit('showForm', Company::find($id));
+        $this->emit('showForm', Company::with('phones')->find($id));
     }
 	function showProfile() {
 		// Emits an event to show the customer profile

@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 class AddCompany extends Component
 {
 	public $component = 'company-info';
-	public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
+	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
@@ -37,11 +37,21 @@ class AddCompany extends Component
 		
         $this->label="Edit";
        $this->company=$company;
+	   if(count($company->phones)){
+		//dd($company->phones);
+		$this->phoneNumbers=[];
+		foreach($company->phones as $phone){
+			$this->phoneNumbers[]=['phone_number'=>$phone->phone_number,'phone_title'=>$phone->phone_title];
+		}
+		
+	}
      
     }
 	public function mount(Company $company){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
+		
+		
 
 
 	}
