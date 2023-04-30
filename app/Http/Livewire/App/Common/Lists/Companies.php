@@ -50,7 +50,7 @@ final class Companies extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Company::query();
+		return Company::query()->with('phones');
 	}
 
 	/*
@@ -86,8 +86,16 @@ final class Companies extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 			->addColumn('name')
-			->addColumn('phone', function () {
-				return '(923) 023-9683';
+			->addColumn('phone', function (Company $model) {
+			    if(count($model->phones)){
+					
+					return $model->phones[0]->phone_number;
+				}
+				else{
+					return 'N/A';
+				}
+				
+
 			})
 			->addColumn('departments', function () {
 				return "<div class='text-center'>5</div>";

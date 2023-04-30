@@ -26,7 +26,7 @@ class Company extends Model
 	public function phones()
 	{
 		return $this->morphMany(Phone::class, 'model', 'model_type', 'model_id')
-					->where('model_type', '=', 'company');
+					->where('model_type', '=', 'App\Models\Tenant\Company');
 	}
 	
 }
