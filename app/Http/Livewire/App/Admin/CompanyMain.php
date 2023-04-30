@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\App\Admin;
 
 use Livewire\Component;
+use App\Models\Tenant\Company;
 
-class Company extends Component
+class CompanyMain extends Component
 {
 	public $showForm;
 	public $showProfile;
@@ -12,6 +13,8 @@ class Company extends Component
 	protected $listeners = [
 		'showList' => 'resetForm',
 		'showProfile' => 'showProfile',
+		'showForm' => 'showForm', // show form when the parent component requests it
+		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 	];
 
 	public function render()
@@ -22,8 +25,13 @@ class Company extends Component
 	public function mount()
 	{}
 
-	function showForm()
+	function showForm($company=null)
 	{
+        if ($company) {
+			$this->company = $company;
+           // dd($company);
+			$this->emit('editRecord', $company);
+		}
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/company/create-company']);
 		$this->dispatchBrowserEvent('refreshSelects');
@@ -39,6 +47,11 @@ class Company extends Component
 	public function showProfile()
 	{
 		$this->showProfile = true;
+	}
+	// function to update the ID of the record being edited/deleted
+	public function updateRecordId($id)
+	{
+		$this->recordId = $id;
 	}
 
 	public function switch($component)

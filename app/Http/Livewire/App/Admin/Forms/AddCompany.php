@@ -16,9 +16,10 @@ class AddCompany extends Component
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
 	];
-	protected $listeners = ['updateVal' => 'updateVal'];
+	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit'];
 	public $step=1;
 	public $company;
+	
 
 	public function showList($message = "")
 	{
@@ -32,7 +33,12 @@ class AddCompany extends Component
 		return view('livewire.app.admin.forms.add-company');
 	}
 
-	
+	public function edit(Company $company){
+		
+        $this->label="Edit";
+       $this->company=$company;
+     
+    }
 	public function mount(Company $company){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
