@@ -42,7 +42,7 @@
                                             <div class="col-12 form-actions">
                                                 <button type="button"
                                                     class="btn btn-outline-dark rounded px-4 py-2 mx-2"
-                                                    x-on:click="$wire.switch('service-catalog')">
+                                                    x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
                                                     Back
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2">

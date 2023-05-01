@@ -402,14 +402,14 @@
 
                                             <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                                    x-on:click="$wire.switch('company-info')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('company-info')">
                                                     Back
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2">
                                                     Save & Exit
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2"
-                                                    x-on:click="$wire.switch('drive-documents')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
                                                     Next
                                                 </button>
                                             </div>
