@@ -201,3 +201,10 @@
     @endif
     @include('panels.common.admin-staff-details')
 </div>
+<script>
+function updateVal(attrName,val){
+
+    Livewire.emit('updateVal', attrName, val);
+
+}
+</script>
