@@ -20,7 +20,7 @@ class CustomerForm extends Component
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'customer.gender_id','','gender',3]],
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'customer.timezone_id','','timezone',4]],
 	];
-
+    public $step = 1;
 	public function render()
 	{
 		return view('livewire.app.common.forms.customer-form');
@@ -40,4 +40,13 @@ class CustomerForm extends Component
 	{
 		$this->component = $component;
 	}
+    public function save(){
+        $this->step = 2;
+    }
+    public function permissionConfiguration(){
+        $this->step =3;
+    }
+    public function addServices(){
+        $this->step = 4;
+    }
 }
