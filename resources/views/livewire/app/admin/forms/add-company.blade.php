@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }"
+                            <a href="#" class="nav-link {{$serviceActive}}"
                                 @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
                                 aria-controls="service-catalog" aria-selected="false">
                                 <span class="number">2</span>
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }"
+                            <a href="#" class="nav-link {{$driveActive}}"
                                 @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
                                 aria-controls="drive-documents" aria-selected="false">
                                 <span class="number">3</span>
@@ -685,9 +685,9 @@
                         {{-- End: Service Catalog --}}
                         @else
                         {{-- BEGIN: Drive Documents Pane --}}
-                        <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
+                        <div class="tab-pane fade active show"
                             @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
-                            aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
+                            aria-labelledby="drive-documents-tab" tabindex="0">
                             <section id="multiple-column-form">
                                 @livewire('app.admin.customer.drive')
                             </section>

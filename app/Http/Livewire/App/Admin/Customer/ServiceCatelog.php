@@ -19,6 +19,14 @@ class ServiceCatelog extends Component
        
        
     }
+	public function switch($component)
+	{
+		$this->component = $component;
+	}
+    public function next()
+{
+    $this->emit('stepIncremented');
+}
 
     function showForm()
     {     

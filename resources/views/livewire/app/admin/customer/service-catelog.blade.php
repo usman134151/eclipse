@@ -409,7 +409,7 @@
                                                     Save & Exit
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')" wire:click="next()">
                                                     Next
                                                 </button>
                                             </div>

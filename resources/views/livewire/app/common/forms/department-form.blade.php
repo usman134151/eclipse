@@ -61,7 +61,6 @@
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            @if($step==1)
                             <!-- BEGIN: Customer Info -->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'department-info' }"
                                 @click.prevent="tab = 'department-info'" id="department-info" role="tabpanel"
@@ -668,7 +667,7 @@
                                 </section>
                             </div><!-- end Customer Info  -->
 
-                            @elseif($step==2)
+                            
                             <!--BEGIN: Service Catalog-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
@@ -680,7 +679,6 @@
                           </div>
                           @include('panels.common.customers')
                             <!--End: Service Catalog-->
-                            @else
                             <!--BEGIN: Drive Documents Pane-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
                             @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
@@ -689,7 +687,6 @@
                                 @livewire('app.admin.customer.drive')
                             </section>
                         </div>
-                        @endif
                             <!--End: Drive Documents Pane-->
                         </div><!-- tab-content-end    -->
                     </div><!-- Basic Floating Label Form section end -->

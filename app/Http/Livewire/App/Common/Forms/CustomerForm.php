@@ -46,6 +46,7 @@ class CustomerForm extends Component
        
     }
     public function permissionConfiguration(){
+      //  dd($this->step);
         $this->step =3;
     }
     public function addServices(){

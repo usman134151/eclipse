@@ -16,9 +16,10 @@ class AddCompany extends Component
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]]
 	];
-	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit'];
+	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
 	public $step=1;
 	public $company;
+	public $driveActive,$serviceActive;
 	
 
 	public function showList($message = "")
@@ -100,6 +101,7 @@ class AddCompany extends Component
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers);
 		$this->step=2;
+		$this->serviceActive="active";
 		//dd($this->company);
 		if($redirect){
 			$this->showList("Company has been saved successfully");
@@ -108,7 +110,17 @@ class AddCompany extends Component
 
 	}
 
-	public function addServices(){
-		$this->step=3;
+	public function stepIncremented()
+	{
+	
+		$this->step=$this->step+1;
+		if($this->step==3)
+		 {
+			$this->driveActive='active';
+			$this->serviceActive='';
+		 }
 	}
+
+
+
 }

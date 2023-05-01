@@ -72,11 +72,13 @@
 
                     {{-- Tab panes --}}
                     <div class="tab-content">
-                        @if($step==1)
+                        
+                      
                         {{-- BEGIN: Customer Info --}}
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'customer-info' }"
                             id="customer-info" role="tabpanel" aria-labelledby="customer-info-tab" tabindex="0"
                             x-show="tab === 'customer-info'">
+                           
                             <section id="multiple-column-form">
                                 <div class="row">
                                     <div class="col-12">
@@ -585,7 +587,7 @@
                                                     Save & Exit
                                                 </a>
                                                 <button type="submit" class="btn btn-primary rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')" wire:click="save()">
                                                     Next
                                                 </button>
                                             </div>
@@ -597,11 +599,12 @@
                                     </div>
                                 </div>
                             </section>
+                            
                         </div>
                         {{-- END Customer Info --}}
 
                         {{-- BEGIN: Permission Configurations --}}
-                        @elseif($step==2)
+                       
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'permission-configurations' }"
                             id="permission-configurations" role="tabpanel"
                             aria-labelledby="permission-configurations-tab" tabindex="0"
@@ -928,7 +931,7 @@
                                                 </button>
                                             </a>
                                             <button type="button" class="btn btn-primary rounded"
-                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')" wire:click="permissionConfiguration()">
                                                 Next
                                             </button>
                                         </div>
@@ -942,28 +945,28 @@
                         {{-- END: Permission Configurations --}}
 
                         {{-- BEGIN: Service Catalog --}}
-                        @elseif($step==3)
+                     
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                         id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                         x-show="tab === 'service-catalog'">
                         <section id="multiple-column-form">
-                         @livewire('app.admin.customer.service-catelog')
-
+                            @livewire('app.admin.customer.service-catelog')
+                       
                         </section>
                     </div>
                         {{-- END: Service Catalog --}}
 
                         {{-- BEGIN: Drive Documents Pane --}}
-                        @else
+                        
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
                             @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
                             aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
                             <section id="multiple-column-form">
-                                @livewire('app.admin.customer.drive')
+                               @livewire('app.admin.customer.drive') 
                             </section>
                         </div>
                         {{-- END: Drive Documents Pane --}}
-                        @endif
+                       
                     </div>
                 </div>
             </div>

@@ -76,7 +76,6 @@
                   </ul>
                  <!-- Tab panes -->
                   <div class="tab-content">
-                    @if($step==1)
                     <div class="tab-pane fade {{ $component == 'basic-service-setup' ? 'active show' : '' }}"
                         id="basic-service-setup" role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0">
                         <form class="form">
@@ -664,7 +663,6 @@
                         </form>
                     </div>
                     <!-- END: basic-service-setup -->
-                    @elseif($step==2)
                     <div class="tab-pane fade {{ $component == 'advanced-service-rate' ? 'active show' : '' }}"
                         id="advanced-service-rate" role="tabpanel" aria-labelledby="advanced-service-rate-tab"
                         tabindex="0">
@@ -2524,7 +2522,6 @@
                             </form>
                         </div>
                     </div>
-                     @elseif($step==3)
                     <div class="tab-pane fade {{ $component == 'service-forms' ? 'active show' : '' }}"
                         id="service-forms" role="tabpanel" aria-labelledby="service-forms-tab" tabindex="0">
                         <form class="form">
@@ -2685,7 +2682,6 @@
                             </div>
                         </form>
                     </div>
-                    @elseif($step==4)
                     <div class="tab-pane fade {{ $component == 'service-configuration' ? 'active show' : '' }}"
                         id="service-configuration" role="tabpanel" aria-labelledby="service-configuration-tab"
                         tabindex="0">
@@ -2851,7 +2847,7 @@
 
                         </form>
                     </div>
-                     @elseif($step==5)
+                     
                     <div class="tab-pane fade {{ $component == 'advance-options' ? 'active show' : '' }}"
                         id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
                         <form class="form">
@@ -3600,7 +3596,7 @@
                             </div>
                         </form>
                     </div>
-                    @else
+                    
                     <div class="tab-pane fade {{ $component == 'notification-setting' ? 'active show' : '' }}"
                         id="notification-setting" role="tabpanel" aria-labelledby="notification-setting-tab"
                         tabindex="0">
@@ -3896,7 +3892,7 @@
                             </div>
                         </form>
                     </div>
-                    @endif
+                    
                    </div>
                 <!-- END: Steps -->
               </div>

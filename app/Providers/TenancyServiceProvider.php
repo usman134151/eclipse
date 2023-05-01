@@ -124,9 +124,9 @@ class TenancyServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        if ($this->app->environment('production')) {
+       // if ($this->app->environment('production')) {
             DomainTenantResolver::$shouldCache = true;
-        }
+        //}
 
         $this->bootEvents();
         $this->mapRoutes();
