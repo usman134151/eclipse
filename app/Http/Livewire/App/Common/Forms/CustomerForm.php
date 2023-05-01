@@ -41,7 +41,9 @@ class CustomerForm extends Component
 		$this->component = $component;
 	}
     public function save(){
+        
         $this->step = 2;
+       
     }
     public function permissionConfiguration(){
         $this->step =3;

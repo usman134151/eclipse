@@ -14,7 +14,7 @@ class AddCompany extends Component
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','languages',4]]
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]]
 	];
 	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit'];
 	public $step=1;
@@ -58,7 +58,8 @@ class AddCompany extends Component
 	public function updateVal($attrName, $val)
 	{
 		
-		$this->company['industry_id'] = $val;
+		   $this->company[$attrName.'_id'] = $val;
+		
 	}
 	public function switch($component)
 	{

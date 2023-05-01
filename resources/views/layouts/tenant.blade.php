@@ -127,7 +127,7 @@
 				allowClear: !el.attr('required'),
 			});
 			el.on('change', function (e) {
-                let attrName = $(this).attr('id')+'_id';
+                let attrName = $(this).attr('id');
 				
 				updateVal(attrName,  $(this).select2("val"));
             });
@@ -172,7 +172,7 @@ window.addEventListener("livewire:load", () => {
 				allowClear: !el.attr('required'),
 			})
 			el.on('change', function (e) {
-                let attrName = $(this).attr('id')+'_id';
+                let attrName = $(this).attr('id');
 				
 				updateVal(attrName,  $(this).select2("val"));
             });
