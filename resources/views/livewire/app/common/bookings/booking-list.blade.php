@@ -409,3 +409,10 @@
     @include('modals.common.available-timeslot')
 </div>
 {{-- End: Content --}}
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>

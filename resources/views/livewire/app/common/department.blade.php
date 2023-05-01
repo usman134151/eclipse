@@ -537,3 +537,10 @@
     @include('modals.common.add-address')
     @include('modals.department-manager')
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
