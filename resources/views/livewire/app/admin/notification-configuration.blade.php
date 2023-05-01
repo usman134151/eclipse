@@ -122,7 +122,7 @@
 									</div>
 								</div>
 								<!-- ...... -->
-						    	@livewire('app.common.lists.notification-configuration',key(Str::random(10))) 						
+						    	@livewire('app.common.lists.notification-configuration',key(Str::random(10)))
 							</div>
 						</div>
 					</div>
@@ -132,3 +132,10 @@
 	</section>
 	@endif
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
