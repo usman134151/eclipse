@@ -276,3 +276,10 @@
     @include('modals.staff-provider-availiblity')
     @include('panels.common.add-new')
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
