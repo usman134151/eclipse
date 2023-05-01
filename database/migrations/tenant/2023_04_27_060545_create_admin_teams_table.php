@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_teams', function (Blueprint $table) {
-            $table->id();
-            $table->string('team_name');
-            $table->foreignId('admin_id')->constrained('users');
-            $table->string('team_phone');
-            $table->string('team_email');
-            $table->text('team_description');
-            $table->text('team_notes')->nullable();
-            $table->timestamps();
+        if (!Schema::hasTable('admin_teams')) {
+            Schema::create('admin_teams', function (Blueprint $table) {
+                $table->id();
+                $table->string('team_name');
+                $table->foreignId('admin_id')->constrained('users');
+                $table->string('team_phone');
+                $table->string('team_email');
+                $table->text('team_description');
+                $table->text('team_notes')->nullable();
+                $table->timestamps();
         });
+        }
     }
     
 
