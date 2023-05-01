@@ -533,4 +533,7 @@
 </div>
 </div>
 	@endif
+    @include('modals.company-business-hours')
+    @include('modals.common.add-address')
+    @include('modals.department-manager')
 </div>
