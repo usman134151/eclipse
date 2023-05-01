@@ -656,7 +656,7 @@
                                                             class="btn btn-primary rounded px-4 py-2">Save
                                                             & Exit</button>
                                                         <button type="submit" class="btn btn-primary rounded px-4 py-2"
-                                                            x-on:click="$wire.switch('service-catalog')">Next</button>
+                                                        x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">Next</button>
 
                                                     </div>
                                                 </div>
@@ -1119,14 +1119,14 @@
                                             </div>
                                             <div class="col-12 justify-content-center form-actions d-flex gap-2">
                                                 <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                                    x-on:click="$wire.switch('department-info')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('department-info')">
                                                     Back
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2">
                                                     Save & Exit
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2"
-                                                    x-on:click="$wire.switch('drive-documents')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
                                                     Next
                                                 </button>
                                             </div>
@@ -1256,7 +1256,7 @@
                                                             class="col-12 justify-content-center form-actions d-flex gap-2">
                                                             <button type="button"
                                                                 class="btn btn-outline-dark rounded px-4 py-2"
-                                                                x-on:click="$wire.switch('service-catalog')">Back</button>
+                                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">Back</button>
                                                             <button type="submit"
                                                                 class="btn btn-primary rounded px-4 py-2"
                                                                 wire:click.prevent="showList">Submit</button>
