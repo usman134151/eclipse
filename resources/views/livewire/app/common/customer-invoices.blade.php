@@ -44,8 +44,8 @@
                       <div class="row between-section-segment-spacing">
                       <div class="col-lg-8">
                         <div class="border border-primary p-3">
-                          
-                        
+
+
                           <div class="col-md-12 mb-3">
                             <label class="form-label" for="Customer-invoices-summary">Customer invoices summary</label>
                           </div>
@@ -76,7 +76,7 @@
                     <div class="row between-section-segment-spacing">
                         <x-advancefilters type="invoice-filters"/>
                       </div>
-                       
+
                       <div class="d-flex justify-content-between mb-2">
                         <div class="d-inline-flex align-items-center gap-4">
                           <label for="show_records" class="form-label">Show</label>
@@ -273,7 +273,7 @@
                                     </svg>
                                   </td>
                                   <td class="text-center">Direct Deposit</td>
-                                  <td><div class="d-flex align-items-center gap-2"> 
+                                  <td><div class="d-flex align-items-center gap-2">
                                     <svg  width="12" height="12" viewBox="0 0 12 12" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#blue-dot"></use>
                                      </svg>
@@ -816,3 +816,10 @@
   @include('modals.common.revert-back')
   @include('panels.invoices.invoice-details')
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
