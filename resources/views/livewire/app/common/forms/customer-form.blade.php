@@ -72,7 +72,7 @@
 
                     {{-- Tab panes --}}
                     <div class="tab-content">
-                        @if($step = 1)
+                        @if($step == 1)
                         {{-- BEGIN: Customer Info --}}
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'customer-info' }"
                             id="customer-info" role="tabpanel" aria-labelledby="customer-info-tab" tabindex="0"

@@ -20,7 +20,7 @@ class ProviderForm extends Component
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'provider.timezone_id','','timezone',3]],
         'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'provider.country_id','','country',4]]
 	];
-
+   public $step = 1;
 	public function render()
 	{
 		return view('livewire.app.common.forms.provider-form');
@@ -39,4 +39,10 @@ class ProviderForm extends Component
 	{
 		$this->component = $component;
 	}
+    public function save(){
+        $this->step = 2;
+    }
+    public function ProvideService(){
+        $this->step = 3;
+    }
 }

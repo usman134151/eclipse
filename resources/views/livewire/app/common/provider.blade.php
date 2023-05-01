@@ -270,4 +270,9 @@
 	</section>
 	{{-- Provider List - End --}}
 	@endif
+    @include('panels.common.add-document')
+    @include('modals.assign-provider-team')
+    @include('modals.contract-provider-availiblity')
+    @include('modals.staff-provider-availiblity')
+    @include('panels.common.add-new')
 </div>
