@@ -286,3 +286,10 @@
     @include('panels.services.associated-service')
     @include('modals.add-user')
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
