@@ -270,15 +270,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <h2>Roles and Permissions</h2>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-4">
-                                            {{-- updated by shanila to add dropdown --}}
-                                            {!! $setupValues['roles_permissions']['rendered'] !!}
-                                            {{-- ended update --}}
-                                    </div>
-                                </div>
+                              
                                 <div class="col-12 justify-content-center form-actions d-flex">
                                     <button type="button" class="btn btn-outline-dark rounded mx-2"
                                         wire:click.prevent="showList">
