@@ -85,3 +85,11 @@
 		</div>
 	  </section>
 </div>
+
+<script>
+function updateVal(attrName,val){
+
+    Livewire.emit('updateVal', attrName, val);
+
+}
+</script>
