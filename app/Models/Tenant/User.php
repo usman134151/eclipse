@@ -59,12 +59,27 @@ class User extends Authenticatable
 	 *
 	 * @return bool
 	 */
-	
+	public function isOwner()
+	{
+		// We assume the superadmin is the first user in the DB.
+		// Feel free to change this logic.
+		return $this->getKey() === 1;
+	}
 
-	 public function roles()
-	 {
-		 return $this->belongsToMany(Role::class, 'role_user');
-	 }
+	public function posts()
+	{
+		return $this->hasMany(Post::class);
+	}
+
+	public function getGravatarUrlAttribute()
+	{
+		return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email)));
+	}
+
+	public function role()
+	{
+		return $this->hasOne(RoleUser::class);
+	}
 
 	public function company()
 	{
