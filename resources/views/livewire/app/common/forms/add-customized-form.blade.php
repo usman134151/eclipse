@@ -99,11 +99,11 @@
 									<div class="mb-4">
 											<div class="form-group">
                                                 <div class="d-flex justify-content-between">
-												<label for="field-name-column">Field Name {{ $loop->index + 1 }} <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Type the question or field name you want customers to respond to."></i></label>
+												<label for="field-name-column">Field Name {{ $loop->index + 1 }} <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Type the question or field name you want customers to respond to."></i></label>
                                                 <div class="align-items-center gap-4">
                                                     <a wire:click.prevent="removeQuestion({{$index}})" href="#" title="Delete" aria-label="Delete"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        <svg class="delete-icon" width="20" height="20"
+                                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
                                                             viewBox="0 0 20 20" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <use xlink:href="/css/sprite.svg#delete-icon"></use>
@@ -119,7 +119,7 @@
 								  </div>
 								<div class="col-md-12">
 									<div class="mb-4">
-										<label class="form-label" for="form-type-column" > Form Type <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the format you want this question to display as."></i></label>
+										<label class="form-label" for="form-type-column" > Form Type <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select the format you want this question to display as"></i></label>
 										<select class="form-select" id="form-type-column" wire:key="select-{{ $index }}" wire:model.lazy="questions.{{$index}}.form_type">
 											<option selected>Text</option>
 											<option value="1">Textarea</option>
@@ -133,7 +133,7 @@
 								<div class="col-md-12">
 									<div class="mb-4">
 											<div class="form-group">
-												<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="This is the text shown in the response field before anything is typed."></i></label>
+												<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="This is the text shown in the response field before anything is typed."></i></label>
 												<input type="text" id="placeholder-column"
 												class="form-control" placeholder="Placeholder"
 												name="field-name-column" wire:key="placeholder-{{ $index }}" wire:model.lazy="questions.{{$index}}.placeholder"/>
@@ -160,7 +160,7 @@
 										<div class="mb-4">
 											<div class="form-check">
 												<input class="form-check-input" id="required-column" name="required-column" type="checkbox" tabindex="3" wire:key="required-{{ $index }}" wire:model.lazy="questions.{{$index}}.required"/>
-												<label class="form-check-label" for="required-column"> Required <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="When selected, the customer will be required to provide a response to the field before continuing to Step 3."></i></label>
+												<label class="form-check-label" for="required-column"> Required <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="When selected, the customer will be required to provide a response to the field before continuing to Step 3."></i></label>
 											 </div>
 										</div>
 								</div>
