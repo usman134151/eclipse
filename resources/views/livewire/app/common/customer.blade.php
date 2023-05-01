@@ -275,4 +275,14 @@
 		</section>
 	</div>
 	@endif
+    @include('modals.common.add-industry')
+    @include('modals.common.add-department')
+    @include('modals.common.add-address')
+    @include('modals.assign-billing-manager')
+    @include('modals.assign-supervisor')
+    @include('modals.supervising')
+    @include('modals.bill-managing')
+    @include('modals.admin-staff')
+    @include('panels.services.associated-service')
+    @include('modals.add-user')
 </div>
