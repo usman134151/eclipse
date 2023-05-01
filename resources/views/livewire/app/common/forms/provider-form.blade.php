@@ -64,6 +64,7 @@
                     </ul>
                     {{-- Tab panes --}}
                     <div class="tab-content">
+                        @if($step == 1)
                         {{-- BEGIN: Profile --}}
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile"
                             role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
@@ -506,6 +507,7 @@
                         {{-- END: Profile --}}
 
                         {{-- BEGIN: Provider Service --}}
+                        @elseif($step==2)
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'provider-service' }"
                             id="provider-service" role="tabpanel" aria-labelledby="provider-service-tab" tabindex="0"
                             x-show="tab === 'provider-service'">
@@ -2318,6 +2320,7 @@
                         {{-- END: Provider Service --}}
 
                         {{-- BEGIN: Upload Document --}}
+                        @else
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'upload-document' }"
                             id="upload-document" role="tabpanel" aria-labelledby="upload-document-tab" tabindex="0"
                             x-show="tab === 'upload-document'">
@@ -2477,15 +2480,12 @@
                                 </div>
                             </section>
                         </div>
+                        @endif
                         {{-- END: Upload Document --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('panels.common.add-document')
-    @include('modals.assign-provider-team')
-    @include('modals.contract-provider-availiblity')
-    @include('modals.staff-provider-availiblity')
-    @include('panels.common.add-new')
+
 </div>
