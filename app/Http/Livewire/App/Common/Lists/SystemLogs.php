@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire\app\common\lists;
 
+use Carbon\Carbon;
+
+
 use App\Models\Tenant\Log;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -83,18 +86,23 @@ final class SystemLogs extends PowerGridComponent
 	|    the database using the `e()` Laravel Helper function.
 	|
 	*/
-	public function addColumns(): PowerGridEloquent
-	{
-		return PowerGrid::eloquent()
-			
-			->addColumn('created_at')
-            ->addColumn('message')
-            ->addColumn('ip_address');
-			
 
-          
-       
-	}
+
+public function addColumns(): PowerGridEloquent
+{
+    return PowerGrid::eloquent()
+        ->addColumn('created_at_formatted', function (Log $model) {
+            return Carbon::parse($model->created_at)->format('d/m/Y H:i');
+        })
+        ->addColumn('message', function (Log $model) {
+            return $model->message;
+        })
+        ->addColumn('ip_address', function (Log $model) {
+            return $model->ip_address;
+        });
+}
+
+	
 
 	/*
 	|--------------------------------------------------------------------------
@@ -117,9 +125,9 @@ final class SystemLogs extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('DATE & TIME', 'created_at'),
-			Column::make('ACTIVITY', 'message'),
-            Column::make('IP ADDRESS', 'ip_address'),
+			Column::make('DATE & TIME', 'created_at_formatted'),
+			Column::make('Phone Number', 'message'),
+            Column::make('Phone Number', 'ip_address'),
 		];
 	}
 
