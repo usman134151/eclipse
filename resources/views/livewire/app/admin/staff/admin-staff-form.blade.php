@@ -301,10 +301,9 @@
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-lg-12 gap-3 d-lg-flex">
-                                        <a href="#" class="btn btn-outline-dark rounded">Super Admin</a>
-                                        <a href="#" class="btn btn-outline-dark rounded">Provider Manager</a>
-                                        <a href="#" class="btn btn-outline-dark rounded">Customer Relation</a>
-                                        <a href="#" class="btn btn-outline-dark rounded">Company Manager</a>
+                                        @foreach($roles as $roles)
+                                        <a href="#" class="btn btn-outline-dark rounded">{{$roles->system_role_name}}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="row mb-4">

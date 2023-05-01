@@ -5,6 +5,9 @@ namespace App\Http\Livewire\App\Admin\Staff;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
+use App\Models\Tenant\SystemRole;
+use DB;
+
 class AdminStaffForm extends Component
 {
     public $user;
@@ -27,6 +30,9 @@ class AdminStaffForm extends Component
 
 	public function render()
 	{
-		return view('livewire.app.admin.staff.admin-staff-form');
+		$roles = SystemRole::get();
+		return view('livewire.app.admin.staff.admin-staff-form',[
+            'roles' => $roles
+        ]);
 	}
 }
