@@ -13,6 +13,7 @@ class DepartmentForm extends Component
         'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'department.industry_id',	'','industry',0 ]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'department.languages_id', '','languages',1]]
 	];
+    public $step = 1;
 	public function showList()
 	{
 		$this->emit('showList');
@@ -40,4 +41,10 @@ class DepartmentForm extends Component
         unset($this->phoneNumbers[$index]);
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }
+    public function save(){
+        $this->step=2;
+    }
+    public function addServices(){
+		$this->step=3;
+	}
 }
