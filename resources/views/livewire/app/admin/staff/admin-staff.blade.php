@@ -50,7 +50,7 @@
 		</div>
 		
 		{{-- updated by Ali to list of admin-staff --}}
-        @livewire('app.common.lists.admin-staff', key(Str::random(10)))
+        @livewire('app.common.lists.admin-staff',['status' => 1])
 
 	
 </div> {{-- icon legend bar start --}}
