@@ -54,7 +54,8 @@ final class AdminStaff extends PowerGridComponent
 
 	public function datasource(): Builder
     {
-        return User::query()->where('status',$this->status);
+
+        return User::query()->where('status',$this->status);   
     }
 
 
@@ -135,8 +136,18 @@ final class AdminStaff extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-            Column::make('Admin', 'customer', '')
-            ->field('customer', 'users.name'),
+			Column::make('Admin', 'Admin', '')
+				->field('customer', 'users.name')
+				->searchable()
+				->makeinputtext()
+				->sortable(),
+
+				Column::make('Email', 'Email', '')
+				->searchable()
+				->makeinputtext()
+				->sortable(),
+
+
 
             // ->editOnClick(),
             Column::make('Phone Number', 'phone', ''),
@@ -148,19 +159,18 @@ final class AdminStaff extends PowerGridComponent
 	}
 
 
-
+	 
+   
 
 	 // A method to handle the toggleable columns update event
 	 public function onUpdatedToggleable(string $id, string $field, string $value): void
 	 {
-
+		
 		 // Updates the specified field of the record with the new value
-
+		 
 	    User::query()->where('id',$id)->update([
 			 $field => $value,
 		 ]);
-
+		
 	 }
-
-
 }
