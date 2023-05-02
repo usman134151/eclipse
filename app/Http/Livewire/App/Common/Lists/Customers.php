@@ -33,7 +33,7 @@ final class Customers extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-				->showPerPage()
+                ->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
