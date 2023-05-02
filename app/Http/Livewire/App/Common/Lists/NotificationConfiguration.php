@@ -28,10 +28,10 @@ class NotificationConfiguration extends PowerGridComponent
     {
 
         return [
-            Header::make()->showSearchInput()->showToggleColumns(), 
+            Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
-                ->showPerPage()
-                ->showRecordCount(),               
+                ->showPerPage(config('app.per_page'))
+                ->showRecordCount(),
         ];
     }
 
@@ -61,7 +61,7 @@ class NotificationConfiguration extends PowerGridComponent
             'notification_templates.slug',
             'notification_templates.body',
             'roles.display_name as role_id',
-        ]);  
+        ]);
     }
 
     /*
@@ -145,7 +145,7 @@ class NotificationConfiguration extends PowerGridComponent
     }
 
     // A method to handle the delete button click event
-   
+
 
     // A method to handle the toggleable columns update event
     public function onUpdatedToggleable(string $id, string $field, string $value): void
@@ -160,7 +160,7 @@ class NotificationConfiguration extends PowerGridComponent
     public function onUpdatedEditable(string $id, string $field, string $value): void
     {
         // Dumps the name of the field being updated
-       
+
         // Updates the specified field of the record with the new value
         NotificationTemplates::query()->find($id)->update([
             $field => $value,

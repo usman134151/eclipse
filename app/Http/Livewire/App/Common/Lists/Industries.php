@@ -32,7 +32,7 @@ final class Industries extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add column toggle
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(config('app.per_page'))
                 ->showRecordCount(),
         ];
     }
@@ -52,7 +52,7 @@ final class Industries extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Industry::query();   
+        return Industry::query();
     }
 
     /*
@@ -96,7 +96,7 @@ final class Industries extends PowerGridComponent
                 <a href="#" title="Edit Industry" wire:click="edit('.$model->id.')"  aria-label="Edit Industry" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                    <svg aria-label="Edit Industry" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
                 </a>
-        
+
             <a href="#" title="Delete Industry" aria-label="Delete Industry" wire:click="deleteRecord('.$model->id.')"  class="btn btn-sm btn-secondary rounded btn-hs-icon">
             <svg aria-label="Edit Industry" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use></svg>
             </a>
@@ -159,12 +159,12 @@ final class Industries extends PowerGridComponent
     public function onUpdatedEditable(string $id, string $field, string $value): void
     {
         // Dumps the name of the field being updated
-       
+
         // Updates the specified field of the record with the new value
         Industry::query()->find($id)->update([
             $field => $value,
         ]);
     }
 
-  
+
 }
