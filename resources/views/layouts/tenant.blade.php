@@ -123,7 +123,7 @@
 		function initSelect () {
 			
 			el.select2({
-				placeholder: '{{__('Select your optioned')}}',
+				placeholder: '{{__('Select your option')}}',
 				allowClear: !el.attr('required'),
 			});
 			el.on('change', function (e) {

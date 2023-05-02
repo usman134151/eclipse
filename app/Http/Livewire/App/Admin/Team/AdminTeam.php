@@ -25,7 +25,7 @@ class AdminTeam extends Component
 			$this->emit('editRecord', $team);
 		}
 		$this->showForm=true;
-		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-staff/create-staff']);
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-team/create-admin-team']);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 

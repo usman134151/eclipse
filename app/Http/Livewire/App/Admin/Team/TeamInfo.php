@@ -14,10 +14,10 @@ class TeamInfo extends Component
 	use WithFileUploads;
 
     public $image;
-    protected $listeners = ['editRecord' => 'edit'];
+    protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
     public $setupValues = [
-		'users'=>['parameters'=>['User', 'id', 'name', '', '', 'name', false, 'team.admin_id','','users',1]],
+		'users'=>['parameters'=>['User', 'id', 'name', '', '', 'name', false, 'team.admin_id','','admin_id',1]],
 	];
     public $team;
 	public function showList($message = "")
@@ -39,11 +39,17 @@ class TeamInfo extends Component
 				'max:255',
 				Rule::unique('admin_teams', 'team_name')->ignore($this->team->id)],
             'team.admin_id'=>'required',
-			'team.team_email'=>'required',
-            'team.team_phone'=>'required',
-            'team.team_description'=>'required',
+			'team.team_email'=>'nullable|email',
+            'team.team_phone'=>'nullable',
+            'team.team_description'=>'nullable',
             'team.team_notes'=>'nullable'
 		];
+	}
+	public function updateVal($attrName, $val)
+	{
+		
+		   $this->team[$attrName] = $val;
+		
 	}
 	public function render()
 	{
@@ -55,8 +61,8 @@ class TeamInfo extends Component
 		if ($this->image) {
 			$path = $this->image->store('public/images');
 		}	
-        $teamserivice = new AdminTeamService;
-        $this->team = $teamserivice->createAdminTeam($this->team);
+        $teamService = new AdminTeamService;
+        $this->team = $teamService->createAdminTeam($this->team);
 		$this->showList("Customer has been saved successfully");
 		$this->team = new AdminTeam;
 	}
