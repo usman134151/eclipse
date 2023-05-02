@@ -53,7 +53,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -93,7 +93,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -133,7 +133,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -173,7 +173,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -213,7 +213,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -253,7 +253,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -293,7 +293,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
@@ -333,7 +333,7 @@
                     <td>
                         <div class="row">
                             <div class="col-lg-1">
-                                <img src="images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
+                                <img src="/tenant/images/portrait/small/avatar-s-1.jpg" alt="User Profile Image"
                                     class="w-100 rounded-circle">
                             </div>
                             <div class="col-lg-11 align-self-center ps-0">
