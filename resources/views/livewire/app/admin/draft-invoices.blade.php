@@ -98,7 +98,7 @@
 							<x-advancefilters/>
 						</div>
 						<!-- END: Filters -->
-						
+
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="" id="SelectAllProviders">
 							<label class="form-check-label" for="SelectAllProviders">
@@ -277,3 +277,10 @@
 	@include('panels.invoices.create-invoice')
 	@include('panels.invoices.invoice-generator-bookings')
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
