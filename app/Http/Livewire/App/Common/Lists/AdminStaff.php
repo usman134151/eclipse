@@ -14,7 +14,7 @@ final class AdminStaff extends PowerGridComponent
 	protected $listeners = ['refresh'=>'setUp'];
 	public $name;
 	public $status;
-	
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ final class AdminStaff extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-				->showPerPage()
+                ->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -54,9 +54,9 @@ final class AdminStaff extends PowerGridComponent
 
 	public function datasource(): Builder
     {
-        return User::query()->where('status',$this->status);   
+        return User::query()->where('status',$this->status);
     }
-	
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ final class AdminStaff extends PowerGridComponent
 	public function addColumns(): PowerGridEloquent
 	{
 		return PowerGrid::eloquent()
-		
+
 		->addColumn('name')
 		->addColumn('customer', function (User $model) {
 			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
@@ -102,7 +102,7 @@ final class AdminStaff extends PowerGridComponent
         ->addColumn('status', function (User $model) {
 			return ($model->status);
 		})
-		
+
 		->addColumn('edit', function() {
 			return '<div class="d-flex actions">
             <a href="javascript:void(0)" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="editTeam">
@@ -137,7 +137,7 @@ final class AdminStaff extends PowerGridComponent
 		return [
             Column::make('Admin', 'customer', '')
             ->field('customer', 'users.name'),
-        
+
             // ->editOnClick(),
             Column::make('Phone Number', 'phone', ''),
 
@@ -147,20 +147,20 @@ final class AdminStaff extends PowerGridComponent
 		];
 	}
 
-	 
-   
+
+
 
 	 // A method to handle the toggleable columns update event
 	 public function onUpdatedToggleable(string $id, string $field, string $value): void
 	 {
-		
+
 		 // Updates the specified field of the record with the new value
-		 
+
 	    User::query()->where('id',$id)->update([
 			 $field => $value,
 		 ]);
-		
+
 	 }
 
-	
+
 }
