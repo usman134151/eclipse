@@ -33,7 +33,7 @@ final class DeactivatedCustomer extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-				->showPerPage()
+                ->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -53,7 +53,7 @@ final class DeactivatedCustomer extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		
+
 		return User::query()
 		->join('role_user', function ($roleUser) {
 			$roleUser->on('role_user.user_id', '=', 'users.id');
@@ -71,7 +71,7 @@ final class DeactivatedCustomer extends PowerGridComponent
 			'companies.name as company',
 		])
 		->where('users.status',0);
-		
+
 	}
 
 	/*
@@ -106,21 +106,21 @@ final class DeactivatedCustomer extends PowerGridComponent
 	public function addColumns(): PowerGridEloquent
 	{
 		return PowerGrid::eloquent()
-		
+
 		->addColumn('company')
-		
-	
+
+
 		->addColumn('first_name')
-		
+
 
 		->addColumn('last_name')
-		
+
 
 		->addColumn('phone', function () {
 			return '(923) 023-9683';
 		})
 
-		
+
 		->addColumn('edit', function() {
 			return "<div class='d-flex actions'><a href='#' title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' title='View Customer' aria-label='View Customer' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' title='More Options' aria-label='More Options' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View customer's Invoice' aria-label='View customer's Invoice' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Customer's Invoices</a><a title='Chat' aria-label='Chat' class='dropdown-item' href='#'><i class='fa fa-comment'></i>Chat</a><a href='javascript:void(0)' aria-label='Deactivate' title='Deactivate' class='dropdown-item'><i class='fa fa-times-circle'></i>Deactivate</a></div></div></div></div>";
 		});
@@ -144,13 +144,13 @@ final class DeactivatedCustomer extends PowerGridComponent
 	{
 		return [
 			Column::make('Company', 'company', 'companies.name'),
-          
+
 			Column::make('First Name', 'first_name', ''),
 
 			Column::make('Last Name', 'last_name', ''),
-	
+
 			Column::make('Phone Number', 'phone', ''),
-			
+
 			Column::make('Actions', 'edit')->visibleInExport(false),
 		];
 	}

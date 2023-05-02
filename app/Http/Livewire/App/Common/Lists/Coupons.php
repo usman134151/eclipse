@@ -34,7 +34,7 @@ class Coupons extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->showToggleColumns(),
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(config('app.per_page'))
                 ->showRecordCount(),
         ];
     }
@@ -101,7 +101,7 @@ class Coupons extends PowerGridComponent
                 <a href="#" title="Edit Coupon" wire:click="edit('.$model->id.')"  aria-label="Edit Coupon" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                    <svg aria-label="Edit Coupon" width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use></svg>
                 </a>';
-                
+
             });
     }
 
@@ -137,7 +137,7 @@ class Coupons extends PowerGridComponent
     }
 
     // A method to handle the delete button click event
-   
+
 
     // A method to handle the toggleable columns update event
     public function onUpdatedToggleable(string $id, string $field, string $value): void
@@ -152,7 +152,7 @@ class Coupons extends PowerGridComponent
     public function onUpdatedEditable(string $id, string $field, string $value): void
     {
         // Dumps the name of the field being updated
-       
+
         // Updates the specified field of the record with the new value
         NotificationTemplates::query()->find($id)->update([
             $field => $value,
