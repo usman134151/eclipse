@@ -56,38 +56,90 @@
                             </div>
                             <div class="row">
                                 <div class="row between-section-segment-spacing">
+                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <label class="form-label" for="company-column">Company <span class="mandatory">*</span></label>
+                                            <a href="#" class="fw-bold">
+                                                <small>
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                        viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    Add New Company
+                                                </small>
+                                            </a>
+                                        </div>
+                                        <select class="form-select" id="company-column">
+                                            <option>Select Company</option>
+                                        </select>
+                                    </div>
                                     <div class="col-lg-6 mb-4 ps-lg-5">
-                                        <label class="form-label" for="department">Department <span class="mandatory">*</span></label>
-                                        <input type="" class="form-control" placeholder="Select Department" id="department">
+                                        <label class="form-label">Department <span class="mandatory">*</span></label>
+                                        <div>
+                                            <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                data-bs-toggle="modal" data-bs-target="#departmentModal" aria-label="Department">
+                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                <svg aria-label=" Select Department" width="25" height="18"
+                                                    viewBox="0 0 25 18">
+                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                    </use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Select Department
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 mb-4 pe-lg-5">
-                                        <label class="form-label">Industry <span class="mandatory">*</span></label>
-                                        {{-- Updated by Shanila to add dropdown--}}
-                                        {!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
-                                        'name', '', '', 'name', false, 'industry',
-                                        '','industry') !!}
-                                        {{-- End of update by Shanila --}}
+                                        <label class="form-label" >Industry <span class="mandatory">*</span></label>
+                                        <div>
+                                            <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                data-bs-toggle="modal" data-bs-target="#industryModal" aria-label="Industry">
+                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                <svg aria-label=" Select Industry" width="25" height="18"
+                                                    viewBox="0 0 25 18">
+                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                    </use>
+                                                </svg>
+                                                {{-- End of update by Shanila --}}
+                                                Select Industry
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-12 mb-4">
-                                        <div class="d-lg-flex align-items-center mb-4 gap-3">
-                                            <div class="form-check form-switch form-switch-column mb-lg-0">
-                                                <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                    checked aria-label="Choose a different point of contact">
-                                            </div>
-                                            <h3 class="mb-lg-0">Choose a different point of contact</h3>
+                                    <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
+                                            <a href="#" class="fw-bold" data-bs-toggle="modal"
+                                                data-bs-target="#addNewCustomer" aria-label="Requester">
+                                                <small>
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Add New Requester" class="me-1" width="20" height="21"
+                                                        viewBox="0 0 20 21">
+                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                    Add New Requester
+                                                </small>
+                                            </a>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 pe-lg-5">
-                                                <label class="form-label" for="point-of-contact">Point of Contact <span
-                                                        class="mandatory">*</span></label>
-                                                <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact">
-                                            </div>
-                                            <div class="col-lg-6 ps-lg-5">
-                                                <label class="form-label" for="phone-number">Phone Number<span
-                                                        class="mandatory">*</span></label>
-                                                <input type="" class="form-control" placeholder="Enter Phone Number" id="phone-number">
-                                            </div>
+                                        <select class="form-select mb-2" id="requestor">
+                                            <option>Select Requester</option>
+                                        </select>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" id="HideRequesterInfofromProviders"
+                                                name="HideRequesterInfofromProviders" type="checkbox" tabindex="" />
+                                            <label class="form-check-label" for="HideRequesterInfofromProviders"><small>Hide
+                                                    Requester's Info from Providers</small></label>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                        <label class="form-label" for="point-of-contact">Point of Contact <span class="mandatory">*</span></label>
+                                        <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact">
+                                    </div>
+                                    <div class="col-lg-6 mb-4 ps-lg-5">
+                                        <label class="form-label" for="ph-number">Phone Number <span class="mandatory">*</span></label>
+                                        <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number">
                                     </div>
                                 </div>
                                 <div class="row between-section-segment-spacing">
@@ -119,12 +171,6 @@
                                 <!-- Service Information -->
                                 <div class="col-lg-12 mb-4">
                                     <h2>Service Information</h2>
-                                    <div class="row">
-                                        <div class="col-lg-6 pe-lg-5 mb-4">
-                                            <label class="form-label" for="booking-title">Booking Title</label>
-                                            <input type="text" class="form-control" placeholder="Enter Booking Title" id="booking-title">
-                                        </div>
-                                    </div>
                                     <div class="duplicate-block mb-3">
                                         <h2>Services 1</h2>
                                         <div class="row">
@@ -172,42 +218,6 @@
                                                         class="mandatory">*</span></label>
                                                 <input type="" class="form-control"
                                                     placeholder="Enter Number of Providers" id="number-of-providers">
-                                            </div>
-                                            <div class="col-lg-6 mb-4 pe-lg-5">
-                                                <label class="form-label" for="number-of-providers-column">Number of Providers <span
-                                                        class="mandatory">*</span></label>
-                                                <input type="" class="form-control"
-                                                    placeholder="Enter Number of Providers" id="number-of-providers-column">
-                                            </div>
-                                            <div class="col-lg-6 mb-4 ps-lg-5">
-                                                <div class="row">
-                                                    <div class="col-lg-5 mb-4">
-                                                        <div class="d-flex gap-3">
-                                                            <label class="form-label-sm">
-                                                                Broadcast
-                                                            </label>
-                                                            <div class="form-check form-switch form-switch-column">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyBroadcast" checked aria-label="Auto-notify Toggle">
-                                                                <label class="form-check-label"
-                                                                    for="AutoNotifyBroadcast">Auto-notify</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-7 mb-4">
-                                                        <div class="d-flex gap-3">
-                                                            <label class="form-label-sm">
-                                                                Assign
-                                                            </label>
-                                                            <div class="form-check form-switch form-switch-column">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    role="switch" id="AutoNotifyAssign" checked aria-label="Assign Toggle">
-                                                                <label class="form-check-label"
-                                                                    for="AutoNotifyAssign">Manual-assign</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="d-lg-flex align-items-center mb-4 gap-3">
                                                 <div class="form-check form-switch form-switch-column mb-lg-0">
@@ -289,39 +299,6 @@
                                                                 class="mandatory">*</span></label>
                                                         <input type="" class="form-control"
                                                             placeholder="Enter Number of Providers" id="numberofproviders">
-                                                    </div>
-                                                    <div class="col-lg-6 mb-4 ps-lg-5">
-                                                        <div class="row">
-                                                            <div class="col-lg-5 mb-4">
-                                                                <div class="d-flex gap-3">
-                                                                    <label class="form-label-sm">
-                                                                        Broadcast
-                                                                    </label>
-                                                                    <div
-                                                                        class="form-check form-switch form-switch-column">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            role="switch" id="AutoNotifyBroadcast"
-                                                                            checked aria-label="Auto-notify Toggle">
-                                                                        <label class="form-check-label"
-                                                                            for="AutoNotifyBroadcast">Auto-notify</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-7 mb-4">
-                                                                <div class="d-flex gap-3">
-                                                                    <label class="form-label-sm">
-                                                                        Assign
-                                                                    </label>
-                                                                    <div
-                                                                        class="form-check form-switch form-switch-column">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            role="switch" id="AutoNotifyAssign" checked aria-label="Manual-assign Toggle">
-                                                                        <label class="form-check-label"
-                                                                            for="AutoNotifyAssign">Manual-assign</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-4">
                                                         <div class="d-lg-flex align-items-center mb-4 gap-3">
@@ -1145,14 +1122,56 @@
                         {{-- updated by shanila to add csrf and add form tag --}}
                         <form class="form">
                             @csrf
+                             <h2>Payment  Information</h2>
+                             <div class="between-section-segment-spacing">
+                                <h5 class="mb-2">Service Rate Total:<span class="mx-3">$00.00</span></h5>
+                                <h5 class="mb-2">Service Charges:<span class="mx-3">$00.00</span></h5>
+                             </div>
+                            
+                              <div class="between-section-segment-spacing">
+                                <h2>Discounts</h2>
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="radio" checked name="coupon" id="coupon">
+                                    <label class="form-check-label" for="coupon">
+                                        Coupon
+                                    </label>
+                                  </div>   
+                                  <div class="row ">
+                                    <div class="col-lg-12 d-inline-flex">
+                                        <div class="mt-2"><label for="coupon-code" class="form-label">Coupon Code</label></div>
+                                        <div class="mx-3">
+                                            <input type="text" placeholder="Enter Code" class="form-control">
+                                        </div>
+                                        <div class="mx-3 mb-2">
+                                            <button class="btn btn-primary rounded">Apply</button>
+                                        </div>
+                                    </div> 
+                                  </div>  
+                              </div>
 
-                            <h2>Payment Summary</h2>
-                            <h5>Service Rate Total: <span>$00.00</span></h5>
-                            <h5>Service Charges: <span>$00.00</span></h5>
-                            <div class="mt-5">
-                                <h5>Total Price:: <span>$00.00</span></h5>
+                            <div class="between-section-segment-spacing">
+                                <h2>Additional Customer Charge</h2>
+                                <div class="d-inline-flex mb-2">
+                                    <input type="text" id="" class="form-control form-control-md rounded-0" placeholder="Enter Charge Label" />
+                                    <input type="text" id="" class="form-control form-control-md rounded-0" placeholder="$00.00" />
+                                </div>
+                                <div class="col-4 between-section-segment-spacing">
+                                   <div class="d-flex justify-content-end">
+                                    <a href="#" class="fw-bold mx-5">
+                                        <small>
+                                            Add Additional  Charges
+                                            <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                viewBox="0 0 20 21">
+                                                <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                            </svg>
+                                        </small>
+                                    </a>
+                                   </div>
+                                </div>
+                                <h5 class="mb-3">Total Additional Charges: <span>$00.00</span></h5>
+                                <h5 class="mb-3">Adjustments: <span>$00.00</span></h5>
+                                <h5 class="mb-3">Total Price: <span>$00.00</span></h5>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-11">
                                     <div class="row mb-4">
@@ -1174,6 +1193,21 @@
                                                     <label class="form-check-label" for="PayNow">Pay Now</label>
                                                 </div>
                                             </div>
+                                            <div class="d-inline-flex mb-2">
+                                                <input type="text" id="" class="form-control form-control-md rounded-0" placeholder="Enter Card number" />
+                                                <input type="text" id="" class="form-control form-control-md rounded-0 mx-1" placeholder="MM/YY" />
+                                                <input type="text" id="" class="form-control form-control-md rounded-0" placeholder="CVC" />
+                                            </div>
+                                            <div class="col-12 between-section-segment-spacing">
+                                                <div class="d-flex justify-content-end">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="save-ur-future-payments">
+                                                        <label class="form-check-label" for="save-ur-future-payments">
+                                                            Save for Future Payments
+                                                        </label>
+                                                      </div>
+                                                </div>
+                                             </div>
                                             <!-- Provider Notes -->
                                             <div class="my-5">
                                                 <label class="form-label" for="customer-notes">
@@ -1554,4 +1588,7 @@
     </div>
     @include('panels.common.add-documents')
     @include('modals.common.add-address')
+    @include('modals.common.add-industry')
+    @include('modals.common.add-department')
+    @include('modals.common.add-new-customer')
 </div>
