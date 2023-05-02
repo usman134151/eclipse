@@ -126,8 +126,8 @@ public function addColumns(): PowerGridEloquent
 	{
 		return [
 			Column::make('DATE & TIME', 'created_at_formatted'),
-			Column::make('Phone Number', 'message'),
-            Column::make('Phone Number', 'ip_address'),
+			Column::make('MESSAGE', 'message'),
+            Column::make('IP ADDRESS', 'ip_address'),
 		];
 	}
 
