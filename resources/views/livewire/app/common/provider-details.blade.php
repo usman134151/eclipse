@@ -3203,7 +3203,6 @@
 												<button type="button"  class="btn btn-primary mx-2"  id="mail-a-check-tab" data-bs-toggle="tab" data-bs-target="#mail-a-check" type="button" role="tab" aria-controls="mail-a-check" aria-selected="false">Mail a Check</button>
 											</div>
 										</div>
-										<div><a href="#" class="text-sm">Bank Account Information</a></div>
 										<div class="tab-content" id="myTabContent">
 											<div class="tab-pane fade show active" id="direct-deposit" role="tabpanel" aria-labelledby="direct-deposit-tab">
 												<div class="row">
