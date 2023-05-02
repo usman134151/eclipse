@@ -53,10 +53,7 @@
 					</select> -->
 
 					</div>
-					<div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label fw-semibold">Search</label>
-					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-					</div>
+				
 				</div>
 				
 				</div>
