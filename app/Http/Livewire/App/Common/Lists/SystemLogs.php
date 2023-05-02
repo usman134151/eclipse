@@ -33,9 +33,11 @@ final class SystemLogs extends PowerGridComponent
 				->striped()
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
+		
 			Footer::make()
 				->showPerPage()
-				->showRecordCount(),
+				->showRecordCount()
+				->showPerPage(config('app.per_page_big')),
 		];
 	}
 
@@ -54,7 +56,7 @@ final class SystemLogs extends PowerGridComponent
 	*/
 	public function datasource(): Builder
 	{
-		return Log::query();
+		return Log::query()->orderByDesc('created_at');
 	}
 
 	/*
@@ -94,6 +96,7 @@ public function addColumns(): PowerGridEloquent
         ->addColumn('created_at_formatted', function (Log $model) {
             return Carbon::parse($model->created_at)->format('d/m/Y H:i');
         })
+	
         ->addColumn('message', function (Log $model) {
             return $model->message;
         })
@@ -125,7 +128,8 @@ public function addColumns(): PowerGridEloquent
 	public function columns(): array
 	{
 		return [
-			Column::make('DATE & TIME', 'created_at_formatted'),
+			Column::make('DATE & TIME', 'created_at_formatted')
+			  ->sortable('desc'),
 			Column::make('MESSAGE', 'message'),
             Column::make('IP ADDRESS', 'ip_address'),
 		];
