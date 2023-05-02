@@ -2130,3 +2130,10 @@
 @include('modals.common.add-new-customer')
 @include('modals.common.assign-admin-staff')
 @include('modals.common.assign-admin-staff-team')
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
