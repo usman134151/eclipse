@@ -13,6 +13,7 @@ final class AdminStaff extends PowerGridComponent
 	use ActionButton;
 	protected $listeners = ['refresh'=>'setUp'];
 	public $name;
+	public $status;
 	public string $primaryKey = 'users.id';
 	// public string $sortField = 'users.id';
 
@@ -61,7 +62,7 @@ final class AdminStaff extends PowerGridComponent
 			'users.email',
             'users.status',
 		])
-		->where('users.status',1);
+		->where('users.status',$this->status);
 		
 	}
 
