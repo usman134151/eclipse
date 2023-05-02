@@ -154,7 +154,7 @@ final class Customers extends PowerGridComponent
 			Column::make('Phone Number', 'phone', ''),
 				// ->sortable(),
 			Column::make('Company', 'company', 'companies.name')
-				->sortable(),
+			->searchable()->makeinputtext()->sortable(),
 			Column::make('Schedule', 'schedule', ''),
 				// ->sortable(),
 			Column::make('Role', 'role', 'roles.display_name')
