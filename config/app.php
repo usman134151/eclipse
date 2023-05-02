@@ -137,7 +137,8 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
+    'per_page' => 25,
+    'per_page_big'=>50,
     'providers' => [
 
         /*

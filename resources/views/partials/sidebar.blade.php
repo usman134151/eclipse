@@ -402,7 +402,7 @@
                       <span class="menu-item">SMS Notifications</span>
                     </a>
                   </li>
-                  <li role="menuitem" class="nav-item  " id="profile">
+                  <li role="menuitem" class="nav-item  " id="setup-values">
                     <a class="nav-link" href="/admin/setup-values">
                       <svg id="setup-values-icon" hight="20" width="20" viewBox="0 0 20 20" fill="none">
                         <mask id="" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="1" width="19" height="19">
@@ -422,7 +422,7 @@
                       <span class="menu-item">Setup Values</span>
                     </a>
                   </li>
-                  <li role="menuitem" class="nav-item  " id="profile">
+                  <li role="menuitem" class="nav-item  " id="credential-manager">
                     <a class="nav-link" href="/admin/credential-manager">
                       <svg aria-label="Credentials Manager" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#account-profile-icon"></use>

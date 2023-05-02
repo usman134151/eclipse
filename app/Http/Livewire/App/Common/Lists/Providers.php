@@ -14,7 +14,7 @@ final class Providers extends PowerGridComponent
 	protected $listeners = ['refresh'=>'setUp'];
 	public $name;
 	public string $primaryKey = 'users.id';
-
+	
 	/*
 	|--------------------------------------------------------------------------
 	|  Features Setup
@@ -22,8 +22,11 @@ final class Providers extends PowerGridComponent
 	| Setup Table's general features
 	|
 	*/
+
 	public function setUp(): array
 	{
+		
+		
 		$this->showCheckBox();
 
 		return [
@@ -32,7 +35,7 @@ final class Providers extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-				->showPerPage()
+				->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
