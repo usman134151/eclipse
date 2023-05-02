@@ -536,3 +536,10 @@
     @include('panels.remittance.add-new-payment')
     @include('panels.common.add-reimbursement')
 </div>
+<script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+</script>
