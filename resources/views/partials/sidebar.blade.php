@@ -87,7 +87,7 @@
                   <span class="menu-item">Today's</span>
                 </a>
               </li>
-              <li class="nav-item  " id="upcoming Assignments">
+              <li class="nav-item  " id="upcoming">
                 <a class="nav-link" href="/admin/bookings/upcoming">
                   <svg aria-label="Upcoming" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#upcoming-icon"></use>
@@ -418,7 +418,7 @@
                         <path d="M17.7476 3.81791L11.5526 10.0144L9.98058 8.44082L16.1563 2.24587C16.3644 2.03783 16.7256 2.03783 16.9337 2.24587L17.7284 3.0421C17.8435 3.15571 17.8996 3.28852 17.8996 3.43868C17.8996 3.57149 17.8435 3.72348 17.7476 3.81791ZM8.38783 11.6056L9.24162 9.23734L10.7384 10.7341L8.38783 11.6056ZM18.5249 2.26506L17.7284 1.46853C17.103 0.843496 16.0238 0.843496 15.3985 1.46853L8.42621 8.44082C8.37016 8.49839 8.33178 8.57362 8.2934 8.64886L7.27147 11.4536C7.13897 11.8136 7.23309 12.2118 7.4987 12.4963C7.68725 12.6851 7.93367 12.7795 8.19898 12.7795C8.31259 12.7795 8.42621 12.7603 8.53983 12.7235L11.3446 11.7C11.4198 11.6808 11.4966 11.6248 11.5526 11.5672L18.5249 4.59494C18.8286 4.29126 18.9982 3.87548 18.9982 3.43868C18.9982 2.98453 18.8286 2.56722 18.5249 2.26506Z" fill="" stroke="" stroke-width="0.2"></path>
                         </g>
                     </svg>
-                        
+
                       <span class="menu-item">Setup Values</span>
                     </a>
                   </li>
@@ -557,7 +557,7 @@
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#saved-form"></use>
                         </svg>
-                        
+
                       <span class="menu-item">Saved Forms</span>
                     </a>
                   </li>
@@ -647,7 +647,7 @@
                     <a class="nav-link" href="/admin/role-permission">
                       <svg aria-label="Roles And Permissions"  width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#roles-permission-icon"></use>
-                    </svg>    
+                    </svg>
                       <span class="menu-item">Roles &amp; Permissions</span>
                     </a>
                   </li>
