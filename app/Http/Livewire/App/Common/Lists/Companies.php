@@ -31,7 +31,7 @@ final class Companies extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-				->showPerPage()
+                ->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -89,13 +89,13 @@ final class Companies extends PowerGridComponent
 			->addColumn('name')
 			->addColumn('phone', function (Company $model) {
 			    if(count($model->phones)){
-					
+
 					return $model->phones[0]->phone_number;
 				}
 				else{
 					return 'N/A';
 				}
-				
+
 
 			})
 			->addColumn('departments', function () {
@@ -149,7 +149,7 @@ final class Companies extends PowerGridComponent
 	}
     // A method to handle the edit button click event
     function edit($id){
-		
+
         // Emits an event to show the form for editing a record
         $this->emit('showForm', Company::with('phones')->find($id));
     }

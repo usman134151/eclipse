@@ -42,7 +42,7 @@ final class FormList extends PowerGridComponent
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add column toggle
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(config('app.per_page'))
                 ->showRecordCount(),
         ];
     }

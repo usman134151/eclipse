@@ -32,7 +32,7 @@ final class Accommodations extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(), //updated by Amna Bilal to add toggle column option
 			Footer::make()
-				->showPerPage()
+                ->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -130,11 +130,11 @@ final class Accommodations extends PowerGridComponent
 				->makeinputtext()
 				->sortable()
 				->editOnClick(),
-				
+
 			Column::make('Status', 'status', '')
 				->makeBooleanFilter('status', 'Activated', 'Deactivated')
 				->toggleable(1, 'Activated', 'Deactivated'),
-			
+
 			Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action from export
 		];
 	}
@@ -172,7 +172,7 @@ final class Accommodations extends PowerGridComponent
 	public function onUpdatedEditable(string $id, string $field, string $value): void
 	{
 		// Dumps the name of the field being updated
-	   
+
 		// Updates the specified field of the record with the new value
 		Accommodation::query()->find($id)->update([
 			$field => $value,
