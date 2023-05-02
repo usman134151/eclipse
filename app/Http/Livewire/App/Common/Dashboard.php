@@ -14,7 +14,7 @@ class Dashboard extends Component
     }
     public function selectTab($tabNumber){
      
-        $this->tabNumber=$tabNumber;
+       // $this->tabNumber=$tabNumber;
       
     }
     public function updateVal($attrName, $val)

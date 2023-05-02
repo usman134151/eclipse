@@ -49,7 +49,7 @@
 		</a>
 	  </li>
 	  <li class="" role="presentation">
-		<a class="dashborad-block" id="assignments-tab" data-bs-toggle="tab" data-bs-target="#assignments-tab-pane" type="button" role="tab" aria-controls="assignments-tab-pane" aria-selected="false" wire:click="selectTab(2)">
+		<a class="dashborad-block" id="assignments-tab" data-bs-toggle="tab" data-bs-target="#assignments-tab-pane" type="button" role="tab" aria-controls="assignments-tab-pane" aria-selected="false">
 		  <div class="text-center block-text">Assignments</div>
 		  <div class="text-center block-icon">
 			<svg class="fill" width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,10 +142,10 @@
 
         </div>
         /Filters -->
-		@if($tabNumber==1)
+		
 		<x-advancefilters/>
 		@livewire('app.common.calendar')
-		@endif
+	
 	  </div>
 	  <div class="tab-pane fade" id="assignments-tab-pane" role="tabpanel" aria-labelledby="assignments-tab" tabindex="0">
 			<h2 class="text-dark">Assignment List</h2>
