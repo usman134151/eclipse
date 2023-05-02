@@ -130,7 +130,8 @@ public function addColumns(): PowerGridEloquent
 		return [
 			Column::make('DATE & TIME', 'created_at_formatted')
 			  ->sortable('desc'),
-			Column::make('MESSAGE', 'message'),
+			Column::make('MESSAGE', 'message')
+			->searchable()->makeinputtext()->sortable(),
             Column::make('IP ADDRESS', 'ip_address'),
 		];
 	}
