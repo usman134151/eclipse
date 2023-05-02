@@ -673,3 +673,10 @@
         @include('modals.common.deny-reimbursement')
         @include('modals.common.reimbursement-review')
     </div>
+    <script>
+        function updateVal(attrName,val){
+
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+    </script>
