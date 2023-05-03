@@ -12,7 +12,7 @@
     @endphp
     @if(filled($inputText))
         <div class="{{ $theme->baseClass }} d-flex gap-2" style="{{ $theme->baseStyle }}">
-            <div class="relative">
+            <div class="relative" style="display:none">
                 <select class="power_grid {{ $theme->selectClass }} {{ data_get($column, 'headerClass') }}"
                         style="{{ data_get($column, 'headerStyle') }}"
                         wire:model.defer="filters.input_text_options.{{ $field }}"
@@ -31,7 +31,7 @@
                     @endif
                     type="text"
                     class="power_grid {{ $theme->inputClass }}"
-                    placeholder="{{ empty($column)?data_get($inputText, 'label'):($column->placeholder?:$column->title) }}" />
+                    placeholder="Filter by {{ empty($column)?data_get($inputText, 'label'):($column->placeholder?:$column->title) }}" />
             </div>
         </div>
     @endif
