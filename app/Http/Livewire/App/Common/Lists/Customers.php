@@ -61,8 +61,17 @@ final class Customers extends PowerGridComponent
 		
 		return User::query()
 		->whereHas('roles', function ($query) {
-			$query->where('role_id', 3);
-		});
+			$query->where('role_id', 4);
+		})->join('companies', function ($companies) {
+			$companies->on('companies.id', '=', 'users.company_name');
+		})->select([
+			'users.id',
+			'users.name',
+			'users.email',
+			'companies.name as company',
+		])
+
+;
 	}
 
 	/*
@@ -139,7 +148,7 @@ final class Customers extends PowerGridComponent
 				// ->editOnClick(),
 			Column::make('Phone Number', 'phone', ''),
 				// ->sortable(),
-			Column::make('Company', 'company', 'companies.name')
+			Column::make('Company', 'company','companies.name')
 			->searchable()->makeinputtext()->sortable(),
 			Column::make('Schedule', 'schedule', ''),
 				// ->sortable(),
