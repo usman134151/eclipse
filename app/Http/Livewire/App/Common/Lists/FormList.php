@@ -124,7 +124,7 @@ final class FormList extends PowerGridComponent
     {
         // Returns an array of columns for the PowerGrid component
         return [
-            Column::make('Form Types', 'setup_value_label', '')->editOnClick(),
+            Column::make('Form Types', 'setup_value_label', ''),
             Column::make('Status', 'status', '')
                 ->toggleable(1, 'Deactivated', 'Activated'),
             Column::make('Action', 'view', '')
