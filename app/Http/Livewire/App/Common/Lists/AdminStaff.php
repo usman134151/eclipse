@@ -136,21 +136,20 @@ final class AdminStaff extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Admin', 'Admin', '')
+			Column::make('Staff Member', 'Admin', '')
 				->field('customer', 'users.name')
 				->searchable()
 				->makeinputtext()
 				->sortable(),
 
-				Column::make('Email', 'Email', '')
-				->searchable()
-				->makeinputtext()
-				->sortable(),
-
+				
 
 
             // ->editOnClick(),
-            Column::make('Phone Number', 'phone', ''),
+            Column::make('Phone Number', 'phone', '')
+			->searchable()
+				->makeinputtext()
+				->sortable(),
 
 			Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
 			->toggleable(1, 'Deactivated', 'Activated'),
