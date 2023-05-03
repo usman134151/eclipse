@@ -2058,7 +2058,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2069,10 +2069,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                               <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                               </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2122,7 +2121,7 @@
                                                     <td>
                                                         <div class="d-flex actions">
                                                             <a href="#" title="back" aria-label="back"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" >
                                                                  {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="back" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" >
                                                                 <use xlink:href="/css/common-icons.svg#round-arrow">
@@ -2132,7 +2131,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2143,10 +2142,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2206,7 +2204,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2217,10 +2215,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                               <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                               </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2280,7 +2277,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2291,10 +2288,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2354,7 +2350,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2363,12 +2359,11 @@
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" >
                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                               <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                               </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2428,7 +2423,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2439,10 +2434,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2502,7 +2496,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2513,10 +2507,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                               <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                               </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2576,7 +2569,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2587,10 +2580,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                                <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                                </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2650,7 +2642,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2661,10 +2653,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                               {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                              <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                              xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                              </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -2724,7 +2715,7 @@
                                                             </a>
                                                             <a href="#" title="Remitance Inactive"
                                                                 aria-label="Remitance Inactive"
-                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
                                                                {{-- Updated by Shanila to Add svg icon--}}
                                                             <svg aria-label="Remitance Inactive" width="19" height="20" viewBox="0 0 19 20">
                                                                 <use xlink:href="/css/common-icons.svg#dollar-assignment">
@@ -2735,10 +2726,9 @@
                                                             <a href="#" title="Download PDF" aria-label="Download PDF"
                                                                 class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20">
-                                                                <use xlink:href="/css/common-icons.svg#download-file">
-                                                                </use>
-                                                            </svg>
+                                                               <svg aria-label="Download PDF" width="16" height="20" viewBox="0 0 16 20"  fill="none"
+                                                               xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#download-file"></use>
+                                                               </svg>
                                                             {{-- End of update by Shanila --}}
                                                             </a>
                                                         </div>
@@ -4561,6 +4551,7 @@
                 </div>
             </div>
             @include('panels.common.add-document')
+            @include('modals.mark-as-paid')
         </section>
     </div>
 </div>
