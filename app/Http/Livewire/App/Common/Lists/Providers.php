@@ -56,19 +56,9 @@ final class Providers extends PowerGridComponent
 	public function datasource(): Builder
 	{
 		return User::query()
-		->join('role_user', function ($roleUser) {
-			$roleUser->on('role_user.user_id', '=', 'users.id');
-		})
-		->join('roles', function ($role) {
-			$role->on('role_user.role_id', '=', 'roles.id');
-		})
-		->select([
-			'users.id',
-			'users.name',
-			'users.email',
-			'roles.display_name as role',
-		])
-		->where('role_user.role_id', 2);
+		->whereHas('roles', function ($query) {
+			$query->where('role_id', 2);
+		});
 	}
 
 	/*

@@ -58,25 +58,11 @@ final class Customers extends PowerGridComponent
 		// 	->whereHas('role', function ($query){
 		// 		$query->where('role_id', 4);
 		// 	});
-
+		
 		return User::query()
-		->join('role_user', function ($roleUser) {
-			$roleUser->on('role_user.user_id', '=', 'users.id');
-		})
-		->join('roles', function ($role) {
-			$role->on('role_user.role_id', '=', 'roles.id');
-		})
-		->join('companies', function ($companies) {
-			$companies->on('companies.id', '=', 'users.company_name');
-		})
-		->select([
-			'users.id',
-			'users.name',
-			'users.email',
-			'roles.display_name as role',
-			'companies.name as company',
-		])
-		->where('role_user.role_id', 4);
+		->whereHas('roles', function ($query) {
+			$query->where('role_id', 3);
+		});
 	}
 
 	/*
