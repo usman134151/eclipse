@@ -18,8 +18,7 @@
 													Value for
 													<span class="text-danger">*</span>
 												</label>
-												{!! App\Helpers\SetupHelper::createDropDown('Setup', 'id', 'setup_value', '', '', 'setup_value', false, 'setupvalue.setup_id', '','setup_id') !!}
-
+                                                {!! $setupValues['setup']['rendered'] !!}
 												@error('setupvalue.setup_id')
 												<span class="d-inline-block invalid-feedback mt-2">
 													{{ $message }}
@@ -51,7 +50,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
 							</div>
 						</form>
@@ -65,7 +64,7 @@
 								<button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save">
 									Submit
 								</button>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
