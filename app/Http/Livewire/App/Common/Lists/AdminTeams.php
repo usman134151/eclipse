@@ -86,22 +86,16 @@ final class AdminTeams extends PowerGridComponent
 	public function addColumns(): PowerGridEloquent
 	{
 		return PowerGrid::eloquent()
-			->addColumn('team_name_and_email', function ($team) {
-            return $team->team_name . '<br>' . $team->team_email . '';
-        })
+		->addColumn('team', function (AdminTeam $model) {
+			return '<h6 class="fw-semibold">'. $model->team_name .'</h6><p>'. $model->team_email .'</p></div></div>';
+		})
 			->addColumn('team_phone')
 			->addColumn('total_members', function () {
 				return "<div class='text-center'>5</div>";
 			})
 
-            ->addColumn('status', function () {
-                return '<div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch"
-                    aria-label="Toggle Team Status">
-                <label class="form-check-label">
-                    Deactivate
-                </label>
-            </div>';
+            ->addColumn('status', function (AdminTeam $model) {
+                return ($model->status);
             })
             ->addColumn('edit',function(AdminTeam $model){
                 return '<div class="d-flex actions">
@@ -144,11 +138,17 @@ final class AdminTeams extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Team', 'team_name_and_email'),
-			Column::make('Phone Number', 'team_phone'),
+			Column::make('Team', 'team', '')
+				->searchable()
+				->makeinputtext()
+				->sortable(),
+			Column::make('Phone Number', 'team_phone')
+                ->searchable()
+                ->makeinputtext()
+                ->sortable(),
 			Column::make('Total Members', 'total_members'),
             Column::make('Status', 'status', '')
-            ->toggleable(1, 'Deactivated', 'Activated'),
+                ->toggleable(1, 'Deactivated', 'Activated'),
 			Column::make('Action', 'edit'),
 		];
 	}
