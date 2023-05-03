@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\App\Common\Forms;
 use App\Models\Tenant\SetupValue;
 use Illuminate\Validation\Rule;
-
+use App\Helpers\SetupHelper;
 
 use Livewire\Component;
 
@@ -12,13 +12,17 @@ class SetupForm extends Component
     public $setupValue;
     public $label="Add";
     protected $listeners = ['editRecord' => 'edit'];
-
+    public $setupValues = [
+        'setup'=>['parameters'=>['Setup', 'id', 'setup_value', 'setup_deleteable', '1', 'setup_value', false, 'setupvalue.setup_id', '','setup_id',0 ]],
+	];
 
     public function mount(SetupValue $setupvalue){
         $this->setupvalue=$setupvalue;
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+
     }
 
-    
+
     // Validation Rules
     public function rules()
     {
@@ -52,8 +56,8 @@ class SetupForm extends Component
     public function edit(SetupValue $setupvalue){
         $this->label="Edit";
         $this->setupvalue=$setupvalue;
-        
-       
+
+
     }
 
     public function save(){
@@ -71,5 +75,5 @@ class SetupForm extends Component
         return view('livewire.app.common.forms.setup-form');
     }
 
-  
+
 }
