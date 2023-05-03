@@ -432,17 +432,30 @@
                         </div>
                     </div>
                 </div>
+                @foreach($documents as $index=>$document)
                 <div class="row p-3">
                     <div class="col-6 border-dashed rounded">
                         <div class="mb-5">
                             <div class="row mb-3 mt-3">
-                                <h3>Document Type</h3>
+                                <div class="d-flex justify-content-between">
+                                <h3>Document Type {{ $loop->index + 1 }}</h3>
+                                <div class="align-items-center gap-2">
+                                    <a wire:click.prevent="removeDocumentType({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                        <svg class="delete-icon" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                             </div>
                             <div class="d-lg-flex gap-4 align-items-center">
                                 <div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" id="upload-only" name="upload-only" type="radio"
-                                            tabindex="" />
+                                            tabindex="" wire:key="upload-{{ $index }}" wire:model.lazy="documents.{{$index}}.upload_only" />
                                         <label class="form-check-label" for="upload-only">Upload Only
                                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -454,7 +467,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" id="acknoeledge-document"
-                                            name="acknoeledge-document" type="radio" tabindex="" />
+                                            name="acknoeledge-document" type="radio" tabindex="" wire:key="acknowledege-{{ $index }}" wire:model.lazy="documents.{{$index}}.acknowledge_document"/>
                                         <label class="form-check-label" for="acknoeledge-document">Acknowledge Document
                                             <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                                 <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -463,7 +476,7 @@
                                     </div>
                                     <div class="form-check form-check-inline mb-3">
                                         <input class="form-check-input" id="sign-document" name="sign-document"
-                                            type="radio" tabindex="" />
+                                            type="radio" tabindex=""  wire:key="signindoc-{{ $index }}" wire:model.lazy="documents.{{$index}}.sign_document"/>
                                         <label class="form-check-label" for="sign-document">Sign Document
                                             <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                                 <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -472,12 +485,12 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" id="set-expiry" name="set-expiry" type="radio"
-                                            tabindex="" />
+                                            tabindex="" wire:key="setexpr-{{ $index }}" wire:model.lazy="documents.{{$index}}.set_expiry"/>
                                         <label class="form-check-label" for="set-expiry">Set Expiry</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" id="user-set-expiry" name="user-set-expiry"
-                                            type="radio" tabindex="" />
+                                            type="radio" tabindex="" wire:key="userexp-{{ $index }}" wire:model.lazy="documents.{{$index}}.user_set_expiry"/>
                                         <label class="form-check-label" for="user-set-expiry">User Set Expiry</label>
                                     </div>
                                 </div>
@@ -493,7 +506,7 @@
                                 <div class="row">
                                     <div class="d-inline-flex">
                                         <input class="form-control w-50" type="" id="expiration-within"
-                                            placeholder="$00:00">
+                                            placeholder="$00:00" wire:key="months-{{ $index }}" wire:model.lazy="documents.{{$index}}.expiration_within">
                                         <div class="text-nowrap col-lg-4 ms-2 mt-3"><span>Months</span></div>
                                     </div>
                                 </div>
@@ -503,15 +516,16 @@
                                     <label for="formFile" class="form-label">
                                         Upload Document
                                     </label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.lazy="documents.{{$index}}.formFile">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="row mb-5">
                     <div class="d-flex justify-content-end col-6">
-                        <button class="btn btn-primary rounded">
+                        <button class="btn btn-primary rounded" wire:click.prevent="addDocumentType">
                             <svg class="mx-2" aria-label="Add Message" width="20" height="20" viewBox="0 0 20 20">
                                 <use xlink:href="/css/common-icons.svg#plus">
                                 </use>
