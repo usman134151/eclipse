@@ -72,3 +72,12 @@
 		</div>
 	</section>
 </div>
+@push('scripts')
+<script>
+    Livewire.on('updateVal', (attrName, val) => {
+       
+        // Call the updateVal function with the attribute name and value
+        @this.call('updateVal', attrName, val);
+    });
+</script>
+@endpush

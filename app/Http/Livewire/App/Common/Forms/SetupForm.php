@@ -11,7 +11,7 @@ class SetupForm extends Component
 {
     public $setupValue;
     public $label="Add";
-    protected $listeners = ['editRecord' => 'edit'];
+    protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $setupValues = [
         'setup'=>['parameters'=>['Setup', 'id', 'setup_value', 'setup_deleteable', '1', 'setup_value', false, 'setupvalue.setup_id', '','setup_id',0 ]],
 	];
@@ -21,7 +21,12 @@ class SetupForm extends Component
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 
     }
-
+	public function updateVal($attrName, $val)
+	{
+		
+		   $this->setupvalue[$attrName] = $val;
+		
+	}
 
     // Validation Rules
     public function rules()
