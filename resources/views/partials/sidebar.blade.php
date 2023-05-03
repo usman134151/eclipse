@@ -563,6 +563,7 @@
                   </li>
                 </ul>
               </li>
+              {{--  
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Coupons & Referrals Setup"  width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -633,8 +634,10 @@
                       <span class="menu-item">Stripe Setup</span>
                     </a>
                   </li>
+                  
                 </ul>
               </li>
+              --}}
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg class="fill-none" aria-label="Admin Staff"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
