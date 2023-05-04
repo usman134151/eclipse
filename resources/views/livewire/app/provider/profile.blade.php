@@ -424,7 +424,7 @@
                                                         <label class="form-check-label" for="ContractProviderType">
                                                             Contract Provider
                                                         </label>
-                                                        <svg  width="19" height="19" viewBox="0 0 19 19"fill="none"
+                                                        <svg aria-label="Availability Schedule of Contract Provider" width="19" height="19" viewBox="0 0 19 19"fill="none"
                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
                                                      </svg>
                                                     </div>
@@ -477,7 +477,7 @@
                                 <div class="mb-3 fw-semibold" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#accomodation" aria-expanded="true" aria-controls="accomodation">
                                     Sign Language Interpreting Services
-                                    <svg class="icon-arrow-bottom ms-5" width="32" height="15" viewBox="0 0 32 15"fill="none"
+                                    <svg aria-label="Accomodation" class="icon-arrow-bottom ms-5" width="32" height="15" viewBox="0 0 32 15"fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#grey-upper-arrow"></use>
                                     </svg>
                                 </div>
@@ -503,7 +503,7 @@
                                     <div class="mb-3 fw-semibold" data-bs-toggle="collapse" type="button"
                                         data-bs-target="#accomodation-category" aria-expanded="true"
                                         aria-controls="accomodation">
-                                        <svg class="icon-arrow-bottom me-1" width="25" height="13" viewBox="0 0 25 13"fill="none"
+                                        <svg aria-label="Service" class="icon-arrow-bottom me-1" width="25" height="13" viewBox="0 0 25 13"fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#grey-upper-arrow"></use>
                                        </svg>
                                         Film Production
@@ -512,7 +512,7 @@
                                         <div class="row">
                                             <div class="d-inline-flex mb-4">
                                                 <h2>Standard Rates</h2>
-                                                <svg class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
+                                                <svg aria-label="Set the standard rates for the service" class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
                                                 </svg>
                                             </div>
@@ -581,7 +581,7 @@
                                         <div class="row">
                                             <div class="d-inline-flex mb-4">
                                                 <h2>Expedited Hours </h2>
-                                                <svg class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
+                                                <svg aria-label="Expedited Hours for the service" class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
                                                 </svg>
                                             </div>
@@ -757,7 +757,7 @@
                                             <div class="row">
                                                 <div class="d-inline-flex mb-3">
                                                     <h2>Specialization Rates</h2>
-                                                    <svg class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
+                                                    <svg aria-label="Specialization Rates" class="mx-2 mt-2" width="15" height="16" viewBox="0 0 15 16"fill="none"
                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#fill-question"></use>
                                                 </svg>
                                                 </div>
@@ -920,7 +920,7 @@
                                     data-bs-target="#accomodation-four" aria-expanded="false"
                                     aria-controls="accomodation-four">
                                     Spoken Language Interpreting Services
-                                    <svg class="icon-arrow-bottom ms-5" width="32" height="15" viewBox="0 0 32 15"fill="none"
+                                    <svg aria-label="Service Accomodation" class="icon-arrow-bottom ms-5" width="32" height="15" viewBox="0 0 32 15"fill="none"
                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#grey-down-arrow"></use>
                                     </svg>
                                 </div>

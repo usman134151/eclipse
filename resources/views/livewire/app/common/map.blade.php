@@ -4,7 +4,7 @@
 		<div class="row mb-4">
 		  <div class="col-lg-3 mb-4 mb-lg-0 position-relative align-self-end">
 			<!-- Begin : it will be replaced with livewire module-->
-			<svg class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
+			<svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#date-field"></use>
             </svg>
 			<input type="" class="form-control form-control-md form-control-date js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
