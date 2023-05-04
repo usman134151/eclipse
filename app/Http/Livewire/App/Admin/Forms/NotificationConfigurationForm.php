@@ -12,24 +12,30 @@ use App\Services\App\NotificationService;
 class NotificationConfigurationForm extends Component
 {
 	public $notification;
-	protected $listeners = ['editRecord' => 'edit'];
+	protected $listeners = ['editRecord' => 'edit' ,'updateVal'];
 
 	public $setupValues = [
         'roles'=>['parameters'=>['SystemRole', 'system_role_id', 'system_role_name', '', '', 'system_role_name', false, 'notification.role_id','','roles',1]],
 	];
 
 	public function mount(NotificationTemplates $notification){
-		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->notification=$notification;
+		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+
     }
 
+	public function updateVal($attrName, $val)
+	{
 
+		   $this->notification[$attrName] = $val;
+
+	}
 	public function showList($message="")
 	{
-		
+
 		$this->emit('showList',$message);
 	}
-     
+
 	public function rules()
 	{
 		return [
@@ -40,7 +46,7 @@ class NotificationConfigurationForm extends Component
 				Rule::unique('notification_templates', 'name')->ignore($this->notification->id)],
 			'notification.trigger' => 'required',
 			'notification.role_id' => 'required',
-			
+
 		];
 	}
 
@@ -55,8 +61,8 @@ class NotificationConfigurationForm extends Component
 	}
 
 	public function edit(NotificationTemplates $notification){
-        $this->notification=$notification;    
-       
+        $this->notification=$notification;
+
     }
 
 

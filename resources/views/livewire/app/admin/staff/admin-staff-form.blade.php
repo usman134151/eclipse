@@ -173,17 +173,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {{-- updated by shanila to replace checkboxes with multidropdowns --}}
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label">
-                                                Roles and Permissions
-                                            </label>
-                                            {{-- updated by shanila to add dropdown --}}
-                                            {!! App\Helpers\SetupHelper::createCheckboxes('SystemRole',
-                                            'system_role_id','system_role_name', '', '','',[], 'form-check form-check-inline') !!}
-                                            {{-- ended update by shanila--}}
+                                                    <label class="form-label">Roles and Permissions</label>
+                                                    {!! App\Helpers\SetupHelper::createDropDown('SystemRole', 'system_role_id',
+                                                            'system_role_name', 'status', 1, 'system_role_name', true, 'roles',
+                                                     '','roles') !!}
                                         </div>
-                                    </div>
+                                      </div>
+                                      {{-- updated completed by shanila --}}
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="email">Email<span class="mandatory"
@@ -270,7 +269,7 @@
                                         </div>
                                     </div>
                                 </div>
-                              
+
                                 <div class="col-12 justify-content-center form-actions d-flex">
                                     <button type="button" class="btn btn-outline-dark rounded mx-2"
                                         wire:click.prevent="showList">

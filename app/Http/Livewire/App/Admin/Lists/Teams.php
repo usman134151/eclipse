@@ -35,7 +35,7 @@ final class Teams extends PowerGridComponent
                 ->showSearchInput()
                 ->showToggleColumns(), //updated by Amna Bilal to add column toggle
             Footer::make()
-                ->showPerPage()
+                ->showPerPage(config('app.per_page'))
                 ->showRecordCount(),
         ];
     }
