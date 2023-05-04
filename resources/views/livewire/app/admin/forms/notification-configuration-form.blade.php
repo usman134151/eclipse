@@ -16,7 +16,7 @@
                           <input type="text" id="name-column" class="form-control" name="name-column"
                             placeholder="Enter Name" wire:model.defer="notification.name" />
 
-                         
+
 
                       </div>
                       <div class="col-lg-5 ps-lg-4 mb-4">
@@ -458,3 +458,12 @@
 {{-- added by shanila to add link of js editor js --}}
 <script src="/tenant/js/editor.js"></script>
 {{-- ended updated by shanila --}}
+@push('scripts')
+<script>
+    Livewire.on('updateVal', (attrName, val) => {
+
+        // Call the updateVal function with the attribute name and value
+        @this.call('updateVal', attrName, val);
+    });
+</script>
+@endpush
