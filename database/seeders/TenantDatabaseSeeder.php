@@ -32,14 +32,11 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(BookingsSeeder::class); //added records in booking table by Sohail
       $this->call(SetupSeeder::class); //added records in setup table by Amna Bilal
       $this->call(SetupValuesSeeder::class); //added records in setup values table by Amna Bilal
-      $this->call(ProviderSeeder::class); //added records for providers table by Amna Bilal
-      $this->call(CustomerSeeder::class); //added records for customer table by Shanilla Wali
-      $this->call(Coupons_Seeder::class); //added records for customer table by Safia Liaqat
       $this->call(NavigatorTableSeeder::class);//added by Amna Bilal for dashboard navigator
-      $this->call(CompaniesSeeder::class); // Added records in companies table by Sohail
       $this->call(RightsSeeder::class); // Added records in rights table by Sohail
       $this->call(SystemSectionsSeeder::class); // Added records in system_sections table by Sohail
-      $this->call(TeamsSeeder::class); // Added records in teams table by huma
+      $this->call(TimezoneSeeder::class);
+      
     }
 
 }
