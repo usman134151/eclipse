@@ -40,7 +40,10 @@
                 </label>
                 <div class="position-relative">
                     <input type="" name="" class="form-control js-single-date" placeholder="Jan 1, 2022 - Oct 1, 2022" id="expiry-date">
-                    <x-icon name="datefield-icon"/>
+                    <svg aria-label="Date" class="icon-date" width="20" height="21" viewBox="0 0 20 21">
+                   <use xlink:href="/css/common-icons.svg#datefield-icon">
+                   </use>
+                     </svg>
                 </div>
             </div>
         </div>
