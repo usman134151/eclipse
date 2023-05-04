@@ -13,7 +13,7 @@
             </div>
             <div>
               <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" role="switch" id="checkOut" checked>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkOut" checked aria-label="Check-out Permission Toggle button">
                 <label class="form-check-label" for="checkOut">No</label>
                 <label class="form-check-label" for="checkOut">Yes</label>
               </div>
@@ -35,9 +35,11 @@
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="position-relative">
-                        <svg class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-                        </svg>
+                      <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20"
+                      viewBox="0 0 20 20">
+                      <use xlink:href="/css/common-icons.svg#datefield-icon">
+                      </use>
+                     </svg>
                         <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                       </div>
                   </div>
@@ -56,9 +58,11 @@
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="position-relative">
-                        <svg class="icon-date md cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M18.75 1.87104L13.7456 1.87106V0.625146C13.7456 0.279753 13.4659 0 13.1206 0C12.7753 0 12.4956 0.279753 12.4956 0.625146V1.87075H7.49563V0.625146C7.49563 0.279753 7.21594 0 6.87063 0C6.52531 0 6.24563 0.279753 6.24563 0.625146V1.87075H1.25C0.559687 1.87075 0 2.43057 0 3.12104V18.7497C0 19.4402 0.559687 20 1.25 20H18.75C19.4403 20 20 19.4402 20 18.7497V3.12104C20 2.43086 19.4403 1.87104 18.75 1.87104ZM18.75 18.7497H1.25V3.12104H6.24563V3.75088C6.24563 4.09625 6.52531 4.37603 6.87063 4.37603C7.21594 4.37603 7.49563 4.09625 7.49563 3.75088V3.12136H12.4956V3.75119C12.4956 4.09658 12.7753 4.37634 13.1206 4.37634C13.4659 4.37634 13.7456 4.09658 13.7456 3.75119V3.12136H18.75V18.7497ZM14.375 9.99795H15.625C15.97 9.99795 16.25 9.71788 16.25 9.3728V8.12251C16.25 7.77743 15.97 7.49736 15.625 7.49736H14.375C14.03 7.49736 13.75 7.77743 13.75 8.12251V9.3728C13.75 9.71788 14.03 9.99795 14.375 9.99795ZM14.375 14.9988H15.625C15.97 14.9988 16.25 14.7191 16.25 14.3737V13.1234C16.25 12.7783 15.97 12.4982 15.625 12.4982H14.375C14.03 12.4982 13.75 12.7783 13.75 13.1234V14.3737C13.75 14.7194 14.03 14.9988 14.375 14.9988ZM10.625 12.4982H9.375C9.03 12.4982 8.75 12.7783 8.75 13.1234V14.3737C8.75 14.7191 9.03 14.9988 9.375 14.9988H10.625C10.97 14.9988 11.25 14.7191 11.25 14.3737V13.1234C11.25 12.7786 10.97 12.4982 10.625 12.4982ZM10.625 7.49736H9.375C9.03 7.49736 8.75 7.77743 8.75 8.12251V9.3728C8.75 9.71788 9.03 9.99795 9.375 9.99795H10.625C10.97 9.99795 11.25 9.71788 11.25 9.3728V8.12251C11.25 7.77712 10.97 7.49736 10.625 7.49736ZM5.625 7.49736H4.375C4.03 7.49736 3.75 7.77743 3.75 8.12251V9.3728C3.75 9.71788 4.03 9.99795 4.375 9.99795H5.625C5.97 9.99795 6.25 9.71788 6.25 9.3728V8.12251C6.25 7.77712 5.97 7.49736 5.625 7.49736ZM5.625 12.4982H4.375C4.03 12.4982 3.75 12.7783 3.75 13.1234V14.3737C3.75 14.7191 4.03 14.9988 4.375 14.9988H5.625C5.97 14.9988 6.25 14.7191 6.25 14.3737V13.1234C6.25 12.7786 5.97 12.4982 5.625 12.4982Z" fill="black"/>
-                        </svg>
+                      <svg aria-label="Date" class="icon-date md cursor-pointer" width="20" height="20"
+                      viewBox="0 0 20 20">
+                      <use xlink:href="/css/common-icons.svg#datefield-icon">
+                      </use>
+                     </svg>
                         <input type="" class="form-control form-control-md js-single-date" placeholder="MM/DD/YYYY" name="selectDate" aria-label="Select Date">
                       </div>
                   </div>
@@ -129,12 +133,12 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <img src="/tenant/images/portrait/small/img-timesheet.jpg" alt="Image">
+                    <img src="/tenant/images/portrait/small/img-timesheet.jpg" alt="Timesheet Image">
                   </div>
                 </div>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
+                <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked aria-label="Digital Signature">
                 <label class="form-check-label" for="flexRadioDefault2">
                   Digital Signature
                 </label>
@@ -142,7 +146,7 @@
                   <div class="mb-4">
                     <label class="form-label d-block">Select who sign from customer</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
+                      <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked aria-label="Requester">
                       <label class="form-check-label" for="flexRadioDefault2">
                         <small>
                         Requester
@@ -150,7 +154,7 @@
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
+                      <input class="form-check-input" type="radio" aria-label="Supervisor" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
                       <label class="form-check-label" for="flexRadioDefault2">
                         <small>
                         Supervisor
@@ -158,7 +162,7 @@
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
+                      <input class="form-check-input" type="radio" aria-label="Service Consumer" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
                       <label class="form-check-label" for="flexRadioDefault2">
                         <small>
                         Service Consumer
@@ -166,7 +170,7 @@
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
+                      <input class="form-check-input" type="radio" aria-label="Other" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
                       <label class="form-check-label" for="flexRadioDefault2">
                         <small>
                         Other
@@ -176,12 +180,12 @@
                   </div>
                   <div class="row mb-4">
                     <div class="col-lg-6">
-                      <label class="form-label">Signer’s Name</label>
-                      <input type="" name="" class="form-control" placeholder="Enter Name">
+                      <label class="form-label" for="signer-name">Signer’s Name</label>
+                      <input type="" name="" class="form-control" placeholder="Enter Name" id="signer-name">
                     </div>
                     <div class="col-lg-6">
-                      <label class="form-label">Position</label>
-                      <input type="" name="" class="form-control" placeholder="Enter Position">
+                      <label class="form-label" for="position">Position</label>
+                      <input type="" name="" class="form-control" placeholder="Enter Position" id="position">
                     </div>
                   </div>
                   <div class="d-flex gap-5 align-items-center mb-4">
@@ -193,7 +197,7 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <img src="/tenant/images/portrait/small/img-timesheet.jpg" alt="Image">
+                    <img src="/tenant/images/portrait/small/img-timesheet.jpg" alt="Timesheet Image">
                   </div>
                 </div>
               </div>
@@ -221,7 +225,7 @@
             </div>
             <div>
               <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked aria-label="Check-out Permission Toggle">
                 <label class="form-check-label" for="checkin">No</label>
                 <label class="form-check-label" for="checkin">Yes</label>
               </div>
@@ -233,26 +237,26 @@
               <h3 class="text-primary">Check-Out Form</h3>
               <div class="row">
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Company Name</label>
-                  <input type="" name="" class="form-control" placeholder="Enter Company Name">
+                  <label class="form-label-sm" for="company-name">Company Name</label>
+                  <input type="" name="" class="form-control" placeholder="Enter Company Name" id="company-name">
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Type Of Appointment</label>
-                  <input type="" name="" class="form-control" placeholder="Type Of Appointment">
+                  <label class="form-label-sm" for="type-of-appointment">Type Of Appointment</label>
+                  <input type="" name="" class="form-control" placeholder="Type Of Appointment" id="type-of-appointment">
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Covid-19 Regulation</label>
-                  <input type="" name="" class="form-control" placeholder="Enter Covid-19 Regulation">
+                  <label class="form-label-sm" for="covid-regulation">Covid-19 Regulation</label>
+                  <input type="" name="" class="form-control" id="covid-regulation" placeholder="Enter Covid-19 Regulation">
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Is this a new patient</label>
-                  <select class="form-select">
+                  <label class="form-label-sm" for="new-patient">Is this a new patient</label>
+                  <select class="form-select" id="new-patient">
                     <option>Yes</option>
                   </select>
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Entry Notes</label>
-                  <textarea class="form-control" rows="5" cols="5"></textarea>
+                  <label class="form-label-sm" for="entry-Notes">Entry Notes</label>
+                  <textarea class="form-control" rows="5" cols="5" id="entry-Notes"></textarea>
                 </div>
               </div>
             </div>
@@ -280,7 +284,7 @@
             </div>
             <div>
               <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked aria-label="check-out permission Toggle">
                 <label class="form-check-label" for="checkin">No</label>
                 <label class="form-check-label" for="checkin">Yes</label>
               </div>
@@ -291,8 +295,8 @@
               <h3 class="text-primary">Step 3:</h3>
               <div class="row">
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Entry Notes</label>
-                  <textarea class="form-control" rows="5" cols="5"></textarea>
+                  <label class="form-label-sm" for="entry-notes">Entry Notes</label>
+                  <textarea class="form-control" rows="5" cols="5" id="entry-notes"></textarea>
                 </div>
               </div>
               <div class="row">
@@ -326,7 +330,7 @@
             </div>
             <div>
               <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked aria-label="check-out permission Toggle">
                 <label class="form-check-label" for="checkin">No</label>
                 <label class="form-check-label" for="checkin">Yes</label>
               </div>
@@ -338,24 +342,24 @@
               <div class="mb-4">
                 <label class="form-label d-block">Check-Out Status</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
+                  <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="complete" checked>
+                  <label class="form-check-label" for="complete">
                     <small>
                     Complete
                     </small>
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
+                  <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="no-show" checked>
+                  <label class="form-check-label" for="no-show">
                     <small>
                     No Show
                     </small>
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="Print&SignDigitalSignature2" checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
+                  <input class="form-check-input" type="radio" name="Print&SignDigitalSignature" id="cancelled" checked>
+                  <label class="form-check-label" for="cancelled">
                     <small>
                     Cancelled
                     </small>
@@ -384,8 +388,8 @@
               </div>
               <div class="row">
                 <div class="col-lg-6 mb-4">
-                  <label class="form-label-sm">Entry Notes</label>
-                  <textarea class="form-control" rows="5" cols="5"></textarea>
+                  <label class="form-label-sm" for="EntryNotes">Entry Notes</label>
+                  <textarea class="form-control" rows="5" cols="5" id="EntryNotes"></textarea>
                 </div>
               </div>
               <div class="row">

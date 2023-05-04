@@ -61,7 +61,7 @@
             </div>
             <div>
               <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked>
+                <input class="form-check-input" type="checkbox" role="switch" id="checkin" checked aria-label="Check-in permission toggle">
                 <label class="form-check-label" for="checkin">No</label>
                 <label class="form-check-label" for="checkin">Yes</label>
               </div>
@@ -110,26 +110,26 @@
           <h3 class="text-primary">Check-In Form</h3>
           <div class="row">
             <div class="col-lg-6 mb-4">
-              <label class="form-label-sm">Company Name</label>
-              <input type="" name="" class="form-control" placeholder="Enter Company Name">
+              <label class="form-label-sm" for="companyName">Company Name</label>
+              <input type="" name="" class="form-control" placeholder="Enter Company Name" id="companyName">
             </div>
             <div class="col-lg-6 mb-4">
-              <label class="form-label-sm">Type Of Appointment</label>
-              <input type="" name="" class="form-control" placeholder="Type Of Appointment">
+              <label class="form-label-sm" for="typesOfAppointment">Type Of Appointment</label>
+              <input type="" name="" class="form-control" placeholder="Type Of Appointment" id="typesOfAppointment">
             </div>
             <div class="col-lg-6 mb-4">
-              <label class="form-label-sm">Covid-19 Regulation</label>
-              <input type="" name="" class="form-control" placeholder="Enter Covid-19 Regulation">
+              <label class="form-label-sm" for="CovidRegularation">Covid-19 Regulation</label>
+              <input type="" name="" class="form-control" placeholder="Enter Covid-19 Regulation" id="CovidRegularation">
             </div>
             <div class="col-lg-6 mb-4">
-              <label class="form-label-sm">Is this a new patient</label>
-              <select class="form-select">
+              <label class="form-label-sm" for="newPatient">Is this a new patient</label>
+              <select class="form-select" id="newPatient">
                 <option>Yes</option>
               </select>
             </div>
             <div class="col-lg-6 mb-4">
-              <label class="form-label-sm">Entry Notes</label>
-              <textarea class="form-control" rows="5" cols="5"></textarea>
+              <label class="form-label-sm" for="Entry-notes">Entry Notes</label>
+              <textarea class="form-control" rows="5" cols="5" id="Entry-notes"></textarea>
             </div>
           </div>
           <div class="row">
