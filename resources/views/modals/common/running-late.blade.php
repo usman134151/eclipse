@@ -17,12 +17,12 @@
             <div class="row justify-content-center">
               <div class="col-lg-5">
                 <div class="d-flex justify-content-around">
-                  <label class="form-label-sm">Hours</label>
-                  <label class="form-label-sm">Minutes</label>
+                  <label class="form-label-sm" aria-label="Hours">Hours</label>
+                  <label class="form-label-sm" aria-label="Minutes">Minutes</label>
                 </div>
                 <div class="input-group">
-                  <input type="" name="" class="form-control form-control-md text-center" value="00">
-                  <input type="" name="" class="form-control form-control-md text-center" value="00">
+                  <input type="" name="" class="form-control form-control-md text-center" value="00" aria-label="Hours">
+                  <input type="" name="" class="form-control form-control-md text-center" value="00" aria-label="Hours">
                 </div>
               </div>
             </div>
