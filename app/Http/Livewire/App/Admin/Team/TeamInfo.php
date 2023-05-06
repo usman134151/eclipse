@@ -68,12 +68,7 @@ class TeamInfo extends Component
 	}
 	public function saveImage()
 	{
-		//dd(storage_path());
-    	$directory = storage_path().'/framework/cache/';
-		dd($directory);
-if (!file_exists($directory)) {
-    mkdir($directory, 0755, true);
-}
+
 		if ($this->image) {
         	$this->image->store('tmp');
     	}

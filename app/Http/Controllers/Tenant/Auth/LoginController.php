@@ -82,6 +82,19 @@ class LoginController extends Controller
 				return redirect('otpverify');
 				die();
 			}else{
+			//tmp fix to check if required directories are created
+		
+				$directories=['/framework/cache/','app/public','app/tmp'];
+				foreach($directories as $directory){
+							
+					if (!file_exists(storage_path().$directory)) {
+						
+						mkdir($directory, 0755, true);
+						
+						
+					}
+				}
+
 				return redirect('home');
 			}
 		   // } else {
