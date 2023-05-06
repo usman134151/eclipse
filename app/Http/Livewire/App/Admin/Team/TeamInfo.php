@@ -71,6 +71,7 @@ class TeamInfo extends Component
 
 		if ($this->image) {
         	$this->image->store('tmp');
+			chmod($image->temporaryUrl(),0755);
     	}
 	}
 

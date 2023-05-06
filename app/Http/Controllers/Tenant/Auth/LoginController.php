@@ -84,7 +84,7 @@ class LoginController extends Controller
 			}else{
 			//tmp fix to check if required directories are created
 		
-				$directories=['/framework/cache/','app/public','app/tmp'];
+				$directories=['/framework/cache/','app/public','app/tmp','app/livewire-tmp'];
 				foreach($directories as $directory){
 							
 					if (!file_exists(storage_path().$directory)) {
