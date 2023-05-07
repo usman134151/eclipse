@@ -43,10 +43,20 @@ class Customer extends Component
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
-	public function resetForm()
+	public function resetForm($message='')
 	{
 		$this->showForm=false;
 		$this->showProfile = false;
+		if ($message) {
+			$this->confirmationMessage = $message;
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/customer']);
 	}
 
 	public function showProfile()
