@@ -36,9 +36,10 @@ class CustomerForm extends Component
 
 	}
 
-	public function showList()
+	public function showList($message = "")
 	{
-		$this->emit('showList');
+		// Save data
+		$this->emit('showList', $message);
 	}
 
 	public function switch($component)
