@@ -8,6 +8,16 @@
 	</div>
 	@if($showForm)
 	@livewire('app.common.forms.customer-form') {{-- Show Add / Edit Form --}}
+	@include('modals.common.add-industry')
+    @include('modals.common.add-department')
+    @include('modals.common.add-address')
+    @include('modals.assign-billing-manager')
+    @include('modals.assign-supervisor')
+    @include('modals.supervising')
+    @include('modals.bill-managing')
+    @include('modals.admin-staff')
+    <!-- have to remove associate services panel as it was throwing errors --> 
+    @include('modals.add-user')
 	@elseif($showProfile)
 	@livewire('app.common.customer-details')
 	@else
@@ -279,7 +289,7 @@
 </div>
 <script>
 	function updateVal(attrName,val){
-
+	
 		Livewire.emit('updateVal', attrName, val);
 
 	}

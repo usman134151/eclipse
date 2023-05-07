@@ -59,7 +59,8 @@ class TeamInfo extends Component
 	public function save(){
 		$this->validate();
 		if ($this->image) {
-			$path = $this->image->store('public/images');
+			$path = $this->image->store('public/profile_images');
+			
 		}	
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
@@ -68,10 +69,12 @@ class TeamInfo extends Component
 	}
 	public function saveImage()
 	{
-
+		
 		if ($this->image) {
-        	$this->image->store('tmp');
-			chmod(storage_path().$this->image->temporaryUrl(),755);
+			
+        	$this->image->store('public/profile_images');
+			
+			//chmod(storage_path().$thi,755);
     	}
 	}
 

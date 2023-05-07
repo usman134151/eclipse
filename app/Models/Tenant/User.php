@@ -21,7 +21,7 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'email', 'password',
+		'first_name','last_name','user_dob', 'email','company_name', 'password',
 	];
 
 	/**
@@ -70,5 +70,19 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(Company::class, 'company_name');
 	}
+	public function userdetail()
+	{
+		return $this->hasOne(UserDetail::class, 'user_id');
+	}	
+	public function phones()
+	{
+		return $this->morphMany(Phone::class, 'model', 'model_type', 'model_id')
+					->where('model_type', '=', 'App\Models\Tenant\User');
+	}
+	public function addresses()
+	{
+    	return $this->morphMany(UserAddress::class, 'address', 'address_type', 'user_id');
+	}
+
 }
 

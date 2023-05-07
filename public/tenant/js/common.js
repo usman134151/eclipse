@@ -22,12 +22,12 @@ function messageBox(message,title,status) {
 function openModal(modalId) {
     document.getElementById(modalId).style.display = "block";
     document.getElementById(modalId).classList.add("show");
-    document.getElementById("backdrop").style.display = "block";
+   // document.getElementById("backdrop").style.display = "block";
 }
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = "none";
     document.getElementById(modalId).classList.remove("show");
-    document.getElementById("backdrop").style.display = "none";
+   // document.getElementById("backdrop").style.display = "none";
 }
 
 /**

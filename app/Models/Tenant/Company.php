@@ -28,5 +28,9 @@ class Company extends Model
 		return $this->morphMany(Phone::class, 'model', 'model_type', 'model_id')
 					->where('model_type', '=', 'App\Models\Tenant\Company');
 	}
+	public function addresses()
+	{
+    	return $this->morphMany(UserAddress::class, 'address', 'address_type', 'user_id');
+	}
 	
 }

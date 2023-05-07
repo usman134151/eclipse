@@ -205,7 +205,7 @@ $('.js-form-switch-toggle').change(function(){
 
 // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
-    alert('test')
+ 
     $('.select2').select2({
         allowClear: true,
     });

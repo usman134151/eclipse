@@ -14,12 +14,16 @@ class AddCompany extends Component
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]]
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]],
+		'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',4,'setup_value_label',false,'company.company_timezone', '','company_timezone',4]]
+	
 	];
 	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
 	public $step=1;
 	public $company;
 	public $driveActive,$serviceActive;
+	
+	
 	
 
 	public function showList($message = "")
@@ -32,6 +36,7 @@ class AddCompany extends Component
 	{
 		
 		return view('livewire.app.admin.forms.add-company');
+		
 	}
 
 	public function edit(Company $company){
@@ -51,15 +56,24 @@ class AddCompany extends Component
 	public function mount(Company $company){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
+		$this->showHours=false;
+		$this->showAddress=false;
 		
 		
 
 
 	}
 	public function updateVal($attrName, $val)
-	{
-		
-		   $this->company[$attrName.'_id'] = $val;
+	{  
+		   if($attrName=="company_timezone"){
+			$this->company['company_timezone'] = $val;
+			
+		   }
+		   else{
+			$this->company[$attrName.'_id'] = $val;
+		   }
+		   
+		  
 		
 	}
 	public function switch($component)
@@ -120,7 +134,6 @@ class AddCompany extends Component
 			$this->serviceActive='';
 		 }
 	}
-
 
 
 }

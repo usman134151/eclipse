@@ -113,7 +113,13 @@
                                                             *
                                                         </span>
                                                     </label>
+                                                    
                                                     {!! $setupValues['companies']['rendered'] !!}
+                                                    @error('user.company_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -183,7 +189,7 @@
                                                         Position
                                                     </label>
                                                     <input type="text" id="position-column" class="form-control"
-                                                        name="positionColumn" placeholder="Enter Position"  />
+                                                        name="positionColumn" placeholder="Enter Position"  wire:model.defer="userdetail.user_position" />
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">
@@ -195,6 +201,11 @@
                                                     </label>
                                                     <input type="text" id="f-name" class="form-control" name="f-name"
                                                         placeholder="Enter First Name" required aria-required="true"   wire:model.defer="user.first_name"/>
+                                                @error('user.first_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror     
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -206,6 +217,11 @@
                                                     </label>
                                                     <input type="text" id="l-name" class="form-control" name="l-name"
                                                         placeholder="Enter Last Name" required aria-required="true" wire:model.defer="user.last_name"/>
+                                                        @error('user.last_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror    
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">
@@ -213,7 +229,7 @@
                                                         Pronouns
                                                     </label>
                                                     <input type="text" id="pronouns-column" class="form-control"
-                                                        placeholder="Enter Pronouns" name="pronouns" />
+                                                        placeholder="Enter Pronouns" name="pronouns" wire:model.defer="userdetail.title" />
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -224,7 +240,7 @@
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="Select Date of Birth" aria-label=""
-                                                                aria-describedby="">
+                                                                aria-describedby="" wire:model.defer="user.user_dob">
                                                             <svg aria-label="Select Date" class="icon-date" width="20" height="21"
                                                                 viewBox="0 0 20 21" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -242,6 +258,11 @@
                                                             </svg>
                                                         </button>
                                                     </div>
+                                                    @error('user.user_dob')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                                 </div>
 
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
@@ -295,6 +316,11 @@
                                                     </label>
                                                     <input type="text" id="email" class="form-control" name="email"
                                                         placeholder="Enter Email" required aria-required="true" wire:model.defer="user.email"/>
+                                                    @error('user.email')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -326,7 +352,7 @@
                                                     </label>
                                                     <textarea class="form-control" rows="3" cols="3" placeholder=""
                                                         name="service-consumer-introduction-column"
-                                                        id="service-consumer-introduction-column"></textarea>
+                                                        id="service-consumer-introduction-column" wire:model.defer='userdetail.user_introduction'></textarea>
                                                 </div>
 
                                                 <div class="col-lg-6 ps-lg-5 mb-4">
@@ -579,17 +605,18 @@
                                             {{-- Action Buttons Start --}}
                                             <div
                                                 class="col-12 form-actions">
-                                                <button type="button" class="btn btn-outline-dark rounded"
-                                                    wire:click.prevent="showList">
-                                                    Cancel
-                                                </button>
-                                                <a href="/admin/customer" class="btn btn-primary rounded">
-                                                    Save & Exit
-                                                </a>
-                                                <button type="submit" class="btn btn-primary rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')" wire:click="save()">
-                                                    Next
-                                                </button>
+                                                <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="showList">
+                                                        Cancel
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                        wire:click.prevent="save(0)"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        Next
+                                                    </button>
                                             </div>
                                             {{-- Action Buttons End --}}
 
@@ -945,28 +972,619 @@
                         {{-- END: Permission Configurations --}}
 
                         {{-- BEGIN: Service Catalog --}}
-                     
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
-                        id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
-                        x-show="tab === 'service-catalog'">
-                        <section id="multiple-column-form">
-                            @livewire('app.admin.customer.service-catelog')
-                       
-                        </section>
-                    </div>
+                            id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
+                            x-show="tab === 'service-catalog'">
+                            <section id="multiple-column-form">
+                                <div class="row">
+                                    {{-- updated by shanila to add csrf and add form tag --}}
+                                    <form class="form" >
+                                        @csrf
+                                        <div class="card-body">
+                                            <div class="col-lg-8">
+                                                <h2>Service Catalog</h2>
+                                            </div>
+
+                                            <div class="col-md-12 mb-md-2">
+                                                <div class="row">
+                                                    <div class="col-lg-5 mb-3">
+                                                        <p class="fs-5">Filter By Accommodation</p>
+                                                        <div class="content-body">
+                                                            <div class="card">
+                                                                <div class="card-body shadow-sm">
+                                                                    <input type="search" class="form-control"
+                                                                        id="search" name="search" placeholder="Search"
+                                                                        autocomplete="on" />
+                                                                    <div class="overflow-y-auto max-h-30rem">
+                                                                        <table id="unassigned_data"
+                                                                            class="table table-hover"
+                                                                            aria-label="Admin Staff Teams Table">
+                                                                            <tbody>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p>Shelby Sign Language</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p>Language Translation Services
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p>Real Time Captioning Services
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p>Real Time Captioning Services
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p>Real Time Captioning Services
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p>Real Time Captioning Services
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p> Sign Language Interpreting
+                                                                                            Services</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p> Spoken Language Interpreting
+                                                                                            Services</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p> Spoken Language Interpreting
+                                                                                            Services</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p> Spoken Language Interpreting
+                                                                                            Services</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p> Spoken Language Interpreting
+                                                                                            Services</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="text-start">
+                                                                                        <p> Spoken Language Interpreting
+                                                                                            Services</p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-7 ps-lg-5">
+                                                        <div class="mb-3">
+                                                            <p class="fs-5">Select Service</p>
+                                                        </div>
+                                                        <div class="card">
+                                                            <div class="card-body shadow-sm">
+                                                                <input type="search" class="form-control" id="search"
+                                                                    name="search" placeholder="Search"
+                                                                    autocomplete="on" />
+                                                                <div class="overflow-y-auto max-h-30rem">
+                                                                    <table id="" class="table table-hover"
+                                                                        aria-label="Select Service Table">
+                                                                        <tbody>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Language Interpreting</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div
+                                                                                        class="form-check form-switch mb-0">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            id="Languageinterpreting"
+                                                                                            aria-label="Toggle active">
+                                                                                        <label
+                                                                                            class="form-check-label text-nowrap"
+                                                                                            for="Languageinterpreting">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label
+                                                                                            class="form-check-label text-nowrap"
+                                                                                            for="Languageinterpreting">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>New service capacity and
+                                                                                        capabilities
+                                                                                    </p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Shelby test two service</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>CART Captioning</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Transcript Services</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Transcript Services</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Transcript Services</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Transcript Services</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr role="row" class="odd">
+                                                                                <td class="text-start">
+                                                                                    <p>Transcript Services</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="form-check form-switch">
+                                                                                        <input class="form-check-input"
+                                                                                            type="checkbox"
+                                                                                            role="switch"
+                                                                                            aria-label="Toggle active"
+                                                                                            checked>
+                                                                                        <label class="form-check-label">
+                                                                                            In-Active
+                                                                                        </label>
+                                                                                        <label class="form-check-label">
+                                                                                            Active
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td width="5%">
+                                                                                    <div class="d-flex actions">
+                                                                                        <a @click="associateservice = true"
+                                                                                            href="#" title=""
+                                                                                            aria-label="associate service"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to
+                                                                                            Add
+                                                                                            svg icon--}}
+                                                                                            <svg aria-label="associate service"
+                                                                                                width="22" height="20"
+                                                                                                viewBox="0 0 22 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#dollar-icon">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by
+                                                                                            Shanila
+                                                                                            --}}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Action Buttons Start --}}
+                                        <div
+                                            class="col-12 form-actions">
+                                            <button type="button" class="btn btn-outline-dark rounded"
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                Back
+                                            </button>
+                                            <a href="/admin/customer">
+                                                <button type="submit" class="btn btn-primary rounded w-100">
+                                                    Save & Exit
+                                                </button>
+                                            </a>
+                                            <button type="button" class="btn btn-primary rounded"
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                Next
+                                            </button>
+                                        </div>
+                                        {{-- Action Buttons End --}}
+                                    </form>
+                                    {{-- ended update by shanila --}}
+
+                                </div>
+                            </section>
+                        </div>
                         {{-- END: Service Catalog --}}
 
                         {{-- BEGIN: Drive Documents Pane --}}
-                        
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
-                            @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
-                            aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
+                            id="drive-documents" role="tabpanel" aria-labelledby="drive-documents-tab" tabindex="0"
+                            x-show="tab === 'drive-documents'">
                             <section id="multiple-column-form">
-                               @livewire('app.admin.customer.drive') 
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form class="form">
+                                            {{-- updated by shanila to add csrf --}}
+                                            @csrf
+                                            {{-- updated end by shanila --}}
+                                            <div class="col-md-8 mb-md-2">
+                                                <h2>Drive Documents</h2>
+                                            </div>
+                                            <div class="col-md-12 mb-md-2">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-md-2">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-8">
+                                                                <div
+                                                                    class="d-flex flex-column align-items-md-center justify-content-md-center mb-3">
+                                                                    <label for="formFile" class="form-label">
+                                                                        Upload Document
+                                                                    </label>
+                                                                    <input class="form-control" type="file"
+                                                                        id="formFile">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
+                                                            <div>
+                                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                                    alt="Preview File" />
+                                                                <p>File Name</p>
+                                                            </div>
+                                                            <div>
+                                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                                    alt="Preview File" />
+                                                                <p>File Name</p>
+                                                            </div>
+                                                            <div>
+                                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                                    alt="Preview File" />
+                                                                <p>File Name</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {{-- Action Buttons Start --}}
+                                                    <div
+                                                        class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
+                                                        <button type="button" class="btn btn-outline-dark rounded"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                            Back
+                                                        </button>
+                                                        <a href="/admin/customer">
+                                                            <button type="button" class="btn btn-primary rounded w-100">
+                                                                Submit
+                                                            </button>
+                                                        </a>
+                                                        {{-- <button type="submit" class="btn btn-primary rounded">
+                                                            Next
+                                                        </button> --}}
+                                                    </div>
+                                                    {{-- Action Buttons End --}}
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </section>
                         </div>
                         {{-- END: Drive Documents Pane --}}
-                       
                     </div>
                 </div>
             </div>
@@ -977,37 +1595,19 @@
 
 @push('scripts')
 
-<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <script>
+    Livewire.on('updateVal', (attrName, val) => {
+     
+        // Call the updateVal function with the attribute name and value
+        //@this.call('updateVal', attrName, val);
+    });
     document.addEventListener("livewire:load", () => {
-		let el = $('.select2')
-		initSelect()
-
-		Livewire.hook('message.processed', (message, component) => {
-			initSelect()
-		})
-
-		// Only needed if doing save without redirect
-		/* Livewire.on('setCategoriesSelect', values => {
-		  el.val(values).trigger('change.select2')
-		})*/
-
-		// Will come into play if and when wire:model is applied
-		// el.on('change', function (e) {
-		// 	@this.set('productCategories', el.select2("val"))
-		// })
-
-		function initSelect () {
-			el.select2({
-				placeholder: '{{__('Select your option')}}',
-				allowClear: !el.attr('required'),
-			})
-		}
-	})
-
-	new Pikaday({
-		field: document.getElementById('service_start_date'),
-		format: 'MM/DD/YYYY'
+        
+        $('.select2').on('change', function (e) {
+         
+            let attrName=$(this).attr('id');
+            @this.set(attrName, $(this).select2("val"))
+        })
 	})
 </script>
 @endpush
