@@ -1,4 +1,4 @@
-<x-off-canvas  size="fullscreen">
+<x-off-canvas show="associateservice" size="fullscreen">
     <!-- BEGIN: Content-->
     <x-slot name="title">Associated Service </x-slot>
        <div class="content-header row">
