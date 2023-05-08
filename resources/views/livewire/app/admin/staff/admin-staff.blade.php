@@ -48,11 +48,11 @@
 				<span class="fw-normal">Add Admin Staff</span>
 			</button>
 		</div>
-		
+
 		{{-- updated by Ali to list of admin-staff --}}
         @livewire('app.common.lists.admin-staff',['status' => 1])
 
-	
+
 </div> {{-- icon legend bar start --}}
 <div class="d-flex actions gap-3 justify-content-end mb-2">
     <div class="d-flex gap-2 align-items-center">
@@ -86,4 +86,14 @@
     </div>
     {{-- icon legend bar end --}}
 	@endif
+    <script>
+        function updateVal(attrName,val){
+        console.log(attrName+'called for'+val);
+        if(val!=''){
+            Livewire.emit('updateVal', attrName, val);
+        }
+
+
+        }
+    </script>
 </div>
