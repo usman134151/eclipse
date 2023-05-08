@@ -125,6 +125,7 @@ class CustomerForm extends Component
 		$this->validate();
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
+		$this->user->status=1;
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation);
