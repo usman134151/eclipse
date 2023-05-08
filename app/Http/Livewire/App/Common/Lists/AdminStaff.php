@@ -57,7 +57,7 @@ final class AdminStaff extends PowerGridComponent
 
         return User::query()->whereHas('roles', function ($query) {
 			$query->whereIn('role_id', [1, 3]);
-		})->where('status',$this->status);   
+		});   
     }
 
 
