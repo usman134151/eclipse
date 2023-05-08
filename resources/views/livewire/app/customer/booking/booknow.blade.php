@@ -1070,9 +1070,9 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="first-name-column">First
+                                            <label class="form-label" for="first-Name-column">First
                                                 Name</label>
-                                            <input type="text" id="first-name-column" class="form-control"
+                                            <input type="text" id="first-Name-column" class="form-control"
                                                 placeholder="First Name" name="fname-column" />
                                         </div>
                                     </div>
@@ -1094,8 +1094,8 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="severity-column">Severity</label>
-                                            <select class="form-select" id="severity-column">
+                                            <label class="form-label" for="severity">Severity</label>
+                                            <select class="form-select" id="severity">
                                                 <option selected>Select Severity</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -1140,7 +1140,7 @@
                                     <div class="col-lg-12 d-inline-flex">
                                         <div class="mt-2"><label for="coupon-code" class="form-label">Coupon Code</label></div>
                                         <div class="mx-3">
-                                            <input type="text" placeholder="Enter Code" class="form-control">
+                                            <input type="text" placeholder="Enter Code" class="form-control" id="coupon-code">
                                         </div>
                                         <div class="mx-3 mb-2">
                                             <button class="btn btn-primary rounded">Apply</button>
