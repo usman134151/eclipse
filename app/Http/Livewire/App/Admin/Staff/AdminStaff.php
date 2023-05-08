@@ -9,7 +9,12 @@ class AdminStaff extends Component
 	public $showForm;
 	public $showProfile;
 
-	protected $listeners = ['showList' => 'resetForm', 'delete'];
+    protected $listeners = [
+		'showList' => 'resetForm',
+		'showProfile' => 'showProfile',
+		'showForm' => 'showForm', // show form when the parent component requests it
+		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
+	];
 
 	public function mount()
 	{}
@@ -19,17 +24,28 @@ class AdminStaff extends Component
 		return view('livewire.app.admin.staff.admin-staff');
 	}
 
-	function showForm()
+    function showForm()
 	{
 		$this->showForm=true;
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-staff/create-staff']);
+		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
-	public function resetForm()
+	public function resetForm($message='')
 	{
 		$this->showForm=false;
-		$this->showProfile=false;
+		$this->showProfile = false;
+		if ($message) {
+			$this->confirmationMessage = $message;
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-staff']);
 	}
-
 	public function showProfile()
 	{
 		$this->showProfile=true;
@@ -60,5 +76,10 @@ class AdminStaff extends Component
 			'title' => 'Team Deleted Successfully!',
 			'text' => 'This is a sweet alert!',
 		]);
+	}
+    	// function to update the ID of the record being edited/deleted
+	public function updateRecordId($id)
+	{
+		$this->recordId = $id;
 	}
 }

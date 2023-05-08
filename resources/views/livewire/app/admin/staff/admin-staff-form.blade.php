@@ -32,7 +32,7 @@
             <div class="card-body">
 
                 <!-- BEGIN: Steps -->
-                <div x-data="{ tab: 'profile' }" id="tab_wrapper">
+                <div x-data="{ tab: @entangle('component')}" id="tab_wrapper">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -105,7 +105,12 @@
                                                 First Name <span class="mandatory" aria-hidden="true">*</span>
                                             </label>
                                             <input type="text" id="first_name" class="form-control" name="first_name"
-                                                placeholder="Enter First Name" required aria-required="true"  wire:model="user.first_name"/>
+                                                placeholder="Enter First Name" required aria-required="true"  wire:model.defer="user.first_name"/>
+                                                @error('user.first_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -114,14 +119,19 @@
                                                 Last Name <span class="mandatory" aria-hidden="true">*</span>
                                             </label>
                                             <input type="text" id="last_name" class="form-control" name="last_name"
-                                                placeholder="Enter Last Name" required aria-required="true"  wire:model="user.last_name"/>
+                                                placeholder="Enter Last Name" required aria-required="true"  wire:model.defer="user.last_name"/>
+                                                @error('user.last_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="pronouns">Pronouns</label>
                                             <input type="text" id="pronouns" class="form-control"
-                                                placeholder="Enter Pronouns" name="pronouns" />
+                                                placeholder="Enter Pronouns" name="pronouns"  wire:model.defer="userdetail.title" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -169,7 +179,7 @@
                                             <div>
                                                 <label class="form-label" for="position">Position</label>
                                                 <input type="text" id="position" class="form-control"
-                                                    placeholder="Enter Position" name="position" />
+                                                    placeholder="Enter Position" name="position" wire:model.defer="userdetail.user_position" />
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +198,7 @@
                                             <label class="form-label" for="email">Email<span class="mandatory"
                                                     aria-hidden="true">*</span></label>
                                             <input type="text" id="email" class="form-control" placeholder="Enter Email"
-                                                name="email"  wire:model="user.email"/>
+                                                name="email"  wire:model.defer="user.email"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -198,7 +208,7 @@
                                             </label>
                                             <input type="text" id="phone_number" class="form-control"
                                                 name="phone_number" placeholder="Enter Phone Number" required
-                                                aria-required="true" />
+                                                aria-required="true" wire:model.defer="userdetail.phone"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -208,7 +218,7 @@
                                             </label>
                                             <input type="text" id="work_address_line_1" class="form-control"
                                                 name="work_address_line_1" placeholder="Enter Address 1" required
-                                                aria-required="true" />
+                                                aria-required="true" wire:model.defer="userdetail.address_line1"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -218,7 +228,7 @@
                                             </label>
                                             <input type="text" id="work_address_line_2" class="form-control"
                                                 name="work_address_line_2" placeholder="Enter Address 2" required
-                                                aria-required="true" />
+                                                aria-required="true" wire:model.defer="userdetail.address_line2"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -232,17 +242,17 @@
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="state">State / Province</label>
-                                            <select class="form-select" id="state">
-                                                <option value="Al">Select State/Province</option>
-                                            </select>
+                                            <input type="text" id="state" class="form-control"
+                                                name="state" placeholder="Enter State Name"
+                                                required aria-required="true" wire:model.defer="userdetail.state"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="city-column">City</label>
-                                            <select class="form-select" id="city-column">
-                                                <option>Select City</option>
-                                            </select>
+                                            <label class="form-label" for="city">City</label>
+                                            <input type="text" id="city" class="form-control"
+                                                name="city" placeholder="Enter City Name"
+                                                required aria-required="true" wire:model.defer="userdetail.city"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -250,7 +260,7 @@
                                             <label class="form-label" for="zip_code_postal_code">Zip Code / Postal Code</label>
                                             <input type="text" id="zip_code_postal_code" class="form-control"
                                                 name="zip_code_postal_code" placeholder="Enter Zip Code / Postal Code"
-                                                required aria-required="true" />
+                                                required aria-required="true" wire:model.defer="userdetail.zip"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -275,7 +285,7 @@
                                         wire:click.prevent="showList">
                                         Cancel
                                     </button>
-                                    <button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
+                                    <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
                                     <button type="submit" class="btn btn-primary rounded">Next</button>
                                 </div>
                             </form>
@@ -2585,7 +2595,7 @@
                                 <div class="col-12 justify-content-center form-actions d-flex">
                                     <button type="button" class="btn btn-outline-dark rounded mx-2">Back</button>
                                     <button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
-                                    <button type="submit" class="btn btn-primary rounded">Next</button>
+                                    {{-- <button type="submit" class="btn btn-primary rounded">Next</button> --}}
                                 </div>
                             </form>
                         </div>
@@ -2599,10 +2609,16 @@
     </div>
 </div>
 
+@push('scripts')
+
 <script>
-function updateVal(attrName,val){
 
-    Livewire.emit('updateVal', attrName, val);
+    Livewire.on('updateVal', (attrName, val) => {
 
-}
+        // Call the updateVal function with the attribute name and value
+
+        @this.call('updateVal', attrName, val);
+    });
+
 </script>
+@endpush
