@@ -24,7 +24,7 @@ class AdminStaffForm extends Component
 	];
     public $step =1;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit','stepIncremented'];
-	public function showList()
+	public function showList($message='')
 	{
 		$this->emit("showList");
 	}

@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 class CustomerForm extends Component
 {
     public $user;
-    public $userdetail=['gender_id','language_id','timezone_id','userdetail.ethnicity_id','user_introduction','title','user_position'];
+    public $userdetail=['gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
     
     
 	public $component = 'customer-info';
