@@ -345,22 +345,7 @@
                                                     {!! $setupValues['timezones']['rendered'] !!}
                                                 </div>
 
-                                                <div class="col-lg-6 pe-lg-5 mb-4">
-                                                    <label class="form-label"
-                                                        for="service-consumer-introduction-column">
-                                                        Service Consumer Introduction
-                                                    </label>
-                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                        name="service-consumer-introduction-column"
-                                                        id="service-consumer-introduction-column" wire:model.defer='userdetail.user_introduction'></textarea>
-                                                </div>
 
-                                                <div class="col-lg-6 ps-lg-5 mb-4">
-                                                    <label for="file" class="form-label">
-                                                        Service Consumer Introduction Media
-                                                    </label>
-                                                    <input class="form-control" type="file" id="file">
-                                                </div>
                                                 <div class="col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-6 pe-lg-5">
@@ -571,18 +556,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row inner-section-segment-spacing">
-                                                <div class="col-lg-12 ">
-                                                    <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="HideDepartmentfromProvider">
-                                                        <label class="form-check-label"
-                                                            for="HideDepartmentfromProvider">
-                                                            Hide Department from Provider
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+
 
                                             <div
                                                 class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
@@ -776,12 +750,30 @@
                                         <div class="col-lg-12 mb-4">
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" type="checkbox" value=""
-                                                    id="Service-Consumer">
+                                                    id="Service-Consumer" wire:model='serviceConsumer'>
                                                 <label class="form-check-label" for="Service-Consumer">
                                                     Service Consumer
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="row"  @if(!$serviceConsumer) style="display:none" @endif>
+                                        <div class="col-lg-6 mb-4">
+                                                    <label class="form-label"
+                                                        for="service-consumer-introduction-column">
+                                                        Service Consumer Introduction
+                                                    </label>
+                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                        name="service-consumer-introduction-column"
+                                                        id="service-consumer-introduction-column" wire:model.defer='userdetail.user_introduction'></textarea>
+                                                </div>
+
+                                                <div class="col-lg-6  mb-4">
+                                                    <label for="file" class="form-label">
+                                                        Service Consumer Introduction Media
+                                                    </label>
+                                                    <input class="form-control" type="file" id="file">
+                                                </div>
+                                        </div>        
                                         <div class="col-lg-12 mb-4">
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" type="checkbox" value=""

@@ -25,7 +25,7 @@ class CustomerForm extends Component
 	];
     public $step = 1,$email_invitation;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
-
+	public $serviceConsumer=false;
 	public function render()
 	{   //dd($this->user->company_name);
 		return view('livewire.app.common.forms.customer-form');
