@@ -285,12 +285,14 @@
 		</section>
 	</div>
 	@endif
-
-</div>
-<script>
+	<script>
 	function updateVal(attrName,val){
-	
+	console.log(attrName+'called for'+val);
+	if(val!=''){
 		Livewire.emit('updateVal', attrName, val);
+	}
+		
 
 	}
 </script>
+</div>

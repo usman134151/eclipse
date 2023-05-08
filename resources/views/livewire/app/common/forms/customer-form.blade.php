@@ -594,8 +594,8 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check mb-lg-0">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="SendInvitationEmailtotheCustomer">
+                                                    <input class="form-check-input" type="checkbox" value="1"
+                                                        id="email_invitation" wire:model.defer="email_invitation">
                                                     <label class="form-check-label"
                                                         for="SendInvitationEmailtotheCustomer">
                                                         Send Invitation Email to the Customer
@@ -1596,18 +1596,13 @@
 @push('scripts')
 
 <script>
+    
     Livewire.on('updateVal', (attrName, val) => {
      
         // Call the updateVal function with the attribute name and value
-        //@this.call('updateVal', attrName, val);
+       
+        @this.call('updateVal', attrName, val);
     });
-    document.addEventListener("livewire:load", () => {
-        
-        $('.select2').on('change', function (e) {
-         
-            let attrName=$(this).attr('id');
-            @this.set(attrName, $(this).select2("val"))
-        })
-	})
+
 </script>
 @endpush

@@ -18,12 +18,12 @@ class CustomerForm extends Component
 	public $component = 'customer-info';
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'user.company_name','','user.company_name',0]],
-        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','userdetail.language_id',4]],
-        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','userdetail.ethnicity_id',2]],
-        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','userdetail.gender_id',3]],
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','userdetail.timezone_id',4]],
+        'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',4]],
+        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',2]],
+        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',3]],
+        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',4]],
 	];
-    public $step = 1;
+    public $step = 1,$email_invitation;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
 
 	public function render()
@@ -65,12 +65,14 @@ class CustomerForm extends Component
 
 	public function updateVal($attrName, $val)
 	{  
-		   if($attrName=="companies"){
+		//dd($attrName);
+		   if($attrName=="user.company_name"){
+			
 			$this->user['company_name'] = $val;
 			
 		   }
 		   else{
-			$this->user[$attrName.'_id'] = $val;
+			$this->userdetail[$attrName] = $val;
 		   }
 
            
@@ -125,7 +127,7 @@ class CustomerForm extends Component
 		$this->user->added_by = Auth::id();
 		$userService = new UserService;
       
-        $this->user = $userService->createUser($this->user,$this->userdetail,4);
+        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation);
 		$this->step=2;
 		$this->serviceActive="active";
 		//dd($this->user);
