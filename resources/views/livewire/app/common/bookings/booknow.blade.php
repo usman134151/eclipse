@@ -138,18 +138,26 @@
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
-                                        <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                            data-bs-target="#addNewCustomer" aria-label="Requester">
-                                            <small>
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Add New Requester" class="me-1" width="20" height="21"
-                                                    viewBox="0 0 20 21">
-                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                        <div class="form-check ">
+                                            <label class="form-check-label" for="addnewrequestor">Add New Requester</label>
+                                            <input class="form-check-input show-hidden-content"
+                                                id="addnewrequestor" name="addnewrequestor"
+                                                type="checkbox" tabindex="">
+                                            <div class="hidden-content">
+                                                <div class="form-check-inline">
+                                                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester">
+                                                <svg aria-label="Requester" width="25" height="18"
+                                                    viewBox="0 0 25 18">
+                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                    </use>
                                                 </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Add New Requester
-                                            </small>
-                                        </a>
+                                                Requester
+                                            </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <select class="form-select mb-2" id="requestor">
                                         <option>Select Requester</option>
@@ -177,7 +185,7 @@
                                             <input class="form-check-input" type="checkbox" role="switch" id=""
                                                 @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                                         </div>
-                                        <h3 class="mb-lg-0">Add Supervisor & Billing Manager</h3>
+                                        <h3 class="mb-lg-0">Assigned Supervisor & Billing Manager</h3>
                                     </div>
                                     <div class="row switch-toggle-content" x-show="open">
                                         <div class="col-lg-6 mb-4 pe-lg-5">
@@ -320,21 +328,26 @@
                                                                     class="d-flex justify-content-between align-items-center">
                                                                     <label class="form-label">Service
                                                                         Consumer(s)</label>
-                                                                    <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                                                        data-bs-target="#addNewCustomer">
-                                                                        <small>
-                                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                                            <svg aria-label="Add New Service Consumer"
-                                                                                class="me-1" width="20" height="21"
-                                                                                viewBox="0 0 20 21">
-                                                                                <use
-                                                                                    xlink:href="/css/common-icons.svg#add-new">
-                                                                                </use>
-                                                                            </svg>
-                                                                            {{-- End of update by Shanila --}}
-                                                                            Add New Service Consumer
-                                                                        </small>
-                                                                    </a>
+                                                                        <div class="form-check ">
+                                                                            <label class="form-check-label" for="addnewserviceconsumer">Add New Service Consumer</label>
+                                                                            <input class="form-check-input show-hidden-content"
+                                                                                id="addnewserviceconsumer" name="addnewserviceconsumer"
+                                                                                type="checkbox" tabindex="">
+                                                                            <div class="hidden-content">
+                                                                                <div class="form-check-inline">
+                                                                                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Service Consumer">
+                                                                                <svg aria-label="Service consumer" width="25" height="18"
+                                                                                    viewBox="0 0 25 18">
+                                                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                                    </use>
+                                                                                </svg>
+                                                                                Service Consumer
+                                                                            </button>
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
@@ -360,21 +373,26 @@
                                                                 <div
                                                                     class="d-flex justify-content-between align-items-center">
                                                                     <label class="form-label">Participant(s)</label>
-                                                                    <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                                                        data-bs-target="#addNewCustomer">
-                                                                        <small>
-                                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                                            <svg aria-label="Add New Participant"
-                                                                                class="me-1" width="20" height="21"
-                                                                                viewBox="0 0 20 21">
-                                                                                <use
-                                                                                    xlink:href="/css/common-icons.svg#add-new">
+                                                                    <div class="form-check ">
+                                                                        <label class="form-check-label" for="EnableCloseOutStatuses">Add New Participant</label>
+                                                                        <input class="form-check-input show-hidden-content"
+                                                                            id="EnableCloseOutStatuses" name="RequestStartTimeforServices"
+                                                                            type="checkbox" tabindex="">
+                                                                        <div class="hidden-content">
+                                                                            <div class="form-check-inline">
+                                                                                <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                                                data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Participant">
+                                                                            <svg aria-label="Participant" width="25" height="18"
+                                                                                viewBox="0 0 25 18">
+                                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
-                                                                            Add New Participant
-                                                                        </small>
-                                                                    </a>
+                                                                            Participant
+                                                                        </button>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
@@ -1031,11 +1049,13 @@
                                     <div class="col-lg-10 mb-5">
                                         <h2>Discounts</h2>
                                         <div class="d-flex gap-3 flex-column flex-md-row mb-4">
+                                            {{--  
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="Coupon-radio-btn" name="discounts"
                                                     type="radio" tabindex="" checked="">
                                                 <label class="form-check-label" for="Coupon-radio-btn">Coupon</label>
                                             </div>
+                                            --}}
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="$Amount" name="discounts"
                                                     type="radio" tabindex="">
@@ -1047,6 +1067,7 @@
                                                 <label class="form-check-label" for="%Amount">% Amount</label>
                                             </div>
                                         </div>
+                                        {{--  
                                         <div class="row mb-4">
                                             <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center" for="coupon-code">Coupon
                                                 Code</label>
@@ -1058,6 +1079,7 @@
                                                 <a href="#" class="btn btn-primary btn-sm rounded w-100">Apply</a>
                                             </div>
                                         </div>
+                                         --}}
                                     </div>
                                     <div class="col-lg-10 mb-5">
                                         <h2>Additional Customer Charge</h2>
@@ -1530,14 +1552,6 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4">
-                                                <label class="col-form-label">Specialization:</label>
-                                            </div>
-                                            <div class="col-lg-9 col-md-8 align-self-center">
-                                                <div class="font-family-tertiary">Medical, Conference</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-4">
                                                 <label class="col-form-label">Service Type:</label>
                                             </div>
                                             <div class="col-lg-9 col-md-8 align-self-center">
@@ -1590,14 +1604,6 @@
                                             </div>
                                             <div class="col-lg-9 col-md-8 align-self-center">
                                                 <div class="font-family-tertiary">English to Arabic Sign Language</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-4">
-                                                <label class="col-form-label">Specialization:</label>
-                                            </div>
-                                            <div class="col-lg-9 col-md-8 align-self-center">
-                                                <div class="font-family-tertiary">Medical, Conference</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -2083,6 +2089,10 @@
                                 How often should they be notified?
                             </label>
                             <div>
+                                <div class="form-check-inline">
+                                    <input type="" name="" class="form-control form-control-md text-center form-control-max-w-xs"
+                                        value="10">
+                                </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="HowOftenShouldTheyBeNotified"
                                         id="Time" value="option1">
@@ -2091,16 +2101,12 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="HowOftenShouldTheyBeNotified"
                                         id="EveryDays" value="option2">
-                                    <label class="form-check-label" for="EveryDays">(*) Every ___ Days</label>
+                                    <label class="form-check-label" for="EveryDays"> Every ___ Days</label>
                                 </div>
-                                <div class="mt-2">
-                                    <input type="" name=""
-                                        class="form-control form-control-md text-center  form-control-max-w-xs"
-                                        value="10">
-                                </div>
+                                
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <label class="form-label">Message for the Requestee</label>
                             <textarea class="form-control" rows="3" cols="3"></textarea>
                         </div>

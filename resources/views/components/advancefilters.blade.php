@@ -101,7 +101,7 @@
                 {{--ended updated--}}
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
-                <label class="form-label" for="OrgDeptUser">Organization(s) / Departments / User(s)</label>
+                <label class="form-label" for="OrgDeptUser">Organization / Department / User</label>
                 <select data-placeholder="Select Company" multiple class="select2 form-select" tabindex=""
                     id="OrgDeptUser">
                     <option value=""></option>
