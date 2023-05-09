@@ -540,7 +540,7 @@
                                                                                         </label>
                                                                                         {{-- Updated by Shanila to Add
                                                                                         svg
-                                                                                        icon--}}
+                                                                                        icon
                                                                                         <svg aria-label=" Contract Provider"
                                                                                             width="15" height="16"
                                                                                             viewBox="0 0 15 16">
@@ -548,7 +548,7 @@
                                                                                                 xlink:href="/css/common-icons.svg#fill-question">
                                                                                             </use>
                                                                                         </svg>
-                                                                                        {{-- End of update by Shanila
+                                                                                         End of update by Shanila
                                                                                         --}}
                                                                                     </div>
                                                                                 </div>
@@ -562,76 +562,46 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="mb-4">
-                                                                            <div
-                                                                                class="d-flex align-items-center gap-4">
-                                                                                <div>
-                                                                                    <div class="form-check mb-0">
-                                                                                        <input class="form-check-input"
-                                                                                            type="radio"
-                                                                                            name="ProviderType"
-                                                                                            id="staffProviderType"
-                                                                                            checked>
-                                                                                        <label class="form-check-label"
-                                                                                            for="staffProviderType">
-                                                                                            Staff Provider
-                                                                                        </label>
-                                                                                        {{-- Updated by Shanila to Add
-                                                                                        svg
-                                                                                        icon--}}
-                                                                                        <svg aria-label=" Staff Provider"
-                                                                                            width="15" height="16"
-                                                                                            viewBox="0 0 15 16">
-                                                                                            <use
-                                                                                                xlink:href="/css/common-icons.svg#fill-question">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- End of update by Shanila
-                                                                                        --}}
+                                                                            <div class="form-check ">
+                                                                                <label class="form-check-label" for="addnewserviceconsumer">Staff Provider</label>
+                                                                                <input class="form-check-input show-hidden-content"
+                                                                                    id="addnewserviceconsumer" name="ProviderType"
+                                                                                    type="radio" tabindex="">
+                                                                                    
+                                                                                <div class="hidden-content mt-3">
+                                                                                    <h4 class="mb-2">
+                                                                                        Would you like to set a rate for when this provider
+                                                                                        works outside their set schedule?
+                                                                                    </h4>
+                                                                                    <div class="d-flex">
+                                                                                        <div class="form-check">
+                                                                                            <input class="form-check-input" type="radio"
+                                                                                                name="exampleRadios"
+                                                                                                id="provider-rate-schedule-radio-btn"
+                                                                                                value="option2" checked>
+                                                                                            <label class="form-check-label"
+                                                                                                for="provider-rate-schedule-radio-btn">
+                                                                                                Yes
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="form-check ms-4">
+                                                                                            <input class="form-check-input" type="radio"
+                                                                                                name="exampleRadios"
+                                                                                                id="provider-rate-schedule-radio-button"
+                                                                                                value="option2">
+                                                                                            <label class="form-check-label"
+                                                                                                for="provider-rate-schedule-radio-button">
+                                                                                                No
+                                                                                            </label>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div>
-                                                                                    <button type="button"
-                                                                                        class="btn btn-outline-primary px-3 py-1 rounded-lg btn-has-icon px-0 btn-multiselect-popup"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#staffProviderAvailiblityModal">
-                                                                                        Availability Schedule
-                                                                                    </button>
-                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <h4 class="mb-2">
-                                                                    Would you like to set a rate for when this provider
-                                                                    works outside their set schedule?
-                                                                </h4>
-                                                                <div class="d-flex">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio"
-                                                                            name="exampleRadios"
-                                                                            id="provider-rate-schedule-radio-btn"
-                                                                            value="option2" checked>
-                                                                        <label class="form-check-label"
-                                                                            for="provider-rate-schedule-radio-btn">
-                                                                            Yes
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-check ms-4">
-                                                                        <input class="form-check-input" type="radio"
-                                                                            name="exampleRadios"
-                                                                            id="provider-rate-schedule-radio-button"
-                                                                            value="option2">
-                                                                        <label class="form-check-label"
-                                                                            for="provider-rate-schedule-radio-button">
-                                                                            No
-                                                                        </label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                       
                                                         <div class="row between-section-segment-spacing">
                                                             <div class="col-md-12 col-12 md-2 mt-4">
                                                                 <div class="row">
