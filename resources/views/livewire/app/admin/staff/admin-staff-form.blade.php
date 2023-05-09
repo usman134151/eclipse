@@ -269,15 +269,6 @@
                                             {!! $setupValues['timezones']['rendered'] !!}
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="tags">
-                                                Tags
-                                            </label>
-                                            <textarea class="form-control" placeholder="" name="tags"
-                                                id="tags"></textarea>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="col-12 justify-content-center form-actions d-flex">
