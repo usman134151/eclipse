@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UserService{
 
-    public function createUser(User $user,$userdetail,$role,$email_invitation=1){
+    public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[]){
         $user->password=bcrypt(Str::random(8));
         $user->security_token = Str::random(32);
         $user->save();
@@ -19,7 +19,10 @@ class UserService{
 
         $userDetailModel->save();
         // set new token for reset password
-
+        // Insert selected industries into user_industries table
+        foreach ($selectedIndustries as $industry_id) {
+          $user->industries()->attach($industry_id);
+        }
         if($email_invitation)
         {
           

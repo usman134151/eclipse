@@ -144,7 +144,7 @@ class CustomerForm extends Component
 		$this->user->status=1;
 		$userService = new UserService;
       
-        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$selectedIndustries);
+        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries);
 		$this->step=2;
 		$this->serviceActive="active";
 		//dd($this->user);
@@ -170,9 +170,16 @@ class CustomerForm extends Component
 
 	public function selectIndustries($selectedIndustries, $defaultIndustry)
 	{
+
+		$this->selectedIndustries=[];
+		foreach($selectedIndustries as $industryId=>$selected){
+			if($selected)
+			$this->selectedIndustries[]=$industryId;
+		}
+    	//dd($this->selectedIndustries);
+
+    	$this->userdetail['industry'] = $defaultIndustry;
 		
-    	$this->selectedIndustries = $selectedIndustries;
-    	$this->userdetail->industry = $defaultIndustry;
 
 	}
 }

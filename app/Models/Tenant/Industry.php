@@ -18,4 +18,9 @@ class Industry extends Model
     protected $fillable = [
         'name', 'status' , 'added_by' , 'updated_by' , 'deleted_by'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_industries');
+    }
 }
