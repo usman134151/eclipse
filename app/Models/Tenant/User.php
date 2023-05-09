@@ -45,12 +45,12 @@ class User extends Authenticatable
 	public static function booted()
 	{
 		static::updating(function (self $user) {
-			if ($user->isOwner()) {
+			/* if ($user->isOwner()) {
 				// We update the tenant's email when the admin user's email is updated
 				// so that the tenant can find his account even after email change.
 				Tenant::where('email', $user->getOriginal('email'))
 				->update($user->only(['email']));
-			}
+			} */
 		});
 	}
 

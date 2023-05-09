@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 
 class CustomerForm extends Component
 {
-    public $user;
+    public $user,$isAdd=true;
     public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
     
     
@@ -68,9 +68,11 @@ class CustomerForm extends Component
     }
 
     public function edit(User $user){
-		
-        $this->label="Edit";
+	   $this->user=$user;
+	   $this->userdetail=$user['userdetail']->toArray();	
+       $this->label="Edit";
        $this->user=$user;
+	   $this->isAdd=false;
 
      
     }
@@ -144,11 +146,12 @@ class CustomerForm extends Component
 		$this->user->status=1;
 		$userService = new UserService;
       
-        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries);
+        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 		$this->step=2;
 		$this->serviceActive="active";
-		//dd($this->user);
+		
 		if($redirect){
+			
 			$this->showList("Customer has been saved successfully");
 			$this->user = new User;
 		}

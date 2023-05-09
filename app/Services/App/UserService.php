@@ -3,23 +3,32 @@ namespace app\Services\App;
 
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
+use App\Models\Tenant\UserIndustry;
 use App\Models\Tenant\Phone;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UserService{
 
-    public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[]){
-        $user->password=bcrypt(Str::random(8));
-        $user->security_token = Str::random(32);
+    public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true){
+     
+      if($isAdd){
+          $user->password=bcrypt(Str::random(8));
+          $user->security_token = Str::random(32);
+        }
+       
         $user->save();
-        $user->roles()->attach($role);
+        
+        if($isAdd){
+          $user->roles()->attach($role);
+        }
         $userdetail['user_id'] = $user->id;
-        $userDetailModel = new UserDetail;
-        $userDetailModel->fill($userdetail);
-
-        $userDetailModel->save();
+        $userDetailModel = UserDetail::updateOrCreate(['user_id' => $user->id], $userdetail);
+            
+     
         // set new token for reset password
         // Insert selected industries into user_industries table
+        if(!$isAdd)
+          UserIndustry::where('user_id', $user->id)->delete();
         foreach ($selectedIndustries as $industry_id) {
           $user->industries()->attach($industry_id);
         }
@@ -30,7 +39,7 @@ class UserService{
           $subject = 'Welcome '.$user->first_name.'! Set up your Eclipse account.';
           //$mail = Helper::sendmail($request->email,'',$subject,['data' => $user,'type'=>'1'],'emails.welcome_email_on');
         }
-
+       
         return $user;
     }
 
