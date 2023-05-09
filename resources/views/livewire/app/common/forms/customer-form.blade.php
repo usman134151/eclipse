@@ -1582,7 +1582,16 @@
             </div>
         </div>
     </div>
-
+    @include('modals.common.add-industry')
+    @include('modals.common.add-department')
+    @include('modals.common.add-address')
+    @include('modals.assign-billing-manager')
+    @include('modals.assign-supervisor')
+    @include('modals.supervising')
+    @include('modals.bill-managing')
+    @include('modals.admin-staff')
+    <!-- have to remove associate services panel as it was throwing errors --> 
+    @include('modals.add-user')
 </div>
 
 @push('scripts')

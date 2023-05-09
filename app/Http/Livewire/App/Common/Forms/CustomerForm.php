@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
+
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
@@ -12,7 +13,7 @@ use Illuminate\Validation\Rule;
 class CustomerForm extends Component
 {
     public $user;
-    public $userdetail=['phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
+    public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
     
     
 	public $component = 'customer-info';
@@ -22,10 +23,20 @@ class CustomerForm extends Component
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',2]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',3]],
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',4]],
+
 	];
+	
     public $step = 1,$email_invitation;
-    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
+    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries'];
 	public $serviceConsumer=false;
+
+	//modals variables
+	public $selectedIndustries=[];
+	
+	//end of modals variables
+
+
+
 	public function render()
 	{   //dd($this->user->company_name);
 		return view('livewire.app.common.forms.customer-form');
@@ -33,6 +44,7 @@ class CustomerForm extends Component
     public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
+
 
 	}
 
@@ -125,13 +137,14 @@ class CustomerForm extends Component
 	}
 
 	public function save($redirect=1){
+		
 		$this->validate();
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
 		$this->user->status=1;
 		$userService = new UserService;
       
-        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation);
+        $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$selectedIndustries);
 		$this->step=2;
 		$this->serviceActive="active";
 		//dd($this->user);
@@ -151,5 +164,15 @@ class CustomerForm extends Component
 			$this->driveActive='active';
 			$this->serviceActive='';
 		 }
+	}
+
+	//modal functions
+
+	public function selectIndustries($selectedIndustries, $defaultIndustry)
+	{
+		
+    	$this->selectedIndustries = $selectedIndustries;
+    	$this->userdetail->industry = $defaultIndustry;
+
 	}
 }
