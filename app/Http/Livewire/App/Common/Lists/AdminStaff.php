@@ -55,9 +55,21 @@ final class AdminStaff extends PowerGridComponent
 	public function datasource(): Builder
     {
 
-        return User::query()->whereHas('roles', function ($query) {
-			$query->whereIn('role_id', [1, 3]);
-		})->where('status',$this->status);   
+		return User::query()
+		->whereHas('roles', function ($query) {
+			$query->wherein('role_id',[1,3]);
+		})->join('user_details', function ($userdetails) {
+			$userdetails->on('user_details.user_id', '=', 'users.id');
+		})->select([
+			'users.id',
+			'users.name',
+			'users.email',
+			
+			'user_details.phone'
+		])
+
+;
+
     }
 
 
@@ -98,9 +110,7 @@ final class AdminStaff extends PowerGridComponent
 		->addColumn('customer', function (User $model) {
 			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
 		})
-		->addColumn('phone', function () {
-			return '(923) 023-9683';
-		})
+		->addColumn('phone')
 
         ->addColumn('status', function (User $model) {
 			return ($model->status);

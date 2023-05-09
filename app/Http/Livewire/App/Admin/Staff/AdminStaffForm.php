@@ -59,7 +59,8 @@ class AdminStaffForm extends Component
             'user.email' => [
                 'required',
                 'email',
-                'max:255'],
+                'max:255',
+				Rule::unique('users', 'email')->ignore($this->user->id)],   
             'userdetail.user_position' => [
                     'nullable',
                     'string',
@@ -99,7 +100,8 @@ class AdminStaffForm extends Component
             'userdetail.gender_id' => [
                 'nullable'],
             'userdetail.country' => [
-                    'nullable'],
+                    'nullable']
+        
 		];
 	}
     public function save($redirect=1){
