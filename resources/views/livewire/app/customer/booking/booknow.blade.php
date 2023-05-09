@@ -110,18 +110,25 @@
                                     <div class="col-lg-6 mb-4 ps-lg-5">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
-                                            <a href="#" class="fw-bold" data-bs-toggle="modal"
-                                                data-bs-target="#addNewCustomer" aria-label="Requester">
-                                                <small>
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Add New Requester" class="me-1" width="20" height="21"
-                                                        viewBox="0 0 20 21">
-                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                            <div class="form-check ">
+                                                <label class="form-check-label" for="addnewrequestor">Add New Requester</label>
+                                                <input class="form-check-input show-hidden-content"
+                                                    id="addnewrequestor" name="addnewrequestor"
+                                                    type="checkbox" tabindex="">
+                                                <div class="hidden-content">
+                                                    <div class="form-check-inline">
+                                                        <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                        data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Requester">
+                                                    <svg aria-label="Requester" width="25" height="18"
+                                                        viewBox="0 0 25 18">
+                                                        <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                        </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                    Add New Requester
-                                                </small>
-                                            </a>
+                                                    Requester
+                                                </button>     
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <select class="form-select mb-2" id="requestor">
                                             <option>Select Requester</option>
@@ -143,23 +150,23 @@
                                     </div>
                                 </div>
                                 <div class="row between-section-segment-spacing">
-                                    <div class="col-lg-12 mb-4">
-                                        <div class="d-lg-flex align-items-center mb-4 gap-3">
+                                    <div class="col-lg-12" x-data="{ open: true }">
+                                        <div class="d-md-flex align-items-center mb-4 gap-3 gap-md-0">
                                             <div class="form-check form-switch form-switch-column mb-lg-0">
                                                 <input class="form-check-input" type="checkbox" role="switch" id=""
-                                                    checked aria-label="Add Supervisor & Billing Manager">
+                                                    @click="open = !open" x-text="open==true  ? 'hide' : 'show'" checked>
                                             </div>
-                                            <h3 class="mb-lg-0">Add Supervisor & Billing Manager</h3>
+                                            <h3 class="mb-lg-0">Assigned Supervisor & Billing Manager</h3>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 pe-lg-5">
+                                        <div class="row switch-toggle-content" x-show="open">
+                                            <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label" for="supervisor">Supervisor <span
                                                         class="mandatory">*</span></label>
                                                 <select class="form-select" id="supervisor">
                                                     <option>Select Supervisor</option>
                                                 </select>
                                             </div>
-                                            <div class="col-lg-6 ps-lg-5">
+                                            <div class="col-lg-6 mb-4 ps-lg-5">
                                                 <label class="form-label" for="billing-manager">Billing Manager</label>
                                                 <select class="form-select" id="billing-manager">
                                                     <option>Select Billing Manager</option>
@@ -316,17 +323,26 @@
                                                                     class="d-flex justify-content-between align-items-center">
                                                                     <label class="form-label">Service
                                                                         Consumer(s)</label>
-                                                                    <a href="#" class="fw-bold">
-                                                                        <small>
-                                                                        {{-- updated Sana to change x-icon to svg --}}
-                                                                            <svg aria-label="Add Additional Parameter" class="me-1" width="20" height="21" viewBox="0 0 20 21">
-                                                                                            <use xlink:href="/css/common-icons.svg#add-new">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- end updated by Sana --}}
-                                                                            Add New Service Consumer
-                                                                        </small>
-                                                                    </a>
+                                                                        <div class="form-check ">
+                                                                            <label class="form-check-label" for="addnewserviceconsumer">Add New Service Consumer</label>
+                                                                            <input class="form-check-input show-hidden-content"
+                                                                                id="addnewserviceconsumer" name="addnewserviceconsumer"
+                                                                                type="checkbox" tabindex="">
+                                                                            <div class="hidden-content">
+                                                                                <div class="form-check-inline">
+                                                                                    <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                                                    data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Service Consumer">
+                                                                                <svg aria-label="Service consumer" width="25" height="18"
+                                                                                    viewBox="0 0 25 18">
+                                                                                    <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                                    </use>
+                                                                                </svg>
+                                                                                Service Consumer
+                                                                            </button>
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
@@ -353,17 +369,26 @@
                                                                 <div
                                                                     class="d-flex justify-content-between align-items-center">
                                                                     <label class="form-label">Participant(s)</label>
-                                                                    <a href="#" class="fw-bold">
-                                                                        <small>
-                                                                        {{-- updated Sana to change x-icon to svg --}}
-                                                                            <svg aria-label="Add Additional Parameter" class="me-1" width="20" height="21" viewBox="0 0 20 21">
-                                                                                            <use xlink:href="/css/common-icons.svg#add-new">
-                                                                                            </use>
-                                                                                        </svg>
-                                                                                        {{-- end updated by Sana --}}
-                                                                            Add New Participant
-                                                                        </small>
-                                                                    </a>
+                                                                    <div class="form-check ">
+                                                                        <label class="form-check-label" for="EnableCloseOutStatuses">Add New Participant</label>
+                                                                        <input class="form-check-input show-hidden-content"
+                                                                            id="EnableCloseOutStatuses" name="RequestStartTimeforServices"
+                                                                            type="checkbox" tabindex="">
+                                                                        <div class="hidden-content">
+                                                                            <div class="form-check-inline">
+                                                                                <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                                                data-bs-toggle="modal" data-bs-target="#addNewCustomer" aria-label="Participant">
+                                                                            <svg aria-label="Participant" width="25" height="18"
+                                                                                viewBox="0 0 25 18">
+                                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                                </use>
+                                                                            </svg>
+                                                                            Participant
+                                                                        </button>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="js-wrapper-manual-entry">
                                                                     <select
@@ -1130,23 +1155,18 @@
                             
                               <div class="between-section-segment-spacing">
                                 <h2>Discounts</h2>
-                                <div class="form-check mt-4">
-                                    <input class="form-check-input" type="radio" checked name="coupon" id="coupon">
-                                    <label class="form-check-label" for="coupon">
-                                        Coupon
-                                    </label>
-                                  </div>   
-                                  <div class="row ">
-                                    <div class="col-lg-12 d-inline-flex">
-                                        <div class="mt-2"><label for="coupon-code" class="form-label">Coupon Code</label></div>
-                                        <div class="mx-3">
-                                            <input type="text" placeholder="Enter Code" class="form-control" id="coupon-code">
-                                        </div>
-                                        <div class="mx-3 mb-2">
-                                            <button class="btn btn-primary rounded">Apply</button>
-                                        </div>
-                                    </div> 
-                                  </div>  
+                                <div class="d-flex gap-3 flex-column flex-md-row mb-4">
+                                    <div class="form-check mb-0">
+                                        <input class="form-check-input" id="$Amount" name="discounts"
+                                            type="radio" tabindex="">
+                                        <label class="form-check-label" for="$Amount">$ Amount</label>
+                                    </div>
+                                    <div class="form-check mb-0">
+                                        <input class="form-check-input" id="%Amount" name="discounts"
+                                            type="radio" tabindex="">
+                                        <label class="form-check-label" for="%Amount">% Amount</label>
+                                    </div>
+                                </div>  
                               </div>
 
                             <div class="between-section-segment-spacing">
@@ -1316,14 +1336,6 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label class="col-form-label">Specialization:</label>
-                                            </div>
-                                            <div class="col-lg-9 align-self-center">
-                                                <div class="font-family-tertiary">Medical, Conference</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3">
                                                 <label class="col-form-label">Service Type:</label>
                                             </div>
                                             <div class="col-lg-9 align-self-center">
@@ -1377,14 +1389,6 @@
                                             </div>
                                             <div class="col-lg-9 align-self-center">
                                                 <div class="font-family-tertiary">English to Arabic Sign Language</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <label class="col-form-label">Specialization:</label>
-                                            </div>
-                                            <div class="col-lg-9 align-self-center">
-                                                <div class="font-family-tertiary">Medical, Conference</div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -1592,3 +1596,4 @@
     @include('modals.common.add-department')
     @include('modals.common.add-new-customer')
 </div>
+
