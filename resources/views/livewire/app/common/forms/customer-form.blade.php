@@ -328,7 +328,7 @@
                                                         Phone Number
                                                     </label>
                                                     <input type="text" id="phone-number" class="form-control" name="phone"
-                                                        placeholder="Enter Phone Number" />
+                                                        placeholder="Enter Phone Number" wire:model="userdetail.phone" />
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">

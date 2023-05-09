@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 class CustomerForm extends Component
 {
     public $user;
-    public $userdetail=['gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
+    public $userdetail=['phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
     
     
 	public $component = 'customer-info';
@@ -96,7 +96,8 @@ class CustomerForm extends Component
             'user.email' => [
                 'required',
                 'email',
-                'max:255'],    
+                'max:255',
+				Rule::unique('users', 'email')->ignore($this->user->id)],    
             'user.user_dob' => [
                     'nullable',
                     'date',
@@ -116,7 +117,9 @@ class CustomerForm extends Component
             'userdetail.timezone_id' => [
                 'nullable'],  
             'userdetail.gender_id' => [
-                'nullable']                               
+                'nullable'],
+			'userdetail.phone' => [
+					'nullable']   	                              
 			
 		];
 	}

@@ -64,11 +64,14 @@ final class Customers extends PowerGridComponent
 			$query->where('role_id', 4);
 		})->join('companies', function ($companies) {
 			$companies->on('companies.id', '=', 'users.company_name');
+		})->join('user_details', function ($userdetails) {
+			$userdetails->on('user_details.user_id', '=', 'users.id');
 		})->select([
 			'users.id',
 			'users.name',
 			'users.email',
 			'companies.name as company',
+			'user_details.phone'
 		])
 
 ;
@@ -110,9 +113,7 @@ final class Customers extends PowerGridComponent
 		->addColumn('customer', function (User $model) {
 			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
 		})
-		->addColumn('phone', function () {
-			return '(923) 023-9683';
-		})
+		->addColumn('phone')
 		->addColumn('company')
 		->addColumn('schedule', function () {
 			return 'See Schedule';
@@ -146,8 +147,8 @@ final class Customers extends PowerGridComponent
 				->makeinputtext()
 				->sortable(),
 				// ->editOnClick(),
-			Column::make('Phone Number', 'phone', ''),
-				// ->sortable(),
+			Column::make('Phone', 'phone','user_details.phone')
+			->searchable()->makeinputtext()->sortable(),
 			Column::make('Company', 'company','companies.name')
 			->searchable()->makeinputtext()->sortable(),
 			Column::make('Schedule', 'schedule', ''),
