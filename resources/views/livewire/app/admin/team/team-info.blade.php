@@ -62,7 +62,7 @@
 			  <div class="col-md-6 col-12">
 				<div class="mb-4">
 				  <label class="form-label" for="team_lead_email">
-					Team Lead Email
+					Team Email
 				  </label>
 				  <input
 					type="email"
@@ -81,7 +81,7 @@
 			  <div class="col-md-6 col-12">
 				<div class="mb-4">
 				  <label class="form-label" for="team_lead_phone_number">
-					Team Lead Phone Number
+					Team Phone Number
 				  </label>
 				  <input
 					type="text"
@@ -133,17 +133,6 @@
                       {{ $message }}
                   </span>
                   @enderror
-			  </div>
-			  <div class="col-md-6 col-12">
-				  <label class="form-label" for="tags">
-					Tags
-				  </label>
-				  <textarea
-				  class="form-control"
-				  placeholder="Enter Tags"
-				  name="tags"
-				  id="tags"
-				  ></textarea>
 			  </div>
 			</div>
 		  </div>
