@@ -44,14 +44,22 @@ class AddCompany extends Component
         $this->label="Edit";
        $this->company=$company;
 	   if(count($company->phones)){
-		//dd($company->phones);
-		$this->phoneNumbers=[];
-		foreach($company->phones as $phone){
-			$this->phoneNumbers[]=['phone_number'=>$phone->phone_number,'phone_title'=>$phone->phone_title];
-		}
+			//dd($company->phones);
+			$this->phoneNumbers=[];
+			foreach($company->phones as $phone){
+				$this->phoneNumbers[]=['phone_number'=>$phone->phone_number,'phone_title'=>$phone->phone_title];
+			}
 		
-	}
-     
+		}
+		if(count($company->addresses)){
+			//dd($company->phones);
+			$this->userAddresses=[];
+			foreach($company->addresses as $address){
+				$this->userAddresses[]=$address->toArray();
+			}
+		
+		}	
+		
     }
 	public function mount(Company $company){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);

@@ -30,7 +30,7 @@ class Company extends Model
 	}
 	public function addresses()
 	{
-    	return $this->belongsToMany(UserAddress::class, 'user_id');
+    	return $this->hasMany(UserAddress::class,'user_id');
 	}
 	
 }
