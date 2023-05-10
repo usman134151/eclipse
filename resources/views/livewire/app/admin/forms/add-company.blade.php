@@ -520,6 +520,16 @@
     </div>
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
+    @push('scripts')
+    <script>
+        Livewire.on('updateAddressType', (type) => {
+            // Handle the event here
+            console.log(type);
+            // Open the modal
+            $('#addAddressModal').modal('show');
+        });
+    </script>
+    @endpush
 </div>
 
 
