@@ -81,7 +81,7 @@ class User extends Authenticatable
 	}
 	public function addresses()
 	{
-    	return $this->morphMany(UserAddress::class, 'address', 'address_type', 'user_id');
+    	return $this->belongsToMany(UserAddress::class,'user_id');
 	}
 
 	public function industries()

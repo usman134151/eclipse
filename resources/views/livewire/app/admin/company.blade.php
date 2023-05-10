@@ -110,20 +110,22 @@
 				</div>
 			</div>
 		</div>
+		@include('panels.company.department-list')
+	@include('panels.company.department-profile')
 	</section>
 	{{-- End: Content --}}
 	@endif
-	@include('panels.company.department-list')
-	@include('panels.company.department-profile')
+
 	
-    @include('modals.company-business-hours')
-    @include('modals.common.add-address')
+
 	
 </div>
+@push('scripts')
 <script>
 	function updateVal(attrName,val){
-	
+		if(attrName!='address.country')
 		Livewire.emit('updateVal', attrName, val);
 
 	}
 </script>
+@endpush

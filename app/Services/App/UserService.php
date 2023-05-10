@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UserService{
 
-    public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true){
+    public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true,$userCompanyAddress='',$userCustomAddresses=[]){
      
       if($isAdd){
           $user->password=bcrypt(Str::random(8));
@@ -45,5 +45,11 @@ class UserService{
 
     public function getUserDetails($id){
        return User::with('phones')->find($id); 
+    }
+    public function storeUserAddresses($id,$userAddresses){
+
+    }
+    public function getUserAddresses($id){
+
     }
 }

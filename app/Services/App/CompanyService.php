@@ -14,7 +14,15 @@ class CompanyService{
         return $company;
     }
 
+    public function saveAddresses($company,$addresses){
+        foreach($addresses as $address){
+                 $address=new Address($address);
+                $company->address->save($address);
+            }
+     }
+    
+
     public function getCompanyDetails($id){
-       return Company::with('phones')->find($id); 
+       return Company::with(['phones','addresses'])->find($id); 
     }
 }

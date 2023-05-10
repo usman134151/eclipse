@@ -699,7 +699,8 @@
             </div>
         </div>
     </div>
-
+    @include('modals.company-business-hours')
+    @include('modals.common.add-address')
 </div>
 
 

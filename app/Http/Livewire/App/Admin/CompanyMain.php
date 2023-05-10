@@ -29,8 +29,7 @@ class CompanyMain extends Component
 	{
         if ($company) {
 			$this->company = $company;
-           // dd($company);
-			$this->emit('editRecord', $company);
+           	$this->emit('editRecord', $company);
 		}
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/company/create-company']);
