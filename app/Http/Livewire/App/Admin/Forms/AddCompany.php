@@ -18,9 +18,9 @@ class AddCompany extends Component
 		'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',4,'setup_value_label',false,'company.company_timezone', '','company_timezone',4]]
 	
 	];
-	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
+	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented','updateAddress' => 'addAddress'];
 	public $step=1;
-	public $company;
+	public $company,$userAddresses=[];
 	public $driveActive,$serviceActive;
 	
 	
@@ -72,9 +72,9 @@ class AddCompany extends Component
 		   else{
 			$this->company[$attrName.'_id'] = $val;
 		   }
-		   
-		  
-		
+	}
+	public function updateAddressType($type){
+		$this->emit('updateAddressType',$type);
 	}
 	public function switch($component)
 	{
@@ -92,6 +92,10 @@ class AddCompany extends Component
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }
 
+	public function addAddress($addressArr){
+		$this->userAddresses[]=$addressArr;
+		
+	}
 
 	public function rules()
 	{
@@ -113,7 +117,7 @@ class AddCompany extends Component
 		$this->validate();
 		$this->company->added_by = 1;
 		$companyService = new CompanyService;
-        $this->company = $companyService->createCompany($this->company,$this->phoneNumbers);
+        $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		$this->step=2;
 		$this->serviceActive="active";
 		//dd($this->company);

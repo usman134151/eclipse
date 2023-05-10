@@ -31,15 +31,18 @@
           <input type="text" id="state" class="form-control" name="state-column" placeholder="Enter State" wire:model="address.state">
 
         </div>
-
+        <div class="col-lg-6 mb-4">
+          <label class="form-label" for="country">Country</label>
+          <select wire:model="address.country"  class="form-control" name="country-column" id="country"><option value="">Select Country</option><option value="USA" selected>USA</option></select>
+        </div>
         <div class="col-lg-6 mb-4">
           <label class="form-label" for="zip-code">Zip Code</label>
           <input type="text" id="zip" class="form-control" name="zip-column" placeholder="Enter Zip" wire:model="address.zip">
         </div>
         <div class="col-lg-6 mb-4">
-          <label class="form-label" for="phone">Phone</label>
-          <input type="text" id="phone" class="form-control" name="phone" placeholder="(000) 000-0000" wire.model="address.phone">
-        </div>
+        <label class="form-label" for="address-phone">Phone</label>
+              <input type="text" id="address-phone" class="form-control" name="address-phone-column" placeholder="" wire:model="address.phone">
+         </div>
         <div class="row">
           <div class="col-lg-12">
             <label class="form-label" for="arrival-notes">Arrival Notes</label>
@@ -48,7 +51,7 @@
             placeholder="Enter Notes"
             name="arrival-notes"
             id="arrival-notes"
-            wire.model="address.notes"
+            wire:model="address.notes"
             ></textarea>
           </div>
         </div>

@@ -81,7 +81,7 @@ class User extends Authenticatable
 	}
 	public function addresses()
 	{
-    	return $this->belongsToMany(UserAddress::class,'user_id');
+    	return $this->belongsToMany(UserAddress::class);
 	}
 
 	public function industries()
