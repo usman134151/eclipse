@@ -35,8 +35,12 @@ class Provider extends Component
 
 	public function mount() {}
 
-	function showForm()
+	function showForm($user = null)
 	{
+        if ($user) {
+			$this->user = $user;
+			$this->emit('editRecord', $user);
+		}
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/provider/create-provider']);
         $this->dispatchBrowserEvent('refreshSelects');
