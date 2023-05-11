@@ -140,8 +140,11 @@ class ProviderForm extends Component
 	}
     public function edit(User $user){
 
-        $this->label="Edit";
+        $this->user=$user;
+	   $this->userdetail=$user['userdetail']->toArray();
+       $this->label="Edit";
        $this->user=$user;
+	   $this->isAdd=false;
 
 
     }

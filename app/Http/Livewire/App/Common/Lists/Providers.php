@@ -115,7 +115,7 @@ final class Providers extends PowerGridComponent
 
     function edit($id){
         // Emits an event to show the form for editing a record
-        $this->emit('showForm', User::find($id));
+        $this->emit('showForm', User::with(['userdetail'])->find($id));
     }
 
 	/*
