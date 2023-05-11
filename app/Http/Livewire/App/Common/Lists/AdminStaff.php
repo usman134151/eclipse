@@ -64,7 +64,7 @@ final class AdminStaff extends PowerGridComponent
 			'users.id',
 			'users.name',
 			'users.email',
-			
+
 			'user_details.phone'
 		])
 
@@ -116,9 +116,9 @@ final class AdminStaff extends PowerGridComponent
 			return ($model->status);
 		})
 
-		->addColumn('edit', function() {
+		->addColumn('edit', function(User $model) {
 			return '<div class="d-flex actions">
-            <a href="javascript:void(0)" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="editTeam">
+            <a href="javascript:void(0)" wire:click="edit('.$model->id.')" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="editTeam">
                 <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
                     <use xlink:href="/css/common-icons.svg#pencil"></use>
                 </svg>
@@ -130,6 +130,10 @@ final class AdminStaff extends PowerGridComponent
         </div>';
 		});
 	}
+    function edit($id){
+        // Emits an event to show the form for editing a record
+        $this->emit('showForm', User::find($id));
+    }
 
 	/*
 	|--------------------------------------------------------------------------
@@ -154,7 +158,7 @@ final class AdminStaff extends PowerGridComponent
 				->makeinputtext()
 				->sortable(),
 
-				
+
 
 
             // ->editOnClick(),
@@ -170,18 +174,18 @@ final class AdminStaff extends PowerGridComponent
 	}
 
 
-	 
-   
+
+
 
 	 // A method to handle the toggleable columns update event
 	 public function onUpdatedToggleable(string $id, string $field, string $value): void
 	 {
-		
+
 		 // Updates the specified field of the record with the new value
-		 
+
 	    User::query()->where('id',$id)->update([
 			 $field => $value,
 		 ]);
-		
+
 	 }
 }
