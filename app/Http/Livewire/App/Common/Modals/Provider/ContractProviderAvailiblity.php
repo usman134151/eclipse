@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Livewire\App\Common\Modals\Provider;
+
+use Livewire\Component;
+
+class ContractProviderAvailiblity extends Component
+{
+    public $showForm;
+    protected $listeners = ['showList' => 'resetForm'];
+
+    public function render()
+    {
+        return view('livewire.app.common.modals.provider.contract-provider-availiblity');
+    }
+
+    public function mount()
+    {
+       
+       
+    }
+
+    function showForm()
+    {     
+       $this->showForm=true;
+    }
+    public function resetForm()
+    {
+        $this->showForm=false;
+    }
+
+}
