@@ -1,4 +1,5 @@
 <div>
+    <div x-data="{addDocument: false , addNew: false}">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -8,6 +9,11 @@
 	</div>
 	@if($showForm)
 	@livewire('app.common.forms.provider-form') {{-- Show Add / Edit Form --}}
+    @include('panels.common.add-document')
+    @include('modals.assign-provider-team')
+    @include('modals.contract-provider-availiblity')
+    @include('modals.staff-provider-availiblity')
+    @include('panels.common.add-new')
 	@elseif($showProfile)
 	@livewire('app.common.provider-details')
 	@else
@@ -270,11 +276,6 @@
 	</section>
 	{{-- Provider List - End --}}
 	@endif
-    @include('panels.common.add-document')
-    @include('modals.assign-provider-team')
-    @include('modals.contract-provider-availiblity')
-    @include('modals.staff-provider-availiblity')
-    @include('panels.common.add-new')
 </div>
 <script>
 	function updateVal(attrName,val){
@@ -283,3 +284,5 @@
 
 	}
 </script>
+</div>
+

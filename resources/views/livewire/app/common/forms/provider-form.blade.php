@@ -103,7 +103,12 @@
                                                 </span>
                                             </label>
                                             <input type="text" id="f-name" class="form-control" name="f-name"
-                                                placeholder="Enter First Name" required aria-required="true" />
+                                                placeholder="Enter First Name" required aria-required="true" wire:model.defer="user.first_name"/>
+                                                @error('user.first_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="l-name">
@@ -113,14 +118,19 @@
                                                 </span>
                                             </label>
                                             <input type="text" id="l-name" class="form-control" name="l-name"
-                                                placeholder="Enter Last Name" required aria-required="true" />
+                                                placeholder="Enter Last Name" required aria-required="true" wire:model.defer="user.last_name"/>
+                                                @error('user.last_name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="pronouns-column">
                                                 Pronouns
                                             </label>
                                             <input type="text" id="pronouns-column" class="form-control"
-                                                placeholder="Enter Pronouns" name="pronouns" />
+                                                placeholder="Enter Pronouns" name="pronouns" wire:model.defer="userdetail.title"/>
                                         </div>
                                         <div class="col-lg-6 ps-lg-5 mb-4">
                                             <label class="form-label" for="">
@@ -130,7 +140,7 @@
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
                                                         placeholder="Select Date of Birth" aria-label=""
-                                                        aria-describedby="">
+                                                        aria-describedby="" wire:model.defer="user.user_dob">
                                                     <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date" width="20" height="21"
@@ -226,12 +236,12 @@
                                                 </span>
                                             </label>
                                             <input type="text" id="email" class="form-control" name="email"
-                                                placeholder="Enter Email" required aria-required="true" />
+                                                placeholder="Enter Email" required aria-required="true" wire:model.defer="user.email"/>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="phone">Phone Number</label>
                                             <input type="text" id="phone" class="form-control" name="phone"
-                                                placeholder="Enter Phone Number" />
+                                                placeholder="Enter Phone Number" wire:model.defer="userdetail.phone"/>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="country">
@@ -240,43 +250,41 @@
                                             {!! $setupValues['countries']['rendered'] !!}
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="state">
-                                                State / Province
-                                            </label>
-                                            <select class="select2 form-select" id="state">
-                                                <option value="Al">
-                                                    Select State / Province
-                                                </option>
-                                            </select>
+                                            <div class="mb-4">
+                                                <label class="form-label" for="state">State / Province</label>
+                                                <input type="text" id="state" class="form-control"
+                                                    name="state" placeholder="Enter State Name"
+                                                    required aria-required="true" wire:model.defer="userdetail.state"/>
+                                            </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="city">
-                                                City
-                                            </label>
-                                            <select class="select2 form-select" id="city">
-                                                <option value="">Select City</option>
-                                            </select>
+                                            <div class="mb-4">
+                                                <label class="form-label" for="city">City</label>
+                                                <input type="text" id="city" class="form-control"
+                                                    name="city" placeholder="Enter City Name"
+                                                    required aria-required="true" wire:model.defer="userdetail.city"/>
+                                            </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="zip-code">
                                                 Zip Code
                                             </label>
                                             <input type="text" id="zip-code" class="form-control" name="zipCode"
-                                                placeholder="Enter Zip Code" />
+                                                placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="address-line-1">
                                                 Address Line 1
                                             </label>
                                             <input type="text" id="address-line-1" class="form-control"
-                                                name="address-line-1" placeholder="Enter Address Line 1" />
+                                                name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="address-line-2">
                                                 Address Line 2
                                             </label>
                                             <input type="text" id="address-line-2" class="form-control"
-                                                name="addressLine2" placeholder="Enter Address Line 2" />
+                                                name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="start-date-column">
@@ -334,7 +342,7 @@
                                                 </a>
                                             </div>
                                             <input type="text" id="education" class="form-control"
-                                                name="education-column" placeholder="Enter Education" />
+                                                name="education-column" placeholder="Enter Education" wire:model.defer="userdetail.education" />
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -404,7 +412,7 @@
                                                 Notes
                                             </label>
                                             <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                                id="notes_column"></textarea>
+                                                id="notes_column" wire:model.defer="userdetail.note"></textarea>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="preferred-language-column">
@@ -443,7 +451,7 @@
                                                 Provider Introduction
                                             </label>
                                             <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                name="provider- introduction" id="provider-introduction"></textarea>
+                                                name="provider- introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
                                         </div>
                                         <div class="col-lg-6 ps-lg-5">
                                             <label class="form-label" for="provider-introduction-media">
@@ -491,7 +499,7 @@
                                         wire:click.prevent="showList">
                                         Cancel
                                     </button>
-                                    <button type="submit" class="btn btn-primary rounded">
+                                    <button type="submit" class="btn btn-primary rounded"  wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                         Save & Exit
                                     </button>
                                     <button type="button" class="btn btn-primary rounded"
@@ -567,7 +575,7 @@
                                                                                 <input class="form-check-input show-hidden-content"
                                                                                     id="addnewserviceconsumer" name="ProviderType"
                                                                                     type="radio" tabindex="">
-                                                                                    
+
                                                                                 <div class="hidden-content mt-3">
                                                                                     <h4 class="mb-2">
                                                                                         Would you like to set a rate for when this provider
@@ -601,7 +609,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                       
+
                                                         <div class="row between-section-segment-spacing">
                                                             <div class="col-md-12 col-12 md-2 mt-4">
                                                                 <div class="row">
@@ -2288,7 +2296,7 @@
                         {{-- END: Provider Service --}}
 
                         {{-- BEGIN: Upload Document --}}
-                        
+
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'upload-document' }"
                             id="upload-document" role="tabpanel" aria-labelledby="upload-document-tab" tabindex="0"
                             x-show="tab === 'upload-document'">
@@ -2448,7 +2456,7 @@
                                 </div>
                             </section>
                         </div>
-                        
+
                         {{-- END: Upload Document --}}
                     </div>
                 </div>
