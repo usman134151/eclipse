@@ -43,6 +43,7 @@
                             type="button" role="tab" aria-controls="basic-service-setup" aria-selected="true"><span
                                 class="number">1</span> Basic Service Setup</button>
                     </li>
+                   
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $component == 'advanced-service-rate' ? 'active' : '' }}"
                             id="advanced-service-rate-tab" data-bs-toggle="tab" data-bs-target="#advanced-service-rate"
@@ -92,8 +93,29 @@
                                             <label class="form-check-label" for="basicService">In-Active</label>
                                             <label class="form-check-label" for="basicService">Active</label>
                                         </div>
+                                        
                                     </div>
+                                      {{-- Accomodation--}}
+                                     
+                                      <div class="col-lg-6 mb-4">
+                                        <label class="form-label" for="industry-column">
+                                            Accommodation
+                                            <span class="mandatory" aria-hidden="true">
+                                                *
+                                            </span>
+                                        </label>
+                                        {{-- Updated by Sana to add dropdown--}}
+                                        {!! $setupValues['Accommodation']['rendered'] !!}
+                                        @error('service.Accommodation_id')
+                                        <span class="d-inline-block invalid-feedback mt-2">
+                                        {{ $message }}
+                                        </span>
+                                    @enderror
+                                        {{-- End of update by Sana --}}
+                                    </div>
+                                </div>
                                     <div class="row">
+                                        
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service-name">
                                                 Service Name <span class="mandatory">*</span>
