@@ -16,7 +16,7 @@ class NotificationConfiguration extends PowerGridComponent
     use ActionButton;
     protected $listeners = ['refresh'=>'setUp'];
     public $name;
-
+    public $selectedRoleId;
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -50,10 +50,8 @@ class NotificationConfiguration extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return NotificationTemplates::query()
-        ->join('roles', function ($role_id) {
-            $role_id->on('notification_templates.role_id', '=', 'roles.id');
-        })
+        $query = NotificationTemplates::query()
+        ->join('roles', 'notification_templates.role_id', '=', 'roles.id')
         ->select([
             'notification_templates.id',
             'notification_templates.name',
@@ -62,7 +60,14 @@ class NotificationConfiguration extends PowerGridComponent
             'notification_templates.body',
             'roles.display_name as role_id',
         ]);
+
+    if ($this->selectedRoleId !== null) {
+        $query->where('roles.id', $this->selectedRoleId);
     }
+
+    return $query;
+}
+    
 
     /*
     |--------------------------------------------------------------------------
