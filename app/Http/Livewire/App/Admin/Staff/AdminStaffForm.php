@@ -14,7 +14,7 @@ use DB;
 class AdminStaffForm extends Component
 {
     public $component = 'profile';
-    public $user;
+    public $user,$isAdd=true;
     public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone'];
     public $setupValues = [
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',0]],
@@ -60,7 +60,7 @@ class AdminStaffForm extends Component
                 'required',
                 'email',
                 'max:255',
-				Rule::unique('users', 'email')->ignore($this->user->id)],   
+				Rule::unique('users', 'email')->ignore($this->user->id)],
             'userdetail.user_position' => [
                     'nullable',
                     'string',
@@ -101,7 +101,7 @@ class AdminStaffForm extends Component
                 'nullable'],
             'userdetail.country' => [
                     'nullable']
-        
+
 		];
 	}
     public function save($redirect=1){
@@ -125,9 +125,10 @@ class AdminStaffForm extends Component
 
 	}
     public function edit(User $user){
-
+        $this->user=$user;
+        $this->userdetail=$user['userdetail']->toArray();
         $this->label="Edit";
-       $this->user=$user;
+        $this->isAdd=false;
 
 
     }
