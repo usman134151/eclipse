@@ -8,6 +8,8 @@ use App\Models\Tenant\NotificationTemplates;
 class NotificationConfiguration extends Component
 {
     public $showForm;
+    public $selectedRoleId;
+
     public $confirmationMessage;
     public $recordId;
     protected $listeners = [
@@ -56,6 +58,10 @@ class NotificationConfiguration extends Component
 
     public function render()
     {
-        return view('livewire.app.admin.notification-configuration');
-    }
+        
+    
+    return view('livewire.app.admin.notification-configuration');
 }
+
+    }
+
