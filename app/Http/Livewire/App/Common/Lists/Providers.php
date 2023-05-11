@@ -58,7 +58,14 @@ final class Providers extends PowerGridComponent
 		return User::query()
 		->whereHas('roles', function ($query) {
 			$query->where('role_id', 2);
-		});
+		})->join('user_details', function ($userdetails) {
+			$userdetails->on('user_details.user_id', '=', 'users.id');
+		})->select([
+			'users.id',
+			'users.name',
+			'users.email',
+			'user_details.phone'
+        ]);
 	}
 
 	/*
@@ -97,9 +104,7 @@ final class Providers extends PowerGridComponent
 		->addColumn('team', function (User $model) {
 			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
 		})
-		->addColumn('phone', function () {
-			return '(923) 023-9683';
-		})
+		->addColumn('phone')
 		->addColumn('upcoming_appointments', function () {
 			return "<div class='text-center'>5</div>";
 		})

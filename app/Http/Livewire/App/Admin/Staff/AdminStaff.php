@@ -24,8 +24,12 @@ class AdminStaff extends Component
 		return view('livewire.app.admin.staff.admin-staff');
 	}
 
-    function showForm()
+    function showForm($user = null)
 	{
+        if ($user) {
+			$this->user = $user;
+			$this->emit('editRecord', $user);
+		}
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-staff/create-staff']);
 		$this->dispatchBrowserEvent('refreshSelects');
