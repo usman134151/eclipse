@@ -1,4 +1,13 @@
 <div x-data="{addDocument: false}">
+    @if(is_null($user))
+    <div id="loader-section" class="loader-section" wire:loading>
+            <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                <div class="spinner-border" role="status" aria-live="polite">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    @else
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -231,7 +240,7 @@
                                                     </div>
                                                     <div class="col-md-7 ms-4 mt-4">
                                                         <h3 class="font-family-tertiary fw-medium">
-                                                            James Mary (He)
+                                                            {{$user['name']}} (He)
                                                         </h3>
                                                         <div class="row mb-4">
                                                             <div class="col-md-12">
@@ -4554,4 +4563,5 @@
             @include('modals.mark-as-paid')
         </section>
     </div>
+    @endif
 </div>

@@ -64,8 +64,14 @@ class Customer extends Component
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/customer']);
 	}
 
-	public function showProfile()
+	public function showProfile($user=null)
 	{
+		if ($user) {
+			$this->user = $user;
+           
+			$this->emit('showDetails', $user);
+		}
+
 		$this->showProfile = true;
 	}
 	
