@@ -1,13 +1,5 @@
 <div x-data="{addDocument: false}">
-    @if(is_null($user))
-    <div id="loader-section" class="loader-section" wire:loading>
-            <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                <div class="spinner-border" role="status" aria-live="polite">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        </div>
-    @else
+
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -36,7 +28,17 @@
             </div>
         </div>
     </div>
+
     <div class="content-body">
+    @if(is_null($user))
+    <div id="loader-section" class="loader-section" wire:loading>
+            <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                <div class="spinner-border" role="status" aria-live="polite">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    @else
         <section id="multiple-column-form">
             <div class="row">
                 <div class="col-12">
@@ -4562,6 +4564,7 @@
             @include('panels.common.add-document')
             @include('modals.mark-as-paid')
         </section>
+    @endif    
     </div>
-    @endif
+  
 </div>
