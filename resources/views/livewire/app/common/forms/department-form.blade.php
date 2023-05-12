@@ -112,7 +112,12 @@
                                                         </label>
                                                         <input type="text" id="department-name" class="form-control"
                                                             name="department-name" placeholder="Enter department-name*"
-                                                            required aria-required="true" />
+                                                            required aria-required="true" wire:model.defer="department.name" />
+                                                            @error('department.name')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                                     </div>
                                                 </div>
 
@@ -139,7 +144,12 @@
                                                                 <input type="text" id="department-website"
                                                                     class="form-control" name="department-website"
                                                                     placeholder="Enter Website URL" required
-                                                                    aria-required="true" />
+                                                                    aria-required="true" wire:model="department.department_website"/>
+                                                                    @error('department.department_website')
+												            <span class="d-inline-block invalid-feedback mt-2">
+													        {{ $message }}
+												            </span>
+												            @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -187,13 +197,18 @@
                                                             </label>
                                                             <div class="position-relative">
                                                                 <input type="" name="" class="form-control"
-                                                                    placeholder="17/01//2023" id="service-start-date">
+                                                                    placeholder="17/01//2023" id="service-start-date" wire:model="department.department_service_start_date">
                                                                 <svg class="icon-date" width="20" height="20"
                                                                     viewBox="0 0 20 20" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <use xlink:href="/css/provider.svg#date-field">
                                                                     </use>
                                                                 </svg>
+                                                                @error('department.department_service_start_date')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                                </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -206,13 +221,18 @@
                                                             </label>
                                                             <div class="position-relative">
                                                                 <input type="" name="" class="form-control"
-                                                                    placeholder="17/01//2023" id="service-end-date">
+                                                                    placeholder="17/01//2023" id="service-end-date" wire:model="department.department_service_end_date">
                                                                 <svg class="icon-date" width="20" height="20"
                                                                     viewBox="0 0 20 20" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <use xlink:href="/css/provider.svg#date-field">
                                                                     </use>
                                                                 </svg>
+                                                                @error('department.department_service_end_date')
+												            <span class="d-inline-block invalid-feedback mt-2">
+													        {{ $message }}
+												            </span>
+												            @enderror
                                                             </div>
                                                         </div>
                                                     </div>
