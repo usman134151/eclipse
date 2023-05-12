@@ -125,19 +125,19 @@
                                         <span>Payments</span>
                                     </button>
                                 </li>
-
+                                
+                                {{--  
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="referrals-tab" data-bs-toggle="tab"
                                         data-bs-target="#referrals-tab-pane" type="button" role="tab"
                                         aria-controls="referrals-tab-pane" aria-selected="false">
-                                        {{-- Updated by Shanila to Add svg icon--}}
                                         <svg aria-label="referrals" width="27" height="29" viewBox="0 0 27 29">
                                             <use xlink:href="/css/common-icons.svg#gray-referral"></use>
                                         </svg>
-                                        {{-- End of update by Shanila --}}
                                         <span>Referrals</span>
                                     </button>
                                 </li>
+                                --}}
 
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="notes-tab" data-bs-toggle="tab"
