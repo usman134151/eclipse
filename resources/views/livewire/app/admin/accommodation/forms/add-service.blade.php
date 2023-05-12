@@ -94,12 +94,15 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-6 mb-4">
-                                            <label class="form-label" for="service-name">
-                                                Service Name <span class="mandatory">*</span>
-                                            </label>
-                                            <input type="text" id="service-name" class="form-control" name="service-name"
-                                                placeholder="Enter Service Name" />
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label">Accommodation <span
+                                                    class="mandatory">*</span></label>
+                                                    {!! $setupValues['accomodations']['rendered'] !!}
+                                                    @error('service.accommodations_id')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service-name">
@@ -114,12 +117,11 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
-                                            <label class="form-label" for="service_category-description">
-                                                Description <i class="fa fa-question-circle" aria-hidden="true"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+                                            <label class="form-label" for="service-name">
+                                                Service Name <span class="mandatory">*</span>
                                             </label>
-                                            <textarea rows="4" cols="4" id="service_category-description" class="form-control"
-                                                name="service_category-description" wire:model.defer="service_category-description" placeholder=""></textarea>
+                                            <input type="text" id="service-name" class="form-control" name="service-name"
+                                                placeholder="Enter Service Name" wire:model.defer="service.name"/>
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service-name">
@@ -131,6 +133,14 @@
                                             {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
                                             'setup_value_label', 'setup_id', '6', 'id',[],1,'form-check ') !!}
                                             {{--ended updated--}}
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <label class="form-label" for="service_category-description">
+                                                Description <i class="fa fa-question-circle" aria-hidden="true"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
+                                            </label>
+                                            <textarea rows="4" cols="4" id="service_category-description" class="form-control"
+                                                name="service_category-description" placeholder=""></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +161,7 @@
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="service_category-fixed_rate" name="service_category-fixed_rate"
-                                                    type="radio" tabindex="" wire:model.defer="service_category-fixed_rate" />
+                                                    type="radio" tabindex="" />
                                                 <label class="form-check-label" for="service_category-fixed_rate"> Fixed Rate</label>
                                             </div>
                                         </div>
@@ -653,8 +663,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-actions">
-                                    <a href="/admin/accommodation/all-services" type="button" class="btn btn-primary rounded">
-                                            Save & Exit</></a>
+                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save">Save</button>
                                     <button type="button" class="btn btn-primary rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advanced-service-rate')">Next</button>
 
@@ -2847,7 +2856,7 @@
 
                         </form>
                     </div>
-                     
+
                     <div class="tab-pane fade {{ $component == 'advance-options' ? 'active show' : '' }}"
                         id="advance-options" role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0">
                         <form class="form">
@@ -3596,7 +3605,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                     <div class="tab-pane fade {{ $component == 'notification-setting' ? 'active show' : '' }}"
                         id="notification-setting" role="tabpanel" aria-labelledby="notification-setting-tab"
                         tabindex="0">
@@ -3892,7 +3901,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                    </div>
                 <!-- END: Steps -->
               </div>
@@ -3900,6 +3909,6 @@
         </div>
     </div>
 </div>
-</div>
+
 <!-- End: Content-->
-</div>
+
