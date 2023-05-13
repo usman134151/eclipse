@@ -5115,7 +5115,7 @@
                                             </div>
                                             <hr>
                                             <div>
-                                                <img src="/html-prototype/images/temp/img-placeholder-pending-payment.png"
+                                                <img src="/tenant/images/portrait/small/pending-payment.png" 
                                                     class="img-fluid" alt="Pending Payment image">
                                             </div>
                                         </div>
