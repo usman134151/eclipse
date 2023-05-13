@@ -21,6 +21,7 @@ class CompanyProfile extends Component
 	{}
     public function showDetails($company){
 		$this->company=$company;
+        $this->dispatchBrowserEvent('refreshSelects');
 
 	}
 

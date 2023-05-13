@@ -599,53 +599,10 @@
                                     <div class="row mb-4">
                                         <h3>Schedule</h3>
                                     </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <div class="d-inline-flex align-items-center gap-4">
-                                            <div class="mb-4 mb-lg-0">
-                                                <select
-                                                    class="form-select form-select-sm rounded bg-secondary text-white rounded"
-                                                    aria-label="Advance Filter" id="show_status">
-                                                    <option>Advance Filter</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-4 mb-lg-0">
-                                                <button type="button" class="btn btn-xs btn-outline-dark rounded">
-                                                    Clear All
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="d-inline-flex align-items-center gap-4 me-3">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
-                                                        <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                                        </use>
-                                                    </svg>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            Action
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            Another action
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="#">
-                                                            Something else here
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                     <div>
-                                        <img src="/html-prototype/images/temp/img-placeholder-calendar.png"
-                                            class="w-100" alt="Dashboard Calendar" />
+                                        <x-advancefilters/>
+                                        <img  class="w-100" alt="Dashboard Calendar" src="/tenant/images/portrait/small/image-placeholder-calendar.png" />
                                     </div>
                                 </div>
                                 {{-- Schedule Tab - End --}}

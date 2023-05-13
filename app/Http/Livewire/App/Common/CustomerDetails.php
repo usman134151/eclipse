@@ -23,6 +23,7 @@ class CustomerDetails extends Component
 
 	public function showDetails($user){
 		$this->user=$user;
+		$this->dispatchBrowserEvent('refreshSelects');
 		
 	}
 

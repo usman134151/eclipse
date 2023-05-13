@@ -24,6 +24,7 @@ class Department extends Component
 	public function showProfile()
 	{
 		$this->showProfile = true;
+		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
 	public function mount()
