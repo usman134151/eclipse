@@ -8,6 +8,7 @@ use Livewire\Component;
 class CompanyProfile extends Component
 {
     public $company;
+	public $showDepartmentProfile;
 	protected $listeners = [
 		'showDetails'
 	];
@@ -23,6 +24,11 @@ class CompanyProfile extends Component
 		$this->company=$company;
         $this->dispatchBrowserEvent('refreshSelects');
 
+	}
+     
+	public function showDepartmentProfile($user=null)
+	{
+		$this->showDepartmentProfile = true;
 	}
 
 	public function showList($userId=1)

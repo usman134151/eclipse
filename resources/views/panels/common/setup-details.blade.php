@@ -2,18 +2,7 @@
 <x-off-canvas show="setupDetails">
 	<x-slot name="title">{{$setupLabel}} Values</x-slot>
 
-  <div class="row">
-      <div class="col-12">
-      
-        @if($setupId>0)
-           @livewire('app.common.lists.setup-details', ['key' =>'details'.$setupId, 'setupId' => $setupId,'setupDeleteable'=>$setupDeleteable,]) 
-           @endif
-
-      </div>      
-    </div>
-    <!-- end of list -->
-
-
+  @livewire('app.common.panels.setup-details')
 
 </x-off-canvas>
 <script>
