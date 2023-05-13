@@ -906,7 +906,8 @@
 			                        	</div>
 			                        </div>
 			                        <div>
-			                        	<img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="w-100" alt="Dashboard Calendar"/>
+			                        	<x-advancefilters/>
+                                        <img  class="w-100" alt="Schedule Calendar" src="/tenant/images/portrait/small/image-placeholder-calendar.png" />
 			                        </div>
 		                        </div>
 		                        <!-- Schedule tab end -->
@@ -928,7 +929,7 @@
 			                    	</div>
 			                      </div>
                                   <div>
-			                    	<img src="/html-prototype/images/temp/img-placeholder-calendar.png" class="w-100" alt="Dashboard Calendar"/>
+									<img  class="w-100" alt="Schedule Calendar" src="/tenant/images/portrait/small/image-placeholder-calendar.png" />
 			                      </div>
 		                        </div>
 		                        <!-- Availability Tab End-->
@@ -2945,7 +2946,7 @@
 										</div>
 										<hr>
 				                        <div>
-											<img src="/html-prototype/images/temp/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Pending Payment image">
+											<img src="/tenant/images/portrait/small/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Assignments Report">
 										</div>
 									  </div>
 									<div class="mb-4">
@@ -2968,7 +2969,7 @@
 										</div>
 										<hr>
 				                        <div>
-											<img src="/html-prototype/images/temp/img-placeholder-pending-payment.png" class="img-fluid" alt="Pending Payment image">
+											<img src="/tenant/images/portrait/small/pending-payment.png" class="img-fluid" alt="Pending Payment image">
 										</div>
 									  </div>
 								</div>

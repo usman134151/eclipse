@@ -122,7 +122,7 @@
                 @csrf
               </form>
               <span class="avatar">
-                <img class="round" src="/html-prototype/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
+                <img class="round" src="/tenant/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
                 <span class="avatar-status-online"></span>
               </span>
             </a>
