@@ -3,9 +3,19 @@
 namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
-
+use App\Models\Tenant\User;
+use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
+    public $user;
+	protected $listeners = [
+		'showDetails'
+	];
+    public function showDetails($user){
+		$this->user=$user;
+
+	}
+
 	public function render()
 	{
 		return view('livewire.app.common.provider-details');
@@ -14,8 +24,10 @@ class ProviderDetails extends Component
 	public function mount()
 	{}
 
-	public function showList()
+	public function showList($userId=1)
 	{
-		$this->emit("showList");
+        $user=User::find($userId);
+
+		$this->emit('showList');
 	}
 }

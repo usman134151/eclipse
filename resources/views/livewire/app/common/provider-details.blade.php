@@ -28,6 +28,15 @@
 		</div>
 	</div>
 	<div class="content-body">
+    @if(is_null($user))
+    <div id="loader-section" class="loader-section" wire:loading>
+            <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                <div class="spinner-border" role="status" aria-live="polite">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    @else
 		<section id="multiple-column-form">
 			<div class="row">
 				<div class="col-12">
@@ -79,7 +88,7 @@
 										<span>Feedback</span>
 									</button>
 								</li>
-                               {{--  
+                               {{--
 								<li class="nav-item" role="presentation">
 									<button class="nav-link" id="referrals-tab" data-bs-toggle="tab" data-bs-target="#referrals-tab-pane" type="button" role="tab" aria-controls="referrals-tab-pane" aria-selected="false">
 										<x-icon name="gray-referral"/>
@@ -151,7 +160,7 @@
 									</button>
 								</li>
 							</ul>
-							
+
                            <div class="tab-content" id="myTabContent">
 	                            <div class="tab-pane fade show active" id="dashboard-tab-pane" role="tabpanel" aria-labelledby="dashboard-tab" tabindex="0">
 									<div class="col-md-12 mb-md-2 mt-5">
@@ -175,10 +184,10 @@
 																			</linearGradient>
 																		</defs>
 																	</svg>
-																
+
 																<div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
 																	<label class="text-white form-label-sm ps-2" for="">
-																		Sydney, Australia  
+																		Sydney, Australia
 																	</label>
 																</div>
 															</div>
@@ -201,7 +210,7 @@
 														</div>
 													</div>
 														<div class="col-md-6">
-															<h3>James Mary (He)</h3>
+															<h3> {{$user['name']}}</h3>
 															<p>
 															  <svg aria-label="Certified" width="30" height="30" viewBox="0 0 30 30" fill="none"
 																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#grey-tick-badge"></use>
@@ -367,7 +376,7 @@
 				                                           <div class="col-8">
 				                                           <button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
 				                                           </div>
-				                                           
+
 				                                         </div>
 				                                          </td>
 				                                                     </tr>
@@ -379,7 +388,7 @@
 				                                            <div class="d-flex justify-content-end text-sm">
 				                                              $10.00
 				                                            </div>
-				                                              
+
 				                                          </td>
 				                                          <td class="text-center align-middle ps-0">
 				                                         <div class="row">
@@ -389,7 +398,7 @@
 				                                           <div class="col-8">
 				                                           <button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
 				                                           </div>
-				                                           
+
 				                                         </div>
 				                                          </td>
 				                                                     </tr>
@@ -410,14 +419,14 @@
 				                                           <div class="col-8">
 				                                           <button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
 				                                           </div>
-				                                           
+
 				                                         </div>
 				                                          </td>
 				                                                     </tr>
 				                                         </tbody>
 				                                   </table>
 				                                </div>
-				                                         
+
 				                                <!-- table two  -->
 				                                <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
 				                                  <thead>
@@ -456,7 +465,7 @@
 				                                             </div>
 				                                             <div class="col-8">
 				                                             <button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
-				                                             </div>    
+				                                             </div>
 				                                           </div>
 				                                            </td>
 				                                         </tr>
@@ -468,7 +477,7 @@
 				                                              <div class="d-flex justify-content-end text-sm">
 				                                                $10.00
 				                                              </div>
-				                                                
+
 				                                            </td>
 				                                            <td class="text-center align-middle ps-0">
 				                                           <div class="row">
@@ -477,7 +486,7 @@
 				                                             </div>
 				                                             <div class="col-8">
 				                                             <button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
-				                                             </div>  
+				                                             </div>
 				                                           </div>
 				                                            </td>
 				                                         </tr>
@@ -497,10 +506,10 @@
 				                                             </div>
 				                                             <div class="col-8">
 				                                             <button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
-				                                             </div>    
+				                                             </div>
 				                                           </div>
 				                                            </td>
-				                                         </tr>   
+				                                         </tr>
 				                                         </tbody>
 				                                  </table>
 				                                </div>
@@ -543,7 +552,7 @@
 				                                               <div class="col-8">
 				                                               <button type="button" class="w-100 btn btn-sm btn-success px-4 fw-normal">High</button>
 				                                               </div>
-				                                               
+
 				                                             </div>
 				                                              </td>
 				                                                         </tr>
@@ -555,7 +564,7 @@
 				                                                <div class="d-flex justify-content-end text-sm">
 				                                                  $10.00
 				                                                </div>
-				                                                  
+
 				                                              </td>
 				                                              <td class="text-center align-middle ps-0">
 				                                             <div class="row">
@@ -565,7 +574,7 @@
 				                                               <div class="col-8">
 				                                               <button type="button" class="w-100 btn btn-sm btn-warning px-4 fw-normal">Medium</button>
 				                                               </div>
-				                                               
+
 				                                             </div>
 				                                              </td>
 				                                                         </tr>
@@ -586,7 +595,7 @@
 				                                               <div class="col-8">
 				                                               <button type="button" class="w-100 btn btn-sm btn-danger px-4 fw-normal">Low</button>
 				                                               </div>
-				                                               
+
 				                                             </div>
 				                                              </td>
 				                                                         </tr>
@@ -646,7 +655,7 @@
 			                                       </div>
 			                                      </div>
 			                                    </div>
-                                     
+
                                      		   <div class="col-md-12 d-flex mb-md-2 gap-5 mt-4">
                                      			 <!-- right col  -->
                                      		 <div class="col-md-6 mb-md-2">
@@ -775,7 +784,7 @@
 		                                          	   <h2>Associated Tags:</h2>
 		                                          	 </div>
 		                                             </div>
-                                          
+
 		                                             <div class="row">
 		                                          	 <div class="col-md-4 mb-md-3">
 		                                          	   <button type="button"
@@ -824,26 +833,26 @@
 		                                        	 </button>
 		                                        	   </div>
 		                                        	 </div>
-                                        
+
 		                                         </div>
 	                                              </div>
-	                                              <!-- Assigned Teams colums (end) -->                                               
+	                                              <!-- Assigned Teams colums (end) -->
 	                                              <!-- in line / side by side buttons (start) -->
 	                                              <div class="col-12 form-actions mt-4">
 	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                            
+
 	                                            		 <span>Lock Account</span>
 	                                            	 </button>
 	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                            
+
 	                                            		 <span>Reset Provider Password</span>
 	                                            	 </button>
 	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                            
+
 	                                            		 <span>Message Provider</span>
 	                                            	 </button>
 	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-                                            
+
 	                                            		 <span>Resend Welcome Email</span>
 	                                            	 </button>
 	                                              </div>
@@ -962,7 +971,7 @@
 												</select>
 										</div>
 									</div>
-									
+
 									<div class="col-md-6 mb-4">
 										<button class="btn btn-primary rounded">
 											Feedback Given
@@ -1435,12 +1444,12 @@
 												</label>
 											    <select class="select2 form-select" id="payment-status">
 													<option>Select Document Type</option>
-												</select>	
+												</select>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
-										
+
 										<div class="col-md-3 col-12">
 											<div>
 												<label class="form-label" for="set_set_date">
@@ -1461,7 +1470,7 @@
 												</label>
 											    <select class="select2 form-select" id="payment-status">
 													<option>Pending</option>
-												</select>	
+												</select>
 											</div>
 										</div>
 									</div>
@@ -1732,7 +1741,7 @@
 												</div>
 											  </div>
 											</div>
-										  
+
 										  </div>
 									</div>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
@@ -1757,7 +1766,7 @@
 												</label>
 											    <select class="select2 form-select" id="paymentStatus">
 													<option>Select Payment Status</option>
-												</select>	
+												</select>
 											</div>
 										</div>
 									</div>
@@ -1856,7 +1865,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -1901,7 +1910,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -1946,7 +1955,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -1991,7 +2000,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -2036,7 +2045,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -2081,7 +2090,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -2126,7 +2135,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -2171,7 +2180,7 @@
 															<a href="#" title="Revert Remittance" aria-label="Revert Remittance" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#revertBackModal">
 											                    <svg aria-label="Revert Remittance" width="22" height="20" viewBox="0 0 22 20" fill="none"
                                                                   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#round-arrow"></use>
-                                                                </svg>												
+                                                                </svg>
 															</a>
 															<a href="#" title="Mark As Paid" aria-label="Mark As Paid" class="btn btn-sm btn-secondary rounded btn-hs-icon" data-bs-toggle="modal" data-bs-target="#markAsPaidModal">
 															    <svg aria-label="Mark As Paid" width="22" height="20" viewBox="0 0 22 20" fill="none"
@@ -2181,7 +2190,7 @@
 														</div>
 													</td>
 												</tr>
-												
+
 											</tbody>
 										</table>
 									</div>
@@ -2303,7 +2312,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="row mb-3">
 										<div class="col-md-8">
 											<div class="d-inline-flex align-items-center">
@@ -2330,7 +2339,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="row mb-3">
 										<div class="col-md-8">
 											<div class="d-inline-flex align-items-center">
@@ -2345,7 +2354,7 @@
 														     <span class="text-secondary">
 															 08/24/2022
 														     </span>
-													    </div>	
+													    </div>
 													</div>
 													<div class="mx-2 mt-3">
 														<p >
@@ -2921,11 +2930,11 @@
 											<div class="d-inline-flex align-items-center gap-4">
 											  <h2>Assignment</h2>
 											</div>
-											<div class="dropdown me-5">           
+											<div class="dropdown me-5">
 												<button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 													<svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
 													xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-											       </svg>                                 
+											       </svg>
 												</button>
 												<ul class="dropdown-menu">
 												  <li><a class="dropdown-item" href="#">Action</a></li>
@@ -2944,11 +2953,11 @@
 											<div class="d-inline-flex align-items-center gap-4">
 											  <h2>Payments</h2>
 											</div>
-											<div class="dropdown me-5">           
+											<div class="dropdown me-5">
 												<button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 													<svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
 													xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-											      </svg>                                 
+											      </svg>
 												</button>
 												<ul class="dropdown-menu">
 												  <li><a class="dropdown-item" href="#">Action</a></li>
@@ -3140,7 +3149,7 @@
 											<label class="form-label" for="billingSchedule">
 												Payment Schedule <span class="text-sm">(Days after Provider Invoice / Remittance)</span>
 											</label>
-												<input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">    
+												<input class="form-control" type="" id="billingSchedule" placeholder="Enter Days">
 										</div>
 									</div>
 									<div class="row">
@@ -3160,7 +3169,7 @@
 														</svg>
 														</a>
 												</div>
-		
+
 												<input class="form-control" type="" id="reimburseProviders" placeholder="$00:00">
 											</div>
 										</div>
@@ -3173,7 +3182,7 @@
 													<div class="ms-1 mt-1">
 														<svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
 															<use xlink:href="/css/common-icons.svg#fill-question"></use>
-														</svg>                                                                   
+														</svg>
 														</div>
 												</div>
 												<div class="row">
@@ -3190,7 +3199,7 @@
 											 </div>
 											</div>
 										</div>
-								
+
 									</div>
 								</div>
 								<!-- Settings Tab End-->
@@ -3273,7 +3282,7 @@
 												</div>
 											</div>
 										  </div>
-										
+
 										<div class="col-12 justify-content-center form-actions d-flex">
 											<button type="submit"
 											class="btn btn-primary rounded">Save</button>
@@ -3283,7 +3292,8 @@
 		                        <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
 
 
-		</div> <!-- tab-content -->
+
+                            </div> <!-- tab-content -->
 		 <!-- END: Provider Details ................... -->
 		 </div>
 
@@ -3303,6 +3313,7 @@
 			 @include('modals.remittance-details')
 
 		   </section>
+           @endif
 		   <!-- Basic Floating Label Form section end -->
 		 </div>
 	   </div>
