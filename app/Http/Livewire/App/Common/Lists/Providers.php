@@ -109,7 +109,7 @@ final class Providers extends PowerGridComponent
 			return "<div class='text-center'>5</div>";
 		})
 		->addColumn('edit', function(User $model) {
-            return "<div class='d-flex actions'><a href='#' wire:click='edit({$model->id})' title='Edit Provider' aria-label='Edit Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' aria-label='View Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' title='More Options' aria-label='More Options' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='Edit' aria-label='Edit' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Schedule</a><a title='Edit' aria-label='Edit' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Payment</a><a title='Message Customer' aria-label='Message Customer' class='dropdown-item' href='#'><i class='fa fa-comment'></i>Chat with Provider</a><a href='javascript:void(0)' aria-label='Deactivate' title='Deactivate' class='dropdown-item'><i class='fa fa-times-circle'></i>Deactivate</a></div></div></div></div>";
+            return "<div class='d-flex actions'><a href='#' wire:click='edit({$model->id})' title='Edit Provider' aria-label='Edit Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' wire:click=\"showProfile($model->id)\" aria-label='View Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' title='More Options' aria-label='More Options' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='Edit' aria-label='Edit' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Schedule</a><a title='Edit' aria-label='Edit' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Payment</a><a title='Message Customer' aria-label='Message Customer' class='dropdown-item' href='#'><i class='fa fa-comment'></i>Chat with Provider</a><a href='javascript:void(0)' aria-label='Deactivate' title='Deactivate' class='dropdown-item'><i class='fa fa-times-circle'></i>Deactivate</a></div></div></div></div>";
         });
 	}
 
@@ -166,8 +166,8 @@ final class Providers extends PowerGridComponent
 		]);
 	}
 
-	function showProfile() {
+	function showProfile($id) {
 		// Emits an event to show the customer profile
-		$this->emit('showProfile');
+		$this->emit('showProfile', User::with(['userdetail','industries','company'])->find($id));
 	}
 }

@@ -87,10 +87,16 @@ final class ServiceCatagories extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 			->addColumn('name')
+            ->addColumn('icon', function () {
+                return '<a @click="associateCompanies = true">
+                    <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
+                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
+                    </svg>
+                </a>';
+            })
 			->addColumn('company', function () {
 				return "Associate Companies & Customers";
 			})
-
             ->addColumn('status', function (ServiceCategory $model) {
                 return ($model->status);
             })
@@ -141,6 +147,7 @@ final class ServiceCatagories extends PowerGridComponent
 				->searchable()
 				->makeinputtext()
 				->sortable(),
+            Column::make('', 'icon'),
             Column::make('', 'company')
 				->searchable()
 				->makeinputtext()
