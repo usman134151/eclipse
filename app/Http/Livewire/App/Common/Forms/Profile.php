@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Livewire\App\Common\Forms;
-
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class Profile extends Component
 {
+    public $user;
+	protected $listeners = [
+		'showDetails'
+	];
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
-
     public function render()
     {
         return view('livewire.app.common.forms.profile');
@@ -16,17 +18,20 @@ class Profile extends Component
 
     public function mount()
     {
-       
-       
-    }
 
-    function showForm()
-    {     
-       $this->showForm=true;
+
     }
-    public function resetForm()
-    {
-        $this->showForm=false;
-    }
+    public function showDetails($user){
+		$this->user=$user;
+
+	}
+
+    public function showList($userId=1)
+	{
+		$user=User::find($userId);
+
+		$this->emit('showList');
+	}
+
 
 }

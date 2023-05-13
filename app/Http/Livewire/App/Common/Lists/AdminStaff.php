@@ -64,7 +64,6 @@ final class AdminStaff extends PowerGridComponent
 			'users.id',
 			'users.name',
 			'users.email',
-
 			'user_details.phone'
 		])
 
@@ -117,17 +116,10 @@ final class AdminStaff extends PowerGridComponent
 		})
 
 		->addColumn('edit', function(User $model) {
-			return '<div class="d-flex actions">
-            <a href="javascript:void(0)" wire:click="edit('.$model->id.')" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="editTeam">
-                <svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-                    <use xlink:href="/css/common-icons.svg#pencil"></use>
-                </svg>
-            </a>
-            <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-                <svg class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                </svg>
-            </a>
-        </div>';
+			return "<div class='d-flex actions'>
+            <a href='#' wire:click=\"edit($model->id)\" title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
+            <a href='#' title='View Team' aria-label='View Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'  wire:click=\"showProfile($model->id)\"><svg aria-label='View Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
+            </div>";
 		});
 	}
     function edit($id){
@@ -188,4 +180,12 @@ final class AdminStaff extends PowerGridComponent
 		 ]);
 
 	 }
+     function showProfile($id) {
+
+		// Emits an event to show the customer profile
+		$this->emit('showProfile');
+
+		$this->emit('showProfile', User::with(['userdetail'])->find($id));
+	}
+
 }
