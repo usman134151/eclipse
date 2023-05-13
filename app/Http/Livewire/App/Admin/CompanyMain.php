@@ -52,8 +52,14 @@ class CompanyMain extends Component
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/company']);
 	}
 
-	public function showProfile()
+	public function showProfile($company)
 	{
+		if ($company) {
+			$this->company = $company;
+
+			$this->emit('showDetails', $company);
+		}
+
 		$this->showProfile = true;
 	}
 	// function to update the ID of the record being edited/deleted

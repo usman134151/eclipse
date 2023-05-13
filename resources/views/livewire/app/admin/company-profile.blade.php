@@ -1,7 +1,4 @@
 <div x-data="{addDocument: false}">
-    @if ($showDepartmentProfile)
-    @livewire('app.common.department-profile')
-    @else
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -33,6 +30,15 @@
         </div>
     </div>
     <div class="content-body">
+        @if(is_null($company))
+        <div id="loader-section" class="loader-section" wire:loading>
+                <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                    <div class="spinner-border" role="status" aria-live="polite">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        @else
         <section id="multiple-column-form">
             <div class="row">
                 <div class="col-12">
@@ -135,7 +141,7 @@
                                         <span>Payments</span>
                                     </button>
                                 </li>
-                                {{--  
+                                {{--
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="referrals-tab" data-bs-toggle="tab"
                                         data-bs-target="#referrals-tab-pane" type="button" role="tab"
@@ -252,7 +258,7 @@
 
                                                         <div class="col-md-7 ms-4">
                                                             <h3 class="font-family-tertiary fw-medium">
-                                                                Example Company
+                                                                {{$company['name']}}
                                                             </h3>
                                                             <div class="row mb-4">
                                                                 <div class="col-md-12">
@@ -2405,7 +2411,7 @@
                                     <h3>
                                         Company Invoices
                                     </h3>
-                                    
+
                                     <div class="d-flex justify-content-between">
                                         <div class="row gap-4">
                                             <x-advancefilters type="invoice-filters"/>
@@ -5907,5 +5913,5 @@
     @include('modals.mark-as-paid')
     @include('panels.common.add-document')
     @include('modals.mark-as-paid')
-    @endif
+@endif
 </div>
