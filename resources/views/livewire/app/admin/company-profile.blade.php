@@ -1,4 +1,7 @@
 <div x-data="{addDocument: false}">
+    @if($showDepartmentProfile)
+	@livewire('app.common.department-profile')
+	@else
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -5870,5 +5873,6 @@
     @include('modals.mark-as-paid')
     @include('panels.common.add-document')
     @include('modals.mark-as-paid')
-@endif
+  @endif
+  @endif
 </div>
