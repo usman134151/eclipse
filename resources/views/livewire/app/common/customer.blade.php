@@ -11,6 +11,8 @@
 	
 	@elseif($showProfile)
 	@livewire('app.common.customer-details')
+	@elseif($importFile)
+	@livewire('app.common.import.customer')
 	@else
 	{{-- BEGIN : Header Section --}}
 	<div class="content-wrapper container-xxl p-0">
@@ -65,7 +67,7 @@
 												{{-- End of update by Shanila --}}
 												<span>Download Import File</span>
 											</button>
-											<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+											<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="importFile">
 												{{-- Updated by Shanila to Add svg icon--}}
 												<svg aria-label="Import Customer" width="20" height="20" viewBox="0 0 20 20">
 													<use xlink:href="/css/common-icons.svg#import-file"></use>
@@ -85,24 +87,10 @@
 									</div>
 								</div>
 							</div>
-							{{-- <div class="d-flex flex-column flex-md-row justify-content-between mb-2 gap-2">
-								<div class="d-inline-flex align-items-center gap-4">
-									<label for="show_records_number" class="form-label">Show</label>
-									<select class="form-select" id="show_records_number">
-										<option>10</option>
-										<option>15</option>
-										<option>20</option>
-										<option>25</option>
-									</select>
-								</div>
-								<div class="d-inline-flex align-items-center gap-4">
-									<label for="search" class="form-label fw-semibold">Search</label>
-									<input type="search" class="form-control" id="search" name="search"
-										placeholder="Search here" autocomplete="on" />
-								</div>
-							</div> --}}
+
 							{{-- Hoverable rows Start --}}
 							<div class="row" id="table-hover-row">
+								
 								<div class="col-12">
 									<div class="card">
 										@livewire('app.common.lists.customers', key(Str::random(10)))
@@ -144,7 +132,7 @@
 	@endif
 	<script>
 	function updateVal(attrName,val){
-	console.log(attrName+'called for'+val);
+	
 	if(val!=''){
 		Livewire.emit('updateVal', attrName, val);
 	}

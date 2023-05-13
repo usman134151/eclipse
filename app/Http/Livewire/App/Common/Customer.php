@@ -9,6 +9,7 @@ class Customer extends Component
 {
 	public $showForm;
 	public $showProfile;
+	public $importFile;
 	
 
 	protected $listeners = [
@@ -46,6 +47,11 @@ class Customer extends Component
 		$this->showForm=true;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/customer/create-customer']);
 		$this->dispatchBrowserEvent('refreshSelects');
+	}
+
+	public function importFile(){
+		$this->importFile=true;
+
 	}
 
 	public function resetForm($message='')
