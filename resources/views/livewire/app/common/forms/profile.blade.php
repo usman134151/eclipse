@@ -1,4 +1,5 @@
 <div>
+    <div x-data="{addDocument: false}">
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-2">
@@ -31,6 +32,15 @@
             </div>
         </div>
         <div class="content-body">
+            @if(is_null($user))
+            <div id="loader-section" class="loader-section" wire:loading>
+                    <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                        <div class="spinner-border" role="status" aria-live="polite">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            @else
             <!-- Basic multiple Column Form section start -->
             <section id="multiple-column-form">
                 <div class="row">
@@ -203,7 +213,7 @@
 
                                                             <div class="col-md-7 ms-4">
                                                                 <h3 class="font-family-tertiary fw-medium">
-                                                                    James Mary (He)
+                                                                    {{$user['name']}}
                                                                 </h3>
                                                                 <div class="row mb-4">
                                                                     <div class="col-md-12">
@@ -5505,6 +5515,8 @@
                 </div>
                 @include('panels.common.add-document')
             </section>
+            @endif
             <!-- Basic Floating Label Form section end -->
         </div>
     </div>
+</div>
