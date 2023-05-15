@@ -153,7 +153,7 @@ class SetupHelper
 
     private static function getValuesFromDatabase(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null)
     {
-        $model = '\App\Models\Tenant\\SetupValue';
+        $model = '\App\Models\Tenant\\' . $model;
         $query = $model::query();
 
         if ($filterCol && $filterValue) {
@@ -181,7 +181,8 @@ class SetupHelper
     public static function getSetupValueById($id)
     {
         if($id){
-            $model = '\App\Models\Tenant\\' . $model;
+            
+            $model = '\App\Models\Tenant\\SetupValue';
             $record = $model::find($id);
             return $record->setup_value_label;
         }
