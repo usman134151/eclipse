@@ -153,7 +153,7 @@ class SetupHelper
 
     private static function getValuesFromDatabase(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null)
     {
-        $model = '\App\Models\Tenant\\' . $model;
+        $model = '\App\Models\Tenant\\SetupValue';
         $query = $model::query();
 
         if ($filterCol && $filterValue) {
