@@ -31,7 +31,12 @@ class AddService extends Component
 				'string',
 				'max:255',
 				Rule::unique('service_categories', 'name')->ignore($this->service->id)],
-            'service.accommodations_id'=>'required'
+            'service.accommodations_id'=>'required',
+            'service.description' => [
+				'required',
+				'string',
+				'max:255']
+
 		];
 	}
     public function save($redirect=1){

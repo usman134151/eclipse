@@ -140,7 +140,7 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                             </label>
                                             <textarea rows="4" cols="4" id="service_category-description" class="form-control"
-                                                name="service_category-description" placeholder=""></textarea>
+                                                name="service_category-description" placeholder="" wire:model.defer="service.description"></textarea>
                                         </div>
                                     </div>
                                 </div>
