@@ -307,7 +307,7 @@
                                                                 </label>
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
-                                                                <div class="font-family-secondary">English</div>
+                                                                <div class="font-family-secondary">{{$user['email']}}</div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-1">
@@ -317,7 +317,7 @@
                                                                 </label>
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
-                                                                <div class="font-family-secondary">jamesmary@gmail.com
+                                                                <div class="font-family-secondary">{{$user['userdetail']['language']}}
                                                                 </div>
                                                             </div>
                                                         </div>

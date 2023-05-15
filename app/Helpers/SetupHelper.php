@@ -177,5 +177,23 @@ class SetupHelper
 
 	}
 
+
+    public static function getSetupValueById($id)
+    {
+        if($id){
+            $model = '\App\Models\Tenant\\' . $model;
+            $record = $model::find($id);
+            return $record->setup_value_label;
+        }
+        return 'N/A';
+    }
+    public static function getSetupValueByValue($value,$setup_id)
+    {
+        $model = '\App\Models\Tenant\\' . $model;
+        $record = $model::where('setup_value_label',$value)->where('setup_id',$setup_id);
+        dd($record);
+    }
+
+    
     
 }

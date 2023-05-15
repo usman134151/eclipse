@@ -5,7 +5,7 @@ namespace App\Http\Livewire\App\Common;
 use Livewire\Component;
 use App\Models\Tenant\User;
 use App\Services\App\UserService;
-
+use App\Helpers\SetupHelper;
 class CustomerDetails extends Component
 {
 	public $user;
@@ -23,6 +23,9 @@ class CustomerDetails extends Component
 
 	public function showDetails($user){
 		$this->user=$user;
+		
+		
+		$this->user['userdetail']['language']=SetupHelper::getSetupValueById($this->user['userdetail']['language_id']);
 		$this->dispatchBrowserEvent('refreshSelects');
 		
 	}
