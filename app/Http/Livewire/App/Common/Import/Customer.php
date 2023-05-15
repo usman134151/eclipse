@@ -7,6 +7,7 @@ use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Tenant\User;
 use Livewire\WithFileUploads;
+use App\Helpers\SetupHelper;
 class Customer extends Component
 {
     use WithFileUploads;
@@ -21,6 +22,7 @@ class Customer extends Component
     public function updatedFile()
     {
         $rows = Excel::toArray([], $this->file)[0];
+        $this->users=[];
         //dd($rows);
         // Initialize a counter variable
         $i = 0;
@@ -34,9 +36,9 @@ class Customer extends Component
                 $user['title'] = $row[2];
                 $user['dob'] = $row[3];
                 $user['email'] = $row[4];
-                $user['userDetails']['language_id']=$row[5];
-                $user['userDetails']['gender_id']=$row[6];
-                $user['userDetails']['ethnicity_id']=$row[7];
+                $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
+                $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
+                $user['userDetails']['ethnicity_id']=SetupHelper::getSetupValueByValue($row[7],3);
                 $user['userDetails']['user_position']=$row[8];
                 $user['userDetails']['phone']=$row[9];
                 $user['userDetails']['country']=$row[10];
@@ -47,7 +49,7 @@ class Customer extends Component
                 $user['userDetails']['address_line2']=$row[15];
                 $user['userDetails']['user_introduction']=$row[16];
 
-                dd($user);
+              
                 $this->users[] = $user;
 
             }

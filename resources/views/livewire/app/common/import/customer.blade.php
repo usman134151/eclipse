@@ -44,27 +44,58 @@
     <input type="file" wire:model="file">
 
     @if ($users)
-        <h2>Edit Users</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td><input type="text" wire:model.defer="users.{{ $loop->index }}.first_name"></td>
-                        <td><input type="text" wire:model.defer="users.{{ $loop->index }}.last_name"></td>
-                        <td><input type="text" wire:model.defer="users.{{ $loop->index }}.title"></td>
-                        <td><input type="text" wire:model.defer="users.{{ $loop->index }}.email"></td>
-                    </tr>
-                @endforeach
-            </tbody>
+        <h2>Preview Users</h2>
+		<div class="table-responsive">
+        <table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
+          <thead>
+            <tr role="row">
+              <th scope="col" class="text-center">
+                <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
+              </th>
+              <th scope="col">Customer</th>
+              <th scope="col">Attributes</th>
+              <th scope="col">Address</th>
+              <th scope="col">Roles</th>
+            </tr>
+          </thead>
+          <tbody>
+		  @foreach ($users as $user)
+            <tr role="row" class="odd">
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+              </td>
+              <td width=25%>
+                <div class="row g-2">
+ 
+                  <div class="col-md-10">
+                    <h6 class="fw-semibold">
+					<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
+					<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" /></h6>
+                    <p><input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" /></p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p></p>
+              </td>
+              <td class="text-center">Example Company</td> 
+              <td>
+                Supervisor
+              </td>
+            </tr>
+			@endforeach
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </tbody>
         </table>
+      </div>
 
         <button wire:click="save">Save</button>
     @endif

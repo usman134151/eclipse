@@ -36,11 +36,11 @@ class AddAddress extends Component
     public function rules()
     {
         return [
-            'address.name' => [
+            'address.address_name' => [
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('user_addresses', 'name')->ignore($this->address['id'] ?? null),
+                Rule::unique('user_addresses', 'address_name')->ignore($this->address['id'] ?? null),
             ],
             'address.address_line1' => [
                 'required',

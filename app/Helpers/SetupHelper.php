@@ -190,9 +190,14 @@ class SetupHelper
     }
     public static function getSetupValueByValue($value,$setup_id)
     {
-        $model = '\App\Models\Tenant\\' . $model;
-        $record = $model::where('setup_value_label',$value)->where('setup_id',$setup_id);
-        dd($record);
+        if($value){
+            $model = '\App\Models\Tenant\SetupValue';
+            $record = $model::get()->where('setup_value_label',$value)->where('setup_id',$setup_id)->first();
+            if(!is_null($record))
+                return $record->id;
+        }
+        return 0;
+
     }
 
     
