@@ -257,7 +257,7 @@
 																</div>
 																<div class="col-md-8 align-self-center">
 																	<div class="font-family-secondary">
-																		jamesmary@gmail.com
+																		{{$user['email']}}
 																	</div>
 																</div>
 															</div>
@@ -268,7 +268,7 @@
 																	<label class="col-form-label" for="p-number">Phone Number:</label>
 							                                     </div>
 					                                            <div class="col-md-6 align-self-center">
-											                         <div class="font-family-secondary">(987) 653-5875
+											                         <div class="font-family-secondary"> {{$user['userdetail']['phone']}}
 																	 </div>
 											                    </div>
 					                                        </div>
@@ -276,37 +276,37 @@
 					                                    <div class="row mb-1 mx-2">
 					                                       <div class="col-md-12 d-flex">
 					                                           <div class="col-md-4 "><label class="col-form-label" for="first-address">Address line 1:</label></div>
-					                                            <div class="col-md-12 align-self-center"><div class="font-family-secondary">Mrs Smith 98 Shirley Street PIMPAMA</div></div>
+					                                            <div class="col-md-12 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['address_line1']}}</div></div>
 					                                        </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                     <div class="col-md-12 d-flex">
 					                                     <div class="col-md-4 "><label class="col-form-label" for="second-address">Address line 2:</label></div>
-					                                     <div class="col-md-12 align-self-center"><div class="font-family-secondary">Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 <br> AUSTRALIA</div></div>
+					                                     <div class="col-md-12 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['address_line2']}}</div></div>
 					                                     </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                      <div class="col-md-12 d-flex">
 					                                      <div class="col-md-4 fw"><label class="col-form-label" for="city">City / State:</label></div>
-					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">Sydney</div></div>
+					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['city']}}</div></div>
 					                                      </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                      <div class="col-md-12 d-flex">
 					                                      <div class="col-md-4 "><label class="col-form-label" for="zip-code">Zip Code:</label></div>
-					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">289425</div></div>
+					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['zip']}}</div></div>
 					                                      </div>
 					                                    </div>
 					                                   <div class="row mb-1 mx-2">
 					                                     <div class="col-md-12 d-flex">
 					                                     <div class="col-md-4 "><label class="col-form-label" for="country">Country:</label></div>
-					                                     <div class="col-md-8 align-self-center"><div class="font-family-secondary">Australia</div></div>
+					                                     <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['country']}}</div></div>
 					                                     </div>
 					                                    </div>
 					                                    <div class="row mb-1 mx-2">
 					                                      <div class="col-md-12 d-flex">
 					                                      <div class="col-md-4 "><label class="col-form-label" for="education">Education:</label></div>
-					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">Master’s</div></div>
+					                                      <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['education']}}</div></div>
 					                                      </div>
 					                                     </div>
 					                                  <div class="row mb-1 mx-2">
@@ -353,7 +353,7 @@
 				                                       </tr>
 				                                       </thead>
 				                                     </table>
-				                                     <div class="collapse show" id="collapseLanguageTranslationServices">
+				                                     <div class="collapse " id="collapseLanguageTranslationServices">
 				                                        <table id="" class="table table-hover" aria-label="Admin Staff Teams Table">
 				                                          <tbody>
 				                                       <tr role="row" class="odd">

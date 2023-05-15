@@ -221,28 +221,28 @@
                                                                             <div class="col-md-12">
                                                                                 <p class="font-family-tertiary">
                                                                                     <b>Admin Company:</b> Example
-                                                                                    Company
+                                                                                    
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <p class="font-family-tertiary">
-                                                                                    <b>Position:</b> Supervisor
+                                                                                    <b>Position:</b>{{$user['userdetail']['user_position']}}
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <p class="font-family-tertiary">
-                                                                                    <b>Phone Number:</b> (987) 653-5875
+                                                                                    <b>Phone Number:</b>  {{$user['userdetail']['phone']}}
                                                                                 </p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <p class="text-">
-                                                                                    <b>Email:</b> jamesmary@gmail.com
+                                                                                    <b>Email:</b>{{$user['email']}}
                                                                                 </p>
                                                                             </div>
                                                                         </div>
