@@ -28,7 +28,7 @@ class AddAddress extends Component
         $this->address=['address_name'=>'','address_type'=>$type,'address_line1'=>'','address_line2'=>'','city'=>'','state'=>'','country'=>'USA','zip'=>'','notes'=>'','phone'=>'','is_default'=>0];
     }
     public function updateData(){
-
+        $this->validate();
         $this->emitUp('updateAddress', $this->address);
         $this->updateAddressData();
     }
@@ -40,7 +40,7 @@ class AddAddress extends Component
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('user_addresses', 'address_name')->ignore($this->address['id'] ?? null),
+                //Rule::unique('user_addresses', 'address_name')->ignore($this->address['id'] ?? null),
             ],
             'address.address_line1' => [
                 'required',
@@ -66,6 +66,8 @@ class AddAddress extends Component
     }
     public function add() {
 		$this->validate();
+      
+        $this->updateData();
 	}
 
 }

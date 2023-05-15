@@ -9,8 +9,8 @@
           <div class="row">
             <div class="col-lg-6 mb-4">
                 <label class="form-label" for="address-title">Address Title</label>
-                <input type="text" id="address-title" class="form-control" name="address-title-column" placeholder="Example “Head Office”" required aria-required="true" wire:model.defer="address.name">
-                @error('address.name')
+                <input type="text" id="address-title" class="form-control" name="address-title-column" placeholder="Example “Head Office”" required aria-required="true" wire:model.defer="address.address_name">
+                @error('address.address_name')
                 <span class="d-inline-block invalid-feedback mt-2">
                     {{ $message }}
                 </span>
@@ -87,7 +87,7 @@
           <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
         </div>
         <div class="col-lg-3">
-          <button type="button" class="btn rounded w-100 btn-primary"  wire:click.prevent="add">Add</button>
+          <button type="button" class="btn rounded w-100 btn-primary" wire:click="updateData" data-bs-dismiss="modal" >Add</button>
         </div>
       </div>
     </div>
