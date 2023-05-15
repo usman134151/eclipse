@@ -9,6 +9,7 @@ class AddAddress extends Component
 {
     public $address;
     public $addressType=1;
+    public $functionExecuted = false;
     protected $listeners = ['updateAddressType'];
     public function render()
     {
@@ -31,6 +32,8 @@ class AddAddress extends Component
         $this->validate();
         $this->emitUp('updateAddress', $this->address);
         $this->updateAddressData();
+        $this->functionExecuted = true;
+        $this->emit('modalDismissed');
     }
 
     public function rules()
@@ -64,10 +67,6 @@ class AddAddress extends Component
             ],
         ];
     }
-    public function add() {
-		$this->validate();
-      
-        $this->updateData();
-	}
+
 
 }

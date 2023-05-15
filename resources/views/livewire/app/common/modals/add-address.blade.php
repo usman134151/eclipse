@@ -87,7 +87,7 @@
           <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
         </div>
         <div class="col-lg-3">
-          <button type="button" class="btn rounded w-100 btn-primary" wire:click="updateData" data-bs-dismiss="modal" >Add</button>
+          <button type="button" class="btn rounded w-100 btn-primary" wire:click="updateData"  >Add</button>
         </div>
       </div>
     </div>

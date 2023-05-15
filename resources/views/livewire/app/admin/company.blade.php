@@ -127,5 +127,10 @@
 		Livewire.emit('updateVal', attrName, val);
 
 	}
+
+
 </script>
+
+
+
 @endpush

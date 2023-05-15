@@ -524,10 +524,14 @@
     <script>
         Livewire.on('updateAddressType', (type) => {
             // Handle the event here
-            console.log(type);
+           
             // Open the modal
             $('#addAddressModal').modal('show');
         });
+        Livewire.on('modalDismissed', () => {
+            $('#addAddressModal').modal('hide');
+               
+            });
     </script>
     @endpush
 </div>
