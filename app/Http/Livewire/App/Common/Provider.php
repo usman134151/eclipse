@@ -9,6 +9,7 @@ class Provider extends Component
 {
 	public $showForm;
 	public $showProfile;
+	public $importFile;
 
     protected $listeners = [
 		'showList' => 'resetForm',
@@ -31,6 +32,11 @@ class Provider extends Component
 	public function render()
 	{
 		return view('livewire.app.common.provider');
+	}
+
+	public function importFile(){
+		$this->importFile=true;
+
 	}
 
 	public function mount() {}
