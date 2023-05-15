@@ -251,7 +251,7 @@
                                                                         <span class="fw-medium">
                                                                             Position:
                                                                         </span>
-                                                                        <div>Supervisor</div>
+                                                                        <div>{{$user['userdetail']['user_position']}}</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-2">
@@ -259,7 +259,7 @@
                                                                         <span class="fw-medium">
                                                                             Company:
                                                                         </span>
-                                                                        <div>Example Company</div>
+                                                                        <div>{{$user['company']['name']}}</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-2">
@@ -296,7 +296,7 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    (987) 653-5875
+                                                                    {{$user['userdetail']['phone']}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -523,7 +523,7 @@
                                                                             </th>
                                                                             <th class="text-end align-middle"
                                                                                 scope="col">
-                                                                                <div aria-expanded="true"
+                                                                                <div aria-expanded="false"
                                                                                     data-bs-toggle="collapse"
                                                                                     href="#collapseAmericanSignLanguageInterpreting"
                                                                                     role="button" aria-expanded="false"
@@ -543,7 +543,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                 </table>
-                                                                <div class="collapse show" 
+                                                                <div class="collapse " 
                                                                         id="collapseAmericanSignLanguageInterpreting">
                                                                     <table class="table table-hover">
                                                                         
