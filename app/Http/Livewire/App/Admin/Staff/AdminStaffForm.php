@@ -110,7 +110,8 @@ class AdminStaffForm extends Component
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
 		$userService = new UserService;
-        $this->user = $userService->createUser($this->user,$this->userdetail,1);
+        
+        $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],$this->isAdd);
 		if($redirect){
 			$this->showList("Admin Staff has been saved successfully");
 			$this->user = new User;

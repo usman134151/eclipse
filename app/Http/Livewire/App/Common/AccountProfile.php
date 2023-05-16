@@ -100,8 +100,15 @@ class AccountProfile extends Component
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
 		$userService = new UserService;
-        $this->user = $userService->createUser($this->user,$this->userdetail,1);
-		$this->user = new User;
+       // dd($this->user);
+        $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],false);
+    	// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => "Account profile has been saved",
+			]);
+	//	$this->user = new User;
 
 
 	}
@@ -122,7 +129,7 @@ class AccountProfile extends Component
         $this->user=$user;
         $this->userdetail=$user['userdetail']->toArray();
         $this->label="Edit";
-        $this->isAdd=false;
+      
 
 
     }

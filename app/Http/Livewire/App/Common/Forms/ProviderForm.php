@@ -131,7 +131,7 @@ class ProviderForm extends Component
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
 		$userService = new UserService;
-        $this->user = $userService->createUser($this->user,$this->userdetail,2);
+        $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
 		if($redirect){
 			$this->showList("Provider has been saved successfully");
 			$this->user = new User;

@@ -240,12 +240,8 @@
                         </div>
 
                         <div class="col-12 justify-content-center form-actions d-flex">
-                            <button type="button" class="btn btn-outline-dark rounded mx-2"
-                                wire:click.prevent="showList">
-                                Cancel
-                            </button>
-                            <button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
-                            <button type="submit" class="btn btn-primary rounded">Next</button>
+                            <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save Profile</button>
+                            
                         </div>
                     </form>
                 </div>

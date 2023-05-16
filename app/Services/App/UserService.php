@@ -32,7 +32,7 @@ class UserService{
         foreach ($selectedIndustries as $industry_id) {
           $user->industries()->attach($industry_id);
         }
-        if($email_invitation)
+        if($email_invitation && $isAdd)
         {
           
           //$request->request->add(['data' => $user]); //add invoice id into request
