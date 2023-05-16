@@ -244,7 +244,7 @@
                                 wire:click.prevent="showList">
                                 Cancel
                             </button>
-                            <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
+                            <button type="submit" class="btn btn-primary rounded mx-2">Save & Exit</button>
                             <button type="submit" class="btn btn-primary rounded">Next</button>
                         </div>
                     </form>
