@@ -74,7 +74,7 @@ Route::group([
 
 			// Admin Department Routes
 			Route::view('/admin/department', 'tenant/common/department', ["showForm"=>false]);
-			Route::view('/admin/department/create', 'tenant/common/department', ["showForm"=>true]);
+			Route::view('/admin/department/create-department', 'tenant/common/department', ["showForm"=>true]);
 			// End of Admin Department Routes
 
 			// Admin Staff Routes
