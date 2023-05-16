@@ -20,7 +20,8 @@ class Booknow extends Component
     ]];
     public $setupValues = [
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'assignment.timezone_id','','timezone',0]],
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'assignment.accommodation_id','','accommodation',1]]
+        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'assignment.accommodation_id','','accommodation',1]],
+        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', '', '', 'name', false, 'assignment.service_id','','services',2]]
 	];
 
     public $services=[
