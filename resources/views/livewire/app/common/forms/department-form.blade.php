@@ -121,30 +121,30 @@
                                                     </div>
                                                 </div>
                                                 {{-- company dropdown --}}
-                                                <div class="col-md-6 col-12">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="industry-column">Company<span
-                                                                class="mandatory" aria-hidden="true">*</span></label>
-                                                         {{-- Updated by Shanila to add dropdown--}}
-                                                              {!! $setupValues['companies']['rendered'] !!}
-                                                                {{-- End of update by Shanila --}}
-                                                    </div>
+                                                <div class="col-lg-6 pe-lg-5 mb-4">
+                                                    <label class="form-label" for="company-column">
+                                                        Company
+                                                        <span class="mandatory" aria-hidden="true">
+                                                            *
+                                                        </span>
+                                                    </label>
+
+                                                    {!! $setupValues['companies']['rendered'] !!}
+                                                    @error('department.company_id')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="mb-4">
                                                         <label class="form-label" for="department-website">
-                                                            Department Website <span class="mandatory"
-                                                                aria-hidden="true">*</span>
+                                                            Department Website
                                                         </label>
                                                         <input type="text" id="department-website"
                                                                     class="form-control" name="department-website"
                                                                     placeholder="Enter Website URL" required
                                                                     aria-required="true" wire:model.defer="department.department_website"/>
-                                                                    @error('department.department_website')
-												            <span class="d-inline-block invalid-feedback mt-2">
-													        {{ $message }}
-												            </span>
-												            @enderror
                                                     </div>
                                                     </div>
                                                         <div class="col-md-6 col-12">
@@ -154,6 +154,11 @@
                                                                  {{-- Updated by Shanila to add dropdown--}}
                                                                       {!! $setupValues['industries']['rendered'] !!}
                                                                         {{-- End of update by Shanila --}}
+                                                                        @error('department.industry_id')
+                                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                                            {{ $message }}
+                                                                        </span>
+                                                                        @enderror
                                                             </div>
                                                         </div>
                                                     <!-- Department Business Hours -->
