@@ -111,7 +111,7 @@
                                                                 aria-hidden="true">*</span>
                                                         </label>
                                                         <input type="text" id="department-name" class="form-control"
-                                                            name="department-name" placeholder="Enter department-name*"
+                                                            name="department-name" placeholder="Enter department name"
                                                             required aria-required="true" wire:model.defer="department.name" />
                                                             @error('department.name')
 												<span class="d-inline-block invalid-feedback mt-2">
@@ -120,40 +120,42 @@
 												@enderror
                                                     </div>
                                                 </div>
-
-                                                <!-- Industry -->
+                                                {{-- company dropdown --}}
                                                 <div class="col-md-6 col-12">
                                                     <div class="mb-4">
-                                                        <label class="form-label" for="industry-column">Industry<span
+                                                        <label class="form-label" for="industry-column">Company<span
                                                                 class="mandatory" aria-hidden="true">*</span></label>
                                                          {{-- Updated by Shanila to add dropdown--}}
-                                                              {!! $setupValues['industries']['rendered'] !!}
+                                                              {!! $setupValues['companies']['rendered'] !!}
                                                                 {{-- End of update by Shanila --}}
                                                     </div>
                                                 </div>
-
-                                                <div class="row">
-
-                                                    <!--  Department Website -->
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-12">
-                                                            <div class="mb-4">
-                                                                <label class="form-label" for="department-website">
-                                                                    Department Website
-                                                                </label>
-                                                                <input type="text" id="department-website"
+                                                <div class="col-md-6 col-12">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="department-website">
+                                                            Department Website <span class="mandatory"
+                                                                aria-hidden="true">*</span>
+                                                        </label>
+                                                        <input type="text" id="department-website"
                                                                     class="form-control" name="department-website"
                                                                     placeholder="Enter Website URL" required
-                                                                    aria-required="true" wire:model="department.department_website"/>
+                                                                    aria-required="true" wire:model.defer="department.department_website"/>
                                                                     @error('department.department_website')
 												            <span class="d-inline-block invalid-feedback mt-2">
 													        {{ $message }}
 												            </span>
 												            @enderror
+                                                    </div>
+                                                    </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="industry-column">Industry<span
+                                                                        class="mandatory" aria-hidden="true">*</span></label>
+                                                                 {{-- Updated by Shanila to add dropdown--}}
+                                                                      {!! $setupValues['industries']['rendered'] !!}
+                                                                        {{-- End of update by Shanila --}}
                                                             </div>
                                                         </div>
-                                                    </div>
-
                                                     <!-- Department Business Hours -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
@@ -673,7 +675,7 @@
                                                             class="btn btn-outline-dark rounded px-4 py-2"
                                                             wire:click.prevent="showList">Cancel</button>
                                                         <button type="submit"
-                                                            class="btn btn-primary rounded px-4 py-2">Save
+                                                            class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save
                                                             & Exit</button>
                                                         <button type="submit" class="btn btn-primary rounded px-4 py-2"
                                                         x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">Next</button>
@@ -687,7 +689,7 @@
                                 </section>
                             </div><!-- end Customer Info  -->
 
-                            
+
                             <!--BEGIN: Service Catalog-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
@@ -715,5 +717,4 @@
             </div>
         </div>
     </div>
-
 </div>
