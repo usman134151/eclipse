@@ -6,17 +6,30 @@ use Livewire\Component;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Tenant\User;
+use App\Models\Tenant\Company;
+use App\Models\Tenant\SetupValue;
 use Livewire\WithFileUploads;
 use App\Helpers\SetupHelper;
+
 class Customer extends Component
 {
     use WithFileUploads;
     public $file;
     public $users = [];
+    
+    //setup values
+    public $companies, $languages, $ethnicities, $genders;
 
     public function render()
     {
         return view('livewire.app.common.import.customer');
+    }
+
+    public function mount(){
+       $this->companies=Company::get()->where('status',1);
+       $this->languages=SetupValue::get()->where('setup_id',1);
+       $this->genders=SetupValue::get()->where('setup_id',2);
+       $this->ethnicities=SetupValue::get()->where('setup_id',3);
     }
 
     public function updatedFile()
@@ -56,7 +69,7 @@ class Customer extends Component
             $i++;
 
         }
-
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function save()

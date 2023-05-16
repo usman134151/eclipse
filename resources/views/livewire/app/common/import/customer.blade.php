@@ -44,9 +44,9 @@
     <input type="file" wire:model="file">
 
     @if ($users)
-        <h2>Preview Users</h2>
+        <h2 class="mt-5">Preview Users</h2>
 		<div class="table-responsive">
-        <table id="unassigned_data" class="table table-hover" aria-label="Admin Staff Teams Table">
+        <table id="unassigned_data" class="table" aria-label="Admin Staff Teams Table">
           <thead>
             <tr role="row">
               <th scope="col" class="text-center">
@@ -55,7 +55,7 @@
               <th scope="col">Customer</th>
               <th scope="col">Attributes</th>
               <th scope="col">Address</th>
-              <th scope="col">Roles</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -64,24 +64,138 @@
               <td class="text-center">
                 <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
               </td>
-              <td width=25%>
+              <td width=33%>
                 <div class="row g-2">
  
                   <div class="col-md-10">
-                    <h6 class="fw-semibold">
-					<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
-					<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" /></h6>
-                    <p><input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" /></p>
+                   
+					<div>
+						<label class="form-label" for="First Name">First Name</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
+					</div>
+					<div>
+						<label class="form-label" for="First Name">Last Name</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
+					</div>
+					<div>
+						<label class="form-label" for="First Name">Last Name</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
+					</div>	
                   </div>
                 </div>
               </td>
-              <td>
-                <p></p>
+              <td width=33%>
+				<div>
+			  <label class="form-label" for="company">
+				Company
+              </label>
+			  <select  class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.company_id'>
+			  @foreach($companies as $company)
+			    <option value="{{$company->id}}">{{$company->name}}</option>
+			  @endforeach
+			</select></div>
+			<div>
+			<label class="form-label" for="Language">
+				Language
+              </label>
+			  <select class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  @foreach($languages as $language)
+			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
+			  @endforeach
+			</select>
+			</div>
+			<div>
+			<label class="form-label" for="Ethnicity">
+				Ethnicity
+            </label>
+			  <select class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  @foreach($ethnicities as $ethnicity)
+			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
+			  @endforeach
+			</select>
+			</div>
+			<div>
+			<label class="form-label" for="Language">
+				Gender
+              </label>
+			  <select class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  @foreach($genders as $gender)
+			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
+			  @endforeach
+			</select>
+			</div>
+			<div>
+			<label class="form-label" for="Language">
+				Roles
+              </label>
+			  <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <label class="form-check-label" for="CompanyAdmin">
+                    Company Admin
+                </label>
+              </div>
+			  <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <label class="form-check-label" for="CompanyAdmin">
+					Supervisor
+                </label>
+              </div>
+			  <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <label class="form-check-label" for="CompanyAdmin">
+					Requester
+                </label>
+              </div>
+			  <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <label class="form-check-label" for="CompanyAdmin">
+					Service Consumer
+                </label>
+              </div>
+			  <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <label class="form-check-label" for="CompanyAdmin">
+					Participant
+                </label>
+              </div>			  			  			  			  
+			  <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <label class="form-check-label" for="CompanyAdmin">
+					Billing Manager
+                </label>
+              </div>	
+			</select>
+			</div>
               </td>
-              <td class="text-center">Example Company</td> 
-              <td>
-                Supervisor
+			  <td width=33%>
+                <div class="row g-2">
+ 
+                  <div class="col-md-10">
+                   
+					<div>
+						<label class="form-label" for="First Name">Address Line 1</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.address_line1" class="form-control" /> 
+					</div>
+					<div>
+						<label class="form-label" for="First Name">Address Line 2</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.address_line2" class="form-control" />
+					</div>
+					<div>
+						<label class="form-label" for="First Name">City</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.city" class="form-control" />
+					</div>	
+					<div>
+						<label class="form-label" for="First Name">State</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.state" class="form-control" />
+					</div>	
+					<div>
+						<label class="form-label" for="First Name">Country</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.country" class="form-control" />
+					</div>	
+                  </div>
+                </div>
               </td>
+
             </tr>
 			@endforeach
             
