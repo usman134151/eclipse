@@ -154,7 +154,7 @@
                                                 </svg>
                                                 Requester
                                             </button>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -242,9 +242,7 @@
                                                         class="fa fa-question-circle text-muted" aria-hidden="true"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="" ></i></label>
-                                                <select class="form-select" id="service" wire:key="service-{{ $index }}" wire:model.lazy="services.{{$index}}.services">
-                                                    <option>Select Service</option>
-                                                </select>
+                                                        {!! $setupValues['services']['rendered'] !!}
                                             </div>
                                             <div class="col-lg-6 mb-4 pe-lg-5">
                                                 <label class="form-label">Service Type <span
@@ -344,7 +342,7 @@
                                                                                 </svg>
                                                                                 Service Consumer
                                                                             </button>
-                                                                                    
+
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -389,7 +387,7 @@
                                                                             </svg>
                                                                             Participant
                                                                         </button>
-                                                                                
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1049,7 +1047,7 @@
                                     <div class="col-lg-10 mb-5">
                                         <h2>Discounts</h2>
                                         <div class="d-flex gap-3 flex-column flex-md-row mb-4">
-                                            {{--  
+                                            {{--
                                             <div class="form-check mb-0">
                                                 <input class="form-check-input" id="Coupon-radio-btn" name="discounts"
                                                     type="radio" tabindex="" checked="">
@@ -1067,7 +1065,7 @@
                                                 <label class="form-check-label" for="%Amount">% Amount</label>
                                             </div>
                                         </div>
-                                        {{--  
+                                        {{--
                                         <div class="row mb-4">
                                             <label class="form-label mb-md-0 col-lg-5 col-md-3 align-self-center" for="coupon-code">Coupon
                                                 Code</label>
@@ -2103,7 +2101,7 @@
                                         id="EveryDays" value="option2">
                                     <label class="form-check-label" for="EveryDays"> Every ___ Days</label>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="col-lg-8">
