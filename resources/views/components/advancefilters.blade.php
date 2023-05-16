@@ -32,11 +32,9 @@
     </div>
     <div class="col-lg-5 ps-lg-3 mb-5">
         <label class="form-label" for="service">Filter by Service</label>
-        <select data-placeholder="Select Service" multiple class="select2 form-select" tabindex="" id="service">
-            <option value=""></option>
-            <option selected>Shelby Sign Language</option>
-            <option selected>Language Translation Services</option>
-        </select>
+        {!! App\Helpers\SetupHelper::createDropDown('ServiceCategory', 'id',
+        'name', 'service_status', 1, 'name', true, '',
+        '','Service_filter') !!}
     </div>
     @endif
     <div class="col-lg-2 d-flex text-nowrap align-items-center align-self-end mb-5">
