@@ -50,7 +50,7 @@ class DepartmentForm extends Component
         $this->step=2;
 		$this->department->added_by = 1;
         $departmentService = new DepartmentService;
-        $this->department = $departmentService->createDeparment($this->department);
+        $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers);
         $this->department = new Department;
 
 	}
