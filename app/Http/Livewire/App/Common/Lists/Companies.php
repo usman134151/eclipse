@@ -155,6 +155,6 @@ final class Companies extends PowerGridComponent
     }
 	function showProfile($id) {
 		// Emits an event to show the customer profile
-        $this->emit('showProfile', Company::with(['phones'])->find($id));
+        $this->emit('showProfile', Company::with(['phones','addresses'])->find($id));
 	}
 }
