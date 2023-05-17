@@ -1,4 +1,4 @@
-<div>
+<div x-data="{accommodationServicesAccess: false , companiesCustomers: false , teamsProviderAccess: false}">
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -1183,7 +1183,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1199,7 +1199,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a @click="companiesCustomers = true" href="#"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1228,7 +1228,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1244,7 +1244,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="companiesCustomers = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1273,7 +1273,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1289,7 +1289,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="companiesCustomers = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1318,7 +1318,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a>Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1334,7 +1334,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="companiesCustomers = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1363,7 +1363,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1379,7 +1379,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="companiesCustomers = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1408,7 +1408,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1424,7 +1424,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="companiesCustomers = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1557,7 +1557,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1573,7 +1573,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="teamsProviderAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1602,7 +1602,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1618,7 +1618,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="teamsProviderAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1647,7 +1647,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1663,7 +1663,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="teamsProviderAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1692,7 +1692,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="align-middle">
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1708,7 +1708,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="teamsProviderAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1737,7 +1737,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a>Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1753,7 +1753,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="teamsProviderAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1782,7 +1782,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
                                                                     <td class="text-center">
@@ -1798,7 +1798,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="teamsProviderAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1928,7 +1928,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a>Example
                                                                             Company</a>
                                                                     </td>
 
@@ -1943,7 +1943,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="accommodationServicesAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -1972,7 +1972,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a>Example
                                                                             Company</a>
                                                                     </td>
 
@@ -1987,7 +1987,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="accommodationServicesAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -2016,7 +2016,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
 
@@ -2031,7 +2031,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="accommodationServicesAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -2060,7 +2060,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a>Example
                                                                             Company</a>
                                                                     </td>
 
@@ -2075,7 +2075,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="accommodationServicesAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -2104,7 +2104,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
 
@@ -2119,7 +2119,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="accommodationServicesAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -2148,7 +2148,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a @click="offcanvasOpen = true">Example
+                                                                        <a >Example
                                                                             Company</a>
                                                                     </td>
 
@@ -2163,7 +2163,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        <a href="#"
+                                                                        <a href="#" @click="accommodationServicesAccess = true"
                                                                             class="btn btn-sm btn-secondary rounded btn-hs-icon d-inline-flex">
                                                                             <svg width="19" height="20"
                                                                                 viewBox="0 0 19 20" fill="none"
@@ -2590,14 +2590,18 @@
                                 </div>
                             </form>
                         </div>
+                        {{-- END: User Access --}}
                     </div>
-                    {{-- END: User Access --}}
+                    {{-- END: Tab Access --}}
                 </div>
             </div>
             {{-- Card Body --}}
             {{-- END: Steps --}}
         </div>
     </div>
+    @include('panels.user-access.accommodation-service-access')
+    @include('panels.user-access.companies-customer-acess')
+    @include('panels.user-access.teams-provider-access')
 </div>
 
 @push('scripts')
