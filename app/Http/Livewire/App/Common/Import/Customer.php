@@ -10,6 +10,7 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\SetupValue;
 use Livewire\WithFileUploads;
 use App\Helpers\SetupHelper;
+use App\Services\App\UserService;
 
 class Customer extends Component
 {
@@ -34,6 +35,11 @@ class Customer extends Component
 
     public function updatedFile()
     {
+        $this->validate([
+            'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ]);
+
+
         $rows = Excel::toArray([], $this->file)[0];
         $this->users=[];
         //dd($rows);
@@ -46,8 +52,8 @@ class Customer extends Component
 
                 $user['first_name'] = $row[0];
                 $user['last_name'] = $row[1];
-                $user['title'] = $row[2];
-                $user['dob'] = $row[3];
+                $user['userDetails']['title'] = $row[2];
+                //$user['dob'] = $row[3];
                 $user['email'] = $row[4];
                 $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
                 $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
@@ -61,6 +67,7 @@ class Customer extends Component
                 $user['userDetails']['address_line1']=$row[14];
                 $user['userDetails']['address_line2']=$row[15];
                 $user['userDetails']['user_introduction']=$row[16];
+                $user['status']=1;
 
               
                 $this->users[] = $user;
@@ -74,22 +81,27 @@ class Customer extends Component
 
     public function save()
     {
-        //dd($this->users);
+        $userService = new UserService;
 
-//now this is normal array again so have to reconvert it to user model object and call user services function
-        foreach($this->users as $userData){
-            $user=new User();
-            $user = new User();
-
+        foreach ($this->users as $userData) {
+            $user = new User;
+        
             // Loop through the input array and set each key-value pair to the corresponding model attribute
             foreach ($userData as $key => $value) {
                 // Use the 'snake_case' version of the key to match the model attribute name
                 $attribute = \Illuminate\Support\Str::snake($key);
-                $user->{$attribute} = $value;
+                if($attribute!="user_details"){
+                    
+                    $user->{$attribute} = $value;
+                }
+                $user->name=$user->first_name.' '.$user->last_name;
             }
-
-            dd($user);
+          //  dd($user);
+        
+           // $user->save(); // Save the user model to the database
+            
+            // Call the createUser method of UserService and pass the user model along with other parameters
+            $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
         }
-        $this->users = [];
     }
 }

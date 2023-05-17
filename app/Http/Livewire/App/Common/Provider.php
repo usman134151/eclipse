@@ -10,7 +10,7 @@ class Provider extends Component
 	public $showForm;
 	public $showProfile;
 	public $importFile;
-
+	public $status;
     protected $listeners = [
 		'showList' => 'resetForm',
 		'showProfile' => 'showProfile',
@@ -31,6 +31,7 @@ class Provider extends Component
 
 	public function render()
 	{
+		
 		return view('livewire.app.common.provider');
 	}
 
@@ -39,7 +40,9 @@ class Provider extends Component
 
 	}
 
-	public function mount() {}
+	public function mount() {
+
+	}
 
 	function showForm($user = null)
 	{

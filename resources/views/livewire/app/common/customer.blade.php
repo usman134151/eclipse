@@ -93,7 +93,8 @@
 								
 								<div class="col-12">
 									<div class="card">
-										@livewire('app.common.lists.customers', key(Str::random(10)))
+									
+										@livewire('app.common.lists.customers',['status' => 1], key(Str::random(10)))
 									
 							{{-- Icon Legend Bar - Start --}}
 							<div class="d-flex actions gap-3 justify-content-end mb-2">

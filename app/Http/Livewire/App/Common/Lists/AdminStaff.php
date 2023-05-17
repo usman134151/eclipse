@@ -54,8 +54,10 @@ final class AdminStaff extends PowerGridComponent
 
 	public function datasource(): Builder
     {
+		
 
 		return User::query()
+		->where('status',$this->status)
 		->whereHas('roles', function ($query) {
 			$query->wherein('role_id',[1,3]);
 		})->join('user_details', function ($userdetails) {
@@ -64,7 +66,8 @@ final class AdminStaff extends PowerGridComponent
 			'users.id',
 			'users.name',
 			'users.email',
-			'user_details.phone'
+			'user_details.phone',
+			'status'
 		])
 
 ;
@@ -178,6 +181,12 @@ final class AdminStaff extends PowerGridComponent
 	    User::query()->where('id',$id)->update([
 			 $field => $value,
 		 ]);
+		 $this->dispatchBrowserEvent('swal:modal', [
+			'type' => 'success',
+			'title' => 'Success',
+			'text' => 'Status updated',
+		]);
+		
 
 	 }
      function showProfile($id) {

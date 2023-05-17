@@ -14,6 +14,7 @@ final class Customers extends PowerGridComponent
 	protected $listeners = ['refresh'=>'setUp'];
 	public $name;
 	public string $primaryKey = 'users.id';
+	public $status;
 	// public string $sortField = 'users.id';
 
 	/*
@@ -60,6 +61,7 @@ final class Customers extends PowerGridComponent
 		// 	});
 		
 		return User::query()
+		->where('users.status',$this->status)
 		->whereHas('roles', function ($query) {
 			$query->where('role_id', 4);
 		})->join('companies', function ($companies) {
@@ -71,7 +73,8 @@ final class Customers extends PowerGridComponent
 			'users.name',
 			'users.email',
 			'companies.name as company',
-			'user_details.phone'
+			'user_details.phone',
+			'users.status'
 		])
 
 ;
@@ -166,6 +169,11 @@ final class Customers extends PowerGridComponent
 		// Updates the specified field of the record with the new value
 		User::query()->find($id)->update([
 			$field => $value,
+		]);
+		$this->dispatchBrowserEvent('swal:modal', [
+			'type' => 'success',
+			'title' => 'Success',
+			'text' => 'Status updated',
 		]);
 	}
 

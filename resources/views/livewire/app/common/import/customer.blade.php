@@ -42,7 +42,11 @@
     <h2>Upload Excel File</h2>
 
     <input type="file" wire:model="file">
-
+	@error('file')
+	<span class="d-inline-block invalid-feedback mt-2">
+		{{ $message }}
+	</span>
+	@enderror
     @if ($users)
         <h2 class="mt-5">Preview Users</h2>
 		<div class="table-responsive">

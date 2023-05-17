@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\app\common\lists;
+namespace App\Http\Livewire\App\Common\Lists;
 
 use App\Models\Tenant\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,7 +13,8 @@ final class Providers extends PowerGridComponent
 	use ActionButton;
 	protected $listeners = ['refresh'=>'setUp'];
 	public $name;
-	public string $primaryKey = 'users.id';
+	public $status;
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -22,11 +23,8 @@ final class Providers extends PowerGridComponent
 	| Setup Table's general features
 	|
 	*/
-
 	public function setUp(): array
 	{
-
-
 		$this->showCheckBox();
 
 		return [
@@ -35,7 +33,7 @@ final class Providers extends PowerGridComponent
 				->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
 			Header::make()->showSearchInput()->showToggleColumns(),
 			Footer::make()
-				->showPerPage(config('app.per_page'))
+                ->showPerPage(config('app.per_page'))
 				->showRecordCount(),
 		];
 	}
@@ -53,22 +51,29 @@ final class Providers extends PowerGridComponent
 	*
 	* @return Builder<\App\Models\Tenant\User>
 	*/
+
 	public function datasource(): Builder
-	{
+    {
+		
+
 		return User::query()
+		->where('status',$this->status)
 		->whereHas('roles', function ($query) {
-			$query->where('role_id', 2);
+			$query->wherein('role_id',[2]);
 		})->join('user_details', function ($userdetails) {
 			$userdetails->on('user_details.user_id', '=', 'users.id');
 		})->select([
 			'users.id',
 			'users.name',
 			'users.email',
-            'users.status',
-			'user_details.phone'
-        ]);
+			'user_details.phone',
+			'status'
+		])
 
-	}
+;
+
+    }
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -102,22 +107,26 @@ final class Providers extends PowerGridComponent
 	public function addColumns(): PowerGridEloquent
 	{
 		return PowerGrid::eloquent()
+
 		->addColumn('name')
-		->addColumn('team', function (User $model) {
+		->addColumn('customer', function (User $model) {
 			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
 		})
 		->addColumn('phone')
-		->addColumn('upcoming_appointments', function () {
-			return "<div class='text-center'>5</div>";
+		->addColumn('upcoming', function (User $model) {
+			return rand(0,20);
 		})
         ->addColumn('status', function (User $model) {
 			return ($model->status);
 		})
-		->addColumn('edit', function(User $model) {
-            return "<div class='d-flex actions'><a href='#' wire:click='edit({$model->id})' title='Edit Provider' aria-label='Edit Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' wire:click=\"showProfile($model->id)\" aria-label='View Provider' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View Provider' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' title='More Options' aria-label='More Options' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='Edit' aria-label='Edit' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Schedule</a><a title='Edit' aria-label='Edit' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Payment</a><a title='Message Customer' aria-label='Message Customer' class='dropdown-item' href='#'><i class='fa fa-comment'></i>Chat with Provider</a><a href='javascript:void(0)' aria-label='Deactivate' title='Deactivate' class='dropdown-item'><i class='fa fa-times-circle'></i>Deactivate</a></div></div></div></div>";
-        });
-	}
 
+		->addColumn('edit', function(User $model) {
+			return "<div class='d-flex actions'>
+            <a href='#' wire:click=\"edit($model->id)\" title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
+            <a href='#' title='View Team' aria-label='View Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'  wire:click=\"showProfile($model->id)\"><svg aria-label='View Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
+            </div>";
+		});
+	}
     function edit($id){
         // Emits an event to show the form for editing a record
         $this->emit('showForm', User::with(['userdetail'])->find($id));
@@ -140,47 +149,56 @@ final class Providers extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Provider', 'team', '')
-				->field('team', 'users.name')
+			Column::make('Name', 'Provider', '')
+				->field('customer', 'users.name')
 				->searchable()
 				->makeinputtext()
-                ->placeholder('Name')
 				->sortable(),
-			Column::make('Phone Number', 'phone', ''),
-				// ->sortable(),
-			Column::make('Upcoming Appointments', 'upcoming_appointments', ''),
-            Column::make('Status', 'status', '')
-                ->toggleable(1, 'Deactivated', 'Activated'),
-			Column::make('Actions', 'edit')->visibleInExport(false),
+
+
+
+
+            // ->editOnClick(),
+            Column::make('Phone Number', 'phone', '')
+			->searchable()
+				->makeinputtext()
+				->sortable(),
+			Column::make('Upcoming Appointments', 'upcoming', ''),
+			
+	
+			Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
+			->toggleable(1, 'Deactivated', 'Activated'),
+		   Column::make('Actions', 'edit')->visibleInExport(false)
 		];
 	}
 
-	// A method to handle the toggleable columns update event
-	public function onUpdatedToggleable(string $id, string $field, string $value): void
-     {
-         // Find the user record by ID
-        $user = User::query()->find($id);
-
-        // Update the field if the user record exists
-        if ($user) {
-        $user->update([
-            $field => $value,
-        ]);
-         }
-    }
 
 
-	// A method to handle the editable columns update event
-	public function onUpdatedEditable(string $id, string $field, string $value): void
-	{
-		// Updates the specified field of the record with the new value
-		User::query()->find($id)->update([
-			$field => $value,
+
+
+	 // A method to handle the toggleable columns update event
+	 public function onUpdatedToggleable(string $id, string $field, string $value): void
+	 {
+
+		 // Updates the specified field of the record with the new value
+
+	    User::query()->where('id',$id)->update([
+			 $field => $value,
+		 ]);
+		 $this->dispatchBrowserEvent('swal:modal', [
+			'type' => 'success',
+			'title' => 'Success',
+			'text' => 'Status updated',
 		]);
+		
+
+	 }
+     function showProfile($id) {
+
+		// Emits an event to show the customer profile
+		$this->emit('showProfile');
+
+		$this->emit('showProfile', User::with(['userdetail'])->find($id));
 	}
 
-	function showProfile($id) {
-		// Emits an event to show the customer profile
-		$this->emit('showProfile', User::with(['userdetail','industries','company'])->find($id));
-	}
 }

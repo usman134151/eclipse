@@ -11,17 +11,21 @@ class UserService{
 
     public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true,$userCompanyAddress='',$userCustomAddresses=[]){
      
-      if($isAdd){
+      if($isAdd && !(User::where('email', $user->email)->exists())){
           $user->password=bcrypt(Str::random(8));
           $user->security_token = Str::random(32);
-        }
-       
-        $user->save();
-        
-        if($isAdd){
+          $user->save();
           $user->roles()->attach($role);
+          $userId=$user->id;
         }
-        $userdetail['user_id'] = $user->id;
+       else{
+        //if user is in database, attach id
+        $existingUser = User::where('email', $user->email)->first();
+        $userId = $existingUser->id;
+       }
+        
+     
+        $userdetail['user_id'] = $userId;
         $userDetailModel = UserDetail::updateOrCreate(['user_id' => $user->id], $userdetail);
             
      

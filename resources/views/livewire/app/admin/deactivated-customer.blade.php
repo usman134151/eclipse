@@ -18,7 +18,7 @@
                   </div>
                   </div>
                   {{-- updated by Ali to list of deactivated-customer --}}
-                  @livewire('app.common.lists.deactivated-customer', key(Str::random(10)))
+                  @livewire('app.common.lists.customers', ['status' => 1], key(Str::random(10)))
                   
                  {{-- icon bar start--}}
                  <div class="d-flex actions gap-3 justify-content-end mb-2">
