@@ -268,7 +268,9 @@
                                                                     <div class="row mb-1">
                                                                         <div class="col-md-12">
                                                                             <p class="font-family-tertiary">
-                                                                                (923) 023-9683
+                                                                                @foreach ($company['phones'] as $phone)
+                                                                                     <p>{{ $phone['phone_number'] ?? '' }}</p>
+                                                                                    @endforeach
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -282,19 +284,11 @@
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p class="font-family-tertiary">
-                                                                                Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                4209 AUSTRALIA
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <p class="text-sm">
-                                                                                <a href="#"
-                                                                                    class="font-family-tertiary text-primary">
-                                                                                    Mrs 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </a>
+                                                                                @foreach ($company['addresses'] as $address)
+                                                                                @if ($address['address_line1'] || $address['address_line2'] || $address['city']|| $address['state'] || $address['zip'] || $address['country'])
+                                                                                    <p> {{ $address['address_line1'] ?? '' }} {{ $address['address_line2'] ?? '' }} {{ $address['city'] ?? '' }} {{ $address['state'] ?? '' }} {{ $address['zip'] ?? '' }} {{ $address['country'] ?? '' }}</p>
+                                                                                @endif
+                                                                            @endforeach
                                                                             </p>
                                                                         </div>
                                                                     </div>
