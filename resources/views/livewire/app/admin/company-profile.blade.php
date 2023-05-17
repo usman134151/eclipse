@@ -268,9 +268,13 @@
                                                                     <div class="row mb-1">
                                                                         <div class="col-md-12">
                                                                             <p class="font-family-tertiary">
-                                                                                @foreach ($company['phones'] as $phone)
-                                                                                     <p>{{ $phone['phone_number'] ?? '' }}</p>
-                                                                                    @endforeach
+                                                                                     @foreach ($company['phones'] as $phone)
+                                                                                        @if ($phone['phone_number'])
+                                                                                            <p>{{ $phone['phone_number'] }}</p>
+                                                                                             @else
+                                                                                                 <p>N/A</p>
+                                                                                         @endif
+                                                                                     @endforeach
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -284,11 +288,20 @@
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <p class="font-family-tertiary">
-                                                                                @foreach ($company['addresses'] as $address)
-                                                                                @if ($address['address_line1'] || $address['address_line2'] || $address['city']|| $address['state'] || $address['zip'] || $address['country'])
-                                                                                    <p> {{ $address['address_line1'] ?? '' }} {{ $address['address_line2'] ?? '' }} {{ $address['city'] ?? '' }} {{ $address['state'] ?? '' }} {{ $address['zip'] ?? '' }} {{ $address['country'] ?? '' }}</p>
+                                                                                @if (count($company['addresses']) > 0)
+                                                                                     @foreach ($company['addresses'] as $address)
+                                                                                         <p>
+                                                                                        {{ $address['address_line1'] ?? '' }}
+                                                                                        {{ $address['address_line2'] ?? '' }}
+                                                                                        {{ $address['city'] ?? '' }}
+                                                                                        {{ $address['state'] ?? '' }}
+                                                                                        {{ $address['zip'] ?? '' }}
+                                                                                        {{ $address['country'] ?? '' }}
+                                                                                    </p>
+                                                                                     @endforeach
+                                                                                     @else
+                                                                                     <p>N/A</p>
                                                                                 @endif
-                                                                            @endforeach
                                                                             </p>
                                                                         </div>
                                                                     </div>
