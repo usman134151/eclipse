@@ -969,11 +969,26 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <div class="row">
+                                                                 {{--updated by shanila to add duplicate box for In Person --}}
                                                                         <div class="col-lg-6 pe-lg-5 mb-4">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
-                                                                                <label class="form-label text-primary">
-                                                                                    In-Person
-                                                                                </label>
+                                                                            {{-- start loop --}}
+                                                                            @foreach($inpersons as $index=>$inperson)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                                <div class="d-flex justify-content-between">
+                                                                                    <label class="form-label text-primary">
+                                                                                    In-Person {{ $loop->index + 1 }}
+                                                                                    </label>
+                                                                                    <div class="align-items-center gap-2">
+                                                                                        <a wire:click.prevent="removeInPerson({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            <svg class="delete-icon" width="20" height="20"
+                                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                 </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- In-Person Additional Service Charges -->
                                                                                     <div>
@@ -992,7 +1007,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1006,7 +1021,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter charges"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1016,7 +1031,7 @@
                                                                                                         id="x-By-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x-By-duration">
@@ -1030,7 +1045,7 @@
                                                                                                         id="exclude-after-hours-1"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-after-hours-1">
@@ -1045,7 +1060,7 @@
                                                                                                         id="exclude-closed-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-closed-hours">
@@ -1059,8 +1074,10 @@
                                                                                     <!-- /In-Person Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
+                                                                            {{-- end loop --}}
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addInPerson">
                                                                                     <small>
                                                                                         Add Additional Parameter
 
@@ -1080,11 +1097,27 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                         {{-- ended update by shanila for In person box --}}
+                                                                         {{--updated by shanila to add duplicate box for In virual --}}
                                                                         <div class="col-lg-6 ps-lg-5 mb-4">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
+                                                                            {{-- start loop --}}
+                                                                            @foreach($invirtuals as $index=>$invirtual)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                                <div class="d-flex justify-content-between">
                                                                                 <label class="form-label text-primary">
-                                                                                    Virtual
+                                                                                    Virtual {{ $loop->index + 1 }}
                                                                                 </label>
+                                                                                <div class="align-items-center gap-2">
+                                                                                    <a wire:click.prevent="removeInVirtual({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- Virtual Additional Service Charges -->
                                                                                     <div>
@@ -1103,7 +1136,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1117,7 +1150,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1130,7 +1163,7 @@
                                                                                                         tabindex="" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="x_by_duration">
+                                                                                                        for="x_by_duration" wire:key="durations-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.duration">
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1141,7 +1174,7 @@
                                                                                                         id="exclude_after_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude_after_hours">
@@ -1156,7 +1189,7 @@
                                                                                                         id="exclude_closed_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude_closed_hours">
@@ -1170,8 +1203,10 @@
                                                                                     <!-- /Virtual Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
+                                                                            {{-- end loop --}}
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addInVirtual">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -1190,13 +1225,29 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                        {{-- end updated by shanila for duplicating virual box --}}
                                                                     </div>
                                                                     <div class="row">
+                                                                         {{--updated by shanila to add duplicate box for Phone --}}
                                                                         <div class="col-lg-6 pe-lg-5">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
-                                                                                <label class="form-label text-primary">
-                                                                                    Phone
-                                                                                </label>
+                                                                            {{-- start loop --}}
+                                                                            @foreach($phones as $index=>$phone)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                                <div class="d-flex justify-content-between">
+                                                                                    <label class="form-label text-primary">
+                                                                                    Phone {{ $loop->index + 1 }}
+                                                                                    </label>
+                                                                                    <div class="align-items-center gap-2">
+                                                                                        <a wire:click.prevent="removePhone({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            <svg class="delete-icon" width="20" height="20"
+                                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- Phone Additional Service Charges -->
                                                                                     <div>
@@ -1215,7 +1266,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hours"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="phones.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1229,7 +1280,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="phones.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1239,7 +1290,7 @@
                                                                                                         id="x-by-duration-2"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="durations-{{ $index }}" wire:model.lazy="phones.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x-by-duration-2">
@@ -1253,7 +1304,7 @@
                                                                                                         id="exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="phones.{{$index}}.exclude_after_hours" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-after-hours">
@@ -1268,7 +1319,7 @@
                                                                                                         id="excludeclosedhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="excluded_hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="excludeclosedhours">
@@ -1282,8 +1333,9 @@
                                                                                     <!-- /Phone Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addPhone">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -1302,6 +1354,7 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                        {{-- ended by shanila for duplicating box for phones --}}
                                                                         <div class="col-lg-6 ps-lg-5">
                                                                             <div class="border-dashed p-2 rounded mb-1">
                                                                                 <label class="form-label text-primary">
@@ -2463,5 +2516,11 @@
             </div>
         </div>
     </div>
+    <script>
+        function updateVal(attrName,val){
 
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+    </script>
 </div>

@@ -26,6 +26,31 @@ class ProviderForm extends Component
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
         'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]]
 	];
+    public $inpersons=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+
+    ]];
+    public $invirtuals=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+
+    ]];
+    public $phones=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+
+    ]];
+
    public $step = 1,$email_invitation;
    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
 	public function render()
@@ -155,4 +180,46 @@ class ProviderForm extends Component
 
 
      }
+     public function addInPerson(){
+        $this->inpersons[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addInVirtual(){
+        $this->invirtuals[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addPhone(){
+        $this->phones[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function removeInPerson($index)
+    {
+        unset($this->inpersons[$index]);
+        $this->inpersons = array_values($this->inpersons);
+    }
+    public function removeInVirtual($index)
+    {
+        unset($this->invirtuals[$index]);
+        $this->invirtuals = array_values($this->invirtuals);
+    }
+    public function removePhone($index)
+    {
+        unset($this->phones[$index]);
+        $this->phones = array_values($this->phones);
+    }
 }
