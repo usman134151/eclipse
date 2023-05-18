@@ -133,7 +133,7 @@
 	@endif
 	<script>
 	function updateVal(attrName,val){
-	
+	alert(attrName);
 	if(val!=''){
 		Livewire.emit('updateVal', attrName, val);
 	}

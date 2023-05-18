@@ -58,6 +58,7 @@ class Customer extends Component
 	{
 		$this->showForm=false;
 		$this->showProfile = false;
+		$this->importFile=false;
 		if ($message) {
 			$this->confirmationMessage = $message;
 			// Emit an event to display a success message using the SweetAlert package

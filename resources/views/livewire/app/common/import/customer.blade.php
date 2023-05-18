@@ -93,7 +93,7 @@
 			  <label class="form-label" for="company">
 				Company
               </label>
-			  <select  class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.company_id'>
+			  <select  class="form-select" name="users.{{ $loop->index }}.company_name" id="users.{{ $loop->index }}.company_name" wire:model='users.{{ $loop->index }}.company_name'>
 			  @foreach($companies as $company)
 			    <option value="{{$company->id}}">{{$company->name}}</option>
 			  @endforeach
@@ -102,7 +102,7 @@
 			<label class="form-label" for="Language">
 				Language
               </label>
-			  <select class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
 			  @foreach($languages as $language)
 			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
 			  @endforeach
@@ -112,7 +112,7 @@
 			<label class="form-label" for="Ethnicity">
 				Ethnicity
             </label>
-			  <select class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
 			  @foreach($ethnicities as $ethnicity)
 			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
 			  @endforeach
@@ -122,7 +122,7 @@
 			<label class="form-label" for="Language">
 				Gender
               </label>
-			  <select class="select2 form-select select2-hidden-accessible" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
 			  @foreach($genders as $gender)
 			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
 			  @endforeach
@@ -226,5 +226,18 @@
 			</div>
 		</section>
 
+		@push('scripts')
 
+<script>
+    
+    Livewire.on('updateVal', (attrName, val) => {
+		alert(attrName);
+     
+        // Call the updateVal function with the attribute name and value
+       
+        @this.call('updateVal', attrName, val);
+    });
+
+</script>
+@endpush
 

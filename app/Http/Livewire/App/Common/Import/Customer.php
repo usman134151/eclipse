@@ -17,6 +17,7 @@ class Customer extends Component
     use WithFileUploads;
     public $file;
     public $users = [];
+    protected $listeners = ['updateVal' => 'updateVal'];
     
     //setup values
     public $companies, $languages, $ethnicities, $genders;
@@ -68,6 +69,7 @@ class Customer extends Component
                 $user['userDetails']['address_line2']=$row[15];
                 $user['userDetails']['user_introduction']=$row[16];
                 $user['status']=1;
+                $user['company_name']='';
 
               
                 $this->users[] = $user;
@@ -96,12 +98,21 @@ class Customer extends Component
                 }
                 $user->name=$user->first_name.' '.$user->last_name;
             }
-          //  dd($user);
+           // dd($user);
         
            // $user->save(); // Save the user model to the database
             
             // Call the createUser method of UserService and pass the user model along with other parameters
             $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
+
         }
+        $this->showList("Customer data has been imported successfully");
+        $this->users = [];
     }
+
+    public function showList($message = "")
+	{
+		// Save data
+		$this->emit('showList', $message);
+	}
 }
