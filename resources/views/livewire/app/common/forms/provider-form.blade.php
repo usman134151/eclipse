@@ -1007,7 +1007,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.hours">
+                                                                                                    aria-describedby="" wire:key="hour_inpersons-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1021,7 +1021,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter charges"
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_inpersons-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1031,7 +1031,7 @@
                                                                                                         id="x-By-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.duration"/>
+                                                                                                        tabindex="" wire:key="durations_inpersons-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x-By-duration">
@@ -1045,7 +1045,7 @@
                                                                                                         id="exclude-after-hours-1"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.exclude_after_hours"/>
+                                                                                                        tabindex="" wire:key="after_hour_inpersons-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-after-hours-1">
@@ -1060,7 +1060,7 @@
                                                                                                         id="exclude-closed-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex="" wire:key="excluded_hour_inpersons-{{ $index }}" wire:model.lazy="inpersons.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-closed-hours">
@@ -1136,7 +1136,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.hours">
+                                                                                                    aria-describedby="" wire:key="hour_invirtuals-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1150,7 +1150,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_invirtuals-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1160,7 +1160,7 @@
                                                                                                         id="x_by_duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.duration"/>
+                                                                                                        tabindex="" wire:key="durations_invirtuals-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x_by_duration" >
@@ -1174,7 +1174,7 @@
                                                                                                         id="exclude_after_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_after_hours"/>
+                                                                                                        tabindex="" wire:key="after_hour_invirtuals-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude_after_hours">
@@ -1189,7 +1189,7 @@
                                                                                                         id="exclude_closed_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex="" wire:key="excluded_hour_invirtuals-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude_closed_hours">
@@ -1266,7 +1266,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hours"
-                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="phones.{{$index}}.hours">
+                                                                                                    aria-describedby="" wire:key="hour_phones-{{ $index }}" wire:model.lazy="phones.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1280,7 +1280,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="phones.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_phones-{{ $index }}" wire:model.lazy="phones.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1290,7 +1290,7 @@
                                                                                                         id="x-by-duration-2"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="durations-{{ $index }}" wire:model.lazy="phones.{{$index}}.duration"/>
+                                                                                                        tabindex=""  wire:key="durations_phones-{{ $index }}" wire:model.lazy="phones.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x-by-duration-2">
@@ -1304,7 +1304,7 @@
                                                                                                         id="exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="phones.{{$index}}.exclude_after_hours" />
+                                                                                                        tabindex="" wire:key="after_hour_phones-{{ $index }}" wire:model.lazy="phones.{{$index}}.exclude_after_hours" />
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-after-hours">
@@ -1319,7 +1319,7 @@
                                                                                                         id="excludeclosedhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="excluded_hour-{{ $index }}" wire:model.lazy="phones.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex=""  wire:key="excluded_hour_phones-{{ $index }}" wire:model.lazy="phones.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="excludeclosedhours">
@@ -1394,7 +1394,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hours"
-                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.hours">
+                                                                                                    aria-describedby="" wire:key="hour_teleconfrences-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1408,7 +1408,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_teleconfrences-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1418,7 +1418,7 @@
                                                                                                         id="x-By-Duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="durations-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.duration"/>
+                                                                                                        tabindex=""  wire:key="durations_teleconfrences-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x-By-Duration">
@@ -1432,7 +1432,7 @@
                                                                                                         id="exclude-After-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.exclude_after_hours"/>
+                                                                                                        tabindex="" wire:key="after_hour_teleconfrences-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-After-Hours">
@@ -1447,7 +1447,7 @@
                                                                                                         id="exclude-Closed-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex="" wire:key="excluded_hour_teleconfrences-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-Closed-Hours">
@@ -1536,7 +1536,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby=""  wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.hours">
+                                                                                                    aria-describedby=""  wire:key="hour_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1550,7 +1550,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -1561,7 +1561,7 @@
                                                                                                         id="cancellations"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.cancellations"/>
+                                                                                                        tabindex=""  wire:key="cancel_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="cancellations">
@@ -1575,7 +1575,7 @@
                                                                                                         id="excludeAfterHours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.exclude_after_hours"/>
+                                                                                                        tabindex=""  wire:key="after_hour_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="excludeAfterHours">
@@ -1590,7 +1590,7 @@
                                                                                                         id="modification_column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.modification"/>
+                                                                                                        tabindex="" wire:key="modifications_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="modification_column">
@@ -1604,7 +1604,7 @@
                                                                                                         id="exclude_closed_Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex="" wire:key="excluded_hour_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="exclude_closed_Hours">
@@ -1619,7 +1619,7 @@
                                                                                                         id="rescheduling_column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.rescheduling"/>
+                                                                                                        tabindex=""  wire:key="reschedulings_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="rescheduling_column">
@@ -1633,7 +1633,7 @@
                                                                                                         id="bill-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.bill_service_minimum"/>
+                                                                                                        tabindex="" wire:key="bill-service-minimum_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="bill-service-minimum">
@@ -1651,7 +1651,7 @@
                                                                                                         id="1-x-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.duration"/>
+                                                                                                        tabindex="" wire:key="durations_scheduled_inpersons-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-x-by-duration">
@@ -1721,7 +1721,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.hours">
+                                                                                                    aria-describedby="" wire:key="hour_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1735,7 +1735,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter charges"
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -1746,7 +1746,7 @@
                                                                                                         id="cancellations-column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.cancellations"/>
+                                                                                                        tabindex=""  wire:key="cancel_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="cancellations-column">
@@ -1760,7 +1760,7 @@
                                                                                                         id="2-multiply-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.exclude_after_hours" />
+                                                                                                        tabindex=""  wire:key="after_hour_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.exclude_after_hours" />
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="2-multiply-by-duration">
@@ -1775,7 +1775,7 @@
                                                                                                         id="2-exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.modification"/>
+                                                                                                        tabindex=""  wire:key="modifications_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="2-exclude-after-hours">
@@ -1789,7 +1789,7 @@
                                                                                                         id="2-pay-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex=""  wire:key="excluded_hour_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="2-pay-service-minimum">
@@ -1804,7 +1804,7 @@
                                                                                                         id="rescheduling"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.rescheduling"/>
+                                                                                                        tabindex=""  wire:key="reschedulings_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="rescheduling">
@@ -1818,7 +1818,7 @@
                                                                                                         id="bill-service"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.bill_service_minimum"/>
+                                                                                                        tabindex="" wire:key="bill-service-minimum_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="bill-service">
@@ -1836,7 +1836,7 @@
                                                                                                         id="5-exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.duration"/>
+                                                                                                        tabindex="" wire:key="durations_scheduled_virtules-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="5-exclude-after-hours">
@@ -1907,7 +1907,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby=""  wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.hours">
+                                                                                                    aria-describedby=""  wire:key="hour_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1921,7 +1921,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.charges">
+                                                                                                    aria-describedby="" wire:key="charge_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -1932,7 +1932,7 @@
                                                                                                         id="cancellations-checkbox"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.cancellations"/>
+                                                                                                        tabindex="" wire:key="cancel_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="cancellations-checkbox" >
@@ -1946,7 +1946,7 @@
                                                                                                         id="multiplybyduration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.exclude_after_hours"/>
+                                                                                                        tabindex="" wire:key="after_hour_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="multiplybyduration">
@@ -1961,7 +1961,7 @@
                                                                                                         id="1_exclude_after_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.modification"/>
+                                                                                                        tabindex="" wire:key="modifications_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1_exclude_after_hours" >
@@ -1975,7 +1975,7 @@
                                                                                                         id="Pay-Service-Minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex="" wire:key="excluded_hour_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="Pay-Service-Minimum">
@@ -1990,7 +1990,7 @@
                                                                                                         id="Exclude-After-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.rescheduling"/>
+                                                                                                        tabindex="" wire:key="reschedulings_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="Exclude-After-Hours">
@@ -2004,7 +2004,7 @@
                                                                                                         id="billServiceMinimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.bill_service_minimum"/>
+                                                                                                        tabindex=""  wire:key="bill-service-minimum_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="billServiceMinimum">
@@ -2022,7 +2022,7 @@
                                                                                                         id="1exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.duration"/>
+                                                                                                        tabindex="" wire:key="_scheduled_phones-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1exclude-after-hours" >
@@ -2093,7 +2093,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.hours">
+                                                                                                    aria-describedby="" wire:key="hour_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -2107,7 +2107,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.charges"/>
+                                                                                                    aria-describedby="" wire:key="charge_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.charges"/>
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -2118,7 +2118,7 @@
                                                                                                         id="1-exclude-closedHhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.cancellations"/>
+                                                                                                        tabindex="" wire:key="cancel_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-exclude-closedHhours">
@@ -2132,7 +2132,7 @@
                                                                                                         id="1-multiply-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.exclude_after_hours"/>
+                                                                                                        tabindex=""  wire:key="after_hour_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-multiply-by-duration">
@@ -2147,7 +2147,7 @@
                                                                                                         id="1-excludeAfter-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.modification"/>
+                                                                                                        tabindex="" wire:key="modifications_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-excludeAfter-hours">
@@ -2161,7 +2161,7 @@
                                                                                                         id="1-pay-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex="" wire:key="excluded_hour_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-pay-service-minimum">
@@ -2176,7 +2176,7 @@
                                                                                                         id="1-exclude-After-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.rescheduling"/>
+                                                                                                        tabindex="" wire:key="reschedulings_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-exclude-After-hours">
@@ -2190,7 +2190,7 @@
                                                                                                         id="1-bill-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.bill_service_minimum"/>
+                                                                                                        tabindex="" wire:key="bill-service-minimum_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-bill-service-minimum">
@@ -2208,7 +2208,7 @@
                                                                                                         id="x-by-duration-column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.duration"/>
+                                                                                                        tabindex="" wire:key="durations_scheduled_teleconfrences-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="x-by-duration-column">
@@ -2296,7 +2296,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="In-Person"
-                                                                                    aria-describedby="" wire:key="person-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.in_person">
+                                                                                    aria-describedby="" wire:key="person_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.in_person">
                                                                             </div>
                                                                             <div class="align-self-end">
                                                                                 <label class="form-label text-primary">
@@ -2305,7 +2305,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="Virtual"
-                                                                                    aria-describedby="" wire:key="virt-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.virual">
+                                                                                    aria-describedby="" wire:key="virt_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.virual">
                                                                             </div>
                                                                             <div class="align-self-end">
                                                                                 <label class="form-label text-primary">
@@ -2314,7 +2314,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="Phone"
-                                                                                    aria-describedby="" wire:key="phone-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.phone">
+                                                                                    aria-describedby="" wire:key="phone_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.phone">
                                                                             </div>
                                                                             <div class="align-self-end">
                                                                                 <label class="form-label text-primary">
@@ -2323,7 +2323,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="Teleconference"
-                                                                                    aria-describedby="" wire:key="teleconference-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.teleconference">
+                                                                                    aria-describedby="" wire:key="teleconference_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.teleconference">
                                                                             </div>
                                                                         </div>
                                                                         <div class="mx-5">
@@ -2332,7 +2332,7 @@
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
                                                                                         id="hide-from-customers" name=""
-                                                                                        type="checkbox" tabindex="" wire:key="hidecustomer-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_customers"/>
+                                                                                        type="checkbox" tabindex="" wire:key="hidecustomer_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_customers"/>
                                                                                     <label class="form-check-label"
                                                                                         for="hide-from-customers">
                                                                                         <small>
@@ -2344,7 +2344,7 @@
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
                                                                                         id="hide-from-providers" name=""
-                                                                                        type="checkbox" tabindex="" wire:key="hidefromproviders-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_providers"/>
+                                                                                        type="checkbox" tabindex="" wire:key="hidefromproviders_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_providers"/>
                                                                                     <label class="form-check-label"
                                                                                         for="hide-from-providers">
                                                                                         <small>
@@ -2356,7 +2356,7 @@
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
                                                                                         id="x-by-duration" name=""
-                                                                                        type="checkbox" tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.duration"/>
+                                                                                        type="checkbox" tabindex="" wire:key="duration_speclizations-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.duration"/>
                                                                                     <label class="form-check-label"
                                                                                         for="x-by-duration">
                                                                                         <small>
