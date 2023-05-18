@@ -231,8 +231,7 @@
 <script>
     
     Livewire.on('updateVal', (attrName, val) => {
-		alert(attrName);
-     
+	
         // Call the updateVal function with the attribute name and value
        
         @this.call('updateVal', attrName, val);
