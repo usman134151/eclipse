@@ -42,24 +42,149 @@
     <h2>Upload Excel File</h2>
 
     <input type="file" wire:model="file">
-
+	@error('file')
+	<span class="d-inline-block invalid-feedback mt-2">
+		{{ $message }}
+	</span>
+	@enderror
     @if ($users)
-        <h2>Edit Users</h2>
+        <h2 class="mt-5">Preview Users</h2>
+		<div class="table-responsive">
+        <table id="unassigned_data" class="table" aria-label="Admin Staff Teams Table">
+          <thead>
+            <tr role="row">
+              <th scope="col" class="text-center">
+                <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
+              </th>
+              <th scope="col">Provider</th>
+              <th scope="col">Attributes</th>
+              <th scope="col">Address</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+		  @foreach ($users as $user)
+            <tr role="row" class="odd">
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+              </td>
+              <td width=33%>
+                <div class="row g-2">
+ 
+                  <div class="col-md-10">
+				  <div>
+						<label class="form-label" for="Number">Provider Number</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.user_number" class="form-control" />
+					</div>	
+					<div>
+						<label class="form-label" for="First Name">First Name</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
+					</div>
+					<div>
+						<label class="form-label" for="First Name">Last Name</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
+					</div>
+					<div>
+						<label class="form-label" for="First Name">Email</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
+					</div>	
+					
+                  </div>
+                </div>
+				<div >
+                                            <label class="form-label" for="notes-column">
+                                                Add Notes
+                                            </label>
+                                            <textarea class="form-control" rows="3" cols="30" placeholder="" name="notesColumn"
+                                                id="notes-column" wire:model="users.{{ $loop->index }}.userDetails.note"></textarea>
+                                        </div>
+              </td>
+              <td width=33%>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
+			<div>
+			<label class="form-label" for="Language">
+				Language
+              </label>
+			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  @foreach($languages as $language)
+			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
+			  @endforeach
+			</select>
+			</div>
+			<div>
+			<label class="form-label" for="Ethnicity">
+				Ethnicity
+            </label>
+			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  @foreach($ethnicities as $ethnicity)
+			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
+			  @endforeach
+			</select>
+			</div>
+			<div>
+			<label class="form-label" for="Language">
+				Gender
+              </label>
+			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  @foreach($genders as $gender)
+			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
+			  @endforeach
+			</select>
+			</div>
+			<div>
+						<label class="form-label" for="Education">Education</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.education" class="form-control" />
+			</div>	
+					
+			<div>
+						<label class="form-label" for="Experience">Experience</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.experience" class="form-control" />
+					</div>	
+			  </td>
+			  <td width=33%>
+                <div class="row g-2">
+ 
+                  <div class="col-md-10">
+                   
+					<div>
+						<label class="form-label" for="First Name">Address Line 1</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.address_line1" class="form-control" /> 
+					</div>
+					<div>
+						<label class="form-label" for="First Name">Address Line 2</label>	
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.address_line2" class="form-control" />
+					</div>
+					<div>
+						<label class="form-label" for="First Name">City</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.city" class="form-control" />
+					</div>	
+					<div>
+						<label class="form-label" for="First Name">State</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.state" class="form-control" />
+					</div>	
+					<div>
+						<label class="form-label" for="First Name">Country</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.country" class="form-control" />
+					</div>	
+                  </div>
+                </div>
+              </td>
 
-                @endforeach
-            </tbody>
+            </tr>
+
+			@endforeach
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          </tbody>
         </table>
+      </div>
 
         <button wire:click="save">Save</button>
     @endif
@@ -72,5 +197,17 @@
 			</div>
 		</section>
 
+		@push('scripts')
 
+<script>
+    
+    Livewire.on('updateVal', (attrName, val) => {
+	
+        // Call the updateVal function with the attribute name and value
+       
+        @this.call('updateVal', attrName, val);
+    });
+
+</script>
+@endpush
 

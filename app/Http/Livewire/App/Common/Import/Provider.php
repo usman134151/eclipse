@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Livewire\App\Common\Import;
-
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Tenant\User;
+use App\Models\Tenant\Company;
+use App\Models\Tenant\SetupValue;
 use Livewire\WithFileUploads;
+use App\Helpers\SetupHelper;
+use App\Services\App\UserService;
 
 
 class Provider extends Component
@@ -13,15 +16,30 @@ class Provider extends Component
     use WithFileUploads;
     public $file;
     public $users = [];
-
+    protected $listeners = ['updateVal' => 'updateVal'];
+    //setup values
+    public $languages, $ethnicities, $genders;
     public function render()
     {
-        return view('livewire.app.common.import.customer');
+        return view('livewire.app.common.import.provider');
     }
+
+
+    public function mount(){
+       
+        $this->languages=SetupValue::get()->where('setup_id',1);
+        $this->genders=SetupValue::get()->where('setup_id',2);
+        $this->ethnicities=SetupValue::get()->where('setup_id',3);
+     }
 
     public function updatedFile()
     {
+        $this->validate([
+            'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ]);
+
         $rows = Excel::toArray([], $this->file)[0];
+        $this->users=[];
         //dd($rows);
         // Initialize a counter variable
         $i = 0;
@@ -31,13 +49,13 @@ class Provider extends Component
                 $user = [];
                 $user['first_name'] = $row[0];
                 $user['last_name'] = $row[1];
-                $user['title'] = $row[2];
-                $user['dob'] = $row[3];
+                $user['userDetails']['title'] = $row[2];
+                $user['user_dob'] = $row[3];
                 $user['email'] = $row[4];
-                $user['userDetails']['language_id']=$row[5];
-                $user['userDetails']['gender_id']=$row[6];
-                $user['userDetails']['ethnicity_id']=$row[7];
-                $user['userDetails']['user_id']=$row[8];
+                $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
+                $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
+                $user['userDetails']['ethnicity_id']=SetupHelper::getSetupValueByValue($row[7],3);
+                $user['userDetails']['user_number']=$row[8];
                 $user['userDetails']['phone']=$row[9];
                 $user['userDetails']['country']=$row[10];
                 $user['userDetails']['state']=$row[11];
@@ -46,37 +64,57 @@ class Provider extends Component
                 $user['userDetails']['address_line1']=$row[14];
                 $user['userDetails']['address_line2']=$row[15];
                 $user['userDetails']['education']=$row[16];
-                $user['providerDetails']['experience']=$row[17];
+                $user['userDetails']['user_experience']=$row[17];
                 $user['userDetails']['note']=$row[18];
-                dd($user);
+                $user['status']=1;
+            // dd($user);
                 $this->users[] = $user;
 
             }
             $i++;
 
         }
-
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function save()
     {
-        //dd($this->users);
+        $userService = new UserService;
 
-//now this is normal array again so have to reconvert it to user model object and call user services function
-        foreach($this->users as $userData){
-            $user=new User();
-            $user = new User();
-
+        foreach ($this->users as $userData) {
+            $user = new User;
+            if(User::where('email', $userData['email'])->exists()){
+               $user=\App\Models\Tenant\User::where('email',$userData['email'])->first();
+               //dd($user);
+            }
+          
             // Loop through the input array and set each key-value pair to the corresponding model attribute
             foreach ($userData as $key => $value) {
                 // Use the 'snake_case' version of the key to match the model attribute name
                 $attribute = \Illuminate\Support\Str::snake($key);
-                $user->{$attribute} = $value;
+                if($attribute!="user_details"){
+                    
+                    $user->{$attribute} = $value;
+                }
+               
+               
             }
+           // dd($user);
+        
+           // $user->save(); // Save the user model to the database
+           $user->name=$user->first_name.' '.$user->last_name;
+            // Call the createUser method of UserService and pass the user model along with other parameters
+            $userService->createUser($user, $userData['userDetails'], 2, 0, [], 1);
 
-            dd($user);
         }
+        $this->showList("Customer data has been imported successfully");
         $this->users = [];
     }
+
+    public function showList($message = "")
+	{
+		// Save data
+		$this->emit('showList', $message);
+	}
 
 }

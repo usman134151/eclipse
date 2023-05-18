@@ -54,7 +54,7 @@ class Customer extends Component
                 $user['first_name'] = $row[0];
                 $user['last_name'] = $row[1];
                 $user['userDetails']['title'] = $row[2];
-                //$user['dob'] = $row[3];
+                $user['user_dob'] = $row[3];
                 $user['email'] = $row[4];
                 $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
                 $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
