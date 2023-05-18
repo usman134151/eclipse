@@ -1160,10 +1160,10 @@
                                                                                                         id="x_by_duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
-                                                                                                        for="x_by_duration" wire:key="durations-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.duration">
+                                                                                                        for="x_by_duration" >
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1319,7 +1319,7 @@
                                                                                                         id="excludeclosedhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex=""  wire:key="excluded_hour-{{ $index }}" wire:model.lazy="invirtuals.{{$index}}.exclude_closed_hours"/>
+                                                                                                        tabindex=""  wire:key="excluded_hour-{{ $index }}" wire:model.lazy="phones.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="excludeclosedhours">
@@ -1334,6 +1334,7 @@
                                                                                 </div>
                                                                             </div>
                                                                             @endforeach
+                                                                            {{-- ended loops --}}
                                                                             <div class="text-end">
                                                                                 <a href="#" class="fw-bold" wire:click.prevent="addPhone">
                                                                                     <small>
@@ -1355,11 +1356,26 @@
                                                                             </div>
                                                                         </div>
                                                                         {{-- ended by shanila for duplicating box for phones --}}
+                                                                        {{-- updated by shanila to add duplicate box for Teleconference  --}}
                                                                         <div class="col-lg-6 ps-lg-5">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
-                                                                                <label class="form-label text-primary">
-                                                                                    Teleconference
-                                                                                </label>
+                                                                            {{-- loop start --}}
+                                                                            @foreach($teleconfrences as $index=>$teleconfrence)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                                <div class="d-flex justify-content-between">
+                                                                                     <label class="form-label text-primary">
+                                                                                      Teleconference {{ $loop->index + 1 }}
+                                                                                    </label>
+                                                                                    <div class="align-items-center gap-2">
+                                                                                        <a wire:click.prevent="removeteleConference({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            <svg class="delete-icon" width="20" height="20"
+                                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                  </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- Teleconference Additional Service Charges -->
                                                                                     <div>
@@ -1378,7 +1394,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="0"
                                                                                                     aria-label="Hours"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1392,7 +1408,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div class="d-flex">
                                                                                                 <div
@@ -1402,7 +1418,7 @@
                                                                                                         id="x-By-Duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="durations-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="x-By-Duration">
@@ -1416,7 +1432,7 @@
                                                                                                         id="exclude-After-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-After-Hours">
@@ -1431,7 +1447,7 @@
                                                                                                         id="exclude-Closed-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="teleconfrences.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label text-sm"
                                                                                                         for="exclude-Closed-Hours">
@@ -1445,8 +1461,10 @@
                                                                                     <!-- /Teleconference Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
+                                                                            {{-- end loop --}}
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addTeleconference">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -1465,6 +1483,7 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                        {{--ended update by shanila to add duplicate box for Teleconference  --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1482,11 +1501,26 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <div class="row">
+                                                                         {{-- update by shanila to add duplicate box for inperson  --}}
                                                                         <div class="col-lg-6 pe-lg-5 mb-4">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
-                                                                                <label class="form-label text-primary">
-                                                                                    In-Person
-                                                                                </label>
+                                                                            {{-- start loop --}}
+                                                                            @foreach ($scheduled_inpersons as $index=>$scheduled_inperson)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                                <div class="d-flex justify-content-between">
+                                                                                 <label class="form-label text-primary">
+                                                                                    In-Person {{ $loop->index + 1 }}
+                                                                                 </label>
+                                                                                 <div class="align-items-center gap-2">
+                                                                                    <a wire:click.prevent="removescheduledInPerson({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                 </div>
+                                                                                </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- In-Person Additional Service Charges -->
                                                                                     <div>
@@ -1502,7 +1536,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby=""  wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1516,7 +1550,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter Charges"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -1527,7 +1561,7 @@
                                                                                                         id="cancellations"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="cancellations">
@@ -1541,7 +1575,7 @@
                                                                                                         id="excludeAfterHours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="excludeAfterHours">
@@ -1556,7 +1590,7 @@
                                                                                                         id="modification_column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="modification_column">
@@ -1570,7 +1604,7 @@
                                                                                                         id="exclude_closed_Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="exclude_closed_Hours">
@@ -1585,7 +1619,7 @@
                                                                                                         id="rescheduling_column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="rescheduling_column">
@@ -1599,7 +1633,7 @@
                                                                                                         id="bill-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="bill-service-minimum">
@@ -1617,7 +1651,7 @@
                                                                                                         id="1-x-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_inpersons.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-x-by-duration">
@@ -1630,8 +1664,10 @@
                                                                                     <!-- /In-Person Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
+                                                                            {{-- end loop --}}
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addscheduledInPerson">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -1650,11 +1686,26 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                         {{--ended update by shanila to add duplicate box for inperson  --}}
+                                                                         {{-- update by shanila to add duplicate box for virual  --}}
                                                                         <div class="col-lg-6 ps-lg-5 mb-4">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
-                                                                                <label class="form-label text-primary">
-                                                                                    Virtual
-                                                                                </label>
+                                                                            @foreach ($scheduled_virtules as $index=>$scheduled_virtul)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                                <div class="d-flex justify-content-between">
+                                                                                  <label class="form-label text-primary">
+                                                                                    Virtual {{ $loop->index + 1 }}
+                                                                                  </label>
+                                                                                  <div class="align-items-center gap-2">
+                                                                                    <a wire:click.prevent="removescheduledVirvual({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                 </div>
+                                                                               </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- Virtual Additional Service Charges -->
                                                                                     <div>
@@ -1670,7 +1721,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label="Hour"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1684,7 +1735,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label="Enter charges"
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -1695,7 +1746,7 @@
                                                                                                         id="cancellations-column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="cancellations-column">
@@ -1709,7 +1760,7 @@
                                                                                                         id="2-multiply-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.exclude_after_hours" />
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="2-multiply-by-duration">
@@ -1724,7 +1775,7 @@
                                                                                                         id="2-exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="2-exclude-after-hours">
@@ -1738,7 +1789,7 @@
                                                                                                         id="2-pay-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="2-pay-service-minimum">
@@ -1753,7 +1804,7 @@
                                                                                                         id="rescheduling"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="rescheduling">
@@ -1767,7 +1818,7 @@
                                                                                                         id="bill-service"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="bill-service">
@@ -1785,7 +1836,7 @@
                                                                                                         id="5-exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_virtules.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="5-exclude-after-hours">
@@ -1798,8 +1849,9 @@
                                                                                     <!-- /Virtual Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addscheduledVirtual">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -1817,13 +1869,29 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                        {{-- end update by shanila to add duplicate box for virtual --}}
                                                                     </div>
                                                                     <div class="row">
+                                                                        {{-- update by shanila to add duplicate box for phone--}}
                                                                         <div class="col-lg-6 pe-lg-5">
-                                                                            <div class="border-dashed p-2 rounded mb-1">
-                                                                                <label class="form-label text-primary">
-                                                                                    Phone
-                                                                                </label>
+                                                                            {{-- start loop --}}
+                                                                            @foreach ($scheduled_phones as $index=>$scheduled_phone)
+                                                                            <div class="border-dashed p-2 rounded mb-2">
+                                                                             <div class="d-flex justify-content-between">
+                                                                                 <label class="form-label text-primary">
+                                                                                    Phone {{ $loop->index + 1 }}
+                                                                                 </label>
+                                                                                 <div class="align-items-center gap-2">
+                                                                                    <a wire:click.prevent="removescheduledPhone({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                 </div>
+                                                                              </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- Phone Additional Service Charges -->
                                                                                     <div>
@@ -1839,7 +1907,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby=""  wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -1853,7 +1921,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.charges">
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -1864,10 +1932,10 @@
                                                                                                         id="cancellations-checkbox"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="cancellations-checkbox">
+                                                                                                        for="cancellations-checkbox" >
                                                                                                         Cancellations
                                                                                                     </label>
                                                                                                 </div>
@@ -1878,7 +1946,7 @@
                                                                                                         id="multiplybyduration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="multiplybyduration">
@@ -1893,10 +1961,10 @@
                                                                                                         id="1_exclude_after_hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1_exclude_after_hours">
+                                                                                                        for="1_exclude_after_hours" >
                                                                                                         Modifications
                                                                                                     </label>
                                                                                                 </div>
@@ -1907,7 +1975,7 @@
                                                                                                         id="Pay-Service-Minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="Pay-Service-Minimum">
@@ -1922,7 +1990,7 @@
                                                                                                         id="Exclude-After-Hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="Exclude-After-Hours">
@@ -1936,7 +2004,7 @@
                                                                                                         id="billServiceMinimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="billServiceMinimum">
@@ -1954,10 +2022,10 @@
                                                                                                         id="1exclude-after-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_phones.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
-                                                                                                        for="1exclude-after-hours">
+                                                                                                        for="1exclude-after-hours" >
                                                                                                         X by Duration
                                                                                                     </label>
                                                                                                 </div>
@@ -1967,8 +2035,10 @@
                                                                                     <!-- /Phone Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            {{-- end loop --}}
+                                                                            @endforeach
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addscheduledPhone">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -1987,11 +2057,27 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                         {{-- end update by shanila to add duplicate box for phone --}}
+                                                                         {{-- update by shanila to add duplicate box for Teleconference--}}
                                                                         <div class="col-lg-6 ps-lg-5">
+                                                                            {{-- loop start --}}
+                                                                            @foreach ($scheduled_teleconfrences as $index=>$scheduled_teleconfrence)
                                                                             <div class="border-dashed p-2 rounded mb-1">
+                                                                                <div class="d-flex justify-content-between">
                                                                                 <label class="form-label text-primary">
-                                                                                    Teleconference
+                                                                                    Teleconference {{ $loop->index + 1 }}
                                                                                 </label>
+                                                                                <div class="align-items-center gap-2">
+                                                                                    <a wire:click.prevent="removescheduledTeleconference({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                        <svg class="delete-icon" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                 </div>
+                                                                                </div>
                                                                                 <div class="d-flex flex-column gap-5">
                                                                                     <!-- Teleconference Additional Service Charges -->
                                                                                     <div>
@@ -2007,7 +2093,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00 Hour"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="hour-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.hours">
                                                                                                 <div
                                                                                                     class="col-lg-2 d-flex">
                                                                                                     <select
@@ -2021,7 +2107,7 @@
                                                                                                     class="form-control text-center"
                                                                                                     placeholder="00.00"
                                                                                                     aria-label=""
-                                                                                                    aria-describedby="">
+                                                                                                    aria-describedby="" wire:key="charge-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.charges"/>
                                                                                             </div>
                                                                                             <div
                                                                                                 class="d-grid grid-cols-2 gap-1">
@@ -2032,7 +2118,7 @@
                                                                                                         id="1-exclude-closedHhours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="cancel-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.cancellations"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-exclude-closedHhours">
@@ -2046,7 +2132,7 @@
                                                                                                         id="1-multiply-by-duration"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex=""  wire:key="after_hour-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.exclude_after_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-multiply-by-duration">
@@ -2061,7 +2147,7 @@
                                                                                                         id="1-excludeAfter-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="modifications-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.modification"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-excludeAfter-hours">
@@ -2075,7 +2161,7 @@
                                                                                                         id="1-pay-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="excluded_hour-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.exclude_closed_hours"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-pay-service-minimum">
@@ -2090,7 +2176,7 @@
                                                                                                         id="1-exclude-After-hours"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="reschedulings-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.rescheduling"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-exclude-After-hours">
@@ -2104,7 +2190,7 @@
                                                                                                         id="1-bill-service-minimum"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="bill-service-minimum-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.bill_service_minimum"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="1-bill-service-minimum">
@@ -2122,7 +2208,7 @@
                                                                                                         id="x-by-duration-column"
                                                                                                         name=""
                                                                                                         type="checkbox"
-                                                                                                        tabindex="" />
+                                                                                                        tabindex="" wire:key="durations-{{ $index }}" wire:model.lazy="scheduled_teleconfrences.{{$index}}.duration"/>
                                                                                                     <label
                                                                                                         class="form-check-label"
                                                                                                         for="x-by-duration-column">
@@ -2135,8 +2221,10 @@
                                                                                     <!-- /Teleconference Additional Service Charges -->
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
+                                                                            {{-- loop end --}}
                                                                             <div class="text-end">
-                                                                                <a href="#" class="fw-bold">
+                                                                                <a href="#" class="fw-bold" wire:click.prevent="addscheduledTeleconference">
                                                                                     <small>
                                                                                         Add Additional Parameter
                                                                                         {{-- Updated by Shanila to Add
@@ -2155,18 +2243,33 @@
                                                                                 </a>
                                                                             </div>
                                                                         </div>
+                                                                         {{-- end update by shanila to add duplicate box for Teleconference --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- /End: Cancellations/Modifications/Rescheduling -->
+                                                      {{-- update by shanila to add duplicate box for speclization --}}
                                                     <div class="col-lg-12 mb-5 pt-5">
-                                                        <div class="d-lg-flex align-items-center gap-3">
-                                                            <h2>Specializations</h2>
+                                                        @foreach ($speclizations as $index=>$speclization)
+                                                        <div class="d-flex justify-content-between">
+                                                            <h2>Specializations {{ $loop->index + 1 }}</h2>
+                                                            <div class="align-items-center gap-2">
+                                                                <a wire:click.prevent="removeSpeclization({{$index}})" href="#" title="Delete" aria-label="Delete"
+                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    <svg class="delete-icon" width="20" height="20"
+                                                                        viewBox="0 0 20 20" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
+                                                                </a>
+                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
+                                                                {{-- start loop --}}
+
                                                                 <div class="border-dashed rounded p-3 mb-2">
                                                                     <div class="d-flex flex-column gap-3">
                                                                         <div class="d-lg-flex gap-4">
@@ -2193,7 +2296,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="In-Person"
-                                                                                    aria-describedby="">
+                                                                                    aria-describedby="" wire:key="person-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.in_person">
                                                                             </div>
                                                                             <div class="align-self-end">
                                                                                 <label class="form-label text-primary">
@@ -2202,7 +2305,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="Virtual"
-                                                                                    aria-describedby="">
+                                                                                    aria-describedby="" wire:key="virt-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.virual">
                                                                             </div>
                                                                             <div class="align-self-end">
                                                                                 <label class="form-label text-primary">
@@ -2211,7 +2314,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="Phone"
-                                                                                    aria-describedby="">
+                                                                                    aria-describedby="" wire:key="phone-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.phone">
                                                                             </div>
                                                                             <div class="align-self-end">
                                                                                 <label class="form-label text-primary">
@@ -2220,7 +2323,7 @@
                                                                                 <input type="text"
                                                                                     class="form-control text-center"
                                                                                     placeholder="00.00" aria-label="Teleconference"
-                                                                                    aria-describedby="">
+                                                                                    aria-describedby="" wire:key="teleconference-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.teleconference">
                                                                             </div>
                                                                         </div>
                                                                         <div class="mx-5">
@@ -2229,7 +2332,7 @@
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
                                                                                         id="hide-from-customers" name=""
-                                                                                        type="checkbox" tabindex="" />
+                                                                                        type="checkbox" tabindex="" wire:key="hidecustomer-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_customers"/>
                                                                                     <label class="form-check-label"
                                                                                         for="hide-from-customers">
                                                                                         <small>
@@ -2241,7 +2344,7 @@
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
                                                                                         id="hide-from-providers" name=""
-                                                                                        type="checkbox" tabindex="" />
+                                                                                        type="checkbox" tabindex="" wire:key="hidefromproviders-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_providers"/>
                                                                                     <label class="form-check-label"
                                                                                         for="hide-from-providers">
                                                                                         <small>
@@ -2253,7 +2356,7 @@
                                                                                     class="form-check form-check-inline">
                                                                                     <input class="form-check-input"
                                                                                         id="x-by-duration" name=""
-                                                                                        type="checkbox" tabindex="" />
+                                                                                        type="checkbox" tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.duration"/>
                                                                                     <label class="form-check-label"
                                                                                         for="x-by-duration">
                                                                                         <small>
@@ -2265,8 +2368,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                {{-- end loop --}}
+                                                                @endforeach
                                                                 <div class="text-end">
-                                                                    <a href="#" class="fw-bold">
+                                                                    <a href="#" class="fw-bold" wire:click.prevent="addSpeclizations">
                                                                         <small>
                                                                             Add Additional Specialization
                                                                             {{-- Updated by Shanila to Add
@@ -2286,6 +2391,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {{-- end update by shanila to add duplicate box for speclization --}}
                                                     <!-- /End : Cancellations/Modifications/Rescheduling -->
                                                     <div class="col-md-12 col-12 mb-md-2">
                                                         <div class="form-check">

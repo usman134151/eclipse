@@ -50,7 +50,71 @@ class ProviderForm extends Component
         'exclude_closed_hours'=>''
 
     ]];
+    public $teleconfrences=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
 
+    ]];
+    public $scheduled_inpersons=[[
+        'hours'=>'',
+        'charges'=>'',
+        'cancellations'=>'',
+        'exclude-after-hours'=>'',
+        'modification'=>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimum'=>'',
+        'duration'=>'',
+
+    ]];
+    public $scheduled_virtules=[[
+        'hours'=>'',
+        'charges'=>'',
+        'cancellations'=>'',
+        'exclude-after-hours'=>'',
+        'modification'=>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimum'=>'',
+        'duration'=>'',
+
+    ]];
+    public $scheduled_phones=[[
+        'hours'=>'',
+        'charges'=>'',
+        'cancellations'=>'',
+        'exclude-after-hours'=>'',
+        'modification'=>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimum'=>'',
+        'duration'=>'',
+
+    ]];
+    public $scheduled_teleconfrences=[[
+        'hours'=>'',
+        'charges'=>'',
+        'cancellations'=>'',
+        'exclude-after-hours'=>'',
+        'modification'=>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimum'=>'',
+        'duration'=>'',
+
+    ]];
+    public $speclizations=[[
+        'in_person'=>'',
+        'virtual'=>'',
+        'phone'=>'',
+        'teleconference'=>'',
+        'hide_from_customers'=>'',
+        'hide_from_providers'=>"",
+        'duration'=>''
+    ]];
    public $step = 1,$email_invitation;
    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
 	public function render()
@@ -180,7 +244,59 @@ class ProviderForm extends Component
 
 
      }
-     public function addInPerson(){
+     public function addscheduledInPerson(){
+        $this->scheduled_inpersons[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'cancellations'=>'',
+            'exclude-after-hours'=>'',
+            'modification'=>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimum'=>'',
+            'duration'=>'',
+        ];
+    }
+    public function addscheduledVirtual(){
+        $this->scheduled_virtules[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'cancellations'=>'',
+            'exclude-after-hours'=>'',
+            'modification'=>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bbill_service_minimum'=>'',
+            'duration'=>'',
+        ];
+    }
+    public function addscheduledPhone(){
+        $this->scheduled_phones[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'cancellations'=>'',
+            'exclude-after-hours'=>'',
+            'modification'=>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimum'=>'',
+            'duration'=>'',
+        ];
+    }
+    public function addscheduledTeleconference(){
+        $this->scheduled_teleconfrences[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'cancellations'=>'',
+            'exclude-after-hours'=>'',
+            'modification'=>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimum'=>'',
+            'duration'=>'',
+        ];
+    }
+    public function addInPerson(){
         $this->inpersons[] = [
             'hours'=>'',
             'charges'=>'',
@@ -207,6 +323,27 @@ class ProviderForm extends Component
             'exclude_closed_hours'=>''
         ];
     }
+    public function addTeleconference(){
+        $this->teleconfrences[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addSpeclizations()
+    {
+        $this->speclizations[]=[
+            'in_person'=>'',
+            'virtual'=>'',
+            'phone'=>'',
+            'teleconference'=>'',
+            'hide_from_customers'=>'',
+            'hide_from_providers'=>"",
+            'duration'=>''
+        ];
+    }
     public function removeInPerson($index)
     {
         unset($this->inpersons[$index]);
@@ -221,5 +358,35 @@ class ProviderForm extends Component
     {
         unset($this->phones[$index]);
         $this->phones = array_values($this->phones);
+    }
+    public function removeteleConference($index)
+    {
+        unset($this->teleconfrences[$index]);
+        $this->teleconfrences = array_values($this->teleconfrences);
+    }
+    public function removescheduledInPerson($index)
+    {
+        unset($this->scheduled_inpersons[$index]);
+        $this->scheduled_inpersons = array_values($this->scheduled_inpersons);
+    }
+    public function removescheduledVirvual($index)
+    {
+        unset($this->scheduled_virtules[$index]);
+        $this->scheduled_virtules = array_values($this->scheduled_virtules);
+    }
+    public function removescheduledPhone($index)
+    {
+        unset($this->scheduled_phones[$index]);
+        $this->scheduled_phones = array_values($this->scheduled_phones);
+    }
+    public function removescheduledTeleconference($index)
+    {
+        unset($this->scheduled_teleconfrences[$index]);
+        $this->scheduled_teleconfrences = array_values($this->scheduled_teleconfrences);
+    }
+    public function removeSpeclization($index)
+    {
+        unset($this->speclizations[$index]);
+        $this->speclizations = array_values($this->speclizations);
     }
 }
