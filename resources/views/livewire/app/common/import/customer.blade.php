@@ -82,7 +82,7 @@
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Last Name</label>
+						<label class="form-label" for="First Name">Email</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
 					</div>	
                   </div>

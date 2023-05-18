@@ -54,7 +54,7 @@ Route::group([
 			Route::view('/admin/customize-form/create-form', 'tenant/common/saved-forms', ["showForm"=>true]);
 
 			Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false,"status"=>1]);
-			Route::view('/admin/provider/create-provider', 'tenant/common/provider', ["showForm"=>true]);
+			Route::view('/admin/provider/create-provider', 'tenant/common/provider', ["showForm"=>true,'status'=>1]);
 			Route::view('/admin/teams', 'tenant/admin/teams', ["showForm"=>false]);
 			Route::view('/admin/teams/create-team', 'tenant/admin/teams', ["showForm"=>true]);
 			Route::view('/admin/reimbursement', 'tenant/admin/provider/reimbursement', ["showForm"=>false]);
