@@ -7,7 +7,10 @@ use Livewire\Component;
 class DepartmentProfile extends Component
 {
 	public $showForm;
-	protected $listeners = ['showList' => 'resetForm'];
+	public $department;
+	protected $listeners = [
+		'showDepartmentDetails'
+	];
 
 	public function render()
 	{
@@ -25,5 +28,11 @@ class DepartmentProfile extends Component
 	public function resetForm()
 	{
 		$this->showForm=false;
+	}
+
+	public function showDepartmentDetails($department){
+		$this->department=$department;
+        $this->dispatchBrowserEvent('refreshSelects');
+
 	}
 }

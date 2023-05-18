@@ -10,7 +10,8 @@ class CompanyProfile extends Component
     public $company;
 	public $showDepartmentProfile;
 	protected $listeners = [
-		'showDetails'
+		'showDetails',
+		'showDepartmentProfile'
 	];
 
 	public function render()
@@ -26,8 +27,15 @@ class CompanyProfile extends Component
 
 	}
      
-	public function showDepartmentProfile($user=null)
-	{
+	public function showDepartmentProfile($department=null)
+	{	
+		if ($department) {
+		$this->department = $department;
+
+		$this->emit('showDepartmentDetails', $department);
+	}
+	
+
 		$this->showDepartmentProfile = true;
 	}
 

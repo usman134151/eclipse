@@ -28,6 +28,15 @@
 		</div>
 	</div>
 	<div class="content-body">
+	@if(is_null($department))
+        <div id="loader-section" class="loader-section" wire:loading>
+                <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                    <div class="spinner-border" role="status" aria-live="polite">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        @else
 		<section id="multiple-column-form">
 			<div class="row">
 				<div class="col-12">
@@ -181,7 +190,7 @@
 														<div class="col-md-7 ms-4">
                                                             <div>
                                                                 <h3 class="font-family-tertiary fw-medium">
-                                                                    Example Company
+																{{$department['name']}}
                                                                 </h3>
                                                                 <span>Information Technology</span>
                                                             </div>
@@ -4868,5 +4877,6 @@
             {{-- End of update by Shanila --}}
 			@include('panels.common.add-document')
 		</section>
+		@endif
 	</div>
 </div>

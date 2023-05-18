@@ -51,7 +51,9 @@ class DepartmentForm extends Component
 		$this->department->added_by = 1;
         $departmentService = new DepartmentService;
         $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers);
-        $this->department = new Department;
+        
+		
+		$this->department = new Department;
 
 	}
     public function updateVal($attrName, $val)
