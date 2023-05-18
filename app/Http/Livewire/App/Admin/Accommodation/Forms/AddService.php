@@ -18,6 +18,169 @@ class AddService extends Component
     public $setupValues = [
         'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]]
 	];
+    public $inpersons=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'duration'=>''
+
+    ]];
+    public $inpersonssecound=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'charge_to_customer'=>''
+
+    ]];
+    public $virtuals=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'duration'=>''
+
+    ]];
+    public $invirtualssecound=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'charge_to_customer'=>''
+
+    ]];
+    public $phones=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'duration'=>''
+
+    ]];
+    public $inphonessecound=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'charge_to_customer'=>''
+
+    ]];
+    public $teleconferences=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'duration'=>''
+
+    ]];
+    public $teleconferencessecound=[[
+        'label'=>'',
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'charge_to_customer'=>''
+
+    ]];
+    public $service_inpersons=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+    ]];
+    public $service_virtuals=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+    ]];
+    public $service_phones=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+    ]];
+    public $service_teleconferences=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'exclude_after_hours'=>'',
+        'exclude_closed_hours'=>''
+    ]];
+    public $inpersonscancel=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'cancellations'=>'',
+        'exclude_after_hours'=>'',
+        'modifications' =>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimums'=>''
+    ]];
+    public $virtualscancel=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'cancellations'=>'',
+        'exclude_after_hours'=>'',
+        'modifications' =>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimums'=>''
+    ]];
+    public $phonescancel=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'cancellations'=>'',
+        'exclude_after_hours'=>'',
+        'modifications' =>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimums'=>''
+    ]];
+    public $teleconferencescancel=[[
+        'hours'=>'',
+        'charges'=>'',
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'cancellations'=>'',
+        'exclude_after_hours'=>'',
+        'modifications' =>'',
+        'exclude_closed_hours'=>'',
+        'rescheduling'=>'',
+        'bill_service_minimums'=>''
+    ]];
+    public $speclizations=[[
+        'in_person'=>'',
+        'virtual'=>'',
+        'phone'=>'',
+        'teleconference'=>'',
+        'hide_from_customers'=>'',
+        'hide_from_providers'=>"",
+        'duration'=>'',
+        'no_of_providers'=>'',
+        'disable'=>''
+    ]];
     public function mount(ServiceCategory $service){
         $this->service=$service;
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -54,6 +217,196 @@ class AddService extends Component
 
 
 	}
+    public function addPerson(){
+        $this->inpersons[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'duration'=>''
+        ];
+    }
+    public function addPersonSecound(){
+        $this->inpersonssecound[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'charge_to_customer'=>''
+        ];
+    }
+    public function addVirtual(){
+        $this->virtuals[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'duration'=>''
+        ];
+    }
+    public function addVirtualSecound(){
+        $this->invirtualssecound[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'charge_to_customer'=>''
+        ];
+    }
+    public function addPhone(){
+        $this->phones[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'duration'=>''
+        ];
+    }
+    public function addphoneSecound(){
+        $this->inphonessecound[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'charge_to_customer'=>''
+        ];
+    }
+    public function addTeleconference(){
+        $this->teleconferences[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'duration'=>''
+        ];
+    }
+    public function addpTeleconferenceSecound(){
+        $this->teleconferencessecound[]=[
+            'label'=>'',
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'charge_to_customer'=>''
+        ];
+    }
+    public function addServiceInPerson(){
+        $this->service_inpersons[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addServiceVirtual(){
+        $this->service_virtuals[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addServicePhone(){
+        $this->service_phones[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addServiceTeleconference(){
+        $this->service_teleconferences[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'exclude-after-hours'=>'',
+            'exclude_closed_hours'=>''
+        ];
+    }
+    public function addInpersonCancel(){
+        $this->inpersonscancel[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'cancellations'=>'',
+            'exclude_after_hours'=>'',
+            'modifications' =>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimums'=>''
+        ];
+    }
+    public function addVirtualCancel(){
+        $this->virtualscancel[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'cancellations'=>'',
+            'exclude_after_hours'=>'',
+            'modifications' =>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimums'=>''
+        ];
+    }
+    public function addPhoneCancel(){
+        $this->phonescancel[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'cancellations'=>'',
+            'exclude_after_hours'=>'',
+            'modifications' =>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimums'=>''
+        ];
+    }
+    public function addTeleconferenceCancel(){
+        $this->teleconferences[] = [
+            'hours'=>'',
+            'charges'=>'',
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'cancellations'=>'',
+            'exclude_after_hours'=>'',
+            'modifications' =>'',
+            'exclude_closed_hours'=>'',
+            'rescheduling'=>'',
+            'bill_service_minimums'=>''
+        ];
+    }
+    public function addSpeclizations()
+    {
+        $this->speclizations[]=[
+            'in_person'=>'',
+            'virtual'=>'',
+            'phone'=>'',
+            'teleconference'=>'',
+            'hide_from_customers'=>'',
+            'hide_from_providers'=>"",
+            'duration'=>'',
+            'no_of_providers'=>'',
+            'disable'=>''
+        ];
+    }
     public function updateVal($attrName, $val)
 	{
 
