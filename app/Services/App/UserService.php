@@ -30,6 +30,7 @@ class UserService{
        $user->save();
      
         $userdetail['user_id'] = $userId;
+       
         $userDetailModel = UserDetail::updateOrCreate(['user_id' => $user->id], $userdetail);
             
      

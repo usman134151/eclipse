@@ -59,25 +59,24 @@ final class Customers extends PowerGridComponent
 		// 	->whereHas('role', function ($query){
 		// 		$query->where('role_id', 4);
 		// 	});
-		
+
 		return User::query()
-		->where('users.status',$this->status)
+		->where('users.status', $this->status)
 		->whereHas('roles', function ($query) {
 			$query->where('role_id', 4);
-		})->join('companies', function ($companies) {
-			$companies->on('companies.id', '=', 'users.company_name');
-		})->join('user_details', function ($userdetails) {
-			$userdetails->on('user_details.user_id', '=', 'users.id');
-		})->select([
+		})
+		->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+		->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+		->select([
 			'users.id',
 			'users.name',
 			'users.email',
 			'companies.name as company',
 			'user_details.phone',
-			'users.status'
-		])
-
-;
+			'users.status',
+			'user_details.user_id'
+		]);
+	
 	}
 
 	/*
