@@ -86,21 +86,29 @@ class Customer extends Component
         $userService = new UserService;
 
         foreach ($this->users as $userData) {
-            $user = new User;
-        
-            // Loop through the input array and set each key-value pair to the corresponding model attribute
-            foreach ($userData as $key => $value) {
-                // Use the 'snake_case' version of the key to match the model attribute name
-                $attribute = \Illuminate\Support\Str::snake($key);
-                if($attribute!="user_details"){
-                    
-                    $user->{$attribute} = $value;
-                }
-                $user->name=$user->first_name.' '.$user->last_name;
-            }
-           // dd($user);
-        
-           // $user->save(); // Save the user model to the database
+            
+            
+            
+            if(User::where('email', $userData['email'])->exists()){
+                $user=\App\Models\Tenant\User::where('email',$userData['email'])->first();
+                //dd($user);
+             }
+           
+             // Loop through the input array and set each key-value pair to the corresponding model attribute
+             foreach ($userData as $key => $value) {
+                 // Use the 'snake_case' version of the key to match the model attribute name
+                 $attribute = \Illuminate\Support\Str::snake($key);
+                 if($attribute!="user_details"){
+                     
+                     $user->{$attribute} = $value;
+                 }
+                
+                
+             }
+            // dd($user);
+         
+            // $user->save(); // Save the user model to the database
+            $user->name=$user->first_name.' '.$user->last_name;
             
             // Call the createUser method of UserService and pass the user model along with other parameters
             $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
