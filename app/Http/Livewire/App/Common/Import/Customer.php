@@ -83,6 +83,7 @@ class Customer extends Component
 
     public function save()
     {
+        $user = new User;
         $userService = new UserService;
 
         foreach ($this->users as $userData) {

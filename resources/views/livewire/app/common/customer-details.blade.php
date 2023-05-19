@@ -242,7 +242,7 @@
                                                     </div>
                                                     <div class="col-md-7 ms-4 mt-4">
                                                         <h3 class="font-family-tertiary fw-medium">
-                                                            {{$user['name']}} (He)
+                                                            {{$user['name']}} ({{$user['userdetail']['title']}}
                                                         </h3>
                                                         <div class="row mb-4">
                                                             <div class="col-md-12">
