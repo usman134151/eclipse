@@ -76,7 +76,7 @@ final class Customers extends PowerGridComponent
 			'users.status',
 			'user_details.user_id'
 		]);
-
+	
 	}
 
 	/*
@@ -113,14 +113,14 @@ final class Customers extends PowerGridComponent
 		return PowerGrid::eloquent()
 		->addColumn('name')
 		->addColumn('customer', function (User $model) {
-			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p><p>See Schedule</p></div></div>  ';
+			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
 		})
 		->addColumn('phone')
 		->addColumn('company')
-		->addColumn('role')
-        ->addColumn('status', function (User $model) {
-			return ($model->status);
+		->addColumn('schedule', function () {
+			return 'See Schedule';
 		})
+		->addColumn('role')
 		->addColumn('edit', function(User $model) {
 			return "<div class='d-flex actions'><a href='#' wire:click=\"edit($model->id)\" title='Edit Customer' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a><a href='#' title='View Customer' aria-label='View Customer' class='btn btn-sm btn-secondary rounded btn-hs-icon'  wire:click=\"showProfile($model->id)\"><svg aria-label='View Customer' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' title='More Options' aria-label='More Options' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View customer's Invoice' aria-label='View customer's Invoice' href='#' class='dropdown-item'><i class='fa fa-eye'></i>View Customer's Invoices</a><a title='Chat' aria-label='Chat' class='dropdown-item' href='#'><i class='fa fa-comment'></i>Chat</a><a href='javascript:void(0)' aria-label='Deactivate' title='Deactivate' class='dropdown-item'><i class='fa fa-times-circle'></i>Deactivate</a></div></div></div></div>";
 		});
@@ -153,33 +153,28 @@ final class Customers extends PowerGridComponent
 			->searchable()->makeinputtext()->sortable(),
 			Column::make('Company', 'company','companies.name')
 			->searchable()->makeinputtext()->sortable(),
+			Column::make('Schedule', 'schedule', ''),
 				// ->sortable(),
 			Column::make('Role', 'role', 'roles.display_name')
 				->searchable()
 				->sortable(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
-			->toggleable(1, 'Deactivated', 'Activated'),
 			Column::make('Actions', 'edit')->visibleInExport(false),
 		];
 	}
 
 	// A method to handle the toggleable columns update event
-    public function onUpdatedToggleable(string $id, string $field, string $value): void
-    {
-
-        // Updates the specified field of the record with the new value
-
-       User::query()->where('id',$id)->update([
-            $field => $value,
-        ]);
-        $this->dispatchBrowserEvent('swal:modal', [
-           'type' => 'success',
-           'title' => 'Success',
-           'text' => 'Status updated',
-       ]);
-
-
-    }
+	public function onUpdatedToggleable(string $id, string $field, string $value): void
+	{
+		// Updates the specified field of the record with the new value
+		User::query()->find($id)->update([
+			$field => $value,
+		]);
+		$this->dispatchBrowserEvent('swal:modal', [
+			'type' => 'success',
+			'title' => 'Success',
+			'text' => 'Status updated',
+		]);
+	}
 
 	// A method to handle the editable columns update event
 	public function onUpdatedEditable(string $id, string $field, string $value): void
@@ -197,9 +192,9 @@ final class Customers extends PowerGridComponent
 			$this->emit('showForm', User::with(['userdetail','industries','company'])->find($id));
 		}
 	function showProfile($id) {
-
+	
 		// Emits an event to show the customer profile
-
+		
 		$this->emit('showProfile', User::with(['userdetail','industries','company'])->find($id));
 	}
 }
