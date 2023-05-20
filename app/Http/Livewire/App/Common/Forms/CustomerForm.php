@@ -9,6 +9,8 @@ use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+
 
 class CustomerForm extends Component
 {
@@ -73,14 +75,19 @@ class CustomerForm extends Component
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
+	   if($this->user->user_dob)
+	   	$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
      
     }
 
 	public function updateVal($attrName, $val)
 	{  
-		//dd($attrName);
-		   if($attrName=="user.company_name"){
+			if($attrName=='user_dob'){
+            	$this->user['user_dob']=$val;
+				
+        	}
+		   elseif($attrName=="user.company_name"){
 			
 			$this->user['company_name'] = $val;
 			
@@ -141,6 +148,10 @@ class CustomerForm extends Component
 	public function save($redirect=1){
 		
 		$this->validate();
+		if($this->user->user_dob){
+            $this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+
+        }
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
 		$this->user->status=1;
@@ -179,8 +190,6 @@ class CustomerForm extends Component
 			if($selected)
 			$this->selectedIndustries[]=$industryId;
 		}
-    	//dd($this->selectedIndustries);
-
     	$this->userdetail['industry'] = $defaultIndustry;
 		
 

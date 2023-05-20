@@ -240,7 +240,7 @@
                                                         <div class="position-relative flex-grow-1">
                                                             <input type="text" class="form-control js-single-date"
                                                                 placeholder="Select Date of Birth" aria-label=""
-                                                                aria-describedby="" wire:model.defer="user.user_dob">
+                                                                aria-describedby="" wire:model="user.user_dob" name="user_dob" id="user_dob">
                                                             <svg aria-label="Select Date" class="icon-date" width="20" height="21"
                                                                 viewBox="0 0 20 21" fill="none"
                                                                 xmlns="http://www.w3.org/2000/svg">
@@ -1597,13 +1597,11 @@
 @push('scripts')
 
 <script>
-    
-    Livewire.on('updateVal', (attrName, val) => {
-     
-        // Call the updateVal function with the attribute name and value
-       
-        @this.call('updateVal', attrName, val);
-    });
+        function updateVal(attrName,val){
+          
+          Livewire.emit('updateVal', attrName, val);
+
+      }
 
 </script>
 @endpush

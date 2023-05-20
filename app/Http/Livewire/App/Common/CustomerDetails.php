@@ -24,8 +24,11 @@ class CustomerDetails extends Component
 	public function showDetails($user){
 		$this->user=$user;
 		
-		
-		$this->user['userdetail']['language']=SetupHelper::getSetupValueById($this->user['userdetail']['language_id']);
+		if(key_exists('language',$this->user['userdetail']))
+			$this->user['userdetail']['language']=SetupHelper::getSetupValueById($this->user['userdetail']['language_id']);
+		else{
+			$this->user['userdetail']['language']='N/A';
+		}	
 		$this->dispatchBrowserEvent('refreshSelects');
 		
 	}

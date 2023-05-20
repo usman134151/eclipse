@@ -122,6 +122,7 @@
 
 		function initSelect () {
 			
+			
 			el.select2({
 				placeholder: '{{__('Select your option')}}',
 				allowClear: !el.attr('required'),
@@ -139,6 +140,11 @@
 		});
 		$('.js-single-date').val('');
 		$('.js-single-date').attr("placeholder","MM/DD/YYYY");
+		$('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
+        console.log($(this).val());
+        updateVal($(this).attr('id'),  $(this).val());
+
+    });
 		$('.js-select-day').daterangepicker({
 			singleDatePicker: true,
 			showDropdowns: true,
@@ -178,10 +184,14 @@ window.addEventListener("livewire:load", () => {
 				updateVal(attrName,  $(this).select2("val"));
             });
 		}
+		
 	})
-	
+	$('.js-select-date').on('apply.daterangepicker', function(ev, picker) {
+    alert ('hello');
+});
 </script>
 <script>
+
 	$(document).on("keypress", "input.js-search-by-keyword", function(e){
         if(e.which == 13){
             $('#searchByKeywordModal').modal('show');

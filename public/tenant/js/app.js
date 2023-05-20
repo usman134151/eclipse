@@ -25,6 +25,11 @@ $(function() {
     });
     $('.js-single-date').val('');
     $('.js-single-date').attr("placeholder","MM/DD/YYYY");
+    $('.js-single-date').on('apply.daterangepicker', function(ev, picker) {
+        //console.log($(this).val());
+        updateVal($(this).attr('id'),  $(this).val());
+
+    });
     // Single date end
 
     // Select day start

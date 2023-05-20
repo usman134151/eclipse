@@ -9,6 +9,7 @@ use App\Models\Tenant\SetupValue;
 use Livewire\WithFileUploads;
 use App\Helpers\SetupHelper;
 use App\Services\App\UserService;
+use Carbon\Carbon;
 
 
 class Provider extends Component
@@ -102,6 +103,10 @@ class Provider extends Component
            // dd($user);
         
            // $user->save(); // Save the user model to the database
+           if($this->user->user_dob){
+            $this->user->user_dob = Carbon::createFromFormat('d/M/Y', $this->user->user_dob)->format('Y-m-d');
+
+        }
            $user->name=$user->first_name.' '.$user->last_name;
             // Call the createUser method of UserService and pass the user model along with other parameters
             $userService->createUser($user, $userData['userDetails'], 2, 0, [], 1);

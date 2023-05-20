@@ -11,6 +11,7 @@ use App\Models\Tenant\SetupValue;
 use Livewire\WithFileUploads;
 use App\Helpers\SetupHelper;
 use App\Services\App\UserService;
+use Carbon\Carbon;
 
 class Customer extends Component
 {
@@ -49,50 +50,54 @@ class Customer extends Component
 
         foreach ($rows as $row) {
             if($i>0){
-                $user = [];
+                if($row[0]!=''){
+                    $user = [];
 
-                $user['first_name'] = $row[0];
-                $user['last_name'] = $row[1];
-                $user['userDetails']['title'] = $row[2];
-                $user['user_dob'] = $row[3];
-                $user['email'] = $row[4];
-                $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
-                $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
-                $user['userDetails']['ethnicity_id']=SetupHelper::getSetupValueByValue($row[7],3);
-                $user['userDetails']['user_position']=$row[8];
-                $user['userDetails']['phone']=$row[9];
-                $user['userDetails']['country']=$row[10];
-                $user['userDetails']['state']=$row[11];
-                $user['userDetails']['city']=$row[12];
-                $user['userDetails']['zip']=$row[13];
-                $user['userDetails']['address_line1']=$row[14];
-                $user['userDetails']['address_line2']=$row[15];
-                $user['userDetails']['user_introduction']=$row[16];
-                $user['status']=1;
-                $user['company_name']='';
+                    $user['first_name'] = $row[0];
+                    $user['last_name'] = $row[1];
+                    $user['userDetails']['title'] = $row[2];
+                    $user['user_dob'] = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[3])->format('d/m/Y');
+                    $user['email'] = $row[4];
+                    $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
+                    $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
+                    $user['userDetails']['ethnicity_id']=SetupHelper::getSetupValueByValue($row[7],3);
+                    $user['userDetails']['user_position']=$row[8];
+                    $user['userDetails']['phone']=$row[9];
+                    $user['userDetails']['country']=$row[10];
+                    $user['userDetails']['state']=$row[11];
+                    $user['userDetails']['city']=$row[12];
+                    $user['userDetails']['zip']=$row[13];
+                    $user['userDetails']['address_line1']=$row[14];
+                    $user['userDetails']['address_line2']=$row[15];
+                    $user['userDetails']['user_introduction']=$row[16];
+                    $user['status']=1;
+                    $user['company_name']='';
+    
+                  
+                    $this->users[] = $user;
+                }
 
-              
-                $this->users[] = $user;
 
             }
             $i++;
 
         }
+       
         $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function save()
     {
-        $user = new User;
+       
+        $saved=[];
         $userService = new UserService;
 
         foreach ($this->users as $userData) {
-            
-            
+            $user = new User;
             
             if(User::where('email', $userData['email'])->exists()){
                 $user=\App\Models\Tenant\User::where('email',$userData['email'])->first();
-                //dd($user);
+                
              }
            
              // Loop through the input array and set each key-value pair to the corresponding model attribute
@@ -106,16 +111,17 @@ class Customer extends Component
                 
                 
              }
-            // dd($user);
-         
-            // $user->save(); // Save the user model to the database
+             if($user->user_dob){
+                $user->user_dob = Carbon::createFromFormat('d/m/Y', $user->user_dob)->format('Y-m-d');
+      
+            }
             $user->name=$user->first_name.' '.$user->last_name;
-            
             // Call the createUser method of UserService and pass the user model along with other parameters
-            $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
-
+            $saved[]= $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
+           
         }
         $this->showList("Customer data has been imported successfully");
+      
         $this->users = [];
     }
 

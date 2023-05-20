@@ -140,7 +140,7 @@
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
                                                         placeholder="Select Date of Birth" aria-label=""
-                                                        aria-describedby="" wire:model.defer="user.user_dob">
+                                                        aria-describedby="" wire:model.defer="user.user_dob" name="user_dob" id="user_dob">
                                                     <!-- Begin : it will be replaced with livewire module-->
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date" width="20" height="21"
@@ -205,7 +205,7 @@
                                                 Provider ID
                                             </label>
                                             <input type="email" id="providerID-column" class="form-control"
-                                                name="providerID-column" placeholder="Enter Provider ID" />
+                                                name="providerID-column" placeholder="Enter Provider ID" wire:model.defer="userdetail.user_number" />
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label mb-3" for="assign-provider-teams">
@@ -293,7 +293,7 @@
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date of Birth" aria-label=""
+                                                        placeholder="Select Date" aria-label=""
                                                         aria-describedby="" id="start-date-column">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date" width="20" height="21"
@@ -312,7 +312,7 @@
                                             <div class="d-flex align-items-center w-100">
                                                 <div class="position-relative flex-grow-1">
                                                     <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date of Birth" aria-label="End Date"
+                                                        placeholder="Select Date" aria-label="End Date"
                                                         aria-describedby="" id="end-date-">
                                                     {{-- Updated by Shanila to Add svg icon--}}
                                                     <svg aria-label="Date" class="icon-date" width="20" height="21"
@@ -405,7 +405,7 @@
                                                 </a>
                                             </div>
                                             <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                name="experienceColumn" id="experience"></textarea>
+                                                name="experienceColumn" id="experience" wire:model.defer="userdetail.user_experience"></textarea>
                                         </div>
                                         <div class="col-lg-6 ps-lg-5">
                                             <label class="form-label" for="notes_column">
@@ -2624,9 +2624,10 @@
     </div>
     <script>
         function updateVal(attrName,val){
-
+          
             Livewire.emit('updateVal', attrName, val);
 
         }
+
     </script>
 </div>

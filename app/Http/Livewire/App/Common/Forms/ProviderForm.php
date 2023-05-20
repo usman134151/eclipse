@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Tenant\SystemRole;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+
 class ProviderForm extends Component
 {
     public $user,$isAdd=true;
@@ -18,7 +20,7 @@ class ProviderForm extends Component
     public $languages;
 
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction'];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience'];
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
@@ -216,6 +218,10 @@ class ProviderForm extends Component
     }
     public function save($redirect=1){
 		$this->validate();
+        if($this->user->user_dob){
+            $this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+
+        }
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
@@ -239,7 +245,10 @@ class ProviderForm extends Component
     }
      public function updateVal($attrName, $val)
      {
-
+        if($attrName=='user_dob'){
+            $this->user['user_dob']=$val;
+        }
+        else
          $this->userdetail[$attrName] = $val;
 
 

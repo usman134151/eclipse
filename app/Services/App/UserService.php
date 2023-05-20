@@ -31,11 +31,12 @@ class UserService{
         $userId = $existingUser->id;
         
        }
+       
         
        $user->save();
      
         $userdetail['user_id'] = $userId;
-     //  dd($userdetail);
+   
         $userDetailModel = UserDetail::updateOrCreate(['user_id' => $userId], $userdetail);
             
      
