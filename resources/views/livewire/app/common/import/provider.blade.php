@@ -186,7 +186,7 @@
         </table>
       </div>
 
-        <button wire:click="save">Save</button>
+	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
     @endif
 </div>
 

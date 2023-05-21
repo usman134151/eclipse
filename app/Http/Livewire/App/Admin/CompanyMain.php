@@ -4,11 +4,13 @@ namespace App\Http\Livewire\App\Admin;
 
 use Livewire\Component;
 use App\Models\Tenant\Company;
+use App\Services\ExportDataFile;
 
 class CompanyMain extends Component
 {
 	public $showForm;
 	public $showProfile;
+	public $importFile;
 
 	protected $listeners = [
 		'showList' => 'resetForm',
@@ -16,6 +18,7 @@ class CompanyMain extends Component
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 	];
+	protected $exportDataFile;
 
 	public function render()
 	{
@@ -24,6 +27,10 @@ class CompanyMain extends Component
 
 	public function mount()
 	{}
+	public function __construct()
+    {
+        $this->exportDataFile = new ExportDataFile;
+    }
 
 	function showForm($company=null)
 	{
@@ -47,6 +54,7 @@ class CompanyMain extends Component
 				'text' => $message,
 			]);
 		}
+		$this->importFile=false;
 		$this->showForm=false;
 		$this->showProfile = false;
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/company']);
@@ -67,9 +75,17 @@ class CompanyMain extends Component
 	{
 		$this->recordId = $id;
 	}
+	public function downloadExportFile()
+    {
+        return $this->exportDataFile->generateCompanyExcelTemplate();
+    }
 
 	public function switch($component)
 	{
 		$this->component = $component;
+	}
+	public function importFile(){
+		$this->importFile=true;
+
 	}
 }

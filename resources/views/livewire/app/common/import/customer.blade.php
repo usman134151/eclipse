@@ -93,6 +93,7 @@
 			  <label class="form-label" for="company">
 				Company
               </label>
+			
 			  <select  class="form-select" name="users.{{ $loop->index }}.company_name" id="users.{{ $loop->index }}.company_name" wire:model='users.{{ $loop->index }}.company_name'>
 			  @foreach($companies as $company)
 			    <option value="{{$company->id}}">{{$company->name}}</option>
@@ -215,7 +216,7 @@
         </table>
       </div>
 
-        <button wire:click="save">Save</button>
+	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
     @endif
 </div>
 

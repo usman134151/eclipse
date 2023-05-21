@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\SetupValue;
+use App\Models\Tenant\Industry;
+use App\Models\Tenant\Company;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
@@ -201,14 +203,16 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
             'Requester',
             'Service Consumer',
             'Billing Manager',
-            'Participant'
+            'Participant',
+            'Company'
         ];
 
        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
         $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->all();
         $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
         $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
-
+        $companies=Company::where('status','1')->pluck('name')->toArray();
+     
         $rows = [
             [
                 '',
@@ -234,6 +238,7 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
                 '',
                 '',
                 '',
+                ''
 
             ]
         ];
@@ -344,7 +349,22 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
 
             }
                        
-        
+
+            $validation = $sheet->getCell('X2')->getDataValidation();
+            $validation->setType('list');
+            $validation->setErrorStyle('stop');
+            $validation->setAllowBlank(true);
+            $validation->setShowInputMessage(true);
+            $validation->setShowErrorMessage(true);
+            $validation->setShowDropDown(true);
+            $validation->setErrorTitle('Input error');
+            $validation->setError('Value is not in list.');
+            $validation->setPromptTitle('Pick from list');
+            $validation->setPrompt('Please pick a value from the drop-down list.');
+            $validation->setFormula1('"' . implode(',', $companies) . '"');
+                    foreach ($rows as $row) {
+                        $sheet->fromArray([$row]);
+                    }    
             $writer = new Xlsx($spreadsheet);
             $writer->save($filePath);
         
@@ -363,4 +383,165 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
         //return new Response($fileResponse->getContent(), $fileResponse->getStatusCode(), $fileResponse->headers->all());
     }
 
+    public function generateCompanyExcelTemplate()
+    {
+        $headers = [
+            'Company Name',
+            'Industry',
+
+        ];
+
+     
+        $industryValues = Industry::where('status', 1)->pluck('name')->toArray();
+
+        $rows = [
+            [
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+
+            ]
+        ];
+
+        $fileName = 'company-import.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+    
+    
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+
+
+
+        $validation = $sheet->getCell('B2')->getDataValidation();
+        $validation->setType('list');
+        $validation->setErrorStyle('stop');
+        $validation->setAllowBlank(true);
+        $validation->setShowInputMessage(true);
+        $validation->setShowErrorMessage(true);
+        $validation->setShowDropDown(true);
+        $validation->setErrorTitle('Input error');
+        $validation->setError('Value is not in list.');
+        $validation->setPromptTitle('Pick from list');
+        $validation->setPrompt('Please pick a value from the drop-down list.');
+        $validation->setFormula1('"' . implode(',', $industryValues) . '"');
+                foreach ($rows as $row) {
+                    $sheet->fromArray([$row]);
+                    
+                }
+
+
+        
+                        
+        
+                $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+        
+    $fileResponse = response()->file($filePath, [
+        'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+    ])->deleteFileAfterSend(true);
+
+    return $fileResponse;
+
+
+    }
+
+    public function generateIndustryExcelTemplate()
+    {
+        $headers = [
+        
+            'Industry',
+
+        ];
+
+     
+      
+
+        $rows = [
+            [
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+
+            ]
+        ];
+
+        $fileName = 'industry-import.xlsx';
+        $filePath = Storage::disk('local')->path($fileName);
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        //$sheet->fromArray([$headers]);
+        $sheet->fromArray([$headers]);
+    
+    
+
+        foreach ($rows as $row) {
+            $sheet->fromArray([$row]);
+        }
+
+
+
+
+     
+                foreach ($rows as $row) {
+                    $sheet->fromArray([$row]);
+                    
+                }
+
+
+        
+                        
+        
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filePath);
+        
+    $fileResponse = response()->file($filePath, [
+        'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+    ])->deleteFileAfterSend(true);
+
+    return $fileResponse;
+
+
+    }
 }
+

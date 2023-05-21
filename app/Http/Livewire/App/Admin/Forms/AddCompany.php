@@ -7,6 +7,7 @@ use App\Helpers\SetupHelper;
 use App\Services\App\CompanyService;
 use App\Models\Tenant\Company;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class AddCompany extends Component
 {
@@ -123,7 +124,7 @@ class AddCompany extends Component
 
 	public function save($redirect=1){
 		$this->validate();
-		$this->company->added_by = 1;
+		$this->company->added_by = Auth::id();
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		$this->step=2;

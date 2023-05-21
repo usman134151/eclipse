@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common;
 
 use Livewire\Component;
 use App\Models\Tenant\Industry;
+use App\Services\ExportDataFile;
 
 class Industries extends Component
 {
@@ -21,13 +22,25 @@ class Industries extends Component
         'delete' => 'deleteRecord', // delete the record with the specified ID
         'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
     ];
-
+    protected $exportDataFile;
+    public $importFile;
     public function mount()
     {
         // This function runs when the component is mounted
         // No code here at the moment
     }
+	public function downloadExportFile()
+    {
+        return $this->exportDataFile->generateIndustryExcelTemplate();
+    }
+    public function __construct()
+    {
+        $this->exportDataFile = new ExportDataFile;
+    }
+    public function importFile(){
+		$this->importFile=true;
 
+	}
     // function to show the form
     function showForm($specialization = null)
     {
@@ -54,6 +67,7 @@ class Industries extends Component
         }
         // set the showForm property to false to hide the form
         $this->showForm = false;
+        $this->importFile=false;
         $this->dispatchBrowserEvent('update-url', ['url' => '/admin/all-industry']); //updated by Amna Bilal to set url
     }
 
