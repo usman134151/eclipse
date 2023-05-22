@@ -95,39 +95,38 @@ class Provider extends Component
 
     public function save()
     {
+        $saved=[];
         $userService = new UserService;
 
         foreach ($this->users as $userData) {
             $user = new User;
+            
             if(User::where('email', $userData['email'])->exists()){
-               $user=\App\Models\Tenant\User::where('email',$userData['email'])->first();
-               //dd($user);
+                $user=\App\Models\Tenant\User::where('email',$userData['email'])->first();
+                
+             }
+           
+             // Loop through the input array and set each key-value pair to the corresponding model attribute
+             foreach ($userData as $key => $value) {
+                 // Use the 'snake_case' version of the key to match the model attribute name
+                 $attribute = \Illuminate\Support\Str::snake($key);
+                 if($attribute!="user_details"){
+                     
+                     $user->{$attribute} = $value;
+                 }
+                
+                
+             }
+             if($user->user_dob){
+                $user->user_dob = Carbon::createFromFormat('d/m/Y', $user->user_dob)->format('Y-m-d');
+      
             }
-          
-            // Loop through the input array and set each key-value pair to the corresponding model attribute
-            foreach ($userData as $key => $value) {
-                // Use the 'snake_case' version of the key to match the model attribute name
-                $attribute = \Illuminate\Support\Str::snake($key);
-                if($attribute!="user_details"){
-                    
-                    $user->{$attribute} = $value;
-                }
-               
-               
-            }
-           // dd($user);
-        
-           // $user->save(); // Save the user model to the database
-           if($this->user->user_dob){
-            $this->user->user_dob = Carbon::createFromFormat('d/M/Y', $this->user->user_dob)->format('Y-m-d');
-
-        }
-           $user->name=$user->first_name.' '.$user->last_name;
+            $user->name=$user->first_name.' '.$user->last_name;
             // Call the createUser method of UserService and pass the user model along with other parameters
             $userService->createUser($user, $userData['userDetails'], 2, 0, [], 1);
 
         }
-        $this->showList("Customer data has been imported successfully");
+        $this->showList("Provider data has been imported successfully");
         $this->users = [];
     }
 
