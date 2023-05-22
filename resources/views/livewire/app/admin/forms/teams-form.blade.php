@@ -60,21 +60,12 @@
                         <label class="form-label" for="provider">Providers
                             <span class="mandatory" aria-hidden="true">*</span>
                         </label>
-                        <div class="mb-1">
-                            <button type="button"
-                                class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                data-bs-toggle="modal"
-                                data-bs-target="#">
-                                {{-- Updated by Shanila to Add svg icon--}}
-                                <svg aria-label="Select Providers" width="25"
-                                    height="18" viewBox="0 0 25 18">
-                                    <use
-                                        xlink:href="/css/common-icons.svg#right-color-arrow">
-                                    </use>
-                                </svg>
-                                Select Providers
-                            </button>
-                        </div>
+                          <select data-placeholder="" multiple
+                              class=" select2 form-select select2-hidden-accessible" tabindex="">
+                              <option value=""></option>
+                              <option selected>Ramon Miles</option>
+                              <option selected>Ramon Miles</option>
+                          </select>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
@@ -162,6 +153,7 @@
           </form>
     </div>
    </div>
+   @include('modals.provider-team-modal')
 </div>
 
 
