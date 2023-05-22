@@ -290,7 +290,6 @@
                                 </div>
                             </div>
                             <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
-                                <button type="button" class="btn btn-outline-dark rounded mx-2">Cancel</button>
                                 <button type="submit" class="btn btn-primary rounded"
                                     x-on:click="$wire.switch('business-hours')">Next</button>
                             </div>
@@ -747,7 +746,7 @@
                             <!-- Form Actions -->
                             <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded mx-2"
-                                    x-on:click="$wire.switch('configuration-setting')">Cancel</button>
+                                    x-on:click="$wire.switch('configuration-setting')">Back</button>
                                 <button type="submit" class="btn btn-primary rounded"
                                     x-on:click="$wire.switch('payments')">Next</button>
                             </div><!-- /Form Actions -->
@@ -1519,7 +1518,7 @@
                                                 <!-- Form Actions -->
                                                 <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                     <button type="button" class="btn btn-outline-dark rounded mx-2"
-                                                        x-on:click="$wire.switch('business-hours')">Cancel</button>
+                                                        x-on:click="$wire.switch('business-hours')">Back</button>
                                                     <button type="submit"
                                                         class="btn btn-primary rounded">Submit</button>
                                                 </div><!-- /Form Actions -->
