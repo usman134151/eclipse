@@ -71,6 +71,7 @@ class Customer extends Component
                     $user['userDetails']['address_line2']=$row[15];
                     $user['userDetails']['user_introduction']=$row[16];
                     $user['status']=1;
+                    
                     $companyId=Company::where('name',$row[23])->first();
                    
                     if(!is_null($companyId)){

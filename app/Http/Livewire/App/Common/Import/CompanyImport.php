@@ -53,6 +53,7 @@ class CompanyImport extends Component
                     $company = [];
 
                     $company['name'] = $row[0];
+                    $company['industry_id']='';
                     $industryId=Industry::where('name',$row[1])->first();
                     if(!is_null($industryId)){
                         $company['industry_id']=$industryId->id;
@@ -78,7 +79,7 @@ class CompanyImport extends Component
        
         $saved=[];
        
-
+        //dd($this->companies);
         foreach ($this->companies as $companyData) {
             $company = new Company;
             
@@ -86,6 +87,7 @@ class CompanyImport extends Component
                 $company=\App\Models\Tenant\Company::where('name',$companyData['name'])->first();
                 
              }
+          //   dd($company);
              $company->industry_id=$companyData['industry_id'];
              $company->name=$companyData['name'];   
              $company->added_by=Auth::id();
