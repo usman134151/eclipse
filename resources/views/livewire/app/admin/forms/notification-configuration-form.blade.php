@@ -439,7 +439,6 @@
                   Cancel
                   </a>
                   <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save">Save</button>
-                  <button type="submit" class="btn btn-primary rounded">Next</button>
                 </div>
             </div>
             </form>
