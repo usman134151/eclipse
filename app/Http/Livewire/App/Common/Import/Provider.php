@@ -51,7 +51,22 @@ class Provider extends Component
                 $user['first_name'] = $row[0];
                 $user['last_name'] = $row[1];
                 $user['userDetails']['title'] = $row[2];
-                $user['user_dob'] = $row[3];
+                    //dob formating
+                    if (is_numeric($row[3])) {
+                        // Convert the timestamp to an Excel serialized date value
+                        $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                    } else {
+                        // Convert the string date to an Excel serialized date value
+                        $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[3]);
+                    }
+                    
+                    // Convert the Excel serialized date value to a DateTime object
+                    $dateObject = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($excelDate);
+                    
+                    // Format the DateTime object as 'd/m/Y'
+                    $user['user_dob'] = $dateObject->format('d/m/Y');
+                    
+                    //end of dob formatting
                 $user['email'] = $row[4];
                 $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
                 $user['userDetails']['gender_id']=SetupHelper::getSetupValueByValue($row[6],2);
