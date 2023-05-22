@@ -46,15 +46,17 @@ class Provider extends Component
         $i = 0;
 
         foreach ($rows as $row) {
-            if($i>0){
+            if($i>0 && $row[4]){
                 $user = [];
                 $user['first_name'] = $row[0];
                 $user['last_name'] = $row[1];
                 $user['userDetails']['title'] = $row[2];
                     //dob formating
+                   
                     if (is_numeric($row[3])) {
                         // Convert the timestamp to an Excel serialized date value
-                        $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                       // $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                       $excelDate=$row[3];
                     } else {
                         // Convert the string date to an Excel serialized date value
                         $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[3]);
@@ -65,7 +67,7 @@ class Provider extends Component
                     
                     // Format the DateTime object as 'd/m/Y'
                     $user['user_dob'] = $dateObject->format('d/m/Y');
-                    
+                   // dd($user['user_dob']);
                     //end of dob formatting
                 $user['email'] = $row[4];
                 $user['userDetails']['language_id']=SetupHelper::getSetupValueByValue($row[5],1);
