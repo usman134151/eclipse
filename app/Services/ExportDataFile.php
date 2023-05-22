@@ -380,10 +380,6 @@ foreach($excelRows as $key=>$valueArr){
     
     
 
-        foreach ($rows as $row) {
-            $sheet->fromArray([$row]);
-        }
-
 
 
         for($i=2;$i<101;$i++){
@@ -474,11 +470,7 @@ foreach($excelRows as $key=>$valueArr){
 
 
      
-                foreach ($rows as $row) {
-                    $sheet->fromArray([$row]);
-                    
-                }
-
+        
 
         
                         
