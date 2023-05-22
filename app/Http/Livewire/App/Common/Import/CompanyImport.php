@@ -53,7 +53,7 @@ class CompanyImport extends Component
                     $company = [];
 
                     $company['name'] = $row[0];
-                    $company['industry_id']='';
+                    $company['industry_id']=0;
                     $industryId=Industry::where('name',$row[1])->first();
                     if(!is_null($industryId)){
                         $company['industry_id']=$industryId->id;
