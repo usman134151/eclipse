@@ -105,28 +105,14 @@ class ExportDataFile
         $sheet->fromArray([$row]);
     }
 
-
-
-
-$validation = $sheet->getCell('F2')->getDataValidation();
-$validation->setType('list');
-$validation->setErrorStyle('stop');
-$validation->setAllowBlank(true);
-$validation->setShowInputMessage(true);
-$validation->setShowErrorMessage(true);
-$validation->setShowDropDown(true);
-$validation->setErrorTitle('Input error');
-$validation->setError('Value is not in list.');
-$validation->setPromptTitle('Pick from list');
-$validation->setPrompt('Please pick a value from the drop-down list.');
-$validation->setFormula1('"' . implode(',', $languageValues) . '"');
-        foreach ($rows as $row) {
-            $sheet->fromArray([$row]);
-            
-        }
-
-
-        $validation = $sheet->getCell('G2')->getDataValidation();
+$excelRows=[
+    'F'=>$languageValues,
+    'G'=> $genderValues,
+    'H'=> $ethnicityValues
+];
+foreach($excelRows as $key=>$valueArr){
+    for($i=2;$i<101;$i++){
+        $validation = $sheet->getCell($key.$i)->getDataValidation();
         $validation->setType('list');
         $validation->setErrorStyle('stop');
         $validation->setAllowBlank(true);
@@ -137,27 +123,16 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
         $validation->setError('Value is not in list.');
         $validation->setPromptTitle('Pick from list');
         $validation->setPrompt('Please pick a value from the drop-down list.');
-        $validation->setFormula1('"' . implode(',', $genderValues) . '"');
+        $validation->setFormula1('"' . implode(',', $valueArr) . '"');
                 foreach ($rows as $row) {
                     $sheet->fromArray([$row]);
+                    
                 }
+    }
+}
 
-                $validation = $sheet->getCell('H2')->getDataValidation();
-                $validation->setType('list');
-                $validation->setErrorStyle('stop');
-                $validation->setAllowBlank(true);
-                $validation->setShowInputMessage(true);
-                $validation->setShowErrorMessage(true);
-                $validation->setShowDropDown(true);
-                $validation->setErrorTitle('Input error');
-                $validation->setError('Value is not in list.');
-                $validation->setPromptTitle('Pick from list');
-                $validation->setPrompt('Please pick a value from the drop-down list.');
-                $validation->setFormula1('"' . implode(',', $ethnicityValues) . '"');
-                        foreach ($rows as $row) {
-                            $sheet->fromArray([$row]);
-                        }
-                
+
+
                         
         
                 $writer = new Xlsx($spreadsheet);
@@ -275,59 +250,34 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
 
 
 
-
-$validation = $sheet->getCell('F2')->getDataValidation();
-$validation->setType('list');
-$validation->setErrorStyle('stop');
-$validation->setAllowBlank(true);
-$validation->setShowInputMessage(true);
-$validation->setShowErrorMessage(true);
-$validation->setShowDropDown(true);
-$validation->setErrorTitle('Input error');
-$validation->setError('Value is not in list.');
-$validation->setPromptTitle('Pick from list');
-$validation->setPrompt('Please pick a value from the drop-down list.');
-$validation->setFormula1('"' . implode(',', $languageValues) . '"');
-        foreach ($rows as $row) {
-            $sheet->fromArray([$row]);
-            
+    $excelRows=[
+        'F'=>$languageValues,
+        'G'=> $genderValues,
+        'H'=> $ethnicityValues
+    ];
+    foreach($excelRows as $key=>$valueArr){
+        for($i=2;$i<101;$i++){
+            $validation = $sheet->getCell($key.$i)->getDataValidation();
+            $validation->setType('list');
+            $validation->setErrorStyle('stop');
+            $validation->setAllowBlank(true);
+            $validation->setShowInputMessage(true);
+            $validation->setShowErrorMessage(true);
+            $validation->setShowDropDown(true);
+            $validation->setErrorTitle('Input error');
+            $validation->setError('Value is not in list.');
+            $validation->setPromptTitle('Pick from list');
+            $validation->setPrompt('Please pick a value from the drop-down list.');
+            $validation->setFormula1('"' . implode(',', $valueArr) . '"');
+                    foreach ($rows as $row) {
+                        $sheet->fromArray([$row]);
+                        
+                    }
         }
-
-
-        $validation = $sheet->getCell('G2')->getDataValidation();
-        $validation->setType('list');
-        $validation->setErrorStyle('stop');
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not in list.');
-        $validation->setPromptTitle('Pick from list');
-        $validation->setPrompt('Please pick a value from the drop-down list.');
-        $validation->setFormula1('"' . implode(',', $genderValues) . '"');
-                foreach ($rows as $row) {
-                    $sheet->fromArray([$row]);
-                }
-
-                $validation = $sheet->getCell('H2')->getDataValidation();
-                $validation->setType('list');
-                $validation->setErrorStyle('stop');
-                $validation->setAllowBlank(true);
-                $validation->setShowInputMessage(true);
-                $validation->setShowErrorMessage(true);
-                $validation->setShowDropDown(true);
-                $validation->setErrorTitle('Input error');
-                $validation->setError('Value is not in list.');
-                $validation->setPromptTitle('Pick from list');
-                $validation->setPrompt('Please pick a value from the drop-down list.');
-                $validation->setFormula1('"' . implode(',', $ethnicityValues) . '"');
-                        foreach ($rows as $row) {
-                            $sheet->fromArray([$row]);
-                        }
-                
+    }               
+    for($i=2;$i<101;$i++){
             //yes/no dropdowns
-            $colNumber=['R2','S2','T2','U2','V2','W2'];
+            $colNumber=['R'.$i,'S'.$i,'T'.$i,'U'.$i,'V'.$i,'W'.$i];
             $values=['Yes','No'];
             for($cols=0;$cols<6;$cols++){
                 $validation = $sheet->getCell($colNumber[$cols])->getDataValidation();
@@ -350,7 +300,7 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
             }
                        
 
-            $validation = $sheet->getCell('X2')->getDataValidation();
+            $validation = $sheet->getCell('X'.$i)->getDataValidation();
             $validation->setType('list');
             $validation->setErrorStyle('stop');
             $validation->setAllowBlank(true);
@@ -365,6 +315,7 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
                     foreach ($rows as $row) {
                         $sheet->fromArray([$row]);
                     }    
+                }            
             $writer = new Xlsx($spreadsheet);
             $writer->save($filePath);
         
@@ -435,29 +386,29 @@ $validation->setFormula1('"' . implode(',', $languageValues) . '"');
 
 
 
+        for($i=2;$i<101;$i++){
+            $validation = $sheet->getCell('B'.$i)->getDataValidation();
+            $validation->setType('list');
+            $validation->setErrorStyle('stop');
+            $validation->setAllowBlank(true);
+            $validation->setShowInputMessage(true);
+            $validation->setShowErrorMessage(true);
+            $validation->setShowDropDown(true);
+            $validation->setErrorTitle('Input error');
+            $validation->setError('Value is not in list.');
+            $validation->setPromptTitle('Pick from list');
+            $validation->setPrompt('Please pick a value from the drop-down list.');
+            $validation->setFormula1('"' . implode(',', $industryValues) . '"');
+                    foreach ($rows as $row) {
+                        $sheet->fromArray([$row]);
+                        
+                    }
 
-        $validation = $sheet->getCell('B2')->getDataValidation();
-        $validation->setType('list');
-        $validation->setErrorStyle('stop');
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Input error');
-        $validation->setError('Value is not in list.');
-        $validation->setPromptTitle('Pick from list');
-        $validation->setPrompt('Please pick a value from the drop-down list.');
-        $validation->setFormula1('"' . implode(',', $industryValues) . '"');
-                foreach ($rows as $row) {
-                    $sheet->fromArray([$row]);
-                    
-                }
-
-
+        }
         
                         
         
-                $writer = new Xlsx($spreadsheet);
+        $writer = new Xlsx($spreadsheet);
         $writer->save($filePath);
         
     $fileResponse = response()->file($filePath, [
