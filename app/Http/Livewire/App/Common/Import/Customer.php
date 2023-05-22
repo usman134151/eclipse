@@ -59,7 +59,8 @@ class Customer extends Component
                     //dob formating
                     if (is_numeric($row[3])) {
                         // Convert the timestamp to an Excel serialized date value
-                        $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                     //   $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($row[3]);
+                     $excelDate=$row[3];
                     } else {
                         // Convert the string date to an Excel serialized date value
                         $excelDate = \PhpOffice\PhpSpreadsheet\Shared\Date::stringToExcel($row[3]);
