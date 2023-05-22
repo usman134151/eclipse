@@ -240,6 +240,8 @@ class ProviderForm extends Component
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
+       if($this->user->user_dob)
+           $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
 
     }
