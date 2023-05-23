@@ -64,14 +64,7 @@
 								<div class="row">
 								<div class="d-flex flex-column flex-md-row justify-content-end mt-4 mb-3 gap-2">
 										{{-- Updated by Shanila to fix style of buttons--}}
-										<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-											{{-- Updated by Shanila to Add svg icon--}}
-											<svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
-												<use xlink:href="/css/common-icons.svg#plus"></use>
-											</svg>
-											{{-- End of update by Shanila --}}
-											<span>Add Provider</span>
-										</button>
+
 
 										<button type="button" wire:click.prevent="downloadExportFile()" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 											{{-- Updated by Shanila to Add svg icon--}}
@@ -89,6 +82,14 @@
 												{{-- End of update by Shanila --}}
 												<span>Import Providers</span>
 											</button>
+											<button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
+											{{-- Updated by Shanila to Add svg icon--}}
+											<svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
+												<use xlink:href="/css/common-icons.svg#plus"></use>
+											</svg>
+											{{-- End of update by Shanila --}}
+											<span>Add Provider</span>
+										</button>
 										{{-- End of update by Shanila --}}
 									</div>
 								</div>
