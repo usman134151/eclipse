@@ -343,7 +343,8 @@ foreach($excelRows as $key=>$valueArr){
         ];
 
      
-        $industryValues = Industry::where('status', 1)->pluck('name')->toArray();
+        $industryValues = Industry::where('status', 1)->limit(25)->orderBy('name')->pluck('name')->toArray();
+       // dd($industryValues);
 
         $rows = [
             [
@@ -387,8 +388,8 @@ foreach($excelRows as $key=>$valueArr){
             $validation->setType('list');
            
             $validation->setShowDropDown(true);
-            
-           // $validation->setFormula1('"' . implode(',', $industryValues) . '"');
+           // dd(implode(',', $industryValues));
+         //   $validation->setFormula1('"new industry its working worked?,Medical,Textile,Cruise,Administration Industry,Administrative,General,Education K12,FFC,Higher Education,Cricket,Empiric Marketing,MilTeching,Medsnake Media,Technology,Transport,Construction,Manufacturing,Agriculture,Aerospace,Automotive,Basic Metal,Chemical,Computer,Creative,Cultural,Defense,Electric Power,Electronics,Energy,Engineering,Entertainment,Farming,Fashion,Film,Financial Services,Fishery,Food,Forestry,Green,Health Services,Hospitality,Hotels,Robotics,Information,IT,Infrastructure,Insurance,Leisure,Low Technology,Meat,Media,Merchandising,Mining,Music,News Media,Oil and Gas,Pharmaceuticals ,Professional,Publishing,Pulp and Paper,Railway,Real estate,Retail,Scientific,Services,Software,Space,Sport,Steel ,Tobacco,Utility,Video Game,Water,Wholesale,Telecommunications,Wood,Waste Management,Art,Remediation Services,Recreation,Commerce,Shipping,Leather,Natural Resources,Securities,Stock Exchange,Labour,Marketing,Production,Law,Factory,Banking,Investment Banking,Biotechnology,Printing,Research,Trade,Automobile Assembler,Cable Goods,Personal Care Products,Glass and Ceramics,Tanneries,Exploration,Tourism,Mobile Phone"');
            $validation->setFormula1('"'.implode(',', $industryValues).'"');
                     foreach ($rows as $row) {
                         $sheet->fromArray([$row]);
