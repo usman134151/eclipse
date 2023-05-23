@@ -370,7 +370,7 @@ foreach($excelRows as $key=>$valueArr){
             ]
         ];
 
-        $fileName = 'company-import.xlsx';
+        $fileName = 'companies-import.xlsx';
         $filePath = Storage::disk('local')->path($fileName);
 
         $spreadsheet = new Spreadsheet();
