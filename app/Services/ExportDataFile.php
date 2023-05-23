@@ -343,7 +343,7 @@ foreach($excelRows as $key=>$valueArr){
         ];
 
      
-        $industryValues = Industry::where('status', 1)->limit(25)->orderBy('name')->pluck('name')->toArray();
+        $industryValues = Industry::where('status', 1)->orderBy('name')->pluck('name')->toArray();
        // dd($industryValues);
 
         $rows = [
