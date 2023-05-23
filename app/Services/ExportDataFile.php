@@ -385,15 +385,9 @@ foreach($excelRows as $key=>$valueArr){
         for($i=2;$i<101;$i++){
             $validation = $sheet->getCell('B'.$i)->getDataValidation();
             $validation->setType('list');
-            $validation->setErrorStyle('stop');
-            $validation->setAllowBlank(true);
-            $validation->setShowInputMessage(true);
-            $validation->setShowErrorMessage(true);
+           
             $validation->setShowDropDown(true);
-            $validation->setErrorTitle('Input error');
-            $validation->setError('Value is not in list.');
-            $validation->setPromptTitle('Pick from list');
-            $validation->setPrompt('Please pick a value from the drop-down list.');
+            
             $validation->setFormula1('"' . implode(',', $industryValues) . '"');
                     foreach ($rows as $row) {
                         $sheet->fromArray([$row]);
