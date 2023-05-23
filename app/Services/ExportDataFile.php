@@ -186,7 +186,7 @@ foreach($excelRows as $key=>$valueArr){
         $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->all();
         $genderValues = SetupValue::where('setup_id', 2)->pluck('setup_value_label')->toArray();
         $ethnicityValues = SetupValue::where('setup_id', 3)->pluck('setup_value_label')->toArray();
-        $companies=Company::where('status','1')->pluck('name')->toArray();
+        $companies=Company::where('status','1')->orderBy('name')->pluck('name')->toArray();
      
         $rows = [
             [
