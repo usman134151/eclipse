@@ -388,7 +388,8 @@ foreach($excelRows as $key=>$valueArr){
            
             $validation->setShowDropDown(true);
             
-            $validation->setFormula1('"' . implode(',', $industryValues) . '"');
+           // $validation->setFormula1('"' . implode(',', $industryValues) . '"');
+           $validation->setFormula1('"'.implode(',', $industryValues).'"');
                     foreach ($rows as $row) {
                         $sheet->fromArray([$row]);
                         
