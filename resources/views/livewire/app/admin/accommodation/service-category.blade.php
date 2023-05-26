@@ -52,7 +52,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            < @livewire('app.common.lists.service-catagories', key(Str::random(1)))
+                             @livewire('app.common.lists.service-catagories', key(Str::random(1)))
                         <!-- ....Back/next (buttons)... -->
                         <div class="col-12 form-actions">
                             <button type="button" class="btn btn-outline-dark rounded px-4 py-2">Back</button>

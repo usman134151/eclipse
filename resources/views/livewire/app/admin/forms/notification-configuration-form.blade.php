@@ -32,77 +32,20 @@
                           <textarea class="form-control" rows="2" cols="3" placeholder="" name="trigger-description"
                             id="trigger-description" wire:model.defer="notification.trigger"></textarea>
                       </div>
+                      <div class="col-lg-5 col-12 mb-4">
+                        <label class="form-label" for="ApplyTo">Select User Type</label>
+                        <select class="form-control  select2 form-select select2-hidden-accessible" data-placeholder="Please Choose Accommodation" aria-label="Please Select User Type" multiple="true" tabindex="" name="">
+                          <option value="1" selected>Admin</option>
+                          <option value="2" selected>Customer</option>
+                          <option value="3">Provider</option>   
+                        </select>
+                    </div>
+                    {{--
                       <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="select-role">Select Role</label>
                           {!! $setupValues['roles']['rendered'] !!}
                       </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="row">
-                        <div class="col-lg-7">
-                          <div class="row">
-                            <div class="col-lg-4 align-self-end mb-4">
-                              <div class="d-inline-flex gap-2 align-items-center">
-                                <label for="Frequency" class="form-label text-primary mb-lg-0">
-                                  Frequency
-                                </label>
-                                <input type="text" class="form-control form-control-md form-control-max-w-xs text-center" id="frequency" name="frequency" placeholder="2" autocomplete="on"/>
-                              </div>
-                            </div>
-                            <div class="col-lg-4 text-center align-self-end mb-4">
-                              <div class="row g-0">
-                                <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Days</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                                </div>
-                                <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Hours</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                                </div>
-                                <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
-                                  <label class="form-label-sm" for="DisplayToProviders"> Minutes</label>
-                                  <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-4 mb-4">
-                              <div class="d-flex flex-column gap-2">
-                                <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="Before-Booking" value="option2">
-                                  <label class="form-check-label" for="Before-Booking">
-                                  Before Booking
-                                  </label>
-                                </div>
-                                <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="After-Booking" value="option2">
-                                  <label class="form-check-label" for="After-Booking">
-                                  After Booking
-                                  </label>
-                                </div>
-                                <div class="form-check mb-0">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="After-Trigger" value="option2">
-                                  <label class="form-check-label" for="After-Trigger">
-                                  After Trigger
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-12 text-end mb-4">
-                              <button type="button" class="btn btn-primary rounded gap-2">
-                                {{-- Updated by Shanila to Add svg icon--}}
-                                <svg aria-label="Add Notification" width="20" height="20" viewBox="0 0 20 20">
-                                    <use xlink:href="/css/common-icons.svg#plus">
-                                    </use>
-                                </svg>
-                                {{-- End of update by Shanila --}}
-                                <span>Add Notification</span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    --}}  
                     </div>
                     <!-- ...section 1 ...(ends)...  -->
                     <!-- .......section 2....(start)....  -->
@@ -110,12 +53,95 @@
                       <div class="col-lg-5 col-12">
                         <div class="mb-4">
                           <label class="form-label" for="SubjectColumn">
-                          Subject
+                          Subject Admin
                           </label>
                           <textarea class="form-control" rows="3" cols="3" placeholder="Normal text"
                             name="SubjectColumn" id="SubjectColumn">Enter Subject</textarea>
                         </div>
                       </div>
+                      <div class="col-lg-5 pe-lg-4 mb-4">
+                        <label class="form-label" for="select-role">Select Role</label>
+                        {!! $setupValues['roles']['rendered'] !!}
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-7">
+                        <div class="row border-dashed rounded p-3 mb-3 mx-1">
+                          <div class="d-flex justify-content-end">
+                            <a  href="#" title="Delete" aria-label="Delete"
+                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                <svg class="delete-icon" width="20" height="20"
+                                    viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                </svg>
+                            </a>
+                        </div>
+                          <div class="col-lg-4 align-self-end mb-4">
+                            <div class="d-inline-flex gap-2 align-items-center">
+                              <label for="Frequency" class="form-label text-primary mb-lg-0">
+                                Frequency
+                              </label>
+                              <input type="text" class="form-control form-control-md form-control-max-w-xs text-center" id="frequency" name="frequency" placeholder="2" autocomplete="on"/>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 text-center align-self-end mb-4">
+                            <div class="row g-0">
+                              <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
+                                <label class="form-label-sm" for="DisplayToProviders"> Days</label>
+                                <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
+                              </div>
+                              <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
+                                <label class="form-label-sm" for="DisplayToProviders"> Hours</label>
+                                <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
+                              </div>
+                              <div class="col-4 text-center justify-content-center d-flex flex-column align-items-center">
+                                <label class="form-label-sm" for="DisplayToProviders"> Minutes</label>
+                                <input class="form-control form-control-md text-center" id="DisplayToProviders" name="DisplayToProviders" value="00" type="" tabindex="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 mb-4">
+                            <div class="d-flex flex-column gap-2">
+                              <div class="form-check mb-0">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="Before-Booking" value="option2">
+                                <label class="form-check-label" for="Before-Booking">
+                                Before Booking
+                                </label>
+                              </div>
+                              <div class="form-check mb-0">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="After-Booking" value="option2">
+                                <label class="form-check-label" for="After-Booking">
+                                After Booking
+                                </label>
+                              </div>
+                              <div class="form-check mb-0">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="After-Trigger" value="option2">
+                                <label class="form-check-label" for="After-Trigger">
+                                After Trigger
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12 text-end mb-4">
+                            <p href="#" class="fw-bold">
+                              <span>
+                                  {{-- Updated by Shanila to Add svg icon--}}
+                                  <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                      viewBox="0 0 20 21">
+                                      <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                  </svg>
+                                  {{-- End of update by Shanila --}}
+                                  Add Frequency
+                                </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
                      {{-- added by shanila to add text-editor --}}
                      <div class="col-lg-8 col-12 mb-4" style="height: 340px">
                      <textarea class="form-control" rows="11" cols="11" placeholder="Normal text"
@@ -179,7 +205,17 @@
                     <div class="col-lg-12">
                       <div class="row">
                         <div class="col-lg-7">
-                          <div class="row">
+                          <div class="row border-dashed rounded p-3 mb-3 mx-1">
+                            <div class="d-flex justify-content-end">
+                              <a  href="#" title="Delete" aria-label="Delete"
+                                  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
+                              </a>
+                          </div>
                             <div class="col-lg-4 align-self-end mb-4">
                               <div class="d-inline-flex gap-2 align-items-center">
                                 <label for="Frequency" class="form-label text-primary mb-lg-0">
@@ -229,15 +265,17 @@
                           </div>
                           <div class="row">
                             <div class="col-lg-12 text-end mb-4">
-                              <button type="button" class="btn btn-primary rounded gap-2">
-                                {{-- Updated by Shanila to Add svg icon--}}
-                                <svg aria-label="Add Notification" width="20" height="20" viewBox="0 0 20 20">
-                                    <use xlink:href="/css/common-icons.svg#plus">
-                                    </use>
-                                </svg>
-                                {{-- End of update by Shanila --}}
-                                <span>Add Notification</span>
-                              </button>
+                              <p href="#" class="fw-bold">
+                                <span>
+                                    {{-- Updated by Shanila to Add svg icon--}}
+                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                        viewBox="0 0 20 21">
+                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                    </svg>
+                                    {{-- End of update by Shanila --}}
+                                    Add Frequency
+                                  </span>
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -326,8 +364,18 @@
                     </div>
                     <div class="col-lg-12 col-12">
                       <div class="row">
-                        <div class="col-lg-7 col-12">
-                          <div class="row">
+                        <div class="col-lg-7">
+                          <div class="row border-dashed rounded p-3 mb-3 mx-1">
+                            <div class="d-flex justify-content-end">
+                              <a  href="#" title="Delete" aria-label="Delete"
+                                  class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                  <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
+                              </a>
+                          </div>
                             <div class="col-lg-4 align-self-end mb-4">
                               <div class="d-inline-flex gap-2 align-items-center">
                                 <label for="Frequency" class="form-label text-primary mb-lg-0">
@@ -375,18 +423,19 @@
                               </div>
                             </div>
                           </div>
-                          <!-- ... btn row...  -->
                           <div class="row">
                             <div class="col-lg-12 text-end mb-4">
-                              <button type="button" class="btn btn-primary rounded gap-2">
-                                {{-- Updated by Shanila to Add svg icon--}}
-                                <svg aria-label="Add Notification" width="20" height="20" viewBox="0 0 20 20">
-                                    <use xlink:href="/css/common-icons.svg#plus">
-                                    </use>
-                                </svg>
-                                {{-- End of update by Shanila --}}
-                                <span>Add Notification</span>
-                              </button>
+                              <p href="#" class="fw-bold">
+                                <span>
+                                    {{-- Updated by Shanila to Add svg icon--}}
+                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                        viewBox="0 0 20 21">
+                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                    </svg>
+                                    {{-- End of update by Shanila --}}
+                                    Add Frequency
+                                  </span>
+                              </p>
                             </div>
                           </div>
                         </div>
