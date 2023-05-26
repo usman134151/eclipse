@@ -126,17 +126,17 @@
                         </div>
                         <div class="row">
                           <div class="col-lg-12 text-end mb-4">
-                            <p href="#" class="fw-bold">
-                              <span>
+                            <button href="#" class="btn btn-has-icon">
                                   {{-- Updated by Shanila to Add svg icon--}}
                                   <svg aria-label="Add New" class="me-1" width="20" height="21"
                                       viewBox="0 0 20 21">
                                       <use xlink:href="/css/common-icons.svg#add-new"></use>
                                   </svg>
                                   {{-- End of update by Shanila --}}
+                                  <span class="text-primary">
                                   Add Frequency
                                 </span>
-                            </p>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -265,17 +265,17 @@
                           </div>
                           <div class="row">
                             <div class="col-lg-12 text-end mb-4">
-                              <p href="#" class="fw-bold">
-                                <span>
-                                    {{-- Updated by Shanila to Add svg icon--}}
-                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                        viewBox="0 0 20 21">
-                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                    Add Frequency
-                                  </span>
-                              </p>
+                              <button class="btn btn-has-icon">
+                                {{-- Updated by Shanila to Add svg icon--}}
+                                <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                    viewBox="0 0 20 21">
+                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                </svg>
+                                {{-- End of update by Shanila --}}
+                                <span class="text-primary">
+                                Add Frequency
+                              </span>
+                          </button>
                             </div>
                           </div>
                         </div>
@@ -425,17 +425,17 @@
                           </div>
                           <div class="row">
                             <div class="col-lg-12 text-end mb-4">
-                              <p href="#" class="fw-bold">
-                                <span>
-                                    {{-- Updated by Shanila to Add svg icon--}}
-                                    <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                        viewBox="0 0 20 21">
-                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                    </svg>
-                                    {{-- End of update by Shanila --}}
-                                    Add Frequency
-                                  </span>
-                              </p>
+                              <button href="#" class="btn btn-has-icon">
+                                {{-- Updated by Shanila to Add svg icon--}}
+                                <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                    viewBox="0 0 20 21">
+                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                </svg>
+                                {{-- End of update by Shanila --}}
+                                <span class="text-primary">
+                                Add Frequency
+                              </span>
+                          </button>
                             </div>
                           </div>
                         </div>
