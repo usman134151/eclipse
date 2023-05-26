@@ -53,7 +53,7 @@
                       <div class="col-lg-5 col-12">
                         <div class="mb-4">
                           <label class="form-label" for="SubjectColumn">
-                          Subject Admin
+                          Subject
                           </label>
                           <textarea class="form-control" rows="3" cols="3" placeholder="Normal text"
                             name="SubjectColumn" id="SubjectColumn">Enter Subject</textarea>

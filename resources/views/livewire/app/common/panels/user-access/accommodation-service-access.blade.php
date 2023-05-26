@@ -52,7 +52,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
@@ -74,7 +78,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
@@ -96,7 +104,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
@@ -118,7 +130,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
@@ -140,7 +156,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
@@ -162,7 +182,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
@@ -184,7 +208,11 @@
                     <td>
                         <div class="d-flex actions">
                             <a href="javascript:void(0)" title="Delete Team" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                <x-icon name="recycle-bin"/>
+                                <svg class="delete-icon" width="20" height="20"
+                                      viewBox="0 0 20 20" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                  </svg>
                             </a>
                         </div>
                     </td>
