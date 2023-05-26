@@ -47,6 +47,9 @@
 		{{ $message }}
 	</span>
 	@enderror
+	@if($warningMessage)
+		<h3 class="mt-4">{{$warningMessage}}</h3>
+	@endif
     @if ($users)
         <h2 class="mt-5">Preview Users</h2>
 		<div class="table-responsive">
@@ -63,6 +66,7 @@
             </tr>
           </thead>
           <tbody>
+			<tr><td><h3>{{$warningMessage}}</h3></td></tr>
 		  @foreach ($users as $user)
             <tr role="row" class="odd">
               <td class="text-center">
@@ -106,7 +110,9 @@
 				Language
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($languages as $language)
+
 			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
 			  @endforeach
 			</select>
@@ -116,6 +122,7 @@
 				Ethnicity
             </label>
 			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($ethnicities as $ethnicity)
 			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
 			  @endforeach
@@ -126,6 +133,7 @@
 				Gender
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($genders as $gender)
 			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
 			  @endforeach

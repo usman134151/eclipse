@@ -17,6 +17,7 @@ class Provider extends Component
     use WithFileUploads;
     public $file;
     public $users = [];
+    public $warningMessage;
     protected $listeners = ['updateVal' => 'updateVal'];
     //setup values
     public $languages, $ethnicities, $genders;
@@ -41,12 +42,16 @@ class Provider extends Component
 
         $rows = Excel::toArray([], $this->file)[0];
         $this->users=[];
+        $this->warningMessage='';
         //dd($rows);
         // Initialize a counter variable
         $i = 0;
+        
+       
 
         foreach ($rows as $row) {
             if($i>0 && $row[4]){
+               
                 $user = [];
                 $user['first_name'] = $row[0];
                 $user['last_name'] = $row[1];
@@ -91,6 +96,10 @@ class Provider extends Component
             }
             $i++;
 
+        }
+       
+        if(count($this->users)==0){
+            $this->warningMessage="Please ensure that the file contains records before proceeding with the import. Currently, the file is empty.";
         }
         $this->dispatchBrowserEvent('refreshSelects');
     }

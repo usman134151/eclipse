@@ -47,6 +47,9 @@
 		{{ $message }}
 	</span>
 	@enderror
+	@if($warningMessage)
+		<h3 class="mt-4">{{$warningMessage}}</h3>
+	@endif
     @if ($users)
         <h2 class="mt-5">Preview Users</h2>
 		<div class="table-responsive">
@@ -95,6 +98,7 @@
               </label>
 			
 			  <select  class="form-select" name="users.{{ $loop->index }}.company_name" id="users.{{ $loop->index }}.company_name" wire:model='users.{{ $loop->index }}.company_name'>
+			  <option value="0">Select Option</option>
 			  @foreach($companies as $company)
 			    <option value="{{$company->id}}">{{$company->name}}</option>
 			  @endforeach
@@ -104,6 +108,7 @@
 				Language
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($languages as $language)
 			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
 			  @endforeach
@@ -114,6 +119,7 @@
 				Ethnicity
             </label>
 			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($ethnicities as $ethnicity)
 			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
 			  @endforeach
@@ -124,6 +130,7 @@
 				Gender
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($genders as $gender)
 			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
 			  @endforeach

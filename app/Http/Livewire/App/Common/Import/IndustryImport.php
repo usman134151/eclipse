@@ -16,6 +16,7 @@ class IndustryImport extends Component
     use WithFileUploads;
     public $file;
     public $industries = [];
+    public $warningMessage;
     protected $listeners = ['updateVal' => 'updateVal'];
     
 
@@ -31,7 +32,7 @@ class IndustryImport extends Component
         $this->validate([
             'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ]);
-
+        $this->warningMessage='';
 
         $rows = Excel::toArray([], $this->file)[0];
         $this->industries=[];
@@ -56,6 +57,9 @@ class IndustryImport extends Component
             }
             $i++;
 
+        }
+        if(count($this->industries)==0){
+            $this->warningMessage="Please ensure that the file contains records before proceeding with the import. Currently, the file is empty.";
         }
        
         $this->dispatchBrowserEvent('refreshSelects');

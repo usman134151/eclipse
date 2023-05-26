@@ -47,6 +47,9 @@
 		{{ $message }}
 	</span>
 	@enderror
+	@if($warningMessage)
+		<h3 class="mt-4">{{$warningMessage}}</h3>
+	@endif
     @if ($companies)
         <h2 class="mt-5">Preview Companies</h2>
 		<div class="table-responsive">
@@ -83,6 +86,7 @@
 				Industry
               </label>
 			  <select  class="form-select" name="companies.{{ $loop->index }}.industry_id" id="companies.{{ $loop->index }}.industry_id" wire:model='companies.{{ $loop->index }}.industry_id'>
+				<option value="0">Select Option</option>
 			  @foreach($industries as $industry)
 			    <option value="{{$industry->id}}">{{$industry->name}}</option>
 			  @endforeach

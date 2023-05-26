@@ -23,6 +23,7 @@ class CompanyImport extends Component
     
     //setup values
     public $industries;
+    public $warningMessage;
 
     public function render()
     {
@@ -40,7 +41,7 @@ class CompanyImport extends Component
             'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ]);
 
-
+        $this->warningMessage='';
         $rows = Excel::toArray([], $this->file)[0];
         $this->companies=[];
      //   dd($rows);
@@ -70,7 +71,9 @@ class CompanyImport extends Component
 
         }
        // dd($this->companies);
-       
+       if(count($this->companies)==0){
+        $this->warningMessage="Please ensure that the file contains records before proceeding with the import. Currently, the file is empty.";
+    }
         $this->dispatchBrowserEvent('refreshSelects');
     }
 

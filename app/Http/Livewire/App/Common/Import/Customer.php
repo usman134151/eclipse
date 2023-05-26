@@ -18,6 +18,7 @@ class Customer extends Component
     use WithFileUploads;
     public $file;
     public $users = [];
+    public $warningMessage='';
     protected $listeners = ['updateVal' => 'updateVal'];
     
     //setup values
@@ -44,6 +45,7 @@ class Customer extends Component
 
         $rows = Excel::toArray([], $this->file)[0];
         $this->users=[];
+        $this->warningMessage='';
         //dd($rows);
         // Initialize a counter variable
         $i = 0;
@@ -100,8 +102,12 @@ class Customer extends Component
 
 
             }
+            
             $i++;
 
+        }
+        if(count($this->users)==0){
+            $this->warningMessage="Please ensure that the file contains records before proceeding with the import. Currently, the file is empty.";
         }
        
         $this->dispatchBrowserEvent('refreshSelects');

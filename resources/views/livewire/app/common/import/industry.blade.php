@@ -47,6 +47,9 @@
 		{{ $message }}
 	</span>
 	@enderror
+	@if($warningMessage)
+		<h3 class="mt-4">{{$warningMessage}}</h3>
+	@endif
     @if ($industries)
         <h2 class="mt-5">Preview Industries</h2>
 		<div class="table-responsive">
