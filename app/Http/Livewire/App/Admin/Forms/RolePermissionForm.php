@@ -90,6 +90,7 @@ class RolePermissionForm extends Component
 
 	public function save($id = null)
 	{
+		
 		$this->validate();
 
 		if ($id)

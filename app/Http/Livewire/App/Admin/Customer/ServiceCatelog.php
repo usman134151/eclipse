@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Livewire\App\Admin\Customer;
+use App\Models\Tenant\Company;
+use App\Models\Tenant\Accommodation;
 
 use Livewire\Component;
 
 class ServiceCatelog extends Component
 {
-    public $showForm;
+    public $showForm,$accomodations;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -16,7 +18,7 @@ class ServiceCatelog extends Component
 
     public function mount()
     {
-       
+       $this->accomodations=Accommodation::with('services')->get();
        
     }
 	public function switch($component)
@@ -24,9 +26,9 @@ class ServiceCatelog extends Component
 		$this->component = $component;
 	}
     public function next()
-{
-    $this->emit('stepIncremented');
-}
+    {
+        $this->emit('stepIncremented');
+    }
 
     function showForm()
     {     

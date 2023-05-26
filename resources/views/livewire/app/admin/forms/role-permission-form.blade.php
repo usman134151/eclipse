@@ -177,10 +177,16 @@
 			
 	       
 			if ($(this).prop('checked')) {
-            $('.subcheck-'+$(this).attr('id')).prop('checked', true);
+            $('.subcheck-'+$(this).attr('id')).prop('checked', false);		
+			
         } else {
-			$('.subcheck-'+$(this).attr('id')).prop('checked', false);
-        }				
+			$('.subcheck-'+$(this).attr('id')).prop('checked', true);
+        }	
+
+		$('.subcheck-'+$(this).attr('id')).click();
+
+
+		
          
        });
 

@@ -18,4 +18,8 @@ class Accommodation extends Model
     protected $fillable = [
         'name', 'image' , 'status' , 'added_by' , 'description' ,
     ];
+
+    public function services(){
+        return $this->hasMany(Services::class,'accomodation_id');
+    }
 }

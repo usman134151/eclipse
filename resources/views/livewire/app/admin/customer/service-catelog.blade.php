@@ -37,44 +37,7 @@
                                                                                             </p>
                                                                                         </td>
                                                                                     </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>
-                                                                                                Language Translation
-                                                                                                Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    @for ($i = 0; $i < 4; $i++) <tr
-                                                                                        role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>
-                                                                                                Real Time Captioning
-                                                                                                Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                        </tr>
-                                                                                        @endfor
-                                                                                        <tr role="row" class="odd">
-                                                                                            <td class="text-start">
-                                                                                                <p>
-                                                                                                    Sign Language
-                                                                                                    Interpreting
-                                                                                                    Services
-                                                                                                </p>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        @for ($i = 0; $i < 5; $i++) <tr
-                                                                                            role="row" class="odd">
-                                                                                            <td class="text-start">
-                                                                                                <p>
-                                                                                                    Spoken Language
-                                                                                                    Interpreting
-                                                                                                    Services
-                                                                                                </p>
-                                                                                            </td>
-                                                                                            </tr>
-                                                                                            @endfor
+                                                                                   
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>

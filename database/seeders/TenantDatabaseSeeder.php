@@ -36,7 +36,7 @@ class TenantDatabaseSeeder extends Seeder
       $this->call(RightsSeeder::class); // Added records in rights table by Sohail
       $this->call(SystemSectionsSeeder::class); // Added records in system_sections table by Sohail
       $this->call(TimezoneSeeder::class);
-      
+      $this->call(RolesCustomerSeeder::class);
     }
 
 }
