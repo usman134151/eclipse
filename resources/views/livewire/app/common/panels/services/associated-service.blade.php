@@ -6,7 +6,9 @@
             <ol class="breadcrumb flex">
               <li class="breadcrumb-item">
                 <a href="#">
-                   <x-icon name="home" />
+                  <svg aria-label="Home" width="22" height="23" viewBox="0 0 22 23">
+                    <use xlink:href="/css/common-icons.svg#home"></use>
+                    </svg>
                 </a>
               </li>
               <li class="breadcrumb-item">
