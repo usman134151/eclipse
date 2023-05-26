@@ -15,7 +15,7 @@ class NotificationConfigurationForm extends Component
 	protected $listeners = ['editRecord' => 'edit' ,'updateVal'];
 
 	public $setupValues = [
-        'roles'=>['parameters'=>['SystemRole', 'system_role_id', 'system_role_name', '', '', 'system_role_name', false, 'notification.role_id','','roles',1]],
+        'roles'=>['parameters'=>['SystemRole', 'id', 'system_role_name', '', '', 'system_role_name', false, 'notification.role_id','','roles',1]],
 	];
 
 	public function mount(NotificationTemplates $notification){
