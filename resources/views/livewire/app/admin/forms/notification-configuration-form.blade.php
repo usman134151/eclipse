@@ -467,17 +467,17 @@
                           </div>
                         </div>
                       </div>
+                      {{--  
                       <div class="col-12 mt-4">
                         <button type="button" class="btn btn-primary rounded gap-2">
-                          {{-- Updated by Shanila to Add svg icon--}}
                           <svg aria-label="New Customer Notification Template" width="20" height="20" viewBox="0 0 20 20">
                             <use xlink:href="/css/common-icons.svg#plus">
                             </use>
                         </svg>
-                        {{-- End of update by Shanila --}}
                           <span>New Customer Notification Template</span>
                         </button>
                       </div>
+                      --}}
                     </div>
                     <!-- ....   section 4 ends.... -->
                   </div>
