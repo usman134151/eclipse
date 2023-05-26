@@ -647,11 +647,31 @@
                                 <td>
                                     <div class="row mt-4">
                                         <div class="col-md-12 d-flex">
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="star"/>
-                                            <x-icon name="star"/>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
                                         </div>
                                     </div>
                                 </td>
@@ -763,11 +783,31 @@
                                 <td>
                                     <div class="row mt-4">
                                         <div class="col-md-12 d-flex">
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="star"/>
-                                            <x-icon name="star"/>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
                                         </div>
                                     </div>
                                 </td>
@@ -821,11 +861,31 @@
                                 <td>
                                     <div class="row mt-4">
                                         <div class="col-md-12 d-flex">
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="star"/>
-                                            <x-icon name="star"/>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
                                         </div>
                                     </div>
                                 </td>
@@ -879,11 +939,31 @@
                                 <td>
                                     <div class="row mt-4">
                                         <div class="col-md-12 d-flex">
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="filled-star"/>
-                                            <x-icon name="star"/>
-                                            <x-icon name="star"/>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="18" height="16" viewBox="0 0 18 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#filled-star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
+                                            <svg aria-label="rating" width="17" height="16" viewBox="0 0 17 16">
+                                                <use
+                                                    xlink:href="/css/common-icons.svg#star">
+                                                </use>
+                                            </svg>
                                         </div>
                                     </div>
                                 </td>
