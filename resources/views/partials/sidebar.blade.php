@@ -182,10 +182,10 @@
               </li>
               <li class="nav-item  " id="customer">
                 <a class="nav-link" href="/admin/customer">
-                  <svg class="fill-none"  aria-label="All Customers" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="fill-none"  aria-label="Active Customers" width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#all-customer-icon"></use>
                   </svg>
-                  <span class="menu-item">All Customers</span>
+                  <span class="menu-item">Active Customers</span>
                 </a>
               </li>
               <li class="nav-item  " id="company">
@@ -248,11 +248,11 @@
               </li>
               <li role="menuitem" class="nav-item  " id="provider">
                 <a class="nav-link" href="/admin/provider">
-                  <svg class="fill-none" aria-label="All Providers"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="fill-none" aria-label="Active Providers"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xlink:href="/css/admin-menu.svg#all-provider-icon"></use>
 
                   </svg>
-                  <span class="menu-item">All Providers</span>
+                  <span class="menu-item">Active Providers</span>
                 </a>
               </li>
               <li role="menuitem" class="nav-item " id="reimbursement">
@@ -680,10 +680,10 @@
                   </li>
                   <li role="menuitem" class="nav-item" id="admin-staff">
                     <a class="nav-link" href="/admin/admin-staff">
-                      <svg aria-label="All Admin-Staff"  width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg aria-label="Active Admin-Staff"  width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#all-admin-staff"></use>
                       </svg>
-                      <span class="menu-item">All Admin-Staff</span>
+                      <span class="menu-item">Active Admin-Staff</span>
                     </a>
                   </li>
                   <li role="menuitem" class="nav-item" id="deactivated-admin-staff">
