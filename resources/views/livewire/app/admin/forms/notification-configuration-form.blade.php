@@ -19,7 +19,7 @@
 
 
                       </div>
-                      <div class="col-lg-5 ps-lg-4 mb-4">
+                      <div class="col-lg-5 pe-lg-4 mb-4">
                           <label class="form-label" for="gender-column">Select Trigger</label>
                           <select class="select2 form-select" id="gender-column">
                             <option>Select Trigger</option>
