@@ -4,6 +4,7 @@ namespace app\Services\App;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserIndustry;
+use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\Phone;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -65,6 +66,16 @@ class UserService{
 
     }
     public function getUserAddresses($id){
+
+    }
+
+    public function storeCustomerRoles($rolesArr,$userId){
+      RoleUser::where('user_id',$userId)->delete();
+      foreach($rolesArr as $roleId=>$value){
+        if($value)
+          RoleUser::create(['user_id' => $userId, 'role_id' => $roleId]);
+      }
+
 
     }
 }

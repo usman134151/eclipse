@@ -88,7 +88,14 @@ class Customer extends Component
                     $user['userDetails']['address_line1']=$row[14];
                     $user['userDetails']['address_line2']=$row[15];
                     $user['userDetails']['user_introduction']=$row[16];
+                    $user['userRoles']['10']=str_replace('No','',$row[17]);
+                    $user['userRoles']['5']=str_replace('No','',$row[18]);
+                    $user['userRoles']['6']=str_replace('No','',$row[19]);
+                    $user['userRoles']['7']=str_replace('No','',$row[20]);
+                    $user['userRoles']['9']=str_replace('No','',$row[21]);
+                    $user['userRoles']['8']=str_replace('No','',$row[22]);
                     $user['status']=1;
+                   // dd($user);
                     
                     $companyId=Company::where('name',$row[23])->first();
                    
@@ -131,7 +138,7 @@ class Customer extends Component
              foreach ($userData as $key => $value) {
                  // Use the 'snake_case' version of the key to match the model attribute name
                  $attribute = \Illuminate\Support\Str::snake($key);
-                 if($attribute!="user_details"){
+                 if($attribute!="user_details" && $attribute!="user_roles"){
                      
                      $user->{$attribute} = $value;
                  }
@@ -144,7 +151,9 @@ class Customer extends Component
             }
             $user->name=$user->first_name.' '.$user->last_name;
             // Call the createUser method of UserService and pass the user model along with other parameters
-            $saved[]= $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
+            $savedUser= $userService->createUser($user, $userData['userDetails'], 4, 0, [], 1);
+
+            $userService->storeCustomerRoles($userData['userRoles'],$savedUser->id);
            
         }
         $this->showList("Customer data has been imported successfully");

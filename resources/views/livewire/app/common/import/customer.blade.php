@@ -141,38 +141,38 @@
 				Roles
               </label>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin" wire:model.defer="users.{{ $loop->index }}.userRoles.10">
                 <label class="form-check-label" for="CompanyAdmin">
                     Company Admin
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanySupervisor" wire:model.defer="users.{{ $loop->index }}.userRoles.5">
+                <label class="form-check-label" for="CompanySupervisor">
 					Supervisor
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyRequester" wire:model.defer="users.{{ $loop->index }}.userRoles.6">
+                <label class="form-check-label" for="CompanyRequester">
 					Requester
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyConsumer" wire:model.defer="users.{{ $loop->index }}.userRoles.7">
+                <label class="form-check-label" for="CompanyConsumer">
 					Service Consumer
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyParticipant" wire:model.defer="users.{{ $loop->index }}.userRoles.8">
+                <label class="form-check-label" for="CompanyParticipant">
 					Participant
                 </label>
               </div>			  			  			  			  
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyBilling" wire:model.defer="users.{{ $loop->index }}.userRoles.9">
+                <label class="form-check-label" for="CompanyBilling">
 					Billing Manager
                 </label>
               </div>	
