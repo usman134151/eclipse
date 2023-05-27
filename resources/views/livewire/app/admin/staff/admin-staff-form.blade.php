@@ -33,7 +33,7 @@
 
                 <!-- BEGIN: Steps -->
                 <div x-data="{ tab: @entangle('component')}" id="tab_wrapper">
-                    <!-- Nav tabs -->
+                    <!-- Nav tabs
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'profile' }"
@@ -57,7 +57,7 @@
                                 User Access
                             </a>
                         </li>
-                    </ul>
+                    </ul>  -->
 
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -280,8 +280,8 @@
                                         wire:click.prevent="showList">
                                         Cancel
                                     </button>
-                                    <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
-                                    <button type="submit" class="btn btn-primary rounded">Next</button>
+                                    <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save Record</button>
+                                    <!-- <button type="submit" class="btn btn-primary rounded">Next</button> -->
                                 </div>
                             </form>
                         </div><!-- END: Profile -->
