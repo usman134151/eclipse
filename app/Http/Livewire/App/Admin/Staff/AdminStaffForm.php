@@ -6,21 +6,25 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use App\Models\Tenant\SystemRole;
+use App\Models\Tenant\SystemRoleUser;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
-use DB;
+use DB, Arr;
 
 class AdminStaffForm extends Component
 {
     public $component = 'profile';
-    public $user,$isAdd=true;
-    public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone'];
+    public $user,$isAdd=true,$user_roles=[];
+    
+    public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone','roles'];
     public $setupValues = [
-        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',0]],
-        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',1]],
-        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',2]],
-        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country','','country',3]],
+        'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',5]],
+        'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',4]],
+        'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',16]],
+        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country','','country',12]],
+        'roles'=>['parameters'=>['SystemRole', 'id',
+        'system_role_name', 'status', 1, 'system_role_name', true, 'user_roles','','roles',7]]
 	];
     public $step =1;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit','stepIncremented'];
@@ -110,8 +114,10 @@ class AdminStaffForm extends Component
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
 		$userService = new UserService;
-        
+       
         $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],$this->isAdd);
+     //   dd($this->user_roles);
+        $userService->storeAdminRoles($this->user_roles,$this->user->id);
 		if($redirect){
 			$this->showList("Admin Staff has been saved successfully");
 			$this->user = new User;
@@ -120,14 +126,18 @@ class AdminStaffForm extends Component
 	}
     public function updateVal($attrName, $val)
 	{
-
-        $this->userdetail[$attrName] = $val;
+        if($attrName=='roles')
+            $this->user_roles = $val;
+        else
+            $this->userdetail[$attrName] = $val;
 
 
 	}
     public function edit(User $user){
         $this->user=$user;
         $this->userdetail=$user['userdetail']->toArray();
+        $this->user_roles=Arr::flatten(SystemRoleUser::where('user_id',$this->user->id)->select('system_role_id')->get()->toArray());
+      //  dd($this->user_roles);
         $this->label="Edit";
         $this->isAdd=false;
 

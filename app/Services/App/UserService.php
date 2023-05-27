@@ -5,6 +5,7 @@ use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserIndustry;
 use App\Models\Tenant\RoleUser;
+use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -43,7 +44,7 @@ class UserService{
      
         // set new token for reset password
         // Insert selected industries into user_industries table
-        if(!$isAdd)
+        if(!$isAdd && $role==4)
           UserIndustry::where('user_id', $user->id)->delete();
         foreach ($selectedIndustries as $industry_id) {
           $user->industries()->attach($industry_id);
@@ -78,4 +79,14 @@ class UserService{
 
 
     }
+
+    public function storeAdminRoles($rolesArr,$userId){
+      SystemRoleUser::where('user_id',$userId)->delete();
+    
+      foreach($rolesArr as $roleId){
+        
+        if($roleId)
+          SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId]);
+      }
+    }  
 }

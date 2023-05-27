@@ -187,9 +187,8 @@
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                                     <label class="form-label">Roles and Permissions</label>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SystemRole', 'id',
-                                                            'system_role_name', 'status', 1, 'system_role_name', true, 'roles',
-                                                     '','roles') !!}
+                                                    {!! $setupValues['roles']['rendered'] !!}
+                                                  
                                         </div>
                                       </div>
                                       {{-- updated completed by shanila --}}
@@ -199,6 +198,11 @@
                                                     aria-hidden="true">*</span></label>
                                             <input type="text" id="email" class="form-control" placeholder="Enter Email"
                                                 name="email"  wire:model.defer="user.email"/>
+                                                @error('user.email')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -2611,7 +2615,7 @@
     Livewire.on('updateVal', (attrName, val) => {
 
         // Call the updateVal function with the attribute name and value
-
+       
         @this.call('updateVal', attrName, val);
     });
 

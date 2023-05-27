@@ -96,7 +96,7 @@ class SetupHelper
         }
 
         if($tabIndex){
-            $attributes['tab-index'] = $tabIndex;
+            $attributes['tabindex'] = $tabIndex;
         }
         $html = '<select ' . self::getHtmlAttributes($attributes) .$multiple. '  aria-label="Select '.str_replace('_',' ',$selectName).'">';
     
