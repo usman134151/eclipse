@@ -272,15 +272,15 @@
                                                         </label>
                                                         <a href="#" class="fw-bold">
                                                             <small>
-                                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                                {{-- Updated by Shanila to Add svg icon
                                                                 <svg aria-label="Add New" class="me-1" width="20"
                                                                     height="21" viewBox="0 0 20 21">
                                                                     <use xlink:href="/css/common-icons.svg#add-new">
                                                                     </use>
                                                                 </svg>
-                                                                {{-- End of update by Shanila --}}
+                                                               
 
-                                                                Add New
+                                                                Add New --}}
                                                             </small>
                                                         </a>
                                                     </div>
@@ -292,6 +292,7 @@
                                                         <label class="form-label" for="ethnicity-column">
                                                             Ethnicity
                                                         </label>
+                                                        <!-- 
                                                         <a href="#" class="fw-bold">
                                                             <small>
                                                                 <svg aria-label="Add New" width="16" height="16" viewBox="0 0 16 16"
@@ -302,7 +303,7 @@
                                                                 </svg>
                                                                 Add New
                                                             </small>
-                                                        </a>
+                                                        </a> -->
                                                     </div>
                                                     {!! $setupValues['ethnicities']['rendered'] !!}
                                                 </div>

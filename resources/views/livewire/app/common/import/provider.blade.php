@@ -57,9 +57,7 @@
         <table id="unassigned_data" class="table" aria-label="Admin Staff Teams Table">
           <thead>
             <tr role="row">
-              <th scope="col" class="text-center">
-                <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
-              </th>
+
               <th scope="col">Provider</th>
               <th scope="col">Attributes</th>
               <th scope="col">Address</th>
@@ -70,9 +68,7 @@
 			<tr><td><h3>{{$warningMessage}}</h3></td></tr>
 		  @foreach ($users as $user)
             <tr role="row" class="odd">
-              <td class="text-center">
-                <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-              </td>
+
               <td width=33%>
                 <div class="row g-2">
  
