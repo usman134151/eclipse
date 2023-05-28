@@ -55,13 +55,13 @@
                                     id="team-members-tab" role="tab" aria-controls="team-members"
                                     aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                         <!--   <li class="nav-item" role="presentation">
                                 <a href="javascript:void(0)" class="nav-link"
                                     :class="{ 'active': tab === 'system-permissions' }"
                                     @click.prevent="tab = 'system-permissions'" id="system-permissions-tab"
                                     role="tab" aria-controls="system-permissions" aria-selected="false"><span
                                         class="number">3</span> System Permissions</a>
-                            </li>
+                            </li> -->
                         </ul>
 
                         <div class="tab-content">
@@ -81,13 +81,13 @@
                             </div>
                             {{-- Admin Staff End --}}
 
-                            {{-- System Permissions Start --}}
+                            {{-- System Permissions Start 
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'system-permissions' }"
                                 id="system-permissions" role="tabpanel" aria-labelledby="system-permissions-tab"
                                 tabindex="0" x-show="tab === 'system-permissions'">
                                 @livewire('app.admin.team.system-permissions', ['showForm' => $showForm])
                             </div>
-                            {{-- System Permissions End --}}
+                            System Permissions End --}}
                         </div>
                     </div>
                 </div>

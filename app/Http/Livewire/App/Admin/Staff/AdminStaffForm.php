@@ -30,7 +30,7 @@ class AdminStaffForm extends Component
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit','stepIncremented'];
 	public function showList($message='')
 	{
-		$this->emit("showList");
+		$this->emit("showList",$message);
 	}
     public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);

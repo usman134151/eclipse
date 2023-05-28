@@ -81,7 +81,7 @@ class UserService{
     }
 
     public function storeAdminRoles($rolesArr,$userId){
-      SystemRoleUser::where('user_id',$userId)->where('role_id','>',4)->delete();
+      SystemRoleUser::where('user_id',$userId)->delete();
     
       foreach($rolesArr as $roleId){
         

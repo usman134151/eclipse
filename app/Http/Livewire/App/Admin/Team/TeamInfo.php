@@ -64,7 +64,7 @@ class TeamInfo extends Component
 		}	
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
-		$this->showList("Customer has been saved successfully");
+		$this->showList("Admin has been saved successfully");
 		$this->team = new AdminTeam;
 	}
 	public function saveImage()
