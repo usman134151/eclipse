@@ -48,7 +48,8 @@
 	</span>
 	@enderror
 	@if($warningMessage)
-		<h3 class="mt-4">{{$warningMessage}}</h3>
+	
+		<h3 class="mt-4"><span class='d-inline-block invalid-feedback mt-2'>{{$warningMessage}}</span></h3>
 	@endif
     @if ($users)
         <h2 class="mt-5">Preview Users</h2>
@@ -79,18 +80,22 @@
 				  <div>
 						<label class="form-label" for="Number">Provider Number</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.user_number" class="form-control" />
+						
 					</div>	
 					<div>
 						<label class="form-label" for="First Name">First Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
+						@error('users.'. $loop->index.'.first_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
 						<label class="form-label" for="First Name">Last Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
+						@error('users.'. $loop->index.'.last_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
 						<label class="form-label" for="First Name">Email</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
+						@error('users.'. $loop->index.'.email') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>	
 					
                   </div>
@@ -195,6 +200,7 @@
       </div>
 
 	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
+	  <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
     @endif
 </div>
 

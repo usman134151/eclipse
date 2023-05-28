@@ -75,6 +75,7 @@
 					<div>
 						<label class="form-label" for="First Name">Name</label>	
 						<input type="text" wire:model.defer="companies.{{ $loop->index }}.name" class="form-control" /> 
+						@error('companies.'. $loop->index.'.name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					
                   </div>
@@ -90,7 +91,8 @@
 			  @foreach($industries as $industry)
 			    <option value="{{$industry->id}}">{{$industry->name}}</option>
 			  @endforeach
-			</select></div>
+			</select>
+			@error('companies.{{ $loop->index }}.industry_id') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror</div>
 			
 			</div>
               </td>
@@ -111,6 +113,7 @@
       </div>
 
 	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
+	  <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
     @endif
 </div>
 

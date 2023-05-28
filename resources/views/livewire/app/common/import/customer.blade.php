@@ -82,12 +82,12 @@
 						@error('users.'. $loop->index.'.first_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Last Name</label>	
+						<label class="form-label" for="Last Name">Last Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
 						@error('users.'. $loop->index.'.last_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Email</label>
+						<label class="form-label" for="Email">Email</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
 						@error('users.'. $loop->index.'.email') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>	
