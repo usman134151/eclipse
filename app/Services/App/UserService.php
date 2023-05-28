@@ -22,7 +22,7 @@ class UserService{
           $user->security_token = Str::random(32);
          
           $user->save();
-          $user->roles()->attach($role);
+         
           $userId=$user->id;
         }
         
@@ -34,7 +34,7 @@ class UserService{
         
        }
        
-        
+       RoleUser::updateOrCreate(['user_id' => $userId, 'role_id' => $role]);
        $user->save();
      
         $userdetail['user_id'] = $userId;
@@ -71,7 +71,7 @@ class UserService{
     }
 
     public function storeCustomerRoles($rolesArr,$userId){
-      RoleUser::where('user_id',$userId)->delete();
+      RoleUser::where('user_id',$userId)->where('role_id','>',4)->delete();
       foreach($rolesArr as $roleId=>$value){
         if($value)
           RoleUser::create(['user_id' => $userId, 'role_id' => $roleId]);
@@ -81,7 +81,7 @@ class UserService{
     }
 
     public function storeAdminRoles($rolesArr,$userId){
-      SystemRoleUser::where('user_id',$userId)->delete();
+      SystemRoleUser::where('user_id',$userId)->where('role_id','>',4)->delete();
     
       foreach($rolesArr as $roleId){
         
