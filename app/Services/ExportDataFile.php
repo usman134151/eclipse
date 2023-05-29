@@ -300,21 +300,7 @@ foreach($excelRows as $key=>$valueArr){
             }
                        
 
-            $validation = $sheet->getCell('X'.$i)->getDataValidation();
-            $validation->setType('list');
-            $validation->setErrorStyle('stop');
-            $validation->setAllowBlank(true);
-            $validation->setShowInputMessage(true);
-            $validation->setShowErrorMessage(true);
-            $validation->setShowDropDown(true);
-            $validation->setErrorTitle('Input error');
-            $validation->setError('Value is not in list.');
-            $validation->setPromptTitle('Pick from list');
-            $validation->setPrompt('Please pick a value from the drop-down list.');
-            $validation->setFormula1('"' . implode(',', $companies) . '"');
-                    foreach ($rows as $row) {
-                        $sheet->fromArray([$row]);
-                    }    
+  
                 }            
             $writer = new Xlsx($spreadsheet);
             $writer->save($filePath);
