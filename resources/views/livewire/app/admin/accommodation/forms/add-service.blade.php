@@ -1084,7 +1084,7 @@
                                                                             <span
                                                                                 class="input-group-text gap-2 bg-secondary col-lg-5"
                                                                                 id="">
-                                                                                Additional Charge
+                                                                                Additional Payment
                                                                             </span>
                                                                             <input type="text" class="form-control"
                                                                                 placeholder="Label" aria-label=""
@@ -1232,7 +1232,7 @@
                                                                             <span
                                                                                 class="input-group-text gap-2 bg-secondary col-lg-5"
                                                                                 id="">
-                                                                                Additional Charge
+                                                                                Additional Payment
                                                                             </span>
                                                                             <input type="text" class="form-control"
                                                                                 placeholder="Label" aria-label=""
@@ -1387,7 +1387,7 @@
                                                                             <span
                                                                                 class="input-group-text gap-2 bg-secondary col-lg-5"
                                                                                 id="">
-                                                                                Additional Charge
+                                                                                Additional Payment
                                                                             </span>
                                                                             <input type="text" class="form-control"
                                                                                 placeholder="Label" aria-label=""
@@ -1535,7 +1535,7 @@
                                                                             <span
                                                                                 class="input-group-text gap-2 bg-secondary col-lg-5"
                                                                                 id="">
-                                                                                Additional Charge
+                                                                                Additional Payment
                                                                             </span>
                                                                             <input type="text" class="form-control"
                                                                                 placeholder="Label" aria-label=""
