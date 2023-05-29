@@ -15,9 +15,12 @@ class AddService extends Component
     public $step = 1;
     protected $listeners = ['editRecord' => 'edit' ,'updateVal'];
 
+
     public $setupValues = [
         'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]]
+
 	];
+    public $setupCheckboxes=[];
     public $inpersons=[[
         'label'=>'',
         'hours'=>'',
@@ -182,8 +185,13 @@ class AddService extends Component
         'disable'=>''
     ]];
     public function mount(ServiceCategory $service){
+       
         $this->service=$service;
+       
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->setupCheckboxes['service_types']=['rendered'=>''];
+        $this->loadValues($this->service);
+       // dd($this->service);
 
 	}
     public function rules()
@@ -195,10 +203,13 @@ class AddService extends Component
 				'max:255',
 				Rule::unique('service_categories', 'name')->ignore($this->service->id)],
             'service.accommodations_id'=>'required',
+            'service.service_type' =>'required',
+            'service.frequency_id'=>'required',
             'service.description' => [
 				'required',
 				'string',
-				'max:255']
+				'max:255',
+                ]
 
 		];
 	}
@@ -208,205 +219,17 @@ class AddService extends Component
          $this->service->service_status = 1;
         $categoryService = new ServiceCatagoryService;
         // $s = $service_category['accommodations_id']='';
+        $this->service->frequency_id=implode(',',$this->service->frequency_id);
+        $this->service->service_type=implode(',',$this->service->service_type);
         $this->service = $categoryService->createService($this->service);
 
         if($redirect){
 			$this->showList("Service has been saved successfully");
 			$this->service = new ServiceCategory;
 		}
+    }    
 
 
-	}
-    public function addPerson(){
-        $this->inpersons[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'duration'=>''
-        ];
-    }
-    public function addPersonSecound(){
-        $this->inpersonssecound[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'charge_to_customer'=>''
-        ];
-    }
-    public function addVirtual(){
-        $this->virtuals[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'duration'=>''
-        ];
-    }
-    public function addVirtualSecound(){
-        $this->invirtualssecound[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'charge_to_customer'=>''
-        ];
-    }
-    public function addPhone(){
-        $this->phones[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'duration'=>''
-        ];
-    }
-    public function addphoneSecound(){
-        $this->inphonessecound[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'charge_to_customer'=>''
-        ];
-    }
-    public function addTeleconference(){
-        $this->teleconferences[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'duration'=>''
-        ];
-    }
-    public function addpTeleconferenceSecound(){
-        $this->teleconferencessecound[]=[
-            'label'=>'',
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'charge_to_customer'=>''
-        ];
-    }
-    public function addServiceInPerson(){
-        $this->service_inpersons[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
-        ];
-    }
-    public function addServiceVirtual(){
-        $this->service_virtuals[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
-        ];
-    }
-    public function addServicePhone(){
-        $this->service_phones[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
-        ];
-    }
-    public function addServiceTeleconference(){
-        $this->service_teleconferences[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'exclude-after-hours'=>'',
-            'exclude_closed_hours'=>''
-        ];
-    }
-    public function addInpersonCancel(){
-        $this->inpersonscancel[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'cancellations'=>'',
-            'exclude_after_hours'=>'',
-            'modifications' =>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimums'=>''
-        ];
-    }
-    public function addVirtualCancel(){
-        $this->virtualscancel[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'cancellations'=>'',
-            'exclude_after_hours'=>'',
-            'modifications' =>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimums'=>''
-        ];
-    }
-    public function addPhoneCancel(){
-        $this->phonescancel[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'cancellations'=>'',
-            'exclude_after_hours'=>'',
-            'modifications' =>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimums'=>''
-        ];
-    }
-    public function addTeleconferenceCancel(){
-        $this->teleconferences[] = [
-            'hours'=>'',
-            'charges'=>'',
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'cancellations'=>'',
-            'exclude_after_hours'=>'',
-            'modifications' =>'',
-            'exclude_closed_hours'=>'',
-            'rescheduling'=>'',
-            'bill_service_minimums'=>''
-        ];
-    }
-    public function addSpeclizations()
-    {
-        $this->speclizations[]=[
-            'in_person'=>'',
-            'virtual'=>'',
-            'phone'=>'',
-            'teleconference'=>'',
-            'hide_from_customers'=>'',
-            'hide_from_providers'=>"",
-            'duration'=>'',
-            'no_of_providers'=>'',
-            'disable'=>''
-        ];
-    }
     public function updateVal($attrName, $val)
 	{
 
@@ -424,7 +247,11 @@ class AddService extends Component
 		$this->emit('showList',$message);
 	}
     public function edit(ServiceCategory $service){
+        
         $this->service=$service;
+      
+        $this->loadValues($this->service);
+    
 
     }
     public function switch($component)
@@ -442,6 +269,23 @@ class AddService extends Component
     }
     public function advanceOptions(){
         $this->step = 6;
+    }
+
+    public function loadValues($service){
+        $selectedValues=[];$selectedFValues=[];
+        if(!is_null($this->service->service_type)){
+             $selectedValues=explode(',',$this->service->service_type);
+             $this->service->service_type=$selectedValues;
+        }
+        if(!is_null($this->service->frequency_id)){
+            $selectedFValues=explode(',',$this->service->frequency_id);
+            $this->service->frequency_id=$selectedFValues;
+       }
+        
+        $this->setupCheckboxes['service_types']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '5', 'id', $selectedValues,1,'form-check form-check-inline','service_type','wire:model=service.service_type',[1,2,4,5]]];
+        $this->setupCheckboxes['frequency_id']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '6', 'id', $selectedFValues,1,'form-check','frequency_id','wire:model=service.frequency_id',['one_time','daily','weekly','weekdaily','monthly']]];
+          //  dd($this->setupCheckboxes);
+        $this->setupCheckboxes=SetupHelper::loadSetupCheckboxes($this->setupCheckboxes);
     }
 
 }

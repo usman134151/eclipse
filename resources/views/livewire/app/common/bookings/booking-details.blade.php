@@ -944,7 +944,8 @@
                                                     <option value="5">Option 5</option>
                                                 </select>
 
-                                                <!--                                                 <div x-data="dropdown()" x-init="loadOptions()"
+                                                <!-- Error needed to be fixed, commented out for now
+                                                <div x-data="dropdown()" x-init="loadOptions()"
                                                     class="form-control multi-select-dropdown mb-2">
                                                     <input name="values" type="hidden" x-bind:value="selectedValues()"
                                                         value="">

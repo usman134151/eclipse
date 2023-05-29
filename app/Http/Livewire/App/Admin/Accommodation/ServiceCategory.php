@@ -27,7 +27,7 @@ class ServiceCategory extends Component
 			]);
 		}
         $this->showForm=false;
-		$this->dispatchBrowserEvent('update-url', ['url' => 'admin/accommodation/all-services']);
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/accommodation/all-services']);
 	}
 
     public function render()
@@ -45,6 +45,7 @@ class ServiceCategory extends Component
     {
         if ($service) {
 			$this->service = $service;
+			
 			$this->emit('editRecord', $service);
 		}
 		$this->showForm=true;

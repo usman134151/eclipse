@@ -109,9 +109,7 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                             </label>
                                             <div>
-                                                {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
-                                                'setup_value_label', 'setup_id', '5', 'id',[],1,'form-check
-                                                form-check-inline') !!}
+                                                {!! $setupCheckboxes['service_types']['rendered'] !!}
 
                                             </div>
                                         </div>
@@ -128,10 +126,9 @@
                                                     aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title=""></i>
                                             </label>
-                                            {{-- updated by shanila to add dropdown --}}
-                                            {!! App\Helpers\SetupHelper::createCheckboxes('SetupValue', 'id',
-                                            'setup_value_label', 'setup_id', '6', 'id',[],1,'form-check ') !!}
-                                            {{--ended updated--}}
+                                            <div>
+                                                {!! $setupCheckboxes['frequency_id']['rendered'] !!}
+                                            </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service_category-description">
@@ -662,7 +659,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-actions">
-                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save">Save</button>
+                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save</button>
                                     <button type="button" class="btn btn-primary rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advanced-service-rate')">Next</button>
 
