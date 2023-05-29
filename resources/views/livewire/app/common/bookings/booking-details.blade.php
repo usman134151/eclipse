@@ -944,7 +944,7 @@
                                                     <option value="5">Option 5</option>
                                                 </select>
 
-                                                <div x-data="dropdown()" x-init="loadOptions()"
+                                                <!--                                                 <div x-data="dropdown()" x-init="loadOptions()"
                                                     class="form-control multi-select-dropdown mb-2">
                                                     <input name="values" type="hidden" x-bind:value="selectedValues()"
                                                         value="">
@@ -1159,7 +1159,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="d-lg-flex flex-wrap gap-3 mb-3">
                                                     <div class="tag">@admin_company</div>
                                                     <div class="tag">@booking_start_at</div>
