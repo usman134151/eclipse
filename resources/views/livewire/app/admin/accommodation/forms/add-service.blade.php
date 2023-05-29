@@ -3334,6 +3334,7 @@
                                                                                 name="EnableCloseoutStatusesNoShowBillingBilling"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                        {{--  
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="PayProviderServiceMinimumNoShowBilling">Pay
@@ -3343,6 +3344,7 @@
                                                                                 name="EnableCloseoutStatusesNoShowBillingBilling"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                         --}}
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithChargeNoShowBilling">Cancel
@@ -3376,13 +3378,14 @@
                                                                         </div>
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
-                                                                                for="BillServiceMinimumNoShowPayment">Bill
+                                                                                for="BillServiceMinimumNoShowPayment">Pay
                                                                                 Service Minimum</label>
                                                                             <input class="form-check-input"
                                                                                 id="BillServiceMinimumNoShowPayment"
                                                                                 name="EnableCloseoutStatusesNoShowPayment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                        {{--  
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="PayProviderServiceMinimumNoShowPayment">Pay
@@ -3392,10 +3395,12 @@
                                                                                 name="EnableCloseoutStatusesNoShowPayment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                        --}}   
+
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
-                                                                                for="CancelBookingWithChargeNoShowPayment">Cancel
-                                                                                Booking with Charge</label>
+                                                                                for="CancelBookingWithChargeNoShowPayment">Cancel Booking 
+                                                                                with Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeNoShowPayment"
                                                                                 name="EnableCloseoutStatusesNoShowPayment"
@@ -3404,7 +3409,7 @@
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithoutChargeNoShowPayment">Cancel
-                                                                                Booking without Charge</label>
+                                                                                Booking without Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithoutChargeNoShowPayment"
                                                                                 name="EnableCloseoutStatusesNoShowPayment"
@@ -3442,6 +3447,7 @@
                                                                                 name="EnableCloseoutStatusesCancelledBilling"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                        {{--  
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="PayProviderServiceMinimumCancelledBilling">Pay
@@ -3451,6 +3457,7 @@
                                                                                 name="EnableCloseoutStatusesCancelledBilling"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                         --}}
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithChargeCancelledBilling">Cancel
@@ -3484,13 +3491,14 @@
                                                                         </div>
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
-                                                                                for="BillServiceMinimumCancelledPayment">Bill
+                                                                                for="BillServiceMinimumCancelledPayment">Pay
                                                                                 Service Minimum</label>
                                                                             <input class="form-check-input"
                                                                                 id="BillServiceMinimumCancelledPayment"
                                                                                 name="EnableCloseoutStatusesCancelledPayment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                         {{--  
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="PayProviderServiceMinimumCancelledPayment">Pay
@@ -3500,10 +3508,11 @@
                                                                                 name="EnableCloseoutStatusesCancelledPayment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
+                                                                           --}}
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithChargeCancelledPayment">Cancel
-                                                                                Booking with Charge</label>
+                                                                                Booking with Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeCancelledPayment"
                                                                                 name="EnableCloseoutStatusesCancelledPayment"
@@ -3512,7 +3521,7 @@
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithoutChargeCancelledPayment">Cancel
-                                                                                Booking without Charge</label>
+                                                                                Booking without Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithoutChargeCancelledBilling"
                                                                                 name="EnableCloseoutStatusesCancelledPayment"
