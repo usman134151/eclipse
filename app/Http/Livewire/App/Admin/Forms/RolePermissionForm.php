@@ -97,8 +97,9 @@ class RolePermissionForm extends Component
 		{
 			$systemRole = SystemRole::find($id);
 			$systemRole->system_role_name = $this->roleName;
+			
 			$roleNameChanged = $systemRole->save();
-
+				
 			if ($roleNameChanged)
 			{
 				SectionRight::where('system_role_id', $id)->delete();
@@ -116,7 +117,7 @@ class RolePermissionForm extends Component
 
 			if ($systemRole->count())
 			{
-				$sectionRightsArray = $this->fetchSectionRights($systemRole->system_role_id);
+				$sectionRightsArray = $this->fetchSectionRights($systemRole->id);
 				$success = SectionRight::insert($sectionRightsArray);
 				$this->message = 'Role and permissions saved successfully';
 			}

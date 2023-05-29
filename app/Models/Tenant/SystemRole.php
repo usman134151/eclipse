@@ -9,7 +9,7 @@ class SystemRole extends Model
 {
 	use HasFactory;
 
-	protected $primaryKey = 'system_role_id';
+	protected $primaryKey = 'id';
 
 	protected $fillable = [
 		'system_role_name',

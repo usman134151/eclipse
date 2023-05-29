@@ -33,7 +33,7 @@
 
                 <!-- BEGIN: Steps -->
                 <div x-data="{ tab: @entangle('component')}" id="tab_wrapper">
-                    <!-- Nav tabs -->
+                    <!-- Nav tabs
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'profile' }"
@@ -57,7 +57,7 @@
                                 User Access
                             </a>
                         </li>
-                    </ul>
+                    </ul>  -->
 
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -187,9 +187,8 @@
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                                     <label class="form-label">Roles and Permissions</label>
-                                                    {!! App\Helpers\SetupHelper::createDropDown('SystemRole', 'system_role_id',
-                                                            'system_role_name', 'status', 1, 'system_role_name', true, 'roles',
-                                                     '','roles') !!}
+                                                    {!! $setupValues['roles']['rendered'] !!}
+                                                  
                                         </div>
                                       </div>
                                       {{-- updated completed by shanila --}}
@@ -199,6 +198,11 @@
                                                     aria-hidden="true">*</span></label>
                                             <input type="text" id="email" class="form-control" placeholder="Enter Email"
                                                 name="email"  wire:model.defer="user.email"/>
+                                                @error('user.email')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -276,8 +280,8 @@
                                         wire:click.prevent="showList">
                                         Cancel
                                     </button>
-                                    <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
-                                    <button type="submit" class="btn btn-primary rounded">Next</button>
+                                    <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save Record</button>
+                                    <!-- <button type="submit" class="btn btn-primary rounded">Next</button> -->
                                 </div>
                             </form>
                         </div><!-- END: Profile -->
@@ -2611,7 +2615,7 @@
     Livewire.on('updateVal', (attrName, val) => {
 
         // Call the updateVal function with the attribute name and value
-
+       
         @this.call('updateVal', attrName, val);
     });
 

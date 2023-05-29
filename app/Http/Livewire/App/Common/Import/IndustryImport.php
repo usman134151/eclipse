@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 
 use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
+
 
 class IndustryImport extends Component
 {
     use WithFileUploads;
     public $file;
     public $industries = [];
+    public $warningMessage,$errorMessage='';
     protected $listeners = ['updateVal' => 'updateVal'];
     
 
@@ -31,7 +34,7 @@ class IndustryImport extends Component
         $this->validate([
             'file' => 'required|file|mimetypes:application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ]);
-
+        $this->warningMessage='';
 
         $rows = Excel::toArray([], $this->file)[0];
         $this->industries=[];
@@ -41,21 +44,24 @@ class IndustryImport extends Component
 
         foreach ($rows as $row) {
             if($i>0){
-                if($row[0]!=''){
-                    $industry = [];
-
-                    $industry['name'] = $row[0];
-                  
-                    
-    
-                  
-                    $this->industries[] = $industry;
+                try{
+                  if($row[0]!=''){
+                        $industry = [];
+                        $industry['name'] = $row[0];
+                        $this->industries[] = $industry;
+                    }
                 }
+                catch(\ErrorException $e){
+                    $this->warningMessage="Please make sure that you are trying to upload valid file to import data.";
+                } 
 
 
             }
             $i++;
 
+        }
+        if(count($this->industries)==0 && $this->warningMessage==''){
+            $this->warningMessage="Please ensure that the file contains records before proceeding with the import. Currently, the file is empty.";
         }
        
         $this->dispatchBrowserEvent('refreshSelects');
@@ -63,7 +69,22 @@ class IndustryImport extends Component
 
     public function save()
     {
-       
+        $this->resetValidation();
+
+        $validationRules = [
+            'industries.*.name' => 'required',
+        ];
+        
+        try {
+            
+            $validatedData = $this->validate($validationRules);
+         
+        } catch (ValidationException $e) {
+          
+            $this->addErrorMessages($e);
+         
+            return;
+        }
         $saved=[];
        
 
@@ -97,4 +118,15 @@ class IndustryImport extends Component
 		// Save data
 		$this->emit('showList', $message);
 	}
+    protected function addErrorMessages(ValidationException $e)
+    {
+        $errors = $e->validator->getMessageBag();
+        $this->errorMessage="Please make sure all records are properly filled";
+        
+        foreach ($errors->messages() as $field => $messages) {
+            foreach ($messages as $message) {
+                $this->addError($field, $message);
+            }
+        }
+    }
 }

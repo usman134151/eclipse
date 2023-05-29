@@ -4,6 +4,8 @@ namespace app\Services\App;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserIndustry;
+use App\Models\Tenant\RoleUser;
+use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -20,7 +22,7 @@ class UserService{
           $user->security_token = Str::random(32);
          
           $user->save();
-          $user->roles()->attach($role);
+         
           $userId=$user->id;
         }
         
@@ -32,7 +34,7 @@ class UserService{
         
        }
        
-        
+       RoleUser::updateOrCreate(['user_id' => $userId, 'role_id' => $role]);
        $user->save();
      
         $userdetail['user_id'] = $userId;
@@ -42,7 +44,7 @@ class UserService{
      
         // set new token for reset password
         // Insert selected industries into user_industries table
-        if(!$isAdd)
+        if(!$isAdd && $role==4)
           UserIndustry::where('user_id', $user->id)->delete();
         foreach ($selectedIndustries as $industry_id) {
           $user->industries()->attach($industry_id);
@@ -67,4 +69,24 @@ class UserService{
     public function getUserAddresses($id){
 
     }
+
+    public function storeCustomerRoles($rolesArr,$userId){
+      RoleUser::where('user_id',$userId)->where('role_id','>',4)->delete();
+      foreach($rolesArr as $roleId=>$value){
+        if($value)
+          RoleUser::create(['user_id' => $userId, 'role_id' => $roleId]);
+      }
+
+
+    }
+
+    public function storeAdminRoles($rolesArr,$userId){
+      SystemRoleUser::where('user_id',$userId)->delete();
+    
+      foreach($rolesArr as $roleId){
+        
+        if($roleId)
+          SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId]);
+      }
+    }  
 }

@@ -89,14 +89,14 @@
                                         <label class="form-label" for="company-column">Company <span class="mandatory">*</span></label>
                                         <a href="#" class="fw-bold">
                                             <small>
-                                                {{-- Updated by Shanila to Add svg icon--}}
+                                                {{-- Updated by Shanila to Add svg icon
                                                 <svg aria-label="Add New" class="me-1" width="20" height="21"
                                                     viewBox="0 0 20 21">
                                                     <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                 </svg>
-                                                {{-- End of update by Shanila --}}
-                                                Add New Company
-                                            </small>
+                                                 End of update by Shanila
+                                                Add New Company  --}}
+                                            </small> 
                                         </a>
                                     </div>
                                     <select class="form-select" id="company-column">

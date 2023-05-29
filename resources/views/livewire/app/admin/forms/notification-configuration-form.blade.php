@@ -23,6 +23,10 @@
                           <label class="form-label" for="gender-column">Select Trigger</label>
                           <select class="select2 form-select" id="gender-column">
                             <option>Select Trigger</option>
+                            <option>Assignment Scheduled</option>
+												    <option>Assignment Modified</option>
+												    <option>Submit Request</option>
+												    <option>Approved Request</option>
                           </select>
                       </div>
                       <div class="col-lg-5 pe-lg-4 mb-4">
@@ -53,7 +57,7 @@
                       <div class="col-lg-5 col-12">
                         <div class="mb-4">
                           <label class="form-label" for="SubjectColumn">
-                          Subject
+                          Subject Admin
                           </label>
                           <textarea class="form-control" rows="3" cols="3" placeholder="Normal text"
                             name="SubjectColumn" id="SubjectColumn">Enter Subject</textarea>
@@ -166,7 +170,7 @@
                         </div>
                       </div>
                       <div class="col-lg-5 col-12 mb-4">
-                          <label class="form-label" for="subject-column">Subject</label>
+                          <label class="form-label" for="subject-column">Subject Provider</label>
                           <input type="text" id="subject-column" class="form-control" name="subject-column"
                             placeholder="Enter Subject" />
                       </div>
@@ -308,7 +312,7 @@
                         </div>
                       </div>
                       <div class="col-lg-5 col-12 mb-4">
-                          <label class="form-label" for="subject-column">Subject</label>
+                          <label class="form-label" for="subject-column">Subject Customer</label>
                           <input type="text" id="subject-column" class="form-control" name="subject-column"
                             placeholder="Enter Subject" />
                       </div>

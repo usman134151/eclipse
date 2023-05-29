@@ -47,15 +47,17 @@
 		{{ $message }}
 	</span>
 	@enderror
+	@if($warningMessage)
+	
+		<h3 class="mt-4"><span class='d-inline-block invalid-feedback mt-2'>{{$warningMessage}}</span></h3>
+	@endif
     @if ($users)
         <h2 class="mt-5">Preview Users</h2>
 		<div class="table-responsive">
         <table id="unassigned_data" class="table" aria-label="Admin Staff Teams Table">
           <thead>
             <tr role="row">
-              <th scope="col" class="text-center">
-                <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
-              </th>
+
               <th scope="col">Provider</th>
               <th scope="col">Attributes</th>
               <th scope="col">Address</th>
@@ -63,11 +65,10 @@
             </tr>
           </thead>
           <tbody>
+			<tr><td><h3>{{$warningMessage}}</h3></td></tr>
 		  @foreach ($users as $user)
             <tr role="row" class="odd">
-              <td class="text-center">
-                <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-              </td>
+
               <td width=33%>
                 <div class="row g-2">
  
@@ -75,18 +76,22 @@
 				  <div>
 						<label class="form-label" for="Number">Provider Number</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.user_number" class="form-control" />
+						
 					</div>	
 					<div>
 						<label class="form-label" for="First Name">First Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
+						@error('users.'. $loop->index.'.first_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
 						<label class="form-label" for="First Name">Last Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
+						@error('users.'. $loop->index.'.last_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
 						<label class="form-label" for="First Name">Email</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
+						@error('users.'. $loop->index.'.email') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>	
 					
                   </div>
@@ -106,7 +111,9 @@
 				Language
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($languages as $language)
+
 			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
 			  @endforeach
 			</select>
@@ -116,6 +123,7 @@
 				Ethnicity
             </label>
 			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($ethnicities as $ethnicity)
 			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
 			  @endforeach
@@ -126,6 +134,7 @@
 				Gender
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($genders as $gender)
 			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
 			  @endforeach
@@ -187,6 +196,7 @@
       </div>
 
 	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
+	  <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
     @endif
 </div>
 

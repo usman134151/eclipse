@@ -168,14 +168,14 @@
                                                 </label>
                                                 <a @click="addNew = true" href="#" class="fw-bold">
                                                     <small>
-                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        {{-- Updated by Shanila to Add svg icon
                                                         <svg aria-label="Add New" class="me-1" width="20" height="21"
                                                             viewBox="0 0 20 21">
                                                             <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                         </svg>
-                                                        {{-- End of update by Shanila --}}
+                                                         End of update by Shanila
 
-                                                        Add New
+                                                        Add New  --}}
                                                     </small>
                                                 </a>
                                             </div>
@@ -188,13 +188,13 @@
                                                 </label>
                                                 <a @click="addNew = true" href="#" class="fw-bold">
                                                     <small>
-                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        {{-- 
                                                         <svg aria-label="Add New" class="me-1" width="20" height="21"
                                                             viewBox="0 0 20 21">
                                                             <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                         </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Add New
+                                                       
+                                                        Add New --}}
                                                     </small>
                                                 </a>
                                             </div>
@@ -352,13 +352,13 @@
                                                 <div class="d-flex align-items-center gap-3">
                                                     <a @click="addNew = true" href="#" class="fw-bold">
                                                         <small>
-                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            {{--
                                                             <svg aria-label="Add New" class="me-1" width="20"
                                                                 height="21" viewBox="0 0 20 21">
                                                                 <use xlink:href="/css/common-icons.svg#add-new"></use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                            Add New
+                                                        
+                                                            Add New  --}}
                                                         </small>
                                                     </a>
                                                     <a @click="addDocument = true" href="#" class="fw-bold">

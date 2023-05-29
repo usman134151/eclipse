@@ -47,15 +47,16 @@
 		{{ $message }}
 	</span>
 	@enderror
+	@if($warningMessage)
+		<h3 class="mt-4"><span class='d-inline-block invalid-feedback mt-2'>{{$warningMessage}}</span></h3>
+	@endif
     @if ($users)
         <h2 class="mt-5">Preview Users</h2>
 		<div class="table-responsive">
         <table id="unassigned_data" class="table" aria-label="Admin Staff Teams Table">
           <thead>
             <tr role="row">
-              <th scope="col" class="text-center">
-                <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
-              </th>
+
               <th scope="col">Customer</th>
               <th scope="col">Attributes</th>
               <th scope="col">Address</th>
@@ -65,9 +66,7 @@
           <tbody>
 		  @foreach ($users as $user)
             <tr role="row" class="odd">
-              <td class="text-center">
-                <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-              </td>
+
               <td width=33%>
                 <div class="row g-2">
  
@@ -76,34 +75,41 @@
 					<div>
 						<label class="form-label" for="First Name">First Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
+						@error('users.'. $loop->index.'.first_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Last Name</label>	
+						<label class="form-label" for="Last Name">Last Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
+						@error('users.'. $loop->index.'.last_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Email</label>
+						<label class="form-label" for="Email">Email</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
+						@error('users.'. $loop->index.'.email') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>	
                   </div>
                 </div>
               </td>
               <td width=33%>
 				<div>
-			  <label class="form-label" for="company">
-				Company
-              </label>
-			
-			  <select  class="form-select" name="users.{{ $loop->index }}.company_name" id="users.{{ $loop->index }}.company_name" wire:model='users.{{ $loop->index }}.company_name'>
-			  @foreach($companies as $company)
-			    <option value="{{$company->id}}">{{$company->name}}</option>
-			  @endforeach
-			</select></div>
+					<label class="form-label" for="company">
+						Company
+					</label>
+					
+					<select  class="form-select" name="users.{{ $loop->index }}.company_name" id="users.{{ $loop->index }}.company_name" wire:model='users.{{ $loop->index }}.company_name'>
+					<option value="0">Select Option</option>
+					@foreach($companies as $company)
+						<option value="{{$company->id}}">{{$company->name}}</option>
+					@endforeach
+					</select>
+					@error('users.'. $loop->index.'.company_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
+			</div>
 			<div>
 			<label class="form-label" for="Language">
 				Language
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($languages as $language)
 			    <option value="{{$language->id}}">{{$language->setup_value_label}}</option>
 			  @endforeach
@@ -114,6 +120,7 @@
 				Ethnicity
             </label>
 			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($ethnicities as $ethnicity)
 			    <option value="{{$ethnicity->id}}">{{$ethnicity->setup_value_label}}</option>
 			  @endforeach
@@ -124,6 +131,7 @@
 				Gender
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
+			  <option value="0">Select Option</option>
 			  @foreach($genders as $gender)
 			    <option value="{{$gender->id}}">{{$gender->setup_value_label}}</option>
 			  @endforeach
@@ -134,38 +142,38 @@
 				Roles
               </label>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin" wire:model.defer="users.{{ $loop->index }}.userRoles.10">
                 <label class="form-check-label" for="CompanyAdmin">
                     Company Admin
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanySupervisor" wire:model.defer="users.{{ $loop->index }}.userRoles.5">
+                <label class="form-check-label" for="CompanySupervisor">
 					Supervisor
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyRequester" wire:model.defer="users.{{ $loop->index }}.userRoles.6">
+                <label class="form-check-label" for="CompanyRequester">
 					Requester
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyConsumer" wire:model.defer="users.{{ $loop->index }}.userRoles.7">
+                <label class="form-check-label" for="CompanyConsumer">
 					Service Consumer
                 </label>
               </div>
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyParticipant" wire:model.defer="users.{{ $loop->index }}.userRoles.8">
+                <label class="form-check-label" for="CompanyParticipant">
 					Participant
                 </label>
               </div>			  			  			  			  
 			  <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="CompanyAdmin">
-                <label class="form-check-label" for="CompanyAdmin">
+                <input class="form-check-input" type="checkbox" value="" id="CompanyBilling" wire:model.defer="users.{{ $loop->index }}.userRoles.9">
+                <label class="form-check-label" for="CompanyBilling">
 					Billing Manager
                 </label>
               </div>	
@@ -217,6 +225,7 @@
       </div>
 
 	  <button wire:click="save" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Import Data</button>
+	  <span class="d-inline-block invalid-feedback mt-2">{{ $errorMessage }}</span>
     @endif
 </div>
 
@@ -238,6 +247,10 @@
         @this.call('updateVal', attrName, val);
     });
 
+   
+
+  
 </script>
+
 @endpush
 

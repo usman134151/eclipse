@@ -70,7 +70,6 @@
 										<div class="col-md-4">
 											<select class="select2 form-select" aria-label="Select Trigger">
 												<option>Select Trigger</option>
-												<option>Select Trigger</option>
 												<option>Assignment Scheduled</option>
 												<option>Assignment Modified</option>
 												<option>Submit Request</option>

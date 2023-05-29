@@ -17,6 +17,6 @@ class SectionRight extends Model
 
 	public function systemRole()
 	{
-		return $this->belongsTo(SystemRole::class, 'system_role_id', 'system_role_id');
+		return $this->belongsTo(SystemRole::class, 'system_role_id', 'id');
 	}
 }
