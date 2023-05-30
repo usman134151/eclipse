@@ -187,7 +187,7 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Standard Rates</h2>
                                     <div class="row justify-content-between">
-                                    @if(in_array('1',$service->service_type))
+                                    @if(!is_null($service->service_type) && in_array('1',$service->service_type))
                                         <div class="col-lg-6 mb-5" id="inperson-rate">
                                     @else
                                         <div class="col-lg-6 mb-5 d-none" id="inperson-rate">
@@ -251,7 +251,7 @@
                                             </div>
                                             <!-- /In-Person Rates -->
                                         </div>
-                                        @if(in_array('2',$service->service_type))
+                                        @if(!is_null($service->service_type) && in_array('2',$service->service_type))
                                         <div class="col-lg-6 mb-5" id="virtual-rate">
                                         @else 
                                         <div class="col-lg-6 mb-5 d-none" id="virtual-rate">
@@ -325,7 +325,7 @@
                                             </div>
                                             <!-- /Virtual Rates -->
                                         </div>
-                                        @if(in_array('4',$service->service_type))
+                                        @if(!is_null($service->service_type) && in_array('4',$service->service_type))
                                         <div class="col-lg-6 mb-5" id="phone-rate">
                                         @else
                                         <div class="col-lg-6 mb-5 d-none" id="phone-rate">
@@ -399,7 +399,7 @@
                                             </div>
                                             <!-- /Virtual Rates -->
                                         </div>
-                                        @if(in_array('5',$service->service_type))
+                                        @if(!is_null($service->service_type) && in_array('5',$service->service_type))
                                         <div class="col-lg-6 mb-5" id="teleconference-rate">
                                         @else
                                         <div class="col-lg-6 mb-5 d-none" id="teleconference-rate">
