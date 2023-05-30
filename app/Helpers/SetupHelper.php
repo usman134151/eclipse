@@ -156,13 +156,17 @@ class SetupHelper
     }
 
 
-    private static function getValuesFromDatabase(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null)
+    private static function getValuesFromDatabase(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null,$checkStatus=true)
     {
         $model = '\App\Models\Tenant\\' . $model;
         $query = $model::query();
 
         if ($filterCol && $filterValue) {
             $query->where($filterCol, $filterValue);
+        }
+
+        if($checkStatus){
+            $query->where('status',1);
         }
 
         if ($orderBy) {

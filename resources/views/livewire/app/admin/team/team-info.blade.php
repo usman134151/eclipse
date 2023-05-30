@@ -51,7 +51,12 @@
 				  <label class="form-label">
 					Lead Admin(s) <span class="mandatory" aria-hidden="true">*</span>
 				  </label>
-                  {!! $setupValues['users']['rendered'] !!}
+                  <select wire:model="team.admin_id" name="team.admin_id" id="team.admin_id" class="select2 form-select">
+					<option value=0></option>
+					@foreach($teamAdmin as $admin)
+					  <option value="{{$admin['id']}}" />{{$admin['name']}} ({{$admin['email']}})</option>
+					@endforeach
+				  </select>
                   @error('team.admin_id')
                     <span class="d-inline-block invalid-feedback mt-2">
                         {{ $message }}

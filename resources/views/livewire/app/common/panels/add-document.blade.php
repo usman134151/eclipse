@@ -1,4 +1,5 @@
-<div class="row">
+<div>
+    <div class="row">
     <div class="col-lg-12">
         <div class="col-lg-8 inner-section-segment-spacing">
             <label class="form-label" for="document-title">
@@ -102,12 +103,13 @@
         </label>
         <textarea class="form-control" rows="4" placeholder="" name="notesColumn" id="notes-column"></textarea>
     </div>
-</div>
-<div class="col-lg-12 justify-content-center gap-2 d-flex mt-5 form-actions">
+    </div>
+    <div class="col-lg-12 justify-content-center gap-2 d-flex mt-5 form-actions">
     <a href="javascript:void(0);" class="btn btn-outline-dark rounded" role="button">
         Cancel
     </a>
     <button type="submit" class="btn btn-primary rounded">
         Upload
     </button>
-</div>
+    </div>
+</div>    

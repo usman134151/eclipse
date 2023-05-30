@@ -65,9 +65,8 @@
 		<a class="dashborad-block" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability-tab-pane" type="button" role="tab" aria-controls="availability-tab-pane" aria-selected="false">
 		  <div class="text-center block-text">Availability</div>
 		  <div class="text-center block-icon">
-			<svg class="fill icon-availability" height="" viewBox="0 0 1440 809.999993" fill="none" xmlns="http://www.w3.org/2000/svg">
-	         <use xlink:href="/css/customer.svg#submit-service-icon"></use>
-		</svg>
+			<svg class="fill icon-availability"  viewBox="0 0 1440 809.999993" fill="none" xmlns="http://www.w3.org/2000/svg">
+	         <use xlink:href="/css/customer.svg#submit-service-icon"></use></svg>
 		</div>
 		  <div>
 			<div class="text-center block-number">10</div>

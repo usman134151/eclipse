@@ -1,4 +1,5 @@
-<div class="row mt-4">
+<div>
+    <div class="row mt-4">
     <div class="col-md-6">
         <div class="row">
             <div class="col-12">
@@ -272,4 +273,5 @@
             </ul>
         </div>
     </div>
+</div>
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Admin\Team;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\AdminTeam;
+use App\Models\Tenant\User;
 use App\Services\App\AdminTeamService;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
@@ -16,16 +17,23 @@ class TeamInfo extends Component
     public $image;
     protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
-    public $setupValues = [
-		'users'=>['parameters'=>['User', 'id', 'name', '', '', 'name', false, 'team.admin_id','','admin_id',1]],
-	];
+    public $teamAdmin=[];
     public $team;
 	public function showList($message = "")
 	{
 		$this->emit('showList', $message);
 	}
     public function mount(AdminTeam $team){
-		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+		$this->teamAdmin=User::query()
+		->where('status',1)
+		->whereHas('roles', function ($query) {
+			$query->wherein('role_id',[1,3]);
+		})->select([
+			'id',
+			'name',
+			'email',
+			
+		])->get()->toArray();
         $this->team=$team;
 
 
