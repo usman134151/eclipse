@@ -13,12 +13,12 @@ class SetupForm extends Component
     public $label="Add";
     protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $setupValues = [
-        'setup'=>['parameters'=>['Setup', 'id', 'setup_value', 'setup_deleteable', '1', 'setup_value', false, 'setupvalue.setup_id', '','setup_id',0,false ]],
+        'setup'=>['parameters'=>['Setup', 'id', 'setup_value', 'setup_deleteable', '1', 'setup_value', false, 'setupvalue.setup_id', '','setup_id',0]],
 	];
 
     public function mount(SetupValue $setupvalue){
         $this->setupvalue=$setupvalue;
-        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues,false);
 
     }
 	public function updateVal($attrName, $val)
