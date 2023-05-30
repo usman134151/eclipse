@@ -18,7 +18,7 @@ class ServiceCatelog extends Component
 
     public function mount()
     {
-       $this->accomodations=Accommodation::with('services')->get();
+       $this->accomodations=[];//Accommodation::get();
        
     }
 	public function switch($component)
