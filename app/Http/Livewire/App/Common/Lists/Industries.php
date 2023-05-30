@@ -120,8 +120,8 @@ final class Industries extends PowerGridComponent
         // Returns an array of columns for the PowerGrid component
         return [
             Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
-                ->toggleable(1, 'Deactivated', 'Activated'),
+            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
+                ->toggleable(1, 'Activated', 'Dectivated'),
             Column::make('Actions', 'edit')->visibleInExport(false) //updated by Amna Bilal to hide action column from export
         ];
     }
