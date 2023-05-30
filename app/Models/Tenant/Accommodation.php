@@ -20,6 +20,6 @@ class Accommodation extends Model
     ];
 
     public function services(){
-        return $this->hasMany(Services::class,'accomodation_id');
+        return $this->hasMany(Service::class,'accomodation_id');
     }
 }
