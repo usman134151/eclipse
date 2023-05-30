@@ -67,7 +67,7 @@ class SetupHelper
 
         return trim($html);
     }
-    public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = '',int $tabIndex=0): string
+    public static function createDropDown(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, bool $multipleSelect = false, string $wireVariable = null, $selectedValue = '', string $selectName = '',int $tabIndex=0,$checkStatus=true): string
     {
         $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
         $multiple='';
