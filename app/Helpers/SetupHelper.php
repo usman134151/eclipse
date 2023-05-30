@@ -111,7 +111,7 @@ class SetupHelper
     
         return $html;
     }
-    public static function createCheckboxes(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, array $selectedValues = [],$tabIndex=0,$divClass="form-check",$name="",$wireModel='',$checkValues=[]): string
+    public static function createCheckboxes(string $model, string $valueCol, string $displayCol, string $filterCol = null, $filterValue = null, string $orderBy = null, array $selectedValues = [],$tabIndex=0,$divClass="form-check",$name="",$wireModel='',$checkValues=[],$wireClick=''): string
     {
         $values = self::getValuesFromDatabase($model, $valueCol, $displayCol, $filterCol, $filterValue, $orderBy);
 
@@ -126,7 +126,7 @@ class SetupHelper
           
             $isChecked = in_array($cValue, $selectedValues) ? 'checked' : '';
             $html .= '<div class="'.$divClass.'">';
-            $html .= '<input class="form-check-input" type="checkbox" id="' . $name . '" name="' . $name . '[]" value="' . $cValue . '" ' . $isChecked . ' tabindex='.$tabIndex.' '.$wireModel.'>';
+            $html .= '<input class="form-check-input" type="checkbox" id="' . $name . '" name="' . $name . '[]" value="' . $cValue . '" ' . $isChecked . ' tabindex='.$tabIndex.' '.$wireModel.' '.$wireClick.'>';
             $html .= '<label class="form-check-label"  for="' . $value->{$valueCol} . '">' . $value->{$displayCol} . '</label>';
             $html .= '</div>';
             $loop++;
@@ -185,7 +185,7 @@ class SetupHelper
     public static function loadSetupCheckboxes($setupValues){ //added by Amna Bilal function to get all setup values rendered on mount
 		foreach($setupValues as $key=>$setupValue){
 
-			$setupValues[$key]['rendered'] = self::createCheckboxes($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9],$setupValue['parameters'][10],$setupValue['parameters'][11]);
+			$setupValues[$key]['rendered'] = self::createCheckboxes($setupValue['parameters'][0], $setupValue['parameters'][1],$setupValue['parameters'][2], $setupValue['parameters'][3], $setupValue['parameters'][4], $setupValue['parameters'][5], $setupValue['parameters'][6],$setupValue['parameters'][7],$setupValue['parameters'][8],$setupValue['parameters'][9],$setupValue['parameters'][10],$setupValue['parameters'][11],$setupValue['parameters'][12]);
 		}
        
         return $setupValues;

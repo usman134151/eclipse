@@ -145,19 +145,19 @@
                                         <h2 class="mb-lg-0">Enable Billing Rates</h2>
                                         <div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="HourlyMinutesRate"
-                                                    name="HourlyMinutesRate" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="rate_status"
+                                                    name="rate_status" type="radio" tabindex="" value="1" wire:model="service.rate_status"/>
                                                 <label class="form-check-label" for="HourlyMinutesRate">Hourly/Minutes
                                                     Rate</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="Day-Rate" name="DayRate" type="radio"
-                                                    tabindex="" />
+                                                <input class="form-check-input" id="rate_status"
+                                                    name="rate_status" type="radio" tabindex="" value="2" wire:model="service.rate_status"/>
                                                 <label class="form-check-label" for="Day-Rate"> Day Rate</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="service_category-fixed_rate" name="service_category-fixed_rate"
-                                                    type="radio" tabindex="" />
+                                                <input class="form-check-input" id="service_category-fixed_rate" id="rate_status"
+                                                    name="rate_status" type="radio" tabindex="" value="4" wire:model="service.rate_status"/>
                                                 <label class="form-check-label" for="service_category-fixed_rate"> Fixed Rate</label>
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Standard Rates</h2>
                                     <div class="row justify-content-between">
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-6 mb-5 d-none" id="inperson-rate">
                                             <!-- In-Person Rates -->
                                             <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                 <div class="d-lg-flex align-items-center gap-3">
@@ -247,12 +247,152 @@
                                             </div>
                                             <!-- /In-Person Rates -->
                                         </div>
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-6 mb-5 d-none" id="virtual-rate" class="d-none">
                                             <!-- Virtual Rates -->
                                             <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                 <div class="d-lg-flex align-items-center gap-3">
                                                     <label class="form-label mb-0">
                                                         Virtual Rates
+                                                    </label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" id="MultiplyProvidersVirtual"
+                                                            name="MultiplyProvidersVirtual" type="checkbox"
+                                                            tabindex="" />
+                                                        <label class="form-check-label" for="MultiplyProvidersVirtual">
+                                                            Multiply by No. of Providers</label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        <svg aria-label="Duplicate" width="19" height="19"
+                                                            viewBox="0 0 19 19">
+                                                            <use xlink:href="/css/common-icons.svg#duplicate"></use>
+                                                        </svg>
+                                                        {{-- End of update by Shanila --}}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7"
+                                                        id="Business-Hours-perhour">
+                                                        Business Hours (per hour)
+                                                    </span>
+                                                    <input type="text" class="form-control rounded-0 text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges"
+                                                        aria-describedby="Business-Hours-perhour">
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7"
+                                                        id="AfterHoursper-hour">
+                                                        After-Hours (per hour)
+                                                    </span>
+                                                    <input type="text" class="form-control text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges"
+                                                        aria-describedby="AfterHoursper-hour">
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7" id="dayRate">
+                                                        Day Rate
+                                                    </span>
+                                                    <input type="text" class="form-control text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="dayRate">
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7" id="fixed-rate">
+                                                        Fixed Rate
+                                                    </span>
+                                                    <input type="text" class="form-control text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="fixed-rate">
+                                                </div>
+                                            </div>
+                                            <!-- /Virtual Rates -->
+                                        </div>
+                                        <div class="col-lg-6 mb-5 d-none" id="phone-rate" class="d-none">
+                                            <!-- Virtual Rates -->
+                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                                <div class="d-lg-flex align-items-center gap-3">
+                                                    <label class="form-label mb-0">
+                                                        Phone Rates
+                                                    </label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" id="MultiplyProvidersVirtual"
+                                                            name="MultiplyProvidersVirtual" type="checkbox"
+                                                            tabindex="" />
+                                                        <label class="form-check-label" for="MultiplyProvidersVirtual">
+                                                            Multiply by No. of Providers</label>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                        {{-- Updated by Shanila to Add svg icon--}}
+                                                        <svg aria-label="Duplicate" width="19" height="19"
+                                                            viewBox="0 0 19 19">
+                                                            <use xlink:href="/css/common-icons.svg#duplicate"></use>
+                                                        </svg>
+                                                        {{-- End of update by Shanila --}}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7"
+                                                        id="Business-Hours-perhour">
+                                                        Business Hours (per hour)
+                                                    </span>
+                                                    <input type="text" class="form-control rounded-0 text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges"
+                                                        aria-describedby="Business-Hours-perhour">
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7"
+                                                        id="AfterHoursper-hour">
+                                                        After-Hours (per hour)
+                                                    </span>
+                                                    <input type="text" class="form-control text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges"
+                                                        aria-describedby="AfterHoursper-hour">
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7" id="dayRate">
+                                                        Day Rate
+                                                    </span>
+                                                    <input type="text" class="form-control text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="dayRate">
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-secondary col-lg-7" id="fixed-rate">
+                                                        Fixed Rate
+                                                    </span>
+                                                    <input type="text" class="form-control text-center px-0"
+                                                        placeholder="$" aria-label="$" aria-describedby="">
+                                                    <input type="text" class="form-control text-center"
+                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="fixed-rate">
+                                                </div>
+                                            </div>
+                                            <!-- /Virtual Rates -->
+                                        </div>
+                                        <div class="col-lg-6 mb-5 d-none"  id="teleconference-rate" class="d-none">
+                                            <!-- Virtual Rates -->
+                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                                <div class="d-lg-flex align-items-center gap-3">
+                                                    <label class="form-label mb-0">
+                                                       Teleconference Rates
                                                     </label>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" id="MultiplyProvidersVirtual"
@@ -3963,4 +4103,21 @@
 </div>
 
 <!-- End: Content-->
+@push('scripts')
+<script>
+	function updateRates(rate){
+       var rateToggle=['inperson-rate','virtual-rate','','phone-rate','teleconference-rate'];
+       if (rate.is(':checked')) {
+        $("#" + rateToggle[rate.val() - 1]).removeClass('d-none').addClass('d-block');
+       } else {
+        $("#" + rateToggle[rate.val() - 1]).removeClass('d-block').addClass('d-none');
+       }
 
+	}
+
+
+</script>
+
+
+
+@endpush

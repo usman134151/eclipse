@@ -205,6 +205,7 @@ class AddService extends Component
             'service.accommodations_id'=>'required',
             'service.service_type' =>'required',
             'service.frequency_id'=>'required',
+            'service.rate_status'=>'required',
             'service.description' => [
 				'required',
 				'string',
@@ -213,6 +214,7 @@ class AddService extends Component
 
 		];
 	}
+
     public function save($redirect=1){
 		$this->validate();
          $this->service->added_by = 1;
@@ -277,15 +279,24 @@ class AddService extends Component
              $selectedValues=explode(',',$this->service->service_type);
              $this->service->service_type=$selectedValues;
         }
+        else{
+            $this->service->service_type=[];
+        }
         if(!is_null($this->service->frequency_id)){
             $selectedFValues=explode(',',$this->service->frequency_id);
             $this->service->frequency_id=$selectedFValues;
        }
-        
-        $this->setupCheckboxes['service_types']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '5', 'id', $selectedValues,1,'form-check form-check-inline','service_type','wire:model=service.service_type',[1,2,4,5]]];
-        $this->setupCheckboxes['frequency_id']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '6', 'id', $selectedFValues,1,'form-check','frequency_id','wire:model=service.frequency_id',['one_time','daily','weekly','weekdaily','monthly']]];
+       else{
+        $this->service->frequency_id=[];
+       } 
+        $this->setupCheckboxes['service_types']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '5', 'id', $selectedValues,1,'form-check form-check-inline','service_type','wire:model.defer=service.service_type',[1,2,4,5],'onclick="updateRates($(this))"']];
+        $this->setupCheckboxes['frequency_id']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '6', 'id', $selectedFValues,1,'form-check','frequency_id','wire:model=service.frequency_id',['one_time','daily','weekly','weekdaily','monthly'],'']];
           //  dd($this->setupCheckboxes);
         $this->setupCheckboxes=SetupHelper::loadSetupCheckboxes($this->setupCheckboxes);
+    }
+
+    public function updateRates(){
+     //   dd($this->service->service_type);
     }
 
 }
