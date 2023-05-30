@@ -59,6 +59,7 @@ class NotificationConfiguration extends PowerGridComponent
             'notification_templates.slug',
             'notification_templates.body',
             'roles.display_name as role_id',
+            'notification_templates.status as status'
         ]);
 
     if ($this->selectedRoleId !== null) {
@@ -137,8 +138,8 @@ class NotificationConfiguration extends PowerGridComponent
             Column::make('TRIGGER', 'trigger', ''),
             Column::make('TRIGGER DESCRIPTION', 'slug', '')->editOnClick(),
             Column::make('Subject', 'body', '')->editOnClick(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
-                ->toggleable(1, 'Deactivated', 'Activated'),
+            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
+            ->toggleable(1, 'Activated', 'Dectivated'),
             Column::make('Actions', 'edit')->visibleInExport(false),
         ];
     }
@@ -156,8 +157,8 @@ class NotificationConfiguration extends PowerGridComponent
     public function onUpdatedToggleable(string $id, string $field, string $value): void
     {
         // Updates the specified field of the record with the new value
-        NotificationTemplates::query()->find($id)->update([
-            $field => $value,
+        NotificationTemplates::query()->where('id',$id)->update([
+            'status' => $value,
         ]);
     }
 

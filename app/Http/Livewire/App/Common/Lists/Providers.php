@@ -166,7 +166,7 @@ final class Providers extends PowerGridComponent
 			Column::make('Upcoming Appointments', 'upcoming', ''),
 			
 	
-			Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
+			Column::make('Status', 'status', '')
 			->toggleable(1, 'Deactivated', 'Activated'),
 		   Column::make('Actions', 'edit')->visibleInExport(false)
 		];

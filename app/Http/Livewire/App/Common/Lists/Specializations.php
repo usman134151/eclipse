@@ -120,8 +120,8 @@ final class Specializations extends PowerGridComponent
         // Returns an array of columns for the PowerGrid component
         return [
             Column::make('Name', 'name', '')->searchable()->makeinputtext()->sortable()->editOnClick(),
-            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')
-                ->toggleable(1, 'Deactivated', 'Activated'),
+            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
+            ->toggleable(1, 'Activated', 'Dectivated'),
             Column::make('Actions', 'edit')->visibleInExport(false),
         ];
     }
@@ -150,8 +150,8 @@ final class Specializations extends PowerGridComponent
     public function onUpdatedToggleable(string $id, string $field, string $value): void
     {
         // Updates the specified field of the record with the new value
-        Specialization::query()->find($id)->update([
-            $field => $value,
+        Specialization::query()->where('id',$id)->update([
+            'status' => $value,
         ]);
     }
 

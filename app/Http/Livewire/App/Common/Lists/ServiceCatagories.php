@@ -91,12 +91,10 @@ final class ServiceCatagories extends PowerGridComponent
                 return '<a @click="associateCompanies = true">
                     <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
-                    </svg>
+                    </svg> Associate Companies & Customers
                 </a>';
             })
-			->addColumn('company', function () {
-				return "Associate Companies & Customers";
-			})
+
             ->addColumn('status', function (ServiceCategory $model) {
                 return ($model->status);
             })
@@ -140,33 +138,41 @@ final class ServiceCatagories extends PowerGridComponent
 	 *
 	 * @return array<int, Column>
 	 */
-	public function columns(): array
-	{
-		return [
-			Column::make('Name', 'name')
-				->searchable()
-				->makeinputtext()
-				->sortable(),
-            Column::make('', 'icon'),
-            Column::make('', 'company')
-				->searchable()
-				->makeinputtext()
-				->sortable(),
-            Column::make('Status', 'status', '')
-                ->toggleable(1, 'Deactivated', 'Activated'),
-			Column::make('Action', 'edit'),
-		];
-	}
+		public function columns(): array
+		{
+			return [
+				Column::make('Name', 'name')
+					->searchable()
+					->makeinputtext()
+					->sortable(),
+				Column::make('', 'icon'),
 
-	// A method to handle the editable columns update event
-	public function onUpdatedEditable(string $id, string $field, string $value): void
-	{
-		// Updates the specified field of the record with the new value
-		ServiceCategory::query()->find($id)->update([
-			$field => $value,
-		]);
-	}
+				Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
+				->toggleable(1, 'Activated', 'Dectivated'),
+				Column::make('Action', 'edit'),
+			];
+		}
 
+		// A method to handle the editable columns update event
+		public function onUpdatedEditable(string $id, string $field, string $value): void
+		{
+			// Updates the specified field of the record with the new value
+			ServiceCategory::query()->find($id)->update([
+				$field => $value,
+			]);
+		}
+
+		// A method to handle the toggleable columns update event
+		public function onUpdatedToggleable(string $id, string $field, string $value): void
+		{
+			
+			
+			// Updates the specified field of the record with the new value
+			ServiceCategory::query()->where('id',$id)->update([
+				'status' => $value,
+			]);
+
+		}
 	function showProfile() {
 		// Emits an event to show the customer profile
 		$this->emit('showProfile');

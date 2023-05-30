@@ -147,8 +147,8 @@ final class AdminTeams extends PowerGridComponent
                 ->makeinputtext()
                 ->sortable(),
 			Column::make('Total Members', 'total_members'),
-            Column::make('Status', 'status', '')
-                ->toggleable(1, 'Deactivated', 'Activated'),
+            Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Activated', 'Deactivated')
+			->toggleable(1, 'Activated', 'Dectivated'),
 			Column::make('Action', 'edit'),
 		];
 	}
@@ -161,6 +161,16 @@ final class AdminTeams extends PowerGridComponent
 			$field => $value,
 		]);
 	}
+		// A method to handle the toggleable columns update event
+	public function onUpdatedToggleable(string $id, string $field, string $value): void
+	{
+		// Updates the specified field of the record with the new value
+		AdminTeam::query()->where('id',$id)->update([
+			'status' => $value,
+		]);
+
+	}
+	
 
 	function showProfile() {
 		// Emits an event to show the customer profile
