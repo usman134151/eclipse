@@ -187,7 +187,11 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Standard Rates</h2>
                                     <div class="row justify-content-between">
+                                    @if(in_array('1',$service->service_type))
+                                        <div class="col-lg-6 mb-5" id="inperson-rate">
+                                    @else
                                         <div class="col-lg-6 mb-5 d-none" id="inperson-rate">
+                                    @endif        
                                             <!-- In-Person Rates -->
                                             <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                 <div class="d-lg-flex align-items-center gap-3">
@@ -247,7 +251,11 @@
                                             </div>
                                             <!-- /In-Person Rates -->
                                         </div>
-                                        <div class="col-lg-6 mb-5 d-none" id="virtual-rate" class="d-none">
+                                        @if(in_array('2',$service->service_type))
+                                        <div class="col-lg-6 mb-5" id="virtual-rate">
+                                        @else 
+                                        <div class="col-lg-6 mb-5 d-none" id="virtual-rate">
+                                        @endif    
                                             <!-- Virtual Rates -->
                                             <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                 <div class="d-lg-flex align-items-center gap-3">
@@ -317,7 +325,11 @@
                                             </div>
                                             <!-- /Virtual Rates -->
                                         </div>
-                                        <div class="col-lg-6 mb-5 d-none" id="phone-rate" class="d-none">
+                                        @if(in_array('4',$service->service_type))
+                                        <div class="col-lg-6 mb-5" id="phone-rate">
+                                        @else
+                                        <div class="col-lg-6 mb-5 d-none" id="phone-rate">
+                                        @endif   
                                             <!-- Virtual Rates -->
                                             <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                 <div class="d-lg-flex align-items-center gap-3">
@@ -387,7 +399,12 @@
                                             </div>
                                             <!-- /Virtual Rates -->
                                         </div>
-                                        <div class="col-lg-6 mb-5 d-none"  id="teleconference-rate" class="d-none">
+                                        @if(in_array('5',$service->service_type))
+                                        <div class="col-lg-6 mb-5" id="teleconference-rate">
+                                        @else
+                                        <div class="col-lg-6 mb-5 d-none" id="teleconference-rate">
+                                        @endif   
+                                        
                                             <!-- Virtual Rates -->
                                             <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                 <div class="d-lg-flex align-items-center gap-3">
