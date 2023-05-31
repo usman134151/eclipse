@@ -86,7 +86,7 @@
                                     <div class="d-lg-flex justify-content-between align-items-center mb-3">
                                         <h2 class="mb-lg-0">Basic Service Setup</h2>
                                         <div class="form-check form-switch form-switch-column mb-0">
-                                            <input class="form-check-input" type="checkbox" role="switch"
+                                            <input class="form-check-input" type="checkbox" value="1" role="switch"
                                                 id="basicService" aria-label="Active Toggle Button" wire:model="service.status">
                                             <label class="form-check-label" for="basicService">In-Active</label>
                                             <label class="form-check-label" for="basicService">Active</label>

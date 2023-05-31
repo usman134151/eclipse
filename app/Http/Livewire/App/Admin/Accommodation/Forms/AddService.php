@@ -206,6 +206,7 @@ class AddService extends Component
             'service.service_type' =>'required',
             'service.frequency_id'=>'required',
             'service.rate_status'=>'required',
+            'service.status'=>'',
             'service.description' => [
 				'required',
 				'string',
