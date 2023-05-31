@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Services\App\CompanyService;
 use App\Models\Tenant\Company;
+use App\Models\Tenant\Phone;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,7 @@ class AddCompany extends Component
 {
 	public $component = 'company-info';
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
+	public $deletedNumbers=[];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]],
@@ -48,7 +50,7 @@ class AddCompany extends Component
 			//dd($company->phones);
 			$this->phoneNumbers=[];
 			foreach($company->phones as $phone){
-				$this->phoneNumbers[]=['phone_number'=>$phone->phone_number,'phone_title'=>$phone->phone_title];
+				$this->phoneNumbers[]=['phone_number'=>$phone->phone_number,'phone_title'=>$phone->phone_title,'id'=>$phone->id];
 			}
 		
 		}
@@ -98,8 +100,13 @@ class AddCompany extends Component
 	}
 	public function removePhone($index)
     {
-        unset($this->phoneNumbers[$index]);
+		if(key_exists('id',$this->phoneNumbers[$index])){
+			Phone::destroy($this->phoneNumbers[$index]['id']);
+		}
+       
+		unset($this->phoneNumbers[$index]);
         $this->phoneNumbers = array_values($this->phoneNumbers);
+
     }
 
 	public function addAddress($addressArr){

@@ -9,8 +9,15 @@ class CompanyService{
     public function createCompany($company,$phones,$userAddresses){
         $company->save();
         foreach ($phones as $phoneData) {
-            $phone = new Phone($phoneData);
-            $company->phones()->save($phone);
+            if(key_exists('id',$phoneData)){
+                Phone::where('id', $phoneData['id'])->update(['phone_number' =>$phoneData['phone_number'], 'phone_title' => $phoneData['phone_title']]);
+
+            }
+            else{
+                $phone = new Phone($phoneData);
+                $company->phones()->save($phone);
+            }
+
         }
         $this->saveAddresses($company,$userAddresses);
         return $company;

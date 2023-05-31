@@ -478,7 +478,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
-                                                                <button type="button" onclick="newElement($('#formRow'), $('#elementRow'))"
+                                                                <button type="button" onclick="newElement($('#formRow'), $('#elementRow'),{{count($phoneNumbers)}})"
                                                                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
                                                                     <svg aria-label="Add Phone Number" width="20"
                                                                         height="20" viewBox="0 0 20 20">
@@ -556,7 +556,7 @@
     @include('modals.common.add-address')
     @push('scripts')
     <script>
-        var phoneIndex={{count($phoneNumbers)}}
+        
         
         Livewire.on('updateAddressType', (type) => {
             // Handle the event here
@@ -568,45 +568,7 @@
             $('#addAddressModal').modal('hide');
                
             });
-            function newElement(parentRow, domRow) {
-                
-                var newElem = document.createElement('div');
-                $(newElem).addClass('input-group my-5');
-                newElem.innerHTML = $(domRow).html();
-                $(newElem).find(':input').attr('value', '');
-            // $(newElem).find(':input').attr('onblur', 'saveElement(0,$(this).val())');
-                $(newElem).find('textarea').val('');
-                $(newElem).find(':checkbox, :radio').attr('checked', false);
-                $(newElem).css('display', 'none');
-            
-            
-                parentRow.append(newElem);
-                $(newElem).slideDown();
-                $(newElem).find(':input').focus();
-                // Get the phone number and title inputs in the new element
-                var phoneNumberInput = $(newElem).find('[name="phone-number"]');
-                var titleInput = $(newElem).find('[name="title"]');
-                var deleteIcon= $(newElem).find('[name="deleteIcon"]');
-                deleteIcon.attr('phone-id',phoneIndex);
-                // Attach the wire:model directive to the phone number input
-                phoneNumberInput.attr('wire:model', 'phoneNumbers.' + phoneIndex + '.phone_number');
-                               
-                // Attach the wire:model directive to the title input
-                titleInput.attr('wire:model', 'phoneNumbers.' + phoneIndex + '.phone_title');
-                                phoneIndex++;
-                // Listen to the wire:change event on the phone number input
-                phoneNumberInput.on('change', function() {
-                
-                    // Call the Livewire component function addPhone
-                    Livewire.emit('addPhone',titleInput.val(),phoneNumberInput.val());
-                });
-                deleteIcon.on('click', function() {
-              
-                // Call the Livewire component function addPhone
-                 Livewire.emit('removePhone',$(this).attr('phone-id'));
-            });
-
-}        
+      
     </script>
     @endpush
 </div>
