@@ -78,16 +78,16 @@
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'basic-service-setup' }" id="basic-service-setup"
                            role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0" x-show="tab === 'basic-service-setup'">
                         <form class="form">
-                            {{-- updated by shanila to add csrf--}}
+                           
                             @csrf
-                            {{-- update ended by shanila --}}
+                           
                             <div class="row">
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <div class="d-lg-flex justify-content-between align-items-center mb-3">
                                         <h2 class="mb-lg-0">Basic Service Setup</h2>
                                         <div class="form-check form-switch form-switch-column mb-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
-                                                id="basicService" aria-label="Active Toggle Button">
+                                                id="basicService" aria-label="Active Toggle Button" wire:model="service.status">
                                             <label class="form-check-label" for="basicService">In-Active</label>
                                             <label class="form-check-label" for="basicService">Active</label>
                                         </div>
@@ -829,9 +829,9 @@
                         role="tabpanel" aria-labelledby="advanced-service-rate-tab" tabindex="0" x-show="tab === 'advanced-service-rate'">
                         <div class="row">
                             <form class="form">
-                                {{-- updated by shanila to add csrf--}}
+                               
                                 @csrf
-                                {{-- update ended by shanila --}}
+                               
                                 <div class="col-lg-5 between-section-segment-spacing">
                                     <div class="d-lg-flex justify-content-between align-items-center mb-3">
                                         <h2 class="mb-lg-0">Service Rates And Charges</h2>
@@ -2736,9 +2736,9 @@
                     <div  class="tab-pane fade" :class="{ 'active show': tab === 'service-forms' }" id="service-forms"
                         role="tabpanel" aria-labelledby="service-forms-tab" tabindex="0" x-show="tab === 'service-forms'">
                         <form class="form">
-                            {{-- updated by shanila to add csrf--}}
+                           
                             @csrf
-                            {{-- update ended by shanila --}}
+                           
 
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
 
@@ -2896,9 +2896,9 @@
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'service-configuration' }" id="service-configuration"
                      role="tabpanel" aria-labelledby="service-configuration-tab" tabindex="0" x-show="tab === 'service-configuration'">
                         <form class="form">
-                            {{-- updated by shanila to add csrf--}}
+                           
                             @csrf
-                            {{-- update ended by shanila --}}
+                           
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
                                 <h2 class="mb-lg-0">Service Configuration</h2>
                             </div>
@@ -3061,9 +3061,9 @@
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'advance-options' }" id="advance-options"
                         role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0" x-show="tab === 'advance-options'">
                         <form class="form">
-                            {{-- updated by shanila to add csrf--}}
+                           
                             @csrf
-                            {{-- update ended by shanila --}}
+                           
 
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
                                 <h2 class="mb-lg-0">Default Time Zone & Booking Procedures</h2>
@@ -3819,9 +3819,9 @@
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'notification-setting' }" id="notification-setting"
                        role="tabpanel" aria-labelledby="notification-setting-tab" tabindex="0" x-show="tab === 'notification-setting'">
                         <form class="form">
-                            {{-- updated by shanila to add csrf--}}
+                           
                             @csrf
-                            {{-- update ended by shanila --}}
+                           
 
                             <div class="between-section-segment-spacing">
                                 <div class="d-lg-flex justify-content-between align-items-center">

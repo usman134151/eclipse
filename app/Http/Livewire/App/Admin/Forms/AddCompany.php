@@ -19,7 +19,7 @@ class AddCompany extends Component
 		'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',4,'setup_value_label',false,'company.company_timezone', '','company_timezone',4]]
 	
 	];
-	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented','updateAddress' => 'addAddress'];
+	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented','updateAddress' => 'addAddress','addPhone'];
 	public $step=1;
 	public $company,$userAddresses=[];
 	public $driveActive,$serviceActive;
@@ -92,8 +92,9 @@ class AddCompany extends Component
 
 	//front function
 
-	public function addPhone(){
-		$this->phoneNumbers[]=['phone_title'=>'','phone_number'=>''];
+	public function addPhone($title='',$number=''){
+		
+		$this->phoneNumbers[]=['phone_title'=>$title,'phone_number'=>$number];
 	}
 	public function removePhone($index)
     {

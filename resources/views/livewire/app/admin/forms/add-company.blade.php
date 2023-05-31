@@ -420,7 +420,7 @@
                                                                             </label>
                                                                             <input type="text" id="title"
                                                                                 class="form-control" name=""
-                                                                                placeholder="Enter Title" wire:key="title-{{ $index }}" wire:model.lazy="phoneNumbers.{{$index}}.phone_title"/>
+                                                                                placeholder="Enter Title" wire:key="title-{{ $index }}" wire:model.defer="phoneNumbers.{{$index}}.phone_title"/>
                                                                         </div>
                                                                         <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
                                                                             <label class="form-label" for="phone-number">
@@ -428,10 +428,10 @@
                                                                             </label>
                                                                             <input type="text" id="phone-number"
                                                                                 class="form-control" name=""
-                                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}" wire:model.lazy="phoneNumbers.{{$index}}.phone_number"/>
+                                                                                placeholder="Enter Phone Number" wire:key="phone-{{ $index }}" wire:model.defer="phoneNumbers.{{$index}}.phone_number"/>
                                                                         </div>
                                                                         <div class="col-lg-2 col-md-4">
-                                                                        <a href="#" wire:click.prevent="removePhone({{$index}})" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                        <a href="#"  title="Delete" aria-label="Delete" wire:click.prevent="removePhone({{$index}})" class="btn btn-sm btn-secondary rounded btn-hs-icon" name="deleteIcon">
                                                                 <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <use xlink:href="/css/sprite.svg#delete-icon"></use>
                                                                 </svg>
@@ -443,8 +443,42 @@
 
                                                         </div>
                                                         @endforeach
+                                                        <div id="formRow">
+                                                            <div class="row" id="elementRow" style="display:none">
+                                                                <div class="col-lg-8 mb-2">
+                                                                    <div class="border p-3">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
+                                                                                <label class="form-label" for="title">
+                                                                                    Title
+                                                                                </label>
+                                                                                <input type="text" name="title"
+                                                                                    class="form-control" 
+                                                                                    placeholder="Enter Title" />
+                                                                            </div>
+                                                                            <div class="col-lg-5 col-md-4 mb-4 mb-md-0">
+                                                                                <label class="form-label" for="phone-number">
+                                                                                    Phone Number
+                                                                                </label>
+                                                                                <input type="text" name="phone-number"
+                                                                                    class="form-control" 
+                                                                                    placeholder="Enter Phone Number"/>
+                                                                            </div>
+                                                                            <div class="col-lg-2 col-md-4">
+                                                                            <a href="#" name="deleteIcon" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <use xlink:href="/css/sprite.svg#delete-icon"></use>
+                                                                    </svg>
+                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
                                                         <div class="col-lg-8 d-flex justify-content-end md-2 mt-4">
-                                                                <button type="button" wire:click.prevent="addPhone"
+                                                                <button type="button" onclick="newElement($('#formRow'), $('#elementRow'))"
                                                                     class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
                                                                     <svg aria-label="Add Phone Number" width="20"
                                                                         height="20" viewBox="0 0 20 20">
@@ -522,6 +556,8 @@
     @include('modals.common.add-address')
     @push('scripts')
     <script>
+        var phoneIndex={{count($phoneNumbers)}}
+        
         Livewire.on('updateAddressType', (type) => {
             // Handle the event here
            
@@ -532,6 +568,45 @@
             $('#addAddressModal').modal('hide');
                
             });
+            function newElement(parentRow, domRow) {
+                
+                var newElem = document.createElement('div');
+                $(newElem).addClass('input-group my-5');
+                newElem.innerHTML = $(domRow).html();
+                $(newElem).find(':input').attr('value', '');
+            // $(newElem).find(':input').attr('onblur', 'saveElement(0,$(this).val())');
+                $(newElem).find('textarea').val('');
+                $(newElem).find(':checkbox, :radio').attr('checked', false);
+                $(newElem).css('display', 'none');
+            
+            
+                parentRow.append(newElem);
+                $(newElem).slideDown();
+                $(newElem).find(':input').focus();
+                // Get the phone number and title inputs in the new element
+                var phoneNumberInput = $(newElem).find('[name="phone-number"]');
+                var titleInput = $(newElem).find('[name="title"]');
+                var deleteIcon= $(newElem).find('[name="deleteIcon"]');
+                deleteIcon.attr('phone-id',phoneIndex);
+                // Attach the wire:model directive to the phone number input
+                phoneNumberInput.attr('wire:model', 'phoneNumbers.' + phoneIndex + '.phone_number');
+                               
+                // Attach the wire:model directive to the title input
+                titleInput.attr('wire:model', 'phoneNumbers.' + phoneIndex + '.phone_title');
+                                phoneIndex++;
+                // Listen to the wire:change event on the phone number input
+                phoneNumberInput.on('change', function() {
+                
+                    // Call the Livewire component function addPhone
+                    Livewire.emit('addPhone',titleInput.val(),phoneNumberInput.val());
+                });
+                deleteIcon.on('click', function() {
+              
+                // Call the Livewire component function addPhone
+                 Livewire.emit('removePhone',$(this).attr('phone-id'));
+            });
+
+}        
     </script>
     @endpush
 </div>
