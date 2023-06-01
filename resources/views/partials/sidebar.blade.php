@@ -383,7 +383,7 @@
                       <svg aria-label="Notifications"  width="16" height="20" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#notification-icon"></use>
                       </svg>
-                      <span class="menu-item">Notifications</span>
+                      <span class="menu-item">Email Notifications</span>
                     </a>
                   </li>
                   <li role="menuitem" class="nav-item " id="templates">
@@ -391,7 +391,7 @@
                       <svg aria-label="Email Templates"  width="22" height="19" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="/css/admin-menu.svg#email-template-icon"></use>
                       </svg>
-                      <span class="menu-item">Email Templates</span>
+                      <span class="menu-item">System Notifications</span>
                     </a>
                   </li>
                   <li role="menuitem" class="nav-item " id="sms-templates">

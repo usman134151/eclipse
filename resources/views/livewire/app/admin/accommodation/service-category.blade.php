@@ -81,13 +81,24 @@
 
 	function updateRates(rate){
        var rateToggle=['inperson-rate','virtual-rate','','phone-rate','teleconference-rate'];
+
        if (rate.is(':checked')) {
-        $("#" + rateToggle[rate.val() - 1]).removeClass('d-none').addClass('d-block');
+        $("." + rateToggle[rate.val() - 1]).removeClass('d-none').addClass('d-block');
        } else {
-        $("#" + rateToggle[rate.val() - 1]).removeClass('d-block').addClass('d-none');
+        $("." + rateToggle[rate.val() - 1]).removeClass('d-block').addClass('d-none');
        }
 
 	}
+	function updateBilling(billing){
+       var billingToggle=['hour-rate','day-rate','','fixed-rate'];
+       $(".billing-rates").addClass('d-none');
+       
+       if (billing.is(':checked')) {
+       
+        $("." + billingToggle[billing.val() - 1]).removeClass('d-none');
+       }
+
+	}    
 
 
 </script>

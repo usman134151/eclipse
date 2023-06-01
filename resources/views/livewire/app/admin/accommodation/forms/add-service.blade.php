@@ -146,18 +146,18 @@
                                         <div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="rate_status"
-                                                    name="rate_status" type="radio" tabindex="" value="1" wire:model="service.rate_status"/>
+                                                    name="rate_status" type="radio" tabindex="" value="1" wire:model.defer="service.rate_status"  onclick="updateBilling($(this))" />
                                                 <label class="form-check-label" for="HourlyMinutesRate">Hourly/Minutes
                                                     Rate</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="rate_status"
-                                                    name="rate_status" type="radio" tabindex="" value="2" wire:model="service.rate_status"/>
+                                                    name="rate_status" type="radio" tabindex="" value="2" wire:model.defer="service.rate_status"  onclick="updateBilling($(this))" />
                                                 <label class="form-check-label" for="Day-Rate"> Day Rate</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="service_category-fixed_rate" id="rate_status"
-                                                    name="rate_status" type="radio" tabindex="" value="4" wire:model="service.rate_status"/>
+                                                    name="rate_status" type="radio" tabindex="" value="4" wire:model.defer="service.rate_status" onclick="updateBilling($(this))" />
                                                 <label class="form-check-label" for="service_category-fixed_rate"> Fixed Rate</label>
                                             </div>
                                         </div>
@@ -187,304 +187,92 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Standard Rates</h2>
                                     <div class="row justify-content-between">
-                                    @if(!is_null($service->service_type) && in_array('1',$service->service_type))
-                                        <div class="col-lg-6 mb-5" id="inperson-rate">
-                                    @else
-                                        <div class="col-lg-6 mb-5 d-none" id="inperson-rate">
-                                    @endif        
-                                            <!-- In-Person Rates -->
-                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                                                <div class="d-lg-flex align-items-center gap-3">
-                                                    <h3 class="form-label mb-0">
-                                                        In-Person Rates
-                                                    </h3>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="Multiply-ProvidersInPerson"
-                                                            name="MultiplyProvidersInPerson" type="checkbox"
-                                                            tabindex="" />
-                                                        <label class="form-check-label" for="Multiply-ProvidersInPerson">
-                                                            Multiply by No. of Providers</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="BusinessHoursPerhour">
-                                                        Business Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control rounded-0 text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="BusinessHoursPerhour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="AfterHoursperhour">
-                                                        After-Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="AfterHoursperhour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
-                                                        Day Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
-                                                        Fixed Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate">
-                                                </div>
-                                            </div>
-                                            <!-- /In-Person Rates -->
-                                        </div>
-                                        @if(!is_null($service->service_type) && in_array('2',$service->service_type))
-                                        <div class="col-lg-6 mb-5" id="virtual-rate">
-                                        @else 
-                                        <div class="col-lg-6 mb-5 d-none" id="virtual-rate">
-                                        @endif    
-                                            <!-- Virtual Rates -->
-                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                                                <div class="d-lg-flex align-items-center gap-3">
-                                                    <label class="form-label mb-0">
-                                                        Virtual Rates
-                                                    </label>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="MultiplyProvidersVirtual"
-                                                            name="MultiplyProvidersVirtual" type="checkbox"
-                                                            tabindex="" />
-                                                        <label class="form-check-label" for="MultiplyProvidersVirtual">
-                                                            Multiply by No. of Providers</label>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Duplicate" width="19" height="19"
-                                                            viewBox="0 0 19 19">
-                                                            <use xlink:href="/css/common-icons.svg#duplicate"></use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="Business-Hours-perhour">
-                                                        Business Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control rounded-0 text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="Business-Hours-perhour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="AfterHoursper-hour">
-                                                        After-Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="AfterHoursper-hour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="dayRate">
-                                                        Day Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="dayRate">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="fixed-rate">
-                                                        Fixed Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="fixed-rate">
-                                                </div>
-                                            </div>
-                                            <!-- /Virtual Rates -->
-                                        </div>
-                                        @if(!is_null($service->service_type) && in_array('4',$service->service_type))
-                                        <div class="col-lg-6 mb-5" id="phone-rate">
+                                    @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class="col-lg-6 mb-5 {{$parameters['class']}}">
                                         @else
-                                        <div class="col-lg-6 mb-5 d-none" id="phone-rate">
-                                        @endif   
-                                            <!-- Virtual Rates -->
-                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                                                <div class="d-lg-flex align-items-center gap-3">
-                                                    <label class="form-label mb-0">
-                                                        Phone Rates
-                                                    </label>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="MultiplyProvidersVirtual"
-                                                            name="MultiplyProvidersVirtual" type="checkbox"
-                                                            tabindex="" />
-                                                        <label class="form-check-label" for="MultiplyProvidersVirtual">
-                                                            Multiply by No. of Providers</label>
+                                            <div class="col-lg-6 mb-5 d-none {{$parameters['class']}}">
+                                        @endif        
+                                                <!-- In-Person Rates -->
+                                                <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                                    <div class="d-lg-flex align-items-center gap-3">
+                                                        <h3 class="form-label mb-0">
+                                                            {{$parameters['title']}}
+                                                        </h3>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" id="Multiply-ProvidersInPerson"
+                                                                name="MultiplyProvidersInPerson" type="checkbox"
+                                                                tabindex="" />
+                                                            <label class="form-check-label" for="Multiply-ProvidersInPerson">
+                                                                Multiply by No. of Providers</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Duplicate" width="19" height="19"
-                                                            viewBox="0 0 19 19">
-                                                            <use xlink:href="/css/common-icons.svg#duplicate"></use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="Business-Hours-perhour">
-                                                        Business Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control rounded-0 text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="Business-Hours-perhour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="AfterHoursper-hour">
-                                                        After-Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="AfterHoursper-hour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="dayRate">
-                                                        Day Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="dayRate">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="fixed-rate">
-                                                        Fixed Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="fixed-rate">
-                                                </div>
-                                            </div>
-                                            <!-- /Virtual Rates -->
-                                        </div>
-                                        @if(!is_null($service->service_type) && in_array('5',$service->service_type))
-                                        <div class="col-lg-6 mb-5" id="teleconference-rate">
-                                        @else
-                                        <div class="col-lg-6 mb-5 d-none" id="teleconference-rate">
-                                        @endif   
-                                        
-                                            <!-- Virtual Rates -->
-                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                                                <div class="d-lg-flex align-items-center gap-3">
-                                                    <label class="form-label mb-0">
-                                                       Teleconference Rates
-                                                    </label>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" id="MultiplyProvidersVirtual"
-                                                            name="MultiplyProvidersVirtual" type="checkbox"
-                                                            tabindex="" />
-                                                        <label class="form-check-label" for="MultiplyProvidersVirtual">
-                                                            Multiply by No. of Providers</label>
+                                                <div class="border px-3 py-4 d-flex flex-column gap-3">
+                                                    <div class="input-group billing-rates hour-rate @if($service->rate_status!=1) d-none @endif">
+                                                        <span class="input-group-text bg-secondary col-lg-7"
+                                                            id="BusinessHoursPerhour">
+                                                            Business Hours (per hour)
+                                                        </span>
+                                                        <input type="text" class="form-control rounded-0 text-center px-0"
+                                                            placeholder="$" aria-label="$" aria-describedby="">
+                                                        <input type="text" class="form-control text-center"
+                                                            placeholder="00.00" aria-label="Enter Charges"
+                                                            aria-describedby="BusinessHoursPerhour">
+                                                    </div>
+                                                    <div class="input-group billing-rates hour-rate @if($service->rate_status!=1) d-none @endif">
+                                                        <span class="input-group-text bg-secondary col-lg-7"
+                                                            id="AfterHoursperhour">
+                                                            After-Hours (per hour)
+                                                        </span>
+                                                        <input type="text" class="form-control text-center px-0"
+                                                            placeholder="$" aria-label="$" aria-describedby="">
+                                                        <input type="text" class="form-control text-center"
+                                                            placeholder="00.00" aria-label="Enter Charges"
+                                                            aria-describedby="AfterHoursperhour">
+                                                    </div>
+                                                    <div class="input-group billing-rates day-rate @if($service->rate_status!=2) d-none @endif">
+                                                        <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
+                                                            Day Rate
+                                                        </span>
+                                                        <input type="text" class="form-control text-center px-0"
+                                                            placeholder="$" aria-label="$" aria-describedby="">
+                                                        <input type="text" class="form-control text-center"
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate">
+                                                    </div>
+                                                    <div class="input-group billing-rates fixed-rate @if($service->rate_status!=4) d-none @endif">
+                                                        <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
+                                                            Fixed Rate
+                                                        </span>
+                                                        <input type="text" class="form-control text-center px-0"
+                                                            placeholder="$" aria-label="$" aria-describedby="">
+                                                        <input type="text" class="form-control text-center"
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate">
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Duplicate" width="19" height="19"
-                                                            viewBox="0 0 19 19">
-                                                            <use xlink:href="/css/common-icons.svg#duplicate"></use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
+                                                <!-- /In-Person Rates -->
                                             </div>
-                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="Business-Hours-perhour">
-                                                        Business Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control rounded-0 text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="Business-Hours-perhour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7"
-                                                        id="AfterHoursper-hour">
-                                                        After-Hours (per hour)
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges"
-                                                        aria-describedby="AfterHoursper-hour">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="dayRate">
-                                                        Day Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="dayRate">
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="input-group-text bg-secondary col-lg-7" id="fixed-rate">
-                                                        Fixed Rate
-                                                    </span>
-                                                    <input type="text" class="form-control text-center px-0"
-                                                        placeholder="$" aria-label="$" aria-describedby="">
-                                                    <input type="text" class="form-control text-center"
-                                                        placeholder="00.00" aria-label="Enter Charges" aria-describedby="fixed-rate">
-                                                </div>
-                                            </div>
-                                            <!-- /Virtual Rates -->
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Service Capacity & Capabilities</h2>
                                     <div class="row justify-content-between">
-                                        <div class="col-lg-5">
+                                    @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class="col-lg-6 mb-5 {{$parameters['class']}}">
+                                        @else
+                                            <div class="col-lg-6 mb-5 {{$parameters['class']}} d-none">
+                                        @endif
                                             <!-- Service Type: In-Person -->
-                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                          
+                                            <div class="d-lg-flex align-items-center justify-content-between mb-3 ">
+                                            
+                                            
+                                              
                                                 <div class="d-lg-flex align-items-center gap-3">
                                                     <h3 class="mb-0">
-                                                        Service Type: In-Person
+                                                        Service Type: {{$parameters['title']}}
                                                     </h3>
                                                 </div>
                                             </div>
@@ -638,179 +426,8 @@
                                             </div>
                                             <!-- /Service Type: In-Person -->
                                         </div>
-                                        <div class="col-lg-5">
-                                            <!-- Service Type: Virtual -->
-                                            <div class="d-lg-flex align-items-center justify-content-between mb-3">
-                                                <div class="d-lg-flex align-items-center gap-3">
-                                                    <h3 class="mb-0">
-                                                        Service Type: Virtual
-                                                    </h3>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                        <a href="#"
-                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                            {{-- Updated by Shanila to Add svg icon--}}
-                                                            <svg aria-label="Duplicate" width="19" height="19"
-                                                                viewBox="0 0 19 19">
-                                                                <use xlink:href="/css/common-icons.svg#duplicate"></use>
-                                                            </svg>
-                                                            {{-- End of update by Shanila --}}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="border px-3 py-4 d-flex flex-column gap-3">
-                                                <div class="row justify-content-between">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-4">
-                                                            <label class="form-label-base">
-                                                                Min. Duration <span class="mandatory">*</span> <i
-                                                                    class="fa fa-question-circle" aria-hidden="true"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title=""></i>
-                                                            </label>
-                                                            <div class="d-flex justify-content-around">
-                                                                <label class="form-label-sm">Hours</label>
-                                                                <label class="form-label-sm">Minutes</label>
-                                                            </div>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-4">
-                                                            <label class="form-label-base">
-                                                                Max. Duration <span class="mandatory">*</span> <i
-                                                                    class="fa fa-question-circle" aria-hidden="true"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title=""></i>
-                                                            </label>
-                                                            <div class="d-flex justify-content-around">
-                                                                <label class="form-label-sm">Hours</label>
-                                                                <label class="form-label-sm">Minutes</label>
-                                                            </div>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-4">
-                                                            <label class="form-label-base">
-                                                                Min. Providers <span class="mandatory">*</span> <i
-                                                                    class="fa fa-question-circle" aria-hidden="true"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title=""></i>
-                                                            </label>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="1" aria-label="1" aria-describedby="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-4">
-                                                            <label class="form-label-base">
-                                                                Max. Providers <i class="fa fa-question-circle"
-                                                                    aria-hidden="true" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title=""></i>
-                                                            </label>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="50" aria-label="50" aria-describedby="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="mb-4 row">
-                                                            <label class="form-label-base col-lg-6">
-                                                                Default Providers <span class="mandatory">*</span> <i
-                                                                    class="fa fa-question-circle" aria-hidden="true"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title=""></i>
-                                                            </label>
-                                                            <div class="col-lg-6">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="2" aria-label="2" aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="mb-4 row">
-                                                            <label class="form-label-base col-lg-6">
-                                                                Provider Limit <i class="fa fa-question-circle"
-                                                                    aria-hidden="true" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title=""></i>
-                                                            </label>
-                                                            <div class="col-lg-6">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="100" aria-label="100"
-                                                                    aria-describedby="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="mb-4 row">
-                                                            <label class="form-label-base col-lg-7 align-self-center">
-                                                                Provider Return Window <i class="fa fa-question-circle"
-                                                                    aria-hidden="true" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title=""></i>
-                                                            </label>
-                                                            <div class="col-lg-5">
-                                                                <div class="d-flex justify-content-around">
-                                                                    <label class="form-label-sm">Hours</label>
-                                                                    <label class="form-label-sm">Minutes</label>
-                                                                </div>
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control text-center"
-                                                                        placeholder="00" aria-label="00"
-                                                                        aria-describedby="">
-                                                                    <input type="text" class="form-control text-center"
-                                                                        placeholder="00" aria-label="00"
-                                                                        aria-describedby="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input"
-                                                                id="ExcludeAfterHoursVirtual"
-                                                                name="ExcludeAfterHoursVirtual" type="checkbox"
-                                                                tabindex="" />
-                                                            <label class="form-check-label"
-                                                                for="ExcludeAfterHoursVirtual">Exclude
-                                                                After-hours</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input"
-                                                                id="ExcludeClosedHoursVirtual"
-                                                                name="ExcludeClosedHoursVirtual" type="checkbox"
-                                                                tabindex="" />
-                                                            <label class="form-check-label"
-                                                                for="ExcludeClosedHoursVirtual">
-                                                                Exclude
-                                                                Closed-hours</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="ByRequestVirtual"
-                                                                name="ByRequestVirtual" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="ByRequestVirtual"> By
-                                                                Request</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /Service Type: Virtual -->
-                                        </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>

@@ -20,6 +20,16 @@ class AddService extends Component
         'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]]
 
 	];
+    public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person Rates'],
+                          '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual Rates'],
+                          '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone Rates'],
+                          '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference Rates'],
+                        ];
+    public $billingTypes=['1'=>['class'=>'hour-rate','postfix'=>'hour_price'],
+                        '2'=>['class'=>'day-rate','postfix'=>'day_rate_price'],
+                        '4'=>['class'=>'fixed-rate','postfix'=>'fixed_rate'],
+                       
+                      ];                    
     public $setupCheckboxes=[];
     public $inpersons=[[
         'label'=>'',
