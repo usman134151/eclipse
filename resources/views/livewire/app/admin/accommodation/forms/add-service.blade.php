@@ -433,8 +433,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-actions">
-                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save</button>
-                                    <button type="button" class="btn btn-primary rounded"
+                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
+                                    <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save" 
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advanced-service-rate')">Next</button>
 
                                 </div>
