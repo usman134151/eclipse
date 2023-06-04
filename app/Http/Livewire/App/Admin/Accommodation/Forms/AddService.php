@@ -8,11 +8,17 @@ use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Validation\Rule;
+use Auth;
 class AddService extends Component
 {
-    public $service;
+    public $service;public $label= "Add";
     public $component = 'basic-service-setup';
     public $step = 1;
+    public $providerReturn = ['1'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]],
+                              '2'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]],
+                              '4'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]],
+                              '5'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]]
+                            ];
     protected $listeners = ['editRecord' => 'edit' ,'updateVal'];
 
 
@@ -197,6 +203,10 @@ class AddService extends Component
     public function mount(ServiceCategory $service){
        
         $this->service=$service;
+        if(is_null($this->service->rate_status)){
+            $this->service->rate_status=1;
+            $this->service->status=1;
+        }
        
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->setupCheckboxes['service_types']=['rendered'=>''];
@@ -218,31 +228,111 @@ class AddService extends Component
             'service.rate_status'=>'required',
             'service.status'=>'',
             'service.description' => [
-				'required',
+				'nullable',
 				'string',
 				'max:255',
-                ]
+            ],
+           'service.disable_for_companies'=>'nullable',
+           'service.display_in_quote'=>'nullable',
+           'service.display_in_application'=>'nullable', 
+           'service.standard_rate_virtual_multiply_provider'=>'nullable',
+           'service.standard_in_person_multiply_provider'=>'nullable',
+           'service.standard_in_person_multiply_provider_p'=>'nullable',
+           'service.standard_in_person_multiply_provider_t'=>'nullable',
+           
+           'service.hours_price'=>'nullable',
+           'service.hours_price_v'=>'nullable',
+           'service.hours_price_p'=>'nullable',
+           'service.hours_price_t'=>'nullable',  
+
+           'service.after_hours_price'=>'nullable',
+           'service.after_hours_price_v'=>'nullable',
+           'service.after_hours_price_p'=>'nullable',
+           'service.after_hours_price_t'=>'nullable',  
+
+           'service.fixed_rate'=>'nullable',
+           'service.fixed_rate_v'=>'nullable',
+           'service.fixed_rate_p'=>'nullable',
+           'service.fixed_rate_t'=>'nullable',  
+
+           'service.day_rate_price'=>'nullable',
+           'service.day_rate_price_v'=>'nullable',
+           'service.day_rate_price_p'=>'nullable',
+           'service.day_rate_price_t'=>'nullable',  
+
+           'service.provider_limit'=>'nullable',
+           'service.provider_limit_v'=>'nullable',
+           'service.provider_limit_p'=>'nullable',
+           'service.provider_limit_t'=>'nullable',  
+
+           'service.minimum_assistance_hours'=>'nullable',
+           'service.minimum_assistance_hours_v'=>'nullable',
+           'service.minimum_assistance_hours_p'=>'nullable',
+           'service.minimum_assistance_hours_t'=>'nullable',
+
+           'service.minimum_assistance_min'=>'nullable',
+           'service.minimum_assistance_min_v'=>'nullable',
+           'service.minimum_assistance_min_p'=>'nullable',
+           'service.minimum_assistance_min_t'=>'nullable',
+
+
+           'service.maximum_assistance_hours'=>'nullable',
+           'service.maximum_assistance_hours_v'=>'nullable',
+           'service.maximum_assistance_hours_p'=>'nullable',
+           'service.maximum_assistance_hours_t'=>'nullable',
+
+           'service.maximum_assistance_min'=>'nullable',
+           'service.maximum_assistance_min_v'=>'nullable',
+           'service.maximum_assistance_min_p'=>'nullable',
+           'service.maximum_assistance_min_t'=>'nullable',
+
+           'service.min_providers'=>'nullable',
+           'service.min_providers_v'=>'nullable',
+           'service.min_providers_p'=>'nullable',
+           'service.min_providers_t'=>'nullable', 
+
+           'service.max_providers'=>'nullable',
+           'service.max_providers_v'=>'nullable',
+           'service.max_providers_p'=>'nullable',
+           'service.max_providers_t'=>'nullable', 
+
+           'service.default_providers'=>'nullable',
+           'service.default_providers_v'=>'nullable',
+           'service.default_providers_p'=>'nullable',
+           'service.default_providers_t'=>'nullable', 
 
 		];
 	}
 
     public function save($redirect=1){
 		$this->validate();
-         $this->service->added_by = 1;
+         $this->service->added_by = Auth::id();
          $this->service->service_status = 1;
         $categoryService = new ServiceCatagoryService;
+        
         // $s = $service_category['accommodations_id']='';
         $this->service->frequency_id=implode(',',$this->service->frequency_id);
         $this->service->service_type=implode(',',$this->service->service_type);
+        
+      
+        $this->service->provider_return_window=json_encode([$this->providerReturn["1"]]);
+        $this->service->provider_return_window_v=json_encode([$this->providerReturn["2"]]);
+        $this->service->provider_return_window_p=json_encode([$this->providerReturn["4"]]);
+        $this->service->provider_return_window_t=json_encode([$this->providerReturn["5"]]);
+      
+       
         $this->service = $categoryService->createService($this->service);
-
+        $this->step=2;
         if($redirect){
 			$this->showList("Service has been saved successfully");
 			$this->service = new ServiceCategory;
 		}
     }    
 
-
+    public function back(){
+        $this->step--;
+        $this->loadValues($this->service);
+    }
     public function updateVal($attrName, $val)
 	{
 
@@ -262,7 +352,11 @@ class AddService extends Component
     public function edit(ServiceCategory $service){
         
         $this->service=$service;
-      
+        $this->label= "Edit";
+
+
+       
+     
         $this->loadValues($this->service);
     
 
@@ -305,6 +399,19 @@ class AddService extends Component
         $this->setupCheckboxes['frequency_id']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '6', 'id', $selectedFValues,1,'form-check','frequency_id','wire:model=service.frequency_id',['one_time','daily','weekly','weekdaily','monthly'],'']];
           //  dd($this->setupCheckboxes);
         $this->setupCheckboxes=SetupHelper::loadSetupCheckboxes($this->setupCheckboxes);
+                //provider return window
+                $providerReturnValues=[$service->provider_return_window,$service->provider_return_window_v,$service->provider_return_window_p,$service->provider_return_window_t];
+                $index=0;
+                foreach($this->providerReturn as $key=>$value){
+                     // Get the current index
+                   
+                    $data = json_decode($providerReturnValues[$index], true);
+                 
+                    if (!empty($data) && is_array($data)) {
+                        $this->providerReturn[$key] = $data[0];
+                    }
+                    $index++;
+                }
     }
 
 

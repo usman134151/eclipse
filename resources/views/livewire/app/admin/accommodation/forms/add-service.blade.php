@@ -4,7 +4,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">Add Service</h1>
+                    <h1 class="content-header-title float-start mb-0">{{$label}} Service</h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -13,7 +13,7 @@
                                     <svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
                                         <use xlink:href="/css/common-icons.svg#home"></use>
                                     </svg>
-                                    {{-- End of update by Shanila --}}
+                                   
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
@@ -75,6 +75,7 @@
                   </ul>
                  <!-- Tab panes -->
                   <div class="tab-content">
+                  @if($step==1)
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'basic-service-setup' }" id="basic-service-setup"
                            role="tabpanel" aria-labelledby="basic-service-setup-tab" tabindex="0" x-show="tab === 'basic-service-setup'">
                         <form class="form">
@@ -105,12 +106,17 @@
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service-name">
-                                                Service Type <i class="fa fa-question-circle" aria-hidden="true"
+                                                Service Type <span
+                                                    class="mandatory">*</span></label> <i class="fa fa-question-circle" aria-hidden="true"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title=""></i>
                                             </label>
                                             <div>
                                                 {!! $setupCheckboxes['service_types']['rendered'] !!}
-
+                                                @error('service.service_type')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
@@ -119,15 +125,26 @@
                                             </label>
                                             <input type="text" id="service-name" class="form-control" name="service-name"
                                                 placeholder="Enter Service Name" wire:model.defer="service.name"/>
+                                                @error('service.name')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror    
                                         </div>
                                         <div class="col-lg-6 mb-4">
                                             <label class="form-label" for="service-name">
-                                                Permitted Scheduling Frequencies <i class="fa fa-question-circle"
+                                                Permitted Scheduling Frequencies <span
+                                                    class="mandatory">*</span></label> <i class="fa fa-question-circle"
                                                     aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title=""></i>
                                             </label>
                                             <div>
                                                 {!! $setupCheckboxes['frequency_id']['rendered'] !!}
+                                                @error('service.frequency_id')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4">
@@ -137,12 +154,18 @@
                                             </label>
                                             <textarea rows="4" cols="4" id="service_category-description" class="form-control"
                                                 name="service_category-description" placeholder="" wire:model.defer="service.description"></textarea>
+                                                @error('service.description')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror                                               
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 between-section-segment-spacing">
                                     <div class="d-lg-flex gap-4 align-items-center">
-                                        <h2 class="mb-lg-0">Enable Billing Rates</h2>
+                                        <h2 class="mb-lg-0">Enable Billing Rates <span
+                                                    class="mandatory">*</span></label></h2>
                                         <div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="rate_status"
@@ -161,25 +184,30 @@
                                                 <label class="form-check-label" for="service_category-fixed_rate"> Fixed Rate</label>
                                             </div>
                                         </div>
+                                        @error('service.rate_status')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                @enderror    
                                     </div>
                                 </div>
                                 <div class="col-12 between-section-segment-spacing">
                                     <h2>Display Service in</h2>
                                     <div class="form-check mb-3">
                                         <input class="form-check-input" id="newProviderApplicationForm" name=""
-                                            type="checkbox" tabindex="" />
+                                            type="checkbox" tabindex="" wire:model.defer="service.display_in_application" />
                                         <label class="form-check-label" for="newProviderApplicationForm">New Provider
                                             Application Form</label>
                                     </div>
                                     <div class="form-check mb-3">
                                         <input class="form-check-input" id="CustomerQuoteRequestForm" name=""
-                                            type="checkbox" tabindex="" />
+                                            type="checkbox" tabindex="" wire:model.defer="service.display_in_quote"/>
                                         <label class="form-check-label" for="CustomerQuoteRequestForm"> Customer Quote
                                             Request Form</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" id="DisableserviceForCompanies" name=""
-                                            type="checkbox" tabindex="" />
+                                            type="checkbox" tabindex="" wire:model.defer="service.disable_for_companies" />
                                         <label class="form-check-label" for="DisableserviceForCompanies"> Disable
                                             service for Companies by Default</label>
                                     </div>
@@ -187,6 +215,11 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Standard Rates</h2>
                                     <div class="row justify-content-between">
+                                    @if(!is_null($service->service_type) && count($service->service_type)==0)
+                                        <div class="col-lg-6 mb-5 rates-alert ">
+                                            Please select service type to configure Rates
+                                        </div>   
+                                    @endif   
                                     @foreach($serviceTypes as $type=>$parameters)
                                         @if(!is_null($service->service_type) && in_array($type,$service->service_type))
                                             <div class="col-lg-6 mb-5 {{$parameters['class']}}">
@@ -200,9 +233,15 @@
                                                             {{$parameters['title']}}
                                                         </h3>
                                                         <div class="form-check form-check-inline">
+                                                        @if($parameters['postfix']=='_v')
                                                             <input class="form-check-input" id="Multiply-ProvidersInPerson"
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
-                                                                tabindex="" />
+                                                                tabindex=""  wire:model.defer="service.standard_rate_virtual_multiply_provider"  />
+                                                        @else  
+                                                        <input class="form-check-input" id="Multiply-ProvidersInPerson"
+                                                                name="MultiplyProvidersInPerson" type="checkbox"
+                                                                tabindex="" wire:model.defer="service.standard_in_person_multiply_provider{{$parameters['postfix']}}"  />                                                       
+                                                        @endif        
                                                             <label class="form-check-label" for="Multiply-ProvidersInPerson">
                                                                 Multiply by No. of Providers</label>
                                                         </div>
@@ -218,7 +257,7 @@
                                                             placeholder="$" aria-label="$" aria-describedby="">
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
-                                                            aria-describedby="BusinessHoursPerhour">
+                                                            aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}">
                                                     </div>
                                                     <div class="input-group billing-rates hour-rate @if($service->rate_status!=1) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7"
@@ -229,7 +268,7 @@
                                                             placeholder="$" aria-label="$" aria-describedby="">
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
-                                                            aria-describedby="AfterHoursperhour">
+                                                            aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}">
                                                     </div>
                                                     <div class="input-group billing-rates day-rate @if($service->rate_status!=2) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
@@ -238,7 +277,7 @@
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
                                                         <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate">
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}">
                                                     </div>
                                                     <div class="input-group billing-rates fixed-rate @if($service->rate_status!=4) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
@@ -247,7 +286,7 @@
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
                                                         <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate">
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}">
                                                     </div>
                                                 </div>
                                                 <!-- /In-Person Rates -->
@@ -258,6 +297,11 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Service Capacity & Capabilities</h2>
                                     <div class="row justify-content-between">
+                                    @if(!is_null($service->service_type) && count($service->service_type)==0)
+                                        <div class="col-lg-6 mb-5 rates-alert ">
+                                            Please select service type to configure Capacity & Capabilities
+                                        </div>   
+                                    @endif    
                                     @foreach($serviceTypes as $type=>$parameters)
                                         @if(!is_null($service->service_type) && in_array($type,$service->service_type))
                                             <div class="col-lg-6 mb-5 {{$parameters['class']}}">
@@ -284,7 +328,7 @@
                                                                 Min. Duration <span class="mandatory">*</span> <i
                                                                     class="fa fa-question-circle" aria-hidden="true"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    title=""></i>
+                                                                    title="" ></i>
                                                             </label>
                                                             <div class="d-flex justify-content-around">
                                                                 <label class="form-label-sm">Hours</label>
@@ -293,10 +337,10 @@
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
+                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_hours{{$parameters['postfix']}}">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
+                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_min{{$parameters['postfix']}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -315,10 +359,10 @@
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}}">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="">
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_min{{$parameters['postfix']}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -331,7 +375,7 @@
                                                                     title=""></i>
                                                             </label>
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="1" aria-label="1" aria-describedby="">
+                                                                placeholder="1" aria-label="1" aria-describedby="" wire:model.defer="service.min_providers{{$parameters['postfix']}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -342,7 +386,7 @@
                                                                     data-bs-placement="top" title=""></i>
                                                             </label>
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="50" aria-label="50" aria-describedby="">
+                                                                placeholder="50" aria-label="50" aria-describedby="" wire:model.defer="service.max_providers{{$parameters['postfix']}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -355,7 +399,7 @@
                                                             </label>
                                                             <div class="col-lg-6">
                                                                 <input type="text" class="form-control text-center"
-                                                                    placeholder="2" aria-label="2" aria-describedby="">
+                                                                    placeholder="2" aria-label="2" aria-describedby="" wire:model.defer="service.default_providers{{$parameters['postfix']}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -369,7 +413,7 @@
                                                             <div class="col-lg-6">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="100" aria-label="100"
-                                                                    aria-describedby="">
+                                                                    aria-describedby="" wire:model.defer="service.provider_limit{{$parameters['postfix']}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -388,10 +432,10 @@
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control text-center"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby="">
+                                                                        aria-describedby="" wire:model="providerReturn.{{$type}}.0.hour">
                                                                     <input type="text" class="form-control text-center"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby="">
+                                                                        aria-describedby=""  wire:model="providerReturn.{{$type}}.0.minute">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -400,8 +444,8 @@
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input"
                                                                 id="ExcludeAfterHoursInPerson"
-                                                                name="ExcludeAfterHoursInPerson" type="checkbox"
-                                                                tabindex="" />
+                                                                name="ExcludeAfterHoursInPerson" type="checkbox" value="true"
+                                                                tabindex=""  wire:model="providerReturn.{{$type}}.0.exclude_after_hours"/>
                                                             <label class="form-check-label"
                                                                 for="ExcludeAfterHoursInPerson">Exclude
                                                                 After-hours</label>
@@ -410,15 +454,15 @@
                                                             <input class="form-check-input"
                                                                 id="ExcludeClosedHoursInPerson"
                                                                 name="ExcludeClosedHoursInPerson" type="checkbox"
-                                                                tabindex="" />
+                                                                tabindex="" wire:model="providerReturn.{{$type}}.0.exclude_holidays"/>
                                                             <label class="form-check-label"
                                                                 for="ExcludeClosedHoursInPerson"> Exclude
                                                                 Closed-hours</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="ByRequestInPerson"
-                                                                name="ByRequestInPerson" type="checkbox" tabindex="" />
-                                                            <label class="form-check-label" for="ByRequestInPerson"> By
+                                                                name="ByRequestInPerson" type="checkbox" tabindex="" wire:model="providerReturn.{{$type}}.0.by_request"/>
+                                                            <label class="form-check-label" for="ByRequestInPerson" > By
                                                                 Request</label>
                                                         </div>
                                                     </div>
@@ -434,13 +478,14 @@
                             <div class="row">
                                 <div class="col-12 form-actions">
                                     <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
-                                    <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save" 
+                                    <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(0)" 
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advanced-service-rate')">Next</button>
 
                                 </div>
                             </div>
                         </form>
                     </div>
+                  @elseif($step==2)  
                     <!-- END: basic-service-setup -->
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'advanced-service-rate' }" id="advanced-service-rate"
                         role="tabpanel" aria-labelledby="advanced-service-rate-tab" tabindex="0" x-show="tab === 'advanced-service-rate'">
@@ -830,8 +875,7 @@
                                                                         <a class="fw-bold" wire:click.prevent="addPerson">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -839,7 +883,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -900,8 +944,7 @@
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addPersonSecound">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -909,7 +952,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -978,8 +1021,7 @@
                                                                         <a href="#" class="fw-bold"  wire:click.prevent="addVirtual">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -987,7 +1029,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1048,8 +1090,7 @@
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addVirtualSecound">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -1057,7 +1098,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1133,8 +1174,7 @@
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addPhone">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -1142,7 +1182,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1203,8 +1243,7 @@
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addphoneSecound">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -1212,7 +1251,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1281,8 +1320,7 @@
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addTeleconference">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -1290,7 +1328,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1351,8 +1389,7 @@
                                                                         <a href="#" class="fw-bold"  wire:click.prevent="addpTeleconferenceSecound">
                                                                             <small>
                                                                                 Add Additional Service Charges
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
                                                                                     height="21" viewBox="0 0 20 21">
@@ -1360,7 +1397,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1463,7 +1500,7 @@
                                                                                     xlink:href="/css/common-icons.svg#add-new">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
+                                                                           
                                                                         </small>
                                                                     </a>
                                                                 </div>
@@ -1544,7 +1581,7 @@
                                                                                     xlink:href="/css/common-icons.svg#add-new">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
+                                                                           
                                                                         </small>
                                                                     </a>
                                                                 </div>
@@ -1623,8 +1660,7 @@
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addServicePhone">
                                                                             <small>
                                                                                 Add Additional Parameter
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20" height="21"
                                                                                     viewBox="0 0 20 21">
@@ -1632,7 +1668,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1706,8 +1742,7 @@
                                                                         <a href="#" class="fw-bold">
                                                                             <small>
                                                                                 Add Additional Parameter
-                                                                                {{-- Updated by Shanila to Add svg
-                                                                                icon--}}
+                                                                                
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20" height="21"
                                                                                     viewBox="0 0 20 21">
@@ -1715,7 +1750,7 @@
                                                                                         xlink:href="/css/common-icons.svg#add-new">
                                                                                     </use>
                                                                                 </svg>
-                                                                                {{-- End of update by Shanila --}}
+                                                                               
                                                                             </small>
                                                                         </a>
                                                                     </div>
@@ -1858,7 +1893,7 @@
                                                                                     xlink:href="/css/common-icons.svg#add-new">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
+                                                                           
                                                                         </small>
                                                                     </a>
                                                                 </div>
@@ -1976,7 +2011,7 @@
                                                                                     xlink:href="/css/common-icons.svg#add-new">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
+                                                                           
                                                                         </small>
                                                                     </a>
                                                                 </div>
@@ -2102,7 +2137,7 @@
                                                                                     xlink:href="/css/common-icons.svg#add-new">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
+                                                                           
                                                                         </small>
                                                                     </a>
                                                                 </div>
@@ -2222,7 +2257,7 @@
                                                                                     xlink:href="/css/common-icons.svg#add-new">
                                                                                 </use>
                                                                             </svg>
-                                                                            {{-- End of update by Shanila --}}
+                                                                           
                                                                         </small>
                                                                     </a>
                                                                 </div>
@@ -2331,7 +2366,7 @@
                                                                 <use xlink:href="/css/common-icons.svg#add-new">
                                                                 </use>
                                                             </svg>
-                                                            {{-- End of update by Shanila --}}
+                                                           
                                                         </small>
                                                     </a>
                                                 </div>
@@ -2341,7 +2376,7 @@
                                 </div><!-- /Specialization Rates -->
                                 <div class="col-12 form-actions ">
                                     <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('basic-service-setup')">Back</button>
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('basic-service-setup')" wire:click="back">Back</button>
                                     <a href="/admin/accommodation/all-services" type="submit"
                                             class="btn btn-primary rounded">Save & Exit</a>
                                     <button type="button" class="btn btn-primary rounded"
@@ -2350,6 +2385,7 @@
                             </form>
                         </div>
                     </div>
+                  @elseif($step==3)  
                     <div  class="tab-pane fade" :class="{ 'active show': tab === 'service-forms' }" id="service-forms"
                         role="tabpanel" aria-labelledby="service-forms-tab" tabindex="0" x-show="tab === 'service-forms'">
                         <form class="form">
@@ -2376,14 +2412,13 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add New Form
-                                                    {{-- Updated by Shanila to Add svg
-                                                    icon--}}
+                                                    
                                                     <svg aria-label=" Add New Form" class="me-1" width="20" height="21"
                                                         viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                   
                                                 </small>
                                             </a>
                                         </div>
@@ -2392,10 +2427,10 @@
                                 <div class="col-lg-6 ps-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Timesheet Template
+                                            Default Timesheet Template (Comming soon)
                                         </h3>
                                         <div class="mb-2">
-                                            <select class="form-select" aria-label="Default Timesheet Template">
+                                            <select class="form-select" aria-label="Default Timesheet Template" disabled="disabled">
                                                 <option>Select Timesheet Form</option>
                                             </select>
                                         </div>
@@ -2403,14 +2438,13 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add New Template Form
-                                                    {{-- Updated by Shanila to Add svg
-                                                    icon--}}
+
                                                     <svg aria-label=" Add New Template Form" class="me-1" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                    
                                                 </small>
                                             </a>
                                         </div>
@@ -2419,10 +2453,10 @@
                                 <div class="col-lg-6 pe-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Invoice Line Item Template
+                                            Default Invoice Line Item Template (Comming soon)
                                         </h3>
                                         <div class="mb-2">
-                                            <select class="form-select" aria-label="Select Default Invoice Line Item Template">
+                                            <select class="form-select" aria-label="Select Default Invoice Line Item Template" disabled="disabled">
                                                 <option>Select Timesheet Form</option>
                                             </select>
                                         </div>
@@ -2430,14 +2464,13 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add New Template Form
-                                                    {{-- Updated by Shanila to Add svg
-                                                    icon--}}
+                                                    
                                                     <svg aria-label=" Add New Template Form" class="me-1" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                   
                                                 </small>
                                             </a>
                                         </div>
@@ -2446,10 +2479,10 @@
                                 <div class="col-lg-6 ps-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Quotes Line Item Template
+                                            Default Quotes Line Item Template (Comming soon)
                                         </h3>
                                         <div class="mb-2">
-                                            <select class="form-select" aria-label="Select Default Quotes Line Item Template">
+                                            <select class="form-select" aria-label="Select Default Quotes Line Item Template" disabled="disabled">
                                                 <option>Select Timesheet Form</option>
                                             </select>
                                         </div>
@@ -2457,14 +2490,13 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add New Template Form
-                                                    {{-- Updated by Shanila to Add svg
-                                                    icon--}}
+                                                    
                                                     <svg aria-label=" Add New Template Form" class="me-1" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                   
                                                 </small>
                                             </a>
                                         </div>
@@ -2473,10 +2505,10 @@
                                 <div class="col-lg-6 pe-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Remittance Line Item Template
+                                            Default Remittance Line Item Template (Comming soon)
                                         </h3>
                                         <div class="mb-2">
-                                            <select class="form-select" aria-label="Select Default Remittance Line Item Template">
+                                            <select class="form-select" aria-label="Select Default Remittance Line Item Template" disabled="disabled">
                                                 <option>Select Timesheet Form</option>
                                             </select>
                                         </div>
@@ -2484,14 +2516,13 @@
                                             <a href="#" class="fw-bold">
                                                 <small>
                                                     Add new Template Form
-                                                    {{-- Updated by Shanila to Add svg
-                                                    icon--}}
+                                                    
                                                     <svg aria-label=" Add New Template Form" class="me-1" width="20"
                                                         height="21" viewBox="0 0 20 21">
                                                         <use xlink:href="/css/common-icons.svg#add-new">
                                                         </use>
                                                     </svg>
-                                                    {{-- End of update by Shanila --}}
+                                                   
                                                 </small>
                                             </a>
                                         </div>
@@ -2510,6 +2541,7 @@
                             </div>
                         </form>
                     </div>
+                  @elseif($step==4)  
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'service-configuration' }" id="service-configuration"
                      role="tabpanel" aria-labelledby="service-configuration-tab" tabindex="0" x-show="tab === 'service-configuration'">
                         <form class="form">
@@ -2674,6 +2706,7 @@
 
                         </form>
                     </div>
+                  @elseif($step==5)  
 
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'advance-options' }" id="advance-options"
                         role="tabpanel" aria-labelledby="advance-options-tab" tabindex="0" x-show="tab === 'advance-options'">
@@ -3373,6 +3406,8 @@
                                             </div>
                                         </div>
                                     </div><!-- /Running Late Procedure -->
+                                </div>
+                                <div class="col-lg-6 pe-lg-5">
                                     <div class="w-100">
                                         <div class="inner-section-segment-spacing border p-3 pb-lg-5">
                                             <h2>
@@ -3432,7 +3467,7 @@
                             </div>
                         </form>
                     </div>
-
+                  @elseif($step==6)                                                              
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'notification-setting' }" id="notification-setting"
                        role="tabpanel" aria-labelledby="notification-setting-tab" tabindex="0" x-show="tab === 'notification-setting'">
                         <form class="form">
@@ -3727,6 +3762,7 @@
                             </div>
                         </form>
                     </div>
+                  @endif  
 
                    </div>
                 <!-- END: Steps -->

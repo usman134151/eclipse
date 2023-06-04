@@ -86,7 +86,7 @@ final class AdminTeams extends PowerGridComponent
 	public function addColumns(): PowerGridEloquent
 	{
 		return PowerGrid::eloquent()
-		->addColumn('team', function (AdminTeam $model) {
+		->addColumn('team_name', function (AdminTeam $model) {
 			return '<h6 class="fw-semibold">'. $model->team_name .'</h6><p>'. $model->team_email .'</p></div></div>';
 		})
 			->addColumn('team_phone')
@@ -138,7 +138,7 @@ final class AdminTeams extends PowerGridComponent
 	public function columns(): array
 	{
 		return [
-			Column::make('Team', 'team', '')
+			Column::make('Team', 'team_name', '')
 				->searchable()
 				->makeinputtext()
 				->sortable(),

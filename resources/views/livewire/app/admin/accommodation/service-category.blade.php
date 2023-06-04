@@ -84,6 +84,7 @@
 
        if (rate.is(':checked')) {
         $("." + rateToggle[rate.val() - 1]).removeClass('d-none').addClass('d-block');
+        $(".rates-alert").addClass('d-none');
        } else {
         $("." + rateToggle[rate.val() - 1]).removeClass('d-block').addClass('d-none');
        }
