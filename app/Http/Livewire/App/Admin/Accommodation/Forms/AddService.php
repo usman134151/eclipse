@@ -396,7 +396,7 @@ class AddService extends Component
         $this->service->frequency_id=[];
        } 
         $this->setupCheckboxes['service_types']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '5', 'id', $selectedValues,1,'form-check form-check-inline','service_type','wire:model.defer=service.service_type',[1,2,4,5],'onclick= updateRates($(this))']];
-        $this->setupCheckboxes['frequency_id']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '6', 'id', $selectedFValues,1,'form-check','frequency_id','wire:model=service.frequency_id',['one_time','daily','weekly','weekdaily','monthly'],'']];
+        $this->setupCheckboxes['frequency_id']= ['parameters'=>['SetupValue', 'id','setup_value_label','setup_id', '6', 'id', $selectedFValues,1,'form-check','frequency_id','wire:model.defer=service.frequency_id',['one_time','daily','weekly','weekdaily','monthly'],'']];
           //  dd($this->setupCheckboxes);
         $this->setupCheckboxes=SetupHelper::loadSetupCheckboxes($this->setupCheckboxes);
                 //provider return window
