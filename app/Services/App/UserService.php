@@ -7,8 +7,11 @@ use App\Models\Tenant\UserIndustry;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
+use App\Models\Tenant\TeamProviders;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
+
 class UserService{
 
     public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true,$userCompanyAddress='',$userCustomAddresses=[]){
@@ -58,6 +61,14 @@ class UserService{
         }
        
         return $user;
+    }
+
+    public function addProviderTeams($selectedTeams, $user){
+      TeamProviders::where('provider_id', $user->id)->delete();
+      foreach ($selectedTeams as $team_id) {
+        // $user->teams()->attach($team_id);
+        TeamProviders::create(["provider_id"=>$user->id,"team_id"=>$team_id,"status"=>1]);
+      }
     }
 
     public function getUserDetails($id){
