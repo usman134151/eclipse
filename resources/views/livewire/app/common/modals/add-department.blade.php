@@ -19,138 +19,32 @@
             </div>
             
           </div><!-- END: Row Header -->
+          @foreach($departments as $department)
+
           <div class="row">
             <div class="col-lg-6 py-2">
               <div class="form-check mb-0">
                 <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
                 <label class="form-check-label " for="DepartmentNameCheckbox1">
-                  <small>Department Name 1</small>
+                  <small>{{$department->name}}</small>
                 </label>
               </div>
             </div>
             <div class="col-lg-3 text-center py-2">
               <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
+                <input class="form-check-input" type="radio" name="defaultDepartment" wire:model="defaultDepartment" value="{{$department->id}}">
               </div>
             </div>
              
             <div class="col-lg-3 text-center py-2">
               <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
+                <input class="form-check-input" type="checkbox" id="{{$department->id}}" value="{{ $department->id }}" wire:model="selectedDepartments.{{$department->id}}">
               </div>
             </div>
             
-          </div><!-- END: Row Data -->
-          <div class="row">
-            <div class="col-lg-6 py-2">
-              <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-                <label class="form-check-label " for="DepartmentNameCheckbox1">
-                  <small>Department Name 1</small>
-                </label>
-              </div>
-            </div>
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
-              </div>
-            </div>
-              
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-              </div>
-            </div>
-            
-          </div><!-- END: Row Data -->
-          <div class="row">
-            <div class="col-lg-6 py-2">
-              <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-                <label class="form-check-label " for="DepartmentNameCheckbox1">
-                  <small>Department Name 1</small>
-                </label>
-              </div>
-            </div>
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
-              </div>
-            </div>
-              
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-              </div>
-            </div>
-            
-          </div><!-- END: Row Data -->
-          <div class="row">
-            <div class="col-lg-6 py-2">
-              <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-                <label class="form-check-label " for="DepartmentNameCheckbox1">
-                  <small>Department Name 1</small>
-                </label>
-              </div>
-            </div>
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
-              </div>
-            </div>
-              
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-              </div>
-            </div>
-            
-          </div><!-- END: Row Data -->
-          <div class="row">
-            <div class="col-lg-6 py-2">
-              <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-                <label class="form-check-label " for="DepartmentNameCheckbox1">
-                  <small>Department Name 1</small>
-                </label>
-              </div>
-            </div>
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
-              </div>
-            </div>
-             
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-              </div>
-            </div>
-            
-          </div><!-- END: Row Data -->
-          <div class="row">
-            <div class="col-lg-6 py-2">
-              <div class="form-check mb-0">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-                <label class="form-check-label " for="DepartmentNameCheckbox1">
-                  <small>Department Name 1</small>
-                </label>
-              </div>
-            </div>
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="radio" name="DepartmentName" id="DepartmentName1">
-              </div>
-            </div>
-             
-            <div class="col-lg-3 text-center py-2">
-              <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" value="" id="DepartmentNameCheckbox1">
-              </div>
-            </div>
-          
-          </div><!-- END: Row Data -->
+          </div>
+          <!-- END: Row Data -->
+          @endforeach
         </div>
       </div>
     </div>

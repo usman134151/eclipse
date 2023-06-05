@@ -29,11 +29,12 @@ class CustomerForm extends Component
 	];
 	
     public $step = 1,$email_invitation;
-    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries'];
+    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
+		'updateSelectedDepartments' => 'selectDepartments'];
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[];
+	public $selectedIndustries=[],  $selectedDepartments = [];
 	
 	//end of modals variables
 
@@ -193,5 +194,15 @@ class CustomerForm extends Component
     	$this->userdetail['industry'] = $defaultIndustry;
 		
 
+	}
+	public function selectDepartments($selectedDepartments, $defaultDepartment)
+	{
+
+		$this->selectedDepartments = [];
+		foreach ($selectedDepartments as $departmentId => $selected) {
+			if ($selected)
+				$this->selectedDepartments[] = $departmentId;
+		}
+		$this->userdetail['department'] = $defaultDepartment;
 	}
 }
