@@ -251,7 +251,6 @@ class ProviderForm extends Component
        if($this->user->user_dob)
            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
-        // $userService->addProviderTeams($this->selectedTeams, $this->user);
 
     }
      public function updateVal($attrName, $val)
