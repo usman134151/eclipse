@@ -22,6 +22,7 @@
                     </div>
                 </div>
                 {{-- END: Row Header --}}
+                @foreach($teams as $team)
                 <div class="row">
                     <div class="col-lg-8 py-1">
                         <div class="form-check mb-0">
@@ -30,103 +31,20 @@
                                     <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                                 </div>
                                 <div class="col-md-9">
-                                    <h6 class="fw-semibold">Ramon Miles</h6>
-                                    <p>ramonmiles@gmail.com</p>
+                                    <h6 class="fw-semibold">{{$team->name}}</h6>
+                                    <p>{{$team->description}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 text-center py-1">
                         <div class="form-check mb-0 mx-auto d-inline-block mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="select-provider" aria-label="Select Team">
+                            <input class="form-check-input" type="checkbox"  wire:model="selectedTeams.{{ $team->id }}"  value="{{$team->id}}" aria-label="Select Team">
                         </div>
                     </div>
                 </div>
                 {{-- END: Row Data --}}
-                <div class="row">
-                    <div class="col-lg-8 py-1">
-                        <div class="form-check mb-0">
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6 class="fw-semibold">Ramon Miles</h6>
-                                    <p>ramonmiles@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 text-center py-1">
-                        <div class="form-check mb-0 mx-auto d-inline-block mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="select-provider" aria-label="Select Team">
-                        </div>
-                    </div>
-                </div>
-                {{-- END: Row Data --}}
-                <div class="row">
-                    <div class="col-lg-8 py-1">
-                        <div class="form-check mb-0">
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6 class="fw-semibold">Ramon Miles</h6>
-                                    <p>ramonmiles@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 text-center py-1">
-                        <div class="form-check mb-0 mx-auto d-inline-block mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="select-provider" aria-label="Select Team">
-                        </div>
-                    </div>
-                </div>
-                {{-- END: Row Data --}}
-                <div class="row">
-                    <div class="col-lg-8 py-1">
-                        <div class="form-check mb-0">
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6 class="fw-semibold">Ramon Miles</h6>
-                                    <p>ramonmiles@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 text-center py-1">
-                        <div class="form-check mb-0 mx-auto d-inline-block mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="select-provider" aria-label="Select Team">
-                        </div>
-                    </div>
-                </div>
-                {{-- END: Row Data --}}
-                <div class="row">
-                    <div class="col-lg-8 py-1">
-                        <div class="form-check mb-0">
-                            <div class="row g-2">
-                                <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6 class="fw-semibold">Ramon Miles</h6>
-                                    <p>ramonmiles@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 text-center py-1">
-                        <div class="form-check mb-0 mx-auto d-inline-block mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="select-provider" aria-label="Select Team">
-                        </div>
-                    </div>
-                </div>
-                {{-- END: Row Data --}}
+                @endforeach
             </div>
         </div>
     </div>
@@ -138,7 +56,7 @@
                 </button>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn rounded w-100 btn-primary">
+                <button type="button" wire:click="updateData" data-bs-dismiss="modal" class="btn rounded w-100 btn-primary">
                     Add
                 </button>
             </div>

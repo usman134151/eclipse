@@ -118,7 +118,13 @@ class ProviderForm extends Component
         'duration'=>''
     ]];
    public $step = 1,$email_invitation;
-   protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented'];
+   protected $listeners = [
+    'updateVal' => 'updateVal',
+    'editRecord' => 'edit', 'stepIncremented',
+        'updateSelectedTeams'
+    ];
+
+    public $selectedTeams =[];
 	public function render()
 	{
         $roles = SystemRole::get();
@@ -227,6 +233,8 @@ class ProviderForm extends Component
         $this->user->status=1;
 		$userService = new UserService;
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
+        // put null/empty check for teams 
+        $userService->addProviderTeams($this->selectedTeams,$this->user);
 		if($redirect){
 			$this->showList("Provider has been saved successfully");
 			$this->user = new User;
@@ -243,6 +251,7 @@ class ProviderForm extends Component
        if($this->user->user_dob)
            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
+        // $userService->addProviderTeams($this->selectedTeams, $this->user);
 
     }
      public function updateVal($attrName, $val)
@@ -399,5 +408,12 @@ class ProviderForm extends Component
     {
         unset($this->speclizations[$index]);
         $this->speclizations = array_values($this->speclizations);
+    }
+
+    //modal functions
+
+    public function updateSelectedTeams($selectedTeams)
+    {
+        $this->selectedTeams = $selectedTeams;
     }
 }
