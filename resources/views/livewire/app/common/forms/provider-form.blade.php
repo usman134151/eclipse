@@ -237,6 +237,11 @@
                                             </label>
                                             <input type="text" id="email" class="form-control" name="email"
                                                 placeholder="Enter Email" required aria-required="true" wire:model.defer="user.email"/>
+                                                @error('user.email')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror    
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="phone">Phone Number</label>
