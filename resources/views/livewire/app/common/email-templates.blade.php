@@ -115,6 +115,7 @@
 													<svg aria-label="Admin"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#person-icon"></use>
+													</svg>
 													<span>Requester</span>
 												</button>
 												<button type="submit" class="btn btn-primary rounded px-4 py-2">
