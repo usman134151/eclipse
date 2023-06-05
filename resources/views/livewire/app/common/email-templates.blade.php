@@ -85,7 +85,7 @@
 														
 													<span>Admin</span>
 												</button>
-												<button wire:click="$set('selectedRoleId', 2)" type="submit" class="btn btn-primary rounded px-3 py-2 ">
+												<button wire:click="$set('selectedRoleId', 2)" type="submit" class="btn btn-primary rounded px-4 py-2 ">
 													<svg aria-label="Admin"  width="24" height="27"
                                                       viewBox="0 0 24 27">
                                                      <use xlink:href="/css/common-icons.svg#provider-person-icon"></use>
@@ -104,28 +104,28 @@
 													</svg>
 													<span>Supervisor</span>
 												</button>
-												<button type="submit" class="btn btn-primary rounded px-3 ">
+												<button type="submit" class="btn btn-primary rounded px-4 py-2 ">
 													<svg aria-label="Admin"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#admin-icon"></use>
                                                 </svg>
 													<span>Billing Manger</span>
 												</button>
-												<button type="submit" class="btn btn-primary rounded px-3 ">
-													<svg aria-label="Admin"  width="25" height="24"
-                                                       viewBox="0 0 25 24">
+												<button type="submit" class="btn btn-primary rounded px-4 py-2">
+													<svg aria-label="Admin"  width="23" height="26"
+                                                       viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#person-icon"></use>
 													</svg>
 													<span>Requester</span>
 												</button>
-												<button type="submit" class="btn btn-primary rounded px-3">
+												<button type="submit" class="btn btn-primary rounded px-4 py-2">
 													<svg aria-label="Consumer"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                        <use xlink:href="/css/common-icons.svg#comsumer-person-icon"></use>
                                                      </svg>
 													<span>Service Consumer</span>
 												</button>
-												<button type="submit" class="btn btn-primary rounded px-3">
+												<button type="submit" class="btn btn-primary rounded px-4 py-2">
 													<svg  aria-label="Staff" width="36" height="26"
                                                         viewBox="0 0 36 26">
                                                         <use xlink:href="/css/common-icons.svg#two-person-icon"></use>
