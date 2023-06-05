@@ -83,14 +83,14 @@
                                                      <use xlink:href="/css/common-icons.svg#admin-person-icon"></use>
                                                     </svg>
 														
-													<span>Admin</span>
+													<span class="mx-1 text-sm">Admin</span>
 												</button>
 												<button wire:click="$set('selectedRoleId', 2)" type="submit" class="btn btn-primary rounded btn-sm">
 													<svg aria-label="Admin"  width="24" height="27"
                                                       viewBox="0 0 24 27">
                                                      <use xlink:href="/css/common-icons.svg#provider-person-icon"></use>
                                                     </svg>
-													<span>Provider</span>
+													<span class="mx-1 text-sm">Provider</span>
 												</button>
 												<button type="button" class="btn btn-outline-dark rounded px-3 py-2">
 													<svg aria-label="Supervisor" width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,35 +102,38 @@
 															</linearGradient>
 														</defs>
 													</svg>
-													<span>Supervisor</span>
+													<span class="mx-1 text-sm">Supervisor</span>
 												</button>
 												<button type="submit" class="btn btn-primary rounded btn-sm">
 													<svg aria-label="Admin"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#admin-icon"></use>
                                                 </svg>
-													<span>Billing Manger</span>
+													<span class="mx-1 text-sm">Billing Manger</span>
 												</button>
 												<button type="submit" class="btn btn-primary rounded btn-sm">
 													<svg aria-label="Admin"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#person-icon"></use>
 													</svg>
-													<span>Requester</span>
+													<span class="mx-1 text-sm">Requester</span>
 												</button>
 												<button type="submit" class="btn btn-primary rounded btn-sm">
 													<svg aria-label="Consumer"  width="23" height="26"
                                                        viewBox="0 0 23 26">
                                                        <use xlink:href="/css/common-icons.svg#comsumer-person-icon"></use>
                                                      </svg>
-													<span>Service Consumer</span>
+													<span class="mx-1 text-sm">Service Consumer</span>
 												</button>
-												<button type="submit" class="btn btn-primary rounded btn-sm">
+												
+											</div>
+											<div class="col-12 d-flex flex-column flex-md-row gap-2 mt-2">
+                                                <button type="submit" class="btn btn-primary rounded btn-sm">
 													<svg  aria-label="Staff" width="36" height="26"
                                                         viewBox="0 0 36 26">
                                                         <use xlink:href="/css/common-icons.svg#two-person-icon"></use>
                                                     </svg>
-													<span>Participants</span>
+													<span class="mx-1 text-sm">Participants</span>
 												</button>
 											</div>
 										</div>
