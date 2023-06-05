@@ -22,6 +22,8 @@ return new class extends Migration
             $table->boolean('after_hours_price_t')->nullable()->default(0)->change();
             $table->boolean('after_hours_price_v')->nullable()->default(0)->change();
             $table->boolean('after_hours_price_p')->nullable()->default(0)->change();
+            $table->boolean('minimum_assistance_hours')->nullable()->default(0)->change();
+            $table->boolean('maximum_assistance_hours')->nullable()->default(0)->change();
            
         });
     }
