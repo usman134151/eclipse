@@ -301,6 +301,9 @@ class AddService extends Component
            'service.default_providers_p'=>'nullable',
            'service.default_providers_t'=>'nullable', 
 
+           'service.bill_status'=>'nullable',
+           'service.payment_deduct_hour'=>'nullable'
+
 		];
 	}
 
