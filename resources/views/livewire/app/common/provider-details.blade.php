@@ -843,7 +843,7 @@
 
 	                                            		 <span>Lock Account</span>
 	                                            	 </button>
-	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
 
 	                                            		 <span>Reset Provider Password</span>
 	                                            	 </button>
@@ -3311,6 +3311,7 @@
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
 			 @include('modals.common.revert-back')
+			 @include('modals.common.change-password')
 			 @include('modals.remittance-details')
 
 		   </section>
