@@ -381,7 +381,8 @@
                                             </div>
                                             <div>
                                                 {{-- updated by shanila to add multiselectdropdown --}}
-                                    {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, '','','form-check') !!}
+                                                    {!! $setupValues['certifications']['rendered'] !!}
+                                    {{-- {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, '','','form-check') !!} --}}
                                     {{--ended updated--}}
                                             </div>
                                             <div class="mt-2">

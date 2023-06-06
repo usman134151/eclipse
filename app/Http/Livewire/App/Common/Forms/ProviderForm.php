@@ -20,14 +20,15 @@ class ProviderForm extends Component
     public $languages;
 
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience'];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience','certificate'];
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',2]],
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
-        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]]
-	];
+        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]],
+        'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'userdetail.certification', '', 'certification', 5]]
+    ];
     public $inpersons=[[
         'hours'=>'',
         'charges'=>'',
@@ -134,6 +135,7 @@ class ProviderForm extends Component
 	}
     public function mount(User $user){
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        // dd($this->setupValues);
         $this->user=$user;
 
 	}
@@ -231,7 +233,11 @@ class ProviderForm extends Component
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
-		$userService = new UserService;
+
+        // process multiselect values
+        $this->userdetail['certification'] =implode(', ', $this->userdetail['certification']);
+		
+        $userService = new UserService;
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
         // put null/empty check for teams 
         $userService->addProviderTeams($this->selectedTeams,$this->user);
