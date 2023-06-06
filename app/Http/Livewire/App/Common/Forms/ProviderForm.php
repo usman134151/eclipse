@@ -283,16 +283,10 @@ class ProviderForm extends Component
 	   $this->isAdd=false;
        if($this->user->user_dob)
            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
-        
-           $this->providers = User::query()
-            ->where('status', 1)
-            ->where('users.id','!=',$user->id)
-            ->whereHas('roles', function ($query) {
-                $query->where('role_id', 2);
-            })
-            ->select('id', 'name')
-            ->get();
-
+        //removing edit-user from provider list
+        $this->providers = $this->providers->filter(function ($provider, $key) {
+            return $provider->id != $this->user->id;
+        });
 
     }
      public function updateVal($attrName, $val)
