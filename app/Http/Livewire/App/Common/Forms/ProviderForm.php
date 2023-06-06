@@ -30,6 +30,8 @@ class ProviderForm extends Component
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
         'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]],
         'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'userdetail.certification', '', 'certification', 5]]
+        // 'favour' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id', '', 'country', 4]],
+
     ];
     public $inpersons=[[
         'hours'=>'',
@@ -139,6 +141,13 @@ class ProviderForm extends Component
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         // dd($this->setupValues);
         $this->user=$user;
+        $providers = User::query()
+		->where('status',1)
+		->whereHas('roles', function ($query) {
+			$query->where('role_id',2);})
+        ->get();
+        dd($providers);
+            
 
 	}
 
