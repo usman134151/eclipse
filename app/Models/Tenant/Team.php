@@ -17,4 +17,9 @@ class Team extends Model
     protected $fillable = [
         'name', 'description', 'status', 'provider_count',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'team_providers');
+    }
 }

@@ -91,6 +91,7 @@ class Provider extends Component
                         $user['userDetails']['education']=$row[16];
                         $user['userDetails']['user_experience']=$row[17];
                         $user['userDetails']['note']=$row[18];
+                        $user['password']=$row[19];
                         $user['status']=1;
                     // dd($user);
                         $this->users[] = $user;

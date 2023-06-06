@@ -41,7 +41,8 @@ class ExportDataFile
             'Address Line 2',
             'Education',
             'Experience',
-            'Notes'
+            'Notes',
+            'Password'
         ];
 
        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();
@@ -179,7 +180,8 @@ foreach($excelRows as $key=>$valueArr){
             'Service Consumer',
             'Billing Manager',
             'Participant',
-            'Company'
+            'Company',
+            'Password'
         ];
 
        // $languageValues = SetupValue::where('setup_id', 1)->pluck('setup_value_label')->toArray();

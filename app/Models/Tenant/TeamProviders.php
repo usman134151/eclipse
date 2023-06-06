@@ -17,4 +17,14 @@ class TeamProviders extends Model
     protected $fillable = [
         'team_id', 'provider_id', 'status'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

@@ -7,18 +7,31 @@ use App\Models\Tenant\UserIndustry;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
+use App\Models\Tenant\TeamProviders;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
+
 class UserService{
 
     public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true,$userCompanyAddress='',$userCustomAddresses=[]){
-    
+   
+      if(!is_null($user->password))
+      {
+        if (Hash::needsRehash($user->password)) {
+          $user->password = bcrypt($user->password);
+         }
+      }  
+     else{
+      $user->password=bcrypt(Str::random(8));
+     }
+      
      
       if(!is_null($user->id)){
         $userId=$user->id;
      }
       elseif($isAdd && !(User::where('email', $user->email)->exists())){
-          $user->password=bcrypt(Str::random(8));
+
           $user->security_token = Str::random(32);
          
           $user->save();
@@ -58,6 +71,14 @@ class UserService{
         }
        
         return $user;
+    }
+
+    public function addProviderTeams($selectedTeams, $user){
+      TeamProviders::where('provider_id', $user->id)->delete();
+      foreach ($selectedTeams as $team_id) {
+        // $user->teams()->attach($team_id);
+        TeamProviders::create(["provider_id"=>$user->id,"team_id"=>$team_id,"status"=>1]);
+      }
     }
 
     public function getUserDetails($id){
