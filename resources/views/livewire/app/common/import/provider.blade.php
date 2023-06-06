@@ -74,30 +74,35 @@
  
                   <div class="col-md-10">
 				  <div>
-						<label class="form-label" for="Number">Provider Number</label>
+						<label class="form-label mt-3" for="Number">Provider Number</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.user_number" class="form-control" />
 						
 					</div>	
 					<div>
-						<label class="form-label" for="First Name">First Name</label>	
+						<label class="form-label mt-3" for="First Name">First Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.first_name" class="form-control" /> 
 						@error('users.'. $loop->index.'.first_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Last Name</label>	
+						<label class="form-label mt-3" for="First Name">Last Name</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.last_name" class="form-control" />
 						@error('users.'. $loop->index.'.last_name') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Email</label>
+						<label class="form-label mt-3" for="First Name">Email</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
 						@error('users.'. $loop->index.'.email') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
+					</div>	
+					<div>
+						<label class="form-label mt-3" for="First Name">Password</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.password" class="form-control" />
+						@error('users.'. $loop->index.'.password') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>	
 					
                   </div>
                 </div>
 				<div >
-                                            <label class="form-label" for="notes-column">
+                                            <label class="mt-3 form-label mb-3" for="notes-column">
                                                 Add Notes
                                             </label>
                                             <textarea class="form-control" rows="3" cols="30" placeholder="" name="notesColumn"
@@ -107,7 +112,7 @@
               <td width=33%>
 
 			<div>
-			<label class="form-label" for="Language">
+			<label class="form-label mt-3" for="Language">
 				Language
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.language_id'>
@@ -119,7 +124,7 @@
 			</select>
 			</div>
 			<div>
-			<label class="form-label" for="Ethnicity">
+			<label class="form-label mt-3" for="Ethnicity">
 				Ethnicity
             </label>
 			  <select class="form-select " wire:model='users.{{ $loop->index }}.userDetails.ethnicity_id'>
@@ -130,7 +135,7 @@
 			</select>
 			</div>
 			<div>
-			<label class="form-label" for="Language">
+			<label class="form-label mt-3" for="Language">
 				Gender
               </label>
 			  <select class="form-select" wire:model='users.{{ $loop->index }}.userDetails.gender_id'>
@@ -141,13 +146,13 @@
 			</select>
 			</div>
 			<div>
-						<label class="form-label" for="Education">Education</label>
+						<label class="form-label mt-3" for="Education">Education</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.education" class="form-control" />
 			</div>	
 					
 			<div>
-						<label class="form-label" for="Experience">Experience</label>
-						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.experience" class="form-control" />
+						<label class="form-label mt-3" for="Experience">Experience</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.user_experience" class="form-control" />
 					</div>	
 			  </td>
 			  <td width=33%>
@@ -156,23 +161,27 @@
                   <div class="col-md-10">
                    
 					<div>
-						<label class="form-label" for="First Name">Address Line 1</label>	
+						<label class="form-label mt-3" for="First Name">Address Line 1</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.address_line1" class="form-control" /> 
 					</div>
 					<div>
-						<label class="form-label" for="First Name">Address Line 2</label>	
+						<label class="form-label mt-3" for="First Name">Address Line 2</label>	
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.address_line2" class="form-control" />
 					</div>
 					<div>
-						<label class="form-label" for="First Name">City</label>
+						<label class="form-label mt-3" for="First Name">City</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.city" class="form-control" />
 					</div>	
 					<div>
-						<label class="form-label" for="First Name">State</label>
+						<label class="form-label mt-3" for="First Name">State</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.state" class="form-control" />
 					</div>	
 					<div>
-						<label class="form-label" for="First Name">Country</label>
+						<label class="form-label mt-3" for="First Name">Zip</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.zip" class="form-control" />
+					</div>	
+					<div>
+						<label class="form-label mt-3" for="First Name">Country</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.country" class="form-control" />
 					</div>	
                   </div>
