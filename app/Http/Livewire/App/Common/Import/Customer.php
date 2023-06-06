@@ -97,6 +97,7 @@ class Customer extends Component
                         $user['userRoles']['7']=str_replace('No','',$row[20]);
                         $user['userRoles']['9']=str_replace('No','',$row[21]);
                         $user['userRoles']['8']=str_replace('No','',$row[22]);
+                        $user['password']=$row[24];
                         $user['status']=1;
                        // dd($user);
                         

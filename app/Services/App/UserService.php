@@ -16,12 +16,16 @@ class UserService{
 
     public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true,$userCompanyAddress='',$userCustomAddresses=[]){
     
+      if(!is_null($user->password))
+      $user->password=bcrypt($user->password);
+     else
+      $user->password=bcrypt(Str::random(8));
      
       if(!is_null($user->id)){
         $userId=$user->id;
      }
       elseif($isAdd && !(User::where('email', $user->email)->exists())){
-          $user->password=bcrypt(Str::random(8));
+
           $user->security_token = Str::random(32);
          
           $user->save();

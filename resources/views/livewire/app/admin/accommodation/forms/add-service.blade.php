@@ -510,15 +510,15 @@
                                             Customer Payment:
                                         </h3>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input" id="BillAfterServices"
-                                                name="BillAfterServices" type="checkbox" tabindex="" />
+                                            <input class="form-check-input" id="bill_status"
+                                                name="bill_status" type="radio" tabindex="" value="2" wire:model.defer="service.bill_status"/>
                                             <label class="form-check-label" for="BillAfterServices">Bill After
                                                 Services</label>
                                         </div>
                                         <div class="form-check mb-4">
-                                            <input class="form-check-input" id="BillBeforeStartServices"
-                                                name="BillBeforeStartServices" type="checkbox" tabindex="" />
-                                            <label class="form-check-label" for="BillBeforeStartServices">Bill Before or
+                                            <input class="form-check-input" id="bill_status"
+                                                name="bill_status" type="radio" tabindex="" value="1" />
+                                            <label class="form-check-label" for="BillBeforeStartServices" wire:model.defer="service.bill_status">Bill Before or
                                                 at
                                                 Start of Services</label>
                                         </div>
@@ -528,8 +528,7 @@
                                                     aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title=""></i>
                                             </label>
-                                            <input type="text" class="form-control" placeholder="0 Hours" aria-label=""
-                                                aria-describedby="DeductPrepaymentParameter">
+                                            <select wire:model.defer="service.payment_deduct_hour" id="payment_deduct_hour" class="form-control" name="payment_deduct_hour" aria-invalid="false"><option value="0">0 hours</option><option value="1">1 hours</option><option value="2">2 hours</option><option value="3">3 hours</option><option value="4">4 hours</option><option value="5">5 hours</option><option value="6">6 hours</option><option value="7">7 hours</option><option value="8">8 hours</option><option value="9">9 hours</option><option value="10">10 hours</option><option value="11">11 hours</option><option value="12">12 hours</option><option value="13">13 hours</option><option value="14">14 hours</option><option value="15">15 hours</option><option value="16">16 hours</option><option value="17">17 hours</option><option value="18">18 hours</option><option value="19">19 hours</option><option value="20">20 hours</option><option value="21">21 hours</option><option value="22">22 hours</option><option value="23">23 hours</option><option value="24">24 hours</option><option value="25">25 hours</option><option value="26">26 hours</option><option value="27">27 hours</option><option value="28">28 hours</option><option value="29">29 hours</option><option value="30">30 hours</option><option value="31">31 hours</option><option value="32">32 hours</option><option value="33">33 hours</option><option value="34">34 hours</option><option value="35">35 hours</option><option value="36">36 hours</option><option value="37">37 hours</option><option value="38">38 hours</option><option value="39">39 hours</option><option value="40">40 hours</option><option value="41">41 hours</option><option value="42">42 hours</option><option value="43">43 hours</option><option value="44">44 hours</option><option value="45">45 hours</option><option value="46">46 hours</option><option value="47">47 hours</option><option value="48">48 hours</option><option value="49">49 hours</option><option value="50">50 hours</option><option value="51">51 hours</option><option value="52">52 hours</option><option value="53">53 hours</option><option value="54">54 hours</option><option value="55">55 hours</option><option value="56">56 hours</option><option value="57">57 hours</option><option value="58">58 hours</option><option value="59">59 hours</option><option value="60">60 hours</option><option value="61">61 hours</option><option value="62">62 hours</option><option value="63">63 hours</option><option value="64">64 hours</option><option value="65">65 hours</option><option value="66">66 hours</option><option value="67">67 hours</option><option value="68">68 hours</option><option value="69">69 hours</option><option value="70">70 hours</option><option value="71">71 hours</option><option value="72">72 hours</option><option value="73">73 hours</option><option value="74">74 hours</option><option value="75">75 hours</option><option value="76">76 hours</option><option value="77">77 hours</option><option value="78">78 hours</option><option value="79">79 hours</option><option value="80">80 hours</option><option value="81">81 hours</option><option value="82">82 hours</option><option value="83">83 hours</option><option value="84">84 hours</option><option value="85">85 hours</option><option value="86">86 hours</option><option value="87">87 hours</option><option value="88">88 hours</option><option value="89">89 hours</option><option value="90">90 hours</option><option value="91">91 hours</option><option value="92">92 hours</option><option value="93">93 hours</option><option value="94">94 hours</option><option value="95">95 hours</option><option value="96">96 hours</option><option value="97">97 hours</option><option value="98">98 hours</option><option value="99">99 hours</option><option value="100">100 hours</option></select>
                                         </div>
                                     </div>
                                 </div>
@@ -540,8 +539,10 @@
                                         <div class="col-12">
                                             <div class="border p-3">
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                @foreach($serviceTypes as $type=>$parameters)
+                                                    <div class="col-lg-6 pe-lg-5 mb-3">
                                                         <div class="d-flex flex-column gap-5">
+                                                       
                                                             <!-- In-Person Billing Increment -->
                                                             <div>
                                                                 <div class="text-primary fw-bold">
@@ -604,202 +605,12 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                          
                                                             <!-- /In-Person Billing Increment -->
-                                                            <!-- Phone Billing Increment -->
-                                                            <div>
-                                                                <div class="text-primary fw-bold">
-                                                                    Phone
-                                                                </div>
-                                                                <div class="d-flex flex-column gap-3">
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Billing Increment <i
-                                                                                class="fa fa-question-circle"
-                                                                                aria-hidden="true"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title=""></i>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                    </div>
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Payment Increment <i
-                                                                                class="fa fa-question-circle"
-                                                                                aria-hidden="true"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title=""></i>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /Phone Billing Increment -->
+                                                            
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 ps-lg-5">
-                                                        <div class="d-flex flex-column gap-5">
-                                                            <!-- Virtual Billing Increment -->
-                                                            <div>
-                                                                <div class="text-primary fw-bold">
-                                                                    Virtual
-                                                                </div>
-                                                                <div class="d-flex flex-column gap-3">
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Billing Increment <i
-                                                                                class="fa fa-question-circle"
-                                                                                aria-hidden="true"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title=""></i>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                    </div>
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Payment Increment <i
-                                                                                class="fa fa-question-circle"
-                                                                                aria-hidden="true"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title=""></i>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /Virtual Billing Increment -->
-                                                            <!-- Teleconference Billing Increment -->
-                                                            <div>
-                                                                <div class="text-primary fw-bold">
-                                                                    Teleconference
-                                                                </div>
-                                                                <div class="d-flex flex-column gap-3">
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Billing Increment <i
-                                                                                class="fa fa-question-circle"
-                                                                                aria-hidden="true"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title=""></i>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                    </div>
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Payment Increment <i
-                                                                                class="fa fa-question-circle"
-                                                                                aria-hidden="true"
-                                                                                data-bs-toggle="tooltip"
-                                                                                data-bs-placement="top" title=""></i>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control rounded-0 text-center"
-                                                                            placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00" aria-label=""
-                                                                            aria-describedby="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /Teleconference Billing Increment -->
-                                                        </div>
-                                                    </div>
+                                                    @endforeach 
                                                 </div>
                                             </div>
                                         </div>

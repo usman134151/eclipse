@@ -87,6 +87,11 @@
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.email" class="form-control" />
 						@error('users.'. $loop->index.'.email') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
 					</div>	
+					<div>
+						<label class="form-label mt-3" for="First Name">Password</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.password" class="form-control" />
+						@error('users.'. $loop->index.'.password') <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span> @enderror
+					</div>	
                   </div>
                 </div>
               </td>
@@ -201,6 +206,10 @@
 						<label class="form-label" for="First Name">State</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.state" class="form-control" />
 					</div>	
+					<div>
+						<label class="form-label" for="First Name">Zip</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.zip" class="form-control" />
+					</div>						
 					<div>
 						<label class="form-label" for="First Name">Country</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.country" class="form-control" />
