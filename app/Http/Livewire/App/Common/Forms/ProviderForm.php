@@ -4,12 +4,14 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tenant\SystemRole;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class ProviderForm extends Component
 {
@@ -250,6 +252,8 @@ class ProviderForm extends Component
     public function edit(User $user){
 
         $this->user=$user;
+        $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
+       
 	   $this->userdetail=$user['userdetail']->toArray();
        $this->label="Edit";
        $this->user=$user;
