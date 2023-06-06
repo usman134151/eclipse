@@ -380,10 +380,9 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                {{-- updated by shanila to add multiselectdropdown --}}
+                                                {{-- updated by maarooshaa to add multiselectdropdown --}}
                                                     {!! $setupValues['certifications']['rendered'] !!}
-                                    {{-- {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, '','','form-check') !!} --}}
-                                    {{--ended updated--}}
+                                                {{--ended updated--}}
                                             </div>
                                             <div class="mt-2">
                                                 <input class="form-check-input" type="checkbox" value="display-provider"
@@ -436,20 +435,23 @@
                                             <label class="form-label" for="preferred-colleagues-column">
                                                 Preferred Colleagues
                                             </label>
-                                            <select class="select2 form-select" id="preferred-colleagues-column">
-                                                <option value="preferred-colleagues-column">
-                                                    Select Preferred Colleagues
-                                                </option>
+                                            {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
+                                            <select name="favored_users" id="favored_users" class=" select2 form-select " wire:model.defer="userdetail.favored_users" tabindex="6"multiple  aria-label="Select favored users">
+                                                <option >Select an option</option>
+                                                @foreach($providers as $provider)
+                                                 <option value="{{$provider->id}}" >{{$provider->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-lg-6 ps-lg-5">
                                             <label class="form-label" for="disfavored-colleagues-column">
                                                 Disfavored Colleagues
                                             </label>
-                                            <select class="select2 form-select" id="disfavored-colleagues-column">
-                                                <option value="disfavored-colleagues-column">
-                                                    Select Disfavored Colleagues
-                                                </option>
+                                              <select name="unfavored_users" id="unfavored_users" class=" select2 form-select " wire:model.defer="userdetail.unfavored_users" tabindex="7" multiple  aria-label="Select disfavored users">
+                                                <option>Select an option</option>
+                                                @foreach($providers as $provider)
+                                                 <option value="{{$provider->id}}" >{{$provider->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">

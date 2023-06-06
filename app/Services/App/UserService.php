@@ -15,17 +15,11 @@ use Illuminate\Support\Str;
 class UserService{
 
     public function createUser(User $user,$userdetail,$role,$email_invitation=1,$selectedIndustries=[],$isAdd=true,$userCompanyAddress='',$userCustomAddresses=[]){
-   
+    
       if(!is_null($user->password))
-      {
-        if (Hash::needsRehash($user->password)) {
-          $user->password = bcrypt($user->password);
-         }
-      }  
-     else{
+      $user->password=bcrypt($user->password);
+     else
       $user->password=bcrypt(Str::random(8));
-     }
-      
      
       if(!is_null($user->id)){
         $userId=$user->id;
