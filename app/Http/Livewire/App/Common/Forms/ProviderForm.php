@@ -4,12 +4,14 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tenant\SystemRole;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class ProviderForm extends Component
 {
@@ -20,14 +22,22 @@ class ProviderForm extends Component
     public $languages;
 
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience'];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience','certificate'];
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',2]],
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
-        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]]
-	];
+        'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]],
+        'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'userdetail.certification', '', 'certification', 5]],
+        // 'favored_users' => ['parameters' => ['User', 'id', 'name', '', '1 OR exists (select * from `roles` inner join `role_user` on `roles`.`id` = `role_user`.`role_id` where `users`.`id` = `role_user`.`user_id` and `role_id` = 2', 'name', true, 'userdetail.favored_users', '', 'favored_users', 6]]
+    ];
+
+        // $providers = User::query()
+		// ->where('status',1)
+		// ->whereHas('roles', function ($query) {
+		// 	$query->where('role_id',2);})
+        // ->get();
     public $inpersons=[[
         'hours'=>'',
         'charges'=>'',
@@ -123,7 +133,7 @@ class ProviderForm extends Component
     'editRecord' => 'edit', 'stepIncremented',
         'updateSelectedTeams'
     ];
-
+    public $providers;
     public $selectedTeams =[];
 	public function render()
 	{
@@ -134,7 +144,20 @@ class ProviderForm extends Component
 	}
     public function mount(User $user){
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        // dd($this->setupValues);
         $this->user=$user;
+
+        $this->providers = User::query()
+		->where('status',1)
+        // ->where('users.id','!=',$user->id)
+		->whereHas('roles', function ($query) {
+			$query->where('role_id',2);})
+        ->select('id','name')
+        ->get();
+
+        // $this->providers = $this->providers->except()
+        // dd($providers);
+            
 
 	}
 
@@ -231,7 +254,13 @@ class ProviderForm extends Component
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
-		$userService = new UserService;
+        // process multiselect values
+        $this->userdetail['certification'] =implode(', ', $this->userdetail['certification']);
+        $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
+        $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
+
+        
+        $userService = new UserService;
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
         // put null/empty check for teams 
         $userService->addProviderTeams($this->selectedTeams,$this->user);
@@ -244,13 +273,20 @@ class ProviderForm extends Component
     public function edit(User $user){
 
         $this->user=$user;
+        $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
+        $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
+        $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
+        
 	   $this->userdetail=$user['userdetail']->toArray();
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
        if($this->user->user_dob)
            $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
-
+        //removing edit-user from provider list
+        $this->providers = $this->providers->filter(function ($provider, $key) {
+            return $provider->id != $this->user->id;
+        });
 
     }
      public function updateVal($attrName, $val)
