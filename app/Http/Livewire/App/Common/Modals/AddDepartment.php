@@ -8,7 +8,7 @@ use Livewire\Component;
 class AddDepartment extends Component
 {
     public $showForm, $departments, $selectedDepartments = [], $defaultDepartment;
-    protected $listeners = ['showList' => 'resetForm'];
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setSelectedDepartments'];
 
     public function render()
     {
