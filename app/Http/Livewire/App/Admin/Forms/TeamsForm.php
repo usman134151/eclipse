@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Admin\Forms;
 use App\Models\Tenant\Team;
+use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
 
 use Livewire\Component;
@@ -12,12 +13,20 @@ class TeamsForm extends Component
     protected $listeners = ['showList' => 'resetForm','editRecord' => 'edit'];
 	public $component = 'Team';
     public $specializations=[];
-    public $accommodations=[];
+    public $accommodations=[],$providers,$selectedProviders;
     public function mount(Team $team)
     {
         // $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		// $this->company=$company;
         $this->team=$team;
+        $this->providers = User::query()
+        ->where('status', 1)
+        ->whereHas('roles', function ($query) {
+            $query->where('role_id', 2);
+        })
+            ->select('id', 'name')
+            ->get();
+
 
     }
 

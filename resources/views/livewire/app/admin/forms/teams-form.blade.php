@@ -60,12 +60,12 @@
                         <label class="form-label" for="provider">Providers
                             <span class="mandatory" aria-hidden="true">*</span>
                         </label>
-                          <select data-placeholder="" multiple
-                              class=" select2 form-select select2-hidden-accessible" tabindex="">
-                              <option value=""></option>
-                              <option selected>Ramon Miles</option>
-                              <option selected>Ramon Miles</option>
-                          </select>
+                             <select name="selected_providers" id="selectedProviders" class=" select2 form-select " wire:model.defer="selectedProviders" tabindex="1" multiple  aria-label="Select Team Providers">
+                                  <option>Select an option</option>
+                                  @foreach($providers as $provider)
+                                    <option value="{{$provider->id}}" >{{$provider->name}}</option>
+                                  @endforeach
+                              </select>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">

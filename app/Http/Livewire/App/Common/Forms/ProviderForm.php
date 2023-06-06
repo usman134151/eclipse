@@ -149,15 +149,11 @@ class ProviderForm extends Component
 
         $this->providers = User::query()
 		->where('status',1)
-        // ->where('users.id','!=',$user->id)
+  
 		->whereHas('roles', function ($query) {
 			$query->where('role_id',2);})
         ->select('id','name')
         ->get();
-
-        // $this->providers = $this->providers->except()
-        // dd($providers);
-            
 
 	}
 
