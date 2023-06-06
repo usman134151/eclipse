@@ -483,7 +483,7 @@
                                                         <span>Message</span>
                                                     </button>
                                                     <button type="button"
-                                                        class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+                                                        class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
 
                                                         <span>Reset Password</span>
                                                     </button>
@@ -5519,4 +5519,5 @@
             <!-- Basic Floating Label Form section end -->
         </div>
     </div>
+    @include('modals.common.change-password')
 </div>
