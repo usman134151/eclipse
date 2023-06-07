@@ -144,20 +144,19 @@ class ProviderForm extends Component
 	}
     public function mount(User $user){
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        // dd($this->setupValues);
         $this->user=$user;
+
+        // initialization 
+        $this->userdetail['certification'] = [];
+        $this->userdetail['favored_users'] = [];
+        $this->userdetail['unfavored_users'] = [];
 
         $this->providers = User::query()
 		->where('status',1)
-        // ->where('users.id','!=',$user->id)
 		->whereHas('roles', function ($query) {
 			$query->where('role_id',2);})
         ->select('id','name')
         ->get();
-
-        // $this->providers = $this->providers->except()
-        // dd($providers);
-            
 
 	}
 
