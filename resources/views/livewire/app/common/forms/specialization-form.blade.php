@@ -69,6 +69,11 @@
                                 class="form-control"
                                 name="specialization-description"
                                 wire:model.defer="specialization.description"></textarea>
+                                @error('specialization.description')
+												       <span class="d-inline-block invalid-feedback mt-2">
+												     	{{ $message }}
+												     </span>
+												@enderror
                               </div>
                             </div>
                           </div>

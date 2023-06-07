@@ -81,6 +81,11 @@
 													class="form-control"
 													wire:model.defer="accommodation.description"
 												></textarea>
+												@error('accommodation.description')
+												<span class="d-inline-block invalid-feedback mt-2">
+													{{ $message }}
+												</span>
+												@enderror
 											</div>
 										</div>
 									</div>
