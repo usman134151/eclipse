@@ -4,7 +4,7 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">
-                        Add Provider Team
+                       {{$label}} Provider Team
                     </h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
@@ -136,7 +136,7 @@
                 >
                 Cancel</a>
                 <button type="submit" class="btn btn-primary rounded px-4"
-                wire:click.prevent="save">Add</button>
+                wire:click.prevent="save"> {{$label}} Team</button>
               </div>
             </div>
           </form>

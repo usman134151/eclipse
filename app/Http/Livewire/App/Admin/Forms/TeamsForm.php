@@ -15,7 +15,7 @@ class TeamsForm extends Component
 	public $component = 'Team';
     public $specializations=[], $accommodations=[], $services = [], $selected_providers=[];
     public $label,$team,$providers;
-    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'edit'];
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'edit','updateVal'];
     public $setupValues = [
         'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
@@ -26,6 +26,7 @@ class TeamsForm extends Component
     {
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->team=$team;
+        $this->label="Add";
         $this->providers = User::query()
         ->where('status', 1)
         ->whereHas('roles', function ($query) {
@@ -79,6 +80,7 @@ class TeamsForm extends Component
         $this->accommodations = $this->team->accommodations()->allRelatedIds()->toArray();
         $this->specializations = $this->team->specializations()->allRelatedIds()->toArray();
         $this->services = $this->team->services()->allRelatedIds()->toArray();
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function showList($message="")
@@ -96,5 +98,12 @@ class TeamsForm extends Component
     {
         $this->showForm=false;
     }
+
+    public function updateVal($attrName, $val)
+	{
+       
+		 $this->$attrName=$val;
+
+	}
 
 }
