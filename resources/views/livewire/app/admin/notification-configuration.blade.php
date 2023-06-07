@@ -3,7 +3,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h1 class="content-header-title float-start mb-0">Notifications</h1>
+              <h1 class="content-header-title float-start mb-0">Email Notifications</h1>
               <div class="breadcrumb-wrapper">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
@@ -24,7 +24,7 @@
                     </a>
                 </li>
                   <li class="breadcrumb-item">
-                    <span class="text-secondary">Notifications</span>
+                    <span class="text-secondary">Email Notifications</span>
                   </li>
                 </ol>
               </div>
