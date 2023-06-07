@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire\App\Admin\Forms;
+
+use App\Helpers\SetupHelper;
 use App\Models\Tenant\Team;
 use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
@@ -10,16 +12,21 @@ use Livewire\Component;
 class TeamsForm extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm','editRecord' => 'edit'];
 	public $component = 'Team';
     public $specializations=[];
-    public $accommodations=[],$providers, $selectedProviders,$label;
-    
+    public $accommodations=[], $services = [];
+    public $selected_providers,$label,$team,$providers;
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'edit'];
+    public $setupValues = [
+        'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
+        'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
+        'services' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'company.company_timezone', '', 'company_timezone', 4]]
+
+    ];
     public function mount(Team $team)
     {
-        // $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-		// $this->company=$company;
-        // $this->selectedProviders = [];
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+        $this->selected_providers=[];
         $this->team=$team;
         $this->providers = User::query()
         ->where('status', 1)
@@ -54,10 +61,13 @@ class TeamsForm extends Component
     // functions
 
     public function save(){
-        dd($this->selectedProviders);
+        dd($this->selected_providers,$this->accommodations, $this->specializations);
         $this->validate();
         $this->team->save();
-        $this->team->providers()->attach($this->selectedProviders);
+        $this->team->providers()->sync($this->selected_providers);
+        $this->team->accommodations()->sync($this->accommodations);
+        $this->team->specializations()->sync($this->specializations);
+
         // save team_providers
 
         $this->showList("Record saved successfully");
@@ -66,8 +76,11 @@ class TeamsForm extends Component
 
     public function edit(Team $team){
         $this->label="Edit";
-       $this->team=$team;
-       $this->selectedProviders= $this->team->providers()->allRelatedIds()->toArray();
+        $this->team=$team;
+        $this->selected_providers = $this->team->providers()->allRelatedIds()->toArray();
+        $this->accommodations = $this->team->accommodations()->allRelatedIds()->toArray();
+        $this->specializations = $this->team->specializations()->allRelatedIds()->toArray();
+
     }
 
     public function showList($message="")

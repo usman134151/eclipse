@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Team extends Model
 {
     use HasFactory;
-    protected $touches = ['providers'];
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +21,19 @@ class Team extends Model
 
     public function providers() :BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'team_providers','team_id','provider_id');
+        return $this->belongsToMany(User::class, 'team_providers','team_id','provider_id')->withTimestamps();
+    }
+
+    public function accommodations(): BelongsToMany
+    {
+        return $this->belongsToMany(Accommodation::class, 'team_accommodations')->withTimestamps();
+    }
+    public function specializations(): BelongsToMany
+    {
+        return $this->belongsToMany(Specialization::class, 'team_specializations')->withTimestamps();
+    }
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(Service::class, 'team_services')->withTimestamps();
     }
 }
