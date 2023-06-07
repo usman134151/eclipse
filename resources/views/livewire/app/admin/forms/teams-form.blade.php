@@ -60,41 +60,30 @@
                         <label class="form-label" for="provider">Providers
                             <span class="mandatory" aria-hidden="true">*</span>
                         </label>
-                          <select data-placeholder="" multiple
-                              class=" select2 form-select select2-hidden-accessible" tabindex="">
-                              <option value=""></option>
-                              <option selected>Ramon Miles</option>
-                              <option selected>Ramon Miles</option>
-                          </select>
+                             <select name="selected_providers" id="selected_providers" class=" select2 form-select " wire:model.defer="selected_providers" tabindex="1" multiple  aria-label="Select Team Providers">
+                                  <option>Select an option</option>
+                                  @foreach($providers as $p)
+                                    <option value="{{$p->id}}" >{{$p->name}}</option>
+                                  @endforeach
+                              </select>
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
-                                <label class="form-label">Accommodation</label>
-                                {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
-        'name', 'status', 1, 'name', true, 'accommodations',
-        '','accommodations') !!}
+                            <label class="form-label">Accommodation</label>
+                                {!! $setupValues['accommodations']['rendered'] !!}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label">Service</label>
-                        <select data-placeholder="" multiple
-                            class=" select2 form-select select2-hidden-accessible" tabindex="">
-                            <option value=""></option>
-                            <option selected>Language Translation</option>
-                            <option selected>Real Time Captioning</option>
-                        </select>
+                        {!! $setupValues['services']['rendered'] !!}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label">Specialization</label>
-                      {{-- updated by shanila to add multiselectdropdown --}}
-                {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
-                'name', 'status', 1, 'name', true, '',
-                '','specializations') !!}
-                 {{--ended updated--}}
+                          {!! $setupValues['specializations']['rendered'] !!}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">

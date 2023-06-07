@@ -18,13 +18,13 @@ class TeamProviders extends Model
         'team_id', 'provider_id', 'status'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
-    public function team()
-    {
-        return $this->belongsTo(Team::class);
-    }
+    // public function team()
+    // {
+    //     return $this->belongsTo(Team::class);
+    // }
 }
