@@ -13,7 +13,7 @@ class TeamsForm extends Component
     protected $listeners = ['showList' => 'resetForm','editRecord' => 'edit'];
 	public $component = 'Team';
     public $specializations=[];
-    public $accommodations=[],$providers,$selectedProviders;
+    public $accommodations=[],$providers, $selectedProviders=[],$team,$label;
     public function mount(Team $team)
     {
         // $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
@@ -55,14 +55,19 @@ class TeamsForm extends Component
       
         $this->validate();
         $this->team->save();
+      
+        $this->team->providers()->attach($this->selectedProviders);
+        // save team_providers
+
         $this->showList("Record saved successfully");
         $this->team=new Team;
     }
 
     public function edit(Team $team){
         $this->label="Edit";
-       $this->team=$team;
-       //dd($this->industry);
+        $this->team=$team;
+// dd($this->team->providers()->toArray());
+        // $this->selectedProviders = $this->team->providers();
     }
 
     public function showList($message="")

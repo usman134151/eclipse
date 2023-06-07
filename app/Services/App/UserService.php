@@ -73,9 +73,18 @@ class UserService
   {
     TeamProviders::where('provider_id', $user->id)->delete();
     foreach ($selectedTeams as $team_id) {
-      // $user->teams()->attach($team_id);
       TeamProviders::create(["provider_id" => $user->id, "team_id" => $team_id, "status" => 1]);
     }
+  }
+
+  public function addTeamProviders($selectedProviders, $team)
+  {
+    TeamProviders::where('team_id', $team->id)->delete();
+         $team->providers()->attach($selectedProviders);
+
+    // foreach ($selectedProviders as $user_id) {
+    //   TeamProviders::create(["provider_id" => $user_id, "team_id" => $team->id, "status" => 1]);
+    // }
   }
 
   public function getUserDetails($id)

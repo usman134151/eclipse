@@ -4,10 +4,12 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model
 {
     use HasFactory;
+    protected $touches = ['providers'];
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +20,8 @@ class Team extends Model
         'name', 'description', 'status', 'provider_count',
     ];
 
-    public function users()
+    public function providers() :BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'team_providers');
+        return $this->belongsToMany(User::class, 'team_providers','team_id','provider_id')->withTimestamps();
     }
 }

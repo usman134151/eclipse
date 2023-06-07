@@ -90,9 +90,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Industry::class, 'user_industries');
     }
 
-	public function teams() 
+	public function teams() : BelongsToMany
 	{
-		return $this->belongsToMany(Team::class, 'team_providers');
+		return $this->belongsToMany(Team::class, 'team_providers','provider_id');
 	}
 }
 

@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-lg-4 text-center py-1">
                         <div class="form-check mb-0 mx-auto d-inline-block mt-4">
-                            <input class="form-check-input" type="checkbox"  wire:model="selectedTeams"  value="{{$team->id}}" aria-label="Select Team">
+                            <input class="form-check-input" type="checkbox"  wire:model.defer="selectedTeams"  value="{{$team->id}}" aria-label="Select Team">
                         </div>
                     </div>
                 </div>
