@@ -77,7 +77,7 @@ class UserService
     }
   }
 
-  public function addTeamProviders($selectedProviders, $team)
+  public function addDepartments($selectedDepartments, $svDepartments,$default)
   {
     TeamProviders::where('team_id', $team->id)->delete();
          $team->providers()->attach($selectedProviders);

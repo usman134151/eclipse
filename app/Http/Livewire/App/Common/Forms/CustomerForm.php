@@ -34,7 +34,7 @@ class CustomerForm extends Component
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [];
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments;
 	
 	//end of modals variables
 
@@ -159,6 +159,10 @@ class CustomerForm extends Component
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
+		
+		// adding departments to user details
+		$userService->addslashes
+
 		$this->step=2;
 		$this->serviceActive="active";
 		
@@ -195,7 +199,7 @@ class CustomerForm extends Component
 		
 
 	}
-	public function selectDepartments($selectedDepartments, $defaultDepartment)
+	public function selectDepartments($selectedDepartments,$svDepartments, $defaultDepartment)
 	{
 
 		$this->selectedDepartments = [];
@@ -203,6 +207,11 @@ class CustomerForm extends Component
 			if ($selected)
 				$this->selectedDepartments[] = $departmentId;
 		}
+		foreach ($svDepartments as $departmentId => $selected) {
+			if ($selected)
+				$this->svDepartments[] = $departmentId;
+		}
 		$this->userdetail['department'] = $defaultDepartment;
+		dd($this->selectedDepartments);
 	}
 }

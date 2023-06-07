@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class AddDepartment extends Component
 {
-    public $showForm, $departments, $selectedDepartments = [], $defaultDepartment;
+    public $showForm, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment;
     protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setSelectedDepartments'];
 
     public function render()
@@ -22,12 +22,16 @@ class AddDepartment extends Component
         // $this->selectedIndustries = array_fill_keys(Industry::pluck('id')->toArray(), false);
     }
 
+    public function setSelectedDepartments(){
+
+    }
+
     // Child Laravel component's updateData function
     public function updateData()
     {
 
         // Emit an event to the parent component with the selected industries and default industry
-        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments, $this->defaultDepartment);
+        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment);
     }
 
 

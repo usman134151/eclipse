@@ -38,7 +38,7 @@
              
             <div class="col-lg-3 text-center py-2">
               <div class="form-check mb-0 mx-auto d-inline-block">
-                <input class="form-check-input" type="checkbox" >
+                <input class="form-check-input" type="checkbox" id="{{$department->id}}" value="{{ $department->id }}" wire:model="svDepartments.{{$department->id}}" >
               </div>
             </div>
             
