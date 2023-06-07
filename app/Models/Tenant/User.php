@@ -94,5 +94,9 @@ class User extends Authenticatable
 	{
 		return $this->belongsToMany(Team::class, 'team_providers','provider_id')->withTimestamps();
 	}
+	public function departments(): BelongsToMany
+	{
+		return $this->belongsToMany(Department::class, 'user_departments')->withTimestamps();
+	}
 }
 
