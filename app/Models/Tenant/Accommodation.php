@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Accommodation extends Model
 {
@@ -21,5 +22,10 @@ class Accommodation extends Model
 
     public function services(){
         return $this->hasMany(Service::class,'accomodation_id');
+    }
+
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(Team::class, 'team_accomodations', 'accommodation_id')->withTimestamps();
     }
 }

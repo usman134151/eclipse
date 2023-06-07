@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model
 {
@@ -18,8 +19,21 @@ class Team extends Model
         'name', 'description', 'status', 'provider_count',
     ];
 
-    public function users()
+    public function providers() :BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'team_providers');
+        return $this->belongsToMany(User::class, 'team_providers','team_id','provider_id')->withTimestamps();
+    }
+
+    public function accommodations(): BelongsToMany
+    {
+        return $this->belongsToMany(Accommodation::class, 'team_accommodations')->withTimestamps();
+    }
+    public function specializations(): BelongsToMany
+    {
+        return $this->belongsToMany(Specialization::class, 'team_specializations')->withTimestamps();
+    }
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(Service::class, 'team_services')->withTimestamps();
     }
 }

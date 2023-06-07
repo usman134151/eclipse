@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Livewire\App\Admin\Forms;
+
+use App\Helpers\SetupHelper;
 use App\Models\Tenant\Team;
+use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
 
 use Livewire\Component;
@@ -9,16 +12,27 @@ use Livewire\Component;
 class TeamsForm extends Component
 {
     public $showForm;
-    protected $listeners = ['showList' => 'resetForm','editRecord' => 'edit'];
 	public $component = 'Team';
-    public $specializations=[];
-    public $accommodations=[];
+    public $specializations=[], $accommodations=[], $services = [], $selected_providers=[];
+    public $label,$team,$providers;
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'edit'];
+    public $setupValues = [
+        'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
+        'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
+        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 3]]
+    ];
+
     public function mount(Team $team)
     {
-        // $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-		// $this->company=$company;
+        $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->team=$team;
-
+        $this->providers = User::query()
+        ->where('status', 1)
+        ->whereHas('roles', function ($query) {
+            $query->where('role_id', 2);
+        })
+            ->select('id', 'name')
+            ->get();
     }
 
     public function render()
@@ -43,17 +57,28 @@ class TeamsForm extends Component
     // functions
 
     public function save(){
-      
         $this->validate();
         $this->team->save();
+
+        // save team information
+        $this->team->providers()->sync($this->selected_providers);
+        $this->team->accommodations()->sync($this->accommodations);
+        $this->team->specializations()->sync($this->specializations);
+        $this->team->services()->sync($this->services);
+
         $this->showList("Record saved successfully");
         $this->team=new Team;
     }
 
     public function edit(Team $team){
         $this->label="Edit";
-       $this->team=$team;
-       //dd($this->industry);
+        $this->team=$team;
+
+        // read team information
+        $this->selected_providers = $this->team->providers()->allRelatedIds()->toArray();
+        $this->accommodations = $this->team->accommodations()->allRelatedIds()->toArray();
+        $this->specializations = $this->team->specializations()->allRelatedIds()->toArray();
+        $this->services = $this->team->services()->allRelatedIds()->toArray();
     }
 
     public function showList($message="")
@@ -62,11 +87,10 @@ class TeamsForm extends Component
         $this->emit('showList',$message);
     }
 
-
-
     function showForm()
     {
        $this->showForm=true;
+       
     }
     public function resetForm()
     {
