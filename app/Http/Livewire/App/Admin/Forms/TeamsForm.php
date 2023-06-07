@@ -19,13 +19,12 @@ class TeamsForm extends Component
     public $setupValues = [
         'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
-        // 'services' => ['parameters' => ['Service', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 5]]
+        'services' => ['parameters' => ['ServiceCategory', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 3]]
     ];
 
     public function mount(Team $team)
     {
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        $this->selected_providers=[];
         $this->team=$team;
         $this->providers = User::query()
         ->where('status', 1)
@@ -34,8 +33,6 @@ class TeamsForm extends Component
         })
             ->select('id', 'name')
             ->get();
-
-
     }
 
     public function render()
@@ -60,14 +57,14 @@ class TeamsForm extends Component
     // functions
 
     public function save(){
-        dd($this->selected_providers,$this->accommodations, $this->specializations);
         $this->validate();
         $this->team->save();
+
+        // save team information
         $this->team->providers()->sync($this->selected_providers);
         $this->team->accommodations()->sync($this->accommodations);
         $this->team->specializations()->sync($this->specializations);
-
-        // save team_providers
+        $this->team->services()->sync($this->services);
 
         $this->showList("Record saved successfully");
         $this->team=new Team;
@@ -76,10 +73,12 @@ class TeamsForm extends Component
     public function edit(Team $team){
         $this->label="Edit";
         $this->team=$team;
+
+        // read team information
         $this->selected_providers = $this->team->providers()->allRelatedIds()->toArray();
         $this->accommodations = $this->team->accommodations()->allRelatedIds()->toArray();
         $this->specializations = $this->team->specializations()->allRelatedIds()->toArray();
-
+        $this->services = $this->team->services()->allRelatedIds()->toArray();
     }
 
     public function showList($message="")
@@ -87,8 +86,6 @@ class TeamsForm extends Component
         // save data
         $this->emit('showList',$message);
     }
-
-
 
     function showForm()
     {

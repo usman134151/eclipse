@@ -77,12 +77,7 @@
                   <div class="col-md-6 col-12">
                     <div class="mb-4">
                         <label class="form-label">Service</label>
-                        <select data-placeholder="" multiple
-                            class=" select2 form-select select2-hidden-accessible" tabindex="3">
-                            <option value=""></option>
-                            <option selected>Language Translation</option>
-                            <option selected>Real Time Captioning</option>
-                        </select>
+                        {!! $setupValues['services']['rendered'] !!}
                     </div>
                   </div>
                   <div class="col-md-6 col-12">
