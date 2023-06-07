@@ -22,6 +22,6 @@ class Team extends Model
 
     public function providers() :BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'team_providers','team_id','provider_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'team_providers','team_id','provider_id');
     }
 }
