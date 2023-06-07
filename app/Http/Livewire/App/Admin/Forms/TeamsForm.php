@@ -13,16 +13,15 @@ class TeamsForm extends Component
 {
     public $showForm;
 	public $component = 'Team';
-    public $specializations=[];
-    public $accommodations=[], $services = [];
-    public $selected_providers,$label,$team,$providers;
+    public $specializations=[], $accommodations=[], $services = [], $selected_providers=[];
+    public $label,$team,$providers;
     protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'edit'];
     public $setupValues = [
         'accommodations' => ['parameters' => ['Accommodation', 'id', 'name', 'status', 1, 'name', true, 'accommodations', '', 'accommodations', 2]],
         'specializations' => ['parameters' => ['Specialization', 'id', 'name', 'status', 1, 'name', true, 'specializations', '', 'specializations', 4]],
-        'services' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 4, 'setup_value_label', false, 'company.company_timezone', '', 'company_timezone', 4]]
-
+        // 'services' => ['parameters' => ['Service', 'id', 'name', 'status', 1, 'name', true, 'services', '', 'services', 5]]
     ];
+
     public function mount(Team $team)
     {
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
