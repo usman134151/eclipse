@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Service extends Model
 {
@@ -17,4 +18,9 @@ class Service extends Model
     protected $fillable = [
         'name' , 'price', 'description', 'category' , 'image' , 'other' , 'added_by' ,
     ];
+
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(Team::class, 'team_services')->withTimestamps();
+    }
 }
