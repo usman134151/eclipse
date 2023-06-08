@@ -23,8 +23,12 @@ class AddDepartment extends Component
     }
 
     public function setDepartmentsDetails(User $user){
-        $this->selectedDepartments =$user->departments()->allRelatedIds()->toArray();
-        $this->svDepartments=explode(", ", $user->userdetail->supervisor);;
+        $departments = $user->departments;
+        foreach($departments as $dept){
+            $this->selectedDepartments[$dept->id]['department_id']=$dept->id;
+            $this->selectedDepartments[$dept->id]['is_supervisor'] = $dept->pivot->is_supervisor; 
+        }
+        // $this->svDepartments=explode(", ", $user->userdetail->supervisor);;
         $this->defaultDepartment=$user->userdetail->department;
 
     }
@@ -34,10 +38,10 @@ class AddDepartment extends Component
     {   
         $departmentNames=[];
         foreach ($this->selectedDepartments as $dept) {
-            $departmentNames[] = $this->departments->firstWhere('id', $dept)->name;
+            $departmentNames[] = $this->departments->firstWhere('id', $dept['department_id'])->name;
         }
         // Emit an event to the parent component with the selected industries and default industry
-        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment,$departmentNames);
+        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments, $this->defaultDepartment,$departmentNames);
     }
 
 

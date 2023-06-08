@@ -5,7 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
-
+use App\Models\Tenant\UserDepartment;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
@@ -164,7 +164,6 @@ class CustomerForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
-
 		$this->step=2;
 		$this->serviceActive="active";
 		
@@ -198,12 +197,11 @@ class CustomerForm extends Component
 		
 
 	}
-	public function selectDepartments($selectedDepartments,$svDepartments, $defaultDepartment,$departmentNames)
+	public function selectDepartments($selectedDepartments, $defaultDepartment,$departmentNames)
 	{
 		$this->selectedDepartments = $selectedDepartments;
 		$this->userdetail['department'] = $defaultDepartment;
-		$this->userdetail['supervisor'] = implode(', ', $svDepartments);
+		// $this->userdetail['supervisor'] = implode(', ', $svDepartments);
 		$this->departmentNames = $departmentNames;
-
-	}
+	}	
 }

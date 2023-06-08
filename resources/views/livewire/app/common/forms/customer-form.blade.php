@@ -144,6 +144,7 @@
                                                             Select Industry
                                                         </button>
                                                     </div>
+                                                    <div>
                                                     @if(count($industryNames)>0)
                                                         Selected Industries : 
                                                         @foreach($industryNames as $key=> $ind)
@@ -151,6 +152,7 @@
                                                          @if($key != count($industryNames)-1) , @endif
                                                         @endforeach
                                                     @endif
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">

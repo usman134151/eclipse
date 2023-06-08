@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('user_departments', function (Blueprint $table) {
-            $table->integer('supervisor')->unsigned()->nullable();
+            $table->integer('is_supervisor')->unsigned()->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('user_departments', function (Blueprint $table) {
-            $table->dropColumn('supervisor');
+            $table->dropColumn('is_supervisor');
         });
     }
 };
