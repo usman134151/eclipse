@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\App\Common\Modals\Admin;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class AssignSupervisor extends Component
 {
-    public $showForm;
+    public $showForm,$allUsers;
     protected $listeners = ['showList' => 'resetForm'];
 
     public function render()
@@ -16,7 +17,13 @@ class AssignSupervisor extends Component
 
     public function mount()
     {
-       
+        $this->allUsers = User::query()
+            ->where('status', 1)
+            ->whereHas('roles', function ($query) {
+                $query->where('role_id', '=', 5);
+            })
+            ->select('id', 'name','email',)
+            ->get();
        
     }
 

@@ -68,9 +68,10 @@
                             <div class="overflow-y-auto max-h-30rem">
                                 <table  class="table table-hover" aria-label="Select Service Table">
                                     <tbody>
+                                        @foreach($allUsers as $user)
                                         <tr role="row" class="odd">
                                             <td class="text-start">
-                                                <p>James Michael </p>
+                                                <p>{{$user->name}}</p>
                                             </td>
                                             <td>
                                                 <div class="d-flex action">
@@ -80,41 +81,8 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="text-start">
-                                                <p>John Cris</p>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="text-start">
-                                                <p>Eva George</p>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="text-start">
-                                                <p>Tessa Leo</p>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="text-start">
-                                                <p>Tessa Leo</p>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="text-start">
-                                                <p>Tessa Leo</p>
-                                            </td>
-                                            <td>
-                                                <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 10L8.66667 17L22 2" stroke="#15974F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>      
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="text-start">
-                                                <p>Tessa Leo</p>
-                                            </td>
-                                        </tr>
+                                        @endforeach
+                                      
                                     </tbody>
                                 </table>
                             </div>
