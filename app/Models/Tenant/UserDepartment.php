@@ -9,6 +9,6 @@ class UserDepartment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'department_id'
+        'user_id', 'department_id','is_supervisor'
     ];
 }

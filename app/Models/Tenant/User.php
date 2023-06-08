@@ -97,7 +97,7 @@ class User extends Authenticatable
 	}
 	public function departments(): BelongsToMany
 	{
-		return $this->belongsToMany(Department::class, 'user_departments')->withTimestamps();
+		return $this->belongsToMany(Department::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps();
 	}
 }
 

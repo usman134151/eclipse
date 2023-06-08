@@ -29,9 +29,12 @@ class AddIndustry extends Component
     // Child Laravel component's updateData function
     public function updateData()
     {
-    
+        $industryNames=[];
+        foreach($this->selectedIndustries as $ind){
+            $industryNames[]= $this->industries->firstWhere('id',$ind)->name;
+        }
     // Emit an event to the parent component with the selected industries and default industry
-    $this->emitUp('updateSelectedIndustries', $this->selectedIndustries, $this->defaultIndustry);
+    $this->emitUp('updateSelectedIndustries', $this->selectedIndustries, $this->defaultIndustry, $industryNames);
     }
 
 

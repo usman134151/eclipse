@@ -5,7 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
-
+use App\Models\Tenant\UserDepartment;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
@@ -34,7 +34,7 @@ class CustomerForm extends Component
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[];
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
 	
 	//end of modals variables
 
@@ -78,6 +78,9 @@ class CustomerForm extends Component
 	   $this->isAdd=false;
 	   if($this->user->user_dob)
 	   	$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+
+		$this->industryNames = $this->user->industries->pluck('name');
+		$this->departmentNames = $this->user->departments->pluck('name');
 
      
     }
@@ -161,7 +164,6 @@ class CustomerForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
-
 		$this->step=2;
 		$this->serviceActive="active";
 		
@@ -186,23 +188,20 @@ class CustomerForm extends Component
 
 	//modal functions
 
-	public function selectIndustries($selectedIndustries, $defaultIndustry)
+	public function selectIndustries($selectedIndustries, $defaultIndustry,$industryNames)
 	{
 
 		$this->selectedIndustries=$selectedIndustries;
-		// foreach($selectedIndustries as $industryId=>$selected){
-		// 	if($selected)
-		// 	$this->selectedIndustries[]=$industryId;
-		// }
+		$this->industryNames = $industryNames;
     	$this->userdetail['industry'] = $defaultIndustry;
 		
 
 	}
-	public function selectDepartments($selectedDepartments,$svDepartments=[], $defaultDepartment)
+	public function selectDepartments($selectedDepartments, $defaultDepartment,$departmentNames)
 	{
-
 		$this->selectedDepartments = $selectedDepartments;
 		$this->userdetail['department'] = $defaultDepartment;
-		$this->userdetail['supervisor'] = implode(', ', $svDepartments);
-	}
+		// $this->userdetail['supervisor'] = implode(', ', $svDepartments);
+		$this->departmentNames = $departmentNames;
+	}	
 }
