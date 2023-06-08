@@ -31,9 +31,13 @@ class AddDepartment extends Component
 
     // Child Laravel component's updateData function
     public function updateData()
-    {
+    {   
+        $departmentNames=[];
+        foreach ($this->selectedDepartments as $dept) {
+            $departmentNames[] = $this->departments->firstWhere('id', $dept)->name;
+        }
         // Emit an event to the parent component with the selected industries and default industry
-        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment);
+        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment,$departmentNames);
     }
 
 

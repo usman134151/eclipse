@@ -34,7 +34,7 @@ class CustomerForm extends Component
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[];
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
 	
 	//end of modals variables
 
@@ -78,6 +78,9 @@ class CustomerForm extends Component
 	   $this->isAdd=false;
 	   if($this->user->user_dob)
 	   	$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+
+		$this->industryNames = $this->user->industries->pluck('name');
+		$this->departmentNames = $this->user->departments->pluck('name');
 
      
     }
@@ -186,23 +189,21 @@ class CustomerForm extends Component
 
 	//modal functions
 
-	public function selectIndustries($selectedIndustries, $defaultIndustry)
+	public function selectIndustries($selectedIndustries, $defaultIndustry,$industryNames)
 	{
 
 		$this->selectedIndustries=$selectedIndustries;
-		// foreach($selectedIndustries as $industryId=>$selected){
-		// 	if($selected)
-		// 	$this->selectedIndustries[]=$industryId;
-		// }
+		$this->industryNames = $industryNames;
     	$this->userdetail['industry'] = $defaultIndustry;
 		
 
 	}
-	public function selectDepartments($selectedDepartments,$svDepartments=[], $defaultDepartment)
+	public function selectDepartments($selectedDepartments,$svDepartments, $defaultDepartment,$departmentNames)
 	{
-
 		$this->selectedDepartments = $selectedDepartments;
 		$this->userdetail['department'] = $defaultDepartment;
 		$this->userdetail['supervisor'] = implode(', ', $svDepartments);
+		$this->departmentNames = $departmentNames;
+
 	}
 }

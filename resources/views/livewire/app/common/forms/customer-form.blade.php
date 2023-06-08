@@ -144,6 +144,13 @@
                                                             Select Industry
                                                         </button>
                                                     </div>
+                                                    @if(count($industryNames)>0)
+                                                        Selected Industries : 
+                                                        @foreach($industryNames as $key=> $ind)
+                                                        {{$ind }}
+                                                         @if($key != count($industryNames)-1) , @endif
+                                                        @endforeach
+                                                    @endif
                                                 </div>
 
                                                 <div class="col-lg-6 pe-lg-5 mb-4">
@@ -177,8 +184,18 @@
                                                             Select Department
                                                         </button>
                                                     </div>
-                                                    <div>
+                                                   
+                                                    <div class="mb-4">
                                                         Assign as Department Supervisor
+                                                    </div>
+                                                     <div>
+                                                        @if(count($departmentNames)>0)
+                                                            Selected Department(s) : 
+                                                            @foreach($departmentNames as $key=> $dept)
+                                                            {{$dept }}
+                                                            @if($key != count($departmentNames)-1) , @endif
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                     {{-- <input class="form-check-input" type="checkbox" value=""
                                                         id="assign-as-department-supervisor"> --}}
