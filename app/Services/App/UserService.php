@@ -2,6 +2,7 @@
 
 namespace app\Services\App;
 
+use App\Models\Tenant\Department;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserIndustry;
@@ -55,10 +56,11 @@ class UserService
     // set new token for reset password
     // Insert selected industries into user_industries table
     if (!$isAdd && $role == 4)
-      UserIndustry::where('user_id', $user->id)->delete();
-    foreach ($selectedIndustries as $industry_id) {
-      $user->industries()->attach($industry_id);
-    }
+      $user->industries()->sync($selectedIndustries);
+    //   UserIndustry::where('user_id', $user->id)->delete();
+    // foreach ($selectedIndustries as $industry_id) {
+    //   $user->industries()->attach($industry_id);
+    // }
     if ($email_invitation && $isAdd) {
 
       //$request->request->add(['data' => $user]); //add invoice id into request
@@ -77,15 +79,6 @@ class UserService
     }
   }
 
-  public function addTeamProviders($selectedProviders, $team)
-  {
-    TeamProviders::where('team_id', $team->id)->delete();
-         $team->providers()->attach($selectedProviders);
-
-    // foreach ($selectedProviders as $user_id) {
-    //   TeamProviders::create(["provider_id" => $user_id, "team_id" => $team->id, "status" => 1]);
-    // }
-  }
 
   public function getUserDetails($id)
   {

@@ -11,13 +11,13 @@ class UserIndustry extends Model
     protected $primaryKey = ['user_id', 'industry_id'];
     public $incrementing = false;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
-    public function industry()
-    {
-        return $this->belongsTo(Industry::class);
-    }
+    // public function industry()
+    // {
+    //     return $this->belongsTo(Industry::class);
+    // }
 }

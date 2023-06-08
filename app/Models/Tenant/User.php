@@ -6,6 +6,7 @@ use App\Models\Tenant;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 ### Api Related Changes (Sakhawat Kamran) #######
@@ -71,7 +72,7 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(Company::class, 'company_name');
 	}
-	public function userdetail()
+	public function userdetail() : HasOne
 	{
 		return $this->hasOne(UserDetail::class, 'user_id');
 	}	
@@ -85,7 +86,7 @@ class User extends Authenticatable
     	return $this->hasMany(UserAddress::class,'user_id');
 	}
 
-	public function industries()
+	public function industries(): BelongsToMany
     {
         return $this->belongsToMany(Industry::class, 'user_industries');
     }
@@ -93,6 +94,10 @@ class User extends Authenticatable
 	public function teams() : BelongsToMany
 	{
 		return $this->belongsToMany(Team::class, 'team_providers','provider_id')->withTimestamps();
+	}
+	public function departments(): BelongsToMany
+	{
+		return $this->belongsToMany(Department::class, 'user_departments')->withTimestamps();
 	}
 }
 

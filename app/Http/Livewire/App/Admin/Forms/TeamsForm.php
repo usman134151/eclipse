@@ -58,7 +58,6 @@ class TeamsForm extends Component
     // functions
 
     public function save(){
-      
         $this->validate();
         $this->team->save();
 
