@@ -189,11 +189,11 @@ class CustomerForm extends Component
 	public function selectIndustries($selectedIndustries, $defaultIndustry)
 	{
 
-		$this->selectedIndustries=[];
-		foreach($selectedIndustries as $industryId=>$selected){
-			if($selected)
-			$this->selectedIndustries[]=$industryId;
-		}
+		$this->selectedIndustries=$selectedIndustries;
+		// foreach($selectedIndustries as $industryId=>$selected){
+		// 	if($selected)
+		// 	$this->selectedIndustries[]=$industryId;
+		// }
     	$this->userdetail['industry'] = $defaultIndustry;
 		
 

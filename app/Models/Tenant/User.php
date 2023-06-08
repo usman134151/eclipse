@@ -86,7 +86,7 @@ class User extends Authenticatable
     	return $this->hasMany(UserAddress::class,'user_id');
 	}
 
-	public function industries()
+	public function industries(): BelongsToMany
     {
         return $this->belongsToMany(Industry::class, 'user_industries');
     }

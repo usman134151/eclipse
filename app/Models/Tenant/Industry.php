@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Industry extends Model
 {
@@ -19,7 +20,7 @@ class Industry extends Model
         'name', 'status' , 'added_by' , 'updated_by' , 'deleted_by'
     ];
 
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_industries');
     }
