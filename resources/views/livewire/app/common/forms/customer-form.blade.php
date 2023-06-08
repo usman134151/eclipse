@@ -145,13 +145,13 @@
                                                         </button>
                                                     </div>
                                                     <div>
-                                                    @if(count($industryNames)>0)
-                                                        Selected Industries : 
-                                                        @foreach($industryNames as $key=> $ind)
-                                                        {{$ind }}
-                                                         @if($key != count($industryNames)-1) , @endif
-                                                        @endforeach
-                                                    @endif
+                                                        @if(count($industryNames)>0)
+                                                            Selected Industries : 
+                                                            @foreach($industryNames as $key=> $ind)
+                                                            {{$ind }}
+                                                            @if($key != count($industryNames)-1) , @endif
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -1612,6 +1612,7 @@
     @include('modals.admin-staff')
     <!-- have to remove associate services panel as it was throwing errors --> 
     @include('modals.add-user')
+</div>
 </div>
 
 @push('scripts')
