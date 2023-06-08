@@ -34,7 +34,7 @@ class CustomerForm extends Component
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments;
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[];
 	
 	//end of modals variables
 
@@ -201,11 +201,7 @@ class CustomerForm extends Component
 	public function selectDepartments($selectedDepartments,$svDepartments=[], $defaultDepartment)
 	{
 
-		$this->selectedDepartments = [];
-		foreach ($selectedDepartments as $departmentId => $selected) {
-			if ($selected)
-				$this->selectedDepartments[] = $departmentId;
-		}
+		$this->selectedDepartments = $selectedDepartments;
 		$this->userdetail['department'] = $defaultDepartment;
 		$this->userdetail['supervisor'] = implode(', ', $svDepartments);
 	}

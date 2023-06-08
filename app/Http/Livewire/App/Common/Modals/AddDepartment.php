@@ -20,12 +20,11 @@ class AddDepartment extends Component
     {
 
         $this->departments = Department::where('company_id', 1)->get();
-        // $this->selectedIndustries = array_fill_keys(Industry::pluck('id')->toArray(), false);
     }
 
     public function setDepartmentsDetails(User $user){
         $this->selectedDepartments =$user->departments()->allRelatedIds()->toArray();
-        $this->svDepartments=$user->userdetail->supervisor;
+        $this->svDepartments=explode(", ", $user->userdetail->supervisor);;
         $this->defaultDepartment=$user->userdetail->department;
 
     }
@@ -33,7 +32,6 @@ class AddDepartment extends Component
     // Child Laravel component's updateData function
     public function updateData()
     {
-
         // Emit an event to the parent component with the selected industries and default industry
         $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment);
     }
