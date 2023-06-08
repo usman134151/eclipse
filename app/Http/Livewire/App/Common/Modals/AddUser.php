@@ -24,18 +24,8 @@ class AddUser extends Component
         ->whereHas('roles', function ($query) {
             $query->where('role_id','>' ,3);
         })
-            // ->select('id', 'name')
+            ->select('id', 'name')
             ->get();
-        
-        // with(['roles'=>function($query){
-        //     $query->where('roles.id','>',3);
-        // }])->get();
-        // dd($this->allUsers);
-        // $this->assignedUsers = 
-        // $this->accommodations = Accommodation::where('status',1)->get();
-    //    filter by is accomdations, but list is of industry?
-
-
     }
 
     function showForm()
