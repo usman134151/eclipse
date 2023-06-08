@@ -28,7 +28,11 @@ class SpecializationForm extends Component
                 'string',
                 'max:255',
                 Rule::unique('specializations','name')->ignore($this->specialization->id)],
-                'specialization.description' => 'nullable'
+                'specialization.description' => [
+                    'nullable',
+                    'string',
+                    'max:255',
+                ]
             ];
 
     }
