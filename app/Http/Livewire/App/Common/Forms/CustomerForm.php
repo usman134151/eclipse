@@ -29,11 +29,12 @@ class CustomerForm extends Component
 	];
 	
     public $step = 1,$email_invitation;
-    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries'];
+    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
+		'updateSelectedDepartments' => 'selectDepartments'];
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[];
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[];
 	
 	//end of modals variables
 
@@ -158,6 +159,9 @@ class CustomerForm extends Component
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
+
+		$this->user->departments()->sync($this->selectedDepartments);
+
 		$this->step=2;
 		$this->serviceActive="active";
 		
@@ -185,13 +189,20 @@ class CustomerForm extends Component
 	public function selectIndustries($selectedIndustries, $defaultIndustry)
 	{
 
-		$this->selectedIndustries=[];
-		foreach($selectedIndustries as $industryId=>$selected){
-			if($selected)
-			$this->selectedIndustries[]=$industryId;
-		}
+		$this->selectedIndustries=$selectedIndustries;
+		// foreach($selectedIndustries as $industryId=>$selected){
+		// 	if($selected)
+		// 	$this->selectedIndustries[]=$industryId;
+		// }
     	$this->userdetail['industry'] = $defaultIndustry;
 		
 
+	}
+	public function selectDepartments($selectedDepartments,$svDepartments=[], $defaultDepartment)
+	{
+
+		$this->selectedDepartments = $selectedDepartments;
+		$this->userdetail['department'] = $defaultDepartment;
+		$this->userdetail['supervisor'] = implode(', ', $svDepartments);
 	}
 }

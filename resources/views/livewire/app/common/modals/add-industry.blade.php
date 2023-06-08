@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col-lg-8 py-2">
                   <div class="form-check mb-0">
-                    <input class="form-check-input" type="checkbox" wire:model="selectedIndustries.{{ $industry->id }}" value="{{ $industry->id }}" id="IndustryNameCheckbox1">
+                    <input class="form-check-input" type="checkbox" wire:model="selectedIndustries" value="{{ $industry->id }}" id="IndustryNameCheckbox1">
                     <label class="form-check-label " for="IndustryNameCheckbox1">
                       <small>{{$industry->name}}</small>
                     </label>
