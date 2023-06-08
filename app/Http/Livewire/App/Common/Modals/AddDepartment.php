@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class AddDepartment extends Component
 {
-    public $showForm, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment;
-    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setDepartmentsDetails'];
+    public $showForm, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment, $companyId;
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setDepartmentsDetails','updateCompany'];
 
     public function render()
     {
@@ -19,7 +19,7 @@ class AddDepartment extends Component
     public function mount()
     {
 
-        $this->departments = Department::where('company_id', 1)->get();
+        $this->departments = [];
     }
 
     public function setDepartmentsDetails(User $user){
@@ -28,8 +28,12 @@ class AddDepartment extends Component
             $this->selectedDepartments[$dept->id]['department_id']=$dept->id;
             $this->selectedDepartments[$dept->id]['is_supervisor'] = $dept->pivot->is_supervisor; 
         }
+        
         // $this->svDepartments=explode(", ", $user->userdetail->supervisor);;
-        $this->defaultDepartment=$user->userdetail->department;
+        if(!is_null($user->userdetail))
+            $this->defaultDepartment=$user->userdetail->department;
+        else
+            $this->defaultDepartment=0;
 
     }
 
@@ -44,6 +48,12 @@ class AddDepartment extends Component
         $this->emitUp('updateSelectedDepartments', $this->selectedDepartments, $this->defaultDepartment,$departmentNames);
     }
 
+    public function updateCompany($companyId){
+     
+        $this->companyId=$companyId;
+        $this->departments = Department::where('company_id',$companyId)->get();
+        
+    }
 
 
     function showForm()

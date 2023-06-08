@@ -10,6 +10,7 @@ class Customer extends Component
 	public $showForm;
 	public $showProfile;
 	public $importFile;
+	public $status;
 	
 
 	protected $listeners = [
@@ -25,6 +26,10 @@ class Customer extends Component
         $this->exportDataFile = new ExportDataFile;
     }
 
+	public function mount($status=1){
+		$this->status=$status;
+	}
+
     public function downloadExportFile()
     {
         return $this->exportDataFile->generateExcelTemplateCustomer();
@@ -35,10 +40,11 @@ class Customer extends Component
 		return view('livewire.app.common.customer');
 	}
 
-	public function mount() {}
+	
 
 	function showForm($user=null)
 	{
+		
 		if ($user) {
 			$this->user = $user;
            

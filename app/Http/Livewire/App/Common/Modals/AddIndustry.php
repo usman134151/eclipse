@@ -23,7 +23,8 @@ class AddIndustry extends Component
 
     public function setIndustries(User $user){
         $this->selectedIndustries = $user->industries()->allRelatedIds()->toArray();
-        $this->defaultIndustry = $user->userdetail->industry;
+        if(!is_null($user->userdetail))
+            $this->defaultIndustry = $user->userdetail->industry;
     }
 
     // Child Laravel component's updateData function
