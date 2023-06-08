@@ -27,7 +27,6 @@ class AddDepartment extends Component
         $this->svDepartments=explode(", ", $user->userdetail->supervisor);;
         $this->defaultDepartment=$user->userdetail->department;
 
-<<<<<<< HEAD
     }
 
     // Child Laravel component's updateData function
@@ -41,17 +40,6 @@ class AddDepartment extends Component
         $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment,$departmentNames);
     }
 
-=======
-    }
-
-    // Child Laravel component's updateData function
-    public function updateData()
-    {
-        // Emit an event to the parent component with the selected industries and default industry
-        $this->emitUp('updateSelectedDepartments', $this->selectedDepartments,$this->svDepartments, $this->defaultDepartment);
-    }
-
->>>>>>> master
 
 
     function showForm()
