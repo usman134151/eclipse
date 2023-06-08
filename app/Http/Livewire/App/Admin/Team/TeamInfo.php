@@ -48,9 +48,21 @@ class TeamInfo extends Component
 				Rule::unique('admin_teams', 'team_name')->ignore($this->team->id)],
             'team.admin_id'=>'required',
 			'team.team_email'=>'nullable|email',
-            'team.team_phone'=>'nullable',
-            'team.team_description'=>'nullable',
-            'team.team_notes'=>'nullable'
+            'team.team_phone'=>[
+				'nullable',
+				'string',
+				'max:255',
+			],
+            'team.team_description'=> [
+				'nullable',
+				'string',
+				'max:255',
+			],
+            'team.team_notes'=> [
+				'nullable',
+				'string',
+				'max:255',
+			]
 		];
 	}
 	public function updateVal($attrName, $val)
