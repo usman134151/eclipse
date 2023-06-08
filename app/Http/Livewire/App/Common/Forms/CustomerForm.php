@@ -99,10 +99,6 @@ class CustomerForm extends Component
 		   else{
 			$this->userdetail[$attrName] = $val;
 		   }
-
-           
-		   
-		  
 		
 	}
 	public function rules()
