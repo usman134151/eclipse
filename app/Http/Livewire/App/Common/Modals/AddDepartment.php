@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\Department;
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class AddDepartment extends Component
 {
     public $showForm, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment;
-    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setSelectedDepartments'];
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setDepartmentsDetails'];
 
     public function render()
     {
@@ -22,7 +23,10 @@ class AddDepartment extends Component
         // $this->selectedIndustries = array_fill_keys(Industry::pluck('id')->toArray(), false);
     }
 
-    public function setSelectedDepartments(){
+    public function setDepartmentsDetails(User $user){
+        $this->selectedDepartments =$user->departments()->allRelatedIds()->toArray();
+        $this->svDepartments=$user->userdetail->supervisor;
+        $this->defaultDepartment=$user->userdetail->department;
 
     }
 

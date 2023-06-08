@@ -2,6 +2,7 @@
 
 namespace app\Services\App;
 
+use App\Models\Tenant\Department;
 use App\Models\Tenant\User;
 use App\Models\Tenant\UserDetail;
 use App\Models\Tenant\UserIndustry;
@@ -77,15 +78,6 @@ class UserService
     }
   }
 
-  public function addDepartments($selectedDepartments, $svDepartments,$default)
-  {
-    TeamProviders::where('team_id', $team->id)->delete();
-         $team->providers()->attach($selectedProviders);
-
-    // foreach ($selectedProviders as $user_id) {
-    //   TeamProviders::create(["provider_id" => $user_id, "team_id" => $team->id, "status" => 1]);
-    // }
-  }
 
   public function getUserDetails($id)
   {

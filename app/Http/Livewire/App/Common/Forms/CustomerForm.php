@@ -159,9 +159,8 @@ class CustomerForm extends Component
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
-		
-		// adding departments to user details
-		$userService->addslashes
+
+		$this->user->departments()->sync($this->selectedDepartments);
 
 		$this->step=2;
 		$this->serviceActive="active";
@@ -199,7 +198,7 @@ class CustomerForm extends Component
 		
 
 	}
-	public function selectDepartments($selectedDepartments,$svDepartments, $defaultDepartment)
+	public function selectDepartments($selectedDepartments,$svDepartments=[], $defaultDepartment)
 	{
 
 		$this->selectedDepartments = [];
@@ -207,11 +206,7 @@ class CustomerForm extends Component
 			if ($selected)
 				$this->selectedDepartments[] = $departmentId;
 		}
-		foreach ($svDepartments as $departmentId => $selected) {
-			if ($selected)
-				$this->svDepartments[] = $departmentId;
-		}
 		$this->userdetail['department'] = $defaultDepartment;
-		dd($this->selectedDepartments);
+		$this->userdetail['supervisor'] = implode(', ', $svDepartments);
 	}
 }

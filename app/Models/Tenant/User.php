@@ -6,6 +6,7 @@ use App\Models\Tenant;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 ### Api Related Changes (Sakhawat Kamran) #######
@@ -71,7 +72,7 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(Company::class, 'company_name');
 	}
-	public function userdetail()
+	public function userdetail() : HasOne
 	{
 		return $this->hasOne(UserDetail::class, 'user_id');
 	}	
