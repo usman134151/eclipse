@@ -125,6 +125,7 @@ class CustomerForm extends Component
 			$this->user['company_name'] = $val;
 			// Emit an event with data
 			$this->emit('updateCompany', $val);
+			$this->departmentNames=[];
 			
 		   }
 		   else{
@@ -195,9 +196,15 @@ class CustomerForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
+		if ($redirect) {
+
+			$this->showList("Customer has been saved successfully");
+			$this->user = new User;
+		}
 		$this->step=2;
 		$this->serviceActive="active";
 		
+
 		// setting values for next step
 		if (!is_null($this->user->company_name)){
 			$this->emit('updateCompany', $this->user->company_name);
@@ -223,11 +230,7 @@ class CustomerForm extends Component
 
 
 		
-		if($redirect){
-			
-			$this->showList("Customer has been saved successfully");
-			$this->user = new User;
-		}
+		
 
 	}
 
