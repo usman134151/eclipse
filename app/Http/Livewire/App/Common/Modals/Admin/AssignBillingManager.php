@@ -2,12 +2,29 @@
 
 namespace App\Http\Livewire\App\Common\Modals\Admin;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class AssignBillingManager extends Component
 {
-    public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm,$bManagers=[];
+    protected $listeners = ['showList' =>'resetForm', 'updateCompany' => 'setData'];
+
+    public function setData($company_id)
+    {
+        $this->bManagers = User::query()
+            ->where(['users.status' => 1])
+            ->whereHas('roles', function ($query) {
+                $query->where('role_id', 9);
+            })
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+            ->leftJoin('companies', function ($join) use ($company_id) {
+                $join->where('companies.id', '=', $company_id);
+                $join->where('companies.id', '=', 'users.company_name');
+            })
+            ->select('users.id', 'users.name', 'phone')
+            ->get();
+    }
 
     public function render()
     {
