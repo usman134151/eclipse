@@ -52,32 +52,32 @@
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'advanced-service-rate' }"
                             @click.prevent="tab = 'advanced-service-rate'" id="advanced-service-rate-tab" role="tab"
-                            aria-controls="advanced-service-rate" aria-selected="false"><span
-                                class="number">2</span>Advanced Service Rate</a>
+                            aria-controls="advanced-service-rate" aria-selected="false" wire:click="setStep(2)"><span
+                                class="number" >2</span>Advanced Service Rate</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'service-forms' }"
                             @click.prevent="tab = 'service-forms'" id="service-forms-tab" role="tab"
-                            aria-controls="service-forms" aria-selected="false"><span
+                            aria-controls="service-forms" aria-selected="false"  wire:click="setStep(3)"><span
                                 class="number">3</span>Service Forms</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'service-configuration' }"
                             @click.prevent="tab = 'service-configuration'" id="service-configuration-tab" role="tab"
-                            aria-controls="service-configuration" aria-selected="false"><span
-                                class="number">4</span>Service Configuration</a>
+                            aria-controls="service-configuration" aria-selected="false" wire:click="setStep(4)"><span
+                                class="number" >4</span>Service Configuration</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'advance-options' }"
                             @click.prevent="tab = 'advance-options'" id="advance-options-tab" role="tab"
-                            aria-controls="advance-options" aria-selected="false"><span
-                                class="number">5</span>Advance Options</a>
+                            aria-controls="advance-options" aria-selected="false" wire:click="setStep(5)"><span
+                                class="number" >5</span>Advance Options</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'notification-setting' }"
                             @click.prevent="tab = 'notification-setting'" id="notification-setting-tab" role="tab"
-                            aria-controls="notification-setting" aria-selected="false"><span
-                                class="number">6</span>Notification Setting</a>
+                            aria-controls="notification-setting" aria-selected="false" wire:click="setStep(6)"><span
+                                class="number" >6</span>Notification Setting</a>
                     </li>
                   </ul>
                  <!-- Tab panes -->

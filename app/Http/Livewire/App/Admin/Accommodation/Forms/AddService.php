@@ -406,6 +406,7 @@ class AddService extends Component
 	}
 	public function render()
 	{
+       
 		return view('livewire.app.admin.accommodation.forms.add-service');
 	}
 
@@ -484,6 +485,10 @@ class AddService extends Component
                     }
                     $index++;
                 }
+    }
+
+    public function setStep($stepNo){
+        $this->step=$stepNo;
     }
 
 
