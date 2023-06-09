@@ -53,13 +53,7 @@
                     <div class="card">
                         <div class="card-body">
                              @livewire('app.common.lists.service-catagories', key(Str::random(1)))
-                        <!-- ....Back/next (buttons)... -->
-                        <div class="col-12 form-actions">
-                            <button type="button" class="btn btn-outline-dark rounded px-4 py-2">Back</button>
-                            <button type="submit" class="btn btn-primary rounded px-4 py-2">Save & Exit</button>
-                            <button type="submit" class="btn btn-primary rounded px-4 py-2">Next</button>
 
-                        </div>
 
                     </div>
                 </div>
@@ -103,6 +97,19 @@
 
     function divToggle(divId,display){
         $('#'+divId).attr('style',"display:"+display);
+    }
+
+    function showNotifications(checkBox,showDiv){
+      
+        if(checkBox.prop('checked')==true){
+            $('#'+showDiv).removeClass("hidden");
+            $('#'+showDiv).addClass("shown");
+            
+        }
+        else{
+            $('#'+showDiv).addClass("hidden");
+            $('#'+showDiv).removeClass("shown");
+        }
     }
     
 

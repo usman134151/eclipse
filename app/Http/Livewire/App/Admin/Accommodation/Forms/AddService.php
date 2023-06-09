@@ -19,6 +19,11 @@ class AddService extends Component
                               '4'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]],
                               '5'=>[['hour'=>'0','minute'=>'0','exclude_holidays'=>false,'by_request'=>false,'exclude_after_hours'=>false]]
                             ];
+    public $notificationSettings = ['1'=>['broadcast'=>false,'auto_assign'=>false,'broadcast_via_email'=>false,'broadcast_via_sms'=>false,'broadcast_via_push'=>false,'provider_priority'=>false,'service_address'=>false,'radius'=>0,"unit"=>"miles","count"=>0,"interval"=>0,"interval_unit"=>"min",'auto_assign_type'=>0],
+                              '2'=>['broadcast'=>false,'auto_assign'=>false,'broadcast_via_email'=>false,'broadcast_via_sms'=>false,'broadcast_via_push'=>false,'provider_priority'=>false,'auto_assign_type'=>0],
+                              '4'=>['broadcast'=>false,'auto_assign'=>false,'broadcast_via_email'=>false,'broadcast_via_sms'=>false,'broadcast_via_push'=>false,'provider_priority'=>false,'auto_assign_type'=>0],
+                              '5'=>['broadcast'=>false,'auto_assign'=>false,'broadcast_via_email'=>false,'broadcast_via_sms'=>false,'broadcast_via_push'=>false,'provider_priority'=>false,'auto_assign_type'=>0],
+                          ];                            
     protected $listeners = ['editRecord' => 'edit' ,'updateVal'];
 
 
@@ -341,8 +346,11 @@ class AddService extends Component
            'service.check_in_procedure' => 'nullable',
            'service.close_out_procedure' => 'nullable',
            'service.running_late_procedure'=>'nullable',
-           'service.provider_display_settings'=>'nullable'
-
+           'service.provider_display_settings'=>'nullable',
+           'service.notification_settings' => 'sometimes|nullable',
+           'service.notification_settings_v' => 'sometimes|nullable',
+           'service.notification_settings_t' => 'sometimes|nullable',
+           'service.notification_settings_p' => 'sometimes|nullable',
 
 		];
 	}
@@ -371,7 +379,12 @@ class AddService extends Component
         $this->service->running_late_procedure=json_encode($this->runningLate);
         $this->service->provider_display_settings=json_encode($this->providerSettings);
         }
-
+        elseif($step==6){  
+            $this->service->notification_settings=json_encode([$this->notificationSettings["1"]]);
+            $this->service->notification_settings_v=json_encode([$this->notificationSettings["2"]]);
+            $this->service->notification_settings_p=json_encode([$this->notificationSettings["4"]]);
+            $this->service->notification_settings_t=json_encode([$this->notificationSettings["5"]]);
+        }
       
       
        
@@ -469,11 +482,12 @@ class AddService extends Component
           //  dd($this->setupCheckboxes);
         $this->setupCheckboxes=SetupHelper::loadSetupCheckboxes($this->setupCheckboxes);
                 //provider return window
-                $providerReturnValues=[$service->provider_return_window,$service->provider_return_window_v,$service->provider_return_window_p,$service->provider_return_window_t];
+                
                 $this->checkIn=json_decode($this->service->check_in_procedure, true);
                 $this->checkOut=json_decode($this->service->close_out_procedure, true);
                 $this->runningLate=json_decode($this->service->running_late_procedure, true);
                 $this->providerSettings=json_decode($this->service->provider_display_settings, true);
+                $providerReturnValues=[$service->provider_return_window,$service->provider_return_window_v,$service->provider_return_window_p,$service->provider_return_window_t];
                 $index=0;
                 foreach($this->providerReturn as $key=>$value){
                      // Get the current index
@@ -485,10 +499,24 @@ class AddService extends Component
                     }
                     $index++;
                 }
+                $notificationSettingsValues=[$service->notification_settings,$service->notification_settings_v,$service->notification_settings_p,$service->notification_settings_t];
+                $index=0;
+                foreach($this->notificationSettings as $key=>$value){
+                     // Get the current index
+                   
+                    $data = json_decode($notificationSettingsValues[$index], true);
+                 
+                    if (!empty($data) && is_array($data)) {
+                        $this->notificationSettings[$key] = $data[0];
+                    }
+                    $index++;
+                }
     }
 
     public function setStep($stepNo){
-        $this->step=$stepNo;
+      
+        if(!is_null($this->service->name))
+            $this->step=$stepNo;
     }
 
 

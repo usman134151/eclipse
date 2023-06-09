@@ -3215,9 +3215,10 @@
                                 <div class="d-lg-flex justify-content-between align-items-center">
                                     <h2>Default Notification Settings</h2>
                                 </div>
+                                @foreach($serviceTypes as $type=>$parameters)
                                 <div class="row inner-section-segment-spacing">
                                     <div class="col-lg-8">
-                                        <h3 class="text-primary">In-Person Services</h3>
+                                        <h3 class="text-primary">{{$parameters['title']}} Services</h3>
                                         <div class="row">
                                             <div class="col-lg-5 mb-4">
                                                 <div class="d-flex gap-3">
@@ -3226,7 +3227,7 @@
                                                     </label>
                                                     <div class="form-check form-switch form-switch-column">
                                                         <input class="form-check-input" type="checkbox" role="switch"
-                                                             checked aria-label="Broadcast toggle">
+                                                             checked aria-label="Broadcast toggle" wire:model.defer="notificationSettings.{{$type}}.broadcast">
                                                         <label class="form-check-label"
                                                             for="AutoNotifyBroadcast">Auto-notify</label>
                                                     </div>
@@ -3239,15 +3240,19 @@
                                                             Assign
                                                         </label>
                                                         <div class="form-check form-switch form-switch-column">
-                                                            <input class="form-check-input js-auto-notify"
-                                                                type="checkbox" role="switch" aria-label="Auto Notify Toggle">
+                                                            <input class="form-check-input js-auto-notify  show-hidden-content"
+                                                                type="checkbox" role="switch" aria-label="Auto Notify Toggle" onclick="showNotifications($(this),'auto-assign-settings{{$type}}')" wire:model.defer="notificationSettings.{{$type}}.auto_assign" value="true">
                                                             <label class="form-check-label"
                                                                 for="AutoNotifyAssign"></label>
                                                             <label class="form-check-label"
-                                                                for="AutoNotifyAssign">Auto-notify</label>
+                                                                for="AutoNotifyAssign">Auto-assign</label>
                                                         </div>
                                                     </div>
-                                                    <div class="js-auto-notify-content hidden">
+                                                    @if($notificationSettings[$type]['auto_assign'])
+                                                    <div class="js-auto-notify-content" id="auto-assign-settings{{$type}}">
+                                                    @else
+                                                    <div class="js-auto-notify-content hidden" id="auto-assign-settings{{$type}}">
+                                                    @endif    
                                                         <div class="d-flex flex-column gap-3">
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
@@ -3255,14 +3260,14 @@
                                                                     Available</label>
                                                                 <input class="form-check-input"
                                                                     id="FirstAvailableAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
+                                                                    name="auto_assign_type{{$type}}" value="1" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
                                                                     for="PriorityAssign">Priority</label>
                                                                 <input class="form-check-input" id="PriorityAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
+                                                                name="auto_assign_type{{$type}}" value="2" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                             <div class="form-check">
@@ -3272,7 +3277,7 @@
                                                                     Providers</label>
                                                                 <input class="form-check-input"
                                                                     id="PriorityPreferredProvidersAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
+                                                                    name="auto_assign_type{{$type}}" value="3" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                             <div class="form-check">
@@ -3280,7 +3285,7 @@
                                                                     for="ClosestProviderAssign">Closest Provider</label>
                                                                 <input class="form-check-input"
                                                                     id="ClosestProviderAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
+                                                                    nname="auto_assign_type{{$type}}" value="4" wire:model.defer="notificationSettings.{{$type}}.auto_assign_type" type="radio"
                                                                     tabindex="">
                                                             </div>
                                                         </div>
@@ -3294,14 +3299,14 @@
                                                         <label class="form-check-label"
                                                             for="emailBroadcast-via">Email</label>
                                                         <input class="form-check-input" id="emailBroadcast-via"
-                                                            name="emailBroadcast-via" type="checkbox"
+                                                            name="emailBroadcast-via" type="checkbox"  wire:model.defer="notificationSettings.{{$type}}.broadcast_via_email" value="true"
                                                             tabindex="" >
                                                     </div>
                                                     <div class="form-check mb-lg-0">
                                                         <label class="form-check-label"
                                                             for="smsBroadcast-via">SMS</label>
                                                         <input class="form-check-input" id="smsBroadcast-via"
-                                                            name="smsBroadcast-via" type="checkbox"
+                                                            name="smsBroadcast-via" type="checkbox"  wire:model.defer="notificationSettings.{{$type}}.broadcast_via_sms" value="true"
                                                             tabindex="">
                                                     </div>
                                                     <div class="form-check mb-lg-0">
@@ -3310,7 +3315,7 @@
                                                             Notification</label>
                                                         <input class="form-check-input"
                                                             id="pushNotificationBroadcast-via"
-                                                            name="pushNotificationBroadcast-via" type="checkbox"
+                                                            name="pushNotificationBroadcast-via"  wire:model.defer="notificationSettings.{{$type}}.broadcast_via_push" value="true" type="checkbox"
                                                             tabindex="">
                                                     </div>
                                                 </div>
@@ -3323,18 +3328,21 @@
                                                             Priority</label>
                                                         <input class="form-check-input" id="Provider-Priority"
                                                             name="Provider-Priority" type="checkbox"
-                                                            tabindex="">
+                                                            tabindex=""  wire:model.defer="notificationSettings.{{$type}}.provider_priority" value="true">
                                                     </div>
+                                                    @if($type==1)
                                                     <div class="form-check mb-lg-0">
                                                         <label class="form-check-label"
                                                             for="ProximitytoService-Address">Proximity to Service
                                                             Address</label>
                                                         <input class="form-check-input" id="ProximitytoService-Address"
                                                             name="ProximitytoService-Address" type="checkbox"
-                                                            tabindex="">
+                                                            tabindex="" wire:model.defer="notificationSettings.{{$type}}.service_address" value="true" >
                                                     </div>
+                                                   @endif 
                                                 </div>
                                             </div>
+                                            @if($type==1)
                                             <div class="col-lg-12 mb-4">
                                                 <div class="d-lg-flex align-items-center gap-5">
                                                     <div>
@@ -3342,9 +3350,10 @@
                                                         <div class="input-group">
                                                             <input type="" name=""
                                                                 class="form-control form-control-sm w-50"
-                                                                placeholder="00" aria-label="00">
-                                                            <select class="form-select form-select-sm" id="max-radius">
-                                                                <option>Miles</option>
+                                                                placeholder="00" aria-label="00" wire:model.defer="notificationSettings.{{$type}}.radius">
+                                                            <select class="form-select form-select-sm" id="max-radius" wire:model.defer="notificationSettings.{{$type}}.unit">
+                                                                <option value="miles">Miles</option>
+                                                                <option value="km">KM</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -3352,7 +3361,7 @@
                                                         <label class="form-label-sm" for="provider-count">Provider Count</label>
                                                         <div class="input-group">
                                                             <input type="" name="" class="form-control form-control-sm"
-                                                                placeholder="00" id="provider-count">
+                                                                placeholder="00" id="provider-count" wire:model.defer="notificationSettings.{{$type}}.count">
                                                         </div>
                                                     </div>
                                                     <div>
@@ -3360,139 +3369,27 @@
                                                         <div class="input-group">
                                                             <input type="" name=""
                                                                 class="form-control form-control-sm w-50"
-                                                                placeholder="00" aria-label="00">
-                                                            <select class="form-select form-select-sm" id="interval">
-                                                                <option>Min</option>
+                                                                placeholder="00" aria-label="00" wire:model.defer="notificationSettings.{{$type}}.interval">
+                                                            <select class="form-select form-select-sm" id="interval" wire:model.defer="notificationSettings.{{$type}}.interval_unit">
+                                                                <option value="min">Min</option>
+                                                                <option value="hour">Hour</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <h3 class="text-primary">Virtual Services</h3>
-                                        <div class="row">
-                                            <div class="col-lg-5 mb-4">
-                                                <div class="d-flex gap-3">
-                                                    <label class="form-label-sm">
-                                                        Broadcast
-                                                    </label>
-                                                    <div class="form-check form-switch form-switch-column">
-                                                        <input class="form-check-input" type="checkbox" role="switch"
-                                                            id="AutoNotifyBroadcast-2" checked aria-label="Auto Notify Broadcast Toggle">
-                                                        <label class="form-check-label"
-                                                            for="AutoNotifyBroadcast-2">Auto-notify</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7 mb-4">
-                                                <div>
-                                                    <div class="d-flex gap-3 mb-4">
-                                                        <label class="form-label-sm">
-                                                            Assign
-                                                        </label>
-                                                        <div class="form-check form-switch form-switch-column">
-                                                            <input class="form-check-input js-auto-notify"
-                                                                type="checkbox" role="switch"  aria-label="Auto Assign Toggle">
-                                                            <label class="form-check-label"
-                                                                for="AutoNotifyAssign"></label>
-                                                            <label class="form-check-label"
-                                                                for="AutoNotifyAssign">Auto-notify</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="js-auto-notify-content hidden">
-                                                        <div class="d-flex flex-column gap-3">
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    for="FirstAvailableAssign">First
-                                                                    Available</label>
-                                                                <input class="form-check-input"
-                                                                    id="FirstAvailableAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
-                                                                    tabindex="">
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    for="PriorityAssign">Priority</label>
-                                                                <input class="form-check-input" id="PriorityAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
-                                                                    tabindex="">
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    for="PriorityPreferredProvidersAssign">Priority &
-                                                                    Preferred
-                                                                    Providers</label>
-                                                                <input class="form-check-input"
-                                                                    id="PriorityPreferredProvidersAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
-                                                                    tabindex="">
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label"
-                                                                    for="ClosestProviderAssign">Closest Provider</label>
-                                                                <input class="form-check-input"
-                                                                    id="ClosestProviderAssign"
-                                                                    name="RequestStartTimeforServices" type="radio"
-                                                                    tabindex="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 mb-4">
-                                                <div class="d-lg-flex align-items-center gap-5">
-                                                    <label class="form-label mb-lg-0">Broadcast via</label>
-                                                    <div class="form-check mb-lg-0">
-                                                        <label class="form-check-label"
-                                                            for="emailBroadcastvia">Email</label>
-                                                        <input class="form-check-input" id="emailBroadcastvia"
-                                                            name="RequestStartTimeforServices" type="checkbox"
-                                                            tabindex="">
-                                                    </div>
-                                                    <div class="form-check mb-lg-0">
-                                                        <label class="form-check-label"
-                                                            for="smsBroadcastvia">SMS</label>
-                                                        <input class="form-check-input" id="smsBroadcastvia"
-                                                            name="RequestStartTimeforServices" type="checkbox"
-                                                            tabindex="">
-                                                    </div>
-                                                    <div class="form-check mb-lg-0">
-                                                        <label class="form-check-label"
-                                                            for="pushNotificationBroadcastvia">Push
-                                                            Notification</label>
-                                                        <input class="form-check-input"
-                                                            id="pushNotificationBroadcastvia"
-                                                            name="RequestStartTimeforServices" type="checkbox"
-                                                            tabindex="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 mb-4">
-                                                <div class="d-lg-flex align-items-center gap-5">
-                                                    <label class="form-label mb-lg-0">Variable</label>
-                                                    <div class="form-check mb-lg-0">
-                                                        <label class="form-check-label" for="ProviderPriority">Provider
-                                                            Priority</label>
-                                                        <input class="form-check-input" id="ProviderPriority"
-                                                            name="RequestStartTimeforServices" type="checkbox"
-                                                            tabindex="">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                @endforeach
 
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advance-options')" wire:click.prevent="back">Back</button>
-                                    <a href="/admin/accommodation/all-services" type="submit"class="btn btn-primary rounded">
+                                    <a href="/admin/accommodation/all-services" type="submit"class="btn btn-primary rounded" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click.prevent="save(1,6)" >
                                             Save & Exit</a>
                                 </div>
                             </div>
