@@ -829,7 +829,7 @@
                                                     <label class="form-label" for="preffered-providers">
                                                         Preferred Providers
                                                     </label>
-                                                    <select name="selected_providers" id="selected_providers" class=" select2 form-select " wire:model.defer="" tabindex="1" multiple  aria-label="Select Team Providers">
+                                                    <select name="favored_providers" id="favored_providers" class=" select2 form-select " wire:model.defer="favored_providers" tabindex="1" multiple  aria-label="Select Team Providers">
                                                         <option>Select Preferred Provider</option>
                                                         @foreach($providers as $p)
                                                             <option value="{{$p->id}}" >{{$p->name}}</option>
@@ -840,7 +840,7 @@
                                                     <label class="form-label">
                                                         Disfavored Providers
                                                     </label>
-                                                    <select name="selected_providers" id="selected_providers" class=" select2 form-select " wire:model.defer="" tabindex="1" multiple  aria-label="Select Team Providers">
+                                                    <select name="unfavored_providers" id="unfavored_providers" class=" select2 form-select " wire:model.defer="unfavored_providers" tabindex="1" multiple  aria-label="Select Team Providers">
                                                         <option>Select Disfavored Provider</option>
                                                         @foreach($providers as $p)
                                                             <option value="{{$p->id}}" >{{$p->name}}</option>

@@ -5,7 +5,6 @@ namespace App\Http\Livewire\App\Common\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
-use App\Models\Tenant\UserDepartment;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
@@ -16,7 +15,7 @@ class CustomerForm extends Component
 {
     public $user,$isAdd=true;
     public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
-    public $providers=[];
+    public $providers=[], $unfavored_providers=[], $favored_providers=[];
     
 	public $component = 'customer-info';
     public $setupValues = [
