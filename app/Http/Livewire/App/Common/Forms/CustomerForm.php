@@ -16,7 +16,7 @@ class CustomerForm extends Component
     public $user,$isAdd=true;
     public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
-	public $user_configuration= ['grant_access_to_schedule'=> true, 'hide_billing'=>false, 'require_approval'=>true, 'have_access_to'=>[] ];    
+	public $user_configuration= ['grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	
 	public $component = 'customer-info';
     public $setupValues = [
@@ -69,9 +69,19 @@ class CustomerForm extends Component
 		$this->component = $component;
 	}
 
-    public function permissionConfiguration(){
-      //  dd($this->step);
-	//   dd($this->user_configuration);
+    public function permissionConfiguration($redirect=1){
+
+		$userDet = $this->user->userdetail;
+		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
+		$userDet['favored_users'] = implode(', ', $this->favored_providers);
+		$userDet->save();
+
+
+		if ($redirect) {
+
+			$this->showList("Customer has been saved successfully");
+			$this->user = new User;
+		}
         $this->step =3;
     }
     public function addServices(){
@@ -85,6 +95,7 @@ class CustomerForm extends Component
 	//    	$this->userdetail=$user['userdetail'];
 		if($user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
+		
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
@@ -167,6 +178,7 @@ class CustomerForm extends Component
 		];
 	}
 
+
 	public function save($redirect=1){
 		
 		$this->validate();
@@ -204,6 +216,8 @@ class CustomerForm extends Component
 			->select('users.id', 'users.name', 'phone')
 			->get();
 
+		$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+		$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
 		$this->dispatchBrowserEvent('refreshSelects');
 
 
