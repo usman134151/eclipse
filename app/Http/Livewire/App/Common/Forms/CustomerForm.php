@@ -14,7 +14,8 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
     public $user,$isAdd=true;
-    public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
+    public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
+	'user_introduction'=>null, 'title' => null, 'user_position' => null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	
@@ -125,6 +126,7 @@ class CustomerForm extends Component
 			$this->user['company_name'] = $val;
 			// Emit an event with data
 			$this->emit('updateCompany', $val);
+			$this->departmentNames=[];
 			
 		   }
 		   else{
@@ -195,14 +197,15 @@ class CustomerForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
-		$this->step=2;
-		$this->serviceActive="active";
-
 		if ($redirect) {
 
 			$this->showList("Customer has been saved successfully");
 			$this->user = new User;
 		}
+		$this->step=2;
+		$this->serviceActive="active";
+		
+
 		// setting values for next step
 		if (!is_null($this->user->company_name)){
 			$this->emit('updateCompany', $this->user->company_name);
@@ -221,16 +224,16 @@ class CustomerForm extends Component
 			})
 			->select('users.id', 'users.name', 'phone')
 			->get();
-
-		$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
-		$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
-		if($this->user->userdetail['user_configuration']!=null)
-			$this->user_configuration = json_decode($this->user->userdetail['user_configuration'],true);
+		
+		if($this->user->userdetail->get('favored_users')!=null)
+			$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+		if ($this->user->userdetail->get('unfavored_users')!=null)
+			$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
 		$this->dispatchBrowserEvent('refreshSelects');
 
 
 		
-	
+		
 
 	}
 
