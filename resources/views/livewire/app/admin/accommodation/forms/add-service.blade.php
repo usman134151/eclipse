@@ -237,7 +237,7 @@
                                                 <div class="d-lg-flex align-items-center justify-content-between mb-3">
                                                     <div class="d-lg-flex align-items-center gap-3">
                                                         <h3 class="form-label mb-0">
-                                                            {{$parameters['title']}}
+                                                            {{$parameters['title']}} Rates
                                                         </h3>
                                                         <div class="form-check form-check-inline">
                                                         @if($parameters['postfix']=='_v')
@@ -511,18 +511,22 @@
                                         </h3>
                                         <div class="form-check mb-4">
                                             <input class="form-check-input" id="bill_status"
-                                                name="bill_status" type="radio" tabindex="" value="2" wire:model.defer="service.bill_status"/>
+                                                name="bill_status" type="radio" tabindex="" value="2" wire:model.defer="service.bill_status" onclick="divToggle('payment_deduct_hour','none')"/>
                                             <label class="form-check-label" for="BillAfterServices">Bill After
                                                 Services</label>
                                         </div>
                                         <div class="form-check mb-4">
                                             <input class="form-check-input" id="bill_status"
-                                                name="bill_status" type="radio" tabindex="" value="1" />
-                                            <label class="form-check-label" for="BillBeforeStartServices" wire:model.defer="service.bill_status">Bill Before or
+                                                name="bill_status" type="radio" tabindex="" value="1" wire:model.defer="service.bill_status" onclick="divToggle('payment_deduct_hour','')"/>
+                                            <label class="form-check-label" for="BillBeforeStartServices" >Bill Before or
                                                 at
                                                 Start of Services</label>
                                         </div>
-                                        <div class="ps-4">
+                                        @if($service->bill_status==1)
+                                        <div class="ps-4" id="payment_deduct_hour" style="display:''">
+                                        @else
+                                        <div class="ps-4" id="payment_deduct_hour" style="display:none">
+                                        @endif
                                             <label class="form-label-sm">
                                                 Deduct Prepayment Parameter <i class="fa fa-question-circle text-muted"
                                                     aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -540,13 +544,18 @@
                                             <div class="border p-3">
                                                 <div class="row">
                                                 @foreach($serviceTypes as $type=>$parameters)
-                                                    <div class="col-lg-6 pe-lg-5 mb-3">
+                                                @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class="col-lg-6 pe-lg-5 mb-3 {{$parameters['class']}}">
+                                        @else
+                                            <div class="col-lg-6 pe-lg-5 mb-3 d-none {{$parameters['class']}}">
+                                        @endif 
+                                                  
                                                         <div class="d-flex flex-column gap-5">
                                                        
                                                             <!-- In-Person Billing Increment -->
                                                             <div>
                                                                 <div class="text-primary fw-bold">
-                                                                    In-Person
+                                                                    {{$parameters['title']}}
                                                                 </div>
                                                                 <div class="d-flex flex-column gap-3">
                                                                     <div class="input-group">
@@ -2193,12 +2202,12 @@
                                     </div>
                                 </div><!-- /Specialization Rates -->
                                 <div class="col-12 form-actions ">
-                                    <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('basic-service-setup')" wire:click="back">Back</button>
-                                    <a href="/admin/accommodation/all-services" type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</a>
-                                    <button type="button" class="btn btn-primary rounded"
+                                <button type="button" class="btn btn-outline-dark rounded"
+                                wire:click.prevent="back" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('basic-service-setup')" wire:click.prevent="back">Back</button>
+                                <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save(1,2)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
+                                    <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(0,2)" 
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-forms')">Next</button>
+                                 
                                 </div>
                             </form>
                         </div>
@@ -2350,11 +2359,11 @@
                             <div class="row">
                                 <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advanced-service-rate')">Back</button>
-                                    <a href="/admin/accommodation/all-services" type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</a>
-                                    <button type="button" class="btn btn-primary rounded"
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advanced-service-rate')" wire:click.prevent="back">Back</button>
+                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="save(1,3)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</button>
+                                    <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(0,3)" 
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-configuration')">Next</button>
+                                   
                                 </div>
                             </div>
                         </form>
@@ -2380,14 +2389,15 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestStartTimeforServicesYes"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="request_start_time"
+                                                    name="request_start_time" type="radio" tabindex="" value="1" wire:model.defer="service.request_start_time" />
                                                 <label class="form-check-label"
                                                     for="RequestStartTimeforServicesYes">Yes</label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="" aria-label="No"/>
+                                                id="request_start_time"
+                                                    name="request_start_time" type="radio" tabindex="" value="0" wire:model.defer="service.request_start_time" type="radio" tabindex="" aria-label="No"/>
                                                 <label class="form-check-label"
                                                     for="RequestStartTimeforServicesNo">No</label>
                                             </div>
@@ -2403,14 +2413,14 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestStartTimeforServices-Yes"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="request_end_time"
+                                                    name="request_end_time" type="radio" tabindex="" value="1" wire:model.defer="service.request_end_time" type="radio" tabindex="" />
                                                 <label class="form-check-label"
                                                     for="RequestStartTimeforServices-Yes">Yes</label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="" aria-label="No"/>
+                                                id="request_end_time" name="request_end_time" type="radio"  value="0" wire:model.defer="service.request_end_time" type="radio" tabindex="" aria-label="No"/>
                                                 <label class="form-check-label"
                                                     for="RequestStartTimeforServicesNo">No</label>
                                             </div>
@@ -2426,14 +2436,13 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestAddressForEnd"
-                                                    name="RequestAddressForEnd" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="request_end_address" name="request_end_address" type="radio"  value="1" wire:model.defer="service.request_end_address" type="radio" tabindex="" />
                                                 <label class="form-check-label"
                                                     for="RequestAddressForEnd">Yes</label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input"
-                                                    name="RequestAddressForEndNo" type="radio" tabindex="" aria-label="No"/>
+                                                id="request_end_address" name="request_end_address" type="radio"  value="0" wire:model.defer="service.request_end_address" type="radio" tabindex="" aria-label="No"/>
                                                 <label class="form-check-label"
                                                     for="RequestAddressForEndNo">No</label>
                                             </div>
@@ -2449,14 +2458,13 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestNumberOfProvidersYes"
-                                                    name="RequestNumberOfProvidersYes" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="request_no_of_providers" name="request_no_of_providers" type="radio"  value="1" wire:model.defer="service.request_no_of_providers" type="radio" tabindex="" />
                                                 <label class="form-check-label"
                                                     for="RequestNumberOfProvidersYes">Yes</label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="" aria-label="No"/>
+                                                id="request_no_of_providers" name="request_no_of_providers" type="radio"  value="0" wire:model.defer="service.request_no_of_providers" type="radio" tabindex="" aria-label="No"/>
                                                 <label class="form-check-label"
                                                     for="RequestStartTimeforServicesNo">No</label>
                                             </div>
@@ -2472,14 +2480,13 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestServiceConsumeryes"
-                                                    name="RequestServiceConsumeryes" type="radio" tabindex="" />
+                                                <input class="form-check-input"  id="request_service_consumer" name="request_service_consumer" type="radio"  value="1" wire:model.defer="service.request_service_consumer" type="radio" tabindex="" />
                                                 <label class="form-check-label"
                                                     for="RequestServiceConsumeryes">Yes</label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input"
-                                                    name="RequestServiceConsumerNo" type="radio" tabindex="" id="RequestServiceConsumerNo"/>
+                                                id="request_service_consumer" name="request_service_consumer" type="radio"  value="0" wire:model.defer="service.request_service_consumer"  tabindex="" id="RequestServiceConsumerNo"/>
                                                 <label class="form-check-label"
                                                     for="RequestServiceConsumerNo">No</label>
                                             </div>
@@ -2495,14 +2502,12 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestParticipantyes"
-                                                    name="RequestParticipantyes" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="request_participants" name="request_participants" value="1" wire:model.defer="service.request_participants"  type="radio" tabindex="" />
                                                 <label class="form-check-label"
                                                     for="RequestParticipantyes">Yes</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" id="RequestParticipantNo"
-                                                    name="RequestParticipantNo" type="radio" tabindex="" />
+                                                <input class="form-check-input" id="request_participants" name="request_participants" value="0" wire:model.defer="service.request_participants" type="radio" tabindex="" />
                                                 <label class="form-check-label"
                                                     for="RequestParticipantNo">No</label>
                                             </div>
@@ -2513,11 +2518,11 @@
                             <div class="row">
                                 <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-forms')">Back</button>
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-forms')" wire:click.prevent="back">Back</button>
                                     <a href="/admin/accommodation/all-services" type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</a>
+                                            class="btn btn-primary rounded" wire:click.prevent="save(1,4)" >Save & Exit</a>
                                     <button type="button" class="btn btn-primary rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advance-options')">Next</button>
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advance-options')" wire:click.prevent="save(0,4)" >Next</button>
 
                                 </div>
                             </div>
@@ -2544,14 +2549,14 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="Admin-Business-Hours"
-                                                    name="Admin-Business-Hours" type="radio" tabindex="">
+                                                <input class="form-check-input" id="billing_companies"
+                                                    name="billing_companies" value="1" wire:model.defer="service.billing_companies" type="radio" tabindex="">
                                                 <label class="form-check-label" for="Admin-Business-Hours">Admin Business
                                                     Hours</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" id="Customer-Business-Hours"
-                                                    name="Customer-Business-Hours" type="radio" tabindex="">
+                                                <input class="form-check-input" id="billing_companies"
+                                                    name="billing_companies" value="2" wire:model.defer="service.billing_companies" type="radio" tabindex="">
                                                 <label class="form-check-label" for="Customer-Business-Hours">Customer's
                                                     Business Hours</label>
                                             </div>
@@ -2565,14 +2570,14 @@
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="AdminBusinessHours"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                <input class="form-check-input" id="payment_providers"
+                                                    name="payment_providers" value="1" wire:model.defer="service.payment_providers" type="radio" tabindex="">
                                                 <label class="form-check-label" for="AdminBusinessHours">Admin Business
                                                     Hours</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" id="CustomerBusinessHours"
-                                                    name="RequestStartTimeforServices" type="radio" tabindex="">
+                                                <input class="form-check-input"  id="payment_providers"
+                                                    name="payment_providers" value="2" wire:model.defer="service.payment_providers" type="radio" tabindex="">
                                                 <label class="form-check-label" for="CustomerBusinessHours">Customer's
                                                     Business Hours</label>
                                             </div>
@@ -2587,26 +2592,24 @@
                                                 title=""></i>
                                         </h3>
                                         <div class="d-flex flex-column gap-1">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label class="col-form-label" for="in-person">In-Person</label>
+                                        @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class="row mb-5 {{$parameters['class']}}">
+                                        @else
+                                            <div class="row d-none {{$parameters['class']}}">
+                                        @endif    
+                                           
+                                                <div class="col-lg-4">
+                                                    <label class="col-form-label" for="in-person">{{$parameters['title']}}</label>
                                                 </div>
-                                                <div class="col-lg-9">
-                                                    <select class="form-select" id="in-person">
-                                                        <option>Admin Time Zone</option>
+                                                <div class="col-lg-8">
+                                                    <select class="form-select" id="in-person{{$parameters['postfix']}}" wire:model.defer="service.billing_timezone{{$parameters['postfix']}}">
+                                                        <option value="1">Admin Time Zone</option>
+                                                        <option value="2">Provider Time Zone</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label class="col-form-label" for="virtual">Virtual</label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <select class="form-select" id="virtual">
-                                                        <option>Customer’s Time Zone</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -2618,121 +2621,95 @@
                                                 title=""></i>
                                         </h3>
                                         <div class="d-flex flex-column gap-1">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label class="col-form-label" for="In-Person">In-Person</label>
+                                        @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class="row mb-5 {{$parameters['class']}}">
+                                        @else
+                                            <div class="row d-none {{$parameters['class']}}">
+                                        @endif    
+                                           
+                                                <div class="col-lg-4">
+                                                    <label class="col-form-label" for="in-person">{{$parameters['title']}}</label>
                                                 </div>
-                                                <div class="col-lg-9">
-                                                    <select class="form-select" id="In-Person">
-                                                        <option>Admin Time Zone</option>
+                                                <div class="col-lg-8">
+                                                    <select class="form-select" id="payment_timezone{{$parameters['postfix']}}" wire:model.defer="service.payment_timezone{{$parameters['postfix']}}">
+                                                        <option value="1">Admin Time Zone</option>
+                                                        <option value="2">Provider Time Zone</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label class="col-form-label" for="Virtual">Virtual</label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <select class="form-select" id="Virtual">
-                                                        <option>Provider's Time Zone</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        @endforeach
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 pe-lg-5">
+                                <div class="row">
+                                    <div class="col-lg-6 pe-lg-5">
+                                @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class=" {{$parameters['class']}}">
+                                        @else
+                                            <div class=" d-none {{$parameters['class']}}">
+                                        @endif    
+                               
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            In-Person Billing <i class="fa fa-question-circle text-muted"
+                                        {{$parameters['title']}} Billing <i class="fa fa-question-circle text-muted"
                                                 aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title=""></i>
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="ScheduledDuration"
-                                                    name="ScheduledDuration" type="radio" tabindex="">
+                                                <input class="form-check-input" id="billing_rule{{$parameters['postfix']}}"
+                                                    name="billing_rule{{$parameters['postfix']}}" wire:model.defer="service.billing_rule{{$parameters['postfix']}}" value="1" type="radio" tabindex="">
                                                 <label class="form-check-label" for="ScheduledDuration">Scheduled
                                                     Duration</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" id="ActualDuration"
-                                                    name="ActualDuration" type="radio" tabindex="">
+                                                <input class="form-check-input"id="billing_rule{{$parameters['postfix']}}"
+                                                    name="billing_rule{{$parameters['postfix']}}" wire:model.defer="service.billing_rule{{$parameters['postfix']}}" value="2"  type="radio" tabindex="">
                                                 <label class="form-check-label" for="ActualDuration">Actual
                                                     Duration</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 ps-lg-5">
+                              
+                                @endforeach
+                                </div>
+                                <div class="col-lg-6  ps-lg-5">
+                                @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                            <div class=" {{$parameters['class']}}">
+                                        @else
+                                            <div class="d-none {{$parameters['class']}}">
+                                        @endif    
+                               
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            In-Person Payments <i class="fa fa-question-circle text-muted"
+                                        {{$parameters['title']}} Payments <i class="fa fa-question-circle text-muted"
                                                 aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title=""></i>
                                         </h3>
                                         <div class="">
                                             <div class="form-check">
-                                                <input class="form-check-input" id="Scheduled-durations"
-                                                    name="Scheduled-durations" type="radio" tabindex="">
+                                                <input class="form-check-input" id="payment_rule{{$parameters['postfix']}}"
+                                                    name="payment_rule{{$parameters['postfix']}}" wire:model.defer="service.payment_rule{{$parameters['postfix']}}" value="1"  type="radio" tabindex="">
                                                 <label class="form-check-label" for="Scheduled-durations">Scheduled
                                                     Duration</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" id="actualDuration"
-                                                    name="actualDuration" type="radio" tabindex="">
+                                                <input class="form-check-input"id="payment_rule{{$parameters['postfix']}}"
+                                                    name="payment_rule{{$parameters['postfix']}}" wire:model.defer="service.payment_rule{{$parameters['postfix']}}" value="2"  type="radio" tabindex="">
                                                 <label class="form-check-label" for="actualDuration">Actual
                                                     Duration</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 pe-lg-5">
-                                    <div class="inner-section-segment-spacing border p-3">
-                                        <h3>
-                                            Virtual Billing <i class="fa fa-question-circle text-muted"
-                                                aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title=""></i>
-                                        </h3>
-                                        <div class="">
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="Scheduled-duration"
-                                                    name="Scheduled-duration" type="radio" tabindex="">
-                                                <label class="form-check-label" for="Scheduled-duration">Scheduled
-                                                    Duration</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="Actual_Duration"
-                                                    name="Actual_Duration" type="radio" tabindex="">
-                                                <label class="form-check-label" for="Actual_Duration">Actual
-                                                    Duration</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                @endforeach
                                 </div>
-                                <div class="col-lg-6 ps-lg-5">
-                                    <div class="inner-section-segment-spacing border p-3">
-                                        <h3>
-                                            Virtual Payments <i class="fa fa-question-circle text-muted"
-                                                aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title=""></i>
-                                        </h3>
-                                        <div class="">
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="Scheduled_Duration"
-                                                    name="Scheduled_Duration" type="radio" tabindex="">
-                                                <label class="form-check-label" for="Scheduled_Duration">Scheduled
-                                                    Duration</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" id="actual_duration"
-                                                    name="actual_duration" type="radio" tabindex="">
-                                                <label class="form-check-label" for="actual_duration">Actual
-                                                    Duration</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+
                                 <div class="col-lg-6 pe-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
@@ -2741,34 +2718,27 @@
                                                 title=""></i>
                                         </h3>
                                         <div class="d-flex flex-column gap-2">
+                                        @foreach($serviceTypes as $type=>$parameters)
+                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
                                             <div class="row">
+                                        @else
+                                            <div class="d-none {{$parameters['class']}}">
+                                        @endif    
+                                            
                                                 <div class="col-lg-3 align-self-center">
-                                                    <div class="form-check mb-0">
-                                                        <input class="form-check-input" id="InPerson"
-                                                            name="InPerson" type="radio" tabindex="">
+                                                    <div class=" mb-0">
+
                                                         <label class="form-check-label"
-                                                            for="InPerson">In-Person</label>
+                                                            for="InPerson">{{$parameters['title']}}</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <input type="text" class="form-control form-control-sm text-center"
-                                                        placeholder="00:00" aria-label="" aria-describedby="">
+                                                        placeholder="00:00" wire:model.defer="min_payment_duration{{$parameters['postfix']}}" aria-label="" aria-describedby="">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-3 align-self-center">
-                                                    <div class="form-check mb-0">
-                                                        <input class="form-check-input" id="virtual-1"
-                                                            name="virtual-1" type="radio" tabindex="">
-                                                        <label class="form-check-label"
-                                                            for="virtual-1">Virtual</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <input type="text" class="form-control form-control-sm text-center"
-                                                        placeholder="00:00" aria-label="" aria-describedby="">
-                                                </div>
-                                            </div>
+                                        @endforeach    
+
                                         </div>
                                     </div>
                                 </div>
@@ -2785,21 +2755,21 @@
                                             <div class="d-flex flex-column gap-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input" id="EnableCheckinButton"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                                    <label class="form-check-label" for="EnableCheckinButton">Enable
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model="checkIn.enable_button" value="true">
+                                                    <label class="form-check-label" for="EnableCheckinButton" >Enable
                                                         “Check-in” Button</label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input"
                                                         id="RequireCheckinforProvidertoInvoice"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkIn.require_provider_invoice" value="true">
                                                     <label class="form-check-label"
                                                         for="RequireCheckinforProvidertoInvoice">Require "Check-in" for
                                                         Provider to Invoice</label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" id="RequireCustomer-Signature"
-                                                        name="RequireCustomer-Signature" type="checkbox" tabindex="">
+                                                        name="RequireCustomer-Signature" type="checkbox" tabindex="" wire:model.defer="checkIn.enable_digital_signature" value="true">
                                                     <label class="form-check-label"
                                                         for="RequireCustomer-Signature">Require
                                                         Customer Signature</label>
@@ -2809,23 +2779,23 @@
                                                         Customized Check-in Form</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="AddCustomizedCheckinForm" name="RequestStartTimeforServices"
-                                                        type="checkbox" tabindex="">
-                                                    <div class="hidden-content">
+                                                        type="checkbox" tabindex="" wire:model.defer="checkIn.customize_form" value="true">
+                                                    <div class="hidden-content"> 
                                                         <label class="form-label-sm">Select Form</label>
-                                                        <select class="form-select">
-                                                            <option>Select Form</option>
+                                                        <select class="form-select"  wire:model.defer="checkIn.customize_form_id">
+                                                            <option value="0">Select Form</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-check">
-                                                    <label class="form-check-label" for="NotifyCustomerof-Checkin">Notify
+                                                    <label class="form-check-label" for="NotifyCustomerof-Checkin"value="true">Notify
                                                         Customer of Check-in</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="NotifyCustomerof-Checkin" name="NotifyCustomerof-Checkin"
-                                                        type="checkbox" tabindex="">
+                                                        type="checkbox" tabindex=""  wire:model.defer="checkIn.notify_customers" value="true">
                                                     <div class="hidden-content">
                                                         <label class="form-label-sm">Select Customer-Users</label>
-                                                        <select class="form-select">
+                                                        <select class="form-select" wire:model.defer="checkIn.customers">
                                                             <option>Select Customer-Users</option>
                                                         </select>
                                                     </div>
@@ -2846,7 +2816,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input"
                                                         id="EnableAuthorizeandCloseButtonforProviders"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex=""  wire:model.defer="checkOut.enable_button_provider" value="true">
                                                     <label class="form-check-label"
                                                         for="EnableAuthorizeandCloseButtonforProviders">Enable
                                                         “Authorize
@@ -2859,7 +2829,7 @@
                                                         and Close” Button for Customers</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="EnableAuthorizeandCloseButtonforCustomers"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex=""  wire:model.defer="checkOut.enable_button_customer" value="true">
                                                     <div class="hidden-content">
                                                         <label class="form-label-sm">Select Customer-Users</label>
                                                         <select class="form-select">
@@ -2874,7 +2844,7 @@
                                                         & Close-out" for Provider Payment</label>
                                                     <input class="form-check-input"
                                                         id="RequireAuthorizeCloseOutforProviderPayment"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkOut.provider_payment" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label"
@@ -2882,24 +2852,24 @@
                                                         "Authorize & Close-out" for Customer Invoicing</label>
                                                     <input class="form-check-input"
                                                         id="RequireAuthorizeCloseOutforCustomerInvoicing"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkOut.customer_invoice" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label"
                                                         for="RequireCustomerSignature">Require
                                                         Customer Signature</label>
                                                     <input class="form-check-input" id="RequireCustomerSignature"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkOut.enable_digital_signature" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="AddCustomizedCloseOutForm">Add
                                                         Customized “Close-Out” Form</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="AddCustomizedCloseOutForm"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkOut.customize_form" value="true">
                                                     <div class="hidden-content">
                                                         <label class="form-label-sm">Select Form</label>
-                                                        <select class="form-select">
+                                                        <select class="form-select" wire:model.defer="checkOut.customize_form_id">
                                                             <option>Select Form</option>
                                                         </select>
                                                     </div>
@@ -2909,14 +2879,14 @@
                                                         for="AutoApproveTimeExtensions">Auto-Approve Time
                                                         Extensions</label>
                                                     <input class="form-check-input" id="AutoApproveTimeExtensions"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkOut.time_extension" value="true">
                                                 </div>
                                                 <div class="form-check">
-                                                    <label class="form-check-label" for="EnableCloseOutStatuses">Enable
+                                                    <label class="form-check-label" for="EnableCloseOutStatuses" >Enable
                                                         Close-out Statuses</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="EnableCloseOutStatuses" name="RequestStartTimeforServices"
-                                                        type="checkbox" tabindex="">
+                                                        type="checkbox" tabindex=""  wire:model.defer="checkOut.statuses" value="true">
                                                     <div class="hidden-content">
                                                         <div class="d-flex flex-column gap-3 mt-3">
                                                             <div class="form-check">
@@ -2925,7 +2895,7 @@
                                                                 <input class="form-check-input"
                                                                     id="EnableCloseOutStatusesCompleted"
                                                                     name="RequestStartTimeforServices" type="checkbox"
-                                                                    tabindex="">
+                                                                    tabindex="" wire:model.defer="checkOut.status_types.completed" value="true">
                                                             </div>
                                                             <div class="form-check">
                                                                 <label class="form-check-label"
@@ -2933,7 +2903,7 @@
                                                                 <input class="form-check-input show-hidden-content"
                                                                     id="EnableCloseOutStatusesNoShow"
                                                                     name="RequestStartTimeforServices" type="checkbox"
-                                                                    tabindex="">
+                                                                    tabindex="" wire:model.defer="checkOut.status_types.noshow" value="true">
                                                                 <div class="hidden-content">
                                                                     <div class="d-flex flex-column gap-3 my-3">
                                                                         <label
@@ -2944,7 +2914,7 @@
                                                                                 as Normal</label>
                                                                             <input class="form-check-input"
                                                                                 id="ProcessAsNormalNoShowBilling"
-                                                                                name="EnableCloseoutStatusesNoShowBillingBilling"
+                                                                                name="noshow_billing" value="1" wire:model.defer="checkOut.noshow_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -2953,27 +2923,17 @@
                                                                                 Service Minimum</label>
                                                                             <input class="form-check-input"
                                                                                 id="BillServiceMinimumNoShowBilling"
-                                                                                name="EnableCloseoutStatusesNoShowBillingBilling"
+                                                                                name="noshow_billing" value="2" wire:model.defer="checkOut.noshow_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
-                                                                        {{--  
-                                                                        <div class="form-check">
-                                                                            <label class="form-check-label"
-                                                                                for="PayProviderServiceMinimumNoShowBilling">Pay
-                                                                                Provider Service Minimum</label>
-                                                                            <input class="form-check-input"
-                                                                                id="PayProviderServiceMinimumNoShowBilling"
-                                                                                name="EnableCloseoutStatusesNoShowBillingBilling"
-                                                                                type="radio" tabindex="">
-                                                                        </div>
-                                                                         --}}
+
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithChargeNoShowBilling">Cancel
                                                                                 Booking with Charge</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeNoShowBilling"
-                                                                                name="EnableCloseoutStatusesNoShowBillingBilling"
+                                                                                name="noshow_billing" value="3" wire:model.defer="checkOut.noshow_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -2982,7 +2942,7 @@
                                                                                 Booking without Charge</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithoutChargeNoShowBilling"
-                                                                                name="EnableCloseoutStatusesNoShowBilling"
+                                                                                name="noshow_billing" value="4" wire:model.defer="checkOut.noshow_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                     </div>
@@ -2995,7 +2955,7 @@
                                                                                 as Normal</label>
                                                                             <input class="form-check-input"
                                                                                 id="ProcessAsNormalNoShowPayment"
-                                                                                name="EnableCloseoutStatusesNoShowPayment"
+                                                                                name="noshow_payment" value="1" wire:model.defer="checkOut.noshow_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -3004,20 +2964,10 @@
                                                                                 Service Minimum</label>
                                                                             <input class="form-check-input"
                                                                                 id="BillServiceMinimumNoShowPayment"
-                                                                                name="EnableCloseoutStatusesNoShowPayment"
+                                                                                name="noshow_payment" value="2" wire:model.defer="checkOut.noshow_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
-                                                                        {{--  
-                                                                        <div class="form-check">
-                                                                            <label class="form-check-label"
-                                                                                for="PayProviderServiceMinimumNoShowPayment">Pay
-                                                                                Provider Service Minimum</label>
-                                                                            <input class="form-check-input"
-                                                                                id="PayProviderServiceMinimumNoShowPayment"
-                                                                                name="EnableCloseoutStatusesNoShowPayment"
-                                                                                type="radio" tabindex="">
-                                                                        </div>
-                                                                        --}}   
+  
 
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
@@ -3026,7 +2976,7 @@
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeNoShowPayment"
                                                                                 name="EnableCloseoutStatusesNoShowPayment"
-                                                                                type="radio" tabindex="">
+                                                                                type="radio" tabindex="" name="noshow_payment" value="3" wire:model.defer="checkOut.noshow_payment">
                                                                         </div>
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
@@ -3034,7 +2984,7 @@
                                                                                 Booking without Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithoutChargeNoShowPayment"
-                                                                                name="EnableCloseoutStatusesNoShowPayment"
+                                                                                name="noshow_payment" name="noshow_payment" value="4" wire:model.defer="checkOut.noshow_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                     </div>
@@ -3046,7 +2996,7 @@
                                                                 <input class="form-check-input show-hidden-content"
                                                                     id="EnableCloseOutStatusesCancelled"
                                                                     name="RequestStartTimeforServices" type="checkbox"
-                                                                    tabindex="">
+                                                                    tabindex="" wire:model.defer="checkOut.status_types.cancelled" value="true">
                                                                 <div class="hidden-content">
                                                                     <div class="d-flex flex-column gap-3 my-3">
                                                                         <label
@@ -3057,7 +3007,7 @@
                                                                                 as Normal</label>
                                                                             <input class="form-check-input"
                                                                                 id="ProcessAsNormalCancelledBilling"
-                                                                                name="EnableCloseoutStatusesCancelledBilling"
+                                                                                name="cancelled_billing" value="1" wire:model.defer="checkOut.cancelled_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -3066,27 +3016,17 @@
                                                                                 Service Minimum</label>
                                                                             <input class="form-check-input"
                                                                                 id="BillServiceMinimumCancelledBilling"
-                                                                                name="EnableCloseoutStatusesCancelledBilling"
+                                                                                name="cancelled_billing" value="2" wire:model.defer="checkOut.cancelled_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
-                                                                        {{--  
-                                                                        <div class="form-check">
-                                                                            <label class="form-check-label"
-                                                                                for="PayProviderServiceMinimumCancelledBilling">Pay
-                                                                                Provider Service Minimum</label>
-                                                                            <input class="form-check-input"
-                                                                                id="PayProviderServiceMinimumCancelledBilling"
-                                                                                name="EnableCloseoutStatusesCancelledBilling"
-                                                                                type="radio" tabindex="">
-                                                                        </div>
-                                                                         --}}
+
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithChargeCancelledBilling">Cancel
                                                                                 Booking with Charge</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeCancelledBilling"
-                                                                                name="EnableCloseoutStatusesCancelledBilling"
+                                                                                name="cancelled_billing" value="3" wire:model.defer="checkOut.cancelled_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -3095,7 +3035,7 @@
                                                                                 Booking without Charge</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithoutChargeCancelledBilling"
-                                                                                name="EnableCloseoutStatusesCancelledBilling"
+                                                                                name="cancelled_billing" value="4" wire:model.defer="checkOut.cancelled_billing"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                     </div>
@@ -3108,7 +3048,7 @@
                                                                                 as Normal</label>
                                                                             <input class="form-check-input"
                                                                                 id="ProcessAsNormalCancelledPayment"
-                                                                                name="EnableCloseoutStatusesCancelledPayment"
+                                                                                name="cancelled_payment" value="1" wire:model.defer="checkOut.cancelled_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -3117,27 +3057,17 @@
                                                                                 Service Minimum</label>
                                                                             <input class="form-check-input"
                                                                                 id="BillServiceMinimumCancelledPayment"
-                                                                                name="EnableCloseoutStatusesCancelledPayment"
+                                                                                name="cancelled_payment" value="2" wire:model.defer="checkOut.cancelled_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
-                                                                         {{--  
-                                                                        <div class="form-check">
-                                                                            <label class="form-check-label"
-                                                                                for="PayProviderServiceMinimumCancelledPayment">Pay
-                                                                                Provider Service Minimum</label>
-                                                                            <input class="form-check-input"
-                                                                                id="PayProviderServiceMinimumCancelledPayment"
-                                                                                name="EnableCloseoutStatusesCancelledPayment"
-                                                                                type="radio" tabindex="">
-                                                                        </div>
-                                                                           --}}
+
                                                                         <div class="form-check">
                                                                             <label class="form-check-label"
                                                                                 for="CancelBookingWithChargeCancelledPayment">Cancel
                                                                                 Booking with Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithChargeCancelledPayment"
-                                                                                name="EnableCloseoutStatusesCancelledPayment"
+                                                                                name="cancelled_payment" value="3" wire:model.defer="checkOut.cancelled_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                         <div class="form-check">
@@ -3146,7 +3076,7 @@
                                                                                 Booking without Payment</label>
                                                                             <input class="form-check-input"
                                                                                 id="CancelBookingWithoutChargeCancelledBilling"
-                                                                                name="EnableCloseoutStatusesCancelledPayment"
+                                                                                name="cancelled_payment" value="4" wire:model.defer="checkOut.cancelled_payment"
                                                                                 type="radio" tabindex="">
                                                                         </div>
                                                                     </div>
@@ -3172,17 +3102,17 @@
                                                     <label class="form-check-label" for="EnableRunningLateButton">Enable
                                                         “Running Late” Button</label>
                                                     <input class="form-check-input" id="EnableRunningLateButton"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex=""  wire:model.defer="runningLate.enable_button" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="NotifyCustomer">Notify
                                                         Customer</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="NotifyCustomer" name="RequestStartTimeforServices"
-                                                        type="checkbox" tabindex="">
+                                                        type="checkbox" tabindex=""  wire:model.defer="runningLate.notify_customer" value="true">
                                                     <div class="hidden-content">
                                                         <label class="form-label-sm">Select Customer</label>
-                                                        <select class="form-select">
+                                                        <select class="form-select"  wire:model.defer="runningLate.customers">
                                                             <option>Select Customer</option>
                                                         </select>
                                                     </div>
@@ -3192,7 +3122,7 @@
                                                         Team
                                                         Providers</label>
                                                     <input class="form-check-input" id="NotifyTeamProviders"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="runningLate.notify_team_provider" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label"
@@ -3200,27 +3130,15 @@
                                                         Customized “Running Late” Form</label>
                                                     <input class="form-check-input show-hidden-content"
                                                         id="AddCustomizedRunningLateForm"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="runningLate.customize_form" value="true">
                                                     <div class="hidden-content">
-                                                        <label class="form-label-sm">Select Form</label>
+                                                        <label class="form-label-sm" wire:model.defer="runningLate.customize_form_id">Select Form</label>
                                                         <select class="form-select">
                                                             <option>Select Form</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-check">
-                                                    <label class="form-check-label" for="NotifyCustomerofCheckin">Notify
-                                                        Customer of Check-in</label>
-                                                    <input class="form-check-input show-hidden-content"
-                                                        id="NotifyCustomerofCheckin" name="RequestStartTimeforServices"
-                                                        type="checkbox" tabindex="">
-                                                    <div class="hidden-content">
-                                                        <label class="form-label-sm">Select Customer-Users</label>
-                                                        <select class="form-select">
-                                                            <option>Select Customer-Users</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div><!-- /Running Late Procedure -->
@@ -3236,37 +3154,37 @@
                                                     <label class="form-check-label" for="CompanyName">Company
                                                         Name</label>
                                                     <input class="form-check-input" id="CompanyName"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex=""  wire:model.defer="providerSettings.company_name" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="FullServiceAddress">Full
                                                         Service
                                                         Address</label>
                                                     <input class="form-check-input" id="FullServiceAddress"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="providerSettings.full_service_address" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" id="requester"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
-                                                    <label class="form-check-label" for="requester">Requester</label>
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="providerSettings.requester" value="true">
+                                                    <label class="form-check-label" for="requester" >Requester</label>
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="ServiceConsumer">Service
                                                         Consumer(s)</label>
                                                     <input class="form-check-input" id="ServiceConsumer"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="providerSettings.consumer" value="true">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label"
                                                         for="Participants">Participants</label>
                                                     <input class="form-check-input" id="Participants"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" wire:model.defer="providerSettings.participants" value="true" tabindex="">
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="Step2Details">Step 2
                                                         Details</label>
                                                     <input class="form-check-input" id="Step2Details"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="providerSettings.step2" value="true">
                                                 </div>
                                             </div>
                                         </div>
@@ -3276,11 +3194,11 @@
                             <div class="row">
                                 <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-configuration')">Back</button>
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-configuration')" wire:click.prevent="back">Back</button>
                                     <a href="/admin/accommodation/all-services" type="submit"
-                                            class="btn btn-primary rounded">Save & Exit</a>
+                                            class="btn btn-primary rounded"  wire:click.prevent="save(1,5)">Save & Exit</a>
                                     <button type="button" class="btn btn-primary rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('notification-setting')">Next</button>
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('notification-setting')" wire:click.prevent="save(0,5)">Next</button>
                                 </div>
                             </div>
                         </form>
@@ -3573,7 +3491,7 @@
                             <div class="row">
                                 <div class="col-12 form-actions">
                                     <button type="button" class="btn btn-outline-dark rounded"
-                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advance-options')">Back</button>
+                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advance-options')" wire:click.prevent="back">Back</button>
                                     <a href="/admin/accommodation/all-services" type="submit"class="btn btn-primary rounded">
                                             Save & Exit</a>
                                 </div>

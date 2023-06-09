@@ -26,16 +26,20 @@ class AddService extends Component
         'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]]
 
 	];
-    public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person Rates'],
-                          '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual Rates'],
-                          '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone Rates'],
-                          '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference Rates'],
+    public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
+                          '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
+                          '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
+                          '5'=>['class'=>'teleconference-rate','postfix'=>'_t','title'=>'Teleconference'],
                         ];
     public $billingTypes=['1'=>['class'=>'hour-rate','postfix'=>'hour_price'],
                         '2'=>['class'=>'day-rate','postfix'=>'day_rate_price'],
                         '4'=>['class'=>'fixed-rate','postfix'=>'fixed_rate'],
                        
-                      ];                    
+                      ];        
+    public $checkIn = ["enable_button"=>false,"require_provider_invoice"=>false,"enable_digital_signature"=>false,"customize_form"=>false,"customize_form_id"=>0,"notify_customers"=>false,"customers"=>false ];  
+    public $checkOut = ["enable_button_provider"=>false,"enable_button_customers" => false,"customers"=>false,  "provider_payment" => false, "customer_invoice" => false,"enable_digital_signature" =>false, "customize_form" => false,"customize_form_id" =>0,"time_extension" => true,'statuses'=>false,'status_types'=>['completed'=>false,'noshow'=>false,'cancelled'=>false,'noshow_billing'=>0,'noshow_payment'=>0,'cancelled_billing'=>0,'cancelled_payment'=>0]];    
+    public $runningLate = [ "enable_button" =>false,"notify_customer"=>false,"customers" =>false,"notify_team_provider" =>false,"customize_form"=>false,"customize_form_id" =>0];                          
+    public $providerSettings=['company_name'=>false,'full_service_address'=>false,'requester'=>false,'consumer'=>false,'participants'=>false,'step2'=>false];
     public $setupCheckboxes=[];
     public $inpersons=[[
         'label'=>'',
@@ -302,36 +306,94 @@ class AddService extends Component
            'service.default_providers_t'=>'nullable', 
 
            'service.bill_status'=>'nullable',
-           'service.payment_deduct_hour'=>'nullable'
+           'service.payment_deduct_hour'=>'nullable',
+
+           'service.request_start_time' => 'sometimes|nullable',
+           'service.request_end_time' => 'sometimes|nullable',
+           'service.request_end_address' => 'sometimes|nullable',
+           'service.request_no_of_providers' => 'sometimes|nullable',
+           'service.request_service_consumer' => 'sometimes|nullable',
+           'service.request_participants' => 'sometimes|nullable',
+
+           //step 5 rules
+           'service.billing_companies' => 'sometimes|nullable',
+           'service.payment_providers' => 'sometimes|nullable',
+           'service.billing_timezone' => 'sometimes|nullable',
+           'service.billing_timezone_v' => 'sometimes|nullable',
+           'service.billing_timezone_t' => 'sometimes|nullable',
+           'service.billing_timezone_p' => 'sometimes|nullable',
+           'service.payment_timezone' => 'sometimes|nullable',
+           'service.payment_timezone_v' => 'sometimes|nullable',
+           'service.payment_timezone_t' => 'sometimes|nullable',
+           'service.payment_timezone_p' => 'sometimes|nullable',
+           'service.billing_rule' => 'sometimes|nullable',
+           'service.billing_rule_v' => 'sometimes|nullable',
+           'service.billing_rule_t' => 'sometimes|nullable',
+           'service.billing_rule_p' => 'sometimes|nullable',
+           'service.payment_rule' => 'sometimes|nullable',
+           'service.payment_rule_v' => 'sometimes|nullable',
+           'service.payment_rule_t' => 'sometimes|nullable',
+           'service.payment_rule_p' => 'sometimes|nullable',
+           'service.min_payment_duration' => 'sometimes|nullable',
+           'service.min_payment_duration_p' => 'sometimes|nullable',
+           'service.min_payment_duration_t' => 'sometimes|nullable',
+           'service.min_payment_duration_v' => 'sometimes|nullable',
+           'service.check_in_procedure' => 'nullable',
+           'service.close_out_procedure' => 'nullable',
+           'service.running_late_procedure'=>'nullable',
+           'service.provider_display_settings'=>'nullable'
+
 
 		];
 	}
 
-    public function save($redirect=1){
+    public function save($redirect=1,$step=1){
 		$this->validate();
          $this->service->added_by = Auth::id();
          $this->service->service_status = 1;
         $categoryService = new ServiceCatagoryService;
         
         // $s = $service_category['accommodations_id']='';
-        $this->service->frequency_id=implode(',',$this->service->frequency_id);
-        $this->service->service_type=implode(',',$this->service->service_type);
-        
+       
+            $this->service->frequency_id=implode(',',$this->service->frequency_id);
+            $this->service->service_type=implode(',',$this->service->service_type);
+            
+        if($step==1){  
+            $this->service->provider_return_window=json_encode([$this->providerReturn["1"]]);
+            $this->service->provider_return_window_v=json_encode([$this->providerReturn["2"]]);
+            $this->service->provider_return_window_p=json_encode([$this->providerReturn["4"]]);
+            $this->service->provider_return_window_t=json_encode([$this->providerReturn["5"]]);
+        }
+        elseif($step==5){
+         //   dd($this->checkIn);
+        $this->service->check_in_procedure=json_encode($this->checkIn);
+        $this->service->close_out_procedure=json_encode($this->checkOut);
+        $this->service->running_late_procedure=json_encode($this->runningLate);
+        $this->service->provider_display_settings=json_encode($this->providerSettings);
+        }
+
       
-        $this->service->provider_return_window=json_encode([$this->providerReturn["1"]]);
-        $this->service->provider_return_window_v=json_encode([$this->providerReturn["2"]]);
-        $this->service->provider_return_window_p=json_encode([$this->providerReturn["4"]]);
-        $this->service->provider_return_window_t=json_encode([$this->providerReturn["5"]]);
       
        
+
         $this->service = $categoryService->createService($this->service);
-        $this->step=2;
+        
         if($redirect){
 			$this->showList("Service has been saved successfully");
 			$this->service = new ServiceCategory;
 		}
+        else{  //reconvert values 
+            $this->reconvertValues();
+            $this->step++;
+        }
     }    
-
+    public function reconvertValues(){
+        if(!is_array($this->service->service_type))
+          $this->service->service_type=explode(',',$this->service->service_type);
+        if(!is_array($this->service->frequency_id))  
+        $this->service->frequency_id=explode(',',$this->service->frequency_id);
+        
+    }
     public function back(){
         $this->step--;
         $this->loadValues($this->service);
@@ -384,16 +446,19 @@ class AddService extends Component
     public function loadValues($service){
         $selectedValues=[];$selectedFValues=[];
         if(!is_null($this->service->service_type)){
-             $selectedValues=explode(',',$this->service->service_type);
-             $this->service->service_type=$selectedValues;
            
+            if(!is_array($this->service->service_type))
+            $this->service->service_type=explode(',',$this->service->service_type);
+           // $this->service->service_type=$selectedValues;
+           //dd($this->service->service_type);
         }
         else{
             $this->service->service_type=[];
         }
         if(!is_null($this->service->frequency_id)){
-            $selectedFValues=explode(',',$this->service->frequency_id);
-            $this->service->frequency_id=$selectedFValues;
+          if(!is_array($this->service->frequency_id))  
+          $this->service->frequency_id=explode(',',$this->service->frequency_id);
+           // $this->service->frequency_id=$selectedFValues;
        }
        else{
         $this->service->frequency_id=[];
@@ -404,6 +469,10 @@ class AddService extends Component
         $this->setupCheckboxes=SetupHelper::loadSetupCheckboxes($this->setupCheckboxes);
                 //provider return window
                 $providerReturnValues=[$service->provider_return_window,$service->provider_return_window_v,$service->provider_return_window_p,$service->provider_return_window_t];
+                $this->checkIn=json_decode($this->service->check_in_procedure, true);
+                $this->checkOut=json_decode($this->service->close_out_procedure, true);
+                $this->runningLate=json_decode($this->service->running_late_procedure, true);
+                $this->providerSettings=json_decode($this->service->provider_display_settings, true);
                 $index=0;
                 foreach($this->providerReturn as $key=>$value){
                      // Get the current index

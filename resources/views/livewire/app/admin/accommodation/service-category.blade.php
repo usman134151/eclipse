@@ -99,7 +99,13 @@
         $("." + billingToggle[billing.val() - 1]).removeClass('d-none');
        }
 
-	}    
+	}   
+
+    function divToggle(divId,display){
+        $('#'+divId).attr('style',"display:"+display);
+    }
+    
+
 
 
 </script>
