@@ -1,4 +1,11 @@
 <div x-data="{associateservice: false}">
+    <div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -348,7 +355,7 @@
                                                             Phone Number
                                                         </label>
                                                         <input type="text" id="phone-number" class="form-control" name="phone"
-                                                            placeholder="Enter Phone Number" wire:model="userdetail.phone" />
+                                                            placeholder="Enter Phone Number" wire:model.defer="userdetail.phone" />
                                                     </div>
 
                                                     <div class="col-lg-6 pe-lg-5 mb-4">
@@ -830,7 +837,6 @@
                                                         Preferred Providers
                                                     </label>
                                                     <select name="favored_providers" id="favored_providers" class=" select2 form-select " wire:model.defer="favored_providers" tabindex="1" multiple  aria-label="Select Team Providers">
-                                                        <option>Select Preferred Provider</option>
                                                         @foreach($providers as $p)
                                                             <option value="{{$p->id}}" >{{$p->name}}</option>
                                                         @endforeach
@@ -841,7 +847,6 @@
                                                         Disfavored Providers
                                                     </label>
                                                     <select name="unfavored_providers" id="unfavored_providers" class=" select2 form-select " wire:model.defer="unfavored_providers" tabindex="1" multiple  aria-label="Select Team Providers">
-                                                        <option>Select Disfavored Provider</option>
                                                         @foreach($providers as $p)
                                                             <option value="{{$p->id}}" >{{$p->name}}</option>
                                                         @endforeach

@@ -89,14 +89,15 @@ class CustomerForm extends Component
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
-		if(!is_null($this->user->company_name))
-			$this->emit('updateCompany', $this->user->company_name);
+
+		
 
      
     }
 
 	public function updateVal($attrName, $val)
 	{  
+		if($this->step == 1){
 			if($attrName=='user_dob'){
             	$this->user['user_dob']=$val;
 				
@@ -111,8 +112,11 @@ class CustomerForm extends Component
 		   else{
 			$this->userdetail[$attrName] = $val;
 		   }
-		
+		}
+		else
+			$this->$attrName = $val;
 	}
+
 	public function rules()
 	{
 		return [
@@ -174,6 +178,11 @@ class CustomerForm extends Component
 		$this->user->departments()->sync($this->selectedDepartments);
 		$this->step=2;
 		$this->serviceActive="active";
+		if (!is_null($this->user->company_name)){
+			$this->emit('updateCompany', $this->user->company_name);
+		}
+		$this->dispatchBrowserEvent('refreshSelects');
+
 		
 		if($redirect){
 			
