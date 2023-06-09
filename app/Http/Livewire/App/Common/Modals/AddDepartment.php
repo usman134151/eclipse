@@ -42,7 +42,8 @@ class AddDepartment extends Component
     {   
         $departmentNames=[];
         foreach ($this->selectedDepartments as $dept) {
-            $departmentNames[] = $this->departments->firstWhere('id', $dept['department_id'])->name;
+            if($this->departments->firstWhere('id', $dept['department_id'])!=null)
+                $departmentNames[] = $this->departments->firstWhere('id', $dept['department_id'])->name;
         }
         // Emit an event to the parent component with the selected industries and default industry
         $this->emitUp('updateSelectedDepartments', $this->selectedDepartments, $this->defaultDepartment,$departmentNames);
@@ -52,6 +53,7 @@ class AddDepartment extends Component
      
         $this->companyId=$companyId;
         $this->departments = Department::where('company_id',$companyId)->get();
+         $this->selectedDepartments = [];
         
     }
 

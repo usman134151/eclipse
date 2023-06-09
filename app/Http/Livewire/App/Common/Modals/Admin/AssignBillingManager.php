@@ -18,10 +18,8 @@ class AssignBillingManager extends Component
                 $query->where('role_id', 9);
             })
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-            ->leftJoin('companies', function ($join) use ($company_id) {
-                $join->where('companies.id', '=', $company_id);
-                $join->where('companies.id', '=', 'users.company_name');
-            })
+            ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+            ->where('companies.id', '=', $company_id)
             ->select('users.id', 'users.name', 'phone')
             ->get();
     }
