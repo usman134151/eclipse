@@ -1,4 +1,13 @@
+<div>
+<div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
 <div x-data="{associateservice: false}">
+    
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -348,7 +357,7 @@
                                                             Phone Number
                                                         </label>
                                                         <input type="text" id="phone-number" class="form-control" name="phone"
-                                                            placeholder="Enter Phone Number" wire:model="userdetail.phone" />
+                                                            placeholder="Enter Phone Number" wire:model.defer="userdetail.phone" />
                                                     </div>
 
                                                     <div class="col-lg-6 pe-lg-5 mb-4">
@@ -829,16 +838,20 @@
                                                     <label class="form-label" for="preffered-providers">
                                                         Preferred Providers
                                                     </label>
-                                                    <select class="form-select" id="preffered-providers">
-                                                        <option>Select Preferred Providers</option>
+                                                    <select name="favored_providers" id="favored_providers" class=" select2 form-select " wire:model.defer="favored_providers" tabindex="1" multiple  aria-label="Select Team Providers">
+                                                        @foreach($providers as $p)
+                                                            <option value="{{$p->id}}" >{{$p->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label">
                                                         Disfavored Providers
                                                     </label>
-                                                    <select class="form-select" aria-label="Disfavored Providers">
-                                                        <option>Select Disfavored Providers</option>
+                                                    <select name="unfavored_providers" id="unfavored_providers" class=" select2 form-select " wire:model.defer="unfavored_providers" tabindex="1" multiple  aria-label="Select Team Providers">
+                                                        @foreach($providers as $p)
+                                                            <option value="{{$p->id}}" >{{$p->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
 
@@ -849,8 +862,8 @@
                                                     <div class="d-flex gap-3">
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="GrantAccesstoUserSchedules" value=""
-                                                                id="GrantAccesstoUserSchedulesYes" checked>
+                                                                name="GrantAccesstoUserSchedules" value=true
+                                                                id="GrantAccesstoUserSchedulesYes" wire:model:defer="user_configuration.grant_access_to_schedule" checked>
                                                             <label class="form-check-label"
                                                                 for="GrantAccesstoUserSchedulesYes">
                                                                 Yes
@@ -858,7 +871,7 @@
                                                         </div>
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="GrantAccesstoUserSchedules" value=""
+                                                                name="GrantAccesstoUserSchedules" value=false wire:model:defer="user_configuration.grant_access_to_schedule"
                                                                 id="GrantAccesstoUserSchedulesNo">
                                                             <label class="form-check-label"
                                                                 for="GrantAccesstoUserSchedulesNo">
@@ -867,14 +880,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
+                                                @if($user_configuration['grant_access_to_schedule']==true)
+
                                                     <label class="form-label" for="user-schedule">
                                                         Grant Access to User(s)' Schedules
                                                     </label>
-                                                    <select class="form-select" id="user-schedule">
-                                                        <option>Select</option>
+                                                    <select name="granted_access_users" id="granted_access_users" class=" select2 form-select " wire:model.defer="user_configuration.have_access_to" tabindex="3" multiple  aria-label="Select Users">
+                                                        @foreach($allUserSchedules as $user)
+                                                            <option value="{{$user->id}}" >{{$user->name}}</option>
+                                                        @endforeach
                                                     </select>
+                                                @endif
+
                                                 </div>
 
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
@@ -887,7 +905,7 @@
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
                                                                 name="RequireServiceRequestApprovalfromAssignedSupervisor"
-                                                                value=""
+                                                                value="true" wire:model:defer="user_configuration.require_approval"
                                                                 id="RequireServiceRequestApprovalfromAssignedSupervisorYes"
                                                                 checked>
                                                             <label class="form-check-label"
@@ -899,7 +917,7 @@
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
                                                                 name="RequireServiceRequestApprovalfromAssignedSupervisor"
-                                                                value=""
+                                                                value="false" wire:model:defer="user_configuration.require_approval"
                                                                 id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
                                                             <label class="form-check-label"
                                                                 for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
@@ -916,8 +934,8 @@
                                                     <div class="d-flex gap-3">
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="HideBillingInformationfromUser" value=""
-                                                                id="HideBillingInformationfromUserYes" checked>
+                                                                name="HideBillingInformationfromUser" value="true" wire:model:defer="user_configuration.hide_billing"
+                                                                id="HideBillingInformationfromUserYes" >
                                                             <label class="form-check-label"
                                                                 for="HideBillingInformationfromUserYes">
                                                                 Yes
@@ -925,7 +943,7 @@
                                                         </div>
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="HideBillingInformationfromUser" value=""
+                                                                name="HideBillingInformationfromUser" value="false" wire:model:defer="user_configuration.hide_billing"
                                                                 id="HideBillingInformationfromUserNo">
                                                             <label class="form-check-label"
                                                                 for="HideBillingInformationfromUserNo">
@@ -1613,6 +1631,7 @@
     @include('modals.add-user')
 </div>
 </div>
+</div>
 
 @push('scripts')
 
@@ -1622,6 +1641,15 @@
           Livewire.emit('updateVal', attrName, val);
 
       }
+
+	document.addEventListener("livewire:load", () => {
+        
+        $('.select2').on('change', function (e) {
+         
+            let attrName=$(this).attr('id');
+            @this.set(attrName, $(this).select2("val"))
+        })
+	})
 
 </script>
 @endpush

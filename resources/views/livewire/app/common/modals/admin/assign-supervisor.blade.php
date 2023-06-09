@@ -51,7 +51,7 @@
                       </div>
                     </div>
                   </td>
-                  <td class="align-middle">{{$user->phones}}</td>
+                  <td class="align-middle">{{$user->phone}}</td>
                   <td class="align-middle text-center">
                     <div class="form-check d-inline-block mx-auto">
                       <input class="form-check-input" type="radio" name="AssignedSupervisor" id="AssignedSupervisor1">
