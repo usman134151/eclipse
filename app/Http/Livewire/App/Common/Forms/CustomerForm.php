@@ -5,7 +5,6 @@ namespace App\Http\Livewire\App\Common\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
-use App\Models\Tenant\UserDepartment;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
@@ -16,8 +15,9 @@ class CustomerForm extends Component
 {
     public $user,$isAdd=true;
     public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
-    
-    
+    public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
+	public $user_configuration= ['grant_access_to_schedule'=> true, 'hide_billing'=>false, 'require_approval'=>true, 'have_access_to'=>[] ];    
+	
 	public $component = 'customer-info';
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'user.company_name','','user.company_name',1]],
@@ -47,6 +47,13 @@ class CustomerForm extends Component
     public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
+		$this->providers = User::query()
+			->where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 2);
+			})
+			->select('id', 'name')
+			->get();
 
 
 	}
@@ -64,6 +71,7 @@ class CustomerForm extends Component
 
     public function permissionConfiguration(){
       //  dd($this->step);
+	//   dd($this->user_configuration);
         $this->step =3;
     }
     public function addServices(){
@@ -73,8 +81,10 @@ class CustomerForm extends Component
     public function edit(User $user){
 		
 	   $this->user=$user;
-	   if(is_array($user['userdetail']))
-	   	$this->userdetail=$user['userdetail']->toArray();	
+	//    if(is_array($user['userdetail']))
+	//    	$this->userdetail=$user['userdetail'];
+		if($user->userdetail->exists())
+		$this->userdetail = $user->userdetail->toArray();
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
@@ -83,14 +93,17 @@ class CustomerForm extends Component
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
-		if(!is_null($this->user->company_name))
-			$this->emit('updateCompany', $this->user->company_name);
 
+		// dd($this->userdetail);
+		if (!is_null($this->user->company_name)) {
+			$this->emit('updateCompany', $this->user->company_name);
+		}
      
     }
 
 	public function updateVal($attrName, $val)
 	{  
+		if($this->step == 1){
 			if($attrName=='user_dob'){
             	$this->user['user_dob']=$val;
 				
@@ -105,8 +118,11 @@ class CustomerForm extends Component
 		   else{
 			$this->userdetail[$attrName] = $val;
 		   }
-		
+		}
+		else
+			$this->$attrName = $val;
 	}
+
 	public function rules()
 	{
 		return [
@@ -168,6 +184,29 @@ class CustomerForm extends Component
 		$this->user->departments()->sync($this->selectedDepartments);
 		$this->step=2;
 		$this->serviceActive="active";
+		
+		// setting values for next step
+		if (!is_null($this->user->company_name)){
+			$this->emit('updateCompany', $this->user->company_name);
+		}
+
+		$company_id = $this->user->company_name;
+		$this->allUserSchedules = User::query()
+			->where(['users.status' => 1])
+			->whereHas('roles', function ($query) {
+				$query->where('role_id','>=', 5);
+			})
+			->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+			->leftJoin('companies', function ($join) use ($company_id) {
+				$join->where('companies.id', '=', $company_id);
+				$join->where('companies.id', '=', 'users.company_name');
+			})
+			->select('users.id', 'users.name', 'phone')
+			->get();
+
+		$this->dispatchBrowserEvent('refreshSelects');
+
+
 		
 		if($redirect){
 			

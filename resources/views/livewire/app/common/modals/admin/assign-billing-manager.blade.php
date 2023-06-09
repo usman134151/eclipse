@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>All User</h3>
-          <div class="d-flex justify-content-between mb-2">
+          {{-- <div class="d-flex justify-content-between mb-2">
             <div class="d-inline-flex align-items-center gap-4">
               <label for="show_records_number" class="form-label-sm mb-0">Show</label>
               <select class="form-select form-select-sm" id="show_records_number">
@@ -21,7 +21,7 @@
               <label for="search" class="form-label-sm mb-0">Search</label>
               <input type="search" class="form-control form-control-sm" id="search" name="search" placeholder="Search here" autocomplete="on"/>
             </div>
-          </div>
+          </div> --}}
           <div class="table-responsive">
             <table id="" class="table table-fs-md table-hover border" aria-label="">
               <thead>
@@ -35,6 +35,7 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($bManagers as $bm)
                 <tr role="row" class="odd">
                   <td class="text-center align-middle">
                     <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
@@ -45,176 +46,24 @@
                         <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
                       </div>
                       <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
+                        <div class="font-family-secondary leading-none">{{$bm->name}}</div>
+                        <a href="" class="font-family-secondary"><small>{{$bm->email}}</small></a>
                       </div>
                     </div>
                   </td>
-                  <td class="align-middle">(923) 023-9683</td>
+                  <td class="align-middle">{{$bm->phone}}</td>
                   <td class="align-middle text-center">
                     <div class="form-check d-inline-block mx-auto">
                       <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager1">
                     </div>
                   </td>
                 </tr>
-                <tr role="row" class="even">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager2">
-                    </div>
-                  </td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager3">
-                    </div>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager4">
-                    </div>
-                  </td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager5">
-                    </div>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager6">
-                    </div>
-                  </td>
-                </tr>
-                <tr role="row" class="odd">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager7">
-                    </div>
-                  </td>
-                </tr>
-                <tr role="row" class="even">
-                  <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex gap-2 align-items-center">
-                      <div>
-                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
-                      </div>
-                      <div class="pt-2">
-                        <div class="font-family-secondary leading-none">Dori Griffiths</div>
-                        <a href="" class="font-family-secondary"><small>dorigriffit@gmail.com</small></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">(923) 023-9683</td>
-                  <td class="align-middle text-center">
-                    <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedBillingManager" id="AssignedBillingManager8">
-                    </div>
-                  </td>
-                </tr>
+                @endforeach
+                
               </tbody>
             </table>
           </div>
-          <div class="d-flex justify-content-between">
+          {{-- <div class="d-flex justify-content-between">
             <div>
               <p class="fw-semibold mb-lg-0 text-sm font-family-secondary">Showing 1 to 5 of 100 entries</p>
             </div>
@@ -236,7 +85,7 @@
                 </li>
               </ul>
             </nav>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>

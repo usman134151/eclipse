@@ -2,16 +2,32 @@
 
 namespace App\Http\Livewire\App\Common\Modals\Admin;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class BillManaging extends Component
 {
-    public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm,$allUsers=[];
+    protected $listeners = ['showList' => 'resetForm', 'updateCompany' => 'setData'];
 
     public function render()
     {
         return view('livewire.app.common.modals.admin.bill-managing');
+    }
+    public function setData($company_id)
+    {
+        $this->allUsers= User::query()
+            ->where(['users.status' => 1])
+            ->whereHas('roles', function ($query) {
+                $query->where('role_id', '>=', 5);
+            })
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+            ->leftJoin('companies', function ($join) use ($company_id) {
+                $join->where('companies.id', '=', $company_id);
+                $join->where('companies.id', '=', 'users.company_name');
+            })
+            ->select('users.id', 'users.name', 'phone')
+            ->get();
     }
 
     public function mount()
