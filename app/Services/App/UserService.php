@@ -91,6 +91,8 @@ class UserService
   {
   }
 
+
+
   public function storeCustomerRoles($rolesArr, $userId)
   {
     RoleUser::where('user_id', $userId)->where('role_id', '>', 4)->delete();
