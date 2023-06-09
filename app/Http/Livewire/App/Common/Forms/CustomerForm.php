@@ -223,9 +223,11 @@ class CustomerForm extends Component
 			})
 			->select('users.id', 'users.name', 'phone')
 			->get();
-
-		$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
-		$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
+		
+		if($this->user->userdetail->get('favored_users')!=null)
+			$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+		if ($this->user->userdetail->get('unfavored_users')!=null)
+			$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
 		$this->dispatchBrowserEvent('refreshSelects');
 
 
