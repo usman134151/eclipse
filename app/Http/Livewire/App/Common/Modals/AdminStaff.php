@@ -2,12 +2,31 @@
 
 namespace App\Http\Livewire\App\Common\Modals;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class AdminStaff extends Component
 {
-    public $showForm;
-    protected $listeners = ['showList' => 'resetForm'];
+    public $showForm,$adminStaff=[];
+    protected $listeners = ['showList' => 'resetForm', 'updateCompany' => 'setData'];
+    
+    public function setData($company_id)
+    {
+        $this->adminStaff = User::query()
+            ->where(['users.status' => 1])
+            ->whereHas('roles', function ($query) {
+                $query->where('role_id', '=', 1);
+                $query->orWhere('role_id', '=', 3);
+
+            })
+            ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+            ->leftJoin('companies', function ($join) use ($company_id) {
+                $join->where('companies.id', '=', $company_id);
+                $join->where('companies.id', '=', 'users.company_name');
+            })
+            ->select('users.id', 'users.name', 'phone','users.status')
+            ->get();
+    }
 
     public function render()
     {
