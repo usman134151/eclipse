@@ -78,8 +78,10 @@ class CustomerForm extends Component
     }
 
     public function edit(User $user){
+		
 	   $this->user=$user;
-	   $this->userdetail=$user['userdetail']->toArray();	
+	   if(is_array($user['userdetail']))
+	   	$this->userdetail=$user['userdetail']->toArray();	
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
@@ -88,6 +90,8 @@ class CustomerForm extends Component
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
+		if(!is_null($this->user->company_name))
+			$this->emit('updateCompany', $this->user->company_name);
 
      
     }
@@ -101,6 +105,8 @@ class CustomerForm extends Component
 		   elseif($attrName=="user.company_name"){
 			
 			$this->user['company_name'] = $val;
+			// Emit an event with data
+			$this->emit('updateCompany', $val);
 			
 		   }
 		   else{

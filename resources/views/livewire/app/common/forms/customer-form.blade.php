@@ -159,7 +159,7 @@
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <label for="department-column"
                                                                 class="form-label">Department</label>
-                                                            <a href="#" class="fw-bold">
+                                                           <!-- <a href="#" class="fw-bold">
                                                                 <small>
                                                                     <svg aria-label="Add Department" width="16" height="16" viewBox="0 0 16 16"
                                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +169,7 @@
                                                                     </svg>
                                                                     Add Department
                                                                 </small>
-                                                            </a>
+                                                            </a> -->
                                                         </div>
                                                         <div class="mb-1">
                                                             <button type="button"
@@ -187,9 +187,9 @@
                                                             </button>
                                                         </div>
                                                     
-                                                        <div class="mb-4">
+                                                       <!-- <div class="mb-4">
                                                             Assign as Department Supervisor
-                                                        </div>
+                                                        </div> -->
                                                         <div>
                                                             @if(count($departmentNames)>0)
                                                                 Selected Department(s) : 

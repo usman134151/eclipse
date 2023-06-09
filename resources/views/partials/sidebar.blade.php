@@ -172,6 +172,14 @@
               <span class="menu-item">Customers</span>
             </a>
             <ul class="menu-content " id="Customers">
+            <li class="nav-item  " id="company">
+                <a class="nav-link" href="/admin/company">
+                  <svg class="fill-none" aria-label="All Companies" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#all-companies-icon"></use>
+                  </svg>
+                  <span class="menu-item">All Companies</span>
+                </a>
+              </li>
               <li class="nav-item " id="create-customer">
                 <a class="nav-link" href="/admin/customer/create-customer">
                   <svg class="fill-none" aria-label="Add Customer User" width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,14 +196,7 @@
                   <span class="menu-item">Active Customers</span>
                 </a>
               </li>
-              <li class="nav-item  " id="company">
-                <a class="nav-link" href="/admin/company">
-                  <svg class="fill-none" aria-label="All Companies" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/admin-menu.svg#all-companies-icon"></use>
-                  </svg>
-                  <span class="menu-item">All Companies</span>
-                </a>
-              </li>
+
               <li class="nav-item" id="deactivated-customer">
                 <a class="nav-link" href="/admin/deactivated-customer">
                   <svg class="fill-none" aria-label="Deactivated Customers" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -230,6 +231,14 @@
               <span class="menu-item">Providers</span>
             </a>
             <ul role="menu" class="menu-content  " id="Providers">
+            <li role="menuitem" class="nav-item  " id="teams">
+                <a class="nav-link" href="/admin/teams" >
+                  <svg aria-label="Provider Teams" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#team-provider-icon"></use>
+                  </svg>
+                  <span class="menu-item">Provider Teams</span>
+                </a>
+              </li>
               <li role="menuitem" class="nav-item " id="create-provider">
                 <a class="nav-link" href="/admin/provider/create-provider">
                   <svg class="fill-none" aria-label="Add Provider"  width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -238,14 +247,7 @@
                   <span class="menu-item">Add Provider</span>
                 </a>
               </li>
-              <li role="menuitem" class="nav-item  " id="teams">
-                <a class="nav-link" href="/admin/teams" >
-                  <svg aria-label="Provider Teams" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/admin-menu.svg#team-provider-icon"></use>
-                  </svg>
-                  <span class="menu-item">Provider Teams</span>
-                </a>
-              </li>
+
               <li role="menuitem" class="nav-item  " id="provider">
                 <a class="nav-link" href="/admin/provider">
                   <svg class="fill-none" aria-label="Active Providers"  width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,6 +255,14 @@
 
                   </svg>
                   <span class="menu-item">Active Providers</span>
+                </a>
+              </li>
+              <li role="menuitem" class="nav-item  " id="deactivated-provider">
+                <a class="fill-none" class="nav-link" href="/admin/deactivated-provider">
+                  <svg aria-label="Deactivated Providers"  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="/css/admin-menu.svg#deactivated-providers-icon"></use>
+                  </svg>
+                  <span class="menu-item">Deactivated Providers</span>
                 </a>
               </li>
               <li role="menuitem" class="nav-item " id="reimbursement">
@@ -279,14 +289,7 @@
                   <span class="menu-item">Payment Manager</span>
                 </a>
               </li>
-              <li role="menuitem" class="nav-item  " id="deactivated-provider">
-                <a class="fill-none" class="nav-link" href="/admin/deactivated-provider">
-                  <svg aria-label="Deactivated Providers"  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="/css/admin-menu.svg#deactivated-providers-icon"></use>
-                  </svg>
-                  <span class="menu-item">Deactivated Providers</span>
-                </a>
-              </li>
+
               <li role="menuitem" class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#" aria-haspopup="true" aria-expanded="true">
                   <svg aria-label="Provider Applicants" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">

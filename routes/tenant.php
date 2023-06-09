@@ -64,11 +64,11 @@ Route::group([
 			Route::view('/admin/provider-applications', 'tenant/admin/provider-applications', ["showForm"=>false]);
 			Route::view('/admin/provider-screenings', 'tenant/admin/provider-screenings', ["showForm"=>false]);
 
-			Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false]);
-			Route::view('/admin/customer/create-customer', 'tenant/common/customer', ["showForm"=>true,"status"=>0]);
+			Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false,'status'=>1]);
+			Route::view('/admin/customer/create-customer', 'tenant/common/customer', ["showForm"=>true,"status"=>1]);
 			Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
 			Route::view('/admin/company/create-company', 'tenant/admin/company', ["showForm"=>true]);
-			Route::view('/admin/deactivated-customer', 'tenant/admin/deactivated-customer', ["showForm"=>false,"status"=>0]);
+			Route::view('/admin/deactivated-customer', 'tenant/common/customer', ["showForm"=>false,"status"=>0]);
 			Route::view('/admin/draft-invoices', 'tenant/admin/draft-invoices', ["showForm"=>false]);
 			Route::view('/admin/customer-invoices', 'tenant/common/customer-invoices', ["showForm"=>false]);
 
