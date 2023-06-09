@@ -16,7 +16,7 @@ class CustomerForm extends Component
 {
     public $user,$isAdd=true;
     public $userdetail=['industry','phone','gender_id','language_id','timezone_id','ethnicity_id','user_introduction','title','user_position'];
-    
+    public $providers=[];
     
 	public $component = 'customer-info';
     public $setupValues = [
@@ -47,6 +47,13 @@ class CustomerForm extends Component
     public function mount(User $user){
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
+		$this->providers = User::query()
+			->where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 2);
+			})
+			->select('id', 'name')
+			->get();
 
 
 	}

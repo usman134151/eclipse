@@ -829,16 +829,22 @@
                                                     <label class="form-label" for="preffered-providers">
                                                         Preferred Providers
                                                     </label>
-                                                    <select class="form-select" id="preffered-providers">
-                                                        <option>Select Preferred Providers</option>
+                                                    <select name="selected_providers" id="selected_providers" class=" select2 form-select " wire:model.defer="" tabindex="1" multiple  aria-label="Select Team Providers">
+                                                        <option>Select Preferred Provider</option>
+                                                        @foreach($providers as $p)
+                                                            <option value="{{$p->id}}" >{{$p->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                                     <label class="form-label">
                                                         Disfavored Providers
                                                     </label>
-                                                    <select class="form-select" aria-label="Disfavored Providers">
-                                                        <option>Select Disfavored Providers</option>
+                                                    <select name="selected_providers" id="selected_providers" class=" select2 form-select " wire:model.defer="" tabindex="1" multiple  aria-label="Select Team Providers">
+                                                        <option>Select Disfavored Provider</option>
+                                                        @foreach($providers as $p)
+                                                            <option value="{{$p->id}}" >{{$p->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
 
@@ -1622,6 +1628,15 @@
           Livewire.emit('updateVal', attrName, val);
 
       }
+
+	document.addEventListener("livewire:load", () => {
+        
+        $('.select2').on('change', function (e) {
+         
+            let attrName=$(this).attr('id');
+            @this.set(attrName, $(this).select2("val"))
+        })
+	})
 
 </script>
 @endpush
