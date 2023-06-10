@@ -47,7 +47,7 @@
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'basic-service-setup' }"
                             @click.prevent="tab = 'basic-service-setup'" id="basic-service-setup-tab" role="tab"
-                            aria-controls="basic-service-setup" aria-selected="true"><span class="number">1</span>Basic Service Setup</a>
+                            aria-controls="basic-service-setup" aria-selected="true" wire:click="setStep(1)"><span class="number">1</span>Basic Service Setup</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'advanced-service-rate' }"
