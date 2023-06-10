@@ -218,6 +218,18 @@ class AddService extends Component
         if(is_null($this->service->rate_status)){
             $this->service->rate_status=1;
             $this->service->status=1;
+            $this->service->frequency_id=['one_time','daily','weekly','weekdaily','monthly'];
+            $this->service->standard_in_person_multiply_provider=true;
+            $this->service->standard_rate_virtual_multiply_provider=true;
+            $this->service->standard_in_person_multiply_provider_p=true;
+            $this->service->standard_in_person_multiply_provider_t=true;
+            $this->service->request_start_time=0;
+            $this->service->request_end_time=0;
+            $this->service->request_end_address=0;
+            $this->service->request_no_of_providers=0;
+            $this->service->request_service_consumer=0;
+            $this->service->request_participants=0;
+
         }
        
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);

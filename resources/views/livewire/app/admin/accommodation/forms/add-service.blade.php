@@ -774,7 +774,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addPersonSecound">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                            Add Additional Service Payment
                                                                                 
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
@@ -920,7 +920,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addVirtualSecound">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                            Add Additional Service Payment
                                                                                 
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
@@ -1073,7 +1073,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold" wire:click.prevent="addphoneSecound">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                            Add Additional Service Payment
                                                                                 
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
@@ -1219,7 +1219,7 @@
                                                                     <div class="text-end">
                                                                         <a href="#" class="fw-bold"  wire:click.prevent="addpTeleconferenceSecound">
                                                                             <small>
-                                                                                Add Additional Service Charges
+                                                                            Add Additional Service Payment
                                                                                 
                                                                                 <svg aria-label="Add Additional Service Charges"
                                                                                     class="me-1" width="20"
@@ -1279,6 +1279,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1361,6 +1362,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1450,6 +1452,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1532,6 +1535,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1636,6 +1640,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1753,7 +1758,8 @@
                                                                             aria-describedby="" wire:key="hour_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.hours"/>
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
-                                                                                <option>$</option>
+                                                                                 <option>$</option>
+                                                                                 <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1879,6 +1885,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -1999,6 +2006,7 @@
                                                                         <div class="col-lg-2">
                                                                             <select class="form-select rounded-0">
                                                                                 <option>$</option>
+                                                                                <option>%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
@@ -2128,6 +2136,7 @@
                                                                 </select>
                                                                 <select class="form-select">
                                                                     <option>$</option>
+
                                                                 </select>
                                                             </div>
                                                         </div>
