@@ -571,19 +571,19 @@
                                                                         <input type="text"
                                                                             class="form-control rounded-0 text-center"
                                                                             placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" disabled>
                                                                         <input type="text"
                                                                             class="form-control rounded-0 text-center"
                                                                             placeholder="00" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" wire:model.defer="billingIncrements.{{$type}}.BH" maxlength=2>
                                                                         <input type="text"
                                                                             class="form-control rounded-0 text-center"
                                                                             placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" disabled>
                                                                         <input type="text"
                                                                             class="form-control text-center"
                                                                             placeholder="00" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" wire:model.defer="billingIncrements.{{$type}}.BM" maxlength=2>
                                                                     </div>
                                                                     <div class="input-group">
                                                                         <span
@@ -598,21 +598,22 @@
                                                                         <input type="text"
                                                                             class="form-control rounded-0 text-center"
                                                                             placeholder="HRS" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" disabled>
                                                                         <input type="text"
                                                                             class="form-control rounded-0 text-center"
                                                                             placeholder="00" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" wire:model.defer="billingIncrements.{{$type}}.PH" maxlength=2>
                                                                         <input type="text"
                                                                             class="form-control rounded-0 text-center"
                                                                             placeholder="MINS" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" disabled>
                                                                         <input type="text"
                                                                             class="form-control text-center"
                                                                             placeholder="00" aria-label=""
-                                                                            aria-describedby="">
+                                                                            aria-describedby="" wire:model.defer="billingIncrements.{{$type}}.PM" maxlength=2>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                           
                                                             <!-- /In-Person Billing Increment -->
@@ -620,6 +621,9 @@
                                                         </div>
                                                     </div>
                                                     @endforeach 
+                                                    @error('billingIncrements.*.*')
+                                                         <span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

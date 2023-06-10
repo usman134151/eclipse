@@ -46,6 +46,9 @@ class AddService extends Component
     public $runningLate = [ "enable_button" =>false,"notify_customer"=>false,"customers" =>false,"notify_team_provider" =>false,"customize_form"=>false,"customize_form_id" =>0];                          
     public $providerSettings=['company_name'=>false,'full_service_address'=>false,'requester'=>false,'consumer'=>false,'participants'=>false,'step2'=>false];
     public $setupCheckboxes=[];
+
+    public $billingIncrements=['1'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'2'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'4'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'5'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00']];
+
     public $inpersons=[[
         'label'=>'',
         'hours'=>'',
@@ -351,9 +354,17 @@ class AddService extends Component
            'service.notification_settings_v' => 'sometimes|nullable',
            'service.notification_settings_t' => 'sometimes|nullable',
            'service.notification_settings_p' => 'sometimes|nullable',
+           'billingIncrements.*.*' => 'numeric',
 
 		];
 	}
+
+    public function messages()
+    {
+        return [
+            'billingIncrements.*.*.numeric' => 'Only numeric values are accepted in increment fields.',
+        ];
+    }
 
     public function save($redirect=1,$step=1){
 		$this->validate();
@@ -372,6 +383,19 @@ class AddService extends Component
             $this->service->provider_return_window_p=json_encode([$this->providerReturn["4"]]);
             $this->service->provider_return_window_t=json_encode([$this->providerReturn["5"]]);
         }
+        elseif($step==2){
+            $this->service->billing_increment=$this->billingIncrements[1]['BH']+round(($this->billingIncrements[1]['BM']/60),2);
+            $this->service->billing_increment_v=$this->billingIncrements[2]['BH']+round(($this->billingIncrements[2]['BM']/60),2);
+            $this->service->billing_increment_p=$this->billingIncrements[4]['BH']+round(($this->billingIncrements[4]['BM']/60),2);
+            $this->service->billing_increment_t=$this->billingIncrements[5]['BH']+round(($this->billingIncrements[5]['BM']/60),2);
+
+            $this->service->payment_increment=$this->billingIncrements[1]['PH']+round(($this->billingIncrements[1]['PM']/60),2);
+            $this->service->payment_increment_v=$this->billingIncrements[2]['PH']+round(($this->billingIncrements[2]['PM']/60),2);
+            $this->service->payment_increment_p=$this->billingIncrements[4]['PH']+round(($this->billingIncrements[4]['PM']/60),2);
+            $this->service->payment_increment_t=$this->billingIncrements[5]['PH']+round(($this->billingIncrements[5]['PM']/60),2);
+          
+           
+        }
         elseif($step==5){
          //   dd($this->checkIn);
         $this->service->check_in_procedure=json_encode($this->checkIn);
@@ -386,8 +410,8 @@ class AddService extends Component
             $this->service->notification_settings_t=json_encode([$this->notificationSettings["5"]]);
         }
       
+    //    dd( $this->service->payment_increment);
       
-       
 
         $this->service = $categoryService->createService($this->service);
         
@@ -509,6 +533,24 @@ class AddService extends Component
                     if (!empty($data) && is_array($data)) {
                         $this->notificationSettings[$key] = $data[0];
                     }
+                    $index++;
+                }
+
+                $billingIncrementCols=[$service->billing_increment,$service->billing_increment_v,$service->billing_increment_p,$service->billing_increment_t];
+                $paymentIncrementCols=[$service->payment_increment,$service->payment_increment_v,$service->payment_increment_p,$service->payment_increment_t];
+                $index=0;
+                foreach($this->billingIncrements as $key=>$data){
+                    if($billingIncrementCols[$index]>0){
+                       
+                        $this->billingIncrements[$key]['BH']=floor($billingIncrementCols[$index]);
+                        $this->billingIncrements[$key]['BM']=floor(($billingIncrementCols[$index]-$this->billingIncrements[$key]['BH'])*60);
+                    }
+                    if($paymentIncrementCols[$index]>0){
+                        $this->billingIncrements[$key]['PH']=floor($paymentIncrementCols[$index]);
+                        $this->billingIncrements[$key]['PM']=floor(($paymentIncrementCols[$index]-$this->billingIncrements[$key]['PH'])*60);
+
+                    }                    
+                                   
                     $index++;
                 }
     }
