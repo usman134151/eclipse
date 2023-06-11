@@ -48,7 +48,7 @@ class AddService extends Component
     public $setupCheckboxes=[];
 
     public $billingIncrements=['1'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'2'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'4'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'5'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00']];
-    public $additionalCharge=true;
+    public $additionalCharge=false;
     public $serviceCharge=[
             
             "1"=>[['label'=>'','price'=>'','multiply_duration'=>'','multiply_providers'=>'']],
@@ -62,77 +62,16 @@ class AddService extends Component
         "2"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']],
         "4"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']],
         "5"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']]
-];
+    ];
+    public $emergencyCharge=false;
+    public $emergencyHour=[
+        "1"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'']],
+        "2"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'']],
+        "4"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'']],
+        "5"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'']]
+    ];
 
-    public $inpersons=[[
-
-        "expeditedServices"=>[],
-        "cancellationCharges"=>[],
-        "speclizationRates"=>[]
-    ]];
-    public $inpersonssecound=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'charge_to_customer'=>''
-
-    ]];
-    public $virtuals=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'duration'=>''
-
-    ]];
-    public $invirtualssecound=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'charge_to_customer'=>''
-
-    ]];
-    public $phones=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'duration'=>''
-
-    ]];
-    public $inphonessecound=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'charge_to_customer'=>''
-
-    ]];
-    public $teleconferences=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'duration'=>''
-
-    ]];
-    public $teleconferencessecound=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'charge_to_customer'=>''
-
-    ]];
+   
     public $service_inpersons=[[
         'hours'=>'',
         'charges'=>'',
@@ -224,6 +163,7 @@ class AddService extends Component
         'no_of_providers'=>'',
         'disable'=>''
     ]];
+    public $teleconferences=[];
     public function mount(ServiceCategory $service){
        
         $this->service=$service;
@@ -457,6 +397,25 @@ class AddService extends Component
             $this->service->service_payment_v="[".$paymentData["2"]."]";
             $this->service->service_payment_p="[".$paymentData["4"]."]";
             $this->service->service_payment_t="[".$paymentData["5"]."]";
+
+            $emergencyData=[];
+            foreach($this->serviceTypes as $type=>$parameters){
+                $emergencyData[$type]='';
+                $cIndex=1;
+                foreach($this->emergencyHour[$type] as $data){
+                    
+                    $emergencyData[$type].=json_encode([$data]);
+                    if(count($this->emergencyHour[$type])>$cIndex)
+                      $emergencyData[$type].=",";
+                    $cIndex++;  
+                }
+            }
+
+                
+            $this->service->emergency_hour="[".$emergencyData["1"]."]";
+            $this->service->emergency_hour_v="[".$emergencyData["2"]."]";
+            $this->service->emergency_hour_p="[".$emergencyData["4"]."]";
+            $this->service->emergency_hour_t="[".$emergencyData["5"]."]";
             //end of refactor
            
         }
@@ -626,6 +585,7 @@ class AddService extends Component
                     $data = json_decode($serviceChargeCols[$index], true);
                    
                     if (!empty($data) && is_array($data)) {
+                        $this->additionalCharge=true; 
                        $inloopIndex=0;
                        foreach($data as $dataSet){
                         $this->serviceCharge[$key][$inloopIndex]=$dataSet[0];
@@ -644,6 +604,7 @@ class AddService extends Component
                     $data = json_decode($servicePaymentCols[$index], true);
                    
                     if (!empty($data) && is_array($data)) {
+                        $this->additionalCharge=true; 
                        $inloopIndex=0;
                        foreach($data as $dataSet){
                         $this->servicePayment[$key][$inloopIndex]=$dataSet[0];
@@ -653,7 +614,24 @@ class AddService extends Component
                     }
                     $index++;
                 }
-
+                $emergencyCols=[$service->emergency_hour,$service->emergency_hour_v,$service->emergency_hour_p,$service->emergency_hour_t];
+                $index=0;
+                foreach($this->emergencyHour as $key=>$value){
+                     // Get the current index
+                   
+                    $data = json_decode($emergencyCols[$index], true);
+                   
+                    if (!empty($data) && is_array($data)) {
+                       $this->emergencyCharge=true; 
+                       $inloopIndex=0;
+                       foreach($data as $dataSet){
+                        $this->emergencyHour[$key][$inloopIndex]=$dataSet[0];
+                        $inloopIndex++;
+                       }
+                       
+                    }
+                    $index++;
+                }
                 
     }
 
@@ -669,6 +647,10 @@ class AddService extends Component
 
     public function addPayment($type){
         $this->servicePayment[$type][]=['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>''];
+    }
+
+    public function addEmergency($type){
+        $this->emergencyHour[$type][]=['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>''];
     }
 
 
