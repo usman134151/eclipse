@@ -48,15 +48,27 @@ class AddService extends Component
     public $setupCheckboxes=[];
 
     public $billingIncrements=['1'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'2'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'4'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00'],'5'=>['BH'=>'00','BM'=>'00','PH'=>'00','PM'=>'00']];
+    public $additionalCharge=true;
+    public $serviceCharge=[
+            
+            "1"=>[['label'=>'','price'=>'','multiply_duration'=>'','multiply_providers'=>'']],
+            "2"=>[['label'=>'','price'=>'','multiply_duration'=>'','multiply_providers'=>'']],
+            "4"=>[['label'=>'','price'=>'','multiply_duration'=>'','multiply_providers'=>'']],
+            "5"=>[['label'=>'','price'=>'','multiply_duration'=>'','multiply_providers'=>'']]
+    ];
+    public $servicePayment=[
+            
+        "1"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']],
+        "2"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']],
+        "4"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']],
+        "5"=>[['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>'']]
+];
 
     public $inpersons=[[
-        'label'=>'',
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'duration'=>''
 
+        "expeditedServices"=>[],
+        "cancellationCharges"=>[],
+        "speclizationRates"=>[]
     ]];
     public $inpersonssecound=[[
         'label'=>'',
@@ -405,7 +417,47 @@ class AddService extends Component
             $this->service->payment_increment_v=$this->billingIncrements[2]['PH']+round(($this->billingIncrements[2]['PM']/60),2);
             $this->service->payment_increment_p=$this->billingIncrements[4]['PH']+round(($this->billingIncrements[4]['PM']/60),2);
             $this->service->payment_increment_t=$this->billingIncrements[5]['PH']+round(($this->billingIncrements[5]['PM']/60),2);
-          
+            
+            //will refactor later, not a good way
+            $chargeData=[];
+            foreach($this->serviceTypes as $type=>$parameters){
+                $chargeData[$type]='';
+                $cIndex=1;
+                foreach($this->serviceCharge[$type] as $data){
+                    
+                    $chargeData[$type].=json_encode([$data]);
+                    if(count($this->serviceCharge[$type])>$cIndex)
+                      $chargeData[$type].=",";
+                    $cIndex++;  
+                }
+            }
+
+                
+            $this->service->service_charge="[".$chargeData["1"]."]";
+            $this->service->service_charge_v="[".$chargeData["2"]."]";
+            $this->service->service_charge_p="[".$chargeData["4"]."]";
+            $this->service->service_charge_t="[".$chargeData["5"]."]";
+            
+
+            $paymentData=[];
+            foreach($this->serviceTypes as $type=>$parameters){
+                $paymentData[$type]='';
+                $cIndex=1;
+                foreach($this->servicePayment[$type] as $data){
+                    
+                    $paymentData[$type].=json_encode([$data]);
+                    if(count($this->servicePayment[$type])>$cIndex)
+                      $paymentData[$type].=",";
+                    $cIndex++;  
+                }
+            }
+
+                
+            $this->service->service_payment="[".$paymentData["1"]."]";
+            $this->service->service_payment_v="[".$paymentData["2"]."]";
+            $this->service->service_payment_p="[".$paymentData["4"]."]";
+            $this->service->service_payment_t="[".$paymentData["5"]."]";
+            //end of refactor
            
         }
         elseif($step==5){
@@ -470,7 +522,7 @@ class AddService extends Component
         $this->label= "Edit";
 
 
-       
+      
      
         $this->loadValues($this->service);
     
@@ -565,12 +617,58 @@ class AddService extends Component
                                    
                     $index++;
                 }
+              
+                $serviceChargeCols=[$service->service_charge,$service->service_charge_v,$service->service_charge_p,$service->service_charge_t];
+                $index=0;
+                foreach($this->serviceCharge as $key=>$value){
+                     // Get the current index
+                   
+                    $data = json_decode($serviceChargeCols[$index], true);
+                   
+                    if (!empty($data) && is_array($data)) {
+                       $inloopIndex=0;
+                       foreach($data as $dataSet){
+                        $this->serviceCharge[$key][$inloopIndex]=$dataSet[0];
+                        $inloopIndex++;
+                       }
+                       
+                    }
+                    $index++;
+                }
+
+                $servicePaymentCols=[$service->service_payment,$service->service_payment_v,$service->service_payment_p,$service->service_payment_t];
+                $index=0;
+                foreach($this->servicePayment as $key=>$value){
+                     // Get the current index
+                   
+                    $data = json_decode($servicePaymentCols[$index], true);
+                   
+                    if (!empty($data) && is_array($data)) {
+                       $inloopIndex=0;
+                       foreach($data as $dataSet){
+                        $this->servicePayment[$key][$inloopIndex]=$dataSet[0];
+                        $inloopIndex++;
+                       }
+                       
+                    }
+                    $index++;
+                }
+
+                
     }
 
     public function setStep($stepNo){
       
         if(!is_null($this->service->name))
             $this->step=$stepNo;
+    }
+
+    public function addCharges($type){
+        $this->serviceCharge[$type][]=['label'=>'','price'=>'','multiply_duration'=>'','multiply_providers'=>''];
+    }
+
+    public function addPayment($type){
+        $this->servicePayment[$type][]=['label'=>'','price'=>'','charge_customer'=>'','multiply_providers'=>''];
     }
 
 
