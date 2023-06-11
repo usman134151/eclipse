@@ -941,12 +941,16 @@
                                         </div>
                                     </div>
                                 </div><!-- /Expedited Services -->
+                                @if($cancelCharge) 
+                                 <div class="col-lg-12 between-section-segment-spacing">
+                                 @else
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
+                                @endif   
                                     <div class="d-lg-flex align-items-center mb-4 gap-3">
                                         <div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="CancellationsModifications&Rescheduling" @click="open = !open"
-                                                x-text="open==true  ? 'hide' : 'show'">
+                                                x-text="open==true  ? 'hide' : 'show'" wire:model="cancelCharge">
                                             <label class="form-check-label"
                                                 for="CancellationsModifications&Rescheduling">Disable</label>
                                             <label class="form-check-label"
@@ -958,14 +962,19 @@
                                         <div class="col-lg-12">
                                             <div class="border p-3">
                                                 <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
+                                                @foreach($serviceTypes as $type=>$parameters)
+                                                @if(!is_null($service->service_type) && in_array($type,$service->service_type))
+                                                 <div class="col-lg-6 pe-lg-5">
+                                                 @else
+                                                 <div class="col-lg-6 pe-lg-5 d-none">
+                                                @endif 
                                                         <div class="text-primary fw-bold">
-                                                            In-Person
+                                                            {{$parameters['title']}}
                                                         </div>
                                                         <div class="d-flex flex-column gap-5">
                                                             <!-- In-Person Additional Service Charges -->
                                                             <div>
-                                                                @foreach($inpersonscancel as $index=>$inpersoncancel)
+                                                            @foreach($cancelCharges[$type] as $index=>$data)
                                                                 <div class="d-flex flex-column gap-3 mb-3">
                                                                     <div class="input-group">
                                                                         <span
@@ -976,17 +985,17 @@
                                                                         <input type="text"
                                                                             class="form-control text-center"
                                                                             placeholder="00 Hour" aria-label=""
-                                                                            aria-describedby="" wire:key="hour_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.hours"/>
+                                                                            aria-describedby=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.hour" />
                                                                         <div class="col-lg-2">
-                                                                            <select class="form-select rounded-0">
-                                                                                <option>$</option>
-                                                                                <option>%</option>
+                                                                            <select class="form-select rounded-0" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.price_type">
+                                                                                <option value="$">$</option>
+                                                                                <option value="%">%</option>
                                                                             </select>
                                                                         </div>
                                                                         <input type="text"
                                                                             class="form-control text-center"
                                                                             placeholder="00.00" aria-label=""
-                                                                            aria-describedby="" wire:key="charge_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.charges"/>
+                                                                            aria-describedby="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.price"/>
                                                                     </div>
                                                                     <div>
                                                                         <label class="form-label">
@@ -996,7 +1005,7 @@
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input"
                                                                                     id="x-by-duration" name=""
-                                                                                    type="checkbox" tabindex="" wire:key="duration_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.duration"/>
+                                                                                    type="checkbox" tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.multiply_duration"/>
                                                                                 <label class="form-check-label"
                                                                                     for="x-by-duration">X by
                                                                                     Duration</label>
@@ -1004,7 +1013,7 @@
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input"
                                                                                     id="x-by-providers" name=""
-                                                                                    type="checkbox" tabindex="" wire:key="providers_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.no_of_providers"/>
+                                                                                    type="checkbox" tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.multiply_providers"/>
                                                                                 <label class="form-check-label"
                                                                                     for="x-by-providers">X by No. of
                                                                                     Providers</label>
@@ -1012,42 +1021,42 @@
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input" id=""
                                                                                     name="" type="checkbox"
-                                                                                    tabindex="" wire:key="cancellations_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.cancellations"/>
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.cancellation"/>
                                                                                 <label class="form-check-label"
                                                                                     for="">Cancellations</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input" id=""
                                                                                     name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_after_hour_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.exclude_after_hours"/>
+                                                                                    tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.exclude_after_hours"/>
                                                                                 <label class="form-check-label"
                                                                                     for="">Exclude After-hours</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input" id=""
                                                                                     name="" type="checkbox"
-                                                                                    tabindex=""  wire:key="modifications_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.modifications"/>
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.modifications"/>
                                                                                 <label class="form-check-label"
                                                                                     for="">Modifications</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input" id=""
                                                                                     name="" type="checkbox"
-                                                                                    tabindex=""  wire:key="exclude_closed_hour_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.exclude_closed_hours"/>
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.exclude_holidays"/>
                                                                                 <label class="form-check-label"
                                                                                     for="">Exclude Closed-hours</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input" id=""
                                                                                     name="" type="checkbox"
-                                                                                    tabindex=""  wire:key="rescheduling_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.rescheduling"/>
+                                                                                    tabindex="" wire:model.defer="cancelCharges.{{$type}}.{{$index}}.rescheduling"/>
                                                                                 <label class="form-check-label"
                                                                                     for="">Rescheduling</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
                                                                                 <input class="form-check-input" id=""
                                                                                     name="" type="checkbox"
-                                                                                    tabindex=""  wire:key="bill_service_minimums_inpersonscancel-{{ $index }}" wire:model.lazy="inpersonscancel.{{$index}}.bill_service_minimums"/>
+                                                                                    tabindex=""  wire:model.defer="cancelCharges.{{$type}}.{{$index}}.service_min"/>
                                                                                 <label class="form-check-label"
                                                                                     for="">Bill
                                                                                     Service Minimums</label>
@@ -1057,11 +1066,10 @@
                                                                 </div>
                                                                 @endforeach
                                                                 <div class="text-end">
-                                                                    <a href="#" class="fw-bold" wire:click.prevent="addInpersonCancel">
+                                                                    <a href="#" class="fw-bold" wire:click.prevent="addCancelCharge({{$type}})">
                                                                         <small>
                                                                             Add Additional Parameter
-                                                                            {{-- Updated by Shanila to Add svg
-                                                                            icon--}}
+
                                                                             <svg aria-label="Add Additional Service Charges"
                                                                                 class="me-1" width="20" height="21"
                                                                                 viewBox="0 0 20 21">
@@ -1077,374 +1085,14 @@
                                                             <!-- /In-Person Additional Service Charges -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 pe-lg-5">
-                                                        <div class="text-primary fw-bold">
-                                                            Virtual
-                                                        </div>
-                                                        <div class="d-flex flex-column gap-5">
-                                                            <!-- Virtual Additional Service Charges -->
-                                                            <div>
-                                                                @foreach($virtualscancel as $index=>$virtualcancel)
-                                                                <div class="d-flex flex-column gap-3 mb-3">
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Parameter {{ $loop->index + 1 }} <small>(Hour)</small>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00 Hour" aria-label=""
-                                                                            aria-describedby="" wire:key="hour_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.hours"/>
-                                                                        <div class="col-lg-2">
-                                                                            <select class="form-select rounded-0">
-                                                                                 <option>$</option>
-                                                                                 <option>%</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00.00" aria-label=""
-                                                                            aria-describedby="" wire:key="charge_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.charges"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label class="form-label">
-                                                                            Apply too
-                                                                        </label>
-                                                                        <div class="d-grid grid-cols-2 gap-1">
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    id="x-by-duration" name=""
-                                                                                    type="checkbox" tabindex=""  wire:key="duration_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.duration"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="x-by-duration">X by
-                                                                                    Duration</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    id="x-by-providers" name=""
-                                                                                    type="checkbox" tabindex="" wire:key="providers_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.no_of_providers"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="x-by-providers">X by No. of
-                                                                                    Providers</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="cancellations_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.cancellations"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Cancellations</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_after_hour_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.exclude_after_hours"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Exclude After-hours</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="modifications_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.modifications"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Modifications</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_closed_hour_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.exclude_closed_hours"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Exclude Closed-hours</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex=""  wire:key="rescheduling_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.rescheduling"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Rescheduling</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="bill_service_minimums_virtualscancel-{{ $index }}" wire:model.lazy="virtualscancel.{{$index}}.bill_service_minimums"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Bill
-                                                                                    Service Minimums</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                @endforeach
-                                                                <div class="text-end">
-                                                                    <a href="#" class="fw-bold" wire:click.prevent="addVirtualCancel">
-                                                                        <small>
-                                                                            Add Additional Parameter
-                                                                            {{-- Updated by Shanila to Add svg
-                                                                            icon--}}
-                                                                            <svg aria-label="Add Additional Service Charges"
-                                                                                class="me-1" width="20" height="21"
-                                                                                viewBox="0 0 20 21">
-                                                                                <use
-                                                                                    xlink:href="/css/common-icons.svg#add-new">
-                                                                                </use>
-                                                                            </svg>
-                                                                           
-                                                                        </small>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /Virtual Additional Service Charges -->
-                                                        </div>
-                                                    </div>
+                                                @endforeach                                    
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12 px-0">
                                                         <hr>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6 pe-lg-5">
-                                                        <div class="text-primary fw-bold">
-                                                            Phone
-                                                        </div>
-                                                        <div class="d-flex flex-column gap-5 mb-3">
-                                                            <!-- Phone Additional Service Charges -->
-                                                            <div>
-                                                                @foreach($phonescancel as $index=>$phonecancel)
-                                                                <div class="d-flex flex-column gap-3 mb-3 ">
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Parameter {{ $loop->index + 1 }} <small>(Hour)</small>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00 Hour" aria-label=""
-                                                                            aria-describedby="" wire:key="hour_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.hours"/>
-                                                                        <div class="col-lg-2">
-                                                                            <select class="form-select rounded-0">
-                                                                                <option>$</option>
-                                                                                <option>%</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00.00" aria-label=""
-                                                                            aria-describedby="" wire:key="charge_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.charges"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label class="form-label">
-                                                                            Apply too
-                                                                        </label>
-                                                                        <div class="d-grid grid-cols-2 gap-1">
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    id="x-by-duration" name=""
-                                                                                    type="checkbox" tabindex=""  wire:key="duration_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.duration"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="x-by-duration">X by
-                                                                                    Duration</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    id="x-by-providers" name=""
-                                                                                    type="checkbox" tabindex="" wire:key="providers_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.no_of_providers"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="x-by-providers">X by No. of
-                                                                                    Providers</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="cancellations_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.cancellations"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Cancellations</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_after_hour_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.exclude_after_hours"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Exclude After-hours</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="modifications_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.modifications"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Modifications</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_closed_hour_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.exclude_closed_hours"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Exclude Closed-hours</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="rescheduling_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.rescheduling"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Rescheduling</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="bill_service_minimums_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.bill_service_minimums"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Bill
-                                                                                    Service Minimums</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
 
-                                                                </div>
-                                                                @endforeach
-                                                                <div class="text-end">
-                                                                    <a href="#" class="fw-bold" wire:click.prevent="addPhoneCancel">
-                                                                        <small>
-                                                                            Add Additional Parameter
-                                                                            {{-- Updated by Shanila to Add svg
-                                                                            icon--}}
-                                                                            <svg aria-label="Add Additional Service Charges"
-                                                                                class="me-1" width="20" height="21"
-                                                                                viewBox="0 0 20 21">
-                                                                                <use
-                                                                                    xlink:href="/css/common-icons.svg#add-new">
-                                                                                </use>
-                                                                            </svg>
-                                                                           
-                                                                        </small>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /Phone Additional Service Charges -->
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-lg-6 pe-lg-5">
-                                                        <div class="text-primary fw-bold">
-                                                            Teleconference
-                                                        </div>
-                                                        <div class="d-flex flex-column gap-5">
-                                                            <!-- Teleconference Additional Service Charges -->
-                                                            <div>
-                                                                @foreach($teleconferences as $index=>$teleconference)
-                                                                <div class="d-flex flex-column gap-3 mb-3">
-                                                                    <div class="input-group">
-                                                                        <span
-                                                                            class="input-group-text gap-2 bg-secondary col-lg-5"
-                                                                            id="">
-                                                                            Parameter {{ $loop->index + 1 }}<small>(Hour)</small>
-                                                                        </span>
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00 Hour" aria-label=""
-                                                                            aria-describedby="" wire:key="hour_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.hours"/>
-                                                                        <div class="col-lg-2">
-                                                                            <select class="form-select rounded-0">
-                                                                                <option>$</option>
-                                                                                <option>%</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <input type="text"
-                                                                            class="form-control text-center"
-                                                                            placeholder="00.00" aria-label=""
-                                                                            aria-describedby=""  wire:key="charge_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.charges"/>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label class="form-label">
-                                                                            Apply too
-                                                                        </label>
-                                                                        <div class="d-grid grid-cols-2 gap-1">
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    id="x-by-duration" name=""
-                                                                                    type="checkbox" tabindex="" wire:key="duration_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.duration"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="x-by-duration">X by
-                                                                                    Duration</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input"
-                                                                                    id="x-by-providers" name=""
-                                                                                    type="checkbox" tabindex="" wire:key="providers_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.no_of_providers"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="x-by-providers">X by No. of
-                                                                                    Providers</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="cancellations_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.cancellations"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Cancellations</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_after_hour_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.exclude_after_hours"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Exclude After-hours</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="modifications_phonescancel-{{ $index }}" wire:model.lazy="phonescancel.{{$index}}.modifications"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Modifications</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="exclude_closed_hour_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.exclude_closed_hours"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Exclude Closed-hours</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="rescheduling_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.rescheduling"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Rescheduling</label>
-                                                                            </div>
-                                                                            <div class="form-check form-check-inline">
-                                                                                <input class="form-check-input" id=""
-                                                                                    name="" type="checkbox"
-                                                                                    tabindex="" wire:key="bill_service_minimums_teleconferences-{{ $index }}" wire:model.lazy="teleconferences.{{$index}}.bill_service_minimums"/>
-                                                                                <label class="form-check-label"
-                                                                                    for="">Bill
-                                                                                    Service Minimums</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                @endforeach
-                                                                <div class="text-end" wire:click.prevent="addTeleconferenceCancel">
-                                                                    <a href="#" class="fw-bold">
-                                                                        <small>
-                                                                            Add Additional Parameter
-                                                                            {{-- Updated by Shanila to Add svg
-                                                                            icon--}}
-                                                                            <svg aria-label="Add Additional Service Charges"
-                                                                                class="me-1" width="20" height="21"
-                                                                                viewBox="0 0 20 21">
-                                                                                <use
-                                                                                    xlink:href="/css/common-icons.svg#add-new">
-                                                                                </use>
-                                                                            </svg>
-                                                                           
-                                                                        </small>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /Teleconference Additional Service Charges -->
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

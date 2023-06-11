@@ -71,87 +71,15 @@ class AddService extends Component
         "5"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'']]
     ];
 
+    public $cancelCharge=false;
+    public $cancelCharges=[
+        "1"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>'']],
+        "2"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>'']],
+        "4"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>'']],
+        "5"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>'']]
+    ];
+
    
-    public $service_inpersons=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
-    ]];
-    public $service_virtuals=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
-    ]];
-    public $service_phones=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
-    ]];
-    public $service_teleconferences=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'exclude_after_hours'=>'',
-        'exclude_closed_hours'=>''
-    ]];
-    public $inpersonscancel=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'cancellations'=>'',
-        'exclude_after_hours'=>'',
-        'modifications' =>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimums'=>''
-    ]];
-    public $virtualscancel=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'cancellations'=>'',
-        'exclude_after_hours'=>'',
-        'modifications' =>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimums'=>''
-    ]];
-    public $phonescancel=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'cancellations'=>'',
-        'exclude_after_hours'=>'',
-        'modifications' =>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimums'=>''
-    ]];
-    public $teleconferencescancel=[[
-        'hours'=>'',
-        'charges'=>'',
-        'duration'=>'',
-        'no_of_providers'=>'',
-        'cancellations'=>'',
-        'exclude_after_hours'=>'',
-        'modifications' =>'',
-        'exclude_closed_hours'=>'',
-        'rescheduling'=>'',
-        'bill_service_minimums'=>''
-    ]];
     public $speclizations=[[
         'in_person'=>'',
         'virtual'=>'',
@@ -163,7 +91,7 @@ class AddService extends Component
         'no_of_providers'=>'',
         'disable'=>''
     ]];
-    public $teleconferences=[];
+
     public function mount(ServiceCategory $service){
        
         $this->service=$service;
@@ -416,6 +344,25 @@ class AddService extends Component
             $this->service->emergency_hour_v="[".$emergencyData["2"]."]";
             $this->service->emergency_hour_p="[".$emergencyData["4"]."]";
             $this->service->emergency_hour_t="[".$emergencyData["5"]."]";
+
+            $cancelData=[];
+            foreach($this->serviceTypes as $type=>$parameters){
+                $cancelData[$type]='';
+                $cIndex=1;
+                foreach($this->cancelCharges[$type] as $data){
+                    
+                    $cancelData[$type].=json_encode([$data]);
+                    if(count($this->cancelCharges[$type])>$cIndex)
+                      $cancelData[$type].=",";
+                    $cIndex++;  
+                }
+            }
+
+                
+            $this->service->cancellation_hour1="[".$cancelData["1"]."]";
+            $this->service->cancellation_hour1_v="[".$cancelData["2"]."]";
+            $this->service->cancellation_hour1_p="[".$cancelData["4"]."]";
+            $this->service->cancellation_hour1_t="[".$cancelData["5"]."]";
             //end of refactor
            
         }
@@ -632,6 +579,25 @@ class AddService extends Component
                     }
                     $index++;
                 }
+
+                $cancelCols=[$service->cancellation_hour1,$service->cancellation_hour1_v,$service->cancellation_hour1_p,$service->cancellation_hour1_t];
+                $index=0;
+                foreach($this->cancelCharges as $key=>$value){
+                     // Get the current index
+                   
+                    $data = json_decode($cancelCols[$index], true);
+                   
+                    if (!empty($data) && is_array($data)) {
+                       $this->cancelCharge=true; 
+                       $inloopIndex=0;
+                       foreach($data as $dataSet){
+                        $this->cancelCharges[$key][$inloopIndex]=$dataSet[0];
+                        $inloopIndex++;
+                       }
+                       
+                    }
+                    $index++;
+                }
                 
     }
 
@@ -652,7 +618,9 @@ class AddService extends Component
     public function addEmergency($type){
         $this->emergencyHour[$type][]=['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>''];
     }
-
+    public function addCancelCharge($type){
+        $this->cancelCharges[$type][]=['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>''];
+    }
 
 
 }
