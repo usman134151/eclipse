@@ -261,7 +261,7 @@
                                                             Business Hours (per hour)
                                                         </span>
                                                         <input type="text" class="form-control rounded-0 text-center px-0"
-                                                            placeholder="$" aria-label="$" aria-describedby="">
+                                                            placeholder="$" aria-label="$" aria-describedby="" disabled>
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
                                                             aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}">
@@ -272,7 +272,7 @@
                                                             After-Hours (per hour)
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
-                                                            placeholder="$" aria-label="$" aria-describedby="">
+                                                            placeholder="$" aria-label="$" aria-describedby="" disabled>
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
                                                             aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}">
@@ -439,10 +439,10 @@
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control text-center"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby="" wire:model="providerReturn.{{$type}}.0.hour">
+                                                                        aria-describedby="" wire:model.defer="providerReturn.{{$type}}.0.hour">
                                                                     <input type="text" class="form-control text-center"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby=""  wire:model="providerReturn.{{$type}}.0.minute">
+                                                                        aria-describedby=""  wire:model.defer="providerReturn.{{$type}}.0.minute">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -452,7 +452,7 @@
                                                             <input class="form-check-input"
                                                                 id="ExcludeAfterHoursInPerson"
                                                                 name="ExcludeAfterHoursInPerson" type="checkbox" value="true"
-                                                                tabindex=""  wire:model="providerReturn.{{$type}}.0.exclude_after_hours"/>
+                                                                tabindex=""  wire:model.defer="providerReturn.{{$type}}.0.exclude_after_hours"/>
                                                             <label class="form-check-label"
                                                                 for="ExcludeAfterHoursInPerson">Exclude
                                                                 After-hours</label>
@@ -461,14 +461,14 @@
                                                             <input class="form-check-input"
                                                                 id="ExcludeClosedHoursInPerson"
                                                                 name="ExcludeClosedHoursInPerson" type="checkbox"
-                                                                tabindex="" wire:model="providerReturn.{{$type}}.0.exclude_holidays"/>
+                                                                tabindex="" wire:model.defer="providerReturn.{{$type}}.0.exclude_holidays"/>
                                                             <label class="form-check-label"
                                                                 for="ExcludeClosedHoursInPerson"> Exclude
                                                                 Closed-hours</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="ByRequestInPerson"
-                                                                name="ByRequestInPerson" type="checkbox" tabindex="" wire:model="providerReturn.{{$type}}.0.by_request"/>
+                                                                name="ByRequestInPerson" type="checkbox" tabindex="" wire:model.defer="providerReturn.{{$type}}.0.by_request"/>
                                                             <label class="form-check-label" for="ByRequestInPerson" > By
                                                                 Request</label>
                                                         </div>
@@ -1111,9 +1111,10 @@
                                     <div class="row switch-toggle-content" x-show="open">
                                         <div class="col-lg-12">
                                             <div class="border p-3">
+                                                <!-- 
                                                 <div class="text-lg-end mb-4">
                                                     <a href="#" class="btn btn-primary">Create New Specialization</a>
-                                                </div>
+                                                </div> -->
                                                 @foreach ($speclizations as $index=>$speclization)
                                                 <div class="d-flex flex-column gap-3 mb-3">
                                                     <div class="d-lg-flex gap-4">
@@ -1735,7 +1736,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <input type="text" class="form-control form-control-sm text-center"
-                                                        placeholder="00:00" wire:model.defer="min_payment_duration{{$parameters['postfix']}}" aria-label="" aria-describedby="">
+                                                        placeholder="00:00" wire:model.defer="service.min_payment_duration{{$parameters['postfix']}}" aria-label="" aria-describedby="">
                                                 </div>
                                             </div>
                                         @endforeach    
@@ -1756,7 +1757,7 @@
                                             <div class="d-flex flex-column gap-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input" id="EnableCheckinButton"
-                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model="checkIn.enable_button" value="true">
+                                                        name="RequestStartTimeforServices" type="checkbox" tabindex="" wire:model.defer="checkIn.enable_button" value="true">
                                                     <label class="form-check-label" for="EnableCheckinButton" >Enable
                                                         “Check-in” Button</label>
                                                 </div>
