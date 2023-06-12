@@ -95,6 +95,12 @@ class User extends Authenticatable
 	{
 		return $this->belongsToMany(Team::class, 'team_providers','provider_id')->withTimestamps();
 	}
+
+	public function admin_teams(): BelongsToMany
+	{
+		return $this->belongsToMany(AdminTeam::class, 'admin_team_staff', 'admin_staff_id')->withTimestamps();
+	}
+
 	public function departments(): BelongsToMany
 	{
 		return $this->belongsToMany(Department::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps();

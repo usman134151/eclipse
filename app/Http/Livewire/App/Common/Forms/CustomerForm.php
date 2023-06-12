@@ -201,6 +201,7 @@ class CustomerForm extends Component
 			$this->showList("Customer has been saved successfully");
 			$this->user = new User;
 		}
+		else{
 		$this->step=2;
 		$this->serviceActive="active";
 		
@@ -230,7 +231,7 @@ class CustomerForm extends Component
 			$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
 		$this->dispatchBrowserEvent('refreshSelects');
 
-
+		}
 		
 		
 
