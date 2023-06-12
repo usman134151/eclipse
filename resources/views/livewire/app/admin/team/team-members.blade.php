@@ -310,8 +310,8 @@
                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')"
 				>
 				Back</a>
-				<button type="submit" class="btn btn-primary rounded px-4">Save & Exit</button>
-				<button type="submit" class="btn btn-primary rounded px-4"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('system-permissions')">Next</button>
+				<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" >Save & Exit</button>
+				{{-- <button type="submit" class="btn btn-primary rounded px-4"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('system-permissions')">Next</button> --}}
 			</div>
 		</div>
 	</div>

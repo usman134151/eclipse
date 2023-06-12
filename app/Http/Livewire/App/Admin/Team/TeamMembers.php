@@ -7,7 +7,7 @@ use Livewire\Component;
 class TeamMembers extends Component
 {
     public $component = 'team-info';
-	public $showForm;
+	public $showForm,$team;
 	protected $listeners = ['showList'=>'resetForm'];
 
 	function showForm()
@@ -19,6 +19,17 @@ class TeamMembers extends Component
 	{
 		$this->showForm=false;
 	}
+
+
+	public function save()
+	{
+		// save team members
+
+		
+			// $this->showList("Customer has been saved successfully");
+			// $this->team = new AdminTeam;
+	}
+
 
 	public function mount()
 	{}

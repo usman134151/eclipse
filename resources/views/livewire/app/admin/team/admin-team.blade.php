@@ -93,6 +93,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
     @else
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-2">
@@ -201,6 +203,7 @@
     @endif
     @include('panels.common.admin-staff-details')
 </div>
+
 <script>
 function updateVal(attrName,val){
 

@@ -15,6 +15,7 @@ class AdminTeam extends Component
 		'showForm' => 'showForm', // Show form when the parent component requests it
 		'delete' => 'deleteRecord', // Delete the record with the specified ID
 		'updateRecordId' => 'updateRecordId', // Update the ID of the record being edited / deleted
+		 'changeComponent' => 'switch'
 	];
     public $recordId;
 

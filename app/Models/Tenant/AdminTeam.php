@@ -4,6 +4,7 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class AdminTeam extends Model
 {
@@ -19,6 +20,10 @@ class AdminTeam extends Model
         'team_description',
         'team_notes'
     ];
+    public function staff(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'admin_team_staff', 'admin_team_id', 'admin_staff_id')->withTimestamps();
+    }
 
 
 }
