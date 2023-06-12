@@ -8,6 +8,8 @@ use App\Models\Tenant\NotificationTemplates;
 class NotificationConfiguration extends Component
 {
     public $showForm;
+    public $title;
+    public $type;
     public $selectedRoleId;
 
     public $confirmationMessage;

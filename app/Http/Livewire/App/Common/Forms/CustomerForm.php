@@ -75,7 +75,6 @@ class CustomerForm extends Component
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
 		$userDet['favored_users'] = implode(', ', $this->favored_providers);
-		$userDet['user_configuration']=json_encode($this->user_configuration);
 		$userDet->save();
 
 

@@ -89,13 +89,13 @@ Route::group([
 
 			// Admin Setting Routes
 			Route::view('/admin/business-setup', 'tenant/settings/business-setup', ["showForm"=>false]);
-			Route::view('/admin/settings', 'tenant/settings/notification-configuration', ["showForm"=>false]);
-            Route::view('/admin/settings/create-notifications', 'tenant/settings/notification-configuration', ["showForm"=>true]);
+			Route::view('/admin/settings', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'Email Notifications',"type"=>"1"]);
+            Route::view('/admin/settings/create-notifications', 'tenant/settings/notification-configuration', ["showForm"=>true,'title'=>'Email Notifications',"type"=>"1"]);
 
-			Route::view('/admin/settings/create', 'tenant/settings/notification-configuration', ["showForm"=>true]);
+			Route::view('/admin/settings/create', 'tenant/settings/notification-configuration', ["showForm"=>true,'title'=>'Email Notifications',"type"=>"1"]);
 			Route::view('/admin/profile', 'tenant/settings/profile', ["showForm"=>false]);
-			Route::view('/admin/templates', 'tenant/settings/email-templates', ["showForm"=>false]);
-			Route::view('/admin/sms-templates', 'tenant/settings/sms-templates', ["showForm"=>false]);
+			Route::view('/admin/templates', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'System Notifications',"type"=>"2"]);
+			Route::view('/admin/sms-templates', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'SMS Notifications',"type"=>"3"]);
 			Route::view('/admin/change-password', 'tenant/settings/change-password');
 			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager');
 			Route::view('/admin/setup-values', 'tenant/settings/setup-values', ["showForm"=>false]);
