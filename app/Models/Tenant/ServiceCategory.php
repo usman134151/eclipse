@@ -17,4 +17,9 @@ class ServiceCategory extends Model
     protected $grauded = [
        
     ];
+
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class, 'service_specializations', 'service_id', 'specialization_id');
+    }
 }

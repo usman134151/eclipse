@@ -130,7 +130,7 @@ final class ServiceCatagories extends PowerGridComponent
 	*/
     function edit($id){
         // Emits an event to show the form for editing a record
-        $this->emit('showForm', ServiceCategory::find($id));
+        $this->emit('showForm', ServiceCategory::with('specializations')->find($id));
     }
 
 	 /**
