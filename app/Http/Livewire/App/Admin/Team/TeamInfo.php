@@ -117,7 +117,6 @@ class TeamInfo extends Component
     public function switch($component)
 	{
 		$this->component = $component;
-		$this->emit('changeComponent', $component);
 
 	}
 }

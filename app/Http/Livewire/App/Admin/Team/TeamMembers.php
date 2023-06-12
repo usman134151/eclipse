@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\App\Admin\Team;
 
+use App\Models\Tenant\AdminTeam;
 use Livewire\Component;
 
 class TeamMembers extends Component
 {
     public $component = 'team-info';
-	public $showForm,$team;
-	protected $listeners = ['showList'=>'resetForm'];
+	public $showForm,$teamMembers=[];
+	protected $listeners = ['showList'=>'resetForm','editRecord'=>'setTeam'];
 
 	function showForm()
 	{
@@ -20,6 +21,10 @@ class TeamMembers extends Component
 		$this->showForm=false;
 	}
 
+	public function showList($message = "")
+	{
+		$this->emit('showList', $message);
+	}
 
 	public function save()
 	{
@@ -31,8 +36,12 @@ class TeamMembers extends Component
 	}
 
 
-	public function mount()
-	{}
+	public function setTeam($team)
+	{
+		$team=AdminTeam::find($team['id']);
+		$this->teamMembers= $team->staff;
+
+	}
 
 	public function render()
 	{

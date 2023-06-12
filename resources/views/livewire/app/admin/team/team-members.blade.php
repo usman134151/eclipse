@@ -15,14 +15,15 @@
 							</th>
 							<th scope="col">Name</th>
 							<th scope="col">Phone Number</th>
-							<th scope="col">City, State</th>
-							<th scope="col">Open Booking</th>
-							<th scope="col">Managing</th>
-							<th scope="col">Viewing</th>
+							{{-- <th scope="col">City, State</th> --}}
+							{{-- <th scope="col">Open Booking</th> --}}
+							{{-- <th scope="col">Managing</th> --}}
+							{{-- <th scope="col">Viewing</th> --}}
 							<th scope="col">Actions</th>
 						</tr>
 						</thead>
 						<tbody>
+						@foreach($teamMembers as $member)
 						<tr role="row" class="odd">
 							<td class="text-center">
 							<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
@@ -33,18 +34,18 @@
 								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 								</div>
 								<div class="col-md-10">
-								<h6 class="fw-semibold">Dori Griffiths</h6>
-								<p>Admin</p>
+								<h6 class="fw-semibold">{{$member->name}}s</h6>
+								<p>{{$member->email}}</p>
 								</div>
 							</div>
 							</td>
 							<td>
-							<p>(923) 023-9683</p>
+							<p>{{$member->userdetail->phone}}</p>
 							</td>
-							<td>Melbourne, Victoria Australia</td>
-							<td>20</td>
-							<td>10</td>
-							<td>5</td>
+							{{-- <td>Melbourne, Victoria Australia</td> --}}
+							{{-- <td>20</td> --}}
+							{{-- <td>10</td> --}}
+							{{-- <td>5</td> --}}
 							<td>
 							<div class="d-flex actions">
 								<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -77,222 +78,8 @@
 							</div>
 							</td>
 						</tr>
-						<tr role="row" class="even">
-							<td class="text-center">
-							<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-							</td>
-							<td>
-							<div class="row g-2">
-								<div class="col-md-2">
-								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-								</div>
-								<div class="col-md-10">
-								<h6 class="fw-semibold">Dori Griffiths</h6>
-								<p>Admin</p>
-								</div>
-							</div>
-							</td>
-							<td>
-								<p>(923) 023-9683</p>
-							</td>
-							<td>Melbourne, Victoria Australia</td>
-							<td>20</td>
-							<td>10</td>
-							<td>5</td>
-							<td>
-								<div class="d-flex actions">
-									<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-											<use xlink:href="/css/common-icons.svg#pencil"></use>
-										</svg>
-									</a>
-									<a href="#" title="View" aria-label="View Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-										   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-										</svg>
-									</a>
-									<div class="dropdown ac-cstm">
-										<a href="javascript:void(0)" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-											<svg aria-label="More Options" class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
-											   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
-											</svg>
-										</a>
-										<div class="tablediv dropdown-menu fadeIn">
-											<a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item">
-												<i class="fa fa-pencil-square-o"></i>
-												Option 1
-											</a>
-											<a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)">
-												<i class="fa fa-times-circle"></i>
-												Option 2
-											</a>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr role="row" class="odd">
-							<td class="text-center">
-							<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-							</td>
-							<td>
-							<div class="row g-2">
-								<div class="col-md-2">
-								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-								</div>
-								<div class="col-md-10">
-								<h6 class="fw-semibold">Dori Griffiths</h6>
-								<p>Admin</p>
-								</div>
-							</div>
-							</td>
-							<td>
-								<p>(923) 023-9683</p>
-							</td>
-							<td>Melbourne, Victoria Australia</td>
-							<td>20</td>
-							<td>10</td>
-							<td>5</td>
-							<td>
-								<div class="d-flex actions">
-									<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-											<use xlink:href="/css/common-icons.svg#pencil"></use>
-										</svg>
-									</a>
-									<a href="#" title="View" aria-label="View Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-										   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-										</svg>
-									</a>
-									<div class="dropdown ac-cstm">
-										<a href="javascript:void(0)" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-											<svg aria-label="More Options" class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
-											   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
-											</svg>
-										</a>
-										<div class="tablediv dropdown-menu fadeIn">
-											<a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item">
-												<i class="fa fa-pencil-square-o"></i>
-												Option 1
-											</a>
-											<a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)">
-												<i class="fa fa-times-circle"></i>
-												Option 2
-											</a>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr role="row" class="even">
-							<td class="text-center">
-							<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-							</td>
-							<td>
-							<div class="row g-2">
-								<div class="col-md-2">
-								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-								</div>
-								<div class="col-md-10">
-								<h6 class="fw-semibold">Dori Griffiths</h6>
-								<p>Admin</p>
-								</div>
-							</div>
-							</td>
-							<td>
-								<p>(923) 023-9683</p>
-							</td>
-							<td>Melbourne, Victoria Australia</td>
-							<td>20</td>
-							<td>10</td>
-							<td>5</td>
-							<td>
-								<div class="d-flex actions">
-									<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-											<use xlink:href="/css/common-icons.svg#pencil"></use>
-										</svg>
-									</a>
-									<a href="#" title="View" aria-label="View Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-										   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-										</svg>
-									</a>
-									<div class="dropdown ac-cstm">
-										<a href="javascript:void(0)" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-											<svg aria-label="More Options" class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
-											   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
-											</svg>
-										</a>
-										<div class="tablediv dropdown-menu fadeIn">
-											<a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item">
-												<i class="fa fa-pencil-square-o"></i>
-												Option 1
-											</a>
-											<a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)">
-												<i class="fa fa-times-circle"></i>
-												Option 2
-											</a>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr role="row" class="odd">
-							<td class="text-center">
-							<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
-							</td>
-							<td>
-							<div class="row g-2">
-								<div class="col-md-2">
-								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-								</div>
-								<div class="col-md-10">
-								<h6 class="fw-semibold">Dori Griffiths</h6>
-								<p>Admin</p>
-								</div>
-							</div>
-							</td>
-							<td>
-								<p>(923) 023-9683</p>
-							</td>
-							<td>Melbourne, Victoria Australia</td>
-							<td>20</td>
-							<td>10</td>
-							<td>5</td>
-							<td>
-								<div class="d-flex actions">
-									<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-											<use xlink:href="/css/common-icons.svg#pencil"></use>
-										</svg>
-									</a>
-									<a href="#" title="View" aria-label="View Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-										<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-										   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-										</svg>
-									</a>
-									<div class="dropdown ac-cstm">
-										<a href="javascript:void(0)" aria-label="More Options" class="btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-popper-config="{&quot;strategy&quot;:&quot;fixed&quot;}">
-											<svg aria-label="More Options" class="mt-1" width="20" height="28" viewBox="0 0 20 28"fill="none"
-											   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#dropdown"></use>
-											</svg>
-										</a>
-										<div class="tablediv dropdown-menu fadeIn">
-											<a href="javascript:void(0)" aria-label="Edit" title="Edit" class="dropdown-item">
-												<i class="fa fa-pencil-square-o"></i>
-												Option 1
-											</a>
-											<a title="Deactivate" aria-label="Deactivate" class="dropdown-item" href="javascript:void(0)">
-												<i class="fa fa-times-circle"></i>
-												Option 2
-											</a>
-										</div>
-									</div>
-								</div>
-							</td>
-						</tr>
+						@endforeach
+						
 						</tbody>
 					</table>
 					</div>
