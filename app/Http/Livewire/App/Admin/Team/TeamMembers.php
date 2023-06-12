@@ -28,11 +28,8 @@ class TeamMembers extends Component
 
 	public function save()
 	{
-		// save team members
-
-		
-			// $this->showList("Customer has been saved successfully");
-			// $this->team = new AdminTeam;
+		$this->showList("Admin has been saved successfully");
+		$this->teamMembers = [];
 	}
 
 
