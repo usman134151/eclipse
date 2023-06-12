@@ -268,7 +268,7 @@
                                                             <div class="position-relative flex-grow-1">
                                                                 <input type="text" class="form-control js-single-date"
                                                                     placeholder="Select Date of Birth" aria-label=""
-                                                                    aria-describedby="" wire:model="user.user_dob" name="user_dob" id="user_dob">
+                                                                    aria-describedby="" wire:model.defer="user.user_dob" name="user_dob" id="user_dob">
                                                                 <svg aria-label="Select Date" class="icon-date" width="20" height="21"
                                                                     viewBox="0 0 20 21" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
@@ -777,7 +777,7 @@
                                             <div class="col-lg-12 mb-4">
                                                 <div class="form-check mb-0">
                                                     <input class="form-check-input" type="checkbox" value=""
-                                                        id="Service-Consumer" wire:model='serviceConsumer'>
+                                                        id="Service-Consumer" wire:model.defer='serviceConsumer'>
                                                     <label class="form-check-label" for="Service-Consumer">
                                                         Service Consumer
                                                     </label>
