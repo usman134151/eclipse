@@ -15,7 +15,7 @@ class TeamInfo extends Component
 	use WithFileUploads;
 
     public $image;
-    protected $listeners = ['editRecord' => 'edit','updateVal'];
+    protected $listeners = ['editRecord' => 'edit','updateVal','changeComponent'=>'switch'];
     public $label = "Add";
     public $teamAdmin=[];
     public $team;
@@ -76,7 +76,7 @@ class TeamInfo extends Component
 
 		return view('livewire.app.admin.team.team-info');
 	}
-	public function save(){
+	public function save($redirect=1){
 		$this->validate();
 		if ($this->image) {
 			$path = $this->image->store('public/profile_images');
@@ -84,9 +84,23 @@ class TeamInfo extends Component
 		}	
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
-		$this->showList("Admin has been saved successfully");
-		$this->team = new AdminTeam;
+
+
+		if($redirect){
+		// save and exit
+
+			$this->showList("Admin Staff Team has been saved successfully");
+			$this->team = new AdminTeam;
+		
+		}else{
+			$this->emit('updateComponent', $this->team);
+			$this->emit('switch', 'team-members');
+
+		}
+
 	}
+
+	
 	public function saveImage()
 	{
 		
@@ -108,5 +122,6 @@ class TeamInfo extends Component
     public function switch($component)
 	{
 		$this->component = $component;
+
 	}
 }

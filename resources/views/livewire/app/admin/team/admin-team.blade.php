@@ -45,13 +45,13 @@
                         <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'team-info' }"
-                                    @click.prevent="tab = 'team-info'" id="team-info-tab" role="tab"
+                                    id="team-info-tab" role="tab"
                                     aria-controls="team-info" aria-selected="true"><span class="number">1</span> Team
                                     Info</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="javascript:void(0)" class="nav-link"
-                                    :class="{ 'active': tab === 'team-members' }" @click.prevent="tab = 'team-members'"
+                                    :class="{ 'active': tab === 'team-members' }"
                                     id="team-members-tab" role="tab" aria-controls="team-members"
                                     aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
                             </li>
@@ -93,6 +93,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
     @else
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-2">
@@ -199,8 +201,9 @@
             </div>
             {{-- Icon Legend Bar End --}}
     @endif
-    @include('panels.common.admin-staff-details')
+    {{-- @include('panels.common.admin-staff-details') --}}
 </div>
+
 <script>
 function updateVal(attrName,val){
 
