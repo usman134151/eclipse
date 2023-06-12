@@ -4,6 +4,8 @@ namespace App\Http\Livewire\App\Admin\Accommodation\Forms;
 
 use Livewire\Component;
 use App\Models\Tenant\ServiceCategory;
+use App\Models\Tenant\ServiceSpecialization;
+use App\Models\Tenant\Specialization;
 use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
 use Illuminate\Auth\Events\Validated;
@@ -79,8 +81,20 @@ class AddService extends Component
         "5"=>[['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>'']]
     ];
 
-   
-    public $speclizations=[[
+
+    public $specializations;
+    public $showSpecialization=false;
+    public $serviceSpecialization=[[
+        'specialization_id'=>0,
+        'common'=>['price_type'=>'$',"hide_from_customers"=>false,"hide_from_providers"=>false,"multiply_provider"=>false,"multiply_service_duration"=>false,'disable'=>false],
+        "1"=>['price'=>''],
+        "2"=>['price'=>''],
+        "4"=>['price'=>''],
+        "5"=>['price'=>'']
+        
+    ]];
+
+    /*=[[
         'in_person'=>'',
         'virtual'=>'',
         'phone'=>'',
@@ -90,7 +104,7 @@ class AddService extends Component
         'duration'=>'',
         'no_of_providers'=>'',
         'disable'=>''
-    ]];
+    ]] */
 
     public function mount(ServiceCategory $service){
        
@@ -115,6 +129,7 @@ class AddService extends Component
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->setupCheckboxes['service_types']=['rendered'=>''];
         $this->loadValues($this->service);
+        $this->specializations=Specialization::all()->where('status',1);
        // dd($this->service);
 
 	}
@@ -263,7 +278,7 @@ class AddService extends Component
          $this->service->added_by = Auth::id();
          $this->service->service_status = 1;
         $categoryService = new ServiceCatagoryService;
-        
+        $specializationRecords=[];
         // $s = $service_category['accommodations_id']='';
        
             $this->service->frequency_id=implode(',',$this->service->frequency_id);
@@ -363,6 +378,24 @@ class AddService extends Component
             $this->service->cancellation_hour1_v="[".$cancelData["2"]."]";
             $this->service->cancellation_hour1_p="[".$cancelData["4"]."]";
             $this->service->cancellation_hour1_t="[".$cancelData["5"]."]";
+
+            //specializtions data
+           
+            $index=0;
+          
+            foreach($this->serviceSpecialization as $specialization){
+                if(!is_null($specialization['specialization_id'])){
+                    $specializationRecords[$index]["specialization_price"]=array_merge($specialization["1"],$specialization['common']);
+                    $specializationRecords[$index]["specialization_price_v"]=array_merge($specialization["2"],$specialization['common']);
+                    $specializationRecords[$index]["specialization_price_p"]=array_merge($specialization["4"],$specialization['common']);
+                    $specializationRecords[$index]["specialization_price_t"]=array_merge($specialization["5"],$specialization['common']);
+                    $specializationRecords[$index]['specialization_id']=$specialization['specialization_id'];
+                }
+
+              $index++;  
+            }
+        
+           
             //end of refactor
            
         }
@@ -382,8 +415,10 @@ class AddService extends Component
       
     //    dd( $this->service->payment_increment);
       
-
-        $this->service = $categoryService->createService($this->service);
+       
+        $this->service = $categoryService->createService($this->service,$specializationRecords);
+       
+      
         
         if($redirect){
 			$this->showList("Service has been saved successfully");
@@ -427,8 +462,52 @@ class AddService extends Component
         $this->service=$service;
         $this->label= "Edit";
 
+        $this->service->specializaition=ServiceSpecialization::where('service_id',$this->service->id)->get()->toArray();
+        //mapping to serviceSpecialization array
 
-      
+        if(!is_null($this->service->specializaition) && count($this->service->specializaition)){
+            $this->showSpecialization=true;
+            $this->serviceSpecialization=[];
+            foreach($this->service->specializaition as $specialization){
+                //find common values 
+                $price=json_decode($specialization['specialization_price'],true);
+                $price_v=json_decode($specialization['specialization_price_v'],true);
+                $price_p=json_decode($specialization['specialization_price_p'],true);
+                $price_t=json_decode($specialization['specialization_price_t'],true);
+             
+                if(!is_null($price)){
+                    $price=$price[0];
+                    $commonValues=['price_type'=>$price["price_type"],"hide_from_customers"=>$price["hide_from_customers"],"hide_from_providers"=>$price["hide_from_providers"],"multiply_provider"=>$price['multiply_provider'],"multiply_service_duration"=>$price['multiply_service_duration'],'disable'=>$price['disable']];
+                    $price=$price['price'];
+                }
+                if(!is_null($price_v)){
+                    $price_v=$price_v[0];
+                    $commonValues=['price_type'=>$price_v["price_type"],"hide_from_customers"=>$price_v["hide_from_customers"],"hide_from_providers"=>$price_v["hide_from_providers"],"multiply_provider"=>$price_v['multiply_provider'],"multiply_service_duration"=>$price_v['multiply_service_duration'],'disable'=>$price_v['disable']];
+                    $price_v=$price_v['price'];
+                }
+                if(!is_null($price_t)){
+                    $price_t=$price_t[0];
+                    $commonValues=['price_type'=>$price_t["price_type"],"hide_from_customers"=>$price_t["hide_from_customers"],"hide_from_providers"=>$price_t["hide_from_providers"],"multiply_provider"=>$price_t['multiply_provider'],"multiply_service_duration"=>$price_t['multiply_service_duration'],'disable'=>$price_t['disable']];
+                    $price_t=$price_t['price'];
+                }
+                if(!is_null($price_p)){
+                    $price_p=$price_p[0];
+                    $commonValues=['price_type'=>$price_p["price_type"],"hide_from_customers"=>$price_p["hide_from_customers"],"hide_from_providers"=>$price_p["hide_from_providers"],"multiply_provider"=>$price_p['multiply_provider'],"multiply_service_duration"=>$price_p['multiply_service_duration'],'disable'=>$price_p['disable']];
+                    $price_p=$price_p['price'];
+                }
+                $this->serviceSpecialization[]=[
+                    'specialization_id'=>$specialization['specialization_id'],
+                    'common'=>$commonValues,
+                    "1"=>['price'=>$price],
+                    "2"=>['price'=>$price_v],
+                    "4"=>['price'=>$price_p],
+                    "5"=>['price'=>$price_t]
+                    
+                ];
+            }
+          
+          
+        }
      
         $this->loadValues($this->service);
     
@@ -622,5 +701,16 @@ class AddService extends Component
         $this->cancelCharges[$type][]=['hour'=>'','price_type'=>'$','price'=>'','exclude_holidays'=>'','multiply_duration'=>'','multiply_providers'=>'','exclude_after_hour'=>'','cancellation'=>'','modification'=>'','rescheduling'=>'','service_min'=>''];
     }
 
+    public function addSpecialization(){
+       $this->serviceSpecialization[]=[
+            'specialization_id'=>0,
+            'common'=>['price_type'=>'$',"hide_from_customers"=>false,"hide_from_providers"=>false,"multiply_provider"=>false,"multiply_service_duration"=>false,'disable'=>false],
+            "1"=>['price'=>''],
+            "2"=>['price'=>''],
+            "4"=>['price'=>''],
+            "5"=>['price'=>'']
+            
+       ];
+    }
 
 }

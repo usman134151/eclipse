@@ -1097,12 +1097,17 @@
                                         </div>
                                     </div>
                                 </div><!-- /Cancellations, Modifications & Rescheduling -->
+                                @if($showSpecialization)
+                                <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: true }">
+                                @else
                                 <div class="col-lg-12 between-section-segment-spacing" x-data="{ open: false }">
+                                @endif    
+                              
                                     <div class="d-lg-flex align-items-center mb-3 gap-3">
                                         <div class="form-check form-switch form-switch-column mb-lg-0">
                                             <input class="form-check-input" type="checkbox" role="switch"
                                                 id="SpecializationRates" @click="open = !open"
-                                                x-text="open==true  ? 'hide' : 'show'">
+                                                x-text="open==true  ? 'hide' : 'show'" wire:model="showSpecialization">
                                             <label class="form-check-label" for="SpecializationRates">Disable</label>
                                             <label class="form-check-label" for="SpecializationRates">Enable</label>
                                         </div>
@@ -1115,68 +1120,64 @@
                                                 <div class="text-lg-end mb-4">
                                                     <a href="#" class="btn btn-primary">Create New Specialization</a>
                                                 </div> -->
-                                                @foreach ($speclizations as $index=>$speclization)
+                                                @foreach ($serviceSpecialization as $index=>$speclization)
                                                 <div class="d-flex flex-column gap-3 mb-3">
                                                     <div class="d-lg-flex gap-4">
                                                         <div class="align-self-end col-lg-5">
                                                             <div class="input-group">
-                                                                <select class="form-select bg-secondary w-75">
-                                                                    <option>Medical Interpreting</option>
+                                                                <select class="form-select  w-75" wire:model.defer="serviceSpecialization.{{$index}}.specialization_id">
+                                                                   <option value="0">Select Specialization</option>
+                                                                   @foreach($specializations as $specialization)
+                                                                   <option value="{{$specialization->id}}">{{$specialization->name}}</option>
+                                                                   @endforeach
                                                                 </select>
-                                                                <select class="form-select">
-                                                                    <option>$</option>
+                                                                <select class="form-select" wire:model.defer="serviceSpecialization.{{$index}}.common.price_type">
+                                                                    <option value="$">$</option>
+                                                                    <option value="%">%</option>
 
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        @foreach($serviceTypes as $type=>$parameters)
+                                                        @if(!is_null($service->service_type) && in_array($type,$service->service_type))
                                                         <div class="align-self-end">
-                                                            <div class="text-primary fw-bold">In-Person</div>
+                                                        @else
+                                                        <div class="align-self-end d-none">
+                                                        @endif     
+                                                        
+                                                            <div class="text-primary fw-bold">{{$parameters['title']}}</div>
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="00.00" aria-label="" aria-describedby="" wire:key="person-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.in_person"/>
+                                                                placeholder="00.00" aria-label="" aria-describedby="" wire:model.defer="serviceSpecialization.{{$index}}.{{$type}}.price" />
                                                         </div>
-                                                        <div class="align-self-end">
-                                                            <div class="text-primary fw-bold">Virtual</div>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="00.00" aria-label="" aria-describedby="" wire:key="virt-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.virual"/>
-                                                        </div>
-                                                        <div class="align-self-end">
-                                                            <div class="text-primary fw-bold">Phone</div>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="00.00" aria-label="" aria-describedby="" wire:key="phone-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.phone"/>
-                                                        </div>
-                                                        <div class="align-self-end">
-                                                            <div class="text-primary fw-bold">Teleconference</div>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="00.00" aria-label="" aria-describedby="" wire:key="teleconference-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.teleconference"/>
-                                                        </div>
+                                                        @endforeach
                                                     </div>
                                                     <div class="">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex="" wire:key="hidecustomer-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_customers"/>
+                                                                type="checkbox" tabindex="" wire:model.defer="serviceSpecialization.{{$index}}.common.hide_from_customers"/>
                                                             <label class="form-check-label" for="">Hide from
                                                                 Customers</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex=""  wire:key="no_of_providers_spec-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.no_of_providers"/>
+                                                                type="checkbox" tabindex="" wire:model.defer="serviceSpecialization.{{$index}}.common.multiply_provider"/>
                                                             <label class="form-check-label" for="">X by No. of
                                                                 Providers</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex=""  wire:key="hide_from_providers_spec-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.hide_from_providers"/>
+                                                                type="checkbox" tabindex=""  wire:model.defer="serviceSpecialization.{{$index}}.common.hide_from_providers"/>
                                                             <label class="form-check-label" for="">Hide from
                                                                 Providers</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex="" wire:key="duration_spec-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.duration"/>
+                                                                type="checkbox" tabindex="" wire:model.defer="serviceSpecialization.{{$index}}.common.multiply_service_duration"/>
                                                             <label class="form-check-label" for="">X by Duration</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" id="" name=""
-                                                                type="checkbox" tabindex="" wire:key="disable_spec-{{ $index }}" wire:model.lazy="speclizations.{{$index}}.disable"/>
+                                                                type="checkbox" tabindex="" wire:model.defer="serviceSpecialization.{{$index}}.common.disable"/>
                                                             <label class="form-check-label" for="">Disable</label>
                                                         </div>
                                                     </div>
@@ -1184,11 +1185,10 @@
                                                 </div>
                                                 @endforeach
                                                 <div class="text-end">
-                                                    <a href="#" class="fw-bold"  wire:click.prevent="addSpeclizations">
+                                                    <a href="#" class="fw-bold"  wire:click.prevent="addSpecialization">
                                                         <small>
                                                             Add Additional Specialization
-                                                            {{-- Updated by Shanila to Add svg
-                                                            icon--}}
+ 
                                                             <svg aria-label="Add Additional Specialization"
                                                                 class="me-1" width="20" height="21"
                                                                 viewBox="0 0 20 21">
