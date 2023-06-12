@@ -23,10 +23,10 @@
 						</tr>
 						</thead>
 						<tbody>
-						@foreach($teamMembers as $member)
+						@foreach($adminStaff as $member)
 						<tr role="row" class="odd">
 							<td class="text-center">
-							<input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+							<input class="form-check-input" type="checkbox" wire:model.defer="teamMembers" value="{{$member->id}}" aria-label="Select Team">
 							</td>
 							<td>
 							<div class="row g-2">
@@ -97,7 +97,7 @@
                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')"
 				>
 				Back</a>
-				<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" >Save & Exit</button>
+				<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')" >Save & Exit</button>
 				{{-- <button type="submit" class="btn btn-primary rounded px-4"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('system-permissions')">Next</button> --}}
 			</div>
 		</div>

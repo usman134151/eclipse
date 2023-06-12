@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\App\Admin\Team;
 
 use App\Models\Tenant\AdminTeam;
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class TeamMembers extends Component
 {
     public $component = 'team-info';
-	public $showForm,$teamMembers=[];
-	protected $listeners = ['showList'=>'resetForm','editRecord'=>'setTeam'];
+	public $showForm,$teamMembers,$adminStaff=[], $team;
+	protected $listeners = ['showList'=>'resetForm','editRecord'=>'setTeam','updateComponent'=>'setTeam'];
 
 	function showForm()
 	{
@@ -28,15 +29,30 @@ class TeamMembers extends Component
 
 	public function save()
 	{
-		$this->showList("Admin has been saved successfully");
+		$this->team->staff()->sync($this->teamMembers);
+
+		$this->showList("Admin Staff Team has been saved successfully");
+		$this->team = new AdminTeam;
 		$this->teamMembers = [];
+	}
+
+	public function mount(){
+		$this->adminStaff= User::query()
+			->where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 1);
+				$query->orWhere('role_id', 3);
+			})
+			->select('id', 'name')
+			->with('userdetail')
+			->get();
 	}
 
 
 	public function setTeam($team)
 	{
-		$team=AdminTeam::find($team['id']);
-		$this->teamMembers= $team->staff;
+		$this->team=AdminTeam::find($team['id']);
+		$this->teamMembers= $this->team->staff()->allRelatedIds()->toArray();
 
 	}
 

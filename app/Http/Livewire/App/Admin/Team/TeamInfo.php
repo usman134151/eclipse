@@ -85,12 +85,15 @@ class TeamInfo extends Component
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
 
+
 		if($redirect){
 		// save and exit
 
-			$this->showList("Admin has been saved successfully");
+			$this->showList("Admin Staff Team has been saved successfully");
 			$this->team = new AdminTeam;
 		
+		}else{
+			$this->emit('updateComponent', $this->team);
 		}
 
 	}

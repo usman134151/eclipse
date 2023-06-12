@@ -201,7 +201,7 @@
             </div>
             {{-- Icon Legend Bar End --}}
     @endif
-    @include('panels.common.admin-staff-details')
+    {{-- @include('panels.common.admin-staff-details') --}}
 </div>
 
 <script>
