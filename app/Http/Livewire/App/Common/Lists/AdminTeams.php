@@ -90,8 +90,8 @@ final class AdminTeams extends PowerGridComponent
 			return '<h6 class="fw-semibold">'. $model->team_name .'</h6><p>'. $model->team_email .'</p></div></div>';
 		})
 			->addColumn('team_phone')
-			->addColumn('total_members', function () {
-				return "<div class='text-center'>5</div>";
+			->addColumn('total_members', function (AdminTeam $model) {
+				return "<div class='text-center'>".count($model->staff)."</div>";
 			})
 
             ->addColumn('status', function (AdminTeam $model) {
