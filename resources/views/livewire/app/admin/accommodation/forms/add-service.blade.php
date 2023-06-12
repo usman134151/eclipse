@@ -738,7 +738,7 @@
                                                             <!-- Additional Payment Additional Service Charges -->
                                                             <div>
                                                                 <div class="d-flex flex-column gap-4">
-                                                                @foreach($serviceCharge[$type] as $index=>$data)
+                                                                @foreach($servicePayment[$type] as $index=>$data)
                                                                     <div class="d-flex flex-column gap-3">
                                                                         <div class="input-group">
                                                                             <span

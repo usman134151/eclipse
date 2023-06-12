@@ -307,8 +307,10 @@ class AddService extends Component
                 $chargeData[$type]='';
                 $cIndex=1;
                 foreach($this->serviceCharge[$type] as $data){
-                    
-                    $chargeData[$type].=json_encode([$data]);
+                    if($data['label']!=''){
+                        $chargeData[$type].=json_encode([$data]);
+                    }
+                   
                     if(count($this->serviceCharge[$type])>$cIndex)
                       $chargeData[$type].=",";
                     $cIndex++;  
@@ -327,8 +329,9 @@ class AddService extends Component
                 $paymentData[$type]='';
                 $cIndex=1;
                 foreach($this->servicePayment[$type] as $data){
-                    
+                    if($data['label']!=''){
                     $paymentData[$type].=json_encode([$data]);
+                    }
                     if(count($this->servicePayment[$type])>$cIndex)
                       $paymentData[$type].=",";
                     $cIndex++;  
