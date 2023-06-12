@@ -117,12 +117,12 @@ class AddService extends Component
             $this->service->standard_rate_virtual_multiply_provider=true;
             $this->service->standard_in_person_multiply_provider_p=true;
             $this->service->standard_in_person_multiply_provider_t=true;
-            $this->service->request_start_time=0;
-            $this->service->request_end_time=0;
+            $this->service->request_start_time=1;
+            $this->service->request_end_time=1;
             $this->service->request_end_address=0;
-            $this->service->request_no_of_providers=0;
-            $this->service->request_service_consumer=0;
-            $this->service->request_participants=0;
+            $this->service->request_no_of_providers=1;
+            $this->service->request_service_consumer=1;
+            $this->service->request_participants=1;
 
         }
        
@@ -159,66 +159,65 @@ class AddService extends Component
            'service.standard_in_person_multiply_provider_p'=>'nullable',
            'service.standard_in_person_multiply_provider_t'=>'nullable',
            
-           'service.hours_price'=>'nullable',
-           'service.hours_price_v'=>'nullable',
-           'service.hours_price_p'=>'nullable',
-           'service.hours_price_t'=>'nullable',  
+            'service.hours_price' => 'nullable|numeric|max:999999.99',
+            'service.hours_price_v' => 'nullable|numeric|max:999999.99',
+            'service.hours_price_p' => 'nullable|numeric|max:999999.99',
+            'service.hours_price_t' => 'nullable|numeric|max:999999.99',
 
-           'service.after_hours_price'=>'nullable',
-           'service.after_hours_price_v'=>'nullable',
-           'service.after_hours_price_p'=>'nullable',
-           'service.after_hours_price_t'=>'nullable',  
+            'service.after_hours_price' => 'nullable|numeric|max:999999.99',
+            'service.after_hours_price_v' => 'nullable|numeric|max:999999.99',
+            'service.after_hours_price_p' => 'nullable|numeric|max:999999.99',
+            'service.after_hours_price_t' => 'nullable|numeric|max:999999.99',
 
-           'service.fixed_rate'=>'nullable',
-           'service.fixed_rate_v'=>'nullable',
-           'service.fixed_rate_p'=>'nullable',
-           'service.fixed_rate_t'=>'nullable',  
+            'service.fixed_rate' => 'nullable|numeric|max:999999.99',
+            'service.fixed_rate_v' => 'nullable|numeric|max:999999.99',
+            'service.fixed_rate_p' => 'nullable|numeric|max:999999.99',
+            'service.fixed_rate_t' => 'nullable|numeric|max:999999.99',
 
-           'service.day_rate_price'=>'nullable',
-           'service.day_rate_price_v'=>'nullable',
-           'service.day_rate_price_p'=>'nullable',
-           'service.day_rate_price_t'=>'nullable',  
+            'service.day_rate_price' => 'nullable|numeric|max:999999.99',
+            'service.day_rate_price_v' => 'nullable|numeric|max:999999.99',
+            'service.day_rate_price_p' => 'nullable|numeric|max:999999.99',
+            'service.day_rate_price_t' => 'nullable|numeric|max:999999.99',
 
-           'service.provider_limit'=>'nullable',
-           'service.provider_limit_v'=>'nullable',
-           'service.provider_limit_p'=>'nullable',
-           'service.provider_limit_t'=>'nullable',  
+            'service.provider_limit' => 'nullable|numeric|max:999999.99',
+            'service.provider_limit_v' => 'nullable|numeric|max:999999.99',
+            'service.provider_limit_p' => 'nullable|numeric|max:999999.99',
+            'service.provider_limit_t' => 'nullable|numeric|max:999999.99',
 
-           'service.minimum_assistance_hours'=>'nullable',
-           'service.minimum_assistance_hours_v'=>'nullable',
-           'service.minimum_assistance_hours_p'=>'nullable',
-           'service.minimum_assistance_hours_t'=>'nullable',
+            'service.minimum_assistance_hours' => 'nullable|numeric|max:999999.99',
+            'service.minimum_assistance_hours_v' => 'nullable|numeric|max:999999.99',
+            'service.minimum_assistance_hours_p' => 'nullable|numeric|max:999999.99',
+            'service.minimum_assistance_hours_t' => 'nullable|numeric|max:999999.99',
 
-           'service.minimum_assistance_min'=>'nullable',
-           'service.minimum_assistance_min_v'=>'nullable',
-           'service.minimum_assistance_min_p'=>'nullable',
-           'service.minimum_assistance_min_t'=>'nullable',
+            'service.minimum_assistance_min' => 'nullable|numeric|max:999999.99',
+            'service.minimum_assistance_min_v' => 'nullable|numeric|max:999999.99',
+            'service.minimum_assistance_min_p' => 'nullable|numeric|max:999999.99',
+            'service.minimum_assistance_min_t' => 'nullable|numeric|max:999999.99',
 
+            'service.maximum_assistance_hours' => 'nullable|numeric|max:999999.99',
+            'service.maximum_assistance_hours_v' => 'nullable|numeric|max:999999.99',
+            'service.maximum_assistance_hours_p' => 'nullable|numeric|max:999999.99',
+            'service.maximum_assistance_hours_t' => 'nullable|numeric|max:999999.99',
 
-           'service.maximum_assistance_hours'=>'nullable',
-           'service.maximum_assistance_hours_v'=>'nullable',
-           'service.maximum_assistance_hours_p'=>'nullable',
-           'service.maximum_assistance_hours_t'=>'nullable',
+            'service.maximum_assistance_min' => 'nullable|numeric|max:999999.99',
+            'service.maximum_assistance_min_v' => 'nullable|numeric|max:999999.99',
+            'service.maximum_assistance_min_p' => 'nullable|numeric|max:999999.99',
+            'service.maximum_assistance_min_t' => 'nullable|numeric|max:999999.99',
 
-           'service.maximum_assistance_min'=>'nullable',
-           'service.maximum_assistance_min_v'=>'nullable',
-           'service.maximum_assistance_min_p'=>'nullable',
-           'service.maximum_assistance_min_t'=>'nullable',
+            'service.min_providers' => 'nullable|numeric|max:999999.99',
+            'service.min_providers_v' => 'nullable|numeric|max:999999.99',
+            'service.min_providers_p' => 'nullable|numeric|max:999999.99',
+           'service.min_providers_t'=>'nullable|numeric|max:999999.99', 
 
-           'service.min_providers'=>'nullable',
-           'service.min_providers_v'=>'nullable',
-           'service.min_providers_p'=>'nullable',
-           'service.min_providers_t'=>'nullable', 
+           'service.max_providers'=>'nullable|numeric|max:999999.99',
+           'service.max_providers_v'=>'nullable|numeric|max:999999.99',
+           'service.max_providers_p'=>'nullable|numeric|max:999999.99',
+           'service.max_providers_t'=>'nullable|numeric|max:999999.99', 
 
-           'service.max_providers'=>'nullable',
-           'service.max_providers_v'=>'nullable',
-           'service.max_providers_p'=>'nullable',
-           'service.max_providers_t'=>'nullable', 
-
-           'service.default_providers'=>'nullable',
-           'service.default_providers_v'=>'nullable',
-           'service.default_providers_p'=>'nullable',
-           'service.default_providers_t'=>'nullable', 
+           'service.default_providers'=>'nullable|numeric|max:999999.99',
+           'service.default_providers_v'=>'nullable|numeric|max:999999.99',
+           'service.default_providers_p'=>'nullable|numeric|max:999999.99',
+           'service.default_providers_t'=>'nullable|numeric|max:999999.99', 
 
            'service.bill_status'=>'nullable',
            'service.payment_deduct_hour'=>'nullable',
@@ -270,11 +269,23 @@ class AddService extends Component
     {
         return [
             'billingIncrements.*.*.numeric' => 'Only numeric values are accepted in increment fields.',
+            'service.hours_price.*' => 'The Hours Price fields must be numeric and less than or equal to 999999.99.',
+            'service.after_hours_price.*' => 'The After Hours Price fields must be numeric and less than or equal to 999999.99.',
+            'service.fixed_rate.*' => 'The Fixed Rate fields must be numeric and less than or equal to 999999.99.',
+            'service.day_rate_price.*' => 'The Day Rate Price fields must be numeric and less than or equal to 999999.99.',
+            'service.provider_limit.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.minimum_assistance_hours.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.minimum_assistance_min.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.maximum_assistance_hours.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.maximum_assistance_min.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.min_providers.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.max_providers.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.default_providers.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
         ];
     }
 
     public function save($redirect=1,$step=1){
-		$this->validate();
+		 $this->validate();
          $this->service->added_by = Auth::id();
          $this->service->service_status = 1;
         $categoryService = new ServiceCatagoryService;
@@ -289,6 +300,8 @@ class AddService extends Component
             $this->service->provider_return_window_v=json_encode([$this->providerReturn["2"]]);
             $this->service->provider_return_window_p=json_encode([$this->providerReturn["4"]]);
             $this->service->provider_return_window_t=json_encode([$this->providerReturn["5"]]);
+           
+
         }
         elseif($step==2){
             $this->service->billing_increment=$this->billingIncrements[1]['BH']+round(($this->billingIncrements[1]['BM']/60),2);
@@ -715,5 +728,7 @@ class AddService extends Component
             
        ];
     }
+
+   
 
 }

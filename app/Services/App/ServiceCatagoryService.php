@@ -8,6 +8,7 @@ use Auth;
 class ServiceCatagoryService{
 
     public function createService($service, $specializationRecords=[]){
+       
         $service->save();
        
         if(count($specializationRecords)){
@@ -40,5 +41,7 @@ class ServiceCatagoryService{
 
         return $service;
     }
+
+    
 
 }
