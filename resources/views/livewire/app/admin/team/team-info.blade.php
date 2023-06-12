@@ -152,7 +152,7 @@
 			>
 			Back</a>
 			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save">Save & Exit</button>
-			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save(0)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-members')">Next</button>
+			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save(0)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Next</button>
 		  </div>
 		</div>
 	  </form>
