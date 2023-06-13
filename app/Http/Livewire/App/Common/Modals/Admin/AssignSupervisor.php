@@ -30,7 +30,8 @@ class AssignSupervisor extends Component
         ->select('users.id', 'users.name','phone')
         ->get();
 
-
+        // $this->selectedSupervisors=[];
+        // $this->isDefault=false;
     }
 
     public function setValues($user_id)
@@ -41,7 +42,7 @@ class AssignSupervisor extends Component
         $data = $userService->getUserRolesDetails($this->user_id, 5, 1);
 
         $this->selectedSupervisors = $data->pluck('user_id')->toArray();
-        if($data->where('is_default', 1)!=null)
+        if($data->where('is_default', 1)->isNotEmpty())
         $this->isDefault = $data->where('is_default', true)->pluck('user_id')[0];
         $this->updateData();
 

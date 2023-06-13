@@ -117,7 +117,13 @@ class UserService
     // delete existing records
     $values=[];
     if($typeofRelation == 0){
-      // user_id has master relation with $arr
+      // user_id has master relation with $arr_user
+      RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->delete();
+
+      foreach ($arr as $user_id) {
+        $values = ['user_id' => $customer_id , 'associated_user' => $user_id, 'role_id' => $role_id];
+        RoleUserDetail::create($values);
+      }
     }
     else{
       // arr_users have master relation with user_id
@@ -138,6 +144,7 @@ class UserService
       if($typeofRelation == 1)
         $details=RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->get();
       else
+        // master
         $details = RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->get();
         return $details;
     }

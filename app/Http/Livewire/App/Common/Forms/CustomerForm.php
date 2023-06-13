@@ -31,12 +31,12 @@ class CustomerForm extends Component
 	
     public $step = 1,$email_invitation;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
-		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors'];
+		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising'];
 	public $serviceConsumer=false;
 
 	//modals variables
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor;
+		$defaultSupervisor, $selectedSupervising=[];
 	
 	//end of modals variables
 
@@ -77,6 +77,7 @@ class CustomerForm extends Component
 		$userService = new UserService;
 		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
 		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedSupervising, 5, 0);
 
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
@@ -246,6 +247,7 @@ class CustomerForm extends Component
 				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
 
 			$this->rolesArr = $userService->getCustomerRoles($this->user->id);
+			// set modal values for step 2
 			$this->emit('setValues', $this->user->id);
 
 			
@@ -291,6 +293,10 @@ class CustomerForm extends Component
 	{
 		$this->selectedSupervisors = $selectedSupervisors;
 		$this->defaultSupervisor = $default;
+	}
+	public function updateSelectedSupervising($selectedSupervising)
+	{
+		$this->selectedSupervising = $selectedSupervising;
 	}
 
 }
