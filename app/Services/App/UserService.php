@@ -102,6 +102,16 @@ class UserService
     }
   }
 
+  public function getCustomerRoles($userId)
+  {
+    $rolesArr=[];
+    $roleUsers=RoleUser::where('user_id', $userId)->where('role_id', '>', 4)->get()->pluck('role_id');
+    foreach ($roleUsers as $ru) {
+      $rolesArr[$ru]=true;
+    }
+    return $rolesArr;
+  }
+
   public function storeAdminRoles($rolesArr, $userId)
   {
     SystemRoleUser::where('user_id', $userId)->delete();

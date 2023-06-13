@@ -97,8 +97,8 @@ class CustomerForm extends Component
     public function edit(User $user){
 		
 	   $this->user=$user;
-	//    if(is_array($user['userdetail']))
-	//    	$this->userdetail=$user['userdetail'];
+		//    if(is_array($user['userdetail']))
+		//    	$this->userdetail=$user['userdetail'];
 		if($user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
 		if ($this->user->userdetail->get('user_configuration') != null)
@@ -242,6 +242,8 @@ class CustomerForm extends Component
 				$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
 			if ($this->user->userdetail->get('user_configuration') != null)
 				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
+
+			$this->rolesArr = $userService->getCustomerRoles($this->user->id);
 			$this->dispatchBrowserEvent('refreshSelects');
 
 		}
