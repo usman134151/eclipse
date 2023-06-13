@@ -31,11 +31,12 @@ class CustomerForm extends Component
 	
     public $step = 1,$email_invitation;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
-		'updateSelectedDepartments' => 'selectDepartments'];
+		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors'];
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
+		$defaultSupervisor;
 	
 	//end of modals variables
 
@@ -75,6 +76,7 @@ class CustomerForm extends Component
 
 		$userService = new UserService;
 		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
+		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
 
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
@@ -244,6 +246,10 @@ class CustomerForm extends Component
 				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
 
 			$this->rolesArr = $userService->getCustomerRoles($this->user->id);
+			$this->emit('setValues', $this->user->id);
+
+			
+
 			$this->dispatchBrowserEvent('refreshSelects');
 
 		}
@@ -279,5 +285,12 @@ class CustomerForm extends Component
 		$this->userdetail['department'] = $defaultDepartment;
 		// $this->userdetail['supervisor'] = implode(', ', $svDepartments);
 		$this->departmentNames = $departmentNames;
-	}	
+	}
+
+	public function updateSelectedSupervisors($selectedSupervisors,$default)
+	{
+		$this->selectedSupervisors = $selectedSupervisors;
+		$this->defaultSupervisor = $default;
+	}
+
 }
