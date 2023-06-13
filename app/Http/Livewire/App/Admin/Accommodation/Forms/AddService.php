@@ -248,10 +248,10 @@ class AddService extends Component
            'service.payment_rule_v' => 'sometimes|nullable',
            'service.payment_rule_t' => 'sometimes|nullable',
            'service.payment_rule_p' => 'sometimes|nullable',
-           'service.min_payment_duration' => 'sometimes|nullable',
-           'service.min_payment_duration_p' => 'sometimes|nullable',
-           'service.min_payment_duration_t' => 'sometimes|nullable',
-           'service.min_payment_duration_v' => 'sometimes|nullable',
+           'service.min_payment_duration' => 'sometimes|nullable|numeric',
+           'service.min_payment_duration_p' => 'sometimes|nullable|numeric',
+           'service.min_payment_duration_t' => 'sometimes|nullable|numeric',
+           'service.min_payment_duration_v' => 'sometimes|nullable|numeric',
            'service.check_in_procedure' => 'nullable',
            'service.close_out_procedure' => 'nullable',
            'service.running_late_procedure'=>'nullable',
@@ -281,6 +281,7 @@ class AddService extends Component
             'service.min_providers.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
             'service.max_providers.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
             'service.default_providers.*' => 'Only numeric values are acceptable in Service Capacity & Capabilities.',
+            'service.min_payment_duration.*' => 'Only numeric values are acceptable in Min. payment duration.',
         ];
     }
 
