@@ -305,6 +305,18 @@ class AddService extends Component
 
         }
         elseif($step==2){
+            foreach($this->serviceTypes as $key=>$paraments){
+                if($this->billingIncrements[$key]['BH']=='')
+                    $this->billingIncrements[$key]['BH']=0;
+                if($this->billingIncrements[$key]['BM']=='')
+                    $this->billingIncrements[$key]['BM']=0;
+                if($this->billingIncrements[$key]['PH']=='')
+                    $this->billingIncrements[$key]['PH']=0;
+                if($this->billingIncrements[$key]['PM']=='')
+                    $this->billingIncrements[$key]['PM']=0;
+                          
+
+            }
             $this->service->billing_increment=$this->billingIncrements[1]['BH']+round(($this->billingIncrements[1]['BM']/60),2);
             $this->service->billing_increment_v=$this->billingIncrements[2]['BH']+round(($this->billingIncrements[2]['BM']/60),2);
             $this->service->billing_increment_p=$this->billingIncrements[4]['BH']+round(($this->billingIncrements[4]['BM']/60),2);
