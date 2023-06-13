@@ -17,7 +17,7 @@ class CustomerForm extends Component
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 	'user_introduction'=>null, 'title' => null, 'user_position' => null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
-	public $user_configuration= ['grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
+	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	
 	public $component = 'customer-info';
     public $setupValues = [
@@ -75,6 +75,7 @@ class CustomerForm extends Component
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
 		$userDet['favored_users'] = implode(', ', $this->favored_providers);
+		$userDet['user_configuration'] = json_encode($this->user_configuration);
 		$userDet->save();
 
 
@@ -96,6 +97,8 @@ class CustomerForm extends Component
 	//    	$this->userdetail=$user['userdetail'];
 		if($user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
+		if ($this->user->userdetail->get('user_configuration') != null)
+		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
 		
        $this->label="Edit";
        $this->user=$user;
@@ -132,8 +135,11 @@ class CustomerForm extends Component
 			$this->userdetail[$attrName] = $val;
 		   }
 		}
+		else if($attrName == "have_access_to")
+				$this->user_configuration['have_access_to'] =$val;
 		else
 			$this->$attrName = $val;
+
 	}
 
 	public function rules()
@@ -191,6 +197,8 @@ class CustomerForm extends Component
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
 		$this->user->status=1;
+
+		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
@@ -202,39 +210,39 @@ class CustomerForm extends Component
 			$this->user = new User;
 		}
 		else{
-		$this->step=2;
-		$this->serviceActive="active";
-		
+			// setting values for next step
 
-		// setting values for next step
-		if (!is_null($this->user->company_name)){
-			$this->emit('updateCompany', $this->user->company_name);
+			$this->step=2;
+			$this->serviceActive="active";
+			
+			if (!is_null($this->user->company_name)){
+				$this->emit('updateCompany', $this->user->company_name);
+			}
+
+			$company_id = $this->user->company_name;
+			$this->allUserSchedules = User::query()
+				->where(['users.status' => 1])
+				->where('users.id','<>',$this->user->id)
+				->whereHas('roles', function ($query) {
+					$query->where('role_id', '>', 4);
+				})
+				->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+				->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+				->where('companies.id', '=', $company_id)
+				->select('users.id', 'users.name', 'phone')
+				->get();
+			
+			if($this->user->userdetail->get('favored_users')!=null)
+				$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+			if ($this->user->userdetail->get('unfavored_users')!=null)
+				$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
+			if ($this->user->userdetail->get('user_configuration') != null)
+				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
+			$this->dispatchBrowserEvent('refreshSelects');
+
 		}
-
-		$company_id = $this->user->company_name;
-		$this->allUserSchedules = User::query()
-			->where(['users.status' => 1])
-			->whereHas('roles', function ($query) {
-				$query->where('role_id','>=', 5);
-			})
-			->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-			->leftJoin('companies', function ($join) use ($company_id) {
-				$join->where('companies.id', '=', $company_id);
-				$join->where('companies.id', '=', 'users.company_name');
-			})
-			->select('users.id', 'users.name', 'phone')
-			->get();
-		
-		if($this->user->userdetail->get('favored_users')!=null)
-			$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
-		if ($this->user->userdetail->get('unfavored_users')!=null)
-			$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
-		$this->dispatchBrowserEvent('refreshSelects');
-
-		}
 		
 		
-
 	}
 
 	public function stepIncremented()

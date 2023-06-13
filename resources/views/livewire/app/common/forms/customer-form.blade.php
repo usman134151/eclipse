@@ -590,8 +590,8 @@
                                                 <div
                                                     class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
                                                     <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="HideUsersDetailsfromProvider">
+                                                        <input class="form-check-input" type="checkbox" wire:model.defer="user_configuration.hide_from_providers"
+                                                            id="HideUsersDetailsfromProvider" value="true">
                                                         <label class="form-check-label" for="HideUsersDetailsfromProvider">
                                                             Hide User's Details from Providers
                                                         </label>
@@ -862,7 +862,7 @@
                                                     <div class="d-flex gap-3">
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="GrantAccesstoUserSchedules" value="true"
+                                                                name="GrantAccesstoUserSchedules" value=true
                                                                 id="GrantAccesstoUserSchedulesYes" wire:model="user_configuration.grant_access_to_schedule">
                                                             <label class="form-check-label"
                                                                 for="GrantAccesstoUserSchedulesYes">
@@ -871,7 +871,7 @@
                                                         </div>
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="GrantAccesstoUserSchedules" value="false" wire:model="user_configuration.grant_access_to_schedule"
+                                                                name="GrantAccesstoUserSchedules" value=false wire:model="user_configuration.grant_access_to_schedule"
                                                                 id="GrantAccesstoUserSchedulesNo">
                                                             <label class="form-check-label"
                                                                 for="GrantAccesstoUserSchedulesNo">
@@ -903,7 +903,7 @@
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
                                                                 name="RequireServiceRequestApprovalfromAssignedSupervisor"
-                                                                value="true" wire:model="user_configuration.require_approval"
+                                                                value=true wire:model="user_configuration.require_approval"
                                                                 id="RequireServiceRequestApprovalfromAssignedSupervisorYes">
                                                             <label class="form-check-label"
                                                                 for="RequireServiceRequestApprovalfromAssignedSupervisorYes">
@@ -914,7 +914,7 @@
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
                                                                 name="RequireServiceRequestApprovalfromAssignedSupervisor"
-                                                                value="false" wire:model="user_configuration.require_approval"
+                                                                value=false wire:model="user_configuration.require_approval"
                                                                 id="RequireServiceRequestApprovalfromAssignedSupervisorNo">
                                                             <label class="form-check-label"
                                                                 for="RequireServiceRequestApprovalfromAssignedSupervisorNo">
@@ -931,7 +931,7 @@
                                                     <div class="d-flex gap-3">
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="HideBillingInformationfromUser" value="true" wire:model="user_configuration.hide_billing"
+                                                                name="HideBillingInformationfromUser" value=true wire:model="user_configuration.hide_billing"
                                                                 id="HideBillingInformationfromUserYes" >
                                                             <label class="form-check-label"
                                                                 for="HideBillingInformationfromUserYes">
@@ -940,7 +940,7 @@
                                                         </div>
                                                         <div class="form-check mb-lg-0">
                                                             <input class="form-check-input" type="radio"
-                                                                name="HideBillingInformationfromUser" value="false" wire:model="user_configuration.hide_billing"
+                                                                name="HideBillingInformationfromUser" value=false wire:model="user_configuration.hide_billing"
                                                                 id="HideBillingInformationfromUserNo">
                                                             <label class="form-check-label"
                                                                 for="HideBillingInformationfromUserNo">
