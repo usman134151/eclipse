@@ -81,6 +81,12 @@
                     </li>
                   </ul>
                  <!-- Tab panes -->
+                 @if($errors->any())
+                                        <div class="d-inline-block invalid-feedback mt-2 mb-2 ">
+                                        Please review the form below and fix the highlighted errors.
+                                        Scroll down to see the relevant fields with errors.
+                                        </div>
+                                        @endif
                   <div class="tab-content">
                   @if($step==1)
                     <div class="tab-pane fade" :class="{ 'active show': tab === 'basic-service-setup' }" id="basic-service-setup"
@@ -102,12 +108,7 @@
                                         </div>
                                         
                                     </div>
-                                    @if($errors->any())
-                                        <div class="d-inline-block invalid-feedback mt-2 mb-2 ">
-                                        Please review the form below and fix the highlighted errors.
-                                        Scroll down to see the relevant fields with errors.
-                                        </div>
-                                        @endif
+
                                     <div class="row">
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
@@ -1555,7 +1556,7 @@
                                     <button type="button" class="btn btn-outline-dark rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-forms')" wire:click.prevent="back">Back</button>
                                     <a href="/admin/accommodation/all-services" type="submit"
-                                            class="btn btn-primary rounded" wire:click.prevent="save(1,4)" >Save & Exit</a>
+                                            class="btn btn-primary rounded" wire:click.prevent="save(1,4)"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</a>
                                     <button type="button" class="btn btn-primary rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('advance-options')" wire:click.prevent="save(0,4)" >Next</button>
 
@@ -1752,7 +1753,11 @@
                                                 aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title=""></i>
                                         </h3>
+                                        @if($errors->has('service.min_payment_duration'))
+                                                         <div class="d-inline-block invalid-feedback mt-2">Numeric values acceptable in min.payment duration fields</div>
+                                        @endif
                                         <div class="d-flex flex-column gap-2">
+
                                         @foreach($serviceTypes as $type=>$parameters)
                                         @if(!is_null($service->service_type) && in_array($type,$service->service_type))
                                             <div class="row">
@@ -1769,7 +1774,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <input type="text" class="form-control form-control-sm text-center"
-                                                        placeholder="00:00" wire:model.defer="service.min_payment_duration{{$parameters['postfix']}}" aria-label="" aria-describedby="">
+                                                        placeholder="00:00" wire:model.defer="service.min_payment_duration{{$parameters['postfix']}}" aria-label="" aria-describedby="" maxlength="5">
                                                 </div>
                                             </div>
                                         @endforeach    
@@ -2231,7 +2236,7 @@
                                     <button type="button" class="btn btn-outline-dark rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-configuration')" wire:click.prevent="back">Back</button>
                                     <a href="/admin/accommodation/all-services" type="submit"
-                                            class="btn btn-primary rounded"  wire:click.prevent="save(1,5)">Save & Exit</a>
+                                            class="btn btn-primary rounded"  wire:click.prevent="save(1,5)"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save & Exit</a>
                                     <button type="button" class="btn btn-primary rounded"
                                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('notification-setting')" wire:click.prevent="save(0,5)">Next</button>
                                 </div>
