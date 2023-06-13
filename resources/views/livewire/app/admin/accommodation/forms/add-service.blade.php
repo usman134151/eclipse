@@ -93,13 +93,21 @@
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <div class="d-lg-flex justify-content-between align-items-center mb-3">
                                         <h2 class="mb-lg-0">Basic Service Setup</h2>
+
                                         <div class="form-check form-switch form-switch-column mb-0">
                                             <input class="form-check-input" type="checkbox" value="1" role="switch"
                                                 id="basicService" aria-label="Active Toggle Button" wire:model="service.status">
                                             <label class="form-check-label" for="basicService">In-Active</label>
                                             <label class="form-check-label" for="basicService">Active</label>
                                         </div>
+                                        
                                     </div>
+                                    @if($errors->any())
+                                        <div class="d-inline-block invalid-feedback mt-2 mb-2 ">
+                                        Please review the form below and fix the highlighted errors.
+                                        Scroll down to see the relevant fields with errors.
+                                        </div>
+                                        @endif
                                     <div class="row">
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label">Accommodation <span
@@ -221,6 +229,14 @@
                                 </div>
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Standard Rates</h2>
+                                    @if($errors->has('service.hours_price') || $errors->has('service.after_hours_price') || $errors->has('service.fixed_rate') || $errors->has('service.day_rate_price'))
+                                        <span class="d-inline-block invalid-feedback mt-2 mb-3">
+                                            {{ $errors->first('service.hours_price') }}
+                                            {{ $errors->first('service.after_hours_price') }}
+                                            {{ $errors->first('service.fixed_rate') }}
+                                            {{ $errors->first('service.day_rate_price') }}
+                                        </span>
+                                    @endif
                                     <div class="row justify-content-between">
                                     @if(!is_null($service->service_type) && count($service->service_type)==0)
                                         <div class="col-lg-6 mb-5 rates-alert ">
@@ -247,7 +263,7 @@
                                                         @else  
                                                         <input class="form-check-input" id="Multiply-ProvidersInPerson"
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
-                                                                tabindex="" wire:model.defer="service.standard_in_person_multiply_provider{{$parameters['postfix']}}"  />                                                       
+                                                                tabindex="" wire:model.defer="service.standard_in_person_multiply_provider{{$parameters['postfix']}}"  maxlength="3"/>                                                       
                                                         @endif        
                                                             <label class="form-check-label" for="Multiply-ProvidersInPerson">
                                                                 Multiply by No. of Providers</label>
@@ -264,7 +280,7 @@
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
-                                                            aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}">
+                                                            aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}" maxlength="6">
                                                     </div>
                                                     <div class="input-group billing-rates hour-rate @if($service->rate_status!=1) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7"
@@ -275,7 +291,7 @@
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
-                                                            aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}">
+                                                            aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}" maxlength="6">
                                                     </div>
                                                     <div class="input-group billing-rates day-rate @if($service->rate_status!=2) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
@@ -284,7 +300,7 @@
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
                                                         <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}">
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}" maxlength="6">
                                                     </div>
                                                     <div class="input-group billing-rates fixed-rate @if($service->rate_status!=4) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
@@ -293,22 +309,39 @@
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
                                                         <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}">
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}" maxlength="6">
                                                     </div>
                                                 </div>
                                                 <!-- /In-Person Rates -->
                                             </div>
                                         @endforeach
                                     </div>
+
                                 </div>
                                 <div class="col-lg-12 between-section-segment-spacing">
                                     <h2>Service Capacity & Capabilities</h2>
+
+
                                     <div class="row justify-content-between">
                                     @if(!is_null($service->service_type) && count($service->service_type)==0)
                                         <div class="col-lg-6 mb-5 rates-alert ">
                                             Please select service type to configure Capacity & Capabilities
                                         </div>   
                                     @endif    
+                                    @if($errors->hasAny([
+                                            'service.provider_limit',
+                                            'service.minimum_assistance_hours',
+                                            'service.minimum_assistance_min',
+                                            'service.maximum_assistance_hours',
+                                            'service.maximum_assistance_min',
+                                            'service.min_providers',
+                                            'service.max_providers',
+                                            'service.default_providers',
+                                        ]))
+                                            <div class="d-inline-block invalid-feedback mb-3">
+                                                Only Numeric values are acceptable in Service Capacity & Capabilities
+                                            </div>
+                                        @endif
                                     @foreach($serviceTypes as $type=>$parameters)
                                         @if(!is_null($service->service_type) && in_array($type,$service->service_type))
                                             <div class="col-lg-6 mb-5 {{$parameters['class']}}">
@@ -332,7 +365,7 @@
                                                     <div class="col-lg-6">
                                                         <div class="mb-4">
                                                             <label class="form-label-base">
-                                                                Min. Duration <span class="mandatory">*</span> <i
+                                                                Min. Duration <i
                                                                     class="fa fa-question-circle" aria-hidden="true"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="" ></i>
@@ -344,17 +377,17 @@
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_hours{{$parameters['postfix']}}">
+                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_hours{{$parameters['postfix']}}" maxlength="6">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_min{{$parameters['postfix']}}">
+                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_min{{$parameters['postfix']}}" maxlength="6">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="mb-4">
                                                             <label class="form-label-base">
-                                                                Max. Duration <span class="mandatory">*</span> <i
+                                                                Max. Duration <i
                                                                     class="fa fa-question-circle" aria-hidden="true"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title=""></i>
@@ -366,23 +399,23 @@
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}}">
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}}" maxlength="6">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_min{{$parameters['postfix']}}">
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_min{{$parameters['postfix']}}" maxlength="6">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="mb-4">
                                                             <label class="form-label-base">
-                                                                Min. Providers <span class="mandatory">*</span> <i
+                                                                Min. Providers <i
                                                                     class="fa fa-question-circle" aria-hidden="true"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title=""></i>
                                                             </label>
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="1" aria-label="1" aria-describedby="" wire:model.defer="service.min_providers{{$parameters['postfix']}}">
+                                                                placeholder="1" aria-label="1" aria-describedby="" wire:model.defer="service.min_providers{{$parameters['postfix']}}" maxlength="6">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -393,20 +426,20 @@
                                                                     data-bs-placement="top" title=""></i>
                                                             </label>
                                                             <input type="text" class="form-control text-center"
-                                                                placeholder="50" aria-label="50" aria-describedby="" wire:model.defer="service.max_providers{{$parameters['postfix']}}">
+                                                                placeholder="50" aria-label="50" aria-describedby="" wire:model.defer="service.max_providers{{$parameters['postfix']}}" maxlength="6">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="mb-4 row">
                                                             <label class="form-label-base col-lg-6">
-                                                                Default Providers <span class="mandatory">*</span> <i
+                                                                Default Providers  <i
                                                                     class="fa fa-question-circle" aria-hidden="true"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title=""></i>
                                                             </label>
                                                             <div class="col-lg-6">
                                                                 <input type="text" class="form-control text-center"
-                                                                    placeholder="2" aria-label="2" aria-describedby="" wire:model.defer="service.default_providers{{$parameters['postfix']}}">
+                                                                    placeholder="2" aria-label="2" aria-describedby="" wire:model.defer="service.default_providers{{$parameters['postfix']}}" maxlength="6">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -420,7 +453,7 @@
                                                             <div class="col-lg-6">
                                                                 <input type="text" class="form-control text-center"
                                                                     placeholder="100" aria-label="100"
-                                                                    aria-describedby="" wire:model.defer="service.provider_limit{{$parameters['postfix']}}">
+                                                                    aria-describedby="" wire:model.defer="service.provider_limit{{$parameters['postfix']}}" maxlength="6">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -439,10 +472,10 @@
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control text-center"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby="" wire:model.defer="providerReturn.{{$type}}.0.hour">
+                                                                        aria-describedby="" wire:model.defer="providerReturn.{{$type}}.0.hour" maxlength="6">
                                                                     <input type="text" class="form-control text-center"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby=""  wire:model.defer="providerReturn.{{$type}}.0.minute">
+                                                                        aria-describedby=""  wire:model.defer="providerReturn.{{$type}}.0.minute" maxlength="6">
                                                                 </div>
                                                             </div>
                                                         </div>
