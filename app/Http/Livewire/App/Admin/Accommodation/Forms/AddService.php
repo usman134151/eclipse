@@ -26,7 +26,7 @@ class AddService extends Component
                               '4'=>['broadcast'=>false,'auto_assign'=>false,'broadcast_via_email'=>false,'broadcast_via_sms'=>false,'broadcast_via_push'=>false,'provider_priority'=>false,'auto_assign_type'=>0],
                               '5'=>['broadcast'=>false,'auto_assign'=>false,'broadcast_via_email'=>false,'broadcast_via_sms'=>false,'broadcast_via_push'=>false,'provider_priority'=>false,'auto_assign_type'=>0],
                           ];                            
-    protected $listeners = ['editRecord' => 'edit' ,'updateVal'];
+    protected $listeners = ['editRecord' => 'edit' ,'updateVal','updateFields'];
 
 
     public $setupValues = [
@@ -745,6 +745,10 @@ class AddService extends Component
             "5"=>['price'=>'']
             
        ];
+    }
+
+    public function updateFields($values){
+        dd($values);
     }
 
    

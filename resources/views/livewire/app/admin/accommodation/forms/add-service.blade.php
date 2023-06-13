@@ -262,7 +262,7 @@
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
                                                                 tabindex=""  wire:model.defer="service.standard_rate_virtual_multiply_provider"  />
                                                         @else  
-                                                        <input class="form-check-input" id="Multiply-ProvidersInPerson"
+                                                        <input class="form-check-input" id="mbp_{{$type}}"
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
                                                                 tabindex="" wire:model.defer="service.standard_in_person_multiply_provider{{$parameters['postfix']}}"  maxlength="3"/>                                                       
                                                         @endif        
@@ -270,6 +270,16 @@
                                                                 Multiply by No. of Providers</label>
                                                         </div>
                                                     </div>
+                                                    @if($type!=1)    
+                                                <div>
+                                                <a class="btn btn-sm btn-secondary rounded btn-hs-icon"  href="#" onclick=copyTo({{$type}},'charges')>
+                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"></path>
+                                                    <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"></path>
+                                                    </svg>
+                                                </a>
+                                                </div>
+                                                @endif
                                                 </div>
                                                 <div class="border px-3 py-4 d-flex flex-column gap-3">
                                                     <div class="input-group billing-rates hour-rate @if($service->rate_status!=1) d-none @endif">
@@ -281,7 +291,7 @@
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
-                                                            aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}" maxlength="6">
+                                                            aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}" maxlength="6" id="bh_{{$type}}">
                                                     </div>
                                                     <div class="input-group billing-rates hour-rate @if($service->rate_status!=1) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7"
@@ -292,7 +302,7 @@
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
                                                         <input type="text" class="form-control text-center"
                                                             placeholder="00.00" aria-label="Enter Charges"
-                                                            aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}" maxlength="6">
+                                                            aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}" maxlength="6" id="abh_{{$type}}">
                                                     </div>
                                                     <div class="input-group billing-rates day-rate @if($service->rate_status!=2) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
@@ -360,6 +370,9 @@
                                                         Service Type: {{$parameters['title']}}
                                                     </h3>
                                                 </div>
+                                                <div>
+
+                                            </div>
                                             </div>
                                             <div class="border px-3 py-4 d-flex flex-column gap-3">
                                                 <div class="row justify-content-between">

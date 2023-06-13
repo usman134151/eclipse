@@ -113,7 +113,24 @@
     }
     
 
+  function copyTo(type,section){
+    if(section=='charges'){
+        $('#bh_'+type).val($('#bh_1').val());
+        
+        $('#abh_'+type).val($('#abh_1').val());
+        
+        $('#mbp_' + type).prop('checked', $('#mbp_1').prop('checked'));
+        
 
+        
+        document.getElementById('bh_'+type).dispatchEvent(new Event('input'));
+        document.getElementById('abh_'+type).dispatchEvent(new Event('input'));
+        document.getElementById('mbp_'+type).dispatchEvent(new Event('change'));
+
+    } //end of copy service charges
+
+
+  }
 
 </script>
 </div>
