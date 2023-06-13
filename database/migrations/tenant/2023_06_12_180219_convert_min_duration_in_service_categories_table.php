@@ -19,7 +19,18 @@ return new class extends Migration
      */
     public function up()
     {
-       
+        DB::table('service_categories')
+        ->whereNotNull('min_payment_duration')
+        ->update(['min_payment_duration' => 1.00]);
+        DB::table('service_categories')
+        ->whereNotNull('min_payment_duration_p')
+        ->update(['min_payment_duration_p' => 1.00]);
+        DB::table('service_categories')
+        ->whereNotNull('min_payment_duration_t')
+        ->update(['min_payment_duration_t' => 1.00]);
+        DB::table('service_categories')
+        ->whereNotNull('min_payment_duration_v')
+        ->update(['min_payment_duration_v' => 1.00]);
     
         Schema::table('service_categories', function (Blueprint $table) {
 
