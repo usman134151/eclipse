@@ -1637,14 +1637,7 @@
 
       }
 
-	document.addEventListener("livewire:load", () => {
-        
-        $('.select2').on('change', function (e) {
-         
-            let attrName=$(this).attr('id');
-            @this.set(attrName, $(this).select2("val"))
-        })
-	})
+
 
 </script>
 @endpush
