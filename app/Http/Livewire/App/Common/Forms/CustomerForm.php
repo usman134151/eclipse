@@ -18,7 +18,7 @@ class CustomerForm extends Component
 	'user_introduction'=>null, 'title' => null, 'user_position' => null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
-	
+	public $rolesArr=[];
 	public $component = 'customer-info';
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'user.company_name','','user.company_name',1]],
@@ -46,6 +46,7 @@ class CustomerForm extends Component
 		return view('livewire.app.common.forms.customer-form');
 	}
     public function mount(User $user){
+
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
 		$this->providers = User::query()
@@ -71,6 +72,9 @@ class CustomerForm extends Component
 	}
 
     public function permissionConfiguration($redirect=1){
+
+		$userService = new UserService;
+		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
 
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
