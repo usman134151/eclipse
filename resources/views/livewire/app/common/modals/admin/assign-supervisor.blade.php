@@ -38,7 +38,7 @@
                 @foreach($allUsers as $user)
                 <tr role="row" class="odd">
                   <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select Team">
+                    <input class="form-check-input" type="checkbox" value="{{$user->id}}" wire:model.defer="selectedSupervisors" aria-label="Select Supervisor">
                   </td>
                   <td class="align-middle">
                     <div class="d-flex gap-2 align-items-center">
@@ -54,7 +54,7 @@
                   <td class="align-middle">{{$user->phone}}</td>
                   <td class="align-middle text-center">
                     <div class="form-check d-inline-block mx-auto">
-                      <input class="form-check-input" type="radio" name="AssignedSupervisor" id="AssignedSupervisor1">
+                      <input class="form-check-input" type="radio" value="{{$user->id}}" wire:model="isDefault" name="AssignedSupervisor" id="AssignedSupervisor1">
                     </div>
                   </td>
                 </tr>
@@ -95,7 +95,7 @@
           <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
         </div>
         <div class="col-lg-3">
-          <button type="button" class="btn rounded w-100 btn-primary">Add</button>
+          <button type="button" class="btn rounded w-100 btn-primary" data-bs-dismiss="modal" wire:click="updateData">Add</button>
         </div>
       </div>
     </div>

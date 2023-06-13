@@ -9,6 +9,7 @@ use App\Models\Tenant\UserIndustry;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
+use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\TeamProviders;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -101,6 +102,52 @@ class UserService
         RoleUser::create(['user_id' => $userId, 'role_id' => $roleId]);
     }
   }
+
+  public function getCustomerRoles($userId)
+  {
+    $rolesArr=[];
+    $roleUsers=RoleUser::where('user_id', $userId)->where('role_id', '>', 4)->get()->pluck('role_id');
+    foreach ($roleUsers as $ru) {
+      $rolesArr[$ru]=true;
+    }
+    return $rolesArr;
+  }
+
+  public function storeUserRolesDetails($customer_id,$arr=[],$role_id,$typeofRelation,$default=0){
+    // delete existing records
+    $values=[];
+    if($typeofRelation == 0){
+      // user_id has master relation with $arr_user
+      RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->delete();
+
+      foreach ($arr as $user_id) {
+        $values = ['user_id' => $customer_id , 'associated_user' => $user_id, 'role_id' => $role_id];
+        RoleUserDetail::create($values);
+      }
+    }
+    else{
+      // arr_users have master relation with user_id
+      RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->delete();
+
+      foreach($arr as $user_id){
+        $values= ['user_id' => $user_id, 'associated_user' => $customer_id,'role_id'=>$role_id];
+        if($default == $user_id)
+          $values['is_default']=true;
+        RoleUserDetail::create($values);
+
+      }
+
+    }
+  }
+
+    public function getUserRolesDetails($customer_id,$role_id,$typeofRelation){
+      if($typeofRelation == 1)
+        $details=RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->get();
+      else
+        // master
+        $details = RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->get();
+        return $details;
+    }
 
   public function storeAdminRoles($rolesArr, $userId)
   {
