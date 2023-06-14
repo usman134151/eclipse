@@ -730,17 +730,21 @@
                                                     Supervising
                                                 </button>
                                                 <div class="uploaded-data d-flex align-items-center">
-                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                        alt="Profile Image">
-                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                        alt="Profile Image">
-                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                        alt="Profile Image">
-                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class=""
-                                                        alt="Profile Image">
-                                                    <div class="more">
-                                                        <span class="value">8</span> more
-                                                    </div>
+                                                    @if(count($supervisingNames)>0)
+                                                        
+
+                                                        @for ($i = 0; $i < $limit; $i++)
+                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisingNames[$i]['name']}}"
+                                                            alt="Profile Image">
+                                                        @endfor
+                                                        @if(count($supervisingNames)>4)
+                                                        <div class="more">    
+                                                            <span class="value">{{count($supervisingNames)-4}}</span> more
+                                                        </div>
+                                                        
+                                                        @endif
+
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 d-md-flex gap-5 mb-4">

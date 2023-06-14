@@ -29,7 +29,7 @@ class CustomerForm extends Component
 
 	];
 	
-    public $step = 1,$email_invitation;
+    public $step = 1,$email_invitation,$limit;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
 		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising', 'updateSelectedUsersToManager',
 		'updateSelectedStaff'];
@@ -37,7 +37,7 @@ class CustomerForm extends Component
 
 	//modals variables
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor, $selectedSupervising=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage,$selectedAdminStaff;
+		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage,$selectedAdminStaff;
 	
 	//end of modals variables
 
@@ -307,7 +307,15 @@ class CustomerForm extends Component
 	}
 	public function updateSelectedSupervising($selectedSupervising)
 	{
+		$this->supervisingNames=[];
 		$this->selectedSupervising = $selectedSupervising;
+		foreach($selectedSupervising as $us){
+			$this->supervisingNames[] = User::find($us)->toArray();
+		}
+		if(count($this->supervisingNames)>=4)
+			$this->limit = 4;
+		else
+			$this->limit= count($this->supervisingNames)-1;
 	}
 	public function updateSelectedBManagers($selectedBManagers, $default)
 	{
