@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\App\Common\Modals\Admin;
 
 use App\Models\Tenant\User;
+use App\Services\App\UserService;
 use Livewire\Component;
 
 class BillManaging extends Component
 {
-    public $showForm,$allUsers=[];
-    protected $listeners = ['showList' => 'resetForm', 'updateCompany' => 'setData'];
+    public $showForm,$allUsers=[],  $selectedUsersToManage = [], $user_id, $selectAll = false;
+    protected $listeners = ['showList' => 'resetForm', 'updateCompany' => 'setData','setValues'];
 
     public function render()
     {
@@ -26,6 +27,31 @@ class BillManaging extends Component
             ->where('companies.id', '=', $company_id)
             ->select('users.id', 'users.name', 'phone')
             ->get();
+    }
+
+    public function updateSelectAll()
+    {
+        if ($this->selectAll == true)
+            $this->selectedUsersToManage = $this->allUsers->pluck('id')->toArray();
+        else
+            $this->selectedUsersToManage = [];
+    }
+
+    public function setValues($user_id)
+    {
+        $this->user_id = $user_id;
+
+        $userService = new UserService;
+        $data = $userService->getUserRolesDetails($this->user_id, 9, 0);
+
+        $this->selectedUsersToManage = $data->pluck('associated_user')->toArray();
+        $this->updateData();
+    }
+
+    public function updateData()
+    {
+        // Emit an event to the parent component with the selected values
+        $this->emitUp('updateSelectedUsersToManager', $this->selectedUsersToManage);
     }
 
     public function mount()
