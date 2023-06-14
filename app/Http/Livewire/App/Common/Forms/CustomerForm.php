@@ -17,8 +17,8 @@ class CustomerForm extends Component
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 	'user_introduction'=>null, 'title' => null, 'user_position' => null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
-	public $user_configuration= ['grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
-	
+	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
+	public $rolesArr=[];
 	public $component = 'customer-info';
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'user.company_name','','user.company_name',1]],
@@ -29,13 +29,15 @@ class CustomerForm extends Component
 
 	];
 	
-    public $step = 1,$email_invitation;
+    public $step = 1,$email_invitation,$limit;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
-		'updateSelectedDepartments' => 'selectDepartments'];
+		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising', 'updateSelectedUsersToManager',
+		'updateSelectedStaff'];
 	public $serviceConsumer=false;
 
 	//modals variables
-	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[];
+	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
+		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage,$selectedAdminStaff;
 	
 	//end of modals variables
 
@@ -46,6 +48,7 @@ class CustomerForm extends Component
 		return view('livewire.app.common.forms.customer-form');
 	}
     public function mount(User $user){
+
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
 		$this->providers = User::query()
@@ -68,13 +71,24 @@ class CustomerForm extends Component
 	public function switch($component)
 	{
 		$this->component = $component;
+
 	}
 
     public function permissionConfiguration($redirect=1){
 
+		$userService = new UserService;
+		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
+		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedSupervising, 5, 0);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedBManagers, 9, 1, $this->defaultBManager);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedUsersToManage, 9, 0);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedAdminStaff, 3, 1);
+
+
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
 		$userDet['favored_users'] = implode(', ', $this->favored_providers);
+		$userDet['user_configuration'] = json_encode($this->user_configuration);
 		$userDet->save();
 
 
@@ -92,16 +106,18 @@ class CustomerForm extends Component
     public function edit(User $user){
 		
 	   $this->user=$user;
-	//    if(is_array($user['userdetail']))
-	//    	$this->userdetail=$user['userdetail'];
+		//    if(is_array($user['userdetail']))
+		//    	$this->userdetail=$user['userdetail'];
 		if($user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
+		if ($this->user->userdetail->get('user_configuration') != null)
+		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
 		
        $this->label="Edit";
        $this->user=$user;
 	   $this->isAdd=false;
 	   if($this->user->user_dob)
-	   	$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+		$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
@@ -112,6 +128,13 @@ class CustomerForm extends Component
 		}
      
     }
+
+	// TO-DO:
+	// if user's company is changed
+	// all its records will be changed
+	// departments, roles, roles_details (choosen from modals),user_configuration
+	
+	// remove self-customer from lists?
 
 	public function updateVal($attrName, $val)
 	{  
@@ -132,8 +155,11 @@ class CustomerForm extends Component
 			$this->userdetail[$attrName] = $val;
 		   }
 		}
+		else if($attrName == "have_access_to")
+				$this->user_configuration['have_access_to'] =$val;
 		else
 			$this->$attrName = $val;
+
 	}
 
 	public function rules()
@@ -184,13 +210,15 @@ class CustomerForm extends Component
 	public function save($redirect=1){
 		
 		$this->validate();
-		if($this->user->user_dob){
-            $this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+		if ($this->user->user_dob) {
+			$this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+		}
 
-        }
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
 		$this->user->status=1;
+
+		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
@@ -205,36 +233,41 @@ class CustomerForm extends Component
 		$this->step=2;
 		$this->serviceActive="active";
 		
+			if (!is_null($this->user->company_name)){
+				$this->emit('updateCompany', $this->user->company_name);
+			}
 
-		// setting values for next step
-		if (!is_null($this->user->company_name)){
-			$this->emit('updateCompany', $this->user->company_name);
+			$company_id = $this->user->company_name;
+			$this->allUserSchedules = User::query()
+				->where(['users.status' => 1])
+				->where('users.id','<>',$this->user->id)
+				->whereHas('roles', function ($query) {
+					$query->where('role_id', '>', 4);
+				})
+				->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+				->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+				->where('companies.id', '=', $company_id)
+				->select('users.id', 'users.name', 'phone')
+				->get();
+			
+			if($this->user->userdetail->get('favored_users')!=null)
+				$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+			if ($this->user->userdetail->get('unfavored_users')!=null)
+				$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
+			if ($this->user->userdetail->get('user_configuration') != null)
+				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
+
+			$this->rolesArr = $userService->getCustomerRoles($this->user->id);
+			// set modal values for step 2
+			$this->emit('setValues', $this->user->id);
+
+			
+
+			$this->dispatchBrowserEvent('refreshSelects');
+
 		}
-
-		$company_id = $this->user->company_name;
-		$this->allUserSchedules = User::query()
-			->where(['users.status' => 1])
-			->whereHas('roles', function ($query) {
-				$query->where('role_id','>=', 5);
-			})
-			->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-			->leftJoin('companies', function ($join) use ($company_id) {
-				$join->where('companies.id', '=', $company_id);
-				$join->where('companies.id', '=', 'users.company_name');
-			})
-			->select('users.id', 'users.name', 'phone')
-			->get();
-		
-		if($this->user->userdetail->get('favored_users')!=null)
-			$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
-		if ($this->user->userdetail->get('unfavored_users')!=null)
-			$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
-		$this->dispatchBrowserEvent('refreshSelects');
-
-		}
 		
 		
-
 	}
 
 	public function stepIncremented()
@@ -265,5 +298,37 @@ class CustomerForm extends Component
 		$this->userdetail['department'] = $defaultDepartment;
 		// $this->userdetail['supervisor'] = implode(', ', $svDepartments);
 		$this->departmentNames = $departmentNames;
-	}	
+	}
+
+	public function updateSelectedSupervisors($selectedSupervisors,$default)
+	{
+		$this->selectedSupervisors = $selectedSupervisors;
+		$this->defaultSupervisor = $default;
+	}
+	public function updateSelectedSupervising($selectedSupervising)
+	{
+		$this->supervisingNames=[];
+		$this->selectedSupervising = $selectedSupervising;
+		foreach($selectedSupervising as $us){
+			$this->supervisingNames[] = User::find($us)->toArray();
+		}
+		if(count($this->supervisingNames)>=4)
+			$this->limit = 4;
+		else
+			$this->limit= count($this->supervisingNames)-1;
+	}
+	public function updateSelectedBManagers($selectedBManagers, $default)
+	{
+		$this->selectedBManagers = $selectedBManagers;
+		$this->defaultBManager = $default;
+	}
+
+	public function updateSelectedUsersToManager($selectedUsersToManage)
+	{
+		$this->selectedUsersToManage = $selectedUsersToManage;
+	}
+	public function updateSelectedStaff($selectedStaff)
+	{
+		$this->selectedAdminStaff = $selectedStaff;
+	}
 }
