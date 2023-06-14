@@ -18,10 +18,10 @@ return new class extends Migration
         Schema::create('role_user_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+          //  $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('associated_user');
-            $table->foreign('associated_user')->references('id')->on('users')->onDelete('cascade');
+           // $table->foreign('associated_user')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('role_id');
             // $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
