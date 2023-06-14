@@ -27,7 +27,7 @@
               <thead>
                 <tr role="row">
                   <th scope="col" class="text-center">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
+                    <input class="form-check-input" type="checkbox" wire:click="updateSelectAll" wire:model.defer="selectAll" aria-label="Select All Teams">
                   </th>
                   <th scope="col">User</th>
                   <th scope="col">Phone Number</th>

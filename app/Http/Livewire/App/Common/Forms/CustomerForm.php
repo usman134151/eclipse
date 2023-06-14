@@ -36,7 +36,7 @@ class CustomerForm extends Component
 
 	//modals variables
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor, $selectedSupervising=[];
+		$defaultSupervisor, $selectedSupervising=[], $selectedBManagers=[], $defaultBManager;
 	
 	//end of modals variables
 
@@ -80,6 +80,8 @@ class CustomerForm extends Component
 		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
 		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
 		$userService->storeUserRolesDetails($this->user->id, $this->selectedSupervising, 5, 0);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedBManagers, 9, 1, $this->defaultBManager);
+
 
 		$userDet = $this->user->userdetail;
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
@@ -116,7 +118,7 @@ class CustomerForm extends Component
        $this->user=$user;
 	   $this->isAdd=false;
 	   if($this->user->user_dob)
-	   	$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+		$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
@@ -209,10 +211,10 @@ class CustomerForm extends Component
 	public function save($redirect=1){
 		
 		$this->validate();
-		if($this->user->user_dob){
-            $this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+		if ($this->user->user_dob) {
+			$this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+		}
 
-        }
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
 		$this->user->status=1;
@@ -311,5 +313,9 @@ class CustomerForm extends Component
 	{
 		$this->selectedSupervising = $selectedSupervising;
 	}
-
+	public function updateSelectedBManagers($selectedBManagers, $default)
+	{
+		$this->selectedBManagers = $selectedBManagers;
+		$this->defaultBManager = $default;
+	}
 }

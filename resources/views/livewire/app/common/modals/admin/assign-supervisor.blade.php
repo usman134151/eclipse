@@ -47,7 +47,7 @@
                       </div>
                       <div class="pt-2">
                         <div class="font-family-secondary leading-none">{{$user->name}}</div>
-                        <a href="" class="font-family-secondary"><small>{{$user->email}}</small></a>
+                        <p class="font-family-secondary"><small>{{$user->email}}</small></p>
                       </div>
                     </div>
                   </td>
