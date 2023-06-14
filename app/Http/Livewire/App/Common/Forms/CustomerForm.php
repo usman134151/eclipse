@@ -65,10 +65,8 @@ class CustomerForm extends Component
 		$this->emit('showList', $message);
 	}
 
-	public function switch($component,$step=0)
+	public function switch($component)
 	{
-		if($step!=0)
-		  $this->step=$step;
 		$this->component = $component;
 	}
 
@@ -86,12 +84,9 @@ class CustomerForm extends Component
 			$this->user = new User;
 		}
         $this->step =3;
-		$this->switch('service-catalog');
     }
     public function addServices(){
-		
         $this->step = 4;
-		$this->switch('drive-documents');
     }
 
     public function edit(User $user){
@@ -209,7 +204,6 @@ class CustomerForm extends Component
 		else{
 		$this->step=2;
 		$this->serviceActive="active";
-		$this->switch('permission-configurations');
 		
 
 		// setting values for next step
