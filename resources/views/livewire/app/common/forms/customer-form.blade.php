@@ -974,7 +974,7 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('customer-info')">
+                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('customer-info')"  wire:click.prevent="switch('customer-info',1)" >
                                                     Back
                                                 </button>
                                                  <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="permissionConfiguration" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
@@ -1513,7 +1513,7 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')" wire:click.prevent="save(0)">
                                                     Back
                                                 </button>
                                                 <a href="/admin/customer">
@@ -1522,7 +1522,7 @@
                                                     </button>
                                                 </a>
                                                 <button type="button" class="btn btn-primary rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                 wire:click.prevent="addServices()">
                                                     Next
                                                 </button>
                                             </div>
@@ -1587,7 +1587,7 @@
                                                         <div
                                                             class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                             <button type="button" class="btn btn-outline-dark rounded"
-                                                            x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                            wire:click.prevent="permissionConfiguration(0)">
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
@@ -1637,14 +1637,7 @@
 
       }
 
-	document.addEventListener("livewire:load", () => {
-        
-        $('.select2').on('change', function (e) {
-         
-            let attrName=$(this).attr('id');
-            @this.set(attrName, $(this).select2("val"))
-        })
-	})
+
 
 </script>
 @endpush
