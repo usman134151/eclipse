@@ -128,6 +128,13 @@ class CustomerForm extends Component
      
     }
 
+	// TO-DO:
+	// if user's company is changed
+	// all its records will be changed
+	// departments, roles, roles_details (choosen from modals),user_configuration
+	
+	// remove self-customer from lists?
+
 	public function updateVal($attrName, $val)
 	{  
 		if($this->step == 1){

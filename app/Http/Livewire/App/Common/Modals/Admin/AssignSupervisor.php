@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class AssignSupervisor extends Component
 {
-    public $showForm,$allUsers=[],$company_id,$selectedSupervisors=[],$isDefault=false,$user_id;
+    public $showForm,$allUsers=[],$company_id,$selectedSupervisors=[],$isDefault=false,$user_id,$selectAll=false;
     protected $listeners = ['showList' => 'resetForm', 'updateCompany'=>'setData','setValues'];
 
     public function render()
@@ -32,6 +32,13 @@ class AssignSupervisor extends Component
 
         // $this->selectedSupervisors=[];
         // $this->isDefault=false;
+    }
+
+    public function updateSelectAll(){
+        if($this->selectAll==true)
+            $this->selectedSupervisors = $this->allUsers->pluck('id')->toArray();
+        else
+        $this->selectedSupervisors=[];
     }
 
     public function setValues($user_id)
