@@ -27,7 +27,7 @@
               <thead>
                 <tr role="row">
                   <th scope="col" class="text-center">
-                    <input class="form-check-input" type="checkbox" wire:model.defer="selectAll" wire:click="updateSelectAll" aria-label="Select All Teams">
+                    <input class="form-check-input" type="checkbox" wire:click="updateSelectAll"  wire:model.defer="selectAll" aria-label="Select All Teams">
                   </th>
                   <th scope="col">User</th>
                   <th scope="col">Phone Number</th>
@@ -37,7 +37,7 @@
               @foreach($allUsers as $user)
                 <tr role="row" class="odd">
                   <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="{{$user->id}}" aria-label="Select Team">
+                    <input class="form-check-input" type="checkbox" value="{{$user->id}}" wire:model.defer="selectedUsersToManage" aria-label="Select Team">
                   </td>
                   <td class="align-middle">
                     <div class="d-flex gap-2 align-items-center">
