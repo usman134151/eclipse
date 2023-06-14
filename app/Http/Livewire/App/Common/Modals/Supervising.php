@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\App\Common\Modals;
 
 use App\Models\Tenant\User;
+use App\Services\App\UserService;
 use Livewire\Component;
 
 class Supervising extends Component
 {
-    public $showForm, $supervising=[];
-    protected $listeners = ['showList' => 'resetForm', 'updateCompany' => 'setData'];
+    public $showForm, $supervising=[], $selectedSupervising=[], $user_id,$selectAll=false;
+    protected $listeners = ['showList' => 'resetForm', 'updateCompany' => 'setData', 'setValues'];
 
     public function setData($company_id)
     {
@@ -26,16 +27,37 @@ class Supervising extends Component
 
     }
 
+    public function updateSelectAll()
+    {
+        if ($this->selectAll == true)
+            $this->selectedSupervising = $this->supervising->pluck('id')->toArray();
+        else
+            $this->selectedSupervising = [];
+    }
+
+
     public function render()
     {
         return view('livewire.app.common.modals.supervising');
     }
 
-    public function mount()
+    public function setValues($user_id)
     {
-       
-       
+        $this->user_id = $user_id;
+
+        $userService = new UserService;
+        $data = $userService->getUserRolesDetails($this->user_id, 5, 0);
+
+        $this->selectedSupervising = $data->pluck('associated_user')->toArray();
+        $this->updateData();
     }
+
+    public function updateData()
+    {
+        // Emit an event to the parent component with the selected values
+        $this->emitUp('updateSelectedSupervising', $this->selectedSupervising);
+    }
+
 
     function showForm()
     {     
