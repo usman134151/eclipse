@@ -31,12 +31,13 @@ class CustomerForm extends Component
 	
     public $step = 1,$email_invitation;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
-		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising'];
+		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising', 'updateSelectedUsersToManager',
+		'updateSelectedStaff'];
 	public $serviceConsumer=false;
 
 	//modals variables
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor, $selectedSupervising=[], $selectedBManagers=[], $defaultBManager;
+		$defaultSupervisor, $selectedSupervising=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage,$selectedAdminStaff;
 	
 	//end of modals variables
 
@@ -72,6 +73,7 @@ class CustomerForm extends Component
 		if($step!=0)
 		  $this->step=$step;
 		$this->component = $component;
+
 	}
 
     public function permissionConfiguration($redirect=1){
@@ -81,6 +83,8 @@ class CustomerForm extends Component
 		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
 		$userService->storeUserRolesDetails($this->user->id, $this->selectedSupervising, 5, 0);
 		$userService->storeUserRolesDetails($this->user->id, $this->selectedBManagers, 9, 1, $this->defaultBManager);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedUsersToManage, 9, 0);
+		$userService->storeUserRolesDetails($this->user->id, $this->selectedAdminStaff, 3, 1);
 
 
 		$userDet = $this->user->userdetail;
@@ -235,7 +239,7 @@ class CustomerForm extends Component
 
 			$this->step=2;
 			$this->serviceActive="active";
-			$this->switch('permission-configurations');
+			$this->switch('permission-configurations',2);
 		
 			if (!is_null($this->user->company_name)){
 				$this->emit('updateCompany', $this->user->company_name);
@@ -317,5 +321,14 @@ class CustomerForm extends Component
 	{
 		$this->selectedBManagers = $selectedBManagers;
 		$this->defaultBManager = $default;
+	}
+
+	public function updateSelectedUsersToManager($selectedUsersToManage)
+	{
+		$this->selectedUsersToManage = $selectedUsersToManage;
+	}
+	public function updateSelectedStaff($selectedStaff)
+	{
+		$this->selectedAdminStaff = $selectedStaff;
 	}
 }

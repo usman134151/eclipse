@@ -974,14 +974,14 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('customer-info')"  wire:click.prevent="switch('customer-info',1)" >
+                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('customer-info',1)"  wire:click.prevent="switch('customer-info',1)" >
                                                     Back
                                                 </button>
                                                  <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="permissionConfiguration" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                             Save & Exit
                                                         </button>
                                                 <button type="button" class="btn btn-primary rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')" wire:click.prevent="permissionConfiguration(0)">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog',3)" wire:click.prevent="permissionConfiguration(0)">
                                                     Next
                                                 </button>
                                             </div>
@@ -1513,7 +1513,7 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')" wire:click.prevent="save(0)">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click.prevent="switch('permission-configurations',2)">
                                                     Back
                                                 </button>
                                                 <a href="/admin/customer">
@@ -1587,7 +1587,7 @@
                                                         <div
                                                             class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                             <button type="button" class="btn btn-outline-dark rounded"
-                                                            wire:click.prevent="permissionConfiguration(0)">
+                                                            wire:click.prevent="switch('service-catalogue',3)">
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
