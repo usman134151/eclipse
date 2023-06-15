@@ -13,9 +13,9 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class FormList extends PowerGridComponent
 {
     use ActionButton;
-    protected $listeners = ['refresh'=>'setUp','refreshDetailList' => 'refreshList'];
+    protected $listeners = ['refresh'=>'setUp'];
     public $setup_value_label;
-    public $setupId;
+    public $setupId, $selectedFormId, $formDeleteable;
 
     /*
     |--------------------------------------------------------------------------
@@ -24,12 +24,7 @@ final class FormList extends PowerGridComponent
     | Setup Table's general features
     |--------------------------------------------------------------------------
     */
-    public function refreshList($setupId)
-    {
-        // Handle the event data
-        // ...
-        //dd($setupId);
-    }
+    
 
     public function setUp(): array
     {
@@ -103,9 +98,18 @@ final class FormList extends PowerGridComponent
             ->addColumn('status', function (SetupValue $model) {
                 return ($model->status);
             })
-            ->addColumn('view',function(){
-                return '<div class="d-flex actions"><a   href="#" title="View Form" aria-label="View Form" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Form" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
+            ->addColumn('view',function(SetupValue $model){
+                 return '<div class="d-flex actions"><a  wire:click.prevent="showDetails(' . $model->id . ',\'' . $model->setup_value_label . '\',\'0\')"  x-on:click="formDetails = true" href="#" title="View Forms" aria-label="View Forms" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Form" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
             });// updated by shanila to add a show details
+
+    }
+    public function showDetails($formId, $formLabel, $formDeleteable)
+    {
+        // dd($formId,$formLabel,$formDeleteable);
+        $this->selectedFormId = $formId;
+        $this->formDeleteable = $formDeleteable;
+
+        $this->emit('refreshFormDetails', $formId, $formLabel, $formDeleteable); 
 
     }
 
