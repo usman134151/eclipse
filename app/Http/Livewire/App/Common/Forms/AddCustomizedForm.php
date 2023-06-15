@@ -30,6 +30,7 @@ class AddCustomizedForm extends Component
 	{
 		$this->emit('showList');
 	}
+
     public function rules()
     {
         $rules = [
@@ -80,6 +81,7 @@ class AddCustomizedForm extends Component
 
     public function mount()
     {
+        // dd(request()->formID);
         $this->industries= Industry::where('status',1)->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
     }
