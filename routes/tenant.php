@@ -52,6 +52,7 @@ Route::group([
 
 			Route::view('/admin/customize-form', 'tenant/common/saved-forms', ["showForm"=>false]);
 			Route::view('/admin/customize-form/create-form', 'tenant/common/saved-forms', ["showForm"=>true]);
+			Route::view('/admin/customize-form/edit-form/{formID}', 'tenant/common/saved-forms', ["showForm" => true	]);
 
 			Route::view('/admin/provider', 'tenant/common/provider', ["showForm"=>false,"status"=>1]);
 			Route::view('/admin/provider/create-provider', 'tenant/common/provider', ["showForm"=>true,'status'=>1]);

@@ -1,4 +1,4 @@
-<div>
+<div x-data="{formDetails:false}">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -97,8 +97,12 @@
 			</div>
 		</div>
 	</section>
+
 	{{-- Saved Forms Section - End --}}
 	@endif
+	@include('panels.common.custom-form-details')
+</div>
+
 </div>
 <script>
 	function updateVal(attrName,val){
