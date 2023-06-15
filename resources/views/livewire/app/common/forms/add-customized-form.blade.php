@@ -52,190 +52,232 @@
 
                                             {!! App\Helpers\SetupHelper::createDropDown('SetupValue', 'id',
                                                     'setup_value_label', 'setup_id', 7, 'setup_value_label', false,
-                                                    'customer-form-name',
-                                               '','customer-form-name') !!}
+                                                    'custom_form_details.form_name_id',
+                                               '','form_name_id') !!}
+										  @error('custom_form_details.form_name_id')<span class="d-inline-block invalid-feedback mt-2">The form type is a required field</span>@enderror
+
 										</div>
 									</div>
 								</div>
 
-								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-								<!-- <div class="col-md-6 col-12">
-									<div class="mb-4">
-										<label class="form-label" for="select-industry-column">Select Industry <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the industry to which you want to assign this form. When customers with the selected industry request services, they will complete this form as part of step 2."></i></label>
-										<select class="form-select" id="select-industry-column">
-											<option selected>ICS Admin</option>
-											<option value="1">Skillr</option>
-											<option value="2">Spoken Language Interpreting</option>
-											<option value="3">New Industry</option>
-										  </select>
-									</div>
-								</div> -->
+								@if($custom_form_details['form_name_id']==37 || $custom_form_details['form_name_id']==38)
+								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form" / option "Customer Lead and Qoute Form"   -->
+								 	<div class="col-md-6 col-12">
+										<div class="mb-4">
+											<div class="form-group">
+			                       				<label class="form-label" for="industry">Select Industry
+						                            <span class="mandatory" aria-hidden="true">*</span>
+                						        </label>
+									
+													{!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
+															'name', 'status', 1, 'name', false,
+															'custom_form_details.industry_id',
+													'','industry') !!}
+											
+                    			 			</div>	
+                    			 		</div>	
+                    			 	</div>	
 								<!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
 
-								 <!-- Begin: This is conditional, link with select "Form" / option "Customer Lead & Quote Form"   -->
-								 <!-- <div class="col-md-6 col-12">
-									<div class="mb-4">
-										<label class="form-label" for="select-industry-column">Select Industry <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the industry to which you want to assign this form. When customers with the selected industry request services, they will complete this form as part of step 2."></i></label>
-										<select class="form-select" id="select-industry-column">
-										   <option value="1">General</option>
-										   <option value="5">Partner General</option>
-										   <option value="6">Post Production Editing</option>
-										   <option value="7">Religion</option>
-										   <option value="8">Education K 12</option>
-										   <option value="9">Higher Education</option>
-										   <option value="10">FRBNY Interpreting</option>
-										   <option value="11">Travel</option>
-										   <option value="12">Administration</option>
-										   <option value="14">ICS Administrative</option>
-										   <option value="15">ICS Admin</option>
-										   <option value="16">OGS</option>
-										   <option value="17">FRBNY CART</option>
-										   <option value="18">Skillr</option>
-										   <option value="19">Spoken Language Interpreting</option>
-										   <option value="20">Translation</option>
-										   <option value="21">New Industry</option>
-										   <option value="22">Johnn tooth</option>
-										  </select>
-									</div>
-								</div> -->
-								<!-- End: This is conditional, link with select "Form" / option "Customer Lead & Quote Form"   -->
+								@endif
 
+								@if($custom_form_details['form_name_id']==40)
+								 
 								<!-- Begin: This is conditional, link with select "Form" / option "New Provider Screening"   -->
-								<!-- <div class="col-md-6 col-12">
+								<div class="col-md-6 col-12">
 									<div class="mb-4">
 										  <div class="form-group">
-											<label for="screening-name-column">Screening Name</label>
-											<input type="text" id="screening-name-column"
-											class="form-control" placeholder="Enter Name"
-											name="screening-name-column" />
+											<label for="screening-name-column" class="form-label ">Screening Name</label>
+											<input type="text" id="screen_name" wire:model.defer="custom_form_details.screen_name" class="form-control" placeholder="Enter Name" name="screening-name-column" />
 										</div>
 									</div>
-								</div> -->
+								</div>
 								<!-- End: This is conditional, link with select "Form" / option "New Provider Screening"   -->
-
+								@endif
+								@if($custom_form_details['form_name_id']==37)
 								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-								<!-- <div class="col-md-12">
+								 <div class="col-md-12">
 									<div class="mb-4">
 										<div class="form-group">
-											<label for="form-name-column">Form Name</label>
-											<input type="text" id="form-name-column"
+											<label for="form-name-column" class="form-label">Form Name
+						                            {{-- <span class="mandatory" aria-hidden="true">*</span> --}}
+											</label>
+											<input type="text" id="form-name-column" wire:model.defer="custom_form_details.request_form_name"
 											class="form-control" placeholder="Enter Request From Name"
 											name="form-name-column" />
 										</div>
 									</div>
-								</div> -->
+								</div>
 								  <!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-                                  @foreach($questions as $index=>$question)
-                                  <div class="border-dashed rounded p-3 mb-3" >
-								  <div class="col-md-12">
-									<div class="mb-4">
-											<div class="form-group">
-                                                <div class="d-flex justify-content-between">
-												<label for="field-name-column">Field Name {{ $loop->index + 1 }} <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Type the question or field name you want customers to respond to."></i></label>
-                                                <div class="align-items-center gap-4">
-                                                    <a wire:click.prevent="removeQuestion({{$index}})" href="#" title="Delete" aria-label="Delete"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        <svg aria-label="Delete" class="delete-icon" width="20" height="20"
-                                                            viewBox="0 0 20 20" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <use xlink:href="/css/sprite.svg#delete-icon"></use>
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                              </div>
-												<input type="text" id="field-name-column"
-												class="form-control" placeholder="Enter Name"
-												name="field-name-column" wire:key="name-{{ $index }}" wire:model.lazy="questions.{{$index}}.feild_name"/>
-											</div>
-									</div>
-								  </div>
-								<div class="col-md-12">
-									<div class="mb-4">
-										<label class="form-label" for="form-type-column" > Form Type <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select the format you want this question to display as"></i></label>
-										<select class="form-select" id="form-type-column" wire:key="select-{{ $index }}" wire:model.lazy="questions.{{$index}}.form_type">
-											<option selected>Text</option>
-											<option value="1">Textarea</option>
-											<option value="2">Dropdown</option>
-											<option value="3">Checkbox</option>
-											<option value="3">Radio button</option>
-											<option value="3">File</option>
-										  </select>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-											<div class="form-group">
-												<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="This is the text shown in the response field before anything is typed."></i></label>
-												<input type="text" id="placeholder-column"
-												class="form-control" placeholder="Placeholder"
-												name="field-name-column" wire:key="placeholder-{{ $index }}" wire:model.lazy="questions.{{$index}}.placeholder"/>
-											</div>
-									</div>
-								</div>
+								@endif
+								
+                                @foreach($questions as $index=>$question)
+									<div class="border-dashed rounded p-3 mb-3" >
 
-								<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
-								<!-- <div class="col-md-12">
-									<div class="mb-4">
-										<div class="mb-4">
-											<div class="form-group">
-												<input type="checkbox" id="hide-response-from provider-column"
-												class="form-control"
-												name="response-column" />
-												<label for="hide-response-from provider-column">Hide Response from Provider  <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="When selected, the customers response will not display in the assigned providers 'Assignment Details'. The response will still be visible to you and the customer."></i></label>
-											</div>
-										</div>
-									</div>
-								</div> -->
-								<!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
+										@if($custom_form_details['form_name_id']==40)
 
-								<div class="col-md-12">
-										<div class="mb-4">
-											<div class="form-check">
-												<input class="form-check-input" id="required-column" name="required-column" type="checkbox" tabindex="3" wire:key="required-{{ $index }}" wire:model.lazy="questions.{{$index}}.required"/>
-												<label class="form-check-label" for="required-column"> Required <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="When selected, the customer will be required to provide a response to the field before continuing to Step 3."></i></label>
-											 </div>
-										</div>
-								</div>
-                            </div>
-                              @endforeach
-								<!-- Begin: This is conditional, link with select "Form" / option "New Provider Screening"   -->
-								<!-- <div class="col-md-12">
-									<div class="mb-4">
-											<div class="form-group">
-												<label for="title-column">Title</label>
-												<input type="text" id="title-column"
-												class="form-control" placeholder="Enter Title"
-												name="title-column" />
+											<!-- Begin: This is conditional, link with select "Form" / option "New Provider Screening"   -->
+											<div class="col-md-12">
+												<div class="mb-4">
+														<div class="form-group">
+															<label for="title-column">Title <span class="text-danger" aria-hidden="true">*</span></label>
+															<input type="text" id="title-column" wire:key="title-{{ $index }}" wire:model.lazy="questions.{{$index}}.title"
+															class="form-control" placeholder="Enter Title"
+															name="title-column" />
+										 					 @error('questions.'.$index.'.title')<span class="d-inline-block invalid-feedback mt-2">The title field is required for each question.</span>@enderror
+
+														</div>
+												</div>
 											</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-										<div class="form-group">
-											<label for="scenario">Scenario</label>
-											<textarea class="form-control" id="scenario" rows="4" name="scenario"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-										<label for="formFile"
-											class="form-label">Upload File</label>
-										<input class="form-control" type="file" id="formFile">
-										<p>Maximum file size (25 MB)</p>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-											<div class="form-group">
-												<input type="checkbox" id="allow-radio"
-												class="form-control"
-												name="allow-radio" />
-												<label for="required-column">Allow Radio</label>
+											<div class="col-md-12">
+												<div class="mb-4">
+													<div class="form-group">
+														<label for="scenario">Scenario <span class="text-danger" aria-hidden="true">*</span></label>
+														<textarea class="form-control" id="scenario" rows="4" wire:key="scenario-{{ $index }}" wire:model.lazy="questions.{{$index}}.scenario" name="scenario"></textarea>
+										 					 @error('questions.'.$index.'.scenario')<span class="d-inline-block invalid-feedback mt-2">The scenario field is required for each question.</span>@enderror
+
+													</div>
+												</div>
 											</div>
+											<div class="col-md-12">
+												<div class="mb-4">
+													<label for="formFile"
+														class="form-label">Upload File <span class="text-danger" aria-hidden="true"><small>(disabled)</small></span></label> 
+													<input class="form-control" disabled type="file" id="formFile" wire:key="document-name-{{ $index }}" wire:model.lazy="questions.{{$index}}.document_name">
+													<p>Maximum file size (25 MB)</p>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="mb-4">
+														<div class="form-check">
+															<input type="checkbox" id="allow-redo"
+															class="form-check-input" wire:key='allow-redo-{{$index}}' wire:model.lazy='questions.{{$index}}.allow_redo'
+															name="allow-radio" />
+															<label for="required-column" class='form-check-label'>Allow Redo</label>
+														</div>
+												</div>
+											</div> 
+											<!-- End: This is conditional, link with select "Form" / option "New Provider Screening"   -->
+										@else
+											<div class="col-md-12">
+												<div class="mb-4">
+														<div class="form-group">
+															<div class="d-flex justify-content-between">
+																<label for="field-name-column">Field Name {{ $loop->index + 1 }} <span class="text-danger" aria-hidden="true">*</span> <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Type the question or field name you want customers to respond to."></i></label>
+																<div class="align-items-center gap-4">
+																	<a wire:click.prevent="removeQuestion({{$index}})" href="#" title="Delete" aria-label="Delete"
+																		class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																		<svg aria-label="Delete" class="delete-icon" width="20" height="20"
+																			viewBox="0 0 20 20" fill="none"
+																			xmlns="http://www.w3.org/2000/svg">
+																			<use xlink:href="/css/sprite.svg#delete-icon"></use>
+																		</svg>
+																	</a>
+																</div>
+															</div>
+															<input type="text" id="field-name-column" class="form-control" placeholder="Enter Name"name="field-name-column" wire:key="name-{{ $index }}" wire:model.lazy="questions.{{$index}}.field_name"/>
+										 					 @error('questions.'.$index.'.field_name')<span class="d-inline-block invalid-feedback mt-2">The field name is required for each question.</span>@enderror
+														</div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="mb-4">
+													<div class="form-group">
+
+															<label for="form-type-column" > Field Type <span class="text-danger" aria-hidden="true">*</span> <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select the format you want this question to display as"></i></label>
+															<select class="form-select " id="form-type-column" wire:key="select-{{ $index }}" wire:model="questions.{{$index}}.field_type">
+																<option>Select</option>
+																<option wire:key="select-{{ $index }}-1" value="1">Text</option>
+																<option wire:key="select-{{ $index }}-2" value="2">Textarea</option>
+																<option wire:key="select-{{ $index }}-3" value="3">Dropdown</option>
+																<option wire:key="select-{{ $index }}-4" value="4">Checkbox</option>
+																<option wire:key="select-{{ $index }}-5" value="5">Radio button</option>
+																<option wire:key="select-{{ $index }}-6" value="6">File</option>
+															</select>
+															@error("questions.".$index.".field_type")<span class="d-inline-block invalid-feedback mt-2">The field type is required for each question.</span>@enderror
+													</div>
+
+												</div>
+
+											</div>
+											<div class="col-md-12">
+												<div class="mb-4">
+														
+														@if($questions[$index]['field_type']>2 && $questions[$index]['field_type']<6)
+															<div class="form-group">
+																<label for="options-{{$index}}">Options <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="These are the options shown with this field."></i></label>
+															
+																	@foreach($questions[$index]['options'] as $index_opt => $option)
+																		<div class="d-flex mb-4">
+																		<div class="col-md-11">
+
+																			<input type="text" id="{{$index_opt}}-option" class="form-control" placeholder="Option"
+																				name="{{$index_opt}}-option" wire:key="option-{{ $index }}-{{$index_opt}}" wire:model.lazy="questions.{{$index}}.options.{{$index_opt}}.option_field_name"/>
+																			</div>
+																		<div class="col-md-1">
+
+																			<div class="align-items-center gap-4">
+																				<a wire:click.prevent="removeOption({{$index}},{{$index_opt}})" href="#" title="Delete Option" aria-label="Delete Option"
+																					class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Delete Options" class="delete-icon" width="20" height="20"
+																						viewBox="0 0 20 20" fill="none"
+																						xmlns="http://www.w3.org/2000/svg">
+																						<use xlink:href="/css/sprite.svg#delete-icon"></use>
+																					</svg>
+																				</a>
+																			</div>
+																		</div>
+																		</div>
+																	
+																	@endforeach
+															</div>
+															<div class=" justify-content-start">
+																<div class="mb-4 ">
+																	<button class="btn btn-primary rounded" wire:click.prevent="addOption({{$index}})">+</button>
+																</div>
+															</div>
+														@else
+
+															<div class="form-group">
+																<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="This is the text shown in the response field before anything is typed."></i></label>
+																<input type="text" id="placeholder-column"
+																class="form-control" placeholder="Placeholder"
+																name="field-name-column" wire:key="placeholder-{{ $index }}" wire:model.lazy="questions.{{$index}}.placeholder"/>
+															</div>
+
+														@endif
+
+												</div>
+											</div>
+
+											@if($custom_form_details['form_name_id']==37)
+
+												<!-- Begin: This is conditional, link with select "Form" / option "Customer Request Form"   -->
+												<div class="col-md-12">
+													<div class="mb-4">
+															<div class="form-check">
+																<input type="checkbox" id="hide-response-from-provider-column" name="hide-response-from-provider-column" class="form-check-input" wire:key="hide-response-from-provider-{{ $index }}" wire:model.lazy="questions.{{$index}}.hide_response_from_provider"  />
+																<label for="hide-response-from-provider-column" class="form-check-label">Hide Response from Provider  <i role="img" class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="When selected, the customers response will not display in the assigned providers 'Assignment Details'. The response will still be visible to you and the customer."></i></label>
+															
+															</div>
+													</div>
+												</div> 
+												<!-- End: This is conditional, link with select "Form" / option "Customer Request Form"   -->
+											@endif
+
+											<div class="col-md-12">
+													<div class="mb-4">
+														<div class="form-check">
+															<input class="form-check-input" id="required-column" name="required-column" type="checkbox" tabindex="3" wire:key="required-{{ $index }}" wire:model.lazy="questions.{{$index}}.required"/>
+															<label class="form-check-label" for="required-column"> Required <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="When selected, the customer will be required to provide a response to the field before continuing to Step 3."></i></label>
+														</div>
+													</div>
+											</div>
+
+										@endif
 									</div>
-								</div> -->
-								<!-- End: This is conditional, link with select "Form" / option "New Provider Screening"   -->
+
+                              	@endforeach
 
 								<div class=" justify-content-start">
 									<div class="mb-4 ">
@@ -243,83 +285,13 @@
 										class="btn btn-primary rounded" wire:click.prevent="addQuestion">+ Add Question</button>
 									</div>
 								</div>
-								 <!-- Begin: This is conditional, link with "+Add Question" button   -->
-								<!-- <div class="col-md-4 form-actions">
-									<div class="mb-4">
-										<button type="submit"
-										class="btn btn-primary rounded">- Remove Question</button>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-											<div class="form-group">
-												<label for="field-name-column">Field Name <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Type the question or field name you want customers to respond to."></i></label>
-												<input type="text" id="field-name-column"
-												class="form-control" placeholder="Enter Name"
-												name="field-name-column" />
-											</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-										<label class="form-label" for="form-type-column"> Form Type <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the format you want this question to display as."></i></label>
-										<select class="form-select" id="form-type-column">
-											<option selected>Text</option>
-											<option value="1">Textarea</option>
-											<option value="2">Dropdown</option>
-											<option value="3">Checkbox</option>
-											<option value="3">Radio button</option>
-											<option value="3">File</option>
-										  </select>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="mb-4">
-											<div class="form-group">
-												<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="This is the text shown in the response field before anything is typed."></i></label>
-												<input type="text" id="placeholder-column"
-												class="form-control" placeholder="Placeholder"
-												name="field-name-column" />
-											</div>
-									</div>
-								</div>
 
-								Begin: This is conditional, link with select "Form" / option "Customer Request Form"
-								<div class="col-md-12">
-									<div class="mb-4">
-										<div class="mb-4">
-											<div class="form-group">
-												<input type="checkbox" id="hide-response-from provider-column"
-												class="form-control"
-												name="response-column" />
-												<label for="hide-response-from provider-column">Hide Response from Provider  <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="When selected, the customers response will not display in the assigned providers 'Assignment Details'. The response will still be visible to you and the customer."></i></label>
-											</div>
-										</div>
-									</div>
+								<div class="col-12 justify-content-center form-actions d-flex">
+									<button type="submit" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+									class="btn btn-primary rounded">Publish Form</button>
+									<button type="button"
+										class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Cancel</button>
 								</div>
-								End: This is conditional, link with select "Form" / option "Customer Request Form"
-
-								<div class="col-md-12">
-									<div class="mb-4">
-										<div class="mb-4">
-											<div class="form-group">
-												<input type="checkbox" id="required-column"
-												class="form-control"
-												name="required-column" />
-												<label for="required-column">Required <i class="fa fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="When selected, the customer will be required to provide a response to the field before continuing to Step 3."></i></label>
-											</div>
-										</div>
-									</div>
-								</div> -->
-
-								 <!-- End: This is conditional, link with "+Add Question" button   -->
-
-										<div class="col-12 justify-content-center form-actions d-flex">
-											<button type="submit"
-											class="btn btn-primary rounded">Publish Form</button>
-											<button type="button"
-												class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Cancel</button>
-										</div>
 							</div>
 						</form>
 					</div>
@@ -328,4 +300,13 @@
 		</div>
 	</section>
 	{{-- Add Customized Form section End --}}
+	
+    <script>
+        function updateVal(attrName,val){
+          
+            Livewire.emit('updateVal', attrName, val);
+
+        }
+
+    </script>
 </div>
