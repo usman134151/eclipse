@@ -28,8 +28,19 @@ class AddCustomizedForm extends Component
 	{
 		$this->emit('showList');
 	}
+    public function rules()
+    {
+        return [
+            'custom_form_details.form_name_id' => [
+                'required','numeric'
+            ],
+            'questions.*.field_name' => 'required',
+            'questions.*.field_type' => 'required',
+        ];
+    }
 
     public function save(){
+        $this->validate();
         // dd($this->questions, $this->custom_form_details);
 
         // $customizeService = new CustomizeForm;
@@ -46,22 +57,34 @@ class AddCustomizedForm extends Component
             $question=CustomizeFormFields::create($question);
             //save options if existing 
         }
+
+        $this->showList("Custom Form has been saved successfully");
+        $this->clearFields();
     }
 
+    function clearFields(){
+        
+        $this->industry_id='';
+        // clear questions
+        $this->questions = [[
+            'feild_name' => '', 'field_type' => '', 'placeholder' => '', 'required' => '', 'hide_response_from_provider' => null,
+            'customize_form_id' => '', 'form_industry_id' => '', 'screen_name' => '', 'title' => '', 'scenario' => '', 'placeholder' => '',
+            'document_name' => '', 'required' => null, 'allow_redo' => null,
+            // 'options'=>[
+            //     'form_id'=>'','form_field_id'=>'','field_type_id'=>'', 'option_field_name'=>''
+            // ]
+        ]];
+        $this->resetValidation();
+
+    }
 
     public function mount()
     {
         $this->industries= Industry::where('status',1)->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
-
     }
 
-    public function setIndustry(){
-        $custom_form_details['industry_id']=$this->industry_id;
-        $questions['form_industry_id'] = $this->industry_id;
-    }
-
-	public function render()
+    public function render()
 	{
 		return view('livewire.app.common.forms.add-customized-form');
 	}
@@ -87,14 +110,8 @@ class AddCustomizedForm extends Component
     {
         if ($attrName == 'form_name_id') {
             $this->custom_form_details['form_name_id'] = $val;
-            // clear questions
-            $this->questions = [['feild_name' => '', 'field_type' => '', 'placeholder' => '', 'required' => '', 'hide_response_from_provider' => null,
-                'customize_form_id' => '', 'form_industry_id' => '', 'screen_name' => '', 'title' => '', 'scenario' => '', 'placeholder' => '',
-                'document_name' => '', 'required' => null, 'allow_redo' => null,
-         // 'options'=>[
-                //     'form_id'=>'','form_field_id'=>'','field_type_id'=>'', 'option_field_name'=>''
-                // ]
-            ]];
+            $this->clearFields();
+          
         }
         // } else
         //     $this->$attrName = $val;
