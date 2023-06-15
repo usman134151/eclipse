@@ -17,7 +17,7 @@
     var formLabel=event.detail.formLabel;
     var formDeleteable=event.detail.formDeleteable;
 
-    Livewire.emit('refreshformDetails', formId, formLabel,formDeleteable); 
+    Livewire.emit('refreshFormDetails', formId, formLabel,formDeleteable); 
     {{-- Livewire.emit('refreshDetailList', formDeleteable); --}}
   });
 

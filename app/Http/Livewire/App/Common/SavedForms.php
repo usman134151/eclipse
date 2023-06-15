@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class SavedForms extends Component
 {
-	public $showForm,$counter=1, $formId, $formLabel,$formDeleteable,$formDetails=false;
+	public $showForm,$counter=0, $formId, $formLabel,$formDeleteable,$formDetails=false;
 	protected $listeners = ['showList'=>'resetForm',
 		'refreshFormDetails' => 'refreshDetails'
 	];
