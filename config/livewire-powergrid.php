@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'alpinejs_cdn'  => '/tenant/js/alpinejs-3.11.1.js',
+    'alpinejs_cdn'  => '',
     
 
     /*

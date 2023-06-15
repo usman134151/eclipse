@@ -98,9 +98,12 @@ class CustomerForm extends Component
 			$this->user = new User;
 		}
         $this->step =3;
+		$this->switch('service-catalog');
     }
     public function addServices(){
         $this->step = 4;
+		
+		$this->switch('drive-documents');
     }
 
     public function edit(User $user){
