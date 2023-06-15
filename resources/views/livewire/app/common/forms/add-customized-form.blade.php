@@ -120,36 +120,40 @@
 											<div class="col-md-12">
 												<div class="mb-4">
 														<div class="form-group">
-															<label for="title-column">Title</label>
+															<label for="title-column">Title <span class="text-danger" aria-hidden="true">*</span></label>
 															<input type="text" id="title-column" wire:key="title-{{ $index }}" wire:model.lazy="questions.{{$index}}.title"
 															class="form-control" placeholder="Enter Title"
 															name="title-column" />
+										 					 @error('questions.'.$index.'.title')<span class="d-inline-block invalid-feedback mt-2">The title field is required for each question.</span>@enderror
+
 														</div>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="mb-4">
 													<div class="form-group">
-														<label for="scenario">Scenario</label>
+														<label for="scenario">Scenario <span class="text-danger" aria-hidden="true">*</span></label>
 														<textarea class="form-control" id="scenario" rows="4" wire:key="scenario-{{ $index }}" wire:model.lazy="questions.{{$index}}.scenario" name="scenario"></textarea>
+										 					 @error('questions.'.$index.'.scenario')<span class="d-inline-block invalid-feedback mt-2">The scenario field is required for each question.</span>@enderror
+
 													</div>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="mb-4">
 													<label for="formFile"
-														class="form-label">Upload File</label> 
-													<input class="form-control" type="file" id="formFile" wire:key="document-name-{{ $index }}" wire:model.lazy="questions.{{$index}}.document_name">
+														class="form-label">Upload File <span class="text-danger" aria-hidden="true"><small>(disabled)</small></span></label> 
+													<input class="form-control" disabled type="file" id="formFile" wire:key="document-name-{{ $index }}" wire:model.lazy="questions.{{$index}}.document_name">
 													<p>Maximum file size (25 MB)</p>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="mb-4">
 														<div class="form-check">
-															<input type="checkbox" id="allow-radio"
-															class="form-check-input" wire:key='allow-radio-{{$index}}' wire:model.lazy='questions.{{$index}}.allow_redo'
+															<input type="checkbox" id="allow-redo"
+															class="form-check-input" wire:key='allow-redo-{{$index}}' wire:model.lazy='questions.{{$index}}.allow_redo'
 															name="allow-radio" />
-															<label for="required-column" class='form-check-label'>Allow Radio</label>
+															<label for="required-column" class='form-check-label'>Allow Redo</label>
 														</div>
 												</div>
 											</div> 
@@ -159,7 +163,7 @@
 												<div class="mb-4">
 														<div class="form-group">
 															<div class="d-flex justify-content-between">
-																<label for="field-name-column">Field Name {{ $loop->index + 1 }} <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Type the question or field name you want customers to respond to."></i></label>
+																<label for="field-name-column">Field Name {{ $loop->index + 1 }} <span class="text-danger" aria-hidden="true">*</span> <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Type the question or field name you want customers to respond to."></i></label>
 																<div class="align-items-center gap-4">
 																	<a wire:click.prevent="removeQuestion({{$index}})" href="#" title="Delete" aria-label="Delete"
 																		class="btn btn-sm btn-secondary rounded btn-hs-icon">
@@ -178,29 +182,71 @@
 											</div>
 											<div class="col-md-12">
 												<div class="mb-4">
-													<label for="form-type-column" > Field Type <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select the format you want this question to display as"></i></label>
-													<select class="form-select " id="form-type-column" wire:key="select-{{ $index }}" wire:model.defer="questions.{{$index}}.field_type">
-														<option>Select</option>
-														<option wire:key="select-{{ $index }}-1" value="0">Text</option>
-														<option wire:key="select-{{ $index }}-2" value="1">Textarea</option>
-														<option wire:key="select-{{ $index }}-3" value="2">Dropdown</option>
-														<option wire:key="select-{{ $index }}-4" value="3">Checkbox</option>
-														<option wire:key="select-{{ $index }}-5" value="4">Radio button</option>
-														<option wire:key="select-{{ $index }}-6" value="5">File</option>
-													</select>
-										 			@error("questions.".$index.".field_type")<span class="d-inline-block invalid-feedback mt-2">The field type is required for each question.</span>@enderror
+													<div class="form-group">
+
+															<label for="form-type-column" > Field Type <span class="text-danger" aria-hidden="true">*</span> <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select the format you want this question to display as"></i></label>
+															<select class="form-select " id="form-type-column" wire:key="select-{{ $index }}" wire:model="questions.{{$index}}.field_type">
+																<option>Select</option>
+																<option wire:key="select-{{ $index }}-1" value="1">Text</option>
+																<option wire:key="select-{{ $index }}-2" value="2">Textarea</option>
+																<option wire:key="select-{{ $index }}-3" value="3">Dropdown</option>
+																<option wire:key="select-{{ $index }}-4" value="4">Checkbox</option>
+																<option wire:key="select-{{ $index }}-5" value="5">Radio button</option>
+																<option wire:key="select-{{ $index }}-6" value="6">File</option>
+															</select>
+															@error("questions.".$index.".field_type")<span class="d-inline-block invalid-feedback mt-2">The field type is required for each question.</span>@enderror
+													</div>
 
 												</div>
 
 											</div>
 											<div class="col-md-12">
 												<div class="mb-4">
-														<div class="form-group">
-															<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="This is the text shown in the response field before anything is typed."></i></label>
-															<input type="text" id="placeholder-column"
-															class="form-control" placeholder="Placeholder"
-															name="field-name-column" wire:key="placeholder-{{ $index }}" wire:model.lazy="questions.{{$index}}.placeholder"/>
-														</div>
+														
+														@if($questions[$index]['field_type']>2 && $questions[$index]['field_type']<6)
+															<div class="form-group">
+																<label for="options-{{$index}}">Options <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="These are the options shown with this field."></i></label>
+															
+																	@foreach($questions[$index]['options'] as $index_opt => $option)
+																		<div class="d-flex mb-4">
+																		<div class="col-md-11">
+
+																			<input type="text" id="{{$index_opt}}-option" class="form-control" placeholder="Option"
+																				name="{{$index_opt}}-option" wire:key="option-{{ $index }}-{{$index_opt}}" wire:model.lazy="questions.{{$index}}.options.{{$index_opt}}.option_field_name"/>
+																			</div>
+																		<div class="col-md-1">
+
+																			<div class="align-items-center gap-4">
+																				<a wire:click.prevent="removeOption({{$index}},{{$index_opt}})" href="#" title="Delete Option" aria-label="Delete Option"
+																					class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																					<svg aria-label="Delete Options" class="delete-icon" width="20" height="20"
+																						viewBox="0 0 20 20" fill="none"
+																						xmlns="http://www.w3.org/2000/svg">
+																						<use xlink:href="/css/sprite.svg#delete-icon"></use>
+																					</svg>
+																				</a>
+																			</div>
+																		</div>
+																		</div>
+																	
+																	@endforeach
+															</div>
+															<div class=" justify-content-start">
+																<div class="mb-4 ">
+																	<button class="btn btn-primary rounded" wire:click.prevent="addOption({{$index}})">+</button>
+																</div>
+															</div>
+														@else
+
+															<div class="form-group">
+																<label for="placeholder-column">Placeholder <i class="fa fa-info-circle" role="img" data-bs-toggle="tooltip" data-bs-placement="top"  aria-label="This is the text shown in the response field before anything is typed."></i></label>
+																<input type="text" id="placeholder-column"
+																class="form-control" placeholder="Placeholder"
+																name="field-name-column" wire:key="placeholder-{{ $index }}" wire:model.lazy="questions.{{$index}}.placeholder"/>
+															</div>
+
+														@endif
+
 												</div>
 											</div>
 

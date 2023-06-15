@@ -55,7 +55,7 @@
 											<h1>Saved Forms</h1>
 										</div>
 										<div class="col-md-3 ms-auto text-end">
-											<a href="#" wire:click="showForm" class="btn btn-primary rounded">
+											<a href="/admin/customize-form/create-form"  class="btn btn-primary rounded">
 												Create New Form
 											</a>
 										</div>
