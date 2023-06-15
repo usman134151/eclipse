@@ -110,7 +110,7 @@ final class FormDetails extends PowerGridComponent
             return ($model->status);
         })
         ->addColumn('view', function (CustomizeForms $model) {
-            return '<div class="d-flex actions"><a  href="/admin/customize-form/create-form" title="View Forms" aria-label="View Forms" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Form" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
+            return '<div class="d-flex actions"><a  href="/admin/customize-form/edit-form/'.$model->id.'" title="View Forms" aria-label="View Forms" class="btn btn-sm btn-secondary rounded btn-hs-icon"><svg aria-label="View Form" width="20" height="20" viewBox="0 0 20 20"><use xlink:href="/css/common-icons.svg#view"></use></svg></a></div>';
         })                   
         ->addColumn('form_deleteable', function (CustomizeForms $model) {
 
