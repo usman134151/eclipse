@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
-
+use Auth;
+use Illuminate\Support\Facades\DB;
 final class ServiceCatagories extends PowerGridComponent
 {
 	use ActionButton;
@@ -106,7 +107,7 @@ final class ServiceCatagories extends PowerGridComponent
                     <use xlink:href="/css/common-icons.svg#pencil"></use>
                 </svg>
             </a>
-            <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate Service" aria-label="Duplicate Service">
+            <a href="#" wire:click="copyService('.$model->id.')" class="btn btn-sm btn-secondary rounded btn-hs-icon" title="Duplicate Service" aria-label="Duplicate Service">
             <svg aria-label="Duplicate Service" width="19" height="19" viewBox="0 0 19 19">
                 <use xlink:href="/css/common-icons.svg#duplicate">
                 </use>
@@ -131,6 +132,53 @@ final class ServiceCatagories extends PowerGridComponent
     function edit($id){
         // Emits an event to show the form for editing a record
         $this->emit('showForm', ServiceCategory::with('specializations')->find($id));
+    }
+
+	public function copyService($serviceId)
+    {
+        // Find the original service record
+        $originalService = ServiceCategory::with('specializations')->findOrFail($serviceId);
+        
+        // Create a copy of the service record
+        $newService = $originalService->replicate();
+		$newService->name=$newService->name.'_copy';
+
+        $newService->save();
+        
+		
+
+		// Copy the relations
+		foreach ($originalService->specializations as $specialization) {
+			$newSpecialization = $specialization->replicate();
+			$newSpecialization->save();
+		
+			// Copy additional fields in the relationship
+			$pivotData = DB::table('service_specializations')
+				->where('service_id', $originalService->id)
+				->where('specialization_id', $specialization->id)
+				->first();
+		
+			$pivotData = (array) $pivotData;
+			unset($pivotData['id']); // Remove the primary key if present
+		
+			$pivotData['service_id'] = $newService->id;
+		
+			DB::table('service_specializations')
+				->insert(array_merge($pivotData, [
+					'specialization_id' => $newSpecialization->id
+				]));
+		}
+		
+
+
+
+
+        
+        // Return the new service object
+       
+
+		 // Emits an event to show the form for editing a record
+		 $this->emit('showForm', ServiceCategory::with('specializations')->find($newService->id));
     }
 
 	 /**
