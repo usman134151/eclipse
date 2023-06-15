@@ -50,34 +50,59 @@
                             aria-controls="basic-service-setup" aria-selected="true" wire:click="setStep(1)"><span class="number">1</span>Basic Service Setup</a>
                     </li>
                     <li class="nav-item" role="presentation">
+                        @if($service->name)
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'advanced-service-rate' }"
                             @click.prevent="tab = 'advanced-service-rate'" id="advanced-service-rate-tab" role="tab"
-                            aria-controls="advanced-service-rate" aria-selected="false" wire:click="setStep(2)"><span
-                                class="number" >2</span>Advanced Service Rate</a>
+                            aria-controls="advanced-service-rate" aria-selected="false" wire:click="setStep(2)"><span class="number" >2</span>Advanced Service Rate</a>
+                        @else
+                        <div class="nav-link" title="Please fill step 1 to proceed"><span class="number" >2</span>Advanced Service Rate</div>                        
+                        @endif    
+                            
                     </li>
                     <li class="nav-item" role="presentation">
+                    @if($service->name)
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'service-forms' }"
                             @click.prevent="tab = 'service-forms'" id="service-forms-tab" role="tab"
                             aria-controls="service-forms" aria-selected="false"  wire:click="setStep(3)"><span
                                 class="number">3</span>Service Forms</a>
+                    @else
+                    <div class="nav-link" title="Please fill step 1 to proceed"><span
+                                class="number" >3</span>Service Forms</div>
+                    @endif            
                     </li>
                     <li class="nav-item" role="presentation">
+                    @if($service->name)    
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'service-configuration' }"
                             @click.prevent="tab = 'service-configuration'" id="service-configuration-tab" role="tab"
                             aria-controls="service-configuration" aria-selected="false" wire:click="setStep(4)"><span
-                                class="number" >4</span>Service Configuration</a>
+                                class="number">4</span>Service Configuration</a>
+                    @else
+                    <div href="#" class="nav-link" title="Please fill step 1 to proceed"><span
+                                class="number" title="Please fill step 1 to proceed">4</span>Service Configuration</div>                    
+                    @endif            
                     </li>
                     <li class="nav-item" role="presentation">
+                    @if($service->name)    
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'advance-options' }"
                             @click.prevent="tab = 'advance-options'" id="advance-options-tab" role="tab"
                             aria-controls="advance-options" aria-selected="false" wire:click="setStep(5)"><span
                                 class="number" >5</span>Advance Options</a>
+                    @else
+                    <div class="nav-link"
+                           title="Please fill step 1 to proceed"><span
+                                class="number" title="Please fill step 1 to proceed">5</span>Advance Options</div>
+                    @endif            
                     </li>
                     <li class="nav-item" role="presentation">
+                    @if($service->name)    
                         <a href="#" class="nav-link" :class="{ 'active': tab === 'notification-setting' }"
                             @click.prevent="tab = 'notification-setting'" id="notification-setting-tab" role="tab"
                             aria-controls="notification-setting" aria-selected="false" wire:click="setStep(6)"><span
-                                class="number" >6</span>Notification Setting</a>
+                                class="number" title="Please fill step 1 to proceed">6</span>Notification Setting</a>
+                    @else
+                    <div class="nav-link"  title="Please fill step 1 to proceed"><span
+                                class="number"  title="Please fill step 1 to proceed">6</span>Notification Setting</div>
+                    @endif            
                     </li>
                   </ul>
                  <!-- Tab panes -->
