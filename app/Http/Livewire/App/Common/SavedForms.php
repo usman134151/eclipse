@@ -26,4 +26,15 @@ class SavedForms extends Component
 	{
 		return view('livewire.app.common.saved-forms');
 	}
+
+	public function updateVal($attrName, $val)
+     {
+        if($attrName=='user_dob'){
+            $this->user['user_dob']=$val;
+        }
+        else
+         $this->userdetail[$attrName] = $val;
+
+
+     }
 }
