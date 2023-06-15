@@ -508,7 +508,7 @@ class AddService extends Component
                 $price_v=json_decode($specialization['specialization_price_v'],true);
                 $price_p=json_decode($specialization['specialization_price_p'],true);
                 $price_t=json_decode($specialization['specialization_price_t'],true);
-             
+                $commonValues=[];
                 if(!is_null($price)){
                     $price=$price[0];
                     $commonValues=['price_type'=>$price["price_type"],"hide_from_customers"=>$price["hide_from_customers"],"hide_from_providers"=>$price["hide_from_providers"],"multiply_provider"=>$price['multiply_provider'],"multiply_service_duration"=>$price['multiply_service_duration'],'disable'=>$price['disable']];
