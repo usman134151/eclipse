@@ -283,11 +283,11 @@
                                                         </h3>
                                                         <div class="form-check form-check-inline">
                                                         @if($parameters['postfix']=='_v')
-                                                            <input class="form-check-input" id="Multiply-ProvidersInPerson"
+                                                            <input class="form-check-input"
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
-                                                                tabindex=""  wire:model.defer="service.standard_rate_virtual_multiply_provider"  />
+                                                                tabindex=""  wire:model.defer="service.standard_rate_virtual_multiply_provider" id="mbp_{{$type}}" />
                                                         @else  
-                                                        <input class="form-check-input" id="mbp_{{$type}}"
+                                                        <input class="form-check-input chargeChk_{{$type}}" id="mbp_{{$type}}"
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
                                                                 tabindex="" wire:model.defer="service.standard_in_person_multiply_provider{{$parameters['postfix']}}"  maxlength="3"/>                                                       
                                                         @endif        
@@ -297,7 +297,7 @@
                                                     </div>
                                                     @if($type!=1)    
                                                 <div>
-                                                <a class="btn btn-sm btn-secondary rounded btn-hs-icon"  href="#" onclick=copyTo({{$type}},'charges')>
+                                                <a class="btn btn-sm btn-secondary rounded btn-hs-icon"  href="#" onclick=copyTo({{$type}},'charge')>
                                                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"></path>
                                                     <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"></path>
@@ -314,7 +314,7 @@
                                                         </span>
                                                         <input type="text" class="form-control rounded-0 text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
-                                                        <input type="text" class="form-control text-center"
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
                                                             placeholder="00.00" aria-label="Enter Charges"
                                                             aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}" maxlength="6" id="bh_{{$type}}">
                                                     </div>
@@ -325,18 +325,18 @@
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
-                                                        <input type="text" class="form-control text-center"
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
                                                             placeholder="00.00" aria-label="Enter Charges"
                                                             aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}" maxlength="6" id="abh_{{$type}}">
                                                     </div>
                                                     <div class="input-group billing-rates day-rate @if($service->rate_status!=2) d-none @endif">
-                                                        <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
+                                                        <span class="input-group-text bg-secondary col-lg-7 " id="DayRate">
                                                             Day Rate
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
-                                                        <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}" maxlength="6">
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}" maxlength="6" id="dr_{{$type}}">
                                                     </div>
                                                     <div class="input-group billing-rates fixed-rate @if($service->rate_status!=4) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
@@ -344,8 +344,8 @@
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
-                                                        <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}" maxlength="6">
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}" maxlength="6" id="fr_{{$type}}">
                                                     </div>
                                                 </div>
                                                 <!-- /In-Person Rates -->
@@ -394,6 +394,13 @@
                                                     <h3 class="mb-0">
                                                         Service Type: {{$parameters['title']}}
                                                     </h3>
+                                                    <div>
+                                                    <a class="btn btn-sm btn-secondary rounded btn-hs-icon"  href="#" onclick=copyTo({{$type}},'cap')>
+                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1.9 19.0008H13.3C14.3479 19.0008 15.2 18.1486 15.2 17.1008V5.70078C15.2 4.65293 14.3479 3.80078 13.3 3.80078H1.9C0.85215 3.80078 0 4.65293 0 5.70078V17.1008C0 18.1486 0.85215 19.0008 1.9 19.0008ZM1.9 5.70078H13.3L13.3019 17.1008H1.9V5.70078Z" fill="black"></path>
+                                                    <path d="M17.1002 0H5.7002V1.9H17.1002V13.3H19.0002V1.9C19.0002 0.85215 18.148 0 17.1002 0Z" fill="black"></path>
+                                                    </svg>
+                                                </a></div>
                                                 </div>
                                                 <div>
 
@@ -414,12 +421,12 @@
                                                                 <label class="form-label-sm">Minutes</label>
                                                             </div>
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control text-center"
+                                                                <input id="mdh_{{$type}}" type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="00" aria-label="00"
                                                                     aria-describedby="" wire:model.defer="service.minimum_assistance_hours{{$parameters['postfix']}}" maxlength="6">
-                                                                <input type="text" class="form-control text-center"
+                                                                <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_min{{$parameters['postfix']}}" maxlength="6">
+                                                                    aria-describedby="" wire:model.defer="service.minimum_assistance_min{{$parameters['postfix']}}" maxlength="6"  id="mdm_{{$type}}"> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -436,12 +443,12 @@
                                                                 <label class="form-label-sm">Minutes</label>
                                                             </div>
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control text-center"
+                                                                <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}}" maxlength="6">
-                                                                <input type="text" class="form-control text-center"
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}} " maxlength="6" id="mdurh_{{$type}}">
+                                                                <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_min{{$parameters['postfix']}}" maxlength="6">
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_min{{$parameters['postfix']}}" maxlength="6" id="mdurm_{{$type}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -453,8 +460,8 @@
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title=""></i>
                                                             </label>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="1" aria-label="1" aria-describedby="" wire:model.defer="service.min_providers{{$parameters['postfix']}}" maxlength="6">
+                                                            <input type="text" class="form-control text-center capFld_{{$type}}"
+                                                                placeholder="1" aria-label="1" aria-describedby="" wire:model.defer="service.min_providers{{$parameters['postfix']}}" maxlength="6" id="minp_{{$type}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -464,8 +471,8 @@
                                                                     aria-hidden="true" data-bs-toggle="tooltip"
                                                                     data-bs-placement="top" title=""></i>
                                                             </label>
-                                                            <input type="text" class="form-control text-center"
-                                                                placeholder="50" aria-label="50" aria-describedby="" wire:model.defer="service.max_providers{{$parameters['postfix']}}" maxlength="6">
+                                                            <input type="text" class="form-control text-center capFld_{{$type}}"
+                                                                placeholder="50" aria-label="50" aria-describedby="" wire:model.defer="service.max_providers{{$parameters['postfix']}}" maxlength="6" id="maxp_{{$type}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -477,8 +484,8 @@
                                                                     title=""></i>
                                                             </label>
                                                             <div class="col-lg-6">
-                                                                <input type="text" class="form-control text-center"
-                                                                    placeholder="2" aria-label="2" aria-describedby="" wire:model.defer="service.default_providers{{$parameters['postfix']}}" maxlength="6">
+                                                                <input type="text" class="form-control text-center capFld_{{$type}}"
+                                                                    placeholder="2" aria-label="2" aria-describedby="" wire:model.defer="service.default_providers{{$parameters['postfix']}}" maxlength="6" id="dp_{{$type}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -490,9 +497,9 @@
                                                                     data-bs-placement="top" title=""></i>
                                                             </label>
                                                             <div class="col-lg-6">
-                                                                <input type="text" class="form-control text-center"
+                                                                <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="100" aria-label="100"
-                                                                    aria-describedby="" wire:model.defer="service.provider_limit{{$parameters['postfix']}}" maxlength="6">
+                                                                    aria-describedby="" wire:model.defer="service.provider_limit{{$parameters['postfix']}}" maxlength="6" id="pl_{{$type}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -509,20 +516,20 @@
                                                                     <label class="form-label-sm">Minutes</label>
                                                                 </div>
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control text-center"
+                                                                    <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby="" wire:model.defer="providerReturn.{{$type}}.0.hour" maxlength="6">
-                                                                    <input type="text" class="form-control text-center"
+                                                                        aria-describedby="" wire:model.defer="providerReturn.{{$type}}.0.hour" maxlength="6" id="prh_{{$type}}">
+                                                                    <input type="text" id="prm_{{$type}}" class="form-control text-center capFld_{{$type}}"
                                                                         placeholder="00" aria-label="00"
-                                                                        aria-describedby=""  wire:model.defer="providerReturn.{{$type}}.0.minute" maxlength="6">
+                                                                        aria-describedby=""  wire:model.defer="providerReturn.{{$type}}.0.minute" maxlength="6" >
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input"
-                                                                id="ExcludeAfterHoursInPerson"
+                                                            <input class="form-check-input capChk_{{$type}}"
+                                                                id="ExcludeAfterHoursInPerson_{{$type}}"
                                                                 name="ExcludeAfterHoursInPerson" type="checkbox" value="true"
                                                                 tabindex=""  wire:model.defer="providerReturn.{{$type}}.0.exclude_after_hours"/>
                                                             <label class="form-check-label"
@@ -530,8 +537,8 @@
                                                                 After-hours</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input"
-                                                                id="ExcludeClosedHoursInPerson"
+                                                            <input class="form-check-input capChk_{{$type}}"
+                                                                id="ExcludeClosedHoursInPerson_{{$type}}"
                                                                 name="ExcludeClosedHoursInPerson" type="checkbox"
                                                                 tabindex="" wire:model.defer="providerReturn.{{$type}}.0.exclude_holidays"/>
                                                             <label class="form-check-label"
@@ -539,7 +546,7 @@
                                                                 Closed-hours</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" id="ByRequestInPerson"
+                                                            <input class="form-check-input capChk_{{$type}}" id="ByRequestInPerson_{{$type}}"
                                                                 name="ByRequestInPerson" type="checkbox" tabindex="" wire:model.defer="providerReturn.{{$type}}.0.by_request"/>
                                                             <label class="form-check-label" for="ByRequestInPerson" > By
                                                                 Request</label>
