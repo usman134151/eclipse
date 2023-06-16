@@ -207,7 +207,7 @@
 																	</div>
 																</div>
 																<input type="text" id="field-name-column" class="form-control" placeholder="Enter Name"name="field-name-column" wire:key="name-{{ $index }}" wire:model.lazy="questions.{{$index}}.field_name"/>
-																@error('questions.'.$index.'.field_name')<span class="d-inline-block invalid-feedback mt-2">The field name is required for each question.</span>@enderror
+																@error('questions.'.$index.'.field_name')<span class="d-inline-block invalid-feedback mt-2">The field name is invalid.</span>@enderror
 															</div>
 													</div>
 												</div>
@@ -306,7 +306,6 @@
 												</div>
 
 											@endif
-{{$question['position']}}
 
 										</div>
 									@endforeach

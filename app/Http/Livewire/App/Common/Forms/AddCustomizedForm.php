@@ -39,11 +39,11 @@ class AddCustomizedForm extends Component
             ],
         ];
         if($this->custom_form_details['form_name_id']==40){
-            $rules['questions.*.title'] = 'required';
-            $rules['questions.*.scenario'] = 'required';
+            $rules['questions.*.title'] = ['required', 'max:255'];
+            $rules['questions.*.scenario'] = ['required', 'max:255'];
         } else{
-            $rules['questions.*.field_name'] = 'required';
-            $rules['questions.*.field_type'] = 'required';
+            $rules['questions.*.field_name'] = ['required','max:255'];
+            $rules['questions.*.field_type'] = ['required','gt:0'];
         }
         
         
@@ -82,7 +82,15 @@ class AddCustomizedForm extends Component
 
     public function mount()
     {
-        // dd(request()->formID);
+        if(request()->formID!=null){
+            $formId = request()->formID;
+
+            $customizeService = new CustomizeForm;
+            $data =$customizeService->getFormDetails($formId);
+            $this->custom_form_details = $data['custom_form_details'];
+            $this->questions = $data['questions'];
+
+        }
         $this->industries= Industry::where('status',1)->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
     }
