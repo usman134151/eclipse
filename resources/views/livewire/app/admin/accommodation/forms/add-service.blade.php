@@ -445,7 +445,7 @@
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="00" aria-label="00"
-                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}} " maxlength="6" id="mdurh_{{$type}}">
+                                                                    aria-describedby="" wire:model.defer="service.maximum_assistance_hours{{$parameters['postfix']}}" maxlength="6" id="mdurh_{{$type}}">
                                                                 <input type="text" class="form-control text-center capFld_{{$type}}"
                                                                     placeholder="00" aria-label="00"
                                                                     aria-describedby="" wire:model.defer="service.maximum_assistance_min{{$parameters['postfix']}}" maxlength="6" id="mdurm_{{$type}}">

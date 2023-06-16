@@ -135,7 +135,9 @@ class AddService extends Component
 	}
     public function rules()
 	{
+       
 		return [
+
 			'service.name' => [
 				'required',
 				'string',
@@ -218,6 +220,8 @@ class AddService extends Component
            'service.default_providers_v'=>'nullable|numeric|max:999999.99',
            'service.default_providers_p'=>'nullable|numeric|max:999999.99',
            'service.default_providers_t'=>'nullable|numeric|max:999999.99', 
+
+
 
            'service.bill_status'=>'nullable',
            'service.payment_deduct_hour'=>'nullable',
