@@ -287,7 +287,7 @@
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
                                                                 tabindex=""  wire:model.defer="service.standard_rate_virtual_multiply_provider"  />
                                                         @else  
-                                                        <input class="form-check-input" id="mbp_{{$type}}"
+                                                        <input class="form-check-input chargeChk_{{$type}}" id="mbp_{{$type}}"
                                                                 name="MultiplyProvidersInPerson" type="checkbox"
                                                                 tabindex="" wire:model.defer="service.standard_in_person_multiply_provider{{$parameters['postfix']}}"  maxlength="3"/>                                                       
                                                         @endif        
@@ -314,7 +314,7 @@
                                                         </span>
                                                         <input type="text" class="form-control rounded-0 text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
-                                                        <input type="text" class="form-control text-center"
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
                                                             placeholder="00.00" aria-label="Enter Charges"
                                                             aria-describedby="BusinessHoursPerhour" wire:model.defer="service.hours_price{{$parameters['postfix']}}" maxlength="6" id="bh_{{$type}}">
                                                     </div>
@@ -325,18 +325,18 @@
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="" disabled>
-                                                        <input type="text" class="form-control text-center"
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
                                                             placeholder="00.00" aria-label="Enter Charges"
                                                             aria-describedby="AfterHoursperhour" wire:model.defer="service.after_hours_price{{$parameters['postfix']}}" maxlength="6" id="abh_{{$type}}">
                                                     </div>
                                                     <div class="input-group billing-rates day-rate @if($service->rate_status!=2) d-none @endif">
-                                                        <span class="input-group-text bg-secondary col-lg-7" id="DayRate">
+                                                        <span class="input-group-text bg-secondary col-lg-7 " id="DayRate">
                                                             Day Rate
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
-                                                        <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}" maxlength="6">
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="DayRate" wire:model.defer="service.day_rate_price{{$parameters['postfix']}}" maxlength="6" id="dr_{{$type}}">
                                                     </div>
                                                     <div class="input-group billing-rates fixed-rate @if($service->rate_status!=4) d-none @endif">
                                                         <span class="input-group-text bg-secondary col-lg-7" id="FixedRate">
@@ -344,8 +344,8 @@
                                                         </span>
                                                         <input type="text" class="form-control text-center px-0"
                                                             placeholder="$" aria-label="$" aria-describedby="">
-                                                        <input type="text" class="form-control text-center"
-                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}" maxlength="6">
+                                                        <input type="text" class="form-control text-center chargeFld_{{$type}}"
+                                                            placeholder="00.00" aria-label="Enter Charges" aria-describedby="FixedRate" wire:model.defer="service.fixed_rate{{$parameters['postfix']}}" maxlength="6" id="fr_{{$type}}">
                                                     </div>
                                                 </div>
                                                 <!-- /In-Person Rates -->

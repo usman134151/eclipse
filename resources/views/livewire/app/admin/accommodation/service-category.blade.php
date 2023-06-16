@@ -115,18 +115,26 @@
 
   function copyTo(type,section){
     if(section=='charges'){
-        $('#bh_'+type).val($('#bh_1').val());
-        
-        $('#abh_'+type).val($('#abh_1').val());
-        
-        $('#mbp_' + type).prop('checked', $('#mbp_1').prop('checked'));
-        
 
-        
-        document.getElementById('bh_'+type).dispatchEvent(new Event('input'));
-        document.getElementById('abh_'+type).dispatchEvent(new Event('input'));
-        document.getElementById('mbp_'+type).dispatchEvent(new Event('change'));
+        $('.chargeFld_1').each(function() {
+            var elementId = this.id;
+            console.log(elementId);
+            elementId = elementId.split('_')[0];
+            console.log(elementId);
+            var targetElement = document.getElementById(elementId + '_' + type);
+            if (targetElement) {
+                $('#' + elementId + '_' + type).val($('#' + elementId + '_1').val());
+                targetElement.dispatchEvent(new Event('input'));
+            } else {
+                console.error("Element not found for ID: " + elementId + '_' + type);
+            }
+        });
 
+
+
+
+
+ 
     } //end of copy service charges
 
 
