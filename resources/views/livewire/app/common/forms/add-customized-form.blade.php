@@ -40,7 +40,7 @@
 						<form class="form">
 							<div class="row">
 								<div class="col-md-12 mb-md-2">
-									<h1>Add Customized Form</h1>
+									<h1>@if($formId==null)Add @else Edit @endif Customized Form</h1>
 								</div>
 								<div class="col-md-12 mb-md-2">
 									<p>Add questions to create your form. When you're finished, press "Publish Form"</p>

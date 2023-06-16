@@ -92,6 +92,10 @@ class AddCustomizedForm extends Component
             $this->custom_form_details = $data['custom_form_details'];
             $this->questions = $data['questions'];
 
+            if(count($this->questions)==0)  //to not leave blank page
+                $this->addQuestion();
+
+
         }
         $this->industries= Industry::where('status',1)->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
