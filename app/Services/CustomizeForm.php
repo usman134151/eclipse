@@ -47,11 +47,22 @@ class CustomizeForm
         return null;
     }
 
-    public function saveForm($custom_form_details,$questions){
-        $custom_form_details['added_by'] = Auth::id();
-        $custom_form_details['updated_by'] = Auth::id();
+    public function saveForm($custom_form_details,$questions,$formId=0){
+        if($formId)
+            $custom_form_details['updated_by'] = Auth::id();
+        else{
+            $custom_form_details['added_by'] = Auth::id();
+            $custom_form_details['updated_by'] = Auth::id();
+        }
 
-        $form = CustomizeForms::create($custom_form_details);
+        $form = CustomizeForms::updateOrCreate($custom_form_details);
+
+        // delete existing questions 
+        $questions_tbd = CustomizeFormFields::where('customize_form_id', $formId)->get();
+        // and respective options
+        CustomizeFormOptionFields::whereIn('form_field_id',$questions_tbd->pluck('id')->toArray())->delete();
+        CustomizeFormFields::where('customize_form_id', $formId)->delete();
+
         foreach ($questions as $index=>$question) {
             $q = $question;
             $q['customize_form_id'] = $form->id;

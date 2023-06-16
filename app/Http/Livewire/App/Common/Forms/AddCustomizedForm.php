@@ -13,7 +13,7 @@ use Livewire\Component;
 class AddCustomizedForm extends Component
 {
     protected $listeners = ['updateVal'];
-    public $industry_id='',$industries=[];
+    public $industry_id='',$industries=[], $formId=null;
     public $questions=[[
         'feild_name'=>'','field_type'=>0,'placeholder'=>'','required'=>'','hide_response_from_provider'=>null,
         'customize_form_id'=>'','form_industry_id'=>0,'screen_name'=>'','title'=>'','scenario'=>'','placeholder'=>'',
@@ -54,7 +54,7 @@ class AddCustomizedForm extends Component
         $this->validate();
 
         $customizeService = new CustomizeForm;
-        $customizeService->saveForm($this->custom_form_details,$this->questions);
+        $customizeService->saveForm($this->custom_form_details,$this->questions,$this->formId);
 
         $this->showList("Custom Form has been saved successfully");
         $this->clearFields();
@@ -63,6 +63,7 @@ class AddCustomizedForm extends Component
     function clearFields(){
         
         $this->industry_id=0;
+        $this->formId = null;
         // clear questions
         $this->questions = [[
             'feild_name' => '', 'field_type' => 0, 'placeholder' => '', 'required' => '', 'hide_response_from_provider' => null,
@@ -83,10 +84,10 @@ class AddCustomizedForm extends Component
     public function mount()
     {
         if(request()->formID!=null){
-            $formId = request()->formID;
+            $this->formId = request()->formID;
 
             $customizeService = new CustomizeForm;
-            $data =$customizeService->getFormDetails($formId);
+            $data =$customizeService->getFormDetails($this->formId);
             $this->custom_form_details = $data['custom_form_details'];
             $this->questions = $data['questions'];
 
