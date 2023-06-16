@@ -17,7 +17,7 @@ class AddCustomizedForm extends Component
     public $questions=[[
         'feild_name'=>'','field_type'=>0,'placeholder'=>'','required'=>'','hide_response_from_provider'=>null,
         'customize_form_id'=>'','form_industry_id'=>0,'screen_name'=>'','title'=>'','scenario'=>'','placeholder'=>'',
-        'document_name'=>'','required'=>null,'allow_redo'=>null, 
+        'document_name'=>'','required'=>null,'allow_redo'=>null, 'position'=>0,
         'options'=>[[
             'option_field_name'=>''
             ]            // 'form_id' => '', 'form_field_id' => '', 'field_type_id' => '', 
@@ -26,9 +26,9 @@ class AddCustomizedForm extends Component
 
     public $custom_form_details=['form_name_id'=>'', 'industry_id' => 0, 'screen_name' => '', 'request_form_name' => ''];
 
-	public function showList()
+	public function showList($message)
 	{
-		$this->emit('showList');
+		$this->emit('showList',$message);
 	}
 
     public function rules()
@@ -67,7 +67,8 @@ class AddCustomizedForm extends Component
         $this->questions = [[
             'feild_name' => '', 'field_type' => 0, 'placeholder' => '', 'required' => '', 'hide_response_from_provider' => null,
             'customize_form_id' => '', 'form_industry_id' => 0, 'screen_name' => '', 'title' => '', 'scenario' => '', 'placeholder' => '',
-            'document_name' => '', 'required' => null, 'allow_redo' => null,
+            'document_name' => '', 'required' => null, 'allow_redo' => null, 'position'=>0,
+            'position' => 0,
             'options'=>[[
                  'option_field_name'=>''
                 ]
@@ -91,16 +92,34 @@ class AddCustomizedForm extends Component
 		return view('livewire.app.common.forms.add-customized-form');
 	}
     public function addQuestion(){
+        if(count($this->questions)==1)
+            $count =1;
+        else
+            $count= count($this->questions);
+
         $this->questions[] = [
             'feild_name' => '', 'field_type' => 0, 'placeholder' => '', 'required' => '', 'hide_response_from_provider' => null,
             'customize_form_id' => '', 'form_industry_id' => 0, 'screen_name' => '', 'title' => '', 'scenario' => '', 'placeholder' => '',
-            'document_name' => '', 'required' => null, 'allow_redo' => null,
+            'document_name' => '', 'required' => null, 'allow_redo' => null,'position'=>$count,
             'options'=>[[
                  'option_field_name'=>''
             ]]
         ];
         
     }
+
+    public function updateOrder($list)
+    {
+        // update order of questions in array
+        foreach ($list as $item) {
+            // value == position and order == array index
+            $this->questions[$item['order']-1]['position'] = $item['value'];
+                
+        }
+
+        $positions = array_column($this->questions, 'position');
+        array_multisort($positions, SORT_ASC, $this->questions);
+    } 
     public function addOption($index)
     {
         $this->questions[$index]['options'][] = [
