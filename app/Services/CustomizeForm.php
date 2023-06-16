@@ -48,14 +48,15 @@ class CustomizeForm
     }
 
     public function saveForm($custom_form_details,$questions,$formId=0){
-        if($formId)
+        if($formId){
             $custom_form_details['updated_by'] = Auth::id();
-        else{
+            unset($custom_form_details['id']);
+        }else{
             $custom_form_details['added_by'] = Auth::id();
             $custom_form_details['updated_by'] = Auth::id();
         }
 
-        $form = CustomizeForms::updateOrCreate($custom_form_details);
+        $form = CustomizeForms::updateOrCreate(['id'=>$formId],$custom_form_details);
 
         // delete existing questions 
         $questions_tbd = CustomizeFormFields::where('customize_form_id', $formId)->get();

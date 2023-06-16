@@ -322,7 +322,8 @@
 								</div>
 
 								<div class="col-12 justify-content-center form-actions d-flex">
-									<button type="submit" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+
+									<button  type="submit" wire:click.prevent="{{$custom_form_details['form_name_id']==37 ? 'save' : ''}}" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
 									class="btn btn-primary rounded">Publish Form</button>
 									<button type="button"
 										class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList">Cancel</button>
