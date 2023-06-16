@@ -13,7 +13,7 @@ use Livewire\Component;
 class AddCustomizedForm extends Component
 {
     protected $listeners = ['updateVal'];
-    public $industry_id='',$industries=[];
+    public $industry_id='',$industries=[], $formId=null;
     public $questions=[[
         'feild_name'=>'','field_type'=>0,'placeholder'=>'','required'=>'','hide_response_from_provider'=>null,
         'customize_form_id'=>'','form_industry_id'=>0,'screen_name'=>'','title'=>'','scenario'=>'','placeholder'=>'',
@@ -26,7 +26,7 @@ class AddCustomizedForm extends Component
 
     public $custom_form_details=['form_name_id'=>'', 'industry_id' => 0, 'screen_name' => '', 'request_form_name' => ''];
 
-	public function showList($message)
+	public function showList($message='')
 	{
 		$this->emit('showList',$message);
 	}
@@ -39,13 +39,14 @@ class AddCustomizedForm extends Component
             ],
         ];
         if($this->custom_form_details['form_name_id']==40){
-            $rules['questions.*.title'] = 'required';
-            $rules['questions.*.scenario'] = 'required';
+            $rules['custom_form_details.screen_name'] = [ 'required', 'max:255' ];
+            $rules['questions.*.title'] = ['required', 'max:255'];
+            $rules['questions.*.scenario'] = ['required', 'max:255'];
         } else{
-            $rules['questions.*.field_name'] = 'required';
-            $rules['questions.*.field_type'] = 'required';
+            $rules['questions.*.field_name'] = ['required','max:255'];
+            $rules['questions.*.field_type'] = ['required','gt:0'];
         }
-        
+
         
         return $rules;
     }
@@ -54,7 +55,7 @@ class AddCustomizedForm extends Component
         $this->validate();
 
         $customizeService = new CustomizeForm;
-        $customizeService->saveForm($this->custom_form_details,$this->questions);
+        $customizeService->saveForm($this->custom_form_details,$this->questions,$this->formId);
 
         $this->showList("Custom Form has been saved successfully");
         $this->clearFields();
@@ -63,6 +64,7 @@ class AddCustomizedForm extends Component
     function clearFields(){
         
         $this->industry_id=0;
+        $this->formId = null;
         // clear questions
         $this->questions = [[
             'feild_name' => '', 'field_type' => 0, 'placeholder' => '', 'required' => '', 'hide_response_from_provider' => null,
@@ -82,7 +84,15 @@ class AddCustomizedForm extends Component
 
     public function mount()
     {
-        // dd(request()->formID);
+        if(request()->formID!=null){
+            $this->formId = request()->formID;
+
+            $customizeService = new CustomizeForm;
+            $data =$customizeService->getFormDetails($this->formId);
+            $this->custom_form_details = $data['custom_form_details'];
+            $this->questions = $data['questions'];
+
+        }
         $this->industries= Industry::where('status',1)->get()->toArray();
 		$this->dispatchBrowserEvent('refreshSelects');
     }
