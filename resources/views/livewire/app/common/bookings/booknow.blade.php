@@ -1417,12 +1417,12 @@
                                                     Tags
                                                 </label>
                                                 <div class="mb-3">
-                                                    <select data-placeholder="" multiple
-                                                        class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags">
-                                                        <option value=""></option>
-                                                        <option selected>Option 1</option>
-                                                        <option selected>Option 2</option>
-                                                    </select>
+                                                <select data-placeholder="" multiple
+                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
+                                                                    <option value=""></option>
+                                                                    <option selected>Admin staff</option>
+                                                                    <option selected>Customers</option>
+                                                                </select>
                                                 </div>
                                                 <div class="d-lg-flex flex-wrap gap-3 mb-3">
                                                     <div class="tag">@admin_company</div>

@@ -378,9 +378,9 @@
                                                     <div class="col-lg-12">
                                                         <div class="row">
                                                             <div class="col-lg-6 pe-lg-5">
-                                                                <label class="form-label" for="tags">Tags</label>
+                                                                <label class="form-label" for="tags">Tags (comming soon)</label>
                                                                 <select data-placeholder="" multiple
-                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags" aria-label="Select Tags">
+                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
                                                                     <option value=""></option>
                                                                     <option selected>Admin staff</option>
                                                                     <option selected>Customers</option>

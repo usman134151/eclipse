@@ -128,9 +128,10 @@
 				allowClear: !el.attr('required'),
 			});
 			el.on('change', function (e) {
-                let attrName = $(this).attr('id');
-				
-				updateVal(attrName,  $(this).select2("val"));
+				if($(this).attr('id')!='tags-select'){
+					let attrName = $(this).attr('id');
+					updateVal(attrName,  $(this).select2("val"));
+				}
             });
 		}
 		$('.js-single-date').daterangepicker({
@@ -178,10 +179,11 @@ window.addEventListener("livewire:load", () => {
 				allowClear: !el.attr('required'),
 			})
 			el.on('change', function (e) {
-				
-                let attrName = $(this).attr('id');
-				
-				updateVal(attrName,  $(this).select2("val"));
+				if($(this).attr('id')!='tags-select'){
+					let attrName = $(this).attr('id');
+					updateVal(attrName,  $(this).select2("val"));
+				}
+
             });
 		}
 		
@@ -202,6 +204,27 @@ window.addEventListener("livewire:load", () => {
             $('#searchByNoModal').modal('show');
         }
       });
+	  $(document).ready(function() {
+      $('#tags-select').select2({
+        tags: true,
+        createTag: function (params) {
+          return {
+            id: params.term,
+            text: params.term,
+            isNew: true
+          };
+        }
+      });
+
+      $('#mySelect').on('select2:select', function (e) {
+        var selectedOption = e.params.data;
+
+        if (selectedOption.isNew) {
+          // A new value was entered
+          console.log('New value:', selectedOption.text);
+        }
+      });
+    });
 </script>
 	</body>
 </html>

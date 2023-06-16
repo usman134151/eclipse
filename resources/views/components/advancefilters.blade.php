@@ -119,7 +119,7 @@
             </div>
             <div class="col-lg-5 pe-lg-3 mb-5">
                 <label class="form-label" for="tags">Tags</label>
-                <select data-placeholder="Select Tags" multiple class="select2 form-select" tabindex="" id="tags">
+                <select data-placeholder="Select Tags" multiple class="select2 form-select" tabindex="" id="tags-select">
                     <option value=""></option>
                     <option selected>end_Assignment</option>
                     <option selected>end_date</option>

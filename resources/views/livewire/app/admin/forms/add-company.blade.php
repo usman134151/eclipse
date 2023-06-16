@@ -394,8 +394,12 @@
                                                                 <label class="form-label" for="tags-column">
                                                                     Tags
                                                                 </label>
-                                                                <textarea class="form-control" rows="2" placeholder=""
-                                                                    name="tags" id="tags-column"></textarea>
+                                                                <select data-placeholder="" multiple
+                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
+                                                                    <option value=""></option>
+                                                                    <option selected>Admin staff</option>
+                                                                    <option selected>Customers</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
