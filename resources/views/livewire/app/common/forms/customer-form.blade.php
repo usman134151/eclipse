@@ -985,7 +985,7 @@
                                                             Save & Exit
                                                         </button>
                                                 <button type="button" class="btn btn-primary rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog',3)" wire:click.prevent="permissionConfiguration(0)">
+                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="permissionConfiguration(0)">
                                                     Next
                                                 </button>
                                             </div>
@@ -1517,16 +1517,14 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
                                                     Back
                                                 </button>
-                                                <a href="/admin/customer">
-                                                    <button type="submit" class="btn btn-primary rounded w-100">
-                                                        Save & Exit
-                                                    </button>
-                                                </a>
+                                                <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                            Save & Exit
+                                                        </button>
                                                 <button type="button" class="btn btn-primary rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                wire:click.prevent="addServices"  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
                                                     Next
                                                 </button>
                                             </div>
