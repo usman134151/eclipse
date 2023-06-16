@@ -52,12 +52,13 @@ class CustomizeForm
         $custom_form_details['updated_by'] = Auth::id();
 
         $form = CustomizeForms::create($custom_form_details);
-        foreach ($questions as $question) {
+        foreach ($questions as $index=>$question) {
             $q = $question;
             $q['customize_form_id'] = $form->id;
             $q['form_industry_id'] = $form->industry_id;
             $q['added_by'] = Auth::id();
             $q['updated_by'] = Auth::id();
+            $q['position'] = $index;
             unset($q['options']);   //removing to save form
 
             $sQuestion = CustomizeFormFields::create($q);
