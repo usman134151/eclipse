@@ -39,6 +39,13 @@ class SavedForms extends Component
 	public function resetForm()
 	{
 		$this->showForm=false;
+		$this->dispatchBrowserEvent('swal:modal', [
+			'type' => 'success',
+			'title' => 'Success',
+			'text' => 'Form Data has been saved successfully!',
+		]);
+		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/customize-form']);
+
 	}
 
 	public function mount()
