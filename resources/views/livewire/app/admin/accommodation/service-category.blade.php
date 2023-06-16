@@ -114,13 +114,12 @@
     
 
   function copyTo(type,section){
-    if(section=='charges'){
-
-        $('.chargeFld_1').each(function() {
+  
+        $('.'+section+'Fld_1').each(function() {
             var elementId = this.id;
-            console.log(elementId);
+           
             elementId = elementId.split('_')[0];
-            console.log(elementId);
+            
             var targetElement = document.getElementById(elementId + '_' + type);
             if (targetElement) {
                 $('#' + elementId + '_' + type).val($('#' + elementId + '_1').val());
@@ -130,12 +129,21 @@
             }
         });
 
+        $('.'+section+'Chk_1').each(function() {
+            var elementId = this.id;
+           
+            elementId = elementId.split('_')[0];
+            console.log(elementId);
+            var targetElement = document.getElementById(elementId + '_' + type);
+            if (targetElement) {
+                $('#' + elementId + '_' + type).prop('checked',$('#' + elementId + '_1').prop('checked'));
+                targetElement.dispatchEvent(new Event('change'));
+            } else {
+                console.error("Element not found for ID: " + elementId + '_' + type);
+            }
+        });
 
 
-
-
- 
-    } //end of copy service charges
 
 
   }
