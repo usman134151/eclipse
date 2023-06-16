@@ -47,11 +47,23 @@ class CustomizeForm
         return null;
     }
 
-    public function saveForm($custom_form_details,$questions){
-        $custom_form_details['added_by'] = Auth::id();
-        $custom_form_details['updated_by'] = Auth::id();
+    public function saveForm($custom_form_details,$questions,$formId=0){
+        if($formId){
+            $custom_form_details['updated_by'] = Auth::id();
+            unset($custom_form_details['id']);
+        }else{
+            $custom_form_details['added_by'] = Auth::id();
+            $custom_form_details['updated_by'] = Auth::id();
+        }
 
-        $form = CustomizeForms::create($custom_form_details);
+        $form = CustomizeForms::updateOrCreate(['id'=>$formId],$custom_form_details);
+
+        // delete existing questions 
+        $questions_tbd = CustomizeFormFields::where('customize_form_id', $formId)->get();
+        // and respective options
+        CustomizeFormOptionFields::whereIn('form_field_id',$questions_tbd->pluck('id')->toArray())->delete();
+        CustomizeFormFields::where('customize_form_id', $formId)->delete();
+
         foreach ($questions as $index=>$question) {
             $q = $question;
             $q['customize_form_id'] = $form->id;
@@ -79,5 +91,22 @@ class CustomizeForm
                 }
             }
         }
+    }
+
+    public function getFormDetails($formId){
+
+        $data['custom_form_details'] = CustomizeForms::where('id', $formId)->get()->toArray()[0];
+        $data['questions'] = CustomizeFormFields::where('customize_form_id', $formId)->get()->toArray();
+        foreach ($data['questions'] as $index => $question) {
+            if ($question['field_type'] > 2 && $question['field_type'] < 6) {
+                $data['questions'][$index]['options'] = CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray();
+                // dd(CustomizeFormOptionFields::where(['form_id' => $formId, 'form_field_id' => $question['id']])->get()->toArray());
+            } else
+                $data['questions'][$index]['options'] = [
+                    'option_field_name' => ''
+                ];
+        }
+
+        return $data;
     }
 }
