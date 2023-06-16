@@ -26,7 +26,7 @@ class AddCustomizedForm extends Component
 
     public $custom_form_details=['form_name_id'=>'', 'industry_id' => 0, 'screen_name' => '', 'request_form_name' => ''];
 
-	public function showList($message)
+	public function showList($message='')
 	{
 		$this->emit('showList',$message);
 	}
@@ -39,13 +39,14 @@ class AddCustomizedForm extends Component
             ],
         ];
         if($this->custom_form_details['form_name_id']==40){
+            $rules['custom_form_details.screen_name'] = [ 'required', 'max:255' ];
             $rules['questions.*.title'] = ['required', 'max:255'];
             $rules['questions.*.scenario'] = ['required', 'max:255'];
         } else{
             $rules['questions.*.field_name'] = ['required','max:255'];
             $rules['questions.*.field_type'] = ['required','gt:0'];
         }
-        
+
         
         return $rules;
     }

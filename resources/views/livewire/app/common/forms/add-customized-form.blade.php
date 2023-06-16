@@ -73,6 +73,7 @@
 															'name', 'status', 1, 'name', false,
 															'custom_form_details.industry_id',
 													'','industry') !!}
+										  @error('custom_form_details.industry_id')<span class="d-inline-block invalid-feedback mt-2">The selected industry is a required field</span>@enderror
 											
                     			 			</div>	
                     			 		</div>	
@@ -89,6 +90,8 @@
 										  <div class="form-group">
 											<label for="screening-name-column" class="form-label ">Screening Name</label>
 											<input type="text" id="screen_name" wire:model.defer="custom_form_details.screen_name" class="form-control" placeholder="Enter Name" name="screening-name-column" />
+											@error('custom_form_details.screen_name')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror
+
 										</div>
 									</div>
 								</div>
