@@ -513,24 +513,34 @@ class AddService extends Component
                 $price_p=json_decode($specialization['specialization_price_p'],true);
                 $price_t=json_decode($specialization['specialization_price_t'],true);
                 $commonValues=[];
-                if(!is_null($price)){
+                if(!is_null($price) && is_array($price)){
+                   
                     $price=$price[0];
-                    $commonValues=['price_type'=>$price["price_type"],"hide_from_customers"=>$price["hide_from_customers"],"hide_from_providers"=>$price["hide_from_providers"],"multiply_provider"=>$price['multiply_provider'],"multiply_service_duration"=>$price['multiply_service_duration'],'disable'=>$price['disable']];
+                   foreach($price as $key=>$value){
+                    $commonValues[$key]=$value;
+                   }
+                   // $commonValues=['price_type'=>$price["price_type"],"hide_from_customers"=>$price["hide_from_customers"],"hide_from_providers"=>$price["hide_from_providers"],"multiply_provider"=>$price['multiply_provider'],"multiply_service_duration"=>$price['multiply_service_duration'],'disable'=>$price['disable']];
                     $price=$price['price'];
                 }
                 if(!is_null($price_v)){
                     $price_v=$price_v[0];
-                    $commonValues=['price_type'=>$price_v["price_type"],"hide_from_customers"=>$price_v["hide_from_customers"],"hide_from_providers"=>$price_v["hide_from_providers"],"multiply_provider"=>$price_v['multiply_provider'],"multiply_service_duration"=>$price_v['multiply_service_duration'],'disable'=>$price_v['disable']];
+                    foreach($price_v as $key=>$value){
+                        $commonValues[$key]=$value;
+                       }
                     $price_v=$price_v['price'];
                 }
                 if(!is_null($price_t)){
                     $price_t=$price_t[0];
-                    $commonValues=['price_type'=>$price_t["price_type"],"hide_from_customers"=>$price_t["hide_from_customers"],"hide_from_providers"=>$price_t["hide_from_providers"],"multiply_provider"=>$price_t['multiply_provider'],"multiply_service_duration"=>$price_t['multiply_service_duration'],'disable'=>$price_t['disable']];
+                    foreach($price_t as $key=>$value){
+                        $commonValues[$key]=$value;
+                       }
                     $price_t=$price_t['price'];
                 }
                 if(!is_null($price_p)){
                     $price_p=$price_p[0];
-                    $commonValues=['price_type'=>$price_p["price_type"],"hide_from_customers"=>$price_p["hide_from_customers"],"hide_from_providers"=>$price_p["hide_from_providers"],"multiply_provider"=>$price_p['multiply_provider'],"multiply_service_duration"=>$price_p['multiply_service_duration'],'disable'=>$price_p['disable']];
+                    foreach($price_p as $key=>$value){
+                        $commonValues[$key]=$value;
+                       }
                     $price_p=$price_p['price'];
                 }
                 $this->serviceSpecialization[]=[
