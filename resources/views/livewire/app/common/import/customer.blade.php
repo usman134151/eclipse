@@ -214,6 +214,10 @@
 						<label class="form-label" for="First Name">Country</label>
 						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.country" class="form-control" />
 					</div>	
+					<div>
+						<label class="form-label" for="First Name">Phone</label>
+						<input type="text" wire:model.defer="users.{{ $loop->index }}.userDetails.phone" class="form-control" />
+					</div>						
                   </div>
                 </div>
               </td>

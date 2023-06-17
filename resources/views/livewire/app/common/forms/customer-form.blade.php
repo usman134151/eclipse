@@ -380,7 +380,49 @@
                                                         <input type="text" id="phone-number" class="form-control" name="phone"
                                                             placeholder="Enter Phone Number" wire:model.defer="userdetail.phone" />
                                                     </div>
-
+                                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="country">
+                                                Country
+                                            </label>
+                                            {!! $setupValues['countries']['rendered'] !!}
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <div class="mb-4">
+                                                <label class="form-label" for="state">State / Province</label>
+                                                <input type="text" id="state" class="form-control"
+                                                    name="state" placeholder="Enter State Name"
+                                                    required aria-required="true" wire:model.defer="userdetail.state"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <div class="mb-4">
+                                                <label class="form-label" for="city">City</label>
+                                                <input type="text" id="city" class="form-control"
+                                                    name="city" placeholder="Enter City Name"
+                                                    required aria-required="true" wire:model.defer="userdetail.city"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="zip-code">
+                                                Zip Code
+                                            </label>
+                                            <input type="text" id="zip-code" class="form-control" name="zipCode"
+                                                placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 pe-lg-5">
+                                            <label class="form-label" for="address-line-1">
+                                                Address Line 1
+                                            </label>
+                                            <input type="text" id="address-line-1" class="form-control"
+                                                name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
+                                        </div>
+                                        <div class="col-lg-6 mb-4 ps-lg-5">
+                                            <label class="form-label" for="address-line-2">
+                                                Address Line 2
+                                            </label>
+                                            <input type="text" id="address-line-2" class="form-control"
+                                                name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
+                                        </div>
                                                     <div class="col-lg-6 pe-lg-5 mb-4">
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
@@ -415,9 +457,9 @@
                                                 {{-- Default Billing Address --}}
                                                 <div class="col-lg-12">
                                                     <div class="row between-section-segment-spacing">
-                                                    @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses])
+                                                    @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses, 'title'=>'Additional'])
 
-                                                    @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses])
+                                                    @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses, 'title'=>'Additional'])
 
                                                     </div>
                                                 </div>

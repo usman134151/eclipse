@@ -498,9 +498,9 @@
                                                 {{-- Default Billing Address --}}
                                                 <div class="col-lg-12">
                                                     <div class="row between-section-segment-spacing">
-                                                    @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses])
+                                                    @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses,'title'=>'Default'])
 
-                                                    @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses])
+                                                    @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses,'title'=>'Default'])
 
                                                     </div>
                                                 </div>

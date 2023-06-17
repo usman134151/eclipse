@@ -1,5 +1,5 @@
 <div class="col-lg-6 pe-lg-5">
-    <h2>Default {{ $type }} Address</h2>
+    <h2>{{$title}} {{ $type }} Address</h2>
     <button type="button" class="btn btn-primary btn-has-icon rounded mb-4"  data-bs-target="#addAddressModal" wire:click="$emit('updateAddressType', {{ $type }})">
         <svg aria-label="Add Address" width="20" height="20" viewBox="0 0 20 20">
             <use xlink:href="/css/common-icons.svg#plus"></use>
