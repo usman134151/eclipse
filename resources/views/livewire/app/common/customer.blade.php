@@ -131,6 +131,7 @@
 		</section>
 	</div>
 	@endif
+	@push('scripts')
 	<script>
 	function updateVal(attrName,val){
 	
@@ -140,8 +141,18 @@
 		
 
 	}
-
+	Livewire.on('updateAddressType', (type) => {
+            // Handle the event here
+           
+            // Open the modal
+            $('#addAddressModal').modal('show');
+        });
+        Livewire.on('modalDismissed', () => {
+            $('#addAddressModal').modal('hide');
+               
+            });
 
 
 </script>
+@endpush
 </div>

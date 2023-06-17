@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\App\Common\Modals;
 use App\Models\Tenant\Industry;
 use App\Models\Tenant\User;
+use App\Models\Tenant\Company;
 use Livewire\Component;
 
 class AddIndustry extends Component
 {
     public $selectedIndustries=[],$defaultIndustry,$industries;
-    protected $listeners = ['editRecord' => 'setIndustries'];
+    protected $listeners = ['editRecord' => 'setIndustries','updateCompany'];
 
     public function render()
     {
@@ -25,6 +26,18 @@ class AddIndustry extends Component
         $this->selectedIndustries = $user->industries()->allRelatedIds()->toArray();
         if(!is_null($user->userdetail))
             $this->defaultIndustry = $user->userdetail->industry;
+    }
+
+    public function updateCompany($companyId){
+       
+        $company=Company::where('id',$companyId)->first();
+        if($company->industry_id){
+            $this->selectedIndustries = [$company->industry_id];
+            $this->defaultIndustry=$company->industry_id;
+            $this->updateData();
+        }
+
+        
     }
 
     // Child Laravel component's updateData function

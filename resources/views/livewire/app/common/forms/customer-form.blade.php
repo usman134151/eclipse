@@ -48,34 +48,55 @@
                         <li class="nav-item" role="presentation">
                             <a href="#" class="nav-link" :class="{ 'active': tab === 'customer-info' }"
                                 @click.prevent="tab = 'customer-info'" id="customer-info-tab" role="tab"
-                                aria-controls="customer-info" aria-selected="true" tabindex="0">
+                                aria-controls="customer-info" aria-selected="true" tabindex="0" wire:click.prevent="switch('customer-info',1,false)">
                                 <span class="number">1</span>
                                 Customer Info
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
+                            @if($user->email)
                             <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }"
                                 @click.prevent="tab = 'permission-configurations'" id="permission-configurations-tab"
-                                role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0">
+                                role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0" wire:click.prevent="switch('permission-configurations',2,true)">
                                 <span class="number">2</span>
                                 Permission Configurations
                             </a>
+                            @else
+                            <div class="nav-link" title="Fill in first step to proceed">
+                                <span class="number">2</span>
+                                Permission Configurations
+                            </div>
+                            @endif
                         </li>
                         <li class="nav-item" role="presentation">
+                            @if($user->email)
                             <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }"
                                 @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
-                                aria-controls="service-catalog" aria-selected="false" tabindex="0">
+                                aria-controls="service-catalog" aria-selected="false" tabindex="0" wire:click.prevent="switch('service-catalog',3,true)">
+                                <span class="number">3</span>
+                                Service Catalog 
+                            </a>
+                            @else
+                            <div class="nav-link" title="Fill in first step to proceed">
                                 <span class="number">3</span>
                                 Service Catalog
-                            </a>
+                            </div>
+                            @endif    
                         </li>
                         <li class="nav-item" role="presentation">
+                            @if($user->email)    
                             <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }"
                                 @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
-                                aria-controls="drive-documents" aria-selected="false" tabindex="0">
+                                aria-controls="drive-documents" aria-selected="false" tabindex="0"  wire:click.prevent="switch('drive-documents',4,true)">
                                 <span class="number">4</span>
                                 Drive Documents
                             </a>
+                            @else
+                            <div class="nav-link" title="Fill in first step to proceed">
+                                <span class="number">4</span>
+                                Drive Document
+                            </div>
+                            @endif  
                         </li>
                     </ul>
 
@@ -391,198 +412,15 @@
                                                 </div>
 
                                                 <div class="row inner-section-segment-spacing">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 pe-lg-5 mb-4">
-                                                                <h2>Default Billing Address</h2>
-                                                                <button type="button"
-                                                                    class="btn btn-primary btn-has-icon rounded mb-4"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#addAddressModal">
-                                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                                    <svg aria-label="Add Address" width="20" height="20"
-                                                                        viewBox="0 0 20 20">
-                                                                        <use xlink:href="/css/common-icons.svg#plus"></use>
-                                                                    </svg>
-                                                                    {{-- End of update by Shanila --}}
-                                                                    <span>Add Address</span>
-                                                                </button>
-                                                                <table class="table table-hover border">
-                                                                    <thead>
-                                                                        <th>#</th>
-                                                                        <th>Address</th>
-                                                                        <th></th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr class="odd js-selected-row">
-                                                                            <td>1</td>
-                                                                            <td>
-                                                                                <p>
-                                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </p>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <svg class="d-none js-tick" width="24"
-                                                                                    height="19" viewBox="0 0 24 19"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M2 10.2852L8.66667 17.2852L22 2.28516"
-                                                                                        stroke="white" stroke-width="3"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round" />
-                                                                                </svg>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr class="even js-selected-row">
-                                                                            <td>2</td>
-                                                                            <td>
-                                                                                <p>
-                                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </p>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <svg class="d-none js-tick" width="24"
-                                                                                    height="19" viewBox="0 0 24 19"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M2 10.2852L8.66667 17.2852L22 2.28516"
-                                                                                        stroke="white" stroke-width="3"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round" />
-                                                                                </svg>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr class="odd js-selected-row">
-                                                                            <td>3</td>
-                                                                            <td>
-                                                                                <p>
-                                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </p>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <svg class="d-none js-tick" width="24"
-                                                                                    height="19" viewBox="0 0 24 19"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M2 10.2852L8.66667 17.2852L22 2.28516"
-                                                                                        stroke="white" stroke-width="3"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round" />
-                                                                                </svg>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                {{-- Default Billing Address --}}
+                                                <div class="col-lg-12">
+                                                    <div class="row between-section-segment-spacing">
+                                                    @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses])
 
-                                                            <div class="col-lg-6 ps-lg-5 mb-4">
-                                                                <h2>Default Service Address</h2>
-                                                                <div
-                                                                    class="d-lg-flex justify-content-between align-items-center">
-                                                                    <div class="form-check mb-4">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            value="" id="same-as-billing-address-checkbox">
-                                                                        <label class="form-check-label"
-                                                                            for="same-as-billing-address-checkbox">
-                                                                            Same as Billing Address
-                                                                        </label>
-                                                                    </div>
+                                                    @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses])
 
-                                                                    <button type="button"
-                                                                        class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2 mb-4"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#addAddressModal">
-                                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                                        <svg aria-label="Add Address" width="20" height="20"
-                                                                            viewBox="0 0 20 20">
-                                                                            <use xlink:href="/css/common-icons.svg#plus">
-                                                                            </use>
-                                                                        </svg>
-                                                                        {{-- End of update by Shanila --}}
-                                                                        <span>Add Address</span>
-                                                                    </button>
-                                                                </div>
-                                                                <table class="table table-hover border">
-                                                                    <thead>
-                                                                        <th>#</th>
-                                                                        <th>Address</th>
-                                                                        <th></th>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr class="odd js-selected-row">
-                                                                            <td>1</td>
-                                                                            <td>
-                                                                                <p>
-                                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </p>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <svg class="d-none js-tick" width="24"
-                                                                                    height="19" viewBox="0 0 24 19"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M2 10.2852L8.66667 17.2852L22 2.28516"
-                                                                                        stroke="white" stroke-width="3"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round" />
-                                                                                </svg>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr class="even js-selected-row">
-                                                                            <td>2</td>
-                                                                            <td>
-                                                                                <p>
-                                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </p>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <svg class="d-none js-tick" width="24"
-                                                                                    height="19" viewBox="0 0 24 19"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M2 10.2852L8.66667 17.2852L22 2.28516"
-                                                                                        stroke="white" stroke-width="3"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round" />
-                                                                                </svg>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr class="odd js-selected-row">
-                                                                            <td>3</td>
-                                                                            <td>
-                                                                                <p>
-                                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD
-                                                                                    4209 AUSTRALIA
-                                                                                </p>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <svg class="d-none js-tick" width="24"
-                                                                                    height="19" viewBox="0 0 24 19"
-                                                                                    fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path
-                                                                                        d="M2 10.2852L8.66667 17.2852L22 2.28516"
-                                                                                        stroke="white" stroke-width="3"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round" />
-                                                                                </svg>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
                                                     </div>
+                                                </div>
                                                 </div>
 
 
@@ -978,7 +816,7 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('customer-info')">
+                                                onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="back('customer-info')">
                                                     Back
                                                 </button>
                                                  <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="permissionConfiguration" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
@@ -1009,7 +847,7 @@
                                             @csrf
                                             <div class="card-body">
                                                 <div class="col-lg-8">
-                                                    <h2>Service Catalog</h2>
+                                                    <h2>Service Catalog (comming soon)</h2>
                                                 </div>
 
                                                 <div class="col-md-12 mb-md-2">
@@ -1517,7 +1355,7 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="back('permission-configurations')">
                                                     Back
                                                 </button>
                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
@@ -1549,7 +1387,7 @@
                                                 @csrf
                                                 {{-- updated end by shanila --}}
                                                 <div class="col-md-8 mb-md-2">
-                                                    <h2>Drive Documents</h2>
+                                                    <h2>Drive Documents (comming soon)</h2>
                                                 </div>
                                                 <div class="col-md-12 mb-md-2">
                                                     <div class="row">
@@ -1589,7 +1427,7 @@
                                                         <div
                                                             class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                             <button type="button" class="btn btn-outline-dark rounded"
-                                                            x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                            onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="back('service-catalog')">
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
@@ -1626,6 +1464,7 @@
     @include('modals.admin-staff')
     <!-- have to remove associate services panel as it was throwing errors --> 
     @include('modals.add-user')
+   
 </div>
 </div>
 </div>

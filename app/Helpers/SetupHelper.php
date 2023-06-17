@@ -82,7 +82,7 @@ class SetupHelper
         }
     //dd($wireVariable);
         if ($wireVariable) {
-            $attributes['wire:model.defer'] = $wireVariable;
+            $attributes['wire:model'] = $wireVariable;
         }
 
         if($multipleSelect){

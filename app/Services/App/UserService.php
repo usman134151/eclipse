@@ -11,6 +11,7 @@ use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\RoleUserDetail;
 use App\Models\Tenant\TeamProviders;
+use App\Models\Tenant\UserAddress;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -85,9 +86,14 @@ class UserService
   {
     return User::with('phones')->find($id);
   }
-  public function storeUserAddresses($id, $userAddresses)
-  {
-  }
+  public function saveAddresses($user,$addresses){
+    foreach($addresses as $address){
+             $address=new UserAddress($address);
+             $address->user_address_type=1;
+             $address->user_id=$user->id;
+             $address->save();
+        }
+ }
   public function getUserAddresses($id)
   {
   }

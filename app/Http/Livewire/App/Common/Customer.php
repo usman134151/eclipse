@@ -18,6 +18,7 @@ class Customer extends Component
 		'showProfile' => 'showProfile',
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
+	
 	];
 	protected $exportDataFile;
 
@@ -39,6 +40,7 @@ class Customer extends Component
 	{
 		return view('livewire.app.common.customer');
 	}
+
 
 	
 

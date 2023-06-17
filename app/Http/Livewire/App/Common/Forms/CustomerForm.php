@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class CustomerForm extends Component
 {
-    public $user,$isAdd=true;
+    public $user,$isAdd=true,$userAddresses=[];
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 	'user_introduction'=>null, 'title' => null, 'user_position' => null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
@@ -32,7 +32,7 @@ class CustomerForm extends Component
     public $step = 1,$email_invitation,$limit;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
 		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising', 'updateSelectedUsersToManager',
-		'updateSelectedStaff'];
+		'updateSelectedStaff','updateAddress' => 'addAddress'];
 	public $serviceConsumer=false;
 
 	//modals variables
@@ -68,8 +68,13 @@ class CustomerForm extends Component
 		$this->emit('showList', $message);
 	}
 
-	public function switch($component)
+	public function switch($component,$step=0,$check=false)
 	{
+		
+		if($step!=0){
+			if($check==false || ($check==true && !is_null($this->user->email)))
+			   $this->step=$step;
+		}
 		$this->component = $component;
 
 	}
@@ -227,6 +232,9 @@ class CustomerForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
+		if($this->step==1){
+			$userService->saveAddresses($this->user,$this->userAddresses);
+		}
 		if ($redirect) {
 
 			$this->showList("Customer has been saved successfully");
@@ -334,4 +342,21 @@ class CustomerForm extends Component
 	{
 		$this->selectedAdminStaff = $selectedStaff;
 	}
+
+	public function updateAddressType($type){
+		$this->emit('updateAddressType',$type);
+	}
+
+	public function addAddress($addressArr){
+		
+		$this->userAddresses[]=$addressArr;
+		
+	} 
+
+	public function back($component){
+        $this->step--;
+		$this->switch($component);
+		
+    
+    }
 }
