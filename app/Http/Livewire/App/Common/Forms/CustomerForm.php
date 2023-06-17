@@ -130,7 +130,14 @@ class CustomerForm extends Component
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
-
+		if(count($user->addresses)){
+			//dd($company->phones);
+			$this->userAddresses=[];
+			foreach($user->addresses as $address){
+				$this->userAddresses[]=$address->toArray();
+			}
+		
+		}	
 		// dd($this->userdetail);
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);

@@ -194,7 +194,7 @@ final class Customers extends PowerGridComponent
 		function edit($id){
 
 			// Emits an event to show the form for editing a record
-			$this->emit('showForm', User::with(['userdetail','industries','company'])->find($id));
+			$this->emit('showForm', User::with(['userdetail','industries','company','addresses'])->find($id));
 		}
 	function showProfile($id) {
 	
