@@ -11,7 +11,7 @@
 						<thead>
 						<tr role="row">
 							<th scope="col" class="text-center">
-							<input class="form-check-input" type="checkbox" value="" aria-label="Select All Teams">
+							<input class="form-check-input" type="checkbox" wire:click="updateSelectAll"  wire:model.defer="selectAll" aria-label="Select All Teams">
 							</th>
 							<th scope="col">Name</th>
 							<th scope="col">Phone Number</th>
@@ -97,7 +97,12 @@
                     x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')"
 				>
 				Back</a>
+				@if($team==null)
+				<button  class="btn btn-primary rounded px-4" wire:click.prevent="" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')" >Save & Exit</button>
+
+				@else
 				<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-info')" >Save & Exit</button>
+				@endif
 				{{-- <button type="submit" class="btn btn-primary rounded px-4"  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('system-permissions')">Next</button> --}}
 			</div>
 		</div>

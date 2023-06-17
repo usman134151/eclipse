@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class AdminTeam extends Component
 {
-    public $component = 'team-info';
+    public $component = 'team-info',$step=1;
     public $confirmationMessage;
 	public $showForm;
 	protected $listeners = [
@@ -15,7 +15,7 @@ class AdminTeam extends Component
 		'showForm' => 'showForm', // Show form when the parent component requests it
 		'delete' => 'deleteRecord', // Delete the record with the specified ID
 		'updateRecordId' => 'updateRecordId', // Update the ID of the record being edited / deleted
-		 'switch'
+		 'switch', 'stepIncrement'
 	];
     public $recordId;
 
@@ -29,6 +29,11 @@ class AdminTeam extends Component
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-team/create-admin-team']);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
+
+	public function stepIncrement(){
+		$this->step++;
+	}
+	
 
 	public function resetForm($message)
 	{
@@ -65,5 +70,10 @@ class AdminTeam extends Component
     public function switch($component)
 	{
 		$this->component = $component;
+		// if($component=='team-info')
+		// 	$this->step=1;
+		// elseif($component == 'team-')
+		// 	$this->step = 1;)
 	}
+
 }

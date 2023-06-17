@@ -15,7 +15,7 @@ class TeamInfo extends Component
 	use WithFileUploads;
 
     public $image;
-    protected $listeners = ['editRecord' => 'edit','updateVal','changeComponent'=>'switch'];
+    protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
     public $teamAdmin=[];
     public $team;
@@ -94,8 +94,7 @@ class TeamInfo extends Component
 		
 		}else{
 			$this->emit('updateComponent', $this->team);
-			$this->emit('switch', 'team-members');
-
+			$this->emit('stepIncrement');
 		}
 
 	}
@@ -119,9 +118,9 @@ class TeamInfo extends Component
         $this->team=$team;
 
     }
-    public function switch($component)
+	public function switch($component)
 	{
-		$this->component = $component;
+			$this->emit('switch', $component); //hit parent component switch func
 
 	}
 }

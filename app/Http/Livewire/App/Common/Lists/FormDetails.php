@@ -154,11 +154,10 @@ final class FormDetails extends PowerGridComponent
         if ($this->formId == 40) {
             $columns[] = Column::make('Screen Name', 'screen_name', '')->searchable()->makeinputtext()->sortable();
         }
-        $columns[] = Column::make('Status', 'status', '')->makeBooleanFilter('status', 'Deactivated', 'Activated')->toggleable(1, 'Deactivated', 'Activated');
-        $columns[] = Column::make('Action', 'view', ''); // updated by shanila to make column
-
+        $columns[] = Column::make('Status', 'status', '')->toggleable(1, 'Deactivated', 'Activated');
+        $columns[] = Column::make('Action', 'view', ''); 
         if ($this->formDeleteable) {
-            $columns[] = Column::make('Action', 'form_deleteable', ''); // updated by shanila to make column
+            $columns[] = Column::make('Action', 'form_deleteable', ''); 
         }
 
         return $columns;
