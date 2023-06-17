@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class TeamMembers extends Component
 {
-    public $component = 'team-info';
+    public $component = 'team-members',$selectAll=false;
 	public $showForm,$teamMembers,$adminStaff=[], $team;
 	protected $listeners = ['showList'=>'resetForm','editRecord'=>'setTeam','updateComponent'=>'setTeam'];
 
@@ -34,6 +34,14 @@ class TeamMembers extends Component
 		$this->showList("Admin Staff Team has been saved successfully");
 		$this->team = new AdminTeam;
 		$this->teamMembers = [];
+	}
+
+	public function updateSelectAll()
+	{
+		if ($this->selectAll == true)
+			$this->teamMembers = $this->adminStaff->pluck('id')->toArray();
+		else
+			$this->teamMembers = [];
 	}
 
 	public function mount(){
@@ -62,6 +70,7 @@ class TeamMembers extends Component
 	}
     public function switch($component)
 	{
-		$this->component = $component;
+		$this->emit('switch',$component); //hit parent component switch func
+
 	}
 }

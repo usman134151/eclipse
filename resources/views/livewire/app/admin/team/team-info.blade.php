@@ -51,7 +51,7 @@
 				  <label class="form-label">
 					Lead Admin(s) <span class="mandatory" aria-hidden="true">*</span>
 				  </label>
-                  <select wire:model="team.admin_id" name="team.admin_id" id="team.admin_id" class="select2 form-select">
+                  <select wire:model="team.admin_id" name="admin_id" id="admin_id" class="select2 form-select">
 					<option value=0></option>
 					@foreach($teamAdmin as $admin)
 					  <option value="{{$admin['id']}}" />{{$admin['name']}} ({{$admin['email']}})</option>
@@ -152,13 +152,18 @@
 			>
 			Back</a>
 			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save">Save & Exit</button>
-			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save(0)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Next</button>
+			<button type="submit" class="btn btn-primary rounded px-4" wire:click.prevent="save(0)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('team-members')">Next</button>
 		  </div>
 		</div>
 	  </form>
 </div>
 @push('scripts')
 <script>
+	function updateVal(attrName,val){
+
+		Livewire.emit('updateVal', attrName, val);
+
+	}
 	document.addEventListener("livewire:load", () => {
 		let el = $('.select2')
 		
