@@ -23,14 +23,17 @@ class CompanyService{
         return $company;
     }
 
-    public function saveAddresses($company,$addresses){
-        foreach($addresses as $address){
-                 $address=new UserAddress($address);
-                 $address->user_address_type=2;
-                 $address->user_id=$company->id;
-                 $address->save();
-            }
-     }
+    public function saveAddresses($company, $addresses)
+    {
+        foreach ($addresses as $addressData) {
+            $addressAttributes = [
+                'user_address_type' => 2,
+                'user_id' => $company->id,
+            ];
+    
+            UserAddress::updateOrCreate($addressData, $addressAttributes);
+        }
+    }
     
 
     public function getCompanyDetails($id){

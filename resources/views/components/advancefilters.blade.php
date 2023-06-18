@@ -28,7 +28,7 @@
         <label class="form-label">Filter by Accommodation</label>
         {!! App\Helpers\SetupHelper::createDropDown('Accommodation', 'id',
         'name', 'status', 1, 'name', true, '',
-        '','accommodation_filter') !!}
+        '','accommodation_search_filter') !!}
     </div>
     <div class="col-lg-5 ps-lg-3 mb-5">
         <label class="form-label" for="service">Filter by Service</label>
@@ -88,7 +88,7 @@
                 {{-- updated by shanila to add multiselectdropdown --}}
                 {!! App\Helpers\SetupHelper::createDropDown('Specialization', 'id',
                 'name', 'status', 1, 'name', true, '',
-                '','specialization_filter') !!}
+                '','specialization_search_filter') !!}
                  {{--ended updated--}}
             </div>
             <div class="col-lg-5 ps-lg-3 mb-5">

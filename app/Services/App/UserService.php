@@ -86,14 +86,17 @@ class UserService
   {
     return User::with('phones')->find($id);
   }
-  public function saveAddresses($user,$addresses){
-    foreach($addresses as $address){
-             $address=new UserAddress($address);
-             $address->user_address_type=1;
-             $address->user_id=$user->id;
-             $address->save();
-        }
- }
+  public function saveAddresses($user, $addresses)
+    {
+      foreach ($addresses as $addressData) {
+        $addressAttributes = [
+            'user_address_type' => 1,
+            'user_id' => $user->id,
+        ];
+
+        UserAddress::updateOrCreate($addressData, $addressAttributes);
+    }
+  }
   public function getUserAddresses($id)
   {
   }

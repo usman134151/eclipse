@@ -41,12 +41,21 @@
                 <div x-data="{ tab: @entangle('component') }" id="tab_wrapper">
                     {{-- NavTabs --}}
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
+                        
                         <li class="nav-item" role="presentation">
                             <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'company-info' }"
                                 @click.prevent="tab = 'company-info'" id="company-info-tab" role="tab"
                                 aria-controls="company-info" aria-selected="true">
                                 <span class="number">1</span>
                                 Company Info
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'schedule' }"
+                                @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
+                                aria-controls="schedule" aria-selected="true">
+                                <span class="number">2</span>
+                                Company Schedule
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -179,7 +188,8 @@
                                                             <button type="button"
                                                                 class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#companybusinesshoursModel">
+                                                                data-bs-target="#companybusinesshoursModel" 
+                                                                wire:click="updateCompany">
                                                                 {{-- Updated by Shanila to Add svg icon--}}
                                                                 <svg aria-label=" Select Department" width="25"
                                                                     height="18" viewBox="0 0 25 18">
@@ -516,7 +526,7 @@
                                                     </button>
                                                     <button type="button" class="btn btn-primary rounded px-4 py-2"
                                                         wire:click.prevent="save(0)"
-                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('schedule')">
                                                         Next
                                                     </button>
                                                 </div>
@@ -527,9 +537,19 @@
                             </section>
                         </div>
                         {{-- End Customer Info --}}
-
+                      
                         {{-- BEGIN: Service Catalog --}}
                         @elseif($step==2)
+                        <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
+                            id="schedule" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
+                            x-show="tab === 'schedule'">
+                            <section id="multiple-column-form">
+                             @livewire('app.common.setup.business-hours-setup')
+
+                            </section>
+                        </div>
+                        {{-- BEGIN: Service Catalog --}}
+                        @elseif($step==3)
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
@@ -558,23 +578,7 @@
     </div>
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
-    @push('scripts')
-    <script>
-        
-        
-        Livewire.on('updateAddressType', (type) => {
-            // Handle the event here
-           
-            // Open the modal
-            $('#addAddressModal').modal('show');
-        });
-        Livewire.on('modalDismissed', () => {
-            $('#addAddressModal').modal('hide');
-               
-            });
-      
-    </script>
-    @endpush
+
 </div>
 
 

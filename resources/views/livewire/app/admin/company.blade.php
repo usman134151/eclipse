@@ -189,6 +189,17 @@
             });
 
 }  
+Livewire.on('updateAddressType', (type) => {
+            // Handle the event here
+           
+            // Open the modal
+            $('#addAddressModal').modal('show');
+        });
+        Livewire.on('modalDismissed', () => {
+            $('#addAddressModal').modal('hide');
+               
+            });
+      
 </script>
 
 

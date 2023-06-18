@@ -7,6 +7,7 @@ use App\Helpers\SetupHelper;
 use App\Services\App\CompanyService;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Phone;
+use App\Models\Tenant\Schedule;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,6 +70,8 @@ class AddCompany extends Component
 		$this->company=$company;
 		$this->showHours=false;
 		$this->showAddress=false;
+		$this->schedule=new Schedule;
+		$this->schedule->model_type='company';
 		
 		
 
@@ -136,7 +139,9 @@ class AddCompany extends Component
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		$this->step=2;
-		$this->serviceActive="active";
+		$this->scheduleActive="active";
+		$this->schedule->model_id=$this->company->id;
+		$this->emit('getRecord', $this->schedule);
 		//dd($this->company);
 		if($redirect){
 			$this->showList("Company has been saved successfully");
@@ -155,6 +160,8 @@ class AddCompany extends Component
 			$this->serviceActive='';
 		 }
 	}
+
+
 
 
 }
