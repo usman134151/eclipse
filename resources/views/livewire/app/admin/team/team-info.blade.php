@@ -84,6 +84,13 @@
 				</div>
 			  </div>
 			  <div class="col-md-6 col-12">
+					<div class="mb-4">
+						<label class="form-label">Team Roles and Permissions</label>
+								{!! $setupValues['roles']['rendered'] !!}
+								
+					</div>
+			  </div>
+			  <div class="col-md-6 col-12">
 				<div class="mb-4">
 				  <label class="form-label" for="team_lead_phone_number">
 					Team Phone Number

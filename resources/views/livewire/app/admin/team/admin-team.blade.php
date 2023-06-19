@@ -50,10 +50,17 @@
                                     Info</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="javascript:void(0)" class="nav-link" @click.prevent="tab = 'team-members'"
-                                    :class="{ 'active': tab === 'team-members' }"
-                                    id="team-members-tab" role="tab" aria-controls="team-members"
-                                    aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
+                                @if($team!=null)
+                                    <a href="javascript:void(0)" class="nav-link" @click.prevent="tab = 'team-members'"
+                                        :class="{ 'active': tab === 'team-members' }"
+                                        id="team-members-tab" role="tab" aria-controls="team-members"
+                                        aria-selected="false"><span class="number">2</span> Admin Staff Team</a>
+                                @else
+                                    <div class="nav-link" title="Fill in first step to proceed">
+                                        <span class="number">2</span>
+                                        Admin Staff Team
+                                    </div>
+                                @endif
                             </li>
                          <!--   <li class="nav-item" role="presentation">
                                 <a href="javascript:void(0)" class="nav-link"
@@ -69,9 +76,7 @@
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'team-info' }" id="team-info"
                                 role="tabpanel" aria-labelledby="team-info-tab" tabindex="0"
                                 x-show="tab === 'team-info'">
-                                {{-- @if($step>=1) --}}
                                 @livewire('app.admin.team.team-info', ['showForm' => $showForm])
-                                {{-- @endif --}}
                             </div>
                             {{-- Team Info End --}}
 
@@ -79,9 +84,7 @@
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'team-members' }"
                                 id="team-members" role="tabpanel" aria-labelledby="team-members-tab" tabindex="0"
                                 x-show="tab === 'team-members'">
-                                {{-- @if($step>=2) --}}
                                 @livewire('app.admin.team.team-members', ['showForm' => $showForm])
-                                {{-- @endif --}}
                             </div>
                             {{-- Admin Staff End --}}
 
