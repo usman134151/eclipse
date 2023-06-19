@@ -7,7 +7,7 @@ use Livewire\Component;
 class BusinessSetup extends Component
 {
 	public $component = 'configuration-setting';
-	public $showForm;
+	public $showForm, $configuration=[];
 	protected $listeners = ['showList'=>'resetForm'];
     public $messages=[[
         'message_text'=>'',
@@ -28,7 +28,9 @@ class BusinessSetup extends Component
     ]];
 
 	public function mount()
-	{}
+	{
+        // $this->configuration = 
+    }
 
 	public function render()
 	{
