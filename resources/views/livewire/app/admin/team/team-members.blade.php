@@ -19,7 +19,7 @@
 							{{-- <th scope="col">Open Booking</th> --}}
 							{{-- <th scope="col">Managing</th> --}}
 							{{-- <th scope="col">Viewing</th> --}}
-							<th scope="col">Actions</th>
+							{{-- <th scope="col">Actions</th> --}}
 						</tr>
 						</thead>
 						<tbody>
@@ -31,7 +31,7 @@
 							<td>
 							<div class="row g-2">
 								<div class="col-md-2">
-								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" width=32 class="img-fluid rounded-circle" alt="Image of Team Profile">
 								</div>
 								<div class="col-md-10">
 								<h6 class="fw-semibold">{{$member->name}}s</h6>
@@ -46,7 +46,7 @@
 							{{-- <td>20</td> --}}
 							{{-- <td>10</td> --}}
 							{{-- <td>5</td> --}}
-							<td>
+							{{-- <td>
 							<div class="d-flex actions">
 								<a href="#" title="Edit Team" aria-label="Edit Team" class="btn btn-sm btn-secondary rounded btn-hs-icon">
 									<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
@@ -76,7 +76,7 @@
 									</div>
 								</div>
 							</div>
-							</td>
+							</td> --}}
 						</tr>
 						@endforeach
 						

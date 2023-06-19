@@ -94,7 +94,6 @@ class TeamInfo extends Component
 		
 		}else{
 			$this->emit('updateComponent', $this->team);
-			$this->emit('stepIncrement');
 		}
 
 	}
