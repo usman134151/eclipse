@@ -45,7 +45,10 @@ class AddIndustry extends Component
     {
         $industryNames=[];
         foreach($this->selectedIndustries as $ind){
-            $industryNames[]= $this->industries->firstWhere('id',$ind)->name;
+            $industryRecord= $this->industries->firstWhere('id',$ind);
+            if(!is_null($industryRecord)){
+                $industryNames[]= $industryRecord->name;
+            }
         }
     // Emit an event to the parent component with the selected industries and default industry
     $this->emitUp('updateSelectedIndustries', $this->selectedIndustries, $this->defaultIndustry, $industryNames);
