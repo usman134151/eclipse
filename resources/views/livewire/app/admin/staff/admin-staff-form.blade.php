@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="row between-section-segment-spacing">
-                                    <div class="col-lg-12">
+                                    {{-- <div class="col-lg-12">
                                         <div class="d-lg-flex justify-content-between mb-4">
                                             <h2 class="mb-lg-0">User Profile</h2>
                                             <div class="form-check form-switch">
@@ -98,7 +98,7 @@
                                                 <label class="form-check-label" for="userProfile">Active</label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6 col-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="first_name">
