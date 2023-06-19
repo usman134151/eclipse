@@ -34,9 +34,9 @@ class BusinessSetup extends Component
             'configuration.portal_url' => ['required'],
             'configuration.company_logo' => ['nullable'],
             'configuration.login_screen' => ['nullable'],
-            'configuration.welcome_text' => ['nullable'],
-            'configuration.notification_email' => ['nullable'],
-            'configuration.response_email' => ['nullable'],
+            'configuration.welcome_text' => ['nullable','max:255'],
+            'configuration.notification_email' => ['nullable', 'max:255'],
+            'configuration.response_email' => ['nullable','max:255'],
 
             'messages.*.message'=>['nullable'],
             'messages.*.on_log_in_screen' => ['nullable'],
@@ -44,6 +44,8 @@ class BusinessSetup extends Component
             'messages.*.display_to_providers' => ['nullable'],
             'messages.*.display_to_customers' => ['nullable'],
             'messages.*.display_to_admin' => ['nullable'],
+            'messages.*.days' => ['nullable'],
+
         ];
     }
 
@@ -56,8 +58,8 @@ class BusinessSetup extends Component
             $this->configuration= new TenantBusinessSetup();
             $this->configuration->default_colour = '#0A1E46'; $this->configuration->foreground_colour = '#000000'; //setting defaults
         }
-        $this->messages = AnnouncementMessage::get();
-        if ($this->messages->isEmpty()) {
+        $this->messages = AnnouncementMessage::get()->toArray();
+        if (count($this->messages)==0) {
             $this->addMessage();
         }
 }
@@ -80,13 +82,20 @@ class BusinessSetup extends Component
 
     public function save()
     {
+        $this->validate();
         $this->configuration->company_logo = '';
         $this->configuration->login_screen = '';
 
         $this->configuration->user_id = Auth::id();
         $this->configuration->save();
 
-        dd($this->messages);
+        AnnouncementMessage::truncate();
+        foreach($this->messages as $m){
+            if(!empty(trim($m['message'])))
+                AnnouncementMessage::create($m);
+        }
+
+        // dd($this->messages);
         
     }
 
@@ -96,7 +105,10 @@ class BusinessSetup extends Component
 		$this->component = $component;
 	}
     public function addMessage(){
-        $this->messages[] = new AnnouncementMessage();
+        $this->messages[] = [
+        'message'=>'', 'on_log_in_screen'=>0, 'on_dashboard'=>0, 'display_to_providers'=>0, 'display_to_customers'=>0,
+        'display_to_admin'=>0, 'days'=>''
+        ];
     }
 
     public function removeMessage($index){
