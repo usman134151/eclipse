@@ -100,7 +100,8 @@ class TeamInfo extends Component
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
 		$userService = new UserService;
-		$userService->storeAdminRoles($this->user_roles, $this->team->id,2); //storing team roles
+		if($this->user_roles!=null)
+			$userService->storeAdminRoles($this->user_roles, $this->team->id,2); //storing team roles
 
 
 		if($redirect){
