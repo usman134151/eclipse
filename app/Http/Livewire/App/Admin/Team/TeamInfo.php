@@ -79,9 +79,11 @@ class TeamInfo extends Component
 	public function updateVal($attrName, $val)
 	{
 		
-		   $this->team[$attrName] = $val;
 		if ($attrName == 'roles')
 			$this->user_roles = $val;
+		else
+			$this->team[$attrName] = $val;
+
 		
 	}
 	public function render()
