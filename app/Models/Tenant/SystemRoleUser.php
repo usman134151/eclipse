@@ -13,6 +13,7 @@ class SystemRoleUser extends Model
     protected $fillable = [
         'system_role_id',
         'user_id',
+        'system_user_type'
     ];
 
     public function user()

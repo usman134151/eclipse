@@ -136,7 +136,7 @@ class AdminStaffForm extends Component
     public function edit(User $user){
         $this->user=$user;
         $this->userdetail=$user['userdetail']->toArray();
-        $this->user_roles=Arr::flatten(SystemRoleUser::where('user_id',$this->user->id)->select('system_role_id')->get()->toArray());
+        $this->user_roles=Arr::flatten(SystemRoleUser::where(['user_id'=>$this->user->id,'system_user_type'=>1])->select('system_role_id')->get()->toArray());
       //  dd($this->user_roles);
         $this->label="Edit";
         $this->isAdd=false;

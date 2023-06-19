@@ -158,14 +158,17 @@ class UserService
         return $details;
     }
 
-  public function storeAdminRoles($rolesArr, $userId)
+  public function storeAdminRoles($rolesArr, $userId,$user_type=1)
   {
-    SystemRoleUser::where('user_id', $userId)->delete();
+    // user_type = 1  (staff)
+    // user_type = 2  (team)
+
+    SystemRoleUser::where(['user_id'=> $userId,'system_user_type'=>$user_type])->delete();
 
     foreach ($rolesArr as $roleId) {
 
       if ($roleId)
-        SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId]);
+        SystemRoleUser::create(['user_id' => $userId, 'system_role_id' => $roleId,'system_user_type'=>$user_type]);
     }
   }
 }
