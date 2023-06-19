@@ -205,6 +205,7 @@
                                             <h3>Announcements & Communications</h3>
                                         </div>
                                     </div>
+                                    
                                     @foreach($messages as $index=>$message)
                                     <div class="border-dashed col-lg-6 p-4 rounded mb-3">
                                         <div class="row">
@@ -225,7 +226,7 @@
                                                 </div>
                                                 <textarea class="form-control" rows="4" cols="3"
                                                     placeholder="Enter Message"
-                                                    id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.lazy="messages.{{$index}}.message_text"></textarea>
+                                                    id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.lazy="messages.{{$index}}.message"></textarea>
                                             </div>
                                         </div>
 
@@ -234,13 +235,13 @@
                                                 <div class="col-xl-6">
                                                     <h3>Display:</h3>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayOnLoginScreen"
+                                                        <input class="form-check-input" id="DisplayOnLoginScreen" wire:model.defer="messages.{{$index}}.on_login_screen"
                                                             name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayOnLoginScreen">
                                                             Display On Log-in Screen</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayOnDashboard"
+                                                        <input class="form-check-input" id="DisplayOnDashboard" wire:model.defer="messages.{{$index}}.on_dashboard"
                                                             name="DisplayOnDashboard" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayOnDashboard">
                                                             Display On Dashboard</label>
@@ -251,7 +252,7 @@
                                                             <label class="form-label-sm" for="Days"> Days</label>
                                                             <input class="form-control form-control-sm text-center w-25"
                                                                 id="Days" name="DisplayToProviders" value="5" type=""
-                                                                tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.duration"/>
+                                                                tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.days"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -259,19 +260,19 @@
                                                 <div class="col-xl-6">
                                                     <h3>Audience:</h3>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayToProviders"
+                                                        <input class="form-check-input" id="DisplayToProviders" wire:model.defer="messages.{{$index}}.display_to_providers"
                                                             name="DisplayToProviders" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayToProviders">
                                                             Display to Providers</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayToCustomers"
+                                                        <input class="form-check-input" id="DisplayToCustomers" wire:model.defer="messages.{{$index}}.display_to_providers"
                                                             name="DisplayToCustomers" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayToCustomers">
                                                             Display to Customers</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayToAdminUsers"
+                                                        <input class="form-check-input" id="DisplayToAdminUsers" wire:model.defer="messages.{{$index}}.display_to_admin"
                                                             name="DisplayToAdminUsers" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayToAdminUsers">
                                                             Display to Admin-users</label>

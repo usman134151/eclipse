@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('announcement_messages', function (Blueprint $table) {
             $table->id();
             $table->text('message')->nullable();
-            $table->tinyInteger('on_log_in_screen');
-            $table->tinyInteger('on_dashboard');
-            $table->tinyInteger('display_to_providers');
-            $table->tinyInteger('display_to_customers');
-            $table->tinyInteger('display_to_admin');
+            $table->tinyInteger('on_log_in_screen')->default(0);
+            $table->tinyInteger('on_dashboard')->default(0);
+            $table->tinyInteger('display_to_providers')->default(0);
+            $table->tinyInteger('display_to_customers')->default(0);
+            $table->tinyInteger('display_to_admin')->default(0);
             $table->string('days')->nullable();
             $table->timestamps();
         });

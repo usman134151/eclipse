@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 
+use App\Models\Tenant\AnnouncementMessage;
 use App\Models\Tenant\BusinessSetup as TenantBusinessSetup;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,13 +15,7 @@ class BusinessSetup extends Component
 	public $component = 'configuration-setting';
 	public $showForm, $configuration;
 	protected $listeners = ['showList'=>'resetForm'];
-    public $messages=[[
-        'message_text'=>'',
-        'display'=>'',
-        'audience'=>'',
-        'duration'=>''
-
-    ]];
+    public $messages=[];
     public $policies=[[
         'policy_title'=>'',
         'upload_file'=>'',
@@ -42,6 +37,13 @@ class BusinessSetup extends Component
             'configuration.welcome_text' => ['nullable'],
             'configuration.notification_email' => ['nullable'],
             'configuration.response_email' => ['nullable'],
+
+            'messages.*.message'=>['nullable'],
+            'messages.*.on_log_in_screen' => ['nullable'],
+            'messages.*.on_dashboard' => ['nullable'],
+            'messages.*.display_to_providers' => ['nullable'],
+            'messages.*.display_to_customers' => ['nullable'],
+            'messages.*.display_to_admin' => ['nullable'],
         ];
     }
 
@@ -52,11 +54,13 @@ class BusinessSetup extends Component
 
         if($this->configuration ==null){
             $this->configuration= new TenantBusinessSetup();
-            $this->configuration->default_colour = '#0A1E46'; $this->configuration->foreground_colour = '#000000';
+            $this->configuration->default_colour = '#0A1E46'; $this->configuration->foreground_colour = '#000000'; //setting defaults
         }
-                // $this->configuration =[ 'user_id'=> Auth::id(), 'default_colour' => '#0A1E46', 'foreground_colour' => '#000000', 'portal_url' => '', 'company_logo' => '',
-        //     'login_screen' => '', 'welcome_text' => '', 'notification_email' => '', 'response_email' => '']; 
-    }
+        $this->messages = AnnouncementMessage::get();
+        if ($this->messages->isEmpty()) {
+            $this->addMessage();
+        }
+}
 
 	public function render()
 	{
@@ -81,6 +85,8 @@ class BusinessSetup extends Component
 
         $this->configuration->user_id = Auth::id();
         $this->configuration->save();
+
+        dd($this->messages);
         
     }
 
@@ -90,13 +96,9 @@ class BusinessSetup extends Component
 		$this->component = $component;
 	}
     public function addMessage(){
-        $this->messages[] = [
-            'message_text'=>'',
-            'display'=>'',
-            'audience'=>'',
-            'duration'=>''
-        ];
+        $this->messages[] = new AnnouncementMessage();
     }
+
     public function removeMessage($index){
         unset($this->messages[$index]);
         $this->messages = array_values($this->messages);
