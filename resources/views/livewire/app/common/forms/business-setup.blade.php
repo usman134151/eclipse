@@ -1,4 +1,11 @@
 <div>
+    <div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -78,9 +85,9 @@
                                                         <div
                                                             class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
                                                             <div class="choosen-color">
-                                                                <input type="color"
+                                                                <input type="color" wire:model.defer="configuration.default_colour"
                                                                     class="form-control form-control-color border-0 p-0 w-100 h-100"
-                                                                    id="PortalDefaultColour" value="#0A1E46"
+                                                                    id="PortalDefaultColour" value=""
                                                                     title="Choose your color">
                                                             </div>
                                                             <label class="form-label-sm">Choose Colour</label>
@@ -95,9 +102,9 @@
                                                         <div
                                                             class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
                                                             <div class="choosen-color">
-                                                                <input type="color"
+                                                                <input type="color" wire:model.defer="configuration.foreground_colour"
                                                                     class="form-control form-control-color border-0 p-0 w-100 h-100"
-                                                                    id="PortalForegroundColour" value="#000000"
+                                                                    id="PortalForegroundColour" value=""
                                                                     title="Choose your color">
                                                             </div>
                                                             <label class="form-label-sm">Choose Colour</label>
@@ -111,7 +118,7 @@
                                         <div class="col-lg-6">
                                             <h3>Choose URL for Users to Access the Portal</h3>
                                             <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
-                                                <input aria-label="Sub Domain Name for URL" type="" name=""
+                                                <input aria-label="Sub Domain Name for URL" type="" name="" wire:model.defer="configuration.portal_url"
                                                     class="form-control" placeholder="Name">
                                                 <label>.eclipsescheduling.com</label>
                                                 <div class="option">
@@ -136,7 +143,7 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label" for="add-company-logo"> Add Company
                                                         Logo</label>
-                                                    <input aria-label="Sub Domain Name for URL" type="file" name=""
+                                                    <input aria-label="Sub Domain Name for URL" type="file" name="" wire:model.defer="configuration.company_logo"
                                                         class="form-control" placeholder="Name">
                                                 </div>
                                             </div>
@@ -155,7 +162,7 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label" for="upload-login-screen-image">Upload
                                                         Login Screen Image</label>
-                                                    <input aria-label="Sub Domain Name for URL" type="file" name=""
+                                                    <input aria-label="Sub Domain Name for URL" type="file" name="" wire:model.defer="configuration.login_screen"
                                                         class="form-control" placeholder="Name">
                                                 </div>
                                             </div>
@@ -171,7 +178,7 @@
                                             <h3>Login Screen Welcome Text</h3>
                                             <label class="form-label" for="updated-welcome-text">Updated Welcome
                                                 Text</label>
-                                            <textarea class="form-control" rows="3" cols="3" placeholder="Enter Text"
+                                            <textarea class="form-control" rows="3" cols="3" placeholder="Enter Text" wire:model.defer="configuration.welcome_text"
                                                 id="updated-welcome-text"></textarea>
                                         </div>
                                     </div>
@@ -180,7 +187,7 @@
                                             <h3>Assign Email to Send Notifications</h3>
                                             <label class="form-label" for="EmailAddressSendNotifications">Email
                                                 Address</label>
-                                            <input type="text" id="EmailAddressSendNotifications" class="form-control"
+                                            <input type="text" id="EmailAddressSendNotifications" class="form-control" wire:model.defer="configuration.notification_email"
                                                 name="EmailAddressSendNotifications" placeholder="Enter Email" />
                                         </div>
                                     </div>
@@ -189,7 +196,7 @@
                                             <h3>Assign Email to Receive Customer Responses</h3>
                                             <label class="form-label" for="EmailAddressCustomerResponses">Email
                                                 Address</label>
-                                            <input type="text" id="EmailAddressCustomerResponses" class="form-control"
+                                            <input type="text" id="EmailAddressCustomerResponses" class="form-control" wire:model.defer="configuration.response_email"
                                                 name="EmailAddressCustomerResponses" placeholder="Enter Email" />
                                         </div>
                                     </div>
@@ -291,7 +298,7 @@
                             </div>
                             <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="submit" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('business-hours')">Next</button>
+                                    x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('business-hours')" wire:click.prevent="save">Next</button>
                             </div>
                         </form>
 
