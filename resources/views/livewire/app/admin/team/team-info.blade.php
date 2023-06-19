@@ -171,13 +171,5 @@
 		Livewire.emit('updateVal', attrName, val);
 
 	}
-	document.addEventListener("livewire:load", () => {
-		let el = $('.select2')
-		
-        el.on('change', function (e) {
-			@this.set('team.admin_id', el.select2("val"))
-        })
-		
-	})
 </script>
 @endpush
