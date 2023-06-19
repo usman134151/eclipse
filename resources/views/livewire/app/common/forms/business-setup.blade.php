@@ -1,4 +1,11 @@
 <div>
+    <div id="loader-section" class="loader-section" wire:loading>
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -39,18 +46,38 @@
                             type="button" role="tab" aria-controls="configuration-setting" aria-selected="true"><span
                                 class="number">1</span> Configuration Setting</button>
                     </li>
+                    @if($configuration['portal_url']!="")
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $component == 'business-hours' ? 'active' : '' }}"
                             id="business-hours-tab" data-bs-toggle="tab" data-bs-target="#business-hours" type="button"
                             role="tab" aria-controls="business-hours" aria-selected="false"><span
                                 class="number">2</span> Business Hours</button>
                     </li>
+
                     <li class="nav-item" role="presentation">
                         <button class="nav-link {{ $component == 'payments' ? 'active' : '' }}" id="payments-tab"
                             data-bs-toggle="tab" data-bs-target="#payments" type="button" role="tab"
                             aria-controls="payments" aria-selected="false"><span class="number">3</span>
                             Payments</button>
                     </li>
+                    @else
+                    <li class="nav-item" role="presentation">
+
+                        <div class="nav-link" title="Fill in first step to proceed">
+                            <span class="number">2</span>
+                            Business Hours
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation">
+
+                        <div class="nav-link" title="Fill in first step to proceed">
+                            <span class="number">3</span>
+                            Payments
+                        </div>
+                    </li>
+
+                                @endif
+                            
                 </ul>
 
                 <!-- Tab panes -->
@@ -78,9 +105,9 @@
                                                         <div
                                                             class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
                                                             <div class="choosen-color">
-                                                                <input type="color"
+                                                                <input type="color" wire:model.defer="configuration.default_colour"
                                                                     class="form-control form-control-color border-0 p-0 w-100 h-100"
-                                                                    id="PortalDefaultColour" value="#0A1E46"
+                                                                    id="PortalDefaultColour" value=""
                                                                     title="Choose your color">
                                                             </div>
                                                             <label class="form-label-sm">Choose Colour</label>
@@ -95,9 +122,9 @@
                                                         <div
                                                             class="d-flex align-items-center col-12 col-md-8 col-lg-7 col-xl-8">
                                                             <div class="choosen-color">
-                                                                <input type="color"
+                                                                <input type="color" wire:model.defer="configuration.foreground_colour"
                                                                     class="form-control form-control-color border-0 p-0 w-100 h-100"
-                                                                    id="PortalForegroundColour" value="#000000"
+                                                                    id="PortalForegroundColour" value=""
                                                                     title="Choose your color">
                                                             </div>
                                                             <label class="form-label-sm">Choose Colour</label>
@@ -109,10 +136,13 @@
                                     </div>
                                     <div class="row inner-section-segment-spacing">
                                         <div class="col-lg-6">
-                                            <h3>Choose URL for Users to Access the Portal</h3>
+                                            <h3>Choose URL for Users to Access the Portal  <span class="mandatory" aria-hidden="true">
+                                                    *
+                                                </span></h3>
                                             <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
-                                                <input aria-label="Sub Domain Name for URL" type="" name=""
+                                                <input aria-label="Sub Domain Name for URL" type="" name="" wire:model.defer="configuration.portal_url"
                                                     class="form-control" placeholder="Name">
+                                                    
                                                 <label>.eclipsescheduling.com</label>
                                                 <div class="option">
                                                     <div class="d-flex">
@@ -125,6 +155,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @error('configuration.portal_url')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                         </div>
                                     </div>
                                     <div class="row inner-section-segment-spacing">
@@ -136,7 +171,7 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label" for="add-company-logo"> Add Company
                                                         Logo</label>
-                                                    <input aria-label="Sub Domain Name for URL" type="file" name=""
+                                                    <input aria-label="Sub Domain Name for URL" type="file" name="" wire:model.defer="configuration.company_logo"
                                                         class="form-control" placeholder="Name">
                                                 </div>
                                             </div>
@@ -155,7 +190,7 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label" for="upload-login-screen-image">Upload
                                                         Login Screen Image</label>
-                                                    <input aria-label="Sub Domain Name for URL" type="file" name=""
+                                                    <input aria-label="Sub Domain Name for URL" type="file" name="" wire:model.defer="configuration.login_screen"
                                                         class="form-control" placeholder="Name">
                                                 </div>
                                             </div>
@@ -171,7 +206,7 @@
                                             <h3>Login Screen Welcome Text</h3>
                                             <label class="form-label" for="updated-welcome-text">Updated Welcome
                                                 Text</label>
-                                            <textarea class="form-control" rows="3" cols="3" placeholder="Enter Text"
+                                            <textarea class="form-control" rows="3" cols="3" placeholder="Enter Text" wire:model.defer="configuration.welcome_text"
                                                 id="updated-welcome-text"></textarea>
                                         </div>
                                     </div>
@@ -180,7 +215,7 @@
                                             <h3>Assign Email to Send Notifications</h3>
                                             <label class="form-label" for="EmailAddressSendNotifications">Email
                                                 Address</label>
-                                            <input type="text" id="EmailAddressSendNotifications" class="form-control"
+                                            <input type="text" id="EmailAddressSendNotifications" class="form-control" wire:model.defer="configuration.notification_email"
                                                 name="EmailAddressSendNotifications" placeholder="Enter Email" />
                                         </div>
                                     </div>
@@ -189,7 +224,7 @@
                                             <h3>Assign Email to Receive Customer Responses</h3>
                                             <label class="form-label" for="EmailAddressCustomerResponses">Email
                                                 Address</label>
-                                            <input type="text" id="EmailAddressCustomerResponses" class="form-control"
+                                            <input type="text" id="EmailAddressCustomerResponses" class="form-control" wire:model.defer="configuration.response_email"
                                                 name="EmailAddressCustomerResponses" placeholder="Enter Email" />
                                         </div>
                                     </div>
@@ -198,6 +233,7 @@
                                             <h3>Announcements & Communications</h3>
                                         </div>
                                     </div>
+                                    
                                     @foreach($messages as $index=>$message)
                                     <div class="border-dashed col-lg-6 p-4 rounded mb-3">
                                         <div class="row">
@@ -218,7 +254,7 @@
                                                 </div>
                                                 <textarea class="form-control" rows="4" cols="3"
                                                     placeholder="Enter Message"
-                                                    id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.lazy="messages.{{$index}}.message_text"></textarea>
+                                                    id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.lazy="messages.{{$index}}.message"></textarea>
                                             </div>
                                         </div>
 
@@ -227,13 +263,13 @@
                                                 <div class="col-xl-6">
                                                     <h3>Display:</h3>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayOnLoginScreen"
+                                                        <input class="form-check-input" id="DisplayOnLoginScreen" wire:model.defer="messages.{{$index}}.on_log_in_screen"
                                                             name="DisplayOnLoginScreen" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayOnLoginScreen">
                                                             Display On Log-in Screen</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayOnDashboard"
+                                                        <input class="form-check-input" id="DisplayOnDashboard" wire:model.defer="messages.{{$index}}.on_dashboard"
                                                             name="DisplayOnDashboard" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayOnDashboard">
                                                             Display On Dashboard</label>
@@ -243,8 +279,8 @@
                                                             <h3>Duration:</h3>
                                                             <label class="form-label-sm" for="Days"> Days</label>
                                                             <input class="form-control form-control-sm text-center w-25"
-                                                                id="Days" name="DisplayToProviders" value="5" type=""
-                                                                tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.duration"/>
+                                                                id="Days" name="DisplayToProviders" placeholder="" type=""
+                                                                tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.days"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -252,19 +288,19 @@
                                                 <div class="col-xl-6">
                                                     <h3>Audience:</h3>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayToProviders"
+                                                        <input class="form-check-input" id="DisplayToProviders" wire:model.defer="messages.{{$index}}.display_to_providers"
                                                             name="DisplayToProviders" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayToProviders">
                                                             Display to Providers</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayToCustomers"
+                                                        <input class="form-check-input" id="DisplayToCustomers" wire:model.defer="messages.{{$index}}.display_to_providers"
                                                             name="DisplayToCustomers" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayToCustomers">
                                                             Display to Customers</label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" id="DisplayToAdminUsers"
+                                                        <input class="form-check-input" id="DisplayToAdminUsers" wire:model.defer="messages.{{$index}}.display_to_admin"
                                                             name="DisplayToAdminUsers" type="checkbox" tabindex="" />
                                                         <label class="form-check-label" for="DisplayToAdminUsers">
                                                             Display to Admin-users</label>
@@ -278,7 +314,7 @@
                                     </div>
                                     @endforeach
                                     <div class="col-lg-8 mt-3">
-                                        <a href="#" class="btn btn-primary btn-sm rounded" wire:click.prevent="addMessage">
+                                        <a  class="btn btn-primary btn-sm rounded" wire:click.prevent="addMessage">
                                             <svg class="mx-2" aria-label="Add Message" width="20" height="20"
                                                 viewBox="0 0 20 20">
                                                 <use xlink:href="/css/common-icons.svg#plus">
@@ -291,7 +327,7 @@
                             </div>
                             <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="submit" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('business-hours')">Next</button>
+                                    x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('business-hours')" wire:click.prevent="save">Next</button>
                             </div>
                         </form>
 
@@ -747,8 +783,8 @@
                             <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                 <button type="button" class="btn btn-outline-dark rounded mx-2"
                                     x-on:click="$wire.switch('configuration-setting')">Back</button>
-                                <button type="submit" class="btn btn-primary rounded"
-                                    x-on:click="$wire.switch('payments')">Next</button>
+                                <button type="button" class="btn btn-primary rounded"
+                                    x-on:click="$wire.switch('payments')" wire:click.prevent="save">Next</button>
                             </div><!-- /Form Actions -->
                         </form>
                     </div>
