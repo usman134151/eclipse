@@ -5,8 +5,11 @@ namespace App\Http\Livewire\App\Admin\Team;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\AdminTeam;
+use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\User;
 use App\Services\App\AdminTeamService;
+use App\Services\App\UserService;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 class TeamInfo extends Component
@@ -18,12 +21,20 @@ class TeamInfo extends Component
     protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
     public $teamAdmin=[];
-    public $team;
+    public $team,$user_roles;
+
+	public $setupValues = [		'roles' => ['parameters' => [
+			'SystemRole', 'id',
+			'system_role_name', 'status', 1, 'system_role_name', true, 'user_roles', '', 'roles', 7
+		]]
+	];
 	public function showList($message = "")
 	{
 		$this->emit('showList', $message);
 	}
     public function mount(AdminTeam $team){
+		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+
 		$this->teamAdmin=User::query()
 		->where('status',1)
 		->whereHas('roles', function ($query) {
@@ -69,6 +80,8 @@ class TeamInfo extends Component
 	{
 		
 		   $this->team[$attrName] = $val;
+		if ($attrName == 'roles')
+			$this->user_roles = $val;
 		
 	}
 	public function render()
@@ -84,6 +97,8 @@ class TeamInfo extends Component
 		}	
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
+		$userService = new UserService;
+		$userService->storeAdminRoles($this->user_roles, $this->team->id,2); //storing team roles
 
 
 		if($redirect){
@@ -115,6 +130,8 @@ class TeamInfo extends Component
     public function edit(AdminTeam $team){
         $this->label = "Edit";
         $this->team=$team;
+		$this->user_roles = Arr::flatten(SystemRoleUser::where(['user_id' => $this->team->id, 'system_user_type' => 2])->select('system_role_id')->get()->toArray());
+
 
     }
 	public function switch($component)
