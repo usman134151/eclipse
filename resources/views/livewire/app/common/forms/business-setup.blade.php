@@ -279,7 +279,7 @@
                                                             <h3>Duration:</h3>
                                                             <label class="form-label-sm" for="Days"> Days</label>
                                                             <input class="form-control form-control-sm text-center w-25"
-                                                                id="Days" name="DisplayToProviders" placeholder="" type=""
+                                                                id="Days" name="DisplayToProviders" placeholder="" type="number"
                                                                 tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.days"/>
                                                         </div>
                                                     </div>

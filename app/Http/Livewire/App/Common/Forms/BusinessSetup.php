@@ -31,7 +31,7 @@ class BusinessSetup extends Component
         return [
             'configuration.default_colour' => ['required'],
             'configuration.foreground_colour' => ['required'],
-            'configuration.portal_url' => ['required'],
+            'configuration.portal_url' => ['required','max:255'],
             'configuration.company_logo' => ['nullable'],
             'configuration.login_screen' => ['nullable'],
             'configuration.welcome_text' => ['nullable','max:255'],
