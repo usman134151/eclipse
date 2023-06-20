@@ -16,7 +16,7 @@
 							<img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
 						</span>
 						<label for="cropfile" class="form-label visually-hidden">Input File</label>
-						<input wire:model="temp_image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
+						<input wire:model="temp_image" disabled class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
 					</div>
 					@error('team.team_image')
                     <span class="d-inline-block invalid-feedback mt-2">
