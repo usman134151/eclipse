@@ -13,7 +13,8 @@ class BusinessSetup extends Component
     use WithFileUploads;
 
 	public $component = 'configuration-setting';
-	public $showForm, $configuration;
+	public $showForm, $configuration,$provider_payroll=true,$staff_provider=true,$contract_provider=true,$customer_billing=true;
+    public $staffProviders=["payment_frequency"=>""],$contractProviders=[];
 	protected $listeners = ['showList'=>'resetForm'];
     public $messages=[];
     public $policies=[[
@@ -45,6 +46,14 @@ class BusinessSetup extends Component
             'messages.*.display_to_customers' => ['nullable'],
             'messages.*.display_to_admin' => ['nullable'],
             'messages.*.days' => ['nullable'],
+
+            'configuration.deposit_form_file' => ['nullable'],
+            'configuration.require_provider_approval' => ['nullable'],
+            'configuration.rate_for_providers' => ['nullable'],
+            'configuration.measurement_providers' => ['nullable'],
+            'configuration.rate_for_travel_time' => ['nullable'],
+            'configuration.currency' => ['nullable'],
+            'configuration.billing_days' => ['nullable'],
 
         ];
     }
