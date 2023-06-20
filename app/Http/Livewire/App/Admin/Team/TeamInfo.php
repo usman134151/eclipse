@@ -128,7 +128,7 @@ class TeamInfo extends Component
 			}
 			$name = md5(microtime()) . '.' . $this->temp_image->extension();
 			$this->temp_image->storeAs('/admin_teams/', $name, 'public');
-			return '/tenantabma/admin_teams/' . $name;  //change domain here and in config/filesystems
+			return '/tenant'.tenant('id').'/admin_teams/' . $name;  //change domain here and in config/filesystems
     	}else
 			return null;
 	}
