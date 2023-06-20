@@ -6,18 +6,23 @@
 		<div class="row mt-2 between-section-segment-spacing">
 			<div class="provider_image_panel">
 				<div class="provider_image">
-					@if ($image)
-						<img class="user_img cropfile" src="{{ $image->temporaryUrl() }}">
+					@if ($temp_image!=null)
+						<img class="user_img cropfile" src="{{ $temp_image->temporaryUrl() }}">
 					@else
-						<img class="user_img cropfile" src="/tenant/images/img-placeholder-document.jpg">
+						<img class="user_img cropfile" src="{{$team->team_image == null ? '/tenant/images/img-placeholder-document.jpg' : url($team->team_image) }}">
 					@endif
 					<div class="input--file">
 						<span>
 							<img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
 						</span>
 						<label for="cropfile" class="form-label visually-hidden">Input File</label>
-						<input wire:model="image" wire:change="saveImage" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" wire:model="image">
+						<input wire:model="temp_image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
 					</div>
+					@error('team.team_image')
+                    <span class="d-inline-block invalid-feedback mt-2">
+                        {{ $message }}
+                    </span>
+                    @enderror
 				</div>
 			</div>
 		</div>

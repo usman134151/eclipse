@@ -10,14 +10,16 @@ use App\Models\Tenant\User;
 use App\Services\App\AdminTeamService;
 use App\Services\App\UserService;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
+
 class TeamInfo extends Component
 {
     public $component = 'team-info';
 	use WithFileUploads;
 
-    public $image;
+    public $temp_image = null;
     protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
     public $teamAdmin=[];
@@ -46,7 +48,7 @@ class TeamInfo extends Component
 			
 		])->get()->toArray();
         $this->team=$team;
-
+	
 
 	}
     public function rules()
@@ -58,6 +60,7 @@ class TeamInfo extends Component
 				'max:255',
 				Rule::unique('admin_teams', 'team_name')->ignore($this->team->id)],
             'team.admin_id'=>'required',
+			'temp_image' => 'nullable|image|mimes:jpg,png,jpeg',
 			'team.team_email'=>'nullable|email',
             'team.team_phone'=>[
 				'nullable',
@@ -93,10 +96,8 @@ class TeamInfo extends Component
 	}
 	public function save($redirect=1){
 		$this->validate();
-		if ($this->image) {
-			$path = $this->image->store('public/profile_images');
-			
-		}	
+		$this->team->team_image = $this->saveImage();
+
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
 		$userService = new UserService;
@@ -119,13 +120,17 @@ class TeamInfo extends Component
 	
 	public function saveImage()
 	{
-		
-		if ($this->image) {
-			
-        	$this->image->store('public/profile_images');
-			
-			//chmod(storage_path().$thi,755);
-    	}
+		if ($this->temp_image) {
+			if($this->team->team_image !=null){
+				//delete existing image
+				if (File::exists(public_path($this->team->team_image)))
+					File::delete(public_path($this->team->team_image));
+			}
+			$name = md5(microtime()) . '.' . $this->temp_image->extension();
+			$this->temp_image->storeAs('/admin_teams/', $name, 'public');
+			return '/tenant'.tenant('id').'/admin_teams/' . $name;  //change domain here and in config/filesystems
+    	}else
+			return null;
 	}
 
 
@@ -134,9 +139,8 @@ class TeamInfo extends Component
         $this->label = "Edit";
         $this->team=$team;
 		$this->user_roles = Arr::flatten(SystemRoleUser::where(['user_id' => $this->team->id, 'system_user_type' => 2])->select('system_role_id')->get()->toArray());
-
-
     }
+
 	public function switch($component)
 	{
 			$this->emit('switch', $component); //hit parent component switch func
