@@ -71,6 +71,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('tenantabma') => storage_path('tenantabma/app/public'),
     ],
 
 ];
