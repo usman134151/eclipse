@@ -328,7 +328,7 @@
                                 </div>
                                 <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                     <button type="submit" class="btn btn-primary rounded"
-                                        x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('business-hours')" wire:click.prevent="save">Next</button>
+                                        x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('business-hours')" wire:click.prevent="save(0)">Next</button>
                                 </div>
                             </form>
                         @endif

@@ -13,38 +13,9 @@ class BusinessSetup extends Component
 {
     use WithFileUploads;
 
-	public $component = 'payments';
+	public $component = 'configuration-setting';
 	public $showForm, $configuration;
-    public $staffProviders=[
-            "payment_frequency"=>"every-week",
-            'every-week'=>[
-                'submission_day'=>'monday', 'remittance_release'=>1 
-            ],
-            'two-weeks' => [
-                'submission_day' => 'monday', 'remittance_release' => 1
-            ],
-            'every-month' => [
-                'submission_day' => 1, 'remittance_release' => 1
-            ],
-            'select-days' => [
-                'submission_day' => [0 => "1", 1 => "1"], 'remittance_release' => 1
-            ],
-        ];
-    public $contractProviders = [
-        "payment_frequency" => "every-week",
-        'every-week' => [
-            'submission_day' => 'monday', 'remittance_release' => 1
-        ],
-        'two-weeks' => [
-            'submission_day' => 'monday', 'remittance_release' => 1
-        ],
-        'every-month' => [
-            'submission_day' => 1, 'remittance_release' => 1
-        ],
-        'select-days' => [
-            'submission_day' => [0 => "1", 1 => "1"], 'remittance_release' => 1
-        ],
-    ];
+    public $staffProviders=[], $contractProviders = [];
         
 	protected $listeners = ['showList'=>'resetForm'];
     public $messages=[], $policies = [], $feedback = [];
@@ -104,39 +75,87 @@ class BusinessSetup extends Component
 
 	public function mount()
 	{
-        $this->configuration =TenantBusinessSetup::where('id',1)->first();
-        $this->feedback = json_decode($this->configuration->feedback,true);
+        $this->staffProviders = [
+            "payment_frequency" => "every-week",
+            'every-week' => [
+                'submission_day' => 'monday', 'remittance_release' => 1
+            ],
+            'two-weeks' => [
+                'submission_day' => 'monday', 'remittance_release' => 1
+            ],
+            'every-month' => [
+                'submission_day' => 1, 'remittance_release' => 1
+            ],
+            'select-days' => [
+                'submission_day' => [0 => "1", 1 => "1"], 'remittance_release' => 1
+            ],
+        ];
+        $this->contractProviders = [
+            "payment_frequency" => "every-week",
+            'every-week' => [
+                'submission_day' => 'monday', 'remittance_release' => 1
+            ],
+            'two-weeks' => [
+                'submission_day' => 'monday', 'remittance_release' => 1
+            ],
+            'every-month' => [
+                'submission_day' => 1, 'remittance_release' => 1
+            ],
+            'select-days' => [
+                'submission_day' => [0 => "1", 1 => "1"], 'remittance_release' => 1
+            ],
+        ];
+        $this->setData();   
+    }
+
+    public function setData(){
+        $this->configuration = TenantBusinessSetup::where('id', 1)->first();
         // dd($this->configuration);
 
-        if($this->configuration == null){ //initial setup
-            $this->configuration= new TenantBusinessSetup();
-            $this->configuration->default_colour = '#0A1E46'; $this->configuration->foreground_colour = '#000000'; //setting defaults
-        }
-        
+        if ($this->configuration == null) { //initial setup
+            $this->configuration = new TenantBusinessSetup();
+            $this->configuration->default_colour = '#0A1E46';
+            $this->configuration->foreground_colour = '#000000'; //setting defaults
+            $this->configuration->send_qoutes = false; //setting defaults
+            $this->configuration->customer_approve_on_login = false; //setting defaults
+            $this->configuration->require_provider_approval = false; //setting defaults
+            $this->configuration->customer_drive = false;
+            $this->configuration->cd_show_policy_customer = false;
+            $this->configuration->provider_drive = false;
+            $this->configuration->pd_show_policy_customer = false;
+            $this->configuration->payment_payroll = false;
+            $this->configuration->customer_billing = false;
+            $this->configuration->enable_staff_providers = false;
+            $this->configuration->enable_contract_providers = false;
+        }else{
+            // fetching saved values
+            if($this->configuration->feedback!=null)
+            $this->feedback = json_decode($this->configuration->feedback, true);
+            
+            if ($this->configuration->enable_staff_providers) { //convert data from json to array
 
-        if($this->configuration->enable_staff_providers) { //convert data from json to array
-        
-            $sp = json_decode($this->configuration->staff_providers,true);
-            $this->staffProviders['payment_frequency']=$sp['payment_frequency'];
-            $this->staffProviders[$sp['payment_frequency']] = $sp[$sp['payment_frequency']];
-        }
+                $sp = json_decode($this->configuration->staff_providers, true);
+                $this->staffProviders['payment_frequency'] = $sp['payment_frequency'];
+                $this->staffProviders[$sp['payment_frequency']] = $sp[$sp['payment_frequency']];
+            }
 
 
-        if ($this->configuration->enable_contract_providers && $this->configuration->contract_providers!=null) { //convert data from json to array
+            if ($this->configuration->enable_contract_providers && $this->configuration->contract_providers != null) { //convert data from json to array
 
-            $cp = json_decode($this->configuration->contract_providers, true);
-            $this->contractProviders['payment_frequency'] = $cp['payment_frequency'];
-            $this->contractProviders[$cp['payment_frequency']] = $cp[$cp['payment_frequency']];
+                $cp = json_decode($this->configuration->contract_providers, true);
+                $this->contractProviders['payment_frequency'] = $cp['payment_frequency'];
+                $this->contractProviders[$cp['payment_frequency']] = $cp[$cp['payment_frequency']];
+            }
         }
 
-        $this->messages = AnnouncementMessage::get()->toArray();
-        if (count($this->messages)==0) {
-            $this->addMessage();
-        }
-        $this->policies = BusinessPolicy::get()->toArray();
-        if (count($this->policies) == 0) {
-            $this->addPolicy();
-        }
+            $this->messages = AnnouncementMessage::get()->toArray();
+            if (count($this->messages) == 0) {
+                $this->addMessage();
+            }
+            $this->policies = BusinessPolicy::get()->toArray();
+            if (count($this->policies) == 0) {
+                $this->addPolicy();
+            }
     }
 
 	public function render()
@@ -229,17 +248,21 @@ class BusinessSetup extends Component
         
         if($submit){
                 // save and exit
-                $this->showList("Business setup has been saved successfully");
+            // Emit an event to display a success message using the SweetAlert package
+            $this->setData();
+            $this->component= "configuration-setting";
+                $this->dispatchBrowserEvent('swal:modal', [
+                    'type' => 'success',
+                    'title' => 'Success',
+                    'text' => "Business setup has been saved successfully",
+                ]);
         }
 
         
     }
 
 
-    public function showList($message = "")
-    {
-        $this->emit('showList', $message);
-    }
+    
     
 	public function switch($component)
 	{
