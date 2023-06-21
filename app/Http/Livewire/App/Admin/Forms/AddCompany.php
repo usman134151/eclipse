@@ -26,6 +26,7 @@ class AddCompany extends Component
 	public $step=1;
 	public $company,$userAddresses=[];
 	public $driveActive,$serviceActive;
+	public $schedule;
 	
 	
 	
@@ -63,6 +64,9 @@ class AddCompany extends Component
 			}
 		
 		}	
+
+
+
 		
     }
 	public function mount(Company $company){
@@ -70,9 +74,7 @@ class AddCompany extends Component
 		$this->company=$company;
 		$this->showHours=false;
 		$this->showAddress=false;
-		$this->schedule=new Schedule;
-		$this->schedule->model_type='company';
-		
+
 		
 
 
@@ -139,13 +141,15 @@ class AddCompany extends Component
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		$this->step=2;
-		$this->scheduleActive="active";
-		$this->schedule->model_id=$this->company->id;
-		$this->emit('getRecord', $this->schedule);
+
 		//dd($this->company);
 		if($redirect){
 			$this->showList("Company has been saved successfully");
 			$this->company = new Company;
+		}
+		else{
+			$this->getCompanySchedule();
+		
 		}
 
 	}
@@ -161,7 +165,46 @@ class AddCompany extends Component
 		 }
 	}
 
+	public function getCompanySchedule(){
+		//reinit schedule
+		$companySchedule=Schedule::where('model_id',$this->company->id)->where('model_type',2)->get()->first();
+		if(!is_null($companySchedule)){
+			$this->schedule=$companySchedule;
+		}
+		else{
+			$this->schedule=new Schedule;
+			$this->schedule->model_type=2;
+			$this->schedule->working_days=json_encode([]);
+			$this->schedule->timezone_id=0;
+			
+			$this->schedule->model_id=$this->company->id;
+			$this->schedule->save();
 
+		}
+
+
+			$this->scheduleActive="active";
+			
+			
+			
+			$this->emit('getRecord', $this->schedule->id,true);
+	}
+
+	public function saveSchedule($redirect=1){
+		$this->emit('saveSchedule');
+		if($redirect){
+			$this->showList("Company has been saved successfully");
+			$this->company = new Company;
+			$this->schedule=new Schedule;
+		}
+		else{
+			$this->serviceActive="active";
+			$this->scheduleActive="";
+			$this->switch('service-catalog');
+			$this->step=3;
+		
+		}
+	}
 
 
 }

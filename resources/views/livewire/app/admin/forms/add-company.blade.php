@@ -1,4 +1,11 @@
 <div x-data="{customers: false}">
+<div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
     <div class="content-header row">
         <div class="content-header-left col-12 mb-5">
             <div class="row breadcrumbs-top">
@@ -62,7 +69,7 @@
                             <a href="#" class="nav-link {{$serviceActive}}"
                                 @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
                                 aria-controls="service-catalog" aria-selected="false">
-                                <span class="number">2</span>
+                                <span class="number">3</span>
                                 Service Catalog
                             </a>
                         </li>
@@ -544,12 +551,27 @@
                             id="schedule" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'schedule'">
                             <section id="multiple-column-form">
-                             @livewire('app.common.setup.business-hours-setup')
-
+                              @livewire('app.common.setup.business-hours-setup', ['model_id' => $company->id, 'model_type' => '2'])
+                              <div
+                                                    class="col-12 form-actions">
+                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="showList">
+                                                        Back
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                        wire:click.prevent="saveSchedule(0)"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        Next
+                                                    </button>
+                                </div>
                             </section>
                         </div>
                         {{-- BEGIN: Service Catalog --}}
                         @elseif($step==3)
+                       
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
