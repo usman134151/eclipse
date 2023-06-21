@@ -27,7 +27,7 @@ class BusinessSetup extends Component
                 'submission_day' => 1, 'remittance_release' => 1
             ],
             'select-days' => [
-                'submission_day' => [], 'remittance_release' => 1
+                'submission_day' => [0 => "1", 1 => "1"], 'remittance_release' => 1
             ],
         ];
     public $contractProviders = [
@@ -42,7 +42,7 @@ class BusinessSetup extends Component
             'submission_day' => 1, 'remittance_release' => 1
         ],
         'select-days' => [
-            'submission_day' => [], 'remittance_release' => 1
+            'submission_day' => [0 => "1", 1 => "1"], 'remittance_release' => 1
         ],
     ];
         
@@ -189,6 +189,7 @@ class BusinessSetup extends Component
             $this->configuration->pd_show_policy_customer = false;
         }
 
+        // dd($this->staffProviders);
         if($this->configuration->enable_staff_providers){ //set data if checkbox true
             $sp['payment_frequency']= $this->staffProviders['payment_frequency'];
             $sp[$sp['payment_frequency']]['submission_day']= $this->staffProviders[$sp['payment_frequency']]['submission_day'];
@@ -250,6 +251,28 @@ class BusinessSetup extends Component
         'display_to_admin'=>0, 'days'=>''
         ];
     }
+
+    // for array of submission days in select-days
+    public function addSPDays()
+    {
+        $this->staffProviders['select-days']['submission_day'][] = "1";
+    }
+    public function removeSPDays($index)
+    {
+        unset($this->staffProviders['select-days']['submission_day'][$index]);
+        $this->staffProviders['select-days']['submission_day'] = array_values($this->staffProviders['select-days']['submission_day']);
+    }
+
+    public function addCPDays()
+    {
+        $this->contractProviders['select-days']['submission_day'][] = "1";
+    }
+    public function removeCPDays($index)
+    {
+        unset($this->contractProviders['select-days']['submission_day'][$index]);
+        $this->contractProviders['select-days']['submission_day'] = array_values($this->contractProviders['select-days']['submission_day']);
+    }
+    //end 
 
     public function removeMessage($index){
         unset($this->messages[$index]);

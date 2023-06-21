@@ -964,7 +964,7 @@
                                                                         <div class="mb-2  " >
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" wire:model.defer="staffProviders.payment_frequency"
-                                                                                    type="radio" name="Hrs" value="every-week" onclick="showSelectedItems('every-week','sp-radio')" 
+                                                                                    type="radio" name="staff-providers-radio" value="every-week" onclick="showSelectedItems('every-week','sp-radio')" 
                                                                                     id="everyweekstarting">
                                                                                 <label class="form-check-label"
                                                                                     for="everyweekstarting">
@@ -1010,7 +1010,7 @@
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio"
-                                                                                    name="Hrs" value="two-weeks" wire:model.defer="staffProviders.payment_frequency"
+                                                                                    name="staff-providers-radio" value="two-weeks" wire:model.defer="staffProviders.payment_frequency"
                                                                                     onclick="showSelectedItems('two-weeks','sp-radio')" aria-label="Every two-weeks starting"
                                                                                     checked>
                                                                                 <label class="form-check-label" for="">
@@ -1056,8 +1056,7 @@
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio" value="every-month" onclick="showSelectedItems('every-month','sp-radio')"
-                                                                                    name="Hrs" id="EveryMonthStarting" checked wire:model.defer="staffProviders.payment_frequency"
-                                                                                    checked>
+                                                                                    name="staff-providers-radio" id="EveryMonthStarting"  wire:model.defer="staffProviders.payment_frequency">
                                                                                 <label class="form-check-label"
                                                                                     for="EveryMonthStarting">
                                                                                     Every month starting
@@ -1099,7 +1098,7 @@
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio" wire:model.defer="staffProviders.payment_frequency"                                                                                
-                                                                                name="Hrs" id="on-select-days-of-month" value="select-days" onclick="showSelectedItems('select-days','sp-radio')">
+                                                                                name="staff-providers-radio" id="on-select-days-of-month" value="select-days" onclick="showSelectedItems('select-days','sp-radio')">
                                                                                 <label class="form-check-label"
                                                                                     for="on-select-days-of-month">
                                                                                     On select days of the month
@@ -1107,12 +1106,15 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="mx-4 select-days sp-radio" @if($staffProviders['payment_frequency']!="select-days") style="display:none"@endif>
+                                                                            @foreach($staffProviders['select-days']['submission_day'] as $index=> $sp_days)
                                                                             <div class="mb-2">
                                                                                 <label class="form-label text-sm"
                                                                                     for="invoice-submission-day4">
                                                                                     Invoice Submission Day
                                                                                 </label>
-                                                                                <select id="invoice-submission-day4" wire:model.defer='staffProviders.select-days.submission_day'
+                                                                                <div
+                                                                                    class="d-flex gap-1 align-items-center">
+                                                                                <select id="invoice-submission-day4" wire:key='submission-days-{{$index}}' wire:model.defer='staffProviders.select-days.submission_day.{{$index}}'
                                                                                     class="form-select">
                                                                                     <option value=1 >1st</option>
                                                                                     <option value=2 >2nd</option>
@@ -1121,8 +1123,26 @@
                                                                                     <option value={{$i}} >{{$i}}th</option>
                                                                                     @endfor
                                                                                 </select>
+                                                                                @if($index>0)
+                                                                                <svg aria-label="Add" width="20" height="20" wire:click="addSPDays"
+                                                                                        viewBox="0 0 20 20" fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/common-icons.svg#blue-plus">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                    <svg aria-label="Delete" width="20" height="20" wire:click="removeSPDays({{$loop->index}})"
+                                                                                        viewBox="0 0 20 20" fill="none"
+                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                        <use
+                                                                                            xlink:href="/css/common-icons.svg#blue-delete-icon">
+                                                                                        </use>
+                                                                                    </svg>
+                                                                                @endif
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="mb-2">
+                                                                            @endforeach
+                                                                            {{-- <div class="mb-2">
                                                                                 <label class="form-label input-sm text-sm"
                                                                                     for="remittance-release4">
                                                                                     Invoice Submission Day
@@ -1148,7 +1168,7 @@
                                                                                         </use>
                                                                                     </svg>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                             <div class="mb-2">
                                                                                 <label class="form-label input-sm text-sm"
                                                                                     for="remittance-release5">
@@ -1316,8 +1336,7 @@
                                                                                 <input class="form-check-input" type="radio" onclick="showSelectedItems('select-days','cp-radio')" 
                                                                                     wire:model.defer="contractProviders.payment_frequency"
                                                                                     value="select-days"
-                                                                                    name="contract-providers-radio" id="on-select-day-of-month"
-                                                                                    checked>
+                                                                                    name="contract-providers-radio" id="on-select-day-of-month">
                                                                                 <label class="form-check-label"
                                                                                     for="on-select-day-of-month">
                                                                                     On select days of the month
@@ -1325,23 +1344,43 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="mx-4 select-days cp-radio" @if($contractProviders['payment_frequency']!="select-days") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="invoice-submissionday">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select id="invoice-submissionday" wire:model.defer='contractProviders.select-days.submission_day'
-                                                                                    class="form-select">
-                                                                                    <option value=1 >1st</option>
-                                                                                    <option value=2 >2nd</option>
-                                                                                    <option value=3 >3rd</option>
-                                                                                    @for ($i = 4; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}}th</option>
-                                                                                    @endfor
+                                                                            @foreach($contractProviders['select-days']['submission_day'] as $index=> $cp_days)
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm"
+                                                                                        for="invoice-submissionday">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <div class="d-flex gap-1 align-items-center">
+                                                                                    <select id="invoice-submissionday"  wire:key='cp-submission-days-{{$index}}' wire:model.defer='contractProviders.select-days.submission_day.{{$index}}'
+                                                                                        class="form-select">
+                                                                                        <option value=1 >1st</option>
+                                                                                        <option value=2 >2nd</option>
+                                                                                        <option value=3 >3rd</option>
+                                                                                        @for ($i = 4; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}}th</option>
+                                                                                        @endfor
 
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
+                                                                                    </select>
+                                                                                    @if($index>0)
+                                                                                        <svg aria-label="Add" width="20" height="20" wire:click="addCPDays"
+                                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#blue-plus">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            <svg aria-label="Delete" width="20" height="20" wire:click="removeCPDays({{$index}})"
+                                                                                                viewBox="0 0 20 20" fill="none"
+                                                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#blue-delete-icon">
+                                                                                                </use>
+                                                                                        </svg>
+                                                                                    @endif
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endforeach
+                                                                            {{-- <div class="mb-2">
                                                                                 <label class="form-label input-sm text-sm"
                                                                                     for="invoice-submissionDay">
                                                                                     Invoice Submission Day
@@ -1367,7 +1406,7 @@
                                                                                         </use>
                                                                                     </svg>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                             <div class="mb-2">
                                                                                 <label class="form-label input-sm text-sm"
                                                                                     for="remittance-release-days">
