@@ -105,7 +105,7 @@ class BusinessSetup extends Component
 	}
 
 
-    public function save()
+    public function save($submit = 1)
     {
         $this->validate();
         $this->configuration->company_logo = '';
@@ -122,11 +122,19 @@ class BusinessSetup extends Component
             if(!empty(trim($m['message'])))
                 AnnouncementMessage::create($m);
         }
+        
+        if($submit){
+                // save and exit
+                $this->showList("Business setup has been saved successfully");
+        }
 
-        // dd($this->messages);
         
     }
 
+    public function showList($message = "")
+    {
+        $this->emit('showList', $message);
+    }
     
 	public function switch($component)
 	{

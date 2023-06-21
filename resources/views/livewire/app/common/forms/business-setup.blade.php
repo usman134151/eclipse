@@ -1539,8 +1539,8 @@
                                                                                 Login</label>
                                                                         </div>
                                                                     </div>
-                                                                    @endforeach
                                                                 </div>
+                                                                    @endforeach
 
                                                                 <div class="row between-section-segment-spacing">
                                                                     <div class="col-lg-12 text-lg-end mt-2">
@@ -1599,7 +1599,7 @@
                                                     <div class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                         <button type="button" class="btn btn-outline-dark rounded mx-2"
                                                             x-on:click="$wire.switch('business-hours')">Back</button>
-                                                        <button type="submit" x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('business-hours')" wire:click.prevent="save"
+                                                        <button type="submit" x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });" wire:click.prevent="save(1)"
                                                             class="btn btn-primary rounded">Submit</button>
                                                     </div><!-- /Form Actions -->
                                                 </div>
