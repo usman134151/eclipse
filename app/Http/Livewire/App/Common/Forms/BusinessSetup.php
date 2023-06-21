@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\AnnouncementMessage;
+use App\Models\Tenant\BusinessPolicy;
 use App\Models\Tenant\BusinessSetup as TenantBusinessSetup;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -16,17 +17,8 @@ class BusinessSetup extends Component
 	public $showForm, $configuration,$provider_payroll=true,$staff_provider=true,$contract_provider=true,$customer_billing=true;
     public $staffProviders=["payment_frequency"=>""],$contractProviders=[] ,$feedback=[];
 	protected $listeners = ['showList'=>'resetForm'];
-    public $messages=[];
-    public $policies=[[
-        'policy_title'=>'',
-        'upload_file'=>'',
-        'url_link'=>'',
-        'customer_drive'=>'',
-        'acknowledgeInitialLogincustomerDrive'=>'',
-        'provider_drive'=>'',
-        'acknowledgeInitialLoginproviderDrive'=>''
+    public $messages=[], $policies = [];
 
-    ]];
     public function rules()
     {
         return [
@@ -57,17 +49,18 @@ class BusinessSetup extends Component
 
 
             'configuration.service_agreements_file' => ['nullable'],
-            'configuration.service_url_link' => ['nullable'],
+            'configuration.service_url_link' => ['nullable','url'],
             'configuration.send_qoutes' => ['nullable'],
             'configuration.customer_approve_on_login' => ['nullable'],
             'configuration.policy_file' => ['nullable'],
-            'configuration.policy_link' => ['nullable'],
+            'configuration.policy_link' => ['nullable','url'],
             'configuration.customer_drive' => ['nullable'],
             'configuration.cd_show_policy_customer' => ['nullable'],
             'configuration.provider_drive' => ['nullable'],
             'configuration.pd_show_policy_customer' => ['nullable'],
 
-            // 'configuration.feedback' => ['nullable'],
+            'policies.*.url' => ['nullable','url'],
+
 
 
         ];
@@ -87,7 +80,11 @@ class BusinessSetup extends Component
         if (count($this->messages)==0) {
             $this->addMessage();
         }
-}
+        $this->policies = BusinessPolicy::get()->toArray();
+        if (count($this->policies) == 0) {
+            $this->addPolicy();
+        }
+    }
 
 	public function render()
 	{
@@ -122,6 +119,12 @@ class BusinessSetup extends Component
             if(!empty(trim($m['message'])))
                 AnnouncementMessage::create($m);
         }
+
+        BusinessPolicy::truncate();
+        foreach ($this->policies as $p) {
+            if (!empty(trim($p['title'])))
+            BusinessPolicy::create($p);
+        }
         
         if($submit){
                 // save and exit
@@ -153,13 +156,13 @@ class BusinessSetup extends Component
     }
     public function addPolicy(){
         $this->policies[]=[
-            'policy_title'=>'',
-            'upload_file'=>'',
-            'url_link'=>'',
-            'customer_drive'=>'',
-            'acknowledgeInitialLogincustomerDrive'=>'',
-            'provider_drive'=>'',
-            'acknowledgeInitialLoginproviderDrive'=>''
+            'title'=>'',
+            'file'=>'',
+            'link'=>'',
+            'customer_drive'=>false,
+            'cd_show_policy_customer'=>false,
+            'provider_drive'=>false,
+            'pd_show_policy_customer'=>false
         ];
     }
     public function removePolicy($index){

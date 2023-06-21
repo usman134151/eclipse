@@ -172,7 +172,7 @@
                                                     <div class="col-lg-12">
                                                         <label class="form-label" for="add-company-logo"> Add Company
                                                             Logo</label>
-                                                        <input aria-label="Sub Domain Name for URL" type="file" name="" wire:model.defer="configuration.company_logo"
+                                                        <input aria-label="Company Logo" type="file" name="" wire:model.defer="configuration.company_logo"
                                                             class="form-control" placeholder="Name">
                                                     </div>
                                                 </div>
@@ -191,7 +191,7 @@
                                                     <div class="col-lg-12">
                                                         <label class="form-label" for="upload-login-screen-image">Upload
                                                             Login Screen Image</label>
-                                                        <input aria-label="Sub Domain Name for URL" type="file" name="" wire:model.defer="configuration.login_screen"
+                                                        <input aria-label="Upload Login Screen Image" type="file" name="" wire:model.defer="configuration.login_screen"
                                                             class="form-control" placeholder="Name">
                                                     </div>
                                                 </div>
@@ -255,7 +255,7 @@
                                                     </div>
                                                     <textarea class="form-control" rows="4" cols="3"
                                                         placeholder="Enter Message"
-                                                        id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.lazy="messages.{{$index}}.message"></textarea>
+                                                        id="AnnouncementsCommunications"  wire:key="text-{{ $index }}" wire:model.defer="messages.{{$index}}.message"></textarea>
                                                 </div>
                                             </div>
 
@@ -281,7 +281,7 @@
                                                                 <label class="form-label-sm" for="Days"> Days</label>
                                                                 <input class="form-control form-control-sm text-center w-25"
                                                                     id="Days" name="DisplayToProviders" placeholder="" type="number"
-                                                                    tabindex="" wire:key="duration-{{ $index }}" wire:model.lazy="messages.{{$index}}.days"/>
+                                                                    tabindex="" wire:key="duration-{{ $index }}" wire:model.defer="messages.{{$index}}.days"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1363,9 +1363,14 @@
                                                                             for="serviceAgreementsURL">
                                                                             URL Link
                                                                         </label>
-                                                                        <input type="" name="" class="form-control" wire:model.defer="configuration.service_url_link"
+                                                                        <input type="url" name="" class="form-control" wire:model.defer="configuration.service_url_link"
                                                                             placeholder="Enter URL link"
                                                                             id="serviceAgreementsURL">
+                                                                          @error('configuration.service_url_link')
+                                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                                {{ $message }}
+                                                                            </span>
+                                                                            @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1408,9 +1413,14 @@
                                                                         <label class="form-label">
                                                                             URL Link
                                                                         </label>
-                                                                        <input type="" name="" class="form-control" wire:model.defer="configuration.policy_link"
+                                                                        <input type="url" name="" class="form-control" wire:model.defer="configuration.policy_link"
                                                                             placeholder="Enter URL link"
                                                                             aria-label="Enter URL Link">
+                                                                              @error('configuration.policy_link')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    {{ $message }}
+                                                                                </span>
+                                                                                @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1482,7 +1492,7 @@
                                                                             </label>
                                                                             <input type="" name="" class="form-control"
                                                                                 placeholder="Enter Title"
-                                                                                id="privacyPolicyTitle" wire:key="title-{{ $index }}" wire:model.lazy="policies.{{$index}}.policy_title">
+                                                                                id="privacyPolicyTitle" wire:key="title-{{ $index }}" wire:model.defer="policies.{{$index}}.title">
                                                                         </div>
 
                                                                         <div class="col-lg-6 mb-4">
@@ -1491,21 +1501,27 @@
                                                                                 Upload File
                                                                             </label>
                                                                             <input class="form-control" type="file"
-                                                                                id="privacyPolicyUpload" wire:key="upload-{{ $index }}" wire:model.lazy="policies.{{$index}}.upload_file">
+                                                                                id="privacyPolicyUpload" wire:key="upload-{{ $index }}" wire:model.defer="policies.{{$index}}.file">
                                                                         </div>
                                                                         <div class="col-lg-6 mb-4">
                                                                             <label class="form-label" for="URL-Link">
                                                                                 URL Link
                                                                             </label>
-                                                                            <input type="" name="" class="form-control"
-                                                                                placeholder="Enter URL link" id="URL-Link" wire:key="url-{{ $index }}" wire:model.lazy="policies.{{$index}}.url_link">
+                                                                            <input type="url" name="" class="form-control"
+                                                                                placeholder="Enter URL link" id="URL-Link" wire:key="url-{{ $index }}" wire:model.defer="policies.{{$index}}.url">
+                                                                              @error('policies.'.$index.'.url')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    The policie url must be a valid URL.
+
+                                                                                </span>
+                                                                                @enderror
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-12">
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
                                                                                 id="customerDrive" name="customerDrive"
-                                                                                type="checkbox" tabindex="" checked  wire:key="drive_customer-{{ $index }}" wire:model.lazy="policies.{{$index}}.customer_drive"/>
+                                                                                type="checkbox" tabindex=""  wire:key="drive_customer-{{ $index }}" wire:model.defer="policies.{{$index}}.customer_drive"/>
                                                                             <label class="form-check-label"
                                                                                 for="customerDrive">Add
                                                                                 to Customer Drive</label>
@@ -1514,7 +1530,7 @@
                                                                             <input class="form-check-input"
                                                                                 id="acknowledgeInitialLogincustomerDrive"
                                                                                 name="acknowledgeInitialLogincustomerDrive"
-                                                                                type="checkbox" tabindex="" wire:key="intiallogincustomer-{{ $index }}" wire:model.lazy="policies.{{$index}}.acknowledgeInitialLogincustomerDrive" />
+                                                                                type="checkbox" tabindex="" wire:key="intiallogincustomer-{{ $index }}" wire:model.defer="policies.{{$index}}.cd_show_policy_customer" />
                                                                             <label class="form-check-label"
                                                                                 for="acknowledgeInitialLogincustomerDrive">Require
                                                                                 Customer to Acknowledge on Initial
@@ -1523,7 +1539,7 @@
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
                                                                                 id="providerDrive" name="providerDrive"
-                                                                                type="checkbox" tabindex="" checked  wire:key="providerdrive-{{ $index }}" wire:model.lazy="policies.{{$index}}.provider_drive" />
+                                                                                type="checkbox" tabindex=""  wire:key="providerdrive-{{ $index }}" wire:model.defer="policies.{{$index}}.provider_drive" />
                                                                             <label class="form-check-label"
                                                                                 for="providerDrive">Add
                                                                                 to Provider Drive</label>
@@ -1532,7 +1548,7 @@
                                                                             <input class="form-check-input"
                                                                                 id="acknowledgeInitialLoginproviderDrive"
                                                                                 name="acknowledgeInitialLoginproviderDrive"
-                                                                                type="checkbox" tabindex=""  wire:key="intialloginprovider-{{ $index }}" wire:model.lazy="policies.{{$index}}.acknowledgeInitialLoginproviderDrive" />
+                                                                                type="checkbox" tabindex=""  wire:key="intialloginprovider-{{ $index }}" wire:model.defer="policies.{{$index}}.pd_show_policy_customer" />
                                                                             <label class="form-check-label"
                                                                                 for="acknowledgeInitialLoginproviderDrive">Require
                                                                                 Customer to Acknowledge on Initial
