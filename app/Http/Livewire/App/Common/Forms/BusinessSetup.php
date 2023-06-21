@@ -12,9 +12,9 @@ class BusinessSetup extends Component
 {
     use WithFileUploads;
 
-	public $component = 'configuration-setting';
+	public $component = 'payments';
 	public $showForm, $configuration,$provider_payroll=true,$staff_provider=true,$contract_provider=true,$customer_billing=true;
-    public $staffProviders=["payment_frequency"=>""],$contractProviders=[];
+    public $staffProviders=["payment_frequency"=>""],$contractProviders=[] ,$feedback=[];
 	protected $listeners = ['showList'=>'resetForm'];
     public $messages=[];
     public $policies=[[
@@ -55,12 +55,28 @@ class BusinessSetup extends Component
             'configuration.currency' => ['nullable'],
             'configuration.billing_days' => ['nullable'],
 
+
+            'configuration.service_agreements_file' => ['nullable'],
+            'configuration.service_url_link' => ['nullable'],
+            'configuration.send_qoutes' => ['nullable'],
+            'configuration.customer_approve_on_login' => ['nullable'],
+            'configuration.policy_file' => ['nullable'],
+            'configuration.policy_link' => ['nullable'],
+            'configuration.customer_drive' => ['nullable'],
+            'configuration.cd_show_policy_customer' => ['nullable'],
+            'configuration.provider_drive' => ['nullable'],
+            'configuration.pd_show_policy_customer' => ['nullable'],
+
+            // 'configuration.feedback' => ['nullable'],
+
+
         ];
     }
 
 	public function mount()
 	{
         $this->configuration =TenantBusinessSetup::where('id',1)->first();
+        $this->feedback = json_decode($this->configuration->feedback,true);
         // dd($this->configuration);
 
         if($this->configuration ==null){
@@ -96,6 +112,9 @@ class BusinessSetup extends Component
         $this->configuration->login_screen = '';
 
         $this->configuration->user_id = Auth::id();
+        if(count($this->feedback)>0){
+            $this->configuration->feedback = json_encode($this->feedback);
+        }
         $this->configuration->save();
 
         AnnouncementMessage::truncate();
