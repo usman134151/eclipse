@@ -146,7 +146,7 @@ class BusinessHoursSetup extends Component
     
 
     public function resetTimeSlot(){
-        $this->timeslot=['timeslot_type'=>1,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"6"];
+        $this->timeslot=['timeslot_type'=>1,'timeslot_day'=>'Monday','timeslot_end_min'=>'00','timeslot_start_hour'=>"9",'timeslot_start_min'=>'00','timeslot_end_hour'=>"18"];
     }
 
     public function refreshSlots()
