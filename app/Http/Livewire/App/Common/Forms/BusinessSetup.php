@@ -122,6 +122,13 @@ class BusinessSetup extends Component
         }
 
 
+        if ($this->configuration->enable_contract_providers && $this->configuration->contract_providers!=null) { //convert data from json to array
+
+            $cp = json_decode($this->configuration->contract_providers, true);
+            $this->contractProviders['payment_frequency'] = $cp['payment_frequency'];
+            $this->contractProviders[$cp['payment_frequency']] = $cp[$cp['payment_frequency']];
+        }
+
         $this->messages = AnnouncementMessage::get()->toArray();
         if (count($this->messages)==0) {
             $this->addMessage();
@@ -190,9 +197,15 @@ class BusinessSetup extends Component
         }else
             $this->configuration['staff_providers'] =null;
 
-        
-            // dd($this->configuration);
-        $this->configuration->save();
+        if ($this->configuration->enable_contract_providers) { //set data if checkbox true
+            $cp['payment_frequency'] = $this->contractProviders['payment_frequency'];
+            $cp[$cp['payment_frequency']]['submission_day'] = $this->contractProviders[$cp['payment_frequency']]['submission_day'];
+            $cp[$cp['payment_frequency']]['remittance_release'] = $this->contractProviders[$cp['payment_frequency']]['remittance_release'];
+            $this->configuration['contract_providers'] = json_encode($cp);
+        } else
+            $this->configuration['contract_providers'] = null;
+
+            $this->configuration->save();
 
         AnnouncementMessage::truncate();
         foreach($this->messages as $m){
