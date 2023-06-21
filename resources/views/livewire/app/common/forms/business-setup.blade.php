@@ -810,7 +810,7 @@
                                                         <div class="col-lg-12 mb-4">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="form-check form-switch mb-0">
-                                                                    <input class="form-check-input" wire:model.defer="provider_payroll"
+                                                                    <input class="form-check-input" wire:model.defer="configuration.payment_payroll"
                                                                         aria-label="Toggle Provider Payroll" type="checkbox" onclick="toggleItems('provider-payments')"
                                                                         role="switch" id="providerPayroll">
                                                                     {{-- <input class="form-check-input"
@@ -822,7 +822,7 @@
                                                         </div>
                                                         <div class="col-lg-6 ">
 
-                                                            <div class="row provider-payments">
+                                                            <div class="row provider-payments" @if(!$configuration['payment_payroll']) style="display:none"@endif>
                                                                 <div class="col-lg-12 mb-2">
                                                                     <label class="form-label" for="directDepositFormUpload">
                                                                         Direct Deposit Form Upload
@@ -922,7 +922,7 @@
                                                                 <div class="col-lg-12 mb-4 d-flex">
                                                                     <div class="form-check form-switch">
                                                                         <input class="form-check-input" type="checkbox" onclick="toggleItems('customer-billing')"
-                                                                            role="switch" wire:model.defer="customer_billing"
+                                                                            role="switch" wire:model.defer="configuration.customer_billing"
                                                                             aria-label="Toggle Customer Billing" id="customerBilling">
                                                                         
                                                                     </div>
@@ -930,7 +930,7 @@
                                                                     <label class="form-check-label mt-1">Customer
                                                                             Billing</label>
                                                                 </div>
-                                                                <div class="col-lg-12 mb-4 customer-billing">
+                                                                <div class="col-lg-12 mb-4 customer-billing" @if(!$configuration['customer_billing']) style="display:none"@endif>
                                                                     <label class="form-label" for="billingSchedule">
                                                                         Billing Schedule (Days After Invoice) <br>Net
                                                                     </label>
@@ -955,12 +955,12 @@
                                                                             <input class="form-check-input"
                                                                                 id="staffProvider"
                                                                                 name="enrollDirectDeposit" type="checkbox" onclick="toggleItems('staff-provider')"
-                                                                                tabindex="" wire:model.defer="staff_provider"/>
+                                                                                tabindex="" wire:model.defer="configuration.enable_staff_providers"/>
                                                                             <label class="form-check-label"
                                                                                 for="staffProvider">Staff Providers</label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="mx-4 mb-4 staff-provider">
+                                                                    <div class="mx-4 mb-4 staff-provider" @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
                                                                         <div class="mb-2  " >
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" checked wire:model.defer="staffProviders.payment_frequency"
@@ -978,21 +978,25 @@
                                                                                     for="invoice-submission-day1">
                                                                                     Invoice Submission Day
                                                                                 </label>
-                                                                                <select id="invoice-submission-day1" wire:model.defer="staffProviders.submission_day"
+                                                                                <select id="invoice-submission-day1" wire:model.defer="staffProviders.every-week.submission_day"
                                                                                     class="form-select">
-                                                                                    <option >Monday</option>
-                                                                                    <option >Tuesday</option>
-                                                                                    <option >Wednesday</option>
-                                                                                    <option >Thursday</option>
-                                                                                    <option >Friday</option>
+
+                                                                                    <option selected value="monday">Monday</option>
+                                                                                    <option value="tuesday">Tuesday</option>
+                                                                                    <option value="wednesday">Wednesday</option>
+                                                                                    <option value="thursday">Thursday</option>
+                                                                                    <option value="friday">Friday</option>
+                                                                                    <option value="saturday">Saturday</option>
+                                                                                    <option value="sunday">Sunday</option>
+
                                                                                 </select>
                                                                             </div>
                                                                             <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm" wire:model='staffProviders.remittance_release'
+                                                                                <label class="form-label input-sm text-sm"
                                                                                     for="remittanceRelease">
                                                                                     Remittance Release
                                                                                 </label>
-                                                                                <select id="remittanceRelease"
+                                                                                <select id="remittanceRelease"  wire:model.defer='staffProviders.every-week.remittance_release'
                                                                                     class="form-select">
                                                                                     @for ($i = 1; $i < 8; $i++)
                                                                                     <option value={{$i}} >{{$i}} Days</option>
@@ -1002,7 +1006,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="mx-4 mb-4 staff-provider">
+                                                                    <div class="mx-4 mb-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio"
@@ -1020,13 +1024,17 @@
                                                                                     for="invoice-submission-day2">
                                                                                     Invoice Submission Day
                                                                                 </label>
-                                                                                <select id="invoice-submission-day2" wire:model.defer='staffProviders.submission_day'
+                                                                                <select id="invoice-submission-day2" wire:model.defer='staffProviders.two-weeks.submission_day'
                                                                                     class="form-select">
-                                                                                    <option >Monday</option>
-                                                                                    <option >Tuesday</option>
-                                                                                    <option >Wednesday</option>
-                                                                                    <option >Thursday</option>
-                                                                                    <option >Friday</option>
+                                                                                   
+                                                                                    <option selected value="monday">Monday</option>
+                                                                                    <option value="tuesday">Tuesday</option>
+                                                                                    <option value="wednesday">Wednesday</option>
+                                                                                    <option value="thursday">Thursday</option>
+                                                                                    <option value="friday">Friday</option>
+                                                                                    <option value="saturday">Saturday</option>
+                                                                                    <option value="sunday">Sunday</option>
+
                                                                                 </select>
                                                                             </div>
                                                                             <div class="mb-2">
@@ -1034,7 +1042,7 @@
                                                                                     for="remittance-release1">
                                                                                     Remittance Release
                                                                                 </label>
-                                                                                <select id="remittance-release1" wire:model='staffProviders.remittance_release'
+                                                                                <select id="remittance-release1" wire:model.defer='staffProviders.two-weeks.remittance_release'
                                                                                     class="form-select">
                                                                                     @for ($i = 1; $i < 15; $i++)
                                                                                     <option value={{$i}} >{{$i}} Days</option>
@@ -1044,7 +1052,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="mx-4 mb-4 staff-provider">
+                                                                    <div class="mx-4 mb-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif >
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio" value="every-month" onclick="showSelectedItems('every-month','sp-radio')"
@@ -1062,7 +1070,7 @@
                                                                                     for="invoice-submission-day3">
                                                                                     Invoice Submission Day
                                                                                 </label>
-                                                                                <select id="invoice-submission-day3" wire:model='staffProviders.submission_day'
+                                                                                <select id="invoice-submission-day3" wire:model.defer='staffProviders.every-month.submission_day'
                                                                                     class="form-select">
                                                                                     <option value=1 >1st</option>
                                                                                     <option value=2 >2nd</option>
@@ -1077,7 +1085,7 @@
                                                                                     for="remittance-release2">
                                                                                     Remittance Release
                                                                                 </label>
-                                                                                <select id="remittance-release2" wire:model='staffProviders.remittance_release'
+                                                                                <select id="remittance-release2" wire:model.defer='staffProviders.every-month.remittance_release'
                                                                                     class="form-select">
                                                                                     @for ($i = 1; $i < 31; $i++)
                                                                                     <option value={{$i}} >{{$i}} Days</option>
@@ -1087,7 +1095,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="mx-4 staff-provider">
+                                                                    <div class="mx-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio" wire:model.defer="staffProviders.payment_frequency"                                                                                
@@ -1104,7 +1112,7 @@
                                                                                     for="invoice-submission-day4">
                                                                                     Invoice Submission Day
                                                                                 </label>
-                                                                                <select id="invoice-submission-day4" wire:model='staffProviders.submission_day'
+                                                                                <select id="invoice-submission-day4" wire:model.defer='staffProviders.select-days.submission_day'
                                                                                     class="form-select">
                                                                                     <option value=1 >1st</option>
                                                                                     <option value=2 >2nd</option>
@@ -1146,7 +1154,7 @@
                                                                                     for="remittance-release5">
                                                                                     Remittance Release
                                                                                 </label>
-                                                                                <select id="remittance-release5" wire:model='staffProviders.remittance_release'
+                                                                                <select id="remittance-release5" wire:model.defer='staffProviders.select-days.remittance_release'
                                                                                     class="form-select">
                                                                                     @for ($i = 1; $i < 31; $i++)
                                                                                     <option value={{$i}} >{{$i}} Days</option>
@@ -1162,7 +1170,7 @@
                                                                     <div class="mb-2">
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
-                                                                                id="contract-providers" wire:model.defer="contract_provider" onclick="toggleItems('contract-provider')"
+                                                                                id="contract-providers" wire:model.defer="configuration.enable_contract_providers" onclick="toggleItems('contract-provider')"
                                                                                 name="contract-providers" type="checkbox"
                                                                                 tabindex="" />
                                                                             <label class="form-check-label"
@@ -1170,7 +1178,7 @@
                                                                                 Providers</label>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="mx-4 mb-4 contract-provider">
+                                                                    <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio"
@@ -1206,7 +1214,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="mx-4 mb-4 contract-provider">
+                                                                    <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio"
@@ -1241,7 +1249,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="mx-4 mb-4 contract-provider">
+                                                                    <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio"
@@ -1277,7 +1285,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="mx-4 contract-provider">
+                                                                    <div class="mx-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
                                                                                 <input class="form-check-input" type="radio"
@@ -1430,12 +1438,12 @@
                                                                 <div class="form-check">
                                                                     <input class="form-check-input"
                                                                         id="add-to-customer-drive" name="customerDrive" wire:model.defer="configuration.customer_drive"
-                                                                        type="checkbox" tabindex="" checked />
+                                                                        type="checkbox" tabindex=""  onclick="toggleItems('privacy-policy-cd')" />
                                                                     <label class="form-check-label"
                                                                         for="add-to-customer-drive">Add
                                                                         to Customer Drive</label>
                                                                 </div>
-                                                                <div class="form-check mx-4">
+                                                                <div class="form-check mx-4 privacy-policy-cd" @if($configuration['customer_drive']==false) style="display:none"@endif>
                                                                     <input class="form-check-input" wire:model.defer="configuration.cd_show_policy_customer"
                                                                         id="acknowledge-Initial-Logincustomer-Drive"
                                                                         name="acknowledgeInitialLogincustomerDrive"
@@ -1446,13 +1454,13 @@
                                                                 </div>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" id="provider-Drive" wire:model.defer="configuration.provider_drive"
-                                                                        name="providerDrive" type="checkbox" tabindex=""
-                                                                        checked />
+                                                                        name="providerDrive" type="checkbox" tabindex=""  onclick="toggleItems('privacy-policy-pd')"
+                                                                        />
                                                                     <label class="form-check-label" for="provider-Drive">Add
                                                                         to
                                                                         Provider Drive</label>
                                                                 </div>
-                                                                <div class="form-check mx-4">
+                                                                <div class="form-check mx-4 privacy-policy-pd"  @if($configuration['provider_drive']==false) style="display:none"@endif>
                                                                     <input class="form-check-input"
                                                                         id="acknowledge-Initial-Loginprovider-Drive" wire:model.defer="configuration.pd_show_policy_customer"
                                                                         name="acknowledgeInitialLoginproviderDrive"
@@ -1520,14 +1528,14 @@
                                                                     <div class="col-lg-12">
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
-                                                                                id="customerDrive" name="customerDrive"
+                                                                                id="customerDrive" name="customerDrive" onclick="toggleItems('policies-cd-{{$index}}')"
                                                                                 type="checkbox" tabindex=""  wire:key="drive_customer-{{ $index }}" wire:model.defer="policies.{{$index}}.customer_drive"/>
                                                                             <label class="form-check-label"
                                                                                 for="customerDrive">Add
                                                                                 to Customer Drive</label>
                                                                         </div>
-                                                                        <div class="form-check mx-4">
-                                                                            <input class="form-check-input"
+                                                                        <div class="form-check mx-4  policies-cd-{{$index}}" @if($policies[$index]['customer_drive']==false) style="display:none"@endif>
+                                                                            <input class="form-check-input" 
                                                                                 id="acknowledgeInitialLogincustomerDrive"
                                                                                 name="acknowledgeInitialLogincustomerDrive"
                                                                                 type="checkbox" tabindex="" wire:key="intiallogincustomer-{{ $index }}" wire:model.defer="policies.{{$index}}.cd_show_policy_customer" />
@@ -1538,14 +1546,14 @@
                                                                         </div>
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
-                                                                                id="providerDrive" name="providerDrive"
+                                                                                id="providerDrive" name="providerDrive"  onclick="toggleItems('policies-pd-{{$index}}')"
                                                                                 type="checkbox" tabindex=""  wire:key="providerdrive-{{ $index }}" wire:model.defer="policies.{{$index}}.provider_drive" />
                                                                             <label class="form-check-label"
                                                                                 for="providerDrive">Add
                                                                                 to Provider Drive</label>
                                                                         </div>
-                                                                        <div class="form-check mx-4">
-                                                                            <input class="form-check-input"
+                                                                        <div class="form-check mx-4 policies-pd-{{$index}}"  @if($policies[$index]['provider_drive']==false) style="display:none"@endif>
+                                                                            <input class="form-check-input " 
                                                                                 id="acknowledgeInitialLoginproviderDrive"
                                                                                 name="acknowledgeInitialLoginproviderDrive"
                                                                                 type="checkbox" tabindex=""  wire:key="intialloginprovider-{{ $index }}" wire:model.defer="policies.{{$index}}.pd_show_policy_customer" />
@@ -1644,7 +1652,9 @@ function toggleItems(classname) {
         x[i].style.display = "block";
     } else {
         x[i].style.display = "none";
+
     }
+
   }
 }
 

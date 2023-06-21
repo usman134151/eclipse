@@ -14,10 +14,40 @@ class BusinessSetup extends Component
     use WithFileUploads;
 
 	public $component = 'payments';
-	public $showForm, $configuration,$provider_payroll=true,$staff_provider=true,$contract_provider=true,$customer_billing=true;
-    public $staffProviders=["payment_frequency"=>""],$contractProviders=[] ,$feedback=[];
+	public $showForm, $configuration;
+    public $staffProviders=[
+            "payment_frequency"=>"every-week",
+            'every-week'=>[
+                'submission_day'=>'monday', 'remittance_release'=>1 
+            ],
+            'two-weeks' => [
+                'submission_day' => 'monday', 'remittance_release' => 1
+            ],
+            'every-month' => [
+                'submission_day' => 1, 'remittance_release' => 1
+            ],
+            'select-days' => [
+                'submission_day' => [], 'remittance_release' => 1
+            ],
+        ];
+    public $contractProviders = [
+        "payment_frequency" => "every-week",
+        'every-week' => [
+            'submission_day' => 'monday', 'remittance_release' => 1
+        ],
+        'two-weeks' => [
+            'submission_day' => 'monday', 'remittance_release' => 1
+        ],
+        'every-month' => [
+            'submission_day' => 1, 'remittance_release' => 1
+        ],
+        'select-days' => [
+            'submission_day' => [], 'remittance_release' => 1
+        ],
+    ];
+        
 	protected $listeners = ['showList'=>'resetForm'];
-    public $messages=[], $policies = [];
+    public $messages=[], $policies = [], $feedback = [];
 
     public function rules()
     {
@@ -59,6 +89,12 @@ class BusinessSetup extends Component
             'configuration.provider_drive' => ['nullable'],
             'configuration.pd_show_policy_customer' => ['nullable'],
 
+            'configuration.customer_billing' => ['nullable'],
+            'configuration.enable_staff_providers' => ['nullable'],
+            'configuration.enable_contract_providers' => ['nullable'],
+            'configuration.payment_payroll' => ['nullable'],
+
+
             'policies.*.url' => ['nullable','url'],
 
 
@@ -72,10 +108,20 @@ class BusinessSetup extends Component
         $this->feedback = json_decode($this->configuration->feedback,true);
         // dd($this->configuration);
 
-        if($this->configuration ==null){
+        if($this->configuration == null){ //initial setup
             $this->configuration= new TenantBusinessSetup();
             $this->configuration->default_colour = '#0A1E46'; $this->configuration->foreground_colour = '#000000'; //setting defaults
         }
+        
+
+        if($this->configuration->enable_staff_providers) { //convert data from json to array
+        
+            $sp = json_decode($this->configuration->staff_providers,true);
+            $this->staffProviders['payment_frequency']=$sp['payment_frequency'];
+            $this->staffProviders[$sp['payment_frequency']] = $sp[$sp['payment_frequency']];
+        }
+
+
         $this->messages = AnnouncementMessage::get()->toArray();
         if (count($this->messages)==0) {
             $this->addMessage();
@@ -109,9 +155,43 @@ class BusinessSetup extends Component
         $this->configuration->login_screen = '';
 
         $this->configuration->user_id = Auth::id();
+
         if(count($this->feedback)>0){
             $this->configuration->feedback = json_encode($this->feedback);
         }
+
+        if(!$this->configuration->payment_payroll){ //remove data if checkbox false
+            $this->configuration->deposit_form_file = null;
+            $this->configuration->require_provider_approval = false;
+            $this->configuration->rate_for_providers = null;
+            $this->configuration->measurement_providers = null;
+            $this->configuration->rate_for_travel_time = null;
+            $this->configuration->currency = null;
+        }
+
+        if(!$this->configuration->customer_billing){  //remove data if checkbox false
+            $this->configuration->billing_days = null;
+        }
+
+        if (!$this->configuration->customer_drive) { //remove data if checkbox false
+            $this->configuration->cd_show_policy_customer = false;
+        }
+
+
+        if (!$this->configuration->provider_drive) { //remove data if checkbox false
+            $this->configuration->pd_show_policy_customer = false;
+        }
+
+        if($this->configuration->enable_staff_providers){ //set data if checkbox true
+            $sp['payment_frequency']= $this->staffProviders['payment_frequency'];
+            $sp[$sp['payment_frequency']]['submission_day']= $this->staffProviders[$sp['payment_frequency']]['submission_day'];
+            $sp[$sp['payment_frequency']]['remittance_release'] = $this->staffProviders[$sp['payment_frequency']]['remittance_release'];
+            $this->configuration['staff_providers']= json_encode($sp);
+        }else
+            $this->configuration['staff_providers'] =null;
+
+        
+            // dd($this->configuration);
         $this->configuration->save();
 
         AnnouncementMessage::truncate();
@@ -122,8 +202,15 @@ class BusinessSetup extends Component
 
         BusinessPolicy::truncate();
         foreach ($this->policies as $p) {
-            if (!empty(trim($p['title'])))
-            BusinessPolicy::create($p);
+            if (!empty(trim($p['title']))){
+                if (!$p['customer_drive']) { //remove data if checkbox false
+                    $p['cd_show_policy_customer'] = false;
+                }
+                if (!$p['provider_drive']) { //remove data if checkbox false
+                    $p['pd_show_policy_customer'] = false;
+                }
+                BusinessPolicy::create($p);
+            }
         }
         
         if($submit){
@@ -133,6 +220,7 @@ class BusinessSetup extends Component
 
         
     }
+
 
     public function showList($message = "")
     {
@@ -159,9 +247,9 @@ class BusinessSetup extends Component
             'title'=>'',
             'file'=>'',
             'link'=>'',
-            'customer_drive'=>false,
+            'customer_drive'=>true,
             'cd_show_policy_customer'=>false,
-            'provider_drive'=>false,
+            'provider_drive'=>true,
             'pd_show_policy_customer'=>false
         ];
     }
