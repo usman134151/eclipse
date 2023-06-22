@@ -527,11 +527,17 @@
                                                     <h2 class="mb-lg-0">Permission Configurations</h2>
                                                     <div
                                                         class="d-flex flex-column justify-content-center align-items-center gap-1">
+                                                        <span>(coming soon)</span>
+
                                                         <label class="form-label-sm">
                                                             Copy permissions from another user
+
                                                         </label>
-                                                        <a href="#" class="btn btn-primary w-75" data-bs-toggle="modal"
-                                                            data-bs-target="#addModal">
+
+                                                        <a href="#" class="btn btn-primary w-75"
+                                                            {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#addModal" --}}
+                                                            >
                                                             Select User
                                                         </a>
                                                     </div>

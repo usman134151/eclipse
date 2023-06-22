@@ -82,6 +82,7 @@ class CustomerForm extends Component
 
     public function permissionConfiguration($redirect=1){
 
+		// dd($this->selectedAdminStaff);
 		$userService = new UserService;
 		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
 		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);

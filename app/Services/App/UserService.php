@@ -122,30 +122,49 @@ class UserService
     return $rolesArr;
   }
 
-  public function storeUserRolesDetails($customer_id,$arr=[],$role_id,$typeofRelation,$default=0){
-    // delete existing records
+  public function storeUserRolesDetails($customer_id,$arr,$role_id,$typeofRelation,$default=0){
+    
     $values=[];
-    if($typeofRelation == 0){
-      // user_id has master relation with $arr_user
-      RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->delete();
+    if($role_id==3){
 
-      foreach ($arr as $user_id) {
-        $values = ['user_id' => $customer_id , 'associated_user' => $user_id, 'role_id' => $role_id];
-        RoleUserDetail::create($values);
+      //set admin staff
+      RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->delete(); // delete existing records
+      foreach ($arr as $admin) {
+        if(array_key_exists('id',$admin)){ //checking for unchecked rows
+          
+          if(array_key_exists('permission_type',$admin)&& $admin['permission_type']==true) //setting permission
+            $pt = 'manage';
+          else
+            $pt= 'visible';
+          
+            $values = ['user_id' => $admin['id'], 'associated_user' => $customer_id, 'role_id' => $role_id, 'permission_type'=>$pt];
+          
+          RoleUserDetail::create($values);
+        }
       }
-    }
-    else{
-      // arr_users have master relation with user_id
-      RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->delete();
+    }else{
+      if($typeofRelation == 0){
+        // user_id has master relation with $arr_user
+        RoleUserDetail::where(['user_id' => $customer_id, 'role_id' => $role_id])->delete(); // delete existing records
 
-      foreach($arr as $user_id){
-        $values= ['user_id' => $user_id, 'associated_user' => $customer_id,'role_id'=>$role_id];
-        if($default == $user_id)
-          $values['is_default']=true;
-        RoleUserDetail::create($values);
+        foreach ($arr as $user_id) {
+          $values = ['user_id' => $customer_id , 'associated_user' => $user_id, 'role_id' => $role_id];
+          RoleUserDetail::create($values);
+        }
+      }
+      else{
+        // arr_users have master relation with user_id
+        RoleUserDetail::where(['associated_user' => $customer_id, 'role_id' => $role_id])->delete(); // delete existing records
+
+        foreach($arr as $user_id){
+          $values= ['user_id' => $user_id, 'associated_user' => $customer_id,'role_id'=>$role_id];
+          if($default == $user_id)
+            $values['is_default']=true;
+          RoleUserDetail::create($values);
+
+        }
 
       }
-
     }
   }
 
