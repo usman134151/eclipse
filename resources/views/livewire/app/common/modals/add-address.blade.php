@@ -67,6 +67,7 @@
         <label class="form-label" for="address-phone">Phone</label>
               <input type="text" id="address-phone" class="form-control" name="address-phone-column" placeholder="" wire:model="address.phone">
          </div>
+        @if($address['address_type']==1)
         <div class="row">
           <div class="col-lg-12">
             <label class="form-label" for="arrival-notes">Arrival Notes</label>
@@ -79,6 +80,7 @@
             ></textarea>
           </div>
         </div>
+        @endif
       </div>
     </div>
     <div class="modal-footer">
