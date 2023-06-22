@@ -28,9 +28,9 @@ class BusinessSetup extends Component
             'configuration.portal_url' => ['required','max:255'],
             'configuration.company_logo' => ['nullable'],
             'configuration.login_screen' => ['nullable'],
-            'configuration.welcome_text' => ['nullable','max:255'],
-            'configuration.notification_email' => ['nullable', 'max:255'],
-            'configuration.response_email' => ['nullable','max:255'],
+            'configuration.welcome_text' => ['nullable'],
+            'configuration.notification_email' => ['nullable', 'max:255','email'],
+            'configuration.response_email' => ['nullable','max:255','email'],
 
             'messages.*.message'=>['nullable'],
             'messages.*.on_log_in_screen' => ['nullable'],
@@ -42,11 +42,11 @@ class BusinessSetup extends Component
 
             'configuration.deposit_form_file' => ['nullable'],
             'configuration.require_provider_approval' => ['nullable'],
-            'configuration.rate_for_providers' => ['nullable'],
+            'configuration.rate_for_providers' => ['nullable','max:255'],
             'configuration.measurement_providers' => ['nullable'],
-            'configuration.rate_for_travel_time' => ['nullable'],
+            'configuration.rate_for_travel_time' => ['nullable','max:255'],
             'configuration.currency' => ['nullable'],
-            'configuration.billing_days' => ['nullable'],
+            'configuration.billing_days' => ['nullable','max:255'],
 
 
             'configuration.service_agreements_file' => ['nullable'],
@@ -65,7 +65,7 @@ class BusinessSetup extends Component
             'configuration.enable_contract_providers' => ['nullable'],
             'configuration.payment_payroll' => ['nullable'],
 
-
+            'policies.*.title' => [ 'max:255', 'required_with:policies.*.url,policies.*.file'],
             'policies.*.url' => ['nullable','url'],
 
 

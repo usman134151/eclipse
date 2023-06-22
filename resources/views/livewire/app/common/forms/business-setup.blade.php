@@ -218,6 +218,11 @@
                                                     Address</label>
                                                 <input type="text" id="EmailAddressSendNotifications" class="form-control" wire:model.defer="configuration.notification_email"
                                                     name="EmailAddressSendNotifications" placeholder="Enter Email" />
+                                                @error('configuration.notification_email')
+                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row inner-section-segment-spacing">
@@ -227,6 +232,11 @@
                                                     Address</label>
                                                 <input type="text" id="EmailAddressCustomerResponses" class="form-control" wire:model.defer="configuration.response_email"
                                                     name="EmailAddressCustomerResponses" placeholder="Enter Email" />
+                                                    @error('configuration.response_email')
+                                                    <span class="d-inline-block invalid-feedback mt-2">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="row">
@@ -865,6 +875,7 @@
                                                                             <div class="col-lg-8 d-inline-flex">
                                                                                 <input class="form-control" type=""
                                                                                     id="reimburseProviders" placeholder="$00:00" wire:model.defer="configuration.rate_for_providers"> 
+                                                                                   
                                                                             </div>
                                                                             <div class="col-lg-4">
                                                                                 <select id="measurement_type" class="form-select" wire:model.defer="configuration.measurement_providers">
@@ -873,6 +884,11 @@
                                                                                 </select>
                                                                             </div>
                                                                         </div>
+                                                                         @error('configuration.rate_for_providers')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    {{ $message }}
+                                                                                </span>
+                                                                                @enderror
                                                                         
                                                                     </div>
                                                                     <div class="col-lg-12 mb-4">
@@ -896,6 +912,11 @@
                                                                                 <div class="text-nowrap col-lg-4 ms-2 mt-3">
                                                                                     <span>Per hour</span>
                                                                                 </div>
+                                                                                @error('configuration.rate_for_travel_time')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    {{ $message }}
+                                                                                </span>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="row ms-1 mt-2">
@@ -938,6 +959,11 @@
                                                                         <input class="form-control" type="number" wire:model.defer="configuration.billing_days"
                                                                             id="billingSchedule" placeholder="10">
                                                                         <span>Days</span>
+                                                                        @error('configuration.billing_days')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    {{ $message }}
+                                                                                </span>
+                                                                                @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1576,6 +1602,12 @@
                                                                             <input type="" name="" class="form-control"
                                                                                 placeholder="Enter Title"
                                                                                 id="privacyPolicyTitle" wire:key="title-{{ $index }}" wire:model.defer="policies.{{$index}}.title">
+                                                                            @error('policies.'.$index.'.title')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    {{$message}}
+
+                                                                                </span>
+                                                                                @enderror
                                                                         </div>
 
                                                                         <div class="col-lg-6 mb-4">
@@ -1585,6 +1617,7 @@
                                                                             </label>
                                                                             <input class="form-control" type="file"
                                                                                 id="privacyPolicyUpload" wire:key="upload-{{ $index }}" wire:model.defer="policies.{{$index}}.file">
+                                                                            
                                                                         </div>
                                                                         <div class="col-lg-6 mb-4">
                                                                             <label class="form-label" for="URL-Link">

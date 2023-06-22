@@ -528,11 +528,17 @@
                                                     <h2 class="mb-lg-0">Permission Configurations</h2>
                                                     <div
                                                         class="d-flex flex-column justify-content-center align-items-center gap-1">
+                                                        <span>(coming soon)</span>
+
                                                         <label class="form-label-sm">
                                                             Copy permissions from another user
+
                                                         </label>
-                                                        <a href="#" class="btn btn-primary w-75" data-bs-toggle="modal"
-                                                            data-bs-target="#addModal">
+
+                                                        <a href="#" class="btn btn-primary w-75"
+                                                            {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#addModal" --}}
+                                                            >
                                                             Select User
                                                         </a>
                                                     </div>
@@ -570,7 +576,7 @@
                                                         Assigned Supervisor(s)
                                                     </button>
                                                     <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" value=""
+                                                        <input class="form-check-input" type="checkbox" wire:model.defer="same_sv"  wire:click="selectSameSupervisor"
                                                             id="AssignSame_User">
                                                         <label class="form-check-label" for="AssignSame_User" >
                                                             Assign Same User
@@ -651,7 +657,7 @@
                                                         Assigned Billing Manager
                                                     </button>
                                                     <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" value=""
+                                                        <input class="form-check-input" type="checkbox" wire:model.defer="same_bm"  wire:click="selectSameBManager"
                                                             id="Assign-Same-User">
                                                         <label class="form-check-label" for="Assign-Same-User">
                                                             Assign Same User

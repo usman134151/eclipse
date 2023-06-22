@@ -235,14 +235,18 @@
                                                             <div
                                                                 class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
                                                                 <label class="text-white form-label-sm ps-2" for="">
-                                                                    Sydney, Australia
+                                                                    @if($user['userdetail']['physical_address']!=null)
+                                                                    {{$user['userdetail']['physical_address']['city'].', '.$user['userdetail']['physical_address']['country']}}
+                                                                    @else
+                                                                     N/A
+                                                                    @endif
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7 ms-4 mt-4">
                                                         <h3 class="font-family-tertiary fw-medium">
-                                                            {{$user['name']}} ({{$user['userdetail']['title']}}
+                                                            {{$user['name']}} ({{$user['userdetail']['title']}})
                                                         </h3>
                                                         <div class="row mb-4">
                                                             <div class="col-md-12">
@@ -267,9 +271,15 @@
                                                                         <span class="fw-medium">
                                                                             Department(s):
                                                                         </span>
-                                                                        <div class="text-nowrap">
-                                                                            Language Interpreting
+                                                                        <div class="text-wrap" style="width=300px">
+
+                                                                        @foreach($user['userdetail']['departments'] as $key=>$dept)
+                                                                            {{$dept}}
+                                                                             @if($key != count($user['userdetail']['departments'])-1) , @endif
+
+                                                                        @endforeach
                                                                         </div>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-2">
@@ -278,7 +288,8 @@
                                                                             Access Role:
                                                                         </span>
                                                                         <div>
-                                                                            Service Consumer
+                                                                            Service Consumer 
+                                                                            <small>(coming soon)</small>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -329,8 +340,11 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA
+                                                                    @if($user['userdetail']['physical_address']!=null)
+                                                                    {{ $user['userdetail']['physical_address']['address_line1'].' '.$user['userdetail']['physical_address']['city'].' '.$user['userdetail']['physical_address']['country'].'('.$user['userdetail']['physical_address']['address_name'].')' }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -342,8 +356,12 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA
+                                                                    @if($user['userdetail']['billing_address']!=null)
+
+                                                                    {{ $user['userdetail']['billing_address']['address_line1'].' '.$user['userdetail']['billing_address']['city'].' '.$user['userdetail']['billing_address']['country'].'('.$user['userdetail']['billing_address']['address_name'].')' }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -385,6 +403,7 @@
                                                                         </use>
                                                                     </svg>
                                                                     {{-- End of update by Shanila --}}
+                                                                    <small>(coming soon)</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -396,7 +415,14 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    Thomas Charles , Peter Henry
+                                                                @if(count($user['userdetail']['supervisors'])>0)
+                                                                    @foreach($user['userdetail']['supervisors'] as $key=> $sv)
+                                                                        {{$sv}}
+                                                                     @if($key != count($user['userdetail']['supervisors'])-1) , @endif
+                                                                    @endforeach
+                                                                @else
+                                                                    N/A
+                                                                @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -408,7 +434,14 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    Wade Dave , Seth Ivan
+                                                                    @if(count($user['userdetail']['billing_managers'])>0)
+                                                                        @foreach($user['userdetail']['billing_managers'] as $key=> $sv)
+                                                                            {{$sv}}
+                                                                            @if($key != count($user['userdetail']['billing_managers'])-1) , @endif
+                                                                        @endforeach
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -420,7 +453,7 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    60 Hours
+                                                                    60 Hours <small>(coming soon)</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -432,7 +465,7 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    20 Hours
+                                                                    20 Hours <small>(coming soon)</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -448,7 +481,7 @@
                                                             </div>
                                                             <div class="col-md-5 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    $500
+                                                                    $500 <small>(coming soon)</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -460,7 +493,7 @@
                                                             </div>
                                                             <div class="col-md-5 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    $300
+                                                                    $300 <small>(coming soon)</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -472,7 +505,9 @@
                                                             </div>
                                                             <div class="col-md-5 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    $200
+                                                                    $200 
+                                                                    <small>(coming soon)</small>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -484,7 +519,9 @@
                                                             </div>
                                                             <div class="col-md-5 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    $300
+                                                                    $300                                                             
+                                                                    <small>(coming soon)</small>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -492,11 +529,14 @@
                                                             <div class="col-md-5">
                                                                 <label class="col-form-label" for="">
                                                                     Account Credit:
+
                                                                 </label>
                                                             </div>
                                                             <div class="col-md-5 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    $000
+                                                                    $000 
+                                                            <small>(coming soon)</small>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -508,6 +548,7 @@
                                                     <div class="col-12">
                                                         <div class="card">
                                                             <div class="table-responsive">
+                                                            <small>(coming soon)</small>
                                                                 <!-- table one -->
                                                                 <table id="" class="table table-hover"
                                                                     aria-label="American Sign Language Interpreting Table">
@@ -800,191 +841,53 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle fw-bold">
-                                                                                1
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-2">
-                                                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                                            class="img-fluid rounded-circle"
-                                                                                            alt="Provider Profile Image">
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-10 align-self-center">
-                                                                                        <h6 class="fw-semibold">
-                                                                                            Dori Griffiths
-                                                                                        </h6>
-                                                                                        <p>
-                                                                                            languagetranslation@gmail.com
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <a href="#" aria-label="Chat"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="Chat" width="20"
-                                                                                        height="20" viewBox="0 0 20 20">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#chat">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td class="align-middle fw-bold">
-                                                                                2
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-2">
-                                                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                                            class="img-fluid rounded-circle"
-                                                                                            alt="Provider Profile Image">
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-10 align-self-center">
-                                                                                        <h6 class="fw-semibold">
-                                                                                            Dori Griffiths
-                                                                                        </h6>
-                                                                                        <p>
-                                                                                            languagetranslation@gmail.com
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <a href="#" aria-label="Chat"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="Chat" width="20"
-                                                                                        height="20" viewBox="0 0 20 20">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#chat">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle fw-bold">
-                                                                                3
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-2">
-                                                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                                            class="img-fluid rounded-circle"
-                                                                                            alt="Provider Profile Image">
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-10 align-self-center">
-                                                                                        <h6 class="fw-semibold">
-                                                                                            Dori Griffiths
-                                                                                        </h6>
-                                                                                        <p>
-                                                                                            languagetranslation@gmail.com
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <a href="#" aria-label="Chat"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="Chat" width="20"
-                                                                                        height="20" viewBox="0 0 20 20">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#chat">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="even">
-                                                                            <td class="align-middle fw-bold">
-                                                                                4
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-2">
-                                                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                                            class="img-fluid rounded-circle"
-                                                                                            alt="Provider Profile Image">
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-10 align-self-center">
-                                                                                        <h6 class="fw-semibold">
-                                                                                            Dori Griffiths
-                                                                                        </h6>
-                                                                                        <p>
-                                                                                            languagetranslation@gmail.com
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <a href="#" aria-label="Chat"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="Chat" width="20"
-                                                                                        height="20" viewBox="0 0 20 20">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#chat">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr role="row" class="odd">
-                                                                            <td class="align-middle fw-bold">
-                                                                                5
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <div class="row g-2">
-                                                                                    <div class="col-md-2">
-                                                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
-                                                                                            class="img-fluid rounded-circle"
-                                                                                            alt="Provider Profile Image">
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-md-10 align-self-center">
-                                                                                        <h6 class="fw-semibold">
-                                                                                            Dori Griffiths
-                                                                                        </h6>
-                                                                                        <p>
-                                                                                            languagetranslation@gmail.com
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="align-middle">
-                                                                                <a href="#" aria-label="Chat"
-                                                                                    class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                    {{-- Updated by Shanila to Add svg
-                                                                                    icon--}}
-                                                                                    <svg aria-label="Chat" width="20"
-                                                                                        height="20" viewBox="0 0 20 20">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#chat">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    {{-- End of update by Shanila --}}
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
+                                                                        @if(count($user['userdetail']['favoured_users'])>0)
+                                                                            @foreach($user['userdetail']['favoured_users'] as $index => $user)
+                                                                                <tr role="row" class="odd">
+                                                                                    <td class="align-middle fw-bold">
+                                                                                        {{$index+1}}
+                                                                                    </td>
+                                                                                    <td class="align-middle">
+                                                                                        <div class="row g-2">
+                                                                                            <div class="col-md-2">
+                                                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                                    class="img-fluid rounded-circle"
+                                                                                                    alt="Provider Profile Image">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="col-md-10 align-self-center">
+                                                                                                <h6 class="fw-semibold">
+                                                                                                    {{$user['name']}}
+                                                                                                </h6>
+                                                                                                <p>
+                                                                                                    {{$user['email']}}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="align-middle">
+                                                                                        <a href="#" aria-label="Chat"
+                                                                                            class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                            {{-- Updated by Shanila to Add svg
+                                                                                            icon--}}
+                                                                                            <svg aria-label="Chat" width="20"
+                                                                                                height="20" viewBox="0 0 20 20">
+                                                                                                <use
+                                                                                                    xlink:href="/css/common-icons.svg#chat">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                            {{-- End of update by Shanila --}}
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <tr  role="row" class="odd">
+                                                                                <td class="align-middle" colspan=3>
+                                                                                    None Selected
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endif
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -993,6 +896,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 inner-section-segment-spacing">
+                                                            <small>(coming soon)</small>
+
                                                 <h2>Last Login:</h2>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex mb-md-2">
@@ -1059,7 +964,8 @@
                                 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel"
                                     aria-labelledby="schedule-tab" tabindex="0">
                                     <div class="row mb-2">
-                                        <h3>Schedule</h3>
+                                        <h3>Schedule <small>(coming soon)</small></h3>
+                                        
                                     </div>
                                     <div class="inner-section-segment-spacing">
                                 </div>
@@ -1072,7 +978,9 @@
                                 <div class="tab-pane fade" id="customer-feedback-tab-pane" role="tabpanel"
                                     aria-labelledby="customer-feedback-tab" tabindex="0">
                                     <div class="row mb-2">
-                                        <h3>Feedback</h3>
+                                        <h3>Feedback
+                                        <small>(coming soon)</small>
+                                        </h3>
                                     </div>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         {{-- Search --}}
@@ -1754,7 +1662,9 @@
                                 <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel"
                                     aria-labelledby="my-drive-tab" tabindex="0">
                                     <div class="row mb-3">
-                                        <h3>My Drive</h3>
+                                        <h3>My Drive <small>(coming soon)</small></h3>
+                                        
+
                                     </div>
                                     <div class="inner-section-segment-spacing">
                                     <div class="col-md-12 d-lg-flex col-12 gap-4">
@@ -1878,7 +1788,7 @@
                                 <div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel"
                                     aria-labelledby="invoices-tab" tabindex="0">
                                     <h3>
-                                        Invoices
+                                        Invoices <small>(coming soon)</small>
                                     </h3>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         <div class="col-md-3 col-12 mb-4">
@@ -2781,7 +2691,7 @@
                                 <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel"
                                     aria-labelledby="notes-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notes</h3>
+                                        <h3>Notes <small>(coming soon)</small></h3>
                                         <div class="col-md-6 col-12 mb-4">
                                             <label class="form-label" for="notes-column">
                                                 Add Notes
@@ -2953,7 +2863,7 @@
                                 <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel"
                                     aria-labelledby="notifications-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notification</h3>
+                                        <h3>Notification <small>(coming soon)</small></h3>
                                         <p class="mt-3">
                                             Here you can control how you are notified about Profile activity.
                                         </p>
@@ -3148,7 +3058,7 @@
                                 <div class="tab-pane fade" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab"
                                     tabindex="0">
                                     <div class="row mb-4">
-                                        <h3>Logs</h3>
+                                        <h3>Logs <small>(coming soon)</small></h3>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
@@ -3303,7 +3213,9 @@
                                 <div class="tab-pane fade" id="payments-tab-pane" role="tabpanel"
                                     aria-labelledby="payments-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Payments</h3>
+                                        <h3>Payments
+                                        <small>(coming soon)</small>
+                                        </h3>
                                     </div>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         {{-- Search --}}
@@ -4437,7 +4349,7 @@
                                     aria-labelledby="reports-tab" tabindex="0">
                                     <div class="row mb-3">
 										<h3>
-											Reports
+											Reports <small>(coming soon)</small>
 										</h3>
 									</div>
 									<div class="row mb-4">
