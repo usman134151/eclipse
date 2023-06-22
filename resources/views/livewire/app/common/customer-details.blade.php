@@ -235,7 +235,11 @@
                                                             <div
                                                                 class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
                                                                 <label class="text-white form-label-sm ps-2" for="">
-                                                                    Sydney, Australia
+                                                                    @if($user['userdetail']['physical_address']!=null)
+                                                                    {{$user['userdetail']['physical_address']['city'].', '.$user['userdetail']['physical_address']['country']}}
+                                                                    @else
+                                                                     N/A
+                                                                    @endif
                                                                 </label>
                                                             </div>
                                                         </div>
