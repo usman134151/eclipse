@@ -10,6 +10,6 @@ class RoleUserDetail extends Model
     use HasFactory;
     protected $table = 'role_user_details';
     protected $fillable = [
-        'role_id', 'user_id', 'associated_user','is_default'
+        'role_id', 'user_id', 'associated_user','is_default','permission_type',
     ];
 }

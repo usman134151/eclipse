@@ -32,14 +32,14 @@
                   <th class="align-middle" scope="col">Admin</th>
                   <th class="align-middle" scope="col">Phone Number</th>
                   <th class="align-middle" width="18%">Status</th>
-                  <th class="align-middle">Actions</th>
+                  {{-- <th class="align-middle">Actions</th> --}}
                 </tr>
               </thead>
               <tbody>
-                @foreach($adminStaff as $admin)
+                @foreach($adminStaff as $index=> $admin)
                 <tr role="row" class="odd">
                   <td class="text-center align-middle">
-                    <input class="form-check-input" type="checkbox" value="{{$admin->id}}" wire:model.defer="selectedStaff" aria-label="Select Team">
+                    <input class="form-check-input" type="checkbox" value="{{$admin->id}}" wire:key='check-{{$admin->id}}' wire:model.defer="selectedStaff.{{$index}}.id" aria-label="Select Team">
                   </td>
                   <td class="align-middle">
                     <div class="d-flex gap-2 align-items-center">
@@ -55,18 +55,18 @@
                   <td class="align-middle">{{$admin->phone}}</td>
                   <td class="align-middle text-center">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="adminStaff1" checked>
+                      <input class="form-check-input" type="checkbox" role="switch" id="adminStaff1" wire:key='type-{{$loop->index}}' wire:model.defer="selectedStaff.{{$index}}.permission_type">
                       <label class="form-check-label" for="adminStaff1">Visible</label>
                       <label class="form-check-label" for="adminStaff1">Manage</label>
                     </div>
                   </td>
-                  <td class="align-middle text-center">
+                  {{-- <td class="align-middle text-center">
                     <a href="" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-auto">
                       <svg width="20" height="20" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.4408 4.2H12.6448C12.6448 3.64305 12.4234 3.1089 12.0292 2.71508C11.635 2.32125 11.1003 2.1 10.5428 2.1C9.98533 2.1 9.45067 2.32125 9.05647 2.71508C8.66226 3.1089 8.4408 3.64305 8.4408 4.2ZM6.33878 4.2C6.33878 3.08609 6.7817 2.0178 7.57011 1.23015C8.35852 0.442499 9.42784 0 10.5428 0C11.6578 0 12.7271 0.442499 13.5155 1.23015C14.3039 2.0178 14.7469 3.08609 14.7469 4.2H20.0019C20.2807 4.2 20.548 4.31062 20.7451 4.50754C20.9422 4.70445 21.0529 4.97152 21.0529 5.25C21.0529 5.52848 20.9422 5.79555 20.7451 5.99246C20.548 6.18937 20.2807 6.3 20.0019 6.3H19.0749L18.1437 17.157C18.0542 18.2054 17.5741 19.182 16.7983 19.8937C16.0225 20.6053 15.0076 21.0001 13.9544 21H7.13124C6.07803 21.0001 5.06314 20.6053 4.28736 19.8937C3.51158 19.182 3.03143 18.2054 2.94191 17.157L2.01072 6.3H1.08373C0.80498 6.3 0.537651 6.18937 0.340549 5.99246C0.143446 5.79555 0.0327148 5.52848 0.0327148 5.25C0.0327148 4.97152 0.143446 4.70445 0.340549 4.50754C0.537651 4.31062 0.80498 4.2 1.08373 4.2H6.33878ZM13.6959 10.5C13.6959 10.2215 13.5851 9.95445 13.388 9.75754C13.1909 9.56062 12.9236 9.45 12.6448 9.45C12.3661 9.45 12.0988 9.56062 11.9017 9.75754C11.7046 9.95445 11.5938 10.2215 11.5938 10.5V14.7C11.5938 14.9785 11.7046 15.2455 11.9017 15.4425C12.0988 15.6394 12.3661 15.75 12.6448 15.75C12.9236 15.75 13.1909 15.6394 13.388 15.4425C13.5851 15.2455 13.6959 14.9785 13.6959 14.7V10.5ZM8.4408 9.45C8.71954 9.45 8.98687 9.56062 9.18398 9.75754C9.38108 9.95445 9.49181 10.2215 9.49181 10.5V14.7C9.49181 14.9785 9.38108 15.2455 9.18398 15.4425C8.98687 15.6394 8.71954 15.75 8.4408 15.75C8.16205 15.75 7.89472 15.6394 7.69762 15.4425C7.50052 15.2455 7.38979 14.9785 7.38979 14.7V10.5C7.38979 10.2215 7.50052 9.95445 7.69762 9.75754C7.89472 9.56062 8.16205 9.45 8.4408 9.45ZM5.03552 16.9785C5.0803 17.5029 5.32053 17.9913 5.70864 18.3472C6.09675 18.703 6.60445 18.9003 7.13124 18.9H13.9544C14.4808 18.8998 14.988 18.7023 15.3757 18.3465C15.7633 17.9907 16.0033 17.5025 16.048 16.9785L16.9645 6.3H4.12115L5.03763 16.9785H5.03552Z" fill="black"></path>
                       </svg>
                     </a>
-                  </td>
+                  </td> --}}
                 </tr>
                 @endforeach
                 {{-- <tr role="row" class="even">
