@@ -143,6 +143,8 @@
 @push('scripts')
 <script>
 	function updateVal(attrName,val){
+		if(attrName=='select-days')
+			Livewire.emit('updateDay', val);
 		if(attrName!='address.country')
 		Livewire.emit('updateVal', attrName, val);
 

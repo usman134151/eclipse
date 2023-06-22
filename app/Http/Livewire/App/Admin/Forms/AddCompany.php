@@ -142,6 +142,7 @@ class AddCompany extends Component
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		$this->step=2;
+		$this->dispatchBrowserEvent('refreshSelects');
 
 		//dd($this->company);
 		if($redirect){
@@ -230,6 +231,7 @@ class AddCompany extends Component
 		$this->step=$step;
 		$this->$tabName="active";
 		$this->switch($component);
+		$this->dispatchBrowserEvent('refreshSelects');
 		
 	}
 
@@ -244,4 +246,6 @@ class AddCompany extends Component
         $this->userAddresses= array_values($this->userAddresses);
 		
 	}
+
+
 }
