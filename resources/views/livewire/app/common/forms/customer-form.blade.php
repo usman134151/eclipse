@@ -575,7 +575,7 @@
                                                         Assigned Supervisor(s)
                                                     </button>
                                                     <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" value=""
+                                                        <input class="form-check-input" type="checkbox" wire:model.defer="same_sv"  wire:click="selectSameSupervisor"
                                                             id="AssignSame_User">
                                                         <label class="form-check-label" for="AssignSame_User" >
                                                             Assign Same User
@@ -656,7 +656,7 @@
                                                         Assigned Billing Manager
                                                     </button>
                                                     <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" value=""
+                                                        <input class="form-check-input" type="checkbox" wire:model.defer="same_bm"  wire:click="selectSameBManager"
                                                             id="Assign-Same-User">
                                                         <label class="form-check-label" for="Assign-Same-User">
                                                             Assign Same User
