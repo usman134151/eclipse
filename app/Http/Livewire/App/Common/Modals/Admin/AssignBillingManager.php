@@ -9,7 +9,7 @@ use Livewire\Component;
 class AssignBillingManager extends Component
 {
     public $showForm,$bManagers=[], $selectedBManagers = [], $isDefault = false, $user_id, $selectAll = false;
-    protected $listeners = ['showList' =>'resetForm', 'updateCompany' => 'setData','setValues'];
+    protected $listeners = ['showList' =>'resetForm', 'updateCompany' => 'setData','setValues', 'selectSelfManager'];
 
     public function setData($company_id)
     {
@@ -24,6 +24,20 @@ class AssignBillingManager extends Component
             ->select('users.id', 'users.name', 'phone')
             ->get();
     }
+
+    public function selectSelfManager($value)
+    {
+        if ($value) {
+            if(!in_array($this->user_id,$this->selectedBManagers))
+                $this->selectedBManagers[] = $this->user_id;
+        } else {
+            $key = array_search($this->user_id, $this->selectedBManagers);
+            if ($key>=0)
+                unset($this->selectedBManagers[$key]);
+        }
+        $this->updateData();
+    }
+
 
     public function render()
     {

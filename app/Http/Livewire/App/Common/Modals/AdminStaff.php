@@ -21,8 +21,8 @@ class AdminStaff extends Component
 
             })
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
-            ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
-            ->where('companies.id', '=', $company_id)
+            // ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+            // ->where('companies.id', '=', $company_id)
             ->select('users.id', 'users.name', 'phone','users.status')
             ->get();
     }
@@ -41,10 +41,14 @@ class AdminStaff extends Component
 
         $userService = new UserService;
         $data = $userService->getUserRolesDetails($this->user_id, 3, 1);
+        foreach($data as $index=>$val){
+            $this->selectedStaff[$index]['id']=$val['user_id'];
+            if($val['permission_type']=='manage')
+                $this->selectedStaff[$index]['permission_type'] = true;
+            else
+                $this->selectedStaff[$index]['permission_type'] = false;
 
-        $this->selectedStaff = $data->pluck('user_id')->toArray();
-        // if ($data->where('is_default', 1)->isNotEmpty())
-            // $this->isDefault = $data->where('is_default', true)->pluck('user_id')[0];
+        }
         $this->updateData();
     }
 

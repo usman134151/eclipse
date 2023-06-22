@@ -607,7 +607,7 @@
                                 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel"
                                     aria-labelledby="schedule-tab" tabindex="0">
                                     <div class="row mb-4">
-                                        <h3>Schedule</h3>
+                                        <h3>Schedule <small>(coming soon)</small></h3>
                                     </div>
 
                                     <div>
@@ -679,7 +679,7 @@
                                 {{-- Drive Tab - Start --}}
                                 <div class="tab-pane fade" id="drive-tab-pane" role="tabpanel"
                                     aria-labelledby="drive-tab" tabindex="0">
-                                    <h3>Drive</h3>
+                                    <h3>Drive <small>(coming soon)</small></h3>
                                     <p>
                                         Here you can manage company required documents. You will receive notifications
                                         when your credentials are approaching expiration or have expired.
@@ -777,7 +777,7 @@
                                 <div class="tab-pane fade" id="feedback-tab-pane" role="tabpanel"
                                     aria-labelledby="feedback-tab" tabindex="0">
                                     <div class="row mb-4">
-                                        <h3>Feedback</h3>
+                                        <h3>Feedback <small>(coming soon)</small></h3>
                                     </div>
                                     <div class="col-md-12 d-flex col-12  mb-4">
                                         {{-- Date Range --}}
@@ -1495,7 +1495,7 @@
                                 <div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel"
                                     aria-labelledby="invoices-tab" tabindex="0">
                                     <h3>
-                                        Company Invoices
+                                        Company Invoices <small>(coming soon)</small>
                                     </h3>
 
                                     <div class="d-flex justify-content-between">
@@ -2482,7 +2482,7 @@
                                 <div class="tab-pane fade" id="payments-tab-pane" role="tabpanel"
                                     aria-labelledby="payments-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Payments</h3>
+                                        <h3>Payments <small>(coming soon)</small></h3>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="row gap-4">
@@ -3887,7 +3887,7 @@
                                 <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel"
                                     aria-labelledby="notes-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notes</h3>
+                                        <h3>Notes <small>(coming soon)</small></h3>
                                         <div class="col-md-6 col-12 mb-4">
                                             <label class="form-label" for="notes-column">
                                                 Add Notes
@@ -4045,7 +4045,7 @@
                                 <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel"
                                     aria-labelledby="notifications-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notification</h3>
+                                        <h3>Notification <small>(coming soon)</small></h3>
                                         <p class="mt-3">
                                             Here you can control how you are notified about Profile activity.
                                         </p>
@@ -4838,7 +4838,7 @@
                                 <div class="tab-pane fade" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab"
                                     tabindex="0">
                                     <div class="row mb-4">
-                                        <h3>Logs</h3>
+                                        <h3>Logs <small>(coming soon)</small></h3>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">

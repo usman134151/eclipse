@@ -371,7 +371,7 @@
                                                 <div class="col-lg-6  pe-lg-5 col-12">
                                                     <div class="mb-4">
                                                         <label class="form-label" for="select-default-invoice-template">
-                                                            Select Default Invoice Template
+                                                            Select Default Invoice Template <small>(coming soon)</small>
                                                         </label>
                                                         <select class="select2 form-select"
                                                             id="select-default-invoice-template">
@@ -386,12 +386,12 @@
                                                 <div class="col-lg-6 ps-lg-5 col-12">
                                                     <div class="mb-4">
                                                         <label class="form-label" for="select-default-quote-template">
-                                                            Select Default Quote Template
+                                                            Select Default Quote Template <small>(coming soon)</small>
                                                         </label>
                                                         <select class="select2 form-select"
                                                             id="select-default-quote-template">
                                                             <option>
-                                                                Select Default Quote Template
+                                                                Select Default Quote Template <small>(coming soon)</small>
                                                             </option>
                                                         </select>
                                                     </div>
@@ -402,7 +402,7 @@
                                                     <div class="row between-section-segment-spacing">
                                                         <div class="col-lg-6 pe-lg-5 col-12">
                                                             <label class="form-label" for="select-default-timesheet">
-                                                                Select Default Timesheet
+                                                                Select Default Timesheet <small>(coming soon)</small>
                                                             </label>
                                                             <select class="select2 form-select"
                                                                 id="select-default-timesheet">
@@ -414,7 +414,7 @@
                                                         <div class="col-lg-6 ps-lg-5 col-12">
                                                             <div class="mx-2">
                                                                 <label class="form-label" for="tags-column">
-                                                                    Tags
+                                                                    Tags <small>(coming soon)</small>
                                                                 </label>
                                                                 <select data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">

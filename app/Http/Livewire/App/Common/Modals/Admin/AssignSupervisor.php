@@ -9,7 +9,7 @@ use Livewire\Component;
 class AssignSupervisor extends Component
 {
     public $showForm,$allUsers=[],$selectedSupervisors=[],$isDefault=false,$user_id,$selectAll=false;
-    protected $listeners = ['showList' => 'resetForm', 'updateCompany'=>'setData','setValues'];
+    protected $listeners = ['showList' => 'resetForm', 'updateCompany'=>'setData','setValues', 'selectSelfSupervisor'];
 
     public function render()
     {
@@ -39,6 +39,18 @@ class AssignSupervisor extends Component
             $this->selectedSupervisors = $this->allUsers->pluck('id')->toArray();
         else
         $this->selectedSupervisors=[];
+    }
+
+    public function selectSelfSupervisor($value){
+        if($value){
+            if (!in_array($this->user_id, $this->selectedSupervisors))
+            $this->selectedSupervisors[]=$this->user_id;
+        }else{
+            $key =array_search($this->user_id,$this->selectedSupervisors);
+            if ($key >= 0)
+                unset($this->selectedSupervisors[$key]);
+        }
+            $this->updateData();
     }
 
     public function setValues($user_id)

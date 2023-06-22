@@ -18,7 +18,7 @@ class CustomerForm extends Component
 	'user_introduction'=>null, 'title' => null, 'user_position' => null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
-	public $rolesArr=[];
+	public $rolesArr=[],$same_sv,$same_bm;
 	public $component = 'customer-info';
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'user.company_name','','user.company_name',1]],
@@ -32,7 +32,7 @@ class CustomerForm extends Component
 	
     public $step = 1,$email_invitation,$limit;
     protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
-		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedSupervising', 'updateSelectedUsersToManager',
+		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers','updateSelectedSupervising', 'updateSelectedUsersToManager',
 		'updateSelectedStaff','updateAddress' => 'addAddress'];
 	public $serviceConsumer=false;
 
@@ -82,6 +82,7 @@ class CustomerForm extends Component
 
     public function permissionConfiguration($redirect=1){
 
+		// dd($this->selectedAdminStaff);
 		$userService = new UserService;
 		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
 		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
@@ -289,6 +290,14 @@ class CustomerForm extends Component
 		
 	}
 
+	public function selectSameSupervisor(){
+			$this->emit('selectSelfSupervisor',$this->same_sv);
+	}
+	public function selectSameBManager()
+	{
+		$this->emit('selectSelfManager', $this->same_bm);
+	}
+
 	public function stepIncremented()
 	{
 	
@@ -323,6 +332,10 @@ class CustomerForm extends Component
 	{
 		$this->selectedSupervisors = $selectedSupervisors;
 		$this->defaultSupervisor = $default;
+		if (in_array($this->user->id, $this->selectedSupervisors)) //setting checkbox
+			$this->same_sv = true;
+		else
+			$this->same_sv = false;
 	}
 	public function updateSelectedSupervising($selectedSupervising)
 	{
@@ -340,6 +353,11 @@ class CustomerForm extends Component
 	{
 		$this->selectedBManagers = $selectedBManagers;
 		$this->defaultBManager = $default;
+        if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
+			$this->same_bm = true; 
+		else
+			$this->same_bm = false;
+
 	}
 
 	public function updateSelectedUsersToManager($selectedUsersToManage)
