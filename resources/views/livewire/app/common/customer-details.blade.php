@@ -242,7 +242,7 @@
                                                     </div>
                                                     <div class="col-md-7 ms-4 mt-4">
                                                         <h3 class="font-family-tertiary fw-medium">
-                                                            {{$user['name']}} ({{$user['userdetail']['title']}}
+                                                            {{$user['name']}} ({{$user['userdetail']['title']}})
                                                         </h3>
                                                         <div class="row mb-4">
                                                             <div class="col-md-12">
@@ -267,11 +267,15 @@
                                                                         <span class="fw-medium">
                                                                             Department(s):
                                                                         </span>
-                                                                        @foreach($user['userdetail']['departments'] as $dept)
-                                                                        <div class="text-nowrap">
+                                                                        <div class="text-wrap" style="width=300px">
+
+                                                                        @foreach($user['userdetail']['departments'] as $key=>$dept)
                                                                             {{$dept}}
-                                                                        </div>
+                                                                             @if($key != count($user['userdetail']['departments'])-1) , @endif
+
                                                                         @endforeach
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-2">
@@ -332,8 +336,11 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    {{-- {{ $address['address_line1'].' '.$address['city'].' '.$address['country'].'('.$address['address_name'].')' }} --}}
-
+                                                                    @if($user['userdetail']['physical_address']!=null)
+                                                                    {{ $user['userdetail']['physical_address']['address_line1'].' '.$user['userdetail']['physical_address']['city'].' '.$user['userdetail']['physical_address']['country'].'('.$user['userdetail']['physical_address']['address_name'].')' }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -345,8 +352,12 @@
                                                             </div>
                                                             <div class="col-md-6 align-self-center">
                                                                 <div class="font-family-secondary">
-                                                                    Mrs Smith 98 Shirley Street PIMPAMA QLD 4209
-                                                                    AUSTRALIA
+                                                                    @if($user['userdetail']['billing_address']!=null)
+
+                                                                    {{ $user['userdetail']['billing_address']['address_line1'].' '.$user['userdetail']['billing_address']['city'].' '.$user['userdetail']['billing_address']['country'].'('.$user['userdetail']['billing_address']['address_name'].')' }}
+                                                                    @else
+                                                                        N/A
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -866,6 +877,12 @@
                                                                                     </td>
                                                                                 </tr>
                                                                             @endforeach
+                                                                        @else
+                                                                            <tr  role="row" class="odd">
+                                                                                <td class="align-middle" colspan=3>
+                                                                                    None Selected
+                                                                                </td>
+                                                                            </tr>
                                                                         @endif
                                                                     </tbody>
                                                                 </table>
@@ -943,7 +960,8 @@
                                 <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel"
                                     aria-labelledby="schedule-tab" tabindex="0">
                                     <div class="row mb-2">
-                                        <h3>Schedule</h3>
+                                        <h3>Schedule <small>(coming soon)</small></h3>
+                                        
                                     </div>
                                     <div class="inner-section-segment-spacing">
                                 </div>
@@ -956,7 +974,9 @@
                                 <div class="tab-pane fade" id="customer-feedback-tab-pane" role="tabpanel"
                                     aria-labelledby="customer-feedback-tab" tabindex="0">
                                     <div class="row mb-2">
-                                        <h3>Feedback</h3>
+                                        <h3>Feedback
+                                        <small>(coming soon)</small>
+                                        </h3>
                                     </div>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         {{-- Search --}}
@@ -1638,7 +1658,9 @@
                                 <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel"
                                     aria-labelledby="my-drive-tab" tabindex="0">
                                     <div class="row mb-3">
-                                        <h3>My Drive</h3>
+                                        <h3>My Drive <small>(coming soon)</small></h3>
+                                        
+
                                     </div>
                                     <div class="inner-section-segment-spacing">
                                     <div class="col-md-12 d-lg-flex col-12 gap-4">
@@ -1762,7 +1784,7 @@
                                 <div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel"
                                     aria-labelledby="invoices-tab" tabindex="0">
                                     <h3>
-                                        Invoices
+                                        Invoices <small>(coming soon)</small>
                                     </h3>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         <div class="col-md-3 col-12 mb-4">
@@ -2665,7 +2687,7 @@
                                 <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel"
                                     aria-labelledby="notes-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notes</h3>
+                                        <h3>Notes <small>(coming soon)</small></h3>
                                         <div class="col-md-6 col-12 mb-4">
                                             <label class="form-label" for="notes-column">
                                                 Add Notes
@@ -2837,7 +2859,7 @@
                                 <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel"
                                     aria-labelledby="notifications-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Notification</h3>
+                                        <h3>Notification <small>(coming soon)</small></h3>
                                         <p class="mt-3">
                                             Here you can control how you are notified about Profile activity.
                                         </p>
@@ -3032,7 +3054,7 @@
                                 <div class="tab-pane fade" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab"
                                     tabindex="0">
                                     <div class="row mb-4">
-                                        <h3>Logs</h3>
+                                        <h3>Logs <small>(coming soon)</small></h3>
                                     </div>
                                     <div class="d-flex justify-content-between mb-2">
                                         <div class="d-inline-flex align-items-center gap-4">
@@ -3187,7 +3209,9 @@
                                 <div class="tab-pane fade" id="payments-tab-pane" role="tabpanel"
                                     aria-labelledby="payments-tab" tabindex="0">
                                     <div class="row">
-                                        <h3>Payments</h3>
+                                        <h3>Payments
+                                        <small>(coming soon)</small>
+                                        </h3>
                                     </div>
                                     <div class="col-md-12 d-flex col-12 gap-4 mb-4">
                                         {{-- Search --}}
@@ -4321,7 +4345,7 @@
                                     aria-labelledby="reports-tab" tabindex="0">
                                     <div class="row mb-3">
 										<h3>
-											Reports
+											Reports <small>(coming soon)</small>
 										</h3>
 									</div>
 									<div class="row mb-4">
