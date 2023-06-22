@@ -177,6 +177,7 @@ class BusinessHoursSetup extends Component
     }
 
     public function saveSchedule(){
+       
         $this->schedule->save();
     }
 

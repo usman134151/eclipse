@@ -147,13 +147,13 @@
                             <h3 class="mb-lg-0">Business Schedule</h3>
                             <div class="time d-flex align-items-center gap-2">
                               <div class="form-check">
-                                  <input class="form-check-input bg-success" type="radio" name="radio" id="Business Hours" value="" checked>
+                                  <input class="form-check-input bg-success" type="radio" name="radio" id="Business Hours" value="" disabled>
                                   <label class="form-check-label" for="Business Hours">
                                       Business Hours
                                   </label>
                                 </div>
                                 <div class="form-check ">
-                                  <input class="form-check-input bg-warning" type="radio" name="radio" id="After Business Hours" value="option1" checked>
+                                  <input class="form-check-input bg-warning" type="radio" name="radio" id="After Business Hours" value="option1" disabled>
                                   <label class="form-check-label" for="After Business Hours">
                                       After Business Hours
                                   </label>
