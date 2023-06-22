@@ -6,6 +6,7 @@
             </div>
           </div>
     </div>
+
 <div x-data="{associateservice: false}">
     
     <div class="content-header row">
