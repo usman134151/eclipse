@@ -26,7 +26,7 @@ class AddCompany extends Component
 	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented','updateAddress' => 'addAddress','addPhone'];
 	public $step=1;
 	public $company,$userAddresses=[];
-	public $driveActive,$serviceActive,$scheduleActive;
+	public $driveActive,$serviceActive,$scheduleActive,$companyActive;
 	public $schedule;
 	
 	
@@ -224,7 +224,10 @@ class AddCompany extends Component
 	}
 
 	public function setStep($step,$tabName,$component){
-		$this->step=3;
+		$tabs=['serviceActive','driveActive','scheduleActive','companyActive'];
+		foreach($tabs as $key)
+		  $this->$key='';
+		$this->step=$step;
 		$this->$tabName="active";
 		$this->switch($component);
 		

@@ -50,9 +50,9 @@
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                         
                         <li class="nav-item" role="presentation">
-                            <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'company-info' }"
+                            <a href="javascript:void(0)" class="nav-link {{$companyActive}}" :class="{ 'active': tab === 'company-info' }"
                                 @click.prevent="tab = 'company-info'" id="company-info-tab" role="tab"
-                                aria-controls="company-info" aria-selected="true">
+                                aria-controls="company-info" aria-selected="true"  wire:click.prevent="setStep(1,'companyActive','company-info');">
                                 <span class="number">1</span>
                                 Company Info
                             </a>
@@ -61,8 +61,8 @@
                             @if($company->name)
                             <a href="javascript:void(0)" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
                                 @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
-                                wire:click.prevent="save(0)"
-                                aria-controls="schedule" aria-selected="true">
+                                wire:click.prevent="setStep(2,'scheduleActive','schedule-tab');"
+                                aria-controls="schedule" aria-selected="true" >
                             
                                 <span class="number">2</span>
                                 Company Schedule
@@ -95,7 +95,7 @@
                             @if($company->name)
                             <a href="#" class="nav-link {{$driveActive}}"
                                 @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
-                                aria-controls="drive-documents" aria-selected="false" wire:click.prevent="setStep(4,'driveActive','drive-documents')">
+                                aria-controls="drive-documents" aria-selected="false" wire:click.prevent="setStep(4,'driveActive','drive-documents');" >
                                 <span class="number">4</span>
                                 Drive Documents
                             </a>
