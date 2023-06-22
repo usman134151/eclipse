@@ -1335,7 +1335,7 @@
                                 <div class="col-lg-6 ps-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Timesheet Template (Comming soon)
+                                            Default Timesheet Template (Coming Soon)
                                         </h3>
                                         <div class="mb-2">
                                             <select class="form-select" aria-label="Default Timesheet Template" disabled="disabled">
@@ -1361,7 +1361,7 @@
                                 <div class="col-lg-6 pe-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Invoice Line Item Template (Comming soon)
+                                            Default Invoice Line Item Template (Coming Soon)
                                         </h3>
                                         <div class="mb-2">
                                             <select class="form-select" aria-label="Select Default Invoice Line Item Template" disabled="disabled">
@@ -1387,7 +1387,7 @@
                                 <div class="col-lg-6 ps-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Quotes Line Item Template (Comming soon)
+                                            Default Quotes Line Item Template (Coming Soon)
                                         </h3>
                                         <div class="mb-2">
                                             <select class="form-select" aria-label="Select Default Quotes Line Item Template" disabled="disabled">
@@ -1413,7 +1413,7 @@
                                 <div class="col-lg-6 pe-lg-5">
                                     <div class="inner-section-segment-spacing border p-3">
                                         <h3>
-                                            Default Remittance Line Item Template (Comming soon)
+                                            Default Remittance Line Item Template (Coming Soon)
                                         </h3>
                                         <div class="mb-2">
                                             <select class="form-select" aria-label="Select Default Remittance Line Item Template" disabled="disabled">

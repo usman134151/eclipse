@@ -441,7 +441,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="row">
                                                             <div class="col-lg-6 pe-lg-5">
-                                                                <label class="form-label" for="tags">Tags (comming soon)</label>
+                                                                <label class="form-label" for="tags">Tags (Coming Soon)</label>
                                                                 <select data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
                                                                     <option value=""></option>
@@ -889,7 +889,7 @@
                                             @csrf
                                             <div class="card-body">
                                                 <div class="col-lg-8">
-                                                    <h2>Service Catalog (comming soon)</h2>
+                                                    <h2>Service Catalog (Coming Soon)</h2>
                                                 </div>
 
                                                 <div class="col-md-12 mb-md-2">
@@ -1429,7 +1429,7 @@
                                                 @csrf
                                                 {{-- updated end by shanila --}}
                                                 <div class="col-md-8 mb-md-2">
-                                                    <h2>Drive Documents (comming soon)</h2>
+                                                    <h2>Drive Documents (Coming Soon)</h2>
                                                 </div>
                                                 <div class="col-md-12 mb-md-2">
                                                     <div class="row">

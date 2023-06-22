@@ -1,4 +1,11 @@
 <div x-data="{customers: false}">
+<div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
     <div class="content-header row">
         <div class="content-header-left col-12 mb-5">
             <div class="row breadcrumbs-top">
@@ -51,28 +58,55 @@
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a href="javascript:void(0)" class="nav-link" :class="{ 'active': tab === 'schedule' }"
+                            @if($company->name)
+                            <a href="javascript:void(0)" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
                                 @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
+                                wire:click.prevent="save(0)"
                                 aria-controls="schedule" aria-selected="true">
+                            
                                 <span class="number">2</span>
                                 Company Schedule
                             </a>
+                            @else
+                            <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                <span class="number">2</span>
+                                Company Schedule
+                            </div>                            
+                            @endif
                         </li>
                         <li class="nav-item" role="presentation">
+                        @if($company->name)
                             <a href="#" class="nav-link {{$serviceActive}}"
                                 @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
-                                aria-controls="service-catalog" aria-selected="false">
-                                <span class="number">2</span>
+                                aria-controls="service-catalog" aria-selected="false" wire:click.prevent="setStep(3,'serviceActive','service-catalog')">
+                                <span class="number">3</span>
                                 Service Catalog
                             </a>
+                        @else    
+                            <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                            <span class="number">3</span>
+                            Service Catalog
+                            </div>                            
+                        @endif
                         </li>
                         <li class="nav-item" role="presentation">
+                            @if($company->name)
                             <a href="#" class="nav-link {{$driveActive}}"
                                 @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
-                                aria-controls="drive-documents" aria-selected="false">
-                                <span class="number">3</span>
+                                aria-controls="drive-documents" aria-selected="false" wire:click.prevent="setStep(4,'driveActive','drive-documents')">
+                                <span class="number">4</span>
                                 Drive Documents
                             </a>
+                            @else
+                            <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                            <span class="number">4</span>
+                            Drive Documents
+                            </div>                            
+                        @endif
+                          
                         </li>
                     </ul>
 
@@ -163,49 +197,21 @@
                                             </div>
                                             <div class="row">
                                                 {{-- Department Website --}}
-                                                <div class="row mb-4">
+                                               
                                                     <div class="col-lg-6 pe-lg-5 col-12">
                                                         <label class="form-label" for="company-website">
                                                             Company Website
                                                         </label>
                                                         <input type="text" id="company-website" class="form-control"
                                                             name="company-website" placeholder="Enter Website URL"
-                                                            required aria-required="false" wire:model="company.company_website" />
+                                                            required aria-required="false" wire:model.defer="company.company_website" />
                                                             @error('company.company_website')
 												            <span class="d-inline-block invalid-feedback mt-2">
 													        {{ $message }}
 												            </span>
 												            @enderror
                                                     </div>
-                                                </div>
-
-                                                {{-- Department Business Hours --}}
-                                                <div class="col-lg-6 pe-lg-5 col-12">
-                                                    <div class="mb-4">
-                                                        <label class="form-label" for="department-business-hours">Manage
-                                                            Company Business Hours</label>
-                                                        <div class="mb-1">
-                                                            <button type="button"
-                                                                class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#companybusinesshoursModel" 
-                                                                wire:click="updateCompany">
-                                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                                <svg aria-label=" Select Department" width="25"
-                                                                    height="18" viewBox="0 0 25 18">
-                                                                    <use
-                                                                        xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                                    </use>
-                                                                </svg>
-                                                                {{-- End of update by Shanila --}}
-                                                                Add Schedule
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {{-- Preferred Language --}}
-                                                <div class="col-lg-6 ps-lg-5 col-12">
+                                                    <div class="col-lg-6 ps-lg-5 col-12">
                                                     <div class="mb-4">
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
@@ -213,6 +219,12 @@
                                                         {!! $setupValues['languages']['rendered'] !!}
                                                     </div>
                                                 </div>
+                                               
+
+
+
+                                                {{-- Preferred Language --}}
+
                                                 {{-- Service Start Date --}}
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                                     <label class="form-label" for="service-start-date-column">
@@ -541,32 +553,70 @@
                         {{-- BEGIN: Service Catalog --}}
                         @elseif($step==2)
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
-                            id="schedule" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
+                            id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
                             x-show="tab === 'schedule'">
                             <section id="multiple-column-form">
-                             @livewire('app.common.setup.business-hours-setup')
-
+                              @livewire('app.common.setup.business-hours-setup', ['model_id' => $company->id, 'model_type' => '2'])
+                              <div
+                                                    class="col-12 form-actions">
+                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="showList">
+                                                        Back
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                        wire:click.prevent="saveSchedule(0)"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        Next
+                                                    </button>
+                                </div>
                             </section>
                         </div>
                         {{-- BEGIN: Service Catalog --}}
                         @elseif($step==3)
+                       
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
                             <section id="multiple-column-form">
-                             @livewire('app.admin.customer.service-catelog')
-
+                             @livewire('app.admin.customer.service-catelog',['showButtons'=>false])
+                             <div class="col-12 form-actions">
+                             <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="setStep(2,'scheduleActive','schedule')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        Back
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="serviceCatelog" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                        wire:click.prevent="serviceCatelog(0)"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                        Next
+                                                    </button>
+                                </div>
                             </section>
                         </div>
-                        @include('panels.common.customers')
+                     
                         {{-- End: Service Catalog --}}
                         @else
+                        
                         {{-- BEGIN: Drive Documents Pane --}}
-                        <div class="tab-pane fade active show"
+                        <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }"
                             @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
                             aria-labelledby="drive-documents-tab" tabindex="0">
                             <section id="multiple-column-form">
-                                @livewire('app.admin.customer.drive')
+                                @livewire('app.admin.customer.drive',['showButtons'=>false])
+                                <div class="col-12 form-actions">
+                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="setStep(3,'serviceActive','service-catalog')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        Back
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+
                             </section>
                         </div>
                         @endif
