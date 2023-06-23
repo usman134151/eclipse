@@ -18,7 +18,7 @@ class AddCompany extends Component
 {
 	public $component = 'company-info';
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
-	public $deletedNumbers=[],$companyUsers=[],$admins=[];
+	public $deletedNumbers=[],$companyUsers=[],$admins=[], $providers=[],$fv_providers=[], $unfv_providers=[];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]],
@@ -80,11 +80,17 @@ class AddCompany extends Component
 				->where('companies.id', '=', $this->company->id)
 				->select('users.id', 'users.name')
 				->get()->pluck('id')->toArray();
-				// dd($this->admins);
+			
 		}
 
+		if ($this->company->get('favored_providers') != null)
+		$this->fv_providers = explode(', ', $this->company->favored_providers);
+		if ($this->company->get('unfavored_providers') != null)
+		$this->unfv_providers = explode(', ', $this->company->unfavored_providers);
 
 
+
+		$this->dispatchBrowserEvent('refreshSelects');
 
 		
     }
@@ -94,21 +100,30 @@ class AddCompany extends Component
 		$this->showHours=false;
 		$this->showAddress=false;
 		$this->companyUsers =[];
+		$this->providers = User::query()
+			->where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 2);
+			})
+			->select('id', 'name')
+			->get()->toArray();
 		
 
 
 	}
 	public function updateVal($attrName, $val)
 	{  	
-		   if($attrName=="admins"){
+		if($attrName=="admins"){
 			$this->admins = $val;
-			
-		   }elseif ($attrName == "company_timezone") {
+		}elseif ($attrName == "company_timezone") {
 			$this->company['company_timezone'] = $val;
-		   }
-		   else{
+		}elseif ($attrName == "favored_providers") {
+			$this->fv_providers = $val;
+		} elseif ($attrName == "unfavored_providers") {
+			$this->unfv_providers = $val;
+		}else{
 			$this->company[$attrName.'_id'] = $val;
-		   }
+		}
 	}
 	public function updateAddressType($type){
 		$this->emit('updateAddressType',$type);
@@ -160,6 +175,9 @@ class AddCompany extends Component
 		$this->validate();
 		$this->company->added_by = Auth::id();
 		$companyService = new CompanyService;
+		$this->company->unfavored_providers = implode(', ', $this->unfv_providers);
+		$this->company->favored_providers = implode(', ', $this->fv_providers);
+	
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		if(count($this->admins))
 			foreach($this->admins as $admin_id){

@@ -61,7 +61,7 @@
                             @if($company->name)
                             <a href="javascript:void(0)" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
                                 @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
-                                wire:click.prevent="setStep(2,'scheduleActive','schedule-tab');"
+                                wire:click.prevent="save(0)"
                                 aria-controls="schedule" aria-selected="true" >
                             
                                 <span class="number">2</span>
@@ -308,7 +308,7 @@
                                                             Associated Tags
                                                             <small>(coming soon)</small>
                                                         </label>
-                                                        <input type="text" id="associated-tags" class="form-control"
+                                                        <input  disabled type="text" disabled id="associated-tags" class="form-control"
                                                             name="associated-tags"
                                                             placeholder="Enter Associated Tags" />
                                                     </div>
@@ -320,28 +320,13 @@
                                                         <label class="form-label" for="preferred-providers">
                                                             Preferred Providers
                                                         </label>
-                                                        <select class="select2 form-select" id="preferred-providers">
-                                                            <option>
-                                                                Select Preferred Providers
-                                                            </option>
-                                                            <option>
-                                                                Wade Dave
-                                                            </option>
-                                                            <option>
-                                                                Dori Griffiths
-                                                            </option>
-                                                            <option>
-                                                                Gilbert Dan
-                                                            </option>
-                                                            <option>
-                                                                Ramon Miles
-                                                            </option>
-                                                            <option>
-                                                                Alexis Griffiths
-                                                            </option>
-                                                            <option>
-                                                                Tessa Leo
-                                                            </option>
+                                                        <select data-placeholder="" multiple
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="favored_providers" 
+                                                            aria-label="Select Preferred Providers" wire:model.defer="fv_providers">
+                                                            <option value="">Select Preferred Providers</option>
+                                                                @foreach($providers as $p)
+                                                                    <option value='{{$p['id']}}' >{{$p['name']}}</option>
+                                                                @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -352,28 +337,13 @@
                                                         <label class="form-label" for="disfavored-providers">
                                                             Disfavored Providers
                                                         </label>
-                                                        <select class="select2 form-select" id="disfavored-providers">
-                                                            <option>
-                                                                Select Disfavored Providers
-                                                            </option>
-                                                            <option>
-                                                                Wade Dave
-                                                            </option>
-                                                            <option>
-                                                                Dori Griffiths
-                                                            </option>
-                                                            <option>
-                                                                Gilbert Dan
-                                                            </option>
-                                                            <option>
-                                                                Ramon Miles
-                                                            </option>
-                                                            <option>
-                                                                Alexis Griffiths
-                                                            </option>
-                                                            <option>
-                                                                Tessa Leo
-                                                            </option>
+                                                         <select data-placeholder="" multiple
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="unfavored_providers" 
+                                                            aria-label="Select Disfavored Providers" wire:model.defer="unfv_providers">
+                                                            <option value=""></option>
+                                                                @foreach($providers as $p)
+                                                                    <option value='{{$p['id']}}' >{{$p['name']}}</option>
+                                                                @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -384,7 +354,7 @@
                                                         <label class="form-label" for="select-default-invoice-template">
                                                             Select Default Invoice Template <small>(coming soon)</small>
                                                         </label>
-                                                        <select class="select2 form-select"
+                                                        <select disabled class="select2 form-select"
                                                             id="select-default-invoice-template">
                                                             <option>
                                                                 Select Default Invoice Template
@@ -399,7 +369,7 @@
                                                         <label class="form-label" for="select-default-quote-template">
                                                             Select Default Quote Template <small>(coming soon)</small>
                                                         </label>
-                                                        <select class="select2 form-select"
+                                                        <select disabled class="select2 form-select"
                                                             id="select-default-quote-template">
                                                             <option>
                                                                 Select Default Quote Template <small>(coming soon)</small>
@@ -415,7 +385,7 @@
                                                             <label class="form-label" for="select-default-timesheet">
                                                                 Select Default Timesheet <small>(coming soon)</small>
                                                             </label>
-                                                            <select class="select2 form-select"
+                                                            <select  disabled class="select2 form-select"
                                                                 id="select-default-timesheet">
                                                                 <option>
                                                                     Select Default Timesheet
@@ -427,7 +397,7 @@
                                                                 <label class="form-label" for="tags-column">
                                                                     Tags <small>(coming soon)</small>
                                                                 </label>
-                                                                <select data-placeholder="" multiple
+                                                                <select disabled data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
                                                                     <option value=""></option>
                                                                     <option selected>Admin staff</option>

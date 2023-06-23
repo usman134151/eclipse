@@ -272,9 +272,9 @@ class CustomerForm extends Component
 				->get();
 			
 			if($this->user->userdetail->get('favored_users')!=null)
-				$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+				$this->favored_providers = explode(', ', $this->user->userdetail['favored_users']);
 			if ($this->user->userdetail->get('unfavored_users')!=null)
-				$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
+				$this->unfavored_providers = explode(', ', $this->user->userdetail['unfavored_users']);
 			if ($this->user->userdetail->get('user_configuration') != null)
 				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
 
@@ -284,7 +284,6 @@ class CustomerForm extends Component
 
 			
 
-			$this->dispatchBrowserEvent('refreshSelects');
 
 		}
 		

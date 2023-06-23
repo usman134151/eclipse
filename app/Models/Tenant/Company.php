@@ -15,7 +15,7 @@ class Company extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'status', 'added_by'
+		'name', 'status', 'added_by','favored_providers', 'unfavored_providers'
 	];
 
 	public function user()
