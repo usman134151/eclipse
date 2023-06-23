@@ -34,6 +34,10 @@ class AssignSupervisor extends Component
         // $this->isDefault=false;
     }
 
+    public function mount(){
+        // dd('in model');
+        // $this->setData()
+    }
     public function updateSelectAll(){
         if($this->selectAll==true)
             $this->selectedSupervisors = $this->allUsers->pluck('id')->toArray();

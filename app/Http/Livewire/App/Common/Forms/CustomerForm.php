@@ -46,7 +46,8 @@ class CustomerForm extends Component
 
 
 	public function render()
-	{   //dd($this->user->company_name);
+	{   
+		//dd($this->user->company_name);
 		return view('livewire.app.common.forms.customer-form');
 	}
     public function mount(User $user){
@@ -67,16 +68,23 @@ class CustomerForm extends Component
 		if (request()->customerID != null) {
 
 			$customer_id = request()->customerID;
-			$user = User::where('id', $customer_id)->first();
+			$user = User::with(['userdetail', 'industries', 'company', 'addresses'])->find($customer_id);
+			$this->emit('updateCompany', $this->user->company_name);
+
 			$this->edit($user);
+			$this->emit('editRecord', $user);
+
 			// $this->switch(request()->step);/
+
 			$step = request()->step;
-			if($step == 'permission-configurations')
-				$this->save(); //call prev steps save methods
+			if($step == "permission-configurations")
+				$this->save(0); //call prev steps save methods
 			elseif ($step == 'service-catalog')
-				$this->permissionConfiguration(); //call prev steps save methods
+				$this->permissionConfiguration(0); //call prev steps save methods
 			elseif ($step == 'drive-documents')
-				$this->addServices();
+				$this->addServices(0);
+			
+				$this->switch($step);
 
 		}
 
@@ -163,7 +171,6 @@ class CustomerForm extends Component
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);
 		}
-		$this->emit('editRecord', $this->user);
 
      
     }
@@ -248,7 +255,9 @@ class CustomerForm extends Component
 
 	public function save($redirect=1){
 		
+		
 		$this->validate();
+		
 		if ($this->user->user_dob) {
 			$this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 		}
@@ -302,6 +311,7 @@ class CustomerForm extends Component
 			$this->rolesArr = $userService->getCustomerRoles($this->user->id);
 			// set modal values for step 2
 			$this->emit('setValues', $this->user->id);
+
 
 			$this->dispatchBrowserEvent('refreshSelects');
 			
