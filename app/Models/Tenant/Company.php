@@ -20,7 +20,7 @@ class Company extends Model
 
 	public function user()
 	{
-		return $this->hasMany(User::class);
+		return $this->hasMany(User::class,'company_name');
 	}
 	
 	public function phones()

@@ -286,8 +286,18 @@
                                                         <label class="form-label" for="company-manager">
                                                             Company Admin(s)
                                                         </label>
-                                                        <input type="text" id="company-admin" class="form-control"
-                                                            name="company-admin" placeholder="Add Company Admin(s)" />
+                                                        <select data-placeholder="" multiple
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="admins" 
+                                                            aria-label="Select Company Admin" wire:model.defer="admins">
+                                                            <option value=""></option>
+                                                            {{-- @if(count($companyUser)>0 ) --}}
+                                                                @foreach($companyUsers as $user)
+                                                                    <option value='{{$user['id']}}' >{{$user['name']}}</option>
+                                                                @endforeach
+                                                        </select>
+
+                                                        {{-- <input type="text" id="company-admin" class="form-control"
+                                                            name="company-admin" placeholder="Add Company Admin(s)" /> --}}
                                                     </div>
                                                 </div>
 
@@ -296,6 +306,7 @@
                                                     <div class="mb-4">
                                                         <label class="form-label" for="associated-tags">
                                                             Associated Tags
+                                                            <small>(coming soon)</small>
                                                         </label>
                                                         <input type="text" id="associated-tags" class="form-control"
                                                             name="associated-tags"

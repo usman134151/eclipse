@@ -28,8 +28,8 @@ class AssignBillingManager extends Component
     public function selectSelfManager($value)
     {
         if ($value) {
-            if(!in_array($this->user_id,$this->selectedBManagers))
-                $this->selectedBManagers[] = $this->user_id;
+            if(!in_array($this->user_id,$this->selectedBManagers) && (in_array($this->user_id, $this->bManagers)))
+                $this->selectedBManagers[] = $this->user_id;  //not already selected and exists in bmanager role
         } else {
             $key = array_search($this->user_id, $this->selectedBManagers);
             if ($key>=0)

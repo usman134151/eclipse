@@ -43,8 +43,8 @@ class AssignSupervisor extends Component
 
     public function selectSelfSupervisor($value){
         if($value){
-            if (!in_array($this->user_id, $this->selectedSupervisors))
-            $this->selectedSupervisors[]=$this->user_id;
+            if (!in_array($this->user_id, $this->selectedSupervisors)&&(in_array($this->user_id, $this->allUsers)))
+            $this->selectedSupervisors[]=$this->user_id;  //not already selected and exists in supervisor role
         }else{
             $key =array_search($this->user_id,$this->selectedSupervisors);
             if ($key >= 0)
