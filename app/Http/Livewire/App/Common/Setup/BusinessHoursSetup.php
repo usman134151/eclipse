@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\ScheduleTimeslot;
+use App\Models\Tenant\ScheduleHoliday;
 use App\Services\App\ScheduleService;
 use Carbon\Carbon;
 
@@ -16,8 +17,8 @@ class BusinessHoursSetup extends Component
     public $schedule;
     public $model_id,$model_type,$timeslot_end_type='pm',$timeslot_start_type='am';
     public $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-   
-    protected $listeners = ['getRecord','saveSchedule'],$rules=[];
+    public $holidays;
+    protected $listeners = ['getRecord','saveSchedule','updateDay'],$rules=[];
    
     public $timeslot=[];
     public $timeslots=[
@@ -29,6 +30,8 @@ class BusinessHoursSetup extends Component
 		'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',4,'setup_value_label',false,'schedule.timezone_id', '','timezone_id',4]]
 	
 	];
+    public $holidayDate;
+    public $repeatYearly;
     public $isForm=false;
     public function render()
     {  $this->refreshSlots();
@@ -62,6 +65,7 @@ class BusinessHoursSetup extends Component
 
 
         $workingDays = [];
+        $this->holidays=[];
 
         foreach ($this->days as $day) {
             $workingDays[$day] = true;
@@ -89,6 +93,7 @@ class BusinessHoursSetup extends Component
         }
       $this->isForm=$isForm;  
       $this->resetTimeSlot();  
+      $this->getHolidays();
     }
 
     //to store timeslots and refresh schedule
@@ -172,8 +177,52 @@ class BusinessHoursSetup extends Component
     }
 
     public function saveSchedule(){
+       
         $this->schedule->save();
     }
+
+    public function saveHoliday(){
+       
+        $this->saveSchedule();
+        ScheduleService::saveHoliday($this->holidayDate,$this->repeatYearly,$this->schedule->id);
+        $this->getHolidays();
+    }
+
+    public function updateDay($val){
+        $this->holidayDate=$val;
+      
+    }
+
+    public function getHolidays()
+    {
+        $holidays = ScheduleHoliday::where('schedule_id', $this->schedule->id)->orderBy('holiday_date')->get();
+
+        $this->holidays = [];
+
+        foreach ($holidays as $holiday) {
+            $date = Carbon::createFromFormat('Y-m-d', $holiday->holiday_date);
+            $formattedDate = $date->format('m/d/Y');
+
+            $this->holidays[] = [
+                'id' => $holiday->id,
+                'holiday_date' => $formattedDate,
+                'holiday_day' => $holiday->holiday_day,
+                // Add other desired fields from the ScheduleHoliday model
+            ];
+        }
+    }
+    public function deleteHoliday($holidayId)
+    {
+        
+        $holiday = ScheduleHoliday::find($holidayId);
+
+        if ($holiday) {
+            $holiday->delete();
+        }
+        $this->getHolidays();
+    }
+
+
     
 
 }

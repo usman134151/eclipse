@@ -7,6 +7,7 @@ use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
+use App\Services\App\AddressService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 
@@ -385,4 +386,14 @@ class CustomerForm extends Component
 		
     
     }
+	public function deleteAddress($index){
+		if(key_exists('id',$this->userAddresses[$index])){
+			AddressService::deleteAddress($this->userAddresses[$index]['id']);
+			
+		}
+       
+		unset($this->userAddresses[$index]);
+        $this->userAddresses= array_values($this->userAddresses);
+		
+	}
 }

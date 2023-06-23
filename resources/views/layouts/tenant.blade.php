@@ -189,7 +189,7 @@ window.addEventListener("livewire:load", () => {
 		
 	})
 	$('.js-select-date').on('apply.daterangepicker', function(ev, picker) {
-    alert ('hello');
+   
 });
 </script>
 <script>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Admin\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Services\App\CompanyService;
+use App\Services\App\AddressService;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\Schedule;
@@ -25,7 +26,7 @@ class AddCompany extends Component
 	protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented','updateAddress' => 'addAddress','addPhone'];
 	public $step=1;
 	public $company,$userAddresses=[];
-	public $driveActive,$serviceActive,$scheduleActive;
+	public $driveActive,$serviceActive,$scheduleActive,$companyActive;
 	public $schedule;
 	
 	
@@ -141,6 +142,7 @@ class AddCompany extends Component
 		$companyService = new CompanyService;
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		$this->step=2;
+		$this->dispatchBrowserEvent('refreshSelects');
 
 		//dd($this->company);
 		if($redirect){
@@ -223,10 +225,27 @@ class AddCompany extends Component
 	}
 
 	public function setStep($step,$tabName,$component){
-		$this->step=3;
+		$tabs=['serviceActive','driveActive','scheduleActive','companyActive'];
+		foreach($tabs as $key)
+		  $this->$key='';
+		$this->step=$step;
 		$this->$tabName="active";
 		$this->switch($component);
+		$this->dispatchBrowserEvent('refreshSelects');
 		
 	}
+
+
+	public function deleteAddress($index){
+		if(key_exists('id',$this->userAddresses[$index])){
+			AddressService::deleteAddress($this->userAddresses[$index]['id']);
+			
+		}
+       
+		unset($this->userAddresses[$index]);
+        $this->userAddresses= array_values($this->userAddresses);
+		
+	}
+
 
 }

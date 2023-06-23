@@ -8,6 +8,7 @@ use App\Models\Tenant\BusinessSetup as TenantBusinessSetup;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\Tenant\Schedule;
 
 class BusinessSetup extends Component
 {
@@ -19,6 +20,7 @@ class BusinessSetup extends Component
         
 	protected $listeners = ['showList'=>'resetForm'];
     public $messages=[], $policies = [], $feedback = [];
+    public $schedule;
 
     public function rules()
     {
@@ -257,12 +259,44 @@ class BusinessSetup extends Component
                     'text' => "Business setup has been saved successfully",
                 ]);
         }
-
+        else{
+            $this->dispatchBrowserEvent('refreshSelects');
+			$this->getBusinessSchedule();
+		
+		}
         
     }
 
 
-    
+    public function getBusinessSchedule(){
+		//reinit schedule
+		$businessSchedule=Schedule::where('model_id',1)->where('model_type',1)->get()->first();
+		if(!is_null($businessSchedule)){
+			$this->schedule=$businessSchedule;
+		}
+		else{
+			$this->schedule=new Schedule;
+			$this->schedule->model_type=1;
+			$this->schedule->working_days=json_encode([]);
+			$this->schedule->timezone_id=0;
+			
+			$this->schedule->model_id=1;
+			$this->schedule->save();
+
+		}
+
+
+			$this->scheduleActive="active";
+			
+			$this->switch('schedule');
+			
+			$this->emit('getRecord', $this->schedule->id,true);
+	}
+    public function saveSchedule(){
+        
+		$this->emit('saveSchedule');
+		//dd($this->schedule);
+	}
     
 	public function switch($component)
 	{

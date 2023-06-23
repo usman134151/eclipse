@@ -44,5 +44,27 @@ class ScheduleService{
         return $timeslots;
     }
 
+    public static function saveHoliday($holidayDate,$repeatYearly,$scheduleId){
+        // Convert the provided date to a DateTime object
+       
+        $date = Carbon::createFromFormat('d/m/Y', $holidayDate);
+        // Convert the holiday date to MySQL-supported format (Y-m-d)
+        $holidayDate = $date->format('Y-m-d');
+            
+        // Get the day of the week from the DateTime object
+        $dayOfWeek = $date->format('l');
+
+        $attributes = [
+           
+            'holiday_day'=>$dayOfWeek,
+            'repeat_yearly'=>$repeatYearly
+        ];
+    
+        $holiday = ScheduleHoliday::updateOrCreate(
+            ['holiday_date' => $holidayDate, 'schedule_id' => $scheduleId],
+            $attributes
+        );
+    }
+
 
 }
