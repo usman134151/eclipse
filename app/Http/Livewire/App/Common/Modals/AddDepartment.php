@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class AddDepartment extends Component
 {
-    public $showForm,$user, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment, $companyId =0;
+    public $showForm,$user =null, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment=0, $companyId =0;
     protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setUser','setDepartmentsDetails','updateCompany'];
 
     public function render()
@@ -65,6 +65,7 @@ class AddDepartment extends Component
         $this->companyId=$companyId;
         $this->departments = Department::where('company_id',$companyId)->get();
         //  $this->selectedDepartments = [];
+        if($this->user !=null)
         $this->setDepartmentsDetails() ;
         
     }
