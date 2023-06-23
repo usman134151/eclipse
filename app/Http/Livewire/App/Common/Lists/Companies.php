@@ -98,11 +98,12 @@ final class Companies extends PowerGridComponent
 
 
 			})
-			->addColumn('departments', function () {
-				return "<div class='text-center'>5</div>";
+			->addColumn('departments', function (Company $model) {
+			return "<div class='text-center'>" . count($model->departments) . "</div>";
 			})
-			->addColumn('users', function () {
-				return "<div class='text-center'>5</div>";
+			->addColumn('users', function (Company $model) {
+				
+				return "<div class='text-center'>".count($model->user)."</div>";
 			})
 			->addColumn('status', function (Company $model) {
                 return ($model->status);
