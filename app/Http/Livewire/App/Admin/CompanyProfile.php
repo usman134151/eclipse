@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Admin;
 
 use App\Models\Tenant\Company;
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class CompanyProfile extends Component
@@ -23,6 +24,19 @@ class CompanyProfile extends Component
 	{}
     public function showDetails($company){
 		$this->company=$company;
+		$this->company['users'] = User::where('company_name',$company['id'])->get()->count();
+			
+		$this->company['admins'] = User::query() //setting admins
+			->where(['users.status' => 1])
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 10);
+			})
+			->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+			->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+			->where('companies.id', '=', $this->company['id'])
+			->select('users.id', 'users.name')
+			->get()->toArray();
+		
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}
