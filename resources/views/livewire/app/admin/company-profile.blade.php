@@ -253,7 +253,13 @@
                                                                 <div
                                                                     class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
                                                                     <label class="text-white form-label-sm ps-2" for="">
-                                                                        Sydney, Australia
+                                                                                @if (count($company['addresses']) > 0)
+
+                                                                                        {{ $company['addresses'][0]['city'] ?? '' }},
+                                                                                        {{ $company['addresses'][0]['country'] ?? '' }}
+                                                                                @else
+                                                                                    N/A
+                                                                                @endif
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -322,7 +328,12 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <a href="#" class="font-family-secondary">
-                                                                        Thomas Charles , Harry Peter
+                                                                    
+                                                                        @foreach($company['admins'] as $key=>$admin)
+                                                                            {{$admin['name']}}
+                                                                             @if($key != count($company['admins'])-1) , @endif
+
+                                                                        @endforeach
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -363,6 +374,7 @@
                                                                             </use>
                                                                         </svg>
                                                                         {{-- End of update by Shanila --}}
+                                                                        <small>(coming soon)</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -376,7 +388,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        40
+                                                                        {{$company['users']}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -390,7 +402,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        50 Hours
+                                                                        50 Hours <small>(coming soon)</small> 
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -404,7 +416,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        80 Hours
+                                                                        80 Hours <small>(coming soon)</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -418,7 +430,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $192892.00
+                                                                        $192892.00 <small>(coming soon)</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -432,7 +444,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $84733.55
+                                                                        $84733.55 <small>(coming soon)</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -446,7 +458,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $2834.00
+                                                                        $2834.00 <small>(coming soon)</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -460,7 +472,7 @@
                                                                 </div>
                                                                 <div class="col-md-7 align-self-center">
                                                                     <div class="font-family-secondary">
-                                                                        $78734.00
+                                                                        $78734.00 <small>(coming soon)</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -500,7 +512,9 @@
                                                 <div class="row" id="table-hover-row">
                                                     <div class="col-12">
                                                         <div class="mb-2">
+                                                            <small>(coming soon)</small>
                                                             <h2>Business Hours</h2>
+                                                            
                                                         </div>
                                                         <div class="card">
                                                             <div class="table-responsive">
