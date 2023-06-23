@@ -22,6 +22,11 @@ class Company extends Model
 	{
 		return $this->hasMany(User::class,'company_name');
 	}
+
+	public function departments()
+	{
+		return $this->hasMany(Department::class, 'company_id');
+	}
 	
 	public function phones()
 	{
