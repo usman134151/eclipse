@@ -323,7 +323,7 @@
                                                         <select data-placeholder="" multiple
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="favored_providers" 
                                                             aria-label="Select Preferred Providers" wire:model.defer="fv_providers">
-                                                            <option value="">Select Preferred Providers</option>
+                                                            {{-- <option value="">Select Preferred Providers</option> --}}
                                                                 @foreach($providers as $p)
                                                                     <option value='{{$p['id']}}' >{{$p['name']}}</option>
                                                                 @endforeach
@@ -340,7 +340,7 @@
                                                          <select data-placeholder="" multiple
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="unfavored_providers" 
                                                             aria-label="Select Disfavored Providers" wire:model.defer="unfv_providers">
-                                                            <option value=""></option>
+                                                            {{-- <option value=""></option> --}}
                                                                 @foreach($providers as $p)
                                                                     <option value='{{$p['id']}}' >{{$p['name']}}</option>
                                                                 @endforeach
