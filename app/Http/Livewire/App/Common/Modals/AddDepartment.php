@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class AddDepartment extends Component
 {
-    public $showForm, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment, $companyId;
-    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setDepartmentsDetails','updateCompany'];
+    public $showForm,$user =null, $departments, $selectedDepartments = [], $svDepartments = [], $defaultDepartment=0, $companyId =0;
+    protected $listeners = ['showList' => 'resetForm', 'editRecord' => 'setUser','setDepartmentsDetails','updateCompany'];
 
     public function render()
     {
@@ -18,22 +18,33 @@ class AddDepartment extends Component
 
     public function mount()
     {
+        $this->departments = Department::where('company_id', $this->companyId)->get();
 
-        $this->departments = [];
+       
     }
 
-    public function setDepartmentsDetails(User $user){
-        $departments = $user->departments;
+    public function setUser(User $user){
+        $this->user = $user;
+    }
+    public function setDepartmentsDetails(){
+        if($this->user->company_name == $this->companyId){ //checking if company is changed
+        $departments = $this->user->departments;
         foreach($departments as $dept){
             $this->selectedDepartments[$dept->id]['department_id']=$dept->id;
             $this->selectedDepartments[$dept->id]['is_supervisor'] = $dept->pivot->is_supervisor; 
         }
         
         // $this->svDepartments=explode(", ", $user->userdetail->supervisor);;
-        if(!is_null($user->userdetail))
-            $this->defaultDepartment=$user->userdetail->department;
+        if(!is_null($this->user->userdetail))
+            $this->defaultDepartment= $this->user->userdetail->department;
         else
-            $this->defaultDepartment=0;
+            $this->defaultDepartment=0;}
+            else{
+                $this->selectedDepartments = [];
+                $this->defaultDepartment=0;
+            }
+        
+        $this->updateData();
 
     }
 
@@ -53,7 +64,9 @@ class AddDepartment extends Component
      
         $this->companyId=$companyId;
         $this->departments = Department::where('company_id',$companyId)->get();
-         $this->selectedDepartments = [];
+        //  $this->selectedDepartments = [];
+        if($this->user !=null)
+        $this->setDepartmentsDetails() ;
         
     }
 

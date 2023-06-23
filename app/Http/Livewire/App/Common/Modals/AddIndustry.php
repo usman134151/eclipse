@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class AddIndustry extends Component
 {
-    public $selectedIndustries=[],$defaultIndustry,$industries;
-    protected $listeners = ['editRecord' => 'setIndustries','updateCompany'];
+    public $selectedIndustries=[],$defaultIndustry,$industries,$user=null;
+    protected $listeners = ['editRecord' => 'setUser','updateCompany'];
 
     public function render()
     {
@@ -22,20 +22,38 @@ class AddIndustry extends Component
         $this->industries= Industry::where('status', 1)->get();
     }
 
-    public function setIndustries(User $user){
-        $this->selectedIndustries = $user->industries()->allRelatedIds()->toArray();
-        if(!is_null($user->userdetail))
-            $this->defaultIndustry = $user->userdetail->industry;
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+    }
+    public function setIndustries(){
+        $this->selectedIndustries = $this->user->industries()->allRelatedIds()->toArray();
+        if(!is_null($this->user->userdetail))
+            $this->defaultIndustry = $this->user->userdetail->industry;
     }
 
     public function updateCompany($companyId){
        
         $company=Company::where('id',$companyId)->first();
-        if($company->industry_id){
-            $this->selectedIndustries = [$company->industry_id];
-            $this->defaultIndustry=$company->industry_id;
-            $this->updateData();
+        if ($company->industry_id) {
+
+            if($this->user==null){ //new record 
+                    $this->selectedIndustries = [$company->industry_id];
+                    $this->defaultIndustry=$company->industry_id;
+                }
+            else{
+                if($this->user->company_name == $companyId){ //checking if company is changed
+
+                    $this->setIndustries();
+                }else{
+                    $this->selectedIndustries = [$company->industry_id];
+                    $this->defaultIndustry = $company->industry_id;
+                }
+            }
         }
+
+        $this->updateData();
+
 
         
     }
