@@ -21,21 +21,22 @@ class AssignBillingManager extends Component
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
             ->where('companies.id', '=', $company_id)
-            ->select('users.id', 'users.name', 'phone')
+            ->select('users.id', 'users.name', 'phone','email')
             ->get();
     }
 
+    // used to implement "Assign Same User" checkbox ( glitchy )
     public function selectSelfManager($value)
     {
-        if ($value) {
-            if(!in_array($this->user_id,$this->selectedBManagers) && (in_array($this->user_id, $this->bManagers)))
-                $this->selectedBManagers[] = $this->user_id;  //not already selected and exists in bmanager role
-        } else {
-            $key = array_search($this->user_id, $this->selectedBManagers);
-            if ($key>=0)
-                unset($this->selectedBManagers[$key]);
-        }
-        $this->updateData();
+        // if ($value) {
+        //     if(!in_array($this->user_id,$this->selectedBManagers) && (in_array($this->user_id, $this->bManagers)))
+        //         $this->selectedBManagers[] = $this->user_id;  //not already selected and exists in bmanager role
+        // } else {
+        //     $key = array_search($this->user_id, $this->selectedBManagers);
+        //     if ($key>=0)
+        //         unset($this->selectedBManagers[$key]);
+        // }
+        // $this->updateData();
     }
 
 
