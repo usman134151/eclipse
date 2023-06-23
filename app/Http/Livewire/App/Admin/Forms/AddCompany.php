@@ -8,7 +8,9 @@ use App\Services\App\CompanyService;
 use App\Services\App\AddressService;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Phone;
+use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\Schedule;
+use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +18,7 @@ class AddCompany extends Component
 {
 	public $component = 'company-info';
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
-	public $deletedNumbers=[];
+	public $deletedNumbers=[],$companyUsers=[],$admins=[], $providers=[],$fv_providers=[], $unfv_providers=[];
 	public $setupValues = [
 		'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'company.industry_id','','industry',1]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'company.language_id', '','language',4]],
@@ -49,6 +51,7 @@ class AddCompany extends Component
 		
         $this->label="Edit";
        $this->company=$company;
+
 	   if(count($company->phones)){
 			//dd($company->phones);
 			$this->phoneNumbers=[];
@@ -64,9 +67,30 @@ class AddCompany extends Component
 				$this->userAddresses[]=$address->toArray();
 			}
 		
-		}	
+		}
+		if(count($this->company->user->toArray())>0){
+			$this->companyUsers = $this->company->user->toArray();
+			$this->admins = User::query() //setting admins
+				->where(['users.status' => 1])
+				->whereHas('roles', function ($query) {
+					$query->where('role_id', 10);
+				})
+				->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+				->leftJoin('companies', 'companies.id', '=', 'users.company_name')
+				->where('companies.id', '=', $this->company->id)
+				->select('users.id', 'users.name')
+				->get()->pluck('id')->toArray();
+			
+		}
+
+		if ($this->company->get('favored_providers') != null)
+		$this->fv_providers = explode(', ', $this->company->favored_providers);
+		if ($this->company->get('unfavored_providers') != null)
+		$this->unfv_providers = explode(', ', $this->company->unfavored_providers);
 
 
+
+		$this->dispatchBrowserEvent('refreshSelects');
 
 		
     }
@@ -75,20 +99,31 @@ class AddCompany extends Component
 		$this->company=$company;
 		$this->showHours=false;
 		$this->showAddress=false;
-
+		$this->companyUsers =[];
+		$this->providers = User::query()
+			->where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 2);
+			})
+			->select('id', 'name')
+			->get()->toArray();
 		
 
 
 	}
 	public function updateVal($attrName, $val)
-	{  
-		   if($attrName=="company_timezone"){
+	{  	
+		if($attrName=="admins"){
+			$this->admins = $val;
+		}elseif ($attrName == "company_timezone") {
 			$this->company['company_timezone'] = $val;
-			
-		   }
-		   else{
+		}elseif ($attrName == "favored_providers") {
+			$this->fv_providers = $val;
+		} elseif ($attrName == "unfavored_providers") {
+			$this->unfv_providers = $val;
+		}else{
 			$this->company[$attrName.'_id'] = $val;
-		   }
+		}
 	}
 	public function updateAddressType($type){
 		$this->emit('updateAddressType',$type);
@@ -140,7 +175,15 @@ class AddCompany extends Component
 		$this->validate();
 		$this->company->added_by = Auth::id();
 		$companyService = new CompanyService;
+		$this->company->unfavored_providers = implode(', ', $this->unfv_providers);
+		$this->company->favored_providers = implode(', ', $this->fv_providers);
+	
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
+		if(count($this->admins))
+			foreach($this->admins as $admin_id){
+				RoleUser::updateOrCreate(['user_id'=> $admin_id,'role_id'=>10]);
+			}
+
 		$this->step=2;
 		$this->dispatchBrowserEvent('refreshSelects');
 

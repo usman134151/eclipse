@@ -83,7 +83,7 @@ class CustomerForm extends Component
 
     public function permissionConfiguration($redirect=1){
 
-		// dd($this->selectedAdminStaff);
+		// dd($this->selectedSupervisors);
 		$userService = new UserService;
 		$userService->storeCustomerRoles($this->rolesArr,$this->user->id);
 		$userService->storeUserRolesDetails($this->user->id,$this->selectedSupervisors,5,1,$this->defaultSupervisor);
@@ -272,9 +272,9 @@ class CustomerForm extends Component
 				->get();
 			
 			if($this->user->userdetail->get('favored_users')!=null)
-				$this->favored_providers = explode(',', $this->user->userdetail['favored_users']);
+				$this->favored_providers = explode(', ', $this->user->userdetail['favored_users']);
 			if ($this->user->userdetail->get('unfavored_users')!=null)
-				$this->unfavored_providers = explode(',', $this->user->userdetail['unfavored_users']);
+				$this->unfavored_providers = explode(', ', $this->user->userdetail['unfavored_users']);
 			if ($this->user->userdetail->get('user_configuration') != null)
 				$this->user_configuration = json_decode($this->user->userdetail->user_configuration,true);
 
@@ -282,10 +282,10 @@ class CustomerForm extends Component
 			// set modal values for step 2
 			$this->emit('setValues', $this->user->id);
 
+			$this->dispatchBrowserEvent('refreshSelects');
 			
 
-			$this->dispatchBrowserEvent('refreshSelects');
-
+			
 		}
 		
 		
@@ -333,10 +333,10 @@ class CustomerForm extends Component
 	{
 		$this->selectedSupervisors = $selectedSupervisors;
 		$this->defaultSupervisor = $default;
-		if (in_array($this->user->id, $this->selectedSupervisors)) //setting checkbox
-			$this->same_sv = true;
-		else
-			$this->same_sv = false;
+		// if (in_array($this->user->id, $this->selectedSupervisors)) //setting checkbox
+		// 	$this->same_sv = true;
+		// else
+		// 	$this->same_sv = false;
 	}
 	public function updateSelectedSupervising($selectedSupervising)
 	{
@@ -354,10 +354,10 @@ class CustomerForm extends Component
 	{
 		$this->selectedBManagers = $selectedBManagers;
 		$this->defaultBManager = $default;
-        if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
-			$this->same_bm = true; 
-		else
-			$this->same_bm = false;
+        // if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
+		// 	$this->same_bm = true; 
+		// else
+		// 	$this->same_bm = false;
 
 	}
 

@@ -27,7 +27,7 @@ class AssignSupervisor extends Component
 		-> leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
             ->where('companies.id', '=', $company_id)
-        ->select('users.id', 'users.name','phone')
+        ->select('users.id', 'users.name','phone','email')
         ->get();
 
         // $this->selectedSupervisors=[];
@@ -41,16 +41,20 @@ class AssignSupervisor extends Component
         $this->selectedSupervisors=[];
     }
 
+    // used to implement "Assign Same User" checkbox ( glitchy )
     public function selectSelfSupervisor($value){
-        if($value){
-            if (!in_array($this->user_id, $this->selectedSupervisors))
-            $this->selectedSupervisors[]=$this->user_id;
-        }else{
-            $key =array_search($this->user_id,$this->selectedSupervisors);
-            if ($key >= 0)
-                unset($this->selectedSupervisors[$key]);
-        }
-            $this->updateData();
+
+        // if($value){
+        //     if (!in_array($this->user_id, $this->selectedSupervisors)&&(in_array($this->user_id,$this->allUsers->pluck('id')->toArray())))
+        //     $this->selectedSupervisors[]=$this->user_id;  //not already selected and exists in supervisor role
+        // }else{
+        //     $key =array_search($this->user_id,$this->selectedSupervisors);
+        //     if ($key >= 0){
+        //         unset($this->selectedSupervisors[$key]);
+        //         $this->selectedSupervisors = array_values($this->selectedSupervisors);
+        //     }
+        // }
+        //     $this->updateData();
     }
 
     public function setValues($user_id)
@@ -61,6 +65,7 @@ class AssignSupervisor extends Component
         $data = $userService->getUserRolesDetails($this->user_id, 5, 1);
 
         $this->selectedSupervisors = $data->pluck('user_id')->toArray();
+
         if($data->where('is_default', 1)->isNotEmpty())
         $this->isDefault = $data->where('is_default', true)->pluck('user_id')[0];
         $this->updateData();

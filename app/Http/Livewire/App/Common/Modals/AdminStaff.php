@@ -23,15 +23,22 @@ class AdminStaff extends Component
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             // ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
             // ->where('companies.id', '=', $company_id)
-            ->select('users.id', 'users.name', 'phone','users.status')
+            ->select('users.id', 'users.name', 'phone','users.status','email')
             ->get();
     }
 
     public function updateSelectAll()
     {
-        if ($this->selectAll == true)
-            $this->selectedStaff = $this->adminStaff->pluck('id')->toArray();
-        else
+      
+        if ($this->selectAll == true){
+            $selected = $this->adminStaff->pluck('id')->toArray();
+            $this->selectedStaff = [];            
+            foreach($selected as $index=>$val){
+                $this->selectedStaff[$index]['id'] =$val;
+                $this->selectedStaff[$index]['permission_type'] = 0; 
+
+            }
+        }else
             $this->selectedStaff = [];
     }
 
