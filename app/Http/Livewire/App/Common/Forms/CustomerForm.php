@@ -32,7 +32,7 @@ class CustomerForm extends Component
 	];
 	
     public $step = 1,$email_invitation,$limit;
-    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
+    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
 		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers','updateSelectedSupervising', 'updateSelectedUsersToManager',
 		'updateSelectedStaff','updateAddress' => 'addAddress'];
 	public $serviceConsumer=false;
@@ -50,6 +50,9 @@ class CustomerForm extends Component
 		return view('livewire.app.common.forms.customer-form');
 	}
     public function mount(User $user){
+		
+		
+       
 
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
@@ -60,6 +63,22 @@ class CustomerForm extends Component
 			})
 			->select('id', 'name')
 			->get();
+
+		if (request()->customerID != null) {
+
+			$customer_id = request()->customerID;
+			$user = User::where('id', $customer_id)->first();
+			$this->edit($user);
+			// $this->switch(request()->step);/
+			$step = request()->step;
+			if($step == 'permission-configurations')
+				$this->save(); //call prev steps save methods
+			elseif ($step == 'service-catalog')
+				$this->permissionConfiguration(); //call prev steps save methods
+			elseif ($step == 'drive-documents')
+				$this->addServices();
+
+		}
 
 
 	}
@@ -144,6 +163,8 @@ class CustomerForm extends Component
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);
 		}
+		$this->emit('editRecord', $this->user);
+
      
     }
 
@@ -321,6 +342,7 @@ class CustomerForm extends Component
 		
 
 	}
+
 	public function selectDepartments($selectedDepartments, $defaultDepartment,$departmentNames)
 	{
 		$this->selectedDepartments = $selectedDepartments;
