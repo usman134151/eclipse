@@ -43,7 +43,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -79,7 +79,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">John Lee</h6>
@@ -115,7 +115,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-24.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-24.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">Eva George</h6>
@@ -151,7 +151,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -187,7 +187,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">Research & Development</h6>
@@ -223,7 +223,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -259,7 +259,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -295,7 +295,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -331,7 +331,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -367,7 +367,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>
@@ -403,7 +403,7 @@
                     <td>
                        <div class="row g-2">
                             <div class="col-md-2">
-                               <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
+                               <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Customer Profile">
                             </div>
                             <div class="col-md-10">
                                 <h6 class="fw-semibold mt-3">James Michael </h6>

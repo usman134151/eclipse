@@ -508,7 +508,7 @@
  <script src="/js/quill.htmlEditButton.min.js"></script>
  <script src="/js/quill.imageUploader.min.js"></script>
 {{-- added by shanila to add link of js editor js --}}
-<script src="/tenant/js/editor.js"></script>
+<script src="/tenant-resources/js/editor.js"></script>
 {{-- ended updated by shanila --}}
 @push('scripts')
 <script>

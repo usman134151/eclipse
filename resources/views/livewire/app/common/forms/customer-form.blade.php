@@ -119,7 +119,7 @@
                                                 <div class="row between-section-segment-spacing">
                                                     <div class="col-12 text-center">
                                                         <div class="d-inline-block position-relative">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
+                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
                                                                 class="img-fluid rounded-circle"
                                                                 alt="Profile Image of Customer" />
                                                             <div
@@ -629,7 +629,7 @@
                                                         
 
                                                         @for ($i = 0; $i < $limit; $i++)
-                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisingNames[$i]['name']}}"
+                                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisingNames[$i]['name']}}"
                                                             alt="Profile Image">
                                                         @endfor
                                                         @if(count($supervisingNames)>4)
@@ -1464,17 +1464,17 @@
                                                             <div
                                                                 class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
                                                                 <div>
-                                                                    <img src="/tenant/images/img-placeholder-document.jpg"
+                                                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                                         alt="Preview File" />
                                                                     <p>File Name</p>
                                                                 </div>
                                                                 <div>
-                                                                    <img src="/tenant/images/img-placeholder-document.jpg"
+                                                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                                         alt="Preview File" />
                                                                     <p>File Name</p>
                                                                 </div>
                                                                 <div>
-                                                                    <img src="/tenant/images/img-placeholder-document.jpg"
+                                                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                                         alt="Preview File" />
                                                                     <p>File Name</p>
                                                                 </div>

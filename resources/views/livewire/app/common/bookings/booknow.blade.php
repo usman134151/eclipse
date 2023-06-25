@@ -1502,12 +1502,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-6 col-md-3 col-lg-2">
-                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                     alt="img-placeholder-document" class="w-100">
                                                 <p class="font-family-secondary"><small>File Name</small></p>
                                             </div>
                                             <div class="col-6 col-md-3 col-lg-2">
-                                                <img src="/tenant/images/img-placeholder-document.jpg"
+                                                <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                     alt="img-placeholder-document" class="w-100">
                                                 <p class="font-family-secondary"><small>File Name</small></p>
                                             </div>
@@ -1910,7 +1910,7 @@
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
-                                                                        src="/tenant/images/portrait/small/image.png"
+                                                                        src="/tenant-resources/images/portrait/small/image.png"
                                                                         class="rounded-circle" alt="Admin staff Team Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">
@@ -1941,7 +1941,7 @@
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <div>
                                                                     <img width="50" height="50"
-                                                                        src="/tenant/images/portrait/small/image.png"
+                                                                        src="/tenant-resources/images/portrait/small/image.png"
                                                                         class="rounded-circle" alt="Admin staff Team Profile Image">
                                                                 </div>
                                                                 <div class="pt-2">

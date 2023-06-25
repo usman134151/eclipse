@@ -114,7 +114,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-2">
-                                                        <img src="/tenant/images/portrait/small/image4.png"
+                                                        <img src="/tenant-resources/images/portrait/small/image4.png"
                                                             class="img-fluid rounded-circle"
                                                             alt="User Profile Image">
                                                     </div>

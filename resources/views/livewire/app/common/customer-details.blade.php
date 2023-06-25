@@ -212,7 +212,7 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-4">
                                                         <div class="d-inline-block position-relative">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
+                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
                                                                 class="img-fluid rounded-circle"
                                                                 alt="Customer Profile Image" />
                                                         </div>
@@ -850,7 +850,7 @@
                                                                                     <td class="align-middle">
                                                                                         <div class="row g-2">
                                                                                             <div class="col-md-2">
-                                                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                                                     class="img-fluid rounded-circle"
                                                                                                     alt="Provider Profile Image">
                                                                                             </div>
@@ -971,7 +971,7 @@
                                 </div>
                                     <div>
                                         <x-advancefilters/>
-                                        <img  class="w-100" alt="Schedule Calendar" src="/tenant/images/portrait/small/image-placeholder-calendar.png" />
+                                        <img  class="w-100" alt="Schedule Calendar" src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
                                     </div>
                                 </div>
                                 <!-- Schedule tab end -->
@@ -1092,7 +1092,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1190,7 +1190,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1288,7 +1288,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1386,7 +1386,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1484,7 +1484,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1743,7 +1743,7 @@
                                         <div class="d-lg-inline-flex">
                                             <div class="mx-2">
                                                 <div class="position-relative">
-													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<img src="/tenant-resources/images/img-placeholder-document.jpg"/>
 													<div class="position-absolute top-0 end-0">
 													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
 														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -1756,7 +1756,7 @@
                                             </div>
                                             <div class="mx-2">
                                                 <div class="position-relative">
-													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<img src="/tenant-resources/images/img-placeholder-document.jpg"/>
 													<div class="position-absolute top-0 end-0">
 													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
 														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -1769,7 +1769,7 @@
                                             </div>
                                             <div class="mx-2">
                                                 <div class="position-relative">
-													<img src="/tenant/images/img-placeholder-document.jpg"/>
+													<img src="/tenant-resources/images/img-placeholder-document.jpg"/>
 													<div class="position-absolute top-0 end-0">
 													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
 														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -1896,7 +1896,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -1969,7 +1969,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2042,7 +2042,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2115,7 +2115,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2188,7 +2188,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2261,7 +2261,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2334,7 +2334,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2407,7 +2407,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2480,7 +2480,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2553,7 +2553,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3157,7 +3157,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3251,7 +3251,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3345,7 +3345,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3438,7 +3438,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3531,7 +3531,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3624,7 +3624,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3717,7 +3717,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3810,7 +3810,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3902,7 +3902,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3995,7 +3995,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -4221,7 +4221,7 @@
 										</div>
 										<hr>
 				                        <div>
-											<img src="/tenant/images/portrait/small/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Pending Payment image">
+											<img src="/tenant-resources/images/portrait/small/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Pending Payment image">
 										</div>
 									  </div>
 									<div class="mb-4">
@@ -4244,7 +4244,7 @@
 										</div>
 										<hr>
 				                        <div>
-											<img src="/tenant/images/portrait/small/pending-payment.png" class="img-fluid" alt="Pending Payment image">
+											<img src="/tenant-resources/images/portrait/small/pending-payment.png" class="img-fluid" alt="Pending Payment image">
 										</div>
 									  </div>
                                 </div>

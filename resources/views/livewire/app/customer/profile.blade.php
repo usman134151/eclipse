@@ -37,7 +37,7 @@
                         <div class="col-12 ">
                             <div class="text-center">
                                 <div class="d-inline-block position-relative mb-3">
-                                    <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
+                                    <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
                                         class="img-fluid rounded-circle" alt="Customer Profile Image" />
                                     {{-- <div>
                                         <input class="position-absolute form-control" type="file" />

@@ -8,20 +8,20 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<title>Eclipse Scheduling</title>
-		<link rel="stylesheet" href="/tenant/css/all.min.css"/>
-		<link rel="stylesheet" href="/tenant/css/font-awesome.min.css" type="text/css"/>
-		<link rel="stylesheet" href="/tenant/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/tenant/css/perfect-scrollbar.css">
-			<link rel="stylesheet" href="/tenant/css/colors.css">
-		<link rel="stylesheet" href="/tenant/css/components.css">
-		<link rel="stylesheet" href="/tenant/css/bootstrap-extended.css">
-		<link rel="stylesheet" href="/tenant/css/vertical-menu.css">
-		<link rel="stylesheet" href="/tenant/css/daterangepicker.css">
-		<link rel="stylesheet" href="/tenant/css/select2.min.css"/>
-		<link rel="stylesheet" href="/tenant/css/pikaday.css">
-		<link rel="stylesheet" href="/tenant/css/dark-layout.css">
-		<link rel="stylesheet" href="/tenant/css/style.css">
-		<link rel="stylesheet" href='/tenant/css/bootstrap-icons.css'/>
+		<link rel="stylesheet" href="/tenant-resources/css/all.min.css"/>
+		<link rel="stylesheet" href="/tenant-resources/css/font-awesome.min.css" type="text/css"/>
+		<link rel="stylesheet" href="/tenant-resources/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/tenant-resources/css/perfect-scrollbar.css">
+			<link rel="stylesheet" href="/tenant-resources/css/colors.css">
+		<link rel="stylesheet" href="/tenant-resources/css/components.css">
+		<link rel="stylesheet" href="/tenant-resources/css/bootstrap-extended.css">
+		<link rel="stylesheet" href="/tenant-resources/css/vertical-menu.css">
+		<link rel="stylesheet" href="/tenant-resources/css/daterangepicker.css">
+		<link rel="stylesheet" href="/tenant-resources/css/select2.min.css"/>
+		<link rel="stylesheet" href="/tenant-resources/css/pikaday.css">
+		<link rel="stylesheet" href="/tenant-resources/css/dark-layout.css">
+		<link rel="stylesheet" href="/tenant-resources/css/style.css">
+		<link rel="stylesheet" href='/tenant-resources/css/bootstrap-icons.css'/>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -80,19 +80,19 @@
 		{{-- End of update by Sohail Asghar --}}
 		@include('modals/global/savebrowserpopup')
 
-		<script src="/tenant/js/jquery-3.6.3.min.js"></script>
-		<script src="/tenant/js/bootstrap.bundle.min.js"></script>
-		<script src="/tenant/js/moment.min.js"></script>
-		<script src="/tenant/js/daterangepicker.min.js"></script>
-		<script src="/tenant/js/unison-js.min.js"></script>
-		<script src="/tenant/js/perfect-scrollbar.min.js"></script>
-		<script src="/tenant/js/feather-icons.min.js"></script>
-		<script src="/tenant/js/app.js"></script>
-		<script src="/tenant/js/app-menu.js"></script>
-		<script src="/tenant/js/app-new.js"></script>
-		<script src="/tenant/js/select2.min.js"></script>
-		<script src="/tenant/js/sweetalert.min.js"></script>
-		<script src="/tenant/js/common.js"></script>
+		<script src="/tenant-resources/js/jquery-3.6.3.min.js"></script>
+		<script src="/tenant-resources/js/bootstrap.bundle.min.js"></script>
+		<script src="/tenant-resources/js/moment.min.js"></script>
+		<script src="/tenant-resources/js/daterangepicker.min.js"></script>
+		<script src="/tenant-resources/js/unison-js.min.js"></script>
+		<script src="/tenant-resources/js/perfect-scrollbar.min.js"></script>
+		<script src="/tenant-resources/js/feather-icons.min.js"></script>
+		<script src="/tenant-resources/js/app.js"></script>
+		<script src="/tenant-resources/js/app-menu.js"></script>
+		<script src="/tenant-resources/js/app-new.js"></script>
+		<script src="/tenant-resources/js/select2.min.js"></script>
+		<script src="/tenant-resources/js/sweetalert.min.js"></script>
+		<script src="/tenant-resources/js/common.js"></script>
 
 		@auth
 		@if(!request()->cookie('savedBrowser'))
@@ -104,7 +104,7 @@
 		@endauth
 		@livewireScripts
 		@powerGridScripts
-		<script src="/tenant/js/alpinejs-3.11.1.js" defer></script>
+		<script src="/tenant-resources/js/alpinejs-3.11.1.js" defer></script>
 		@stack('scripts')
 		<script>
     window.addEventListener('update-url', function(event) {

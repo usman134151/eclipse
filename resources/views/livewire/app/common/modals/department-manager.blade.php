@@ -23,7 +23,7 @@
                   <input class="form-check-input mt-3 ms-1" type="checkbox" value="" aria-label="Select Manager">
                 <div class="row g-2">
                   <div class="col-md-2 ms-3">
-                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                   </div>
                   <div class="col-md-9">
                     <h6 class="fw-semibold text-sm">Ramon Miles</h6>
@@ -44,7 +44,7 @@
                       <input class="form-check-input mt-3 ms-1" type="checkbox" value="" aria-label="Select Manager">
                     <div class="row g-2">
                       <div class="col-md-2 ms-3">
-                        <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                       </div>
                       <div class="col-md-9">
                         <h6 class="fw-semibold text-sm">Ramon Miles</h6>
@@ -65,7 +65,7 @@
                       <input class="form-check-input mt-3 ms-1" type="checkbox" value="" aria-label="Select Manager">
                     <div class="row g-2">
                       <div class="col-md-2 ms-3">
-                        <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                       </div>
                       <div class="col-md-9">
                         <h6 class="fw-semibold text-sm">Ramon Miles</h6>
@@ -86,7 +86,7 @@
                       <input class="form-check-input mt-3 ms-1" type="checkbox" value="" aria-label="Select Manager">
                     <div class="row g-2">
                       <div class="col-md-2 ms-3">
-                        <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                       </div>
                       <div class="col-md-9">
                         <h6 class="fw-semibold text-sm">Ramon Miles</h6>
@@ -107,7 +107,7 @@
                       <input class="form-check-input mt-3 ms-1" type="checkbox" value="" aria-label="Select Manager">
                     <div class="row g-2">
                       <div class="col-md-2 ms-3">
-                        <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                       </div>
                       <div class="col-md-9">
                         <h6 class="fw-semibold text-sm">Ramon Miles</h6>

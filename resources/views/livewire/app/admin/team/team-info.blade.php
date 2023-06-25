@@ -9,7 +9,7 @@
 					@if ($temp_image!=null)
 						<img class="user_img cropfile" src="{{ $temp_image->temporaryUrl() }}">
 					@else
-						<img class="user_img cropfile" src="{{$team->team_image == null ? '/tenant/images/img-placeholder-document.jpg' : url($team->team_image) }}">
+						<img class="user_img cropfile" src="{{$team->team_image == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($team->team_image) }}">
 					@endif
 					<div class="input--file">
 						<span>

@@ -75,7 +75,7 @@
             <tbody>
                 <tr class="even">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Charles
                         </div>
@@ -97,7 +97,7 @@
                 </tr>
                 <tr class="odd">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Thomas
                         </div>
@@ -118,7 +118,7 @@
                 </tr>
                 <tr class="even">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Charles
                         </div>
@@ -138,7 +138,7 @@
                 </tr>
                 <tr class="even">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Charles
                         </div>
@@ -158,7 +158,7 @@
                 </tr>
                 <tr class="odd">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Thomas
                         </div>
@@ -179,7 +179,7 @@
                 </tr>
                 <tr class="even">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Charles
                         </div>
@@ -199,7 +199,7 @@
                 </tr>
                 <tr class="odd">
                     <td>
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" alt="Image" class="img-user">
                         <div class="mt-2 text-sm">
                             Thomas
                         </div>
