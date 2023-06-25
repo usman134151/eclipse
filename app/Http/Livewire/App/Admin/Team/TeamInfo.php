@@ -128,9 +128,9 @@ class TeamInfo extends Component
 					File::delete(public_path($this->team->team_image));
 			}
 			$name = md5(microtime()) . '.' . $this->temp_image->extension();
-			$uploadPath = $this->temp_image->storeAs('/tenant'.tenant('id').'/admin_teams', $name, 'public');
+			$uploadPath = $this->temp_image->storeAs('/admin_teams', $name, 'public');
 			//dd($uploadPath);
-			return '/tenant'.tenant('id').'/admin_teams/' . $name;  //change domain here and in config/filesystems
+			return '/admin_teams/' . $name;  //change domain here and in config/filesystems
     	}else
 			return null;
 	}
