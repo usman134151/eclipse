@@ -130,7 +130,7 @@ class TeamInfo extends Component
 			$name = md5(microtime()) . '.' . $this->temp_image->extension();
 			$uploadPath = $this->temp_image->storeAs('/admin_teams', $name, 'public');
 			//dd($uploadPath);
-			return '/admin_teams/' . $name;  //change domain here and in config/filesystems
+			return '/tenant'.tenant('id').'/app/public/admin_teams/' . $name;  //change domain here and in config/filesystems
     	}else
 			return null;
 	}
