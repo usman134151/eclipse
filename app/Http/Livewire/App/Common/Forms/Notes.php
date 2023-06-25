@@ -15,7 +15,7 @@ class Notes extends Component
         return view('livewire.app.common.forms.notes');
     }
 
-    public function mount($record_id,$record_type)
+    public function mount($showForm,$record_id,$record_type)
     {
        $this->note['record_id'] =$record_id;
        $this->note['record_type']=$record_type;
