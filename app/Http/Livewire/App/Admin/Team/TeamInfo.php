@@ -148,4 +148,9 @@ class TeamInfo extends Component
 			$this->emit('switch', $component); //hit parent component switch func
 
 	}
+
+	public function previewStorageDisk()
+    {
+        return '/tenant'.tenant('id').'/app/livewire_tmp/'; // Specify the name of the storage disk you want to use
+    }
 }
