@@ -1,4 +1,12 @@
 <div>
+
+<div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
     <!-- BEGIN: Content-->
     <div class="content-header row">
         <div class="content-header-left col-12 mb-2">
@@ -99,9 +107,8 @@
                                             </small> 
                                         </a>
                                     </div>
-                                    <select class="form-select" id="company-column">
-                                        <option>Select Company</option>
-                                    </select>
+                                    {!! $setupValues['companies']['rendered'] !!}
+
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <label class="form-label">Department <span class="mandatory">*</span></label>
@@ -117,6 +124,15 @@
                                             {{-- End of update by Shanila --}}
                                             Select Department
                                         </button>
+                                    </div>
+                                    <div>
+                                        @if(count($departmentNames)>0)
+                                            Selected Department(s) : 
+                                            @foreach($departmentNames as $key=> $dept)
+                                            {{$dept }}
+                                            @if($key != count($departmentNames)-1) , @endif
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-4 pe-lg-5">
@@ -134,13 +150,23 @@
                                             Select Industry
                                         </button>
                                     </div>
+                                    <div>
+                                        @if(count($industryNames)>0)
+                                            Selected Industries : 
+                                            @foreach($industryNames as $key=> $ind)
+                                            {{$ind }}
+                                            @if($key != count($industryNames)-1) , @endif
+                                            @endforeach
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <label class="form-label" for="requestor">Requester <span class="mandatory">*</span></label>
                                         <div class="form-check ">
-                                            <label class="form-check-label" for="addnewrequestor">Add New Requester</label>
-                                            <input class="form-check-input show-hidden-content"
+                                            <label class="form-check-label" for="addnewrequestor">Add New Requester  </label>
+                                            <small>(coming soon)</small>
+                                            <input disabled class="form-check-input show-hidden-content"
                                                 id="addnewrequestor" name="addnewrequestor"
                                                 type="checkbox" tabindex="">
                                             <div class="hidden-content">
@@ -159,23 +185,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <select class="form-select mb-2" id="requestor">
-                                        <option>Select Requester</option>
+                                    <select class="form-select select2 mb-2" id="requester" name="requester" wire:model.defer="assignment.requester">
+                                        @foreach($requesters as $requester)
+                                        <option value="{{$requester->id}}">{{$requester->name}}</option>
+                                        @endforeach
                                     </select>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="HideRequesterInfofromProviders"
-                                            name="HideRequesterInfofromProviders" type="checkbox" tabindex="" />
+                                        <input class="form-check-input" id="hide_request_from_providers" wire:model.defer="assignment.hide_request_from_providers"
+                                            name="hide_request_from_providers" type="checkbox" tabindex="" />
                                         <label class="form-check-label" for="HideRequesterInfofromProviders"><small>Hide
                                                 Requester's Info from Providers</small></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-4 pe-lg-5">
                                     <label class="form-label" for="point-of-contact">Point of Contact <span class="mandatory">*</span></label>
-                                    <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact">
+                                    <input type="" class="form-control" placeholder="Enter Name" id="point-of-contact" name="point_of_contact" wire:model.defer="assignment.point_of_contact">
                                 </div>
                                 <div class="col-lg-6 mb-4 ps-lg-5">
                                     <label class="form-label" for="ph-number">Phone Number <span class="mandatory">*</span></label>
-                                    <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number">
+                                    <input type="" class="form-control" placeholder="Enter Phone Number" id="ph-number" name="phone_number" wire:model.defer="assignment.phone_number">
                                 </div>
                             </div>
                             <div class="row between-section-segment-spacing">
@@ -191,14 +219,18 @@
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="supervisor">Supervisor <span
                                                     class="mandatory">*</span></label>
-                                            <select class="form-select" id="supervisor">
-                                                <option>Select Supervisor</option>
+                                            <select class="form-select select2" id="supervisor" name="supervisor" wire:model.defer='assignment.supervisor'>
+                                                @foreach($supervisors as $supervisor)
+                                                <option value="{{$supervisor->id}}">{{$supervisor->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
                                             <label class="form-label" for="billing-manager">Billing Manager</label>
-                                            <select class="form-select" id="billing-manager">
-                                                <option>Select Billing Manager</option>
+                                            <select class="form-select select2" id="billing_manager" name="billing_manager" wire:model.defer="assignment.billing_manager">
+                                                 @foreach($bManagers as $manager)
+                                                    <option value="{{$manager->id}}">{{$manager->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -2126,6 +2158,7 @@
         </div>
     </div>
 </div>
+
 <!-- /Modal Request from User -->
 @include('modals.common.add-address')
 @include('modals.common.add-industry')
@@ -2134,10 +2167,17 @@
 @include('modals.common.add-new-customer')
 @include('modals.common.assign-admin-staff')
 @include('modals.common.assign-admin-staff-team')
+
+@push('scripts')
+
 <script>
-	function updateVal(attrName,val){
+        function updateVal(attrName,val){
+          
+          Livewire.emit('updateVal', attrName, val);
 
-		Livewire.emit('updateVal', attrName, val);
+      }
 
-	}
+
+
 </script>
+@endpush
