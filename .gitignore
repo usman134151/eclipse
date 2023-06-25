@@ -2,6 +2,8 @@
 /public/hot
 /public/storage
 /public/tenantabma
+/public/tenant
+/public/tenantabmasoft
 /storage/*.key
 /storage/
 /vendor
