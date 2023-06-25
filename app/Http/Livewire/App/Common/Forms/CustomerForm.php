@@ -219,7 +219,11 @@ class CustomerForm extends Component
             'userdetail.gender_id' => [
                 'nullable'],
 			'userdetail.phone' => [
-					'nullable']   	                              
+					'nullable','max:150'],
+			'userdetail.state'=>['nullable','max:150'],
+			'userdetail.city' => ['nullable', 'max:150'],
+			'userdetail.zip' => ['nullable', 'max:150'], 	                              
+
 			
 		];
 	}
