@@ -66,14 +66,14 @@
 										<div class="mb-4">
 											<div class="form-group">
 			                       				<label class="form-label" for="industry">Select Industry
-						                            <span class="mandatory" aria-hidden="true">*</span>
+						                            {{-- <span class="mandatory" aria-hidden="true">*</span> --}}
                 						        </label>
 									
 													{!! App\Helpers\SetupHelper::createDropDown('Industry', 'id',
 															'name', 'status', 1, 'name', false,
 															'custom_form_details.industry_id',
 													'','industry') !!}
-										  @error('custom_form_details.industry_id')<span class="d-inline-block invalid-feedback mt-2">The selected industry is a required field</span>@enderror
+										  {{-- @error('custom_form_details.industry_id')<span class="d-inline-block invalid-feedback mt-2">The selected industry is a required field</span>@enderror --}}
 											
                     			 			</div>	
                     			 		</div>	

@@ -380,6 +380,8 @@
                                                         </label>
                                                         <input type="text" id="phone-number" class="form-control" name="phone"
                                                             placeholder="Enter Phone Number" wire:model.defer="userdetail.phone" />
+                                                             @error('userdetail.phone')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                                     </div>
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="country">
@@ -393,6 +395,8 @@
                                                 <input type="text" id="state" class="form-control"
                                                     name="state" placeholder="Enter State Name"
                                                     required aria-required="true" wire:model.defer="userdetail.state"/>
+                                                    @error('userdetail.state')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
@@ -401,6 +405,8 @@
                                                 <input type="text" id="city" class="form-control"
                                                     name="city" placeholder="Enter City Name"
                                                     required aria-required="true" wire:model.defer="userdetail.city"/>
+                                                    @error('userdetail.city')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
@@ -409,6 +415,8 @@
                                             </label>
                                             <input type="text" id="zip-code" class="form-control" name="zipCode"
                                                 placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
+                                            @error('userdetail.zip')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="address-line-1">

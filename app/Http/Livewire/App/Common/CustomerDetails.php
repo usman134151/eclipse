@@ -8,7 +8,7 @@ use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
 class CustomerDetails extends Component
 {
-	public $user;
+	public $user,$userid;
 	protected $listeners = [
 		'showDetails'
 	];
@@ -23,6 +23,7 @@ class CustomerDetails extends Component
 
 	public function showDetails($user){
 		$this->user=$user;	
+		$this->userid = $user['id'];
 		$user1 = User::find($user['id']);
 		$this->user['userdetail']['departments']=$user1->departments->pluck('name');
 		$userService = new UserService;
