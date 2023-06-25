@@ -151,6 +151,6 @@ class TeamInfo extends Component
 
 	public function previewStorageDisk()
     {
-        return '/tenant'.tenant('id').'/app/livewire-tmp/'; // Specify the name of the storage disk you want to use
+        return public_path('/tenant'.tenant('id').'/app/livewire-tmp/'); // Specify the name of the storage disk you want to use
     }
 }
