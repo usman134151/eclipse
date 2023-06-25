@@ -86,7 +86,7 @@ class LoginController extends Controller
 		
 				$directories=['/framework/cache/','app/public','app/tmp','app/livewire-tmp'];
 				foreach($directories as $directory){
-							
+							dd(storage_path().$directory);
 					if (!file_exists(storage_path().$directory)) {
 						
 						mkdir(storage_path().$directory, 0755, true);
