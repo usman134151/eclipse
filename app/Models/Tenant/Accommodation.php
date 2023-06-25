@@ -28,4 +28,7 @@ class Accommodation extends Model
     {
         return $this->belongsToMany(Team::class, 'team_accomodations', 'accommodation_id')->withTimestamps();
     }
+    public function serviceCategories(){
+        return $this->hasMany(ServiceCategory::class, 'accommodations_id');
+    }
 }
