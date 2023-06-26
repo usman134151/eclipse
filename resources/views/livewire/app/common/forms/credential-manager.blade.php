@@ -386,7 +386,7 @@
                                         Upload Document
                                     </label>
                                     <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.defer="documents.{{$index}}.formFile" accept="image/*">
-                                    {{-- @error('documents.'.$index.'.formFile')<span class="d-inline-block invalid-feedback mt-2">Please attach a document</span>@enderror  --}}
+                                    @error('documents.'.$index.'.formFile')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
                                         
                                         {{-- displays existing document name --}}
                                         @if($documents[$index]['temp_file']!=null)
