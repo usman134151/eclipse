@@ -41,6 +41,7 @@ class CustomerForm extends Component
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
 		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage=[],$selectedAdminStaff=[];
 	
+		public $supervisorNames=[],$sv_limit, $bManagerNames=[],$bm_limit,$managerNames=[],$m_limit,$adminStaffNames=[],$s_limit;
 	//end of modals variables
 
 
@@ -337,6 +338,16 @@ class CustomerForm extends Component
 	{
 		$this->selectedSupervisors = $selectedSupervisors;
 		$this->defaultSupervisor = $default;
+
+		$this->supervisorNames=[];
+		foreach ($selectedSupervisors as $us) {
+			$this->supervisorNames[] = User::find($us)->toArray();
+		}
+		if (count($this->supervisorNames) >= 4)
+			$this->sv_limit = 3;
+		else
+			$this->sv_limit = count($this->supervisorNames) - 1;
+
 		// if (in_array($this->user->id, $this->selectedSupervisors)) //setting checkbox
 		// 	$this->same_sv = true;
 		// else
@@ -346,11 +357,12 @@ class CustomerForm extends Component
 	{
 		$this->supervisingNames=[];
 		$this->selectedSupervising = $selectedSupervising;
+		$this->supervisingNames =[];
 		foreach($selectedSupervising as $us){
 			$this->supervisingNames[] = User::find($us)->toArray();
 		}
 		if(count($this->supervisingNames)>=4)
-			$this->limit = 4;
+			$this->limit = 3;
 		else
 			$this->limit= count($this->supervisingNames)-1;
 	}
@@ -358,6 +370,15 @@ class CustomerForm extends Component
 	{
 		$this->selectedBManagers = $selectedBManagers;
 		$this->defaultBManager = $default;
+
+		$this->bManagerNames=[];
+		foreach ($selectedBManagers as $us) {
+			$this->bManagerNames[] = User::find($us)->toArray();
+		}
+		if (count($this->bManagerNames) >= 4)
+			$this->bm_limit = 3;
+		else
+			$this->bm_limit = count($this->bManagerNames) - 1;
         // if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
 		// 	$this->same_bm = true; 
 		// else
@@ -368,10 +389,27 @@ class CustomerForm extends Component
 	public function updateSelectedUsersToManager($selectedUsersToManage)
 	{
 		$this->selectedUsersToManage = $selectedUsersToManage;
+
+		$this->managerNames = [];
+		foreach ($selectedUsersToManage as $us) {
+			$this->managerNames[] = User::find($us)->toArray();
+		}
+		if (count($this->managerNames) >= 4)
+			$this->m_limit = 3;
+		else
+			$this->m_limit = count($this->managerNames) - 1;
 	}
 	public function updateSelectedStaff($selectedStaff)
 	{
 		$this->selectedAdminStaff = $selectedStaff;
+		$this->adminStaffNames = [];
+		foreach ($selectedStaff as $us) {
+			$this->adminStaffNames[] = User::find($us['id'])->toArray();
+		}
+		if (count($this->adminStaffNames) >= 4)
+			$this->s_limit = 3;
+		else
+			$this->s_limit = count($this->adminStaffNames) - 1;
 	}
 
 	public function updateAddressType($type){
