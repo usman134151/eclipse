@@ -630,7 +630,14 @@
                                     <label for="formFile" class="form-label">
                                         Upload Document
                                     </label>
-                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.lazy="documents.{{$index}}.formFile" accept="image/*">
+                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.defer="documents.{{$index}}.formFile" accept="image/*">
+                                        @if($documents[$index]['temp_file']!=null)
+                                            <p> <b>Uploaded Document </b><br>
+                                            <a href="{{$documents[$index]['temp_file']}}" target="_blank" aria-label="file"  >
+                                                        {{basename($documents[$index]['temp_file'])}}
+                                                    </a> 
+                                            </p>
+                                        @endif
                                 </div>
                             </div>
                         </div>
@@ -651,19 +658,19 @@
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList" >Back</button>
                     {{-- <button class="btn btn-outline-primary rounded" wire:click.prevent="showList">Cancel</button> --}}
-                    <button class="btn btn-primary rounded mx-2" type="submit">Save</button>
+                    <button class="btn btn-primary rounded mx-2" type="submit" wire:click="save">Save</button>
                 </div>
 
 
             </form>
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12">
                     <h3>
                         {{ $messageFormSubmit ?? '' }}
                     </h3>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
