@@ -7,7 +7,7 @@
 			<div class="provider_image_panel">
 				<div class="provider_image">
 					@if ($temp_image!=null)
-						<img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$temp_image->getFilename() }}">
+						<img class="user_img cropfile" src="{{ $temp_image->temporaryUrl()}}">
 					@else
 						<img class="user_img cropfile" src="{{$team->team_image == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($team->team_image) }}">
 					@endif
