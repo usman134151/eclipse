@@ -31,7 +31,7 @@
 							<td>
 							<div class="row g-2">
 								<div class="col-md-2">
-								<img src="/tenant/images/portrait/small/avatar-s-20.jpg" width=32 class="img-fluid rounded-circle" alt="Image of Team Profile">
+								<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" width=32 class="img-fluid rounded-circle" alt="Image of Team Profile">
 								</div>
 								<div class="col-md-10">
 								<h6 class="fw-semibold">{{$member->name}}s</h6>

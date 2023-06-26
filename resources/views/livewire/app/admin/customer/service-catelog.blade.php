@@ -30,13 +30,17 @@
                                                                                         placeholder="Search"
                                                                                         autocomplete="on"
                                                                                         aria-label="Search" />
+                                                                                        @foreach($accomodations as $accomodation)
                                                                                     <tr role="row" class="odd">
-                                                                                        <td class="text-start">
+                                                                                      
+                                                                                        <td class="text-start" wire:click="updateServices({{$accomodation['id']}})">
                                                                                             <p>
-                                                                                                Shelby Sign Language
+                                                                                               {{$accomodation['name']}}
                                                                                             </p>
                                                                                         </td>
+
                                                                                     </tr>
+                                                                                    @endforeach
                                                                                    
                                                                                 </tbody>
                                                                             </table>
@@ -66,293 +70,66 @@
                                                                                     placeholder="Search"
                                                                                     autocomplete="on"
                                                                                     aria-label="Search" />
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Language interpreting</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div
-                                                                                            class="form-check form-switch">
-                                                                                            <input
-                                                                                                class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle Team Status">
-                                                                                            <label
-                                                                                                class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="customers = true"
-                                                                                                href="#"
-                                                                                                title="Customers"
-                                                                                                aria-label="Customers"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Customers"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#user-group">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                            <a href="#"
-                                                                                                title="Department"
-                                                                                                aria-label="Department"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Department"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#building">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>
-                                                                                            New service capacity and
-                                                                                            capabilities
-                                                                                        </p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div
-                                                                                            class="form-check form-switch">
-                                                                                            <input
-                                                                                                class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle Team Status">
-                                                                                            <label
-                                                                                                class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="customers = true"
-                                                                                                href="#"
-                                                                                                title="Customers"
-                                                                                                aria-label="Customers"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Customers"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#user-group">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                            <a href="#"
-                                                                                                title="Department"
-                                                                                                aria-label="Department"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Department"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#building">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>
-                                                                                            Shelby test two service
-                                                                                        </p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div
-                                                                                            class="form-check form-switch">
-                                                                                            <input
-                                                                                                class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle Team Status">
-                                                                                            <label
-                                                                                                class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="customers = true"
-                                                                                                href="#"
-                                                                                                title="Customers"
-                                                                                                aria-label="Customers"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Customers"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#user-group">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                            <a href="#"
-                                                                                                title="Department"
-                                                                                                aria-label="Department"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Department"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#building">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>CART Captioning</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div
-                                                                                            class="form-check form-switch">
-                                                                                            <input
-                                                                                                class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle Team Status">
-                                                                                            <label
-                                                                                                class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="customers = true"
-                                                                                                href="#"
-                                                                                                title="Customers"
-                                                                                                aria-label="Customers"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Customers"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#user-group">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                            <a href="#"
-                                                                                                title="Department"
-                                                                                                aria-label="Department"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Department"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#building">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                @for ($i = 0; $i < 5; $i++) <tr
-                                                                                    role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Transcript Services</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div
-                                                                                            class="form-check form-switch">
-                                                                                            <input
-                                                                                                class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle Team Status">
-                                                                                            <label
-                                                                                                class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="customers = true"
-                                                                                                href="#"
-                                                                                                title="Customers"
-                                                                                                aria-label="Customers"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Customers"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#user-group">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                            <a href="#"
-                                                                                                title="Department"
-                                                                                                aria-label="Department"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                <svg aria-label="Department"
-                                                                                                    class="fill"
-                                                                                                    width="21"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 21 20"
-                                                                                                    fill="none"
-                                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/sprite.svg#building">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    </tr>
-                                                                                    @endfor
+                                                                                    @foreach($this->services as $service)
+                                                                                        <tr role="row" class="odd">
+                                                                                            <td class="text-start">
+                                                                                                <p>{{$service['name']}}</p>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <div
+                                                                                                    class="form-check form-switch">
+                                                                                                    <input
+                                                                                                        class="form-check-input"
+                                                                                                        type="checkbox"
+                                                                                                        role="switch"
+                                                                                                        aria-label="Toggle Status" checked>
+                                                                                                    <label
+                                                                                                        class="form-check-label" >
+                                                                                                        DeActivated
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <div class="d-flex actions">
+                                                                                                    <a @click="customers = true"
+                                                                                                        href="#"
+                                                                                                        title="Customers"
+                                                                                                        aria-label="Customers"
+                                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                        <svg aria-label="Customers"
+                                                                                                            class="fill"
+                                                                                                            width="21"
+                                                                                                            height="20"
+                                                                                                            viewBox="0 0 21 20"
+                                                                                                            fill="none"
+                                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                                            <use
+                                                                                                                xlink:href="/css/sprite.svg#user-group">
+                                                                                                            </use>
+                                                                                                        </svg>
+                                                                                                    </a>
+                                                                                                    <a href="#"
+                                                                                                        title="Department"
+                                                                                                        aria-label="Department"
+                                                                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                                                        <svg aria-label="Department"
+                                                                                                            class="fill"
+                                                                                                            width="21"
+                                                                                                            height="20"
+                                                                                                            viewBox="0 0 21 20"
+                                                                                                            fill="none"
+                                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                                            <use
+                                                                                                                xlink:href="/css/sprite.svg#building">
+                                                                                                            </use>
+                                                                                                        </svg>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                         
+                                                                                    @endforeach
                                                                             </tbody>
                                                                         </table>
                                                                     </div>

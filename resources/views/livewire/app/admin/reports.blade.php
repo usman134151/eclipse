@@ -931,5 +931,5 @@
 </div>
 
 
-<script src="/tenant/js/Chart.js"></script>
-<script src="/tenant/js/Chart-init.js"></script>
+<script src="/tenant-resources/js/Chart.js"></script>
+<script src="/tenant-resources/js/Chart-init.js"></script>

@@ -22,7 +22,7 @@
               <div class="form-check mb-0">
                 <div class="row g-2">
                   <div class="col-md-2">
-                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                   </div>
                   <div class="col-md-9">
                     <h6 class="fw-semibold">Ramon Miles</h6>
@@ -42,7 +42,7 @@
               <div class="form-check mb-0">
                 <div class="row g-2">
                   <div class="col-md-2">
-                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                   </div>
                   <div class="col-md-9">
                     <h6 class="fw-semibold">Ramon Miles</h6>
@@ -62,7 +62,7 @@
               <div class="form-check mb-0">
                 <div class="row g-2">
                   <div class="col-md-2">
-                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                   </div>
                   <div class="col-md-9">
                     <h6 class="fw-semibold">Ramon Miles</h6>
@@ -82,7 +82,7 @@
               <div class="form-check mb-0">
                 <div class="row g-2">
                   <div class="col-md-2">
-                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                   </div>
                   <div class="col-md-9">
                     <h6 class="fw-semibold">Ramon Miles</h6>
@@ -102,7 +102,7 @@
               <div class="form-check mb-0">
                 <div class="row g-2">
                   <div class="col-md-2">
-                    <img src="/tenant/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+                    <img src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
                   </div>
                   <div class="col-md-9">
                     <h6 class="fw-semibold">Ramon Miles</h6>
@@ -1141,7 +1141,7 @@
           <div class="d-flex justify-content-center">
             <div class="row my-4">
               <div class="col-md-2">
-                  <img src="/tenant/images/img-placeholder-document.jpg"/>
+                  <img src="/tenant-resources/images/img-placeholder-document.jpg"/>
               </div>
           </div>
           </div>

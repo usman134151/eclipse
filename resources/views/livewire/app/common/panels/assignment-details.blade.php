@@ -656,7 +656,7 @@
                                             <a href="#">View Uploaded Document</a>
                                         </div>
                                         <div class="col-lg-auto">
-                                            <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document">
+                                            <img src="/tenant-resources/images/img-placeholder-document.jpg" alt="img-placeholder-document">
                                             <p class="font-family-secondary">
                                                 <small>File Name</small>
                                             </p>
@@ -780,13 +780,13 @@
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-lg-auto">
-                                            <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="">
+                                            <img src="/tenant-resources/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="">
                                             <p class="font-family-secondary">
                                                 <small>File Name</small>
                                             </p>
                                         </div>
                                         <div class="col-lg-auto">
-                                            <img src="/tenant/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="">
+                                            <img src="/tenant-resources/images/img-placeholder-document.jpg" alt="img-placeholder-document" class="">
                                             <p class="font-family-secondary">
                                                 <small>File Name</small>
                                             </p>
@@ -883,7 +883,7 @@
                                             <td class="align-middle">
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
-                                                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Provider Image">
+                                                        <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Provider Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">
@@ -987,7 +987,7 @@
                                             <td class="align-middle">
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
-                                                        <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
+                                                        <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="rounded-circle" alt="Image">
                                                     </div>
                                                     <div class="pt-2">
                                                         <div class="font-family-secondary leading-none">

@@ -1,4 +1,11 @@
-<div>
+<div >
+<div id="loader-section" class="loader-section" wire:loading>
+		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+			<div class="spinner-border" role="status" aria-live="polite">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
+	</div>
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -30,13 +37,21 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form class="form">
+            <form wire:submit.prevent="save" class="form" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="mb-4">
                             <label class="form-label" for="title"> Title </label>
-                            <input type="text" id="title" class="form-control" name="title" placeholder="Enter Title" />
+                            <input type="text" id="title" class="form-control" name="title" placeholder="Enter Title" wire:model.defer="credential.title" />
+                            @if(isset($credential['title']))
+                                @error('credential.title')
+                                    <span class="d-inline-block invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </span> 
+                                @enderror
+                            @endif
+                        
                         </div>
                     </div>
                     <div class="col-lg-5 ms-5">
@@ -45,17 +60,15 @@
                                 Attach Credential To
                             </label>
                             <div class="form-check">
-                                <input class="form-check-input" id="tags" name="tags" type="checkbox" tabindex="" />
+                                <input class="form-check-input" id="tags" name="tags" type="checkbox" tabindex="" value="tags" wire:model.defer="credential.attach_tags" />
                                 <label class="form-check-label" for="tags">Tags</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" id="specializations" name="specializations"
-                                    type="checkbox" tabindex="" />
+                                <input class="form-check-input" id="specializations" name="specializations" type="checkbox" tabindex="" value="specializations" wire:model.defer="credential.attach_specializations" />
                                 <label class="form-check-label" for="specializations"> Specializations</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" id="accomodation-service" name="accomodation-service"
-                                    type="checkbox" tabindex="" checked />
+                                <input class="form-check-input" id="accomodation-service" name="accomodation-service" type="checkbox" tabindex="" checkeds value="accomodation-service" wire:model.defer="credential.attach_accommodation_services" />
                                 <label class="form-check-label" for="accomodation-service"> Accommodations &
                                     Services</label>
                             </div>
@@ -72,12 +85,13 @@
                                         <div class="card-body shadow-sm">
                                             <input type="search" class="form-control" id="search" name="search"
                                                 placeholder="Search" autocomplete="on"
-                                                aria-label="Search Accommodation" />
+                                                aria-label="Search Accommodation" wire:model="accommodation_search" wire:keyup="searchInAccommodation" />
                                             <div class="overflow-y-auto max-h-30rem">
                                                 <table id="unassigned_data" class="table table-hover"
                                                     aria-label="Admin Staff Teams Table">
                                                     <tbody>
-                                                        <tr role="row" class="odd">
+                                                        @if(!empty($accommodation_list))
+                                                        <tr role="row" class="odd" wire:click.lazy="selectAllAccommodation">
                                                             <td class="text-start">
                                                             </td>
                                                             <td>
@@ -91,7 +105,28 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        <tr role="row" class="odd">
+                                                        
+                                                        @foreach($accommodation_list as $key => $accommodation)
+                                                            <tr role="row" class="odd" wire:click.lazy="selectAccommodation({{ $key }},{{ $accommodation['id'] }},'{{ $accommodation['name']}}')">
+                                                                <td class="text-start">
+                                                                    <p>
+                                                                        {{ $accommodation['name'] }}
+                                                                    </p>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex justify-content-end actions mx-5">
+                                                                        <svg width="20" height="21" viewBox="0 0 20 21">
+                                                                            <use
+                                                                                xlink:href="/css/common-icons.svg#grey-plus-icon">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        @endif
+
+                                                        {{-- <tr role="row" class="odd">
                                                             <td class="text-start">
                                                                 <p>Shelby Sign Language</p>
                                                             </td>
@@ -188,7 +223,7 @@
                                                                     </svg>
                                                                 </div>
                                                             </td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -205,11 +240,12 @@
                                     <div class="card-body shadow-sm">
                                         <input type="search" class="form-control" id="search-service"
                                             name="search-service" placeholder="Search" autocomplete="on"
-                                            aria-label="Search Service" />
+                                            aria-label="Search Service" wire:model="service_search" wire:keyup="searchInServices"/>
                                         <div class="overflow-y-auto max-h-30rem">
                                             <table id="" class="table table-hover" aria-label="Select Service Table">
                                                 <tbody>
-                                                    <tr role="row" class="odd">
+                                                    @if(!empty($services_list))
+                                                    <tr role="row" class="odd" wire:click.lazy="selectAllServices">
                                                         <td class="text-start">
                                                         </td>
                                                         <td>
@@ -224,7 +260,37 @@
 
                                                         </td>
                                                     </tr>
-                                                    <tr role="row" class="odd">
+                                                    @foreach($services_list as $key => $services)
+                                                        @if(isset($services['service_categories']) && !empty($services['service_categories']))
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    {{ $services['name'] }}
+                                                                </td>
+                                                            </tr>
+                                                       
+                                                        @foreach($services['service_categories'] as $k => $service)
+                                                        <tr role="row" class="odd" wire:click.lazy="selectServices({{ $key }},{{ $service['id'] }},'{{ $service['name']}}', {{ $services['id']}},{{ $k }})">
+                                                            
+                                                            <td class="text-start">
+                                                                <p>
+                                                                    {{ $service['name'] }}
+                                                                </p>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex justify-content-end actions mx-5">
+                                                                    <svg width="20" height="21" viewBox="0 0 20 21">
+                                                                        <use
+                                                                            xlink:href="/css/common-icons.svg#grey-plus-icon">
+                                                                        </use>
+                                                                    </svg>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                    @endif
+                                                    {{-- <tr role="row" class="odd">
                                                         <td class="text-start">
                                                             <p>Shelby Sign Language</p>
                                                         </td>
@@ -335,7 +401,7 @@
                                                                 </svg>
                                                             </div>
                                                         </td>
-                                                    </tr>
+                                                    </tr> --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -355,7 +421,51 @@
                                 <th scope="col" class="text-dark">ACTION</th>
                             </thead>
                             <tbody>
-                                <tr class="odd">
+                                @if(!empty($selected_accommodations_services))
+                                    @foreach($selected_accommodations_services as $key => $value)
+                                        <tr class="odd">
+                                            <td>
+                                                @if(isset($value['accommodations']) && !empty($value['accommodations']))
+                                                    {{ $value['accommodations']['name'] }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(isset($value['services']) && !empty($value['services']))
+                                                    {{ $value['services']['name'] }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="#" aria-label="delete" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click.lazy="removeSelectedAccommodationService({{ $key }})">
+                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                    </svg>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        @if(isset($value['accommodations']['service_categories']) && !empty($value['accommodations']['service_categories']))
+                                            @foreach($value['accommodations']['service_categories'] as $index => $val)
+                                                <tr class="odd">
+                                                    <td>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        {{ $val['name'] }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" aria-label="delete" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click.lazy="removeSelectedAccommodationService({{ $key }}, {{ $index }}, {{$value['accommodations']['id']}})">
+                                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                                <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                            </svg>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+
+                                    @endforeach
+                                @endif
+                                {{-- <tr class="odd">
                                     <td>
                                         JShelby Sign Language
                                     </td>
@@ -386,7 +496,7 @@
                                             </svg>
                                         </a>
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -396,17 +506,15 @@
                     <div class="col-lg-12">
                         <div class="form-check">
                             <input class="form-check-input" id="deactivated-associated-service"
-                                name="deactivated-associated-service" type="checkbox" tabindex="" />
-                            <label class="form-check-label" for="deactivated-associated-service">Deactivate Associated
-                                Service
+                                name="deactivated-associated-service" type="checkbox" tabindex="" value="deactivated-associated-service" wire:model.defer="credential.deactivate_associated_service" />
+                            <label class="form-check-label" for="deactivated-associated-service">           Deactivate Associated Service
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
                                 </svg>
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="reset-provider-priority" name="reset-provider-priority"
-                                type="checkbox" tabindex="" />
+                            <input class="form-check-input" id="reset-provider-priority" name="reset-provider-priority" type="checkbox" tabindex="" value="reset-provider-priority" wire:model.defer="credential.reset_provider_priority" />
                             <label class="form-check-label" for="reset-provider-priority">Reset Provider Priority
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -414,8 +522,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="assignment-invitation" name="assignment-invitation"
-                                type="checkbox" tabindex="" />
+                            <input class="form-check-input" id="assignment-invitation" name="assignment-invitation" type="checkbox" tabindex="" value="assignment-invitation" wire:model.defer="credential.hold_all_assignment_invitations" />
                             <label class="form-check-label" for="assignment-invitation">Hold All Assignment Invitations
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -423,7 +530,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="lenient" name="" type="checkbox" tabindex="" />
+                            <input class="form-check-input" id="lenient" name="lenient" type="checkbox" tabindex="" value="lenient" wire:model.defer="credential.lenient" />
                             <label class="form-check-label" for="lenient">Lenient
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -454,9 +561,10 @@
                             <div class="d-lg-flex gap-4 align-items-center">
                                 <div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="upload-only" name="upload-only" type="radio"
-                                            tabindex="" wire:key="upload-{{ $index }}" wire:model.lazy="documents.{{$index}}.upload_only" />
-                                        <label class="form-check-label" for="upload-only">Upload Only
+                                        <label class="form-check-label" for="upload-only-{{ $index }}">
+                                        <input class="form-check-input" id="upload-only-{{ $index }}" name="documents_{{$index }}_document_type_radio" type="radio"
+                                            tabindex="" wire:key="upload-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="upload-only" />
+                                                Upload Only
                                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -466,32 +574,38 @@
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="acknoeledge-document"
-                                            name="acknoeledge-document" type="radio" tabindex="" wire:key="acknowledege-{{ $index }}" wire:model.lazy="documents.{{$index}}.acknowledge_document"/>
-                                        <label class="form-check-label" for="acknoeledge-document">Acknowledge Document
+                                        <label class="form-check-label" for="acknoeledge-document-{{ $index }}">
+                                        <input class="form-check-input" id="acknoeledge-document-{{ $index }}"
+                                            name="documents_{{$index }}_document_type_radio" type="radio" tabindex="" wire:key="acknowledege-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="acknoeledge-document" />
+                                            Acknowledge Document
                                             <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                                 <use xlink:href="/css/common-icons.svg#fill-question"></use>
                                             </svg>
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline mb-3">
-                                        <input class="form-check-input" id="sign-document" name="sign-document"
-                                            type="radio" tabindex=""  wire:key="signindoc-{{ $index }}" wire:model.lazy="documents.{{$index}}.sign_document"/>
-                                        <label class="form-check-label" for="sign-document">Sign Document
+                                        <label class="form-check-label" for="sign-document-{{ $index }}">
+                                        <input class="form-check-input" id="sign-document-{{ $index }}" name="documents_{{$index }}_document_type_radio"
+                                            type="radio" tabindex=""  wire:key="signindoc-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="sign-document" />
+                                            Sign Document
                                             <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                                 <use xlink:href="/css/common-icons.svg#fill-question"></use>
                                             </svg>
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="set-expiry" name="set-expiry" type="radio"
-                                            tabindex="" wire:key="setexpr-{{ $index }}" wire:model.lazy="documents.{{$index}}.set_expiry"/>
-                                        <label class="form-check-label" for="set-expiry">Set Expiry</label>
+                                        <label class="form-check-label" for="set-expiry-{{ $index }}">
+                                        <input class="form-check-input" id="set-expiry-{{ $index }}" name="documents_{{$index }}_document_type_radio" type="radio"
+                                            tabindex="" wire:key="setexpr-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="set-expiry" />
+                                            Set Expiry
+                                        </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" id="user-set-expiry" name="user-set-expiry"
-                                            type="radio" tabindex="" wire:key="userexp-{{ $index }}" wire:model.lazy="documents.{{$index}}.user_set_expiry"/>
-                                        <label class="form-check-label" for="user-set-expiry">User Set Expiry</label>
+                                        <label class="form-check-label" for="user-set-expiry-{{ $index }}">
+                                        <input class="form-check-input" id="user-set-expiry-{{ $index }}" name="documents_{{$index }}_document_type_radio"
+                                            type="radio" tabindex="" wire:key="userexp-{{ $index }}" wire:model.lazy="documents.{{$index}}.document_type_radio" value="user-set-expiry" />
+                                            User Set Expiry
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -505,8 +619,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="d-inline-flex">
-                                        <input class="form-control w-50" type="" id="expiration-within"
-                                            placeholder="$00:00" wire:key="months-{{ $index }}" wire:model.lazy="documents.{{$index}}.expiration_within">
+                                        <input class="form-control w-50" type="text" min="0" maxlength="8" id="expiration-within"
+                                            placeholder="$00:00" wire:key="months-{{ $index }}" wire:model.lazy="documents.{{$index}}.expiration_within" onkeypress="return onlyNumberKey(event)">
                                         <div class="text-nowrap col-lg-4 ms-2 mt-3"><span>Months</span></div>
                                     </div>
                                 </div>
@@ -516,7 +630,7 @@
                                     <label for="formFile" class="form-label">
                                         Upload Document
                                     </label>
-                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.lazy="documents.{{$index}}.formFile">
+                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.lazy="documents.{{$index}}.formFile" accept="image/*">
                                 </div>
                             </div>
                         </div>
@@ -535,12 +649,31 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button class="btn btn-outline-primary rounded" wire:click.prevent="showList">Cancel</button>
-                    <button class="btn btn-primary rounded mx-2" wire:click.prevent="showList">Save</button>
+                    <button class="btn btn-outline-dark rounded mx-2" wire:click.prevent="showList" >Back</button>
+                    {{-- <button class="btn btn-outline-primary rounded" wire:click.prevent="showList">Cancel</button> --}}
+                    <button class="btn btn-primary rounded mx-2" type="submit">Save</button>
                 </div>
 
 
             </form>
+
+            <div class="row">
+                <div class="col-12">
+                    <h3>
+                        {{ $messageFormSubmit ?? '' }}
+                    </h3>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function onlyNumberKey(evt) {         
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>

@@ -120,6 +120,7 @@ class TeamInfo extends Component
 	
 	public function saveImage()
 	{
+		
 		if ($this->temp_image) {
 			if($this->team->team_image !=null){
 				//delete existing image
@@ -127,8 +128,9 @@ class TeamInfo extends Component
 					File::delete(public_path($this->team->team_image));
 			}
 			$name = md5(microtime()) . '.' . $this->temp_image->extension();
-			$this->temp_image->storeAs('/admin_teams/', $name, 'public');
-			return '/tenant'.tenant('id').'/admin_teams/' . $name;  //change domain here and in config/filesystems
+			$uploadPath = $this->temp_image->storeAs('/admin_teams', $name, 'public');
+			//dd($uploadPath);
+			return '/tenant'.tenant('id').'/app/public/admin_teams/' . $name;  //change domain here and in config/filesystems
     	}else
 			return null;
 	}
@@ -146,4 +148,6 @@ class TeamInfo extends Component
 			$this->emit('switch', $component); //hit parent component switch func
 
 	}
+
+
 }

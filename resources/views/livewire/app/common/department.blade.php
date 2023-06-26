@@ -89,7 +89,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -130,7 +130,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -173,7 +173,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -216,7 +216,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -257,7 +257,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -301,7 +301,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -342,7 +342,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -383,7 +383,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -424,7 +424,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>
@@ -465,7 +465,7 @@
 		  <td>
 			<div class="row g-2">
 			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
+				<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
 			  </div>
 			  <div class="col-md-10">
 				<h6 class="fw-semibold">Testing Company</h6>

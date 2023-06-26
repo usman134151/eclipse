@@ -18,8 +18,8 @@
 	{{-- End of update by Sohail Asghar --}}
 </div>
 @push('scripts')
-<script src="/tenant/js/index.global.min.js"></script>
-<script src="/tenant/js/bs-index.global.min.js"></script>
+<script src="/tenant-resources/js/index.global.min.js"></script>
+<script src="/tenant-resources/js/bs-index.global.min.js"></script>
 
 <script>
 	document.addEventListener('livewire:load', function() {

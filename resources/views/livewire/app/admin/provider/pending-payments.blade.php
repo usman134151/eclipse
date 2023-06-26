@@ -37,7 +37,7 @@
                         <p>Here you can view and manage your providers' remittance payments according to your payment
                             cycle.</p>
                         <div class="mb-4">
-                            <img src="/tenant/images/portrait/small/pending-payment.png" class="img-fluid"
+                            <img src="/tenant-resources/images/portrait/small/pending-payment.png" class="img-fluid"
                                 alt="Pending Payments Statistics">
                         </div>
                         <!-- BEGIN: Filters -->
@@ -192,7 +192,7 @@
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
                                                         <img width="50" height="50"
-                                                            src="/tenant/images/portrait/small/avatar-s-24.jpg"
+                                                            src="/tenant-resources/images/portrait/small/avatar-s-24.jpg"
                                                             class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
@@ -249,7 +249,7 @@
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
                                                         <img width="50" height="50"
-                                                            src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                            src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                             class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
@@ -307,7 +307,7 @@
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
                                                         <img width="50" height="50"
-                                                            src="/tenant/images/portrait/small/avatar-s-24.jpg"
+                                                            src="/tenant-resources/images/portrait/small/avatar-s-24.jpg"
                                                             class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
@@ -364,7 +364,7 @@
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
                                                         <img width="50" height="50"
-                                                            src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                            src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                             class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
@@ -422,7 +422,7 @@
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
                                                         <img width="50" height="50"
-                                                            src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                            src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                             class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">
@@ -480,7 +480,7 @@
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <div>
                                                         <img width="50" height="50"
-                                                            src="/tenant/images/portrait/small/avatar-s-24.jpg"
+                                                            src="/tenant-resources/images/portrait/small/avatar-s-24.jpg"
                                                             class="rounded-circle" alt="Provider Profile Image">
                                                     </div>
                                                     <div class="pt-2">

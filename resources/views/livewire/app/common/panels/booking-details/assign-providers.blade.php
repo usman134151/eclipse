@@ -243,7 +243,7 @@
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
                             </div>
                             <div class="pt-2">
@@ -412,7 +412,7 @@
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
                             </div>
                             <div class="pt-2">
@@ -581,7 +581,7 @@
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
                             </div>
                             <div class="pt-2">
@@ -750,7 +750,7 @@
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
                             </div>
                             <div class="pt-2">
@@ -919,7 +919,7 @@
                     <td>
                         <div class="d-flex gap-2 align-items-center">
                             <div>
-                                <img width="50" height="50" src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                     class="rounded-circle" alt="Image">
                             </div>
                             <div class="pt-2">

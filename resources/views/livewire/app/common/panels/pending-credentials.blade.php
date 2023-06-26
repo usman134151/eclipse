@@ -34,7 +34,7 @@
         <h3>Preview</h3>
         <div class="col-md-2">
             <div class="position-relative">
-              <img src="/tenant/images/img-placeholder-document.jpg"/>
+              <img src="/tenant-resources/images/img-placeholder-document.jpg"/>
               <div class="position-absolute top-0 start-100">
                 <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-3">
                   <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"

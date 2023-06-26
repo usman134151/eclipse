@@ -127,7 +127,7 @@
                                             <div class="row between-section-segment-spacing">
                                                 <div class="col-12 text-center">
                                                     <div class="d-inline-block position-relative">
-                                                        <img src="/tenant/images/portrait/small/testing.png" width="150"
+                                                        <img src="/tenant-resources/images/portrait/small/testing.png" width="150"
                                                             height="130" class="img-fluid rounded-circle"
                                                             alt="Company Image" />
                                                         <div

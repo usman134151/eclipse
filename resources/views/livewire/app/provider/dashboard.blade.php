@@ -120,7 +120,7 @@
 			<!-- /Filters -->
 			@livewire('app.common.calendar')
 			{{-- <div>
-			<img src="/tenant/images/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
+			<img src="/tenant-resources/images/img-placeholder-calendar.png" class="img-fluid" alt="Dashboard Calender"/>
 			</div> --}}
 		</div>
 		<div class="tab-pane fade" id="assignments-tab-pane" role="tabpanel" aria-labelledby="assignments-tab" tabindex="0">

@@ -169,10 +169,10 @@
                 <td class="align-middle"> <div class="row g-2">
                   <div class="col-md-2">
                     <div class="uploaded-data d-flex">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
                     </div>
                   </div>
                 </div></td>
@@ -229,10 +229,10 @@
                 <td class="align-middle"> <div class="row g-2">
                   <div class="col-md-2">
                     <div class="uploaded-data d-flex">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
                     </div>
                   </div>
                 </div></td>
@@ -289,10 +289,10 @@
                 <td class="align-middle"> <div class="row g-2">
                   <div class="col-md-2">
                     <div class="uploaded-data d-flex">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
                     </div>
                   </div>
                 </div></td>
@@ -357,10 +357,10 @@
                   <td class="align-middle"> <div class="row g-2">
                     <div class="col-md-2">
                       <div class="uploaded-data d-flex">
-                          <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                          <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                          <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
-                          <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                          <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                          <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                          <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
+                          <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" alt="Recipient Image">
                       </div>
                     </div>
                   </div></td>

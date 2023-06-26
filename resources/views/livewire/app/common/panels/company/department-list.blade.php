@@ -20,7 +20,7 @@
             <td>
                 <div class="row g-2">
                     <div class="col-md-3">
-                        <img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Image of department Profile">
+                        <img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Image of department Profile">
                     </div>
                     <div class="col-md-9" @click="departmentProfile = true">
                         <h6 class="fw-semibold">
