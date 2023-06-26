@@ -7,7 +7,7 @@ use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use App\Models\Tenant\SystemRole;
 use App\Models\Tenant\SystemRoleUser;
-use app\Services\App\UploadFileService;
+use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
