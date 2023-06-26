@@ -8,21 +8,24 @@ use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tenant\SystemRole;
+use App\Services\App\UploadFileService;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Livewire\WithFileUploads;
 
 class ProviderForm extends Component
 {
-    public $user,$isAdd=true;
+    use WithFileUploads;
+    public $user,$isAdd=true,$image=null;
     public $ethnicity;
     public $timezone;
     public $gender;
     public $languages;
 
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience','certificate'];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null];
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
@@ -238,6 +241,7 @@ class ProviderForm extends Component
                 'nullable'],
             'userdetail.country' => [
                 'nullable'],
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
 
 		];
 	}
@@ -257,7 +261,9 @@ class ProviderForm extends Component
         $this->userdetail['certification'] =implode(', ', $this->userdetail['certification']);
         $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
+        $fileService = new UploadFileService();
 
+        $this->userdetail['profile_pic']= $fileService->saveFile('profile_pic',$this->image, $this->userdetail['profile_pic']);
         
         $userService = new UserService;
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
