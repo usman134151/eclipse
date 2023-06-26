@@ -8,6 +8,7 @@ use App\Models\Tenant\AdminTeam;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\User;
 use App\Services\App\AdminTeamService;
+use App\Services\App\UploadFileService;
 use App\Services\App\UserService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -96,10 +97,13 @@ class TeamInfo extends Component
 	}
 	public function save($redirect=1){
 		$this->validate();
-		$this->team->team_image = $this->saveImage();
 
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
+
+		$fileService = new UploadFileService();
+		$this->team->team_image = $fileService->saveFile('profile_pic',$this->temp_image,$this->team->team_image);
+
 		$userService = new UserService;
 		if($this->user_roles!=null)
 			$userService->storeAdminRoles($this->user_roles, $this->team->id,2); //storing team roles
@@ -118,23 +122,6 @@ class TeamInfo extends Component
 	}
 
 	
-	public function saveImage()
-	{
-		
-		if ($this->temp_image) {
-			if($this->team->team_image !=null){
-				//delete existing image
-				if (File::exists(public_path($this->team->team_image)))
-					File::delete(public_path($this->team->team_image));
-			}
-			$name = md5(microtime()) . '.' . $this->temp_image->extension();
-			$uploadPath = $this->temp_image->storeAs('/admin_teams', $name, 'public');
-			//dd($uploadPath);
-			return '/tenant'.tenant('id').'/app/public/admin_teams/' . $name;  //change domain here and in config/filesystems
-    	}else
-			return null;
-	}
-
 
 
     public function edit(AdminTeam $team){
