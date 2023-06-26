@@ -7,6 +7,7 @@ use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\Credential;
 use App\Models\Tenant\CredentialDocument;
 use App\Models\Tenant\ServiceCategory;
+use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -22,6 +23,7 @@ class CredentialManager extends Component
                 'showList' => 'resetForm',
                 'editRecord' => 'edit'
             ];
+    
 
     public $documents = [[
         // 'upload_only' => '',
@@ -31,7 +33,8 @@ class CredentialManager extends Component
         // 'user_set_expiry' => '',
         'document_type_radio' => '',
         'expiration_within' => '',
-        'formFile' => ''
+        'formFile' => null,
+        'temp_file'=>null
     ]];
 
     public $credential;
@@ -147,7 +150,9 @@ class CredentialManager extends Component
                     'user_set_expiry' => '',
                     'document_type_radio' => $value->document_type_radio ?? '',
                     'expiration_within' => $value->expiration_within_price ?? 0,
-                    'formFile' => $value->formFile ?? ''
+                    'formFile' => null,
+                    'temp_file' => $value->upload_file ?? '',
+
                 ];
             }
         }
@@ -174,21 +179,16 @@ class CredentialManager extends Component
         if (!empty($this->documents)) {
             foreach ($this->documents as $key => $value) {
 
-                $imageName = '';
-                if (isset($value['formFile']) && !empty($value['formFile'])) {
-                    $imageName = $value['formFile']->store('public');
-                }
+              
                 $document_array[$key]['document_type_radio'] = $value['document_type_radio'];
                 $document_array[$key]['expiration_within_price'] = $value['expiration_within'] ? (float)$value['expiration_within'] : 0.0;
-                $document_array[$key]['upload_file'] = $imageName;
                 $document_array[$key]['credential_id'] = $credential_id;
 
                 if (isset($value['formFile']) && !empty($value['formFile'])) {
-                    $image = Storage::disk('public')->get(str_replace('public/', '', $imageName));
-                    $image = Image::make($image)->resize(400, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->encode('jpg');
-                    Storage::put('public/thumb_' . str_replace('public/', '', $imageName), $image);
+                     $document_array[$key]['upload_file'] = $this->saveFile($value['formFile'],$value['temp_file']);
+             
+                }else{
+                    $document_array[$key]['upload_file']= $value['temp_file'];
                 }
             }
 
@@ -197,6 +197,23 @@ class CredentialManager extends Component
         }
         $this->showList("Record saved successfully");
         $this->credential=new Credential;
+    }
+
+    public function saveFile($temp_file,$existing_file=null)
+    {
+
+        if ($temp_file) {
+            if ($existing_file != null) {
+                //delete existing file
+                if (File::exists(public_path($existing_file)))
+                File::delete(public_path($existing_file));
+            }
+            $name = time().'_'.$temp_file->getClientOriginalName();
+            $uploadPath = $temp_file->storeAs('/credentials', $name, 'public');
+            //dd($uploadPath);
+            return '/tenant' . tenant('id') . '/app/public/credentials/' . $name;  //change domain here and in config/filesystems
+        } else
+        return null;
     }
 
     function showForm()
@@ -212,7 +229,8 @@ class CredentialManager extends Component
         $this->documents[] = [
             'document_type_radio' => '',
             'expiration_within' => '',
-            'formFile' => ''
+            'formFile' => null,
+            'temp_file'=>null,
         ];
     }
     public function removeDocumentType($index)
@@ -442,81 +460,82 @@ class CredentialManager extends Component
         $this->accommodation_list = $accommodation;
     }
 
-    public function formSubmit()
-    {
+    // public function formSubmit()
+    // {
         
-        $validator = $this->validate([
-            'title' => 'required'
-        ]);
+    //     $validator = $this->validate([
+    //         'title' => 'required'
+    //     ]);
 
 
-        $credentials = new Credential();
+    //     $credentials = new Credential();
 
-        $credentials->title = $this->title;
-        $credentials->attach_tags = $this->attach_tags;
-        $credentials->attach_specializations = $this->attach_specializations;
-        $credentials->attach_accommodation_services = $this->attach_accommodation_services;
-        $credentials->deactivate_associated_service = $this->deactivate_associated_service;
-        $credentials->reset_provider_priority = $this->reset_provider_priority;
-        $credentials->hold_all_assignment_invitations = $this->hold_all_assignment_invitations;
-        $credentials->lenient = $this->lenient;
-        // $credentials->added_by = 1; //
-        $credentials->save();
-        $credential_id = $credentials->id;
+    //     $credentials->title = $this->title;
+    //     $credentials->attach_tags = $this->attach_tags;
+    //     $credentials->attach_specializations = $this->attach_specializations;
+    //     $credentials->attach_accommodation_services = $this->attach_accommodation_services;
+    //     $credentials->deactivate_associated_service = $this->deactivate_associated_service;
+    //     $credentials->reset_provider_priority = $this->reset_provider_priority;
+    //     $credentials->hold_all_assignment_invitations = $this->hold_all_assignment_invitations;
+    //     $credentials->lenient = $this->lenient;
+    //     // $credentials->added_by = 1; //
+    //     $credentials->save();
+    //     $credential_id = $credentials->id;
         
-        // sync credentials and accommodations
-        $credentials->accommodations()->sync(array_column($this->selected_services, 'id'));
-        // sync credentials and services category
-        $credentials->services()->sync(array_column($this->selected_accommodations, 'id'));
+    //     // sync credentials and accommodations
+    //     $credentials->accommodations()->sync(array_column($this->selected_services, 'id'));
+    //     // sync credentials and services category
+    //     $credentials->services()->sync(array_column($this->selected_accommodations, 'id'));
 
-        $document_array = [];
-        if (!empty($this->documents)) {
-            foreach ($this->documents as $key => $value) {
+    //     $document_array = [];
+    //     if (!empty($this->documents)) {
+    //         foreach ($this->documents as $key => $value) {
 
-                $imageName = '';
-                if (isset($value['formFile']) && !empty($value['formFile'])) {
-                    $imageName = $value['formFile']->store('public');
-                }
-                $document_array[$key]['upload_only'] = $value['upload_only'];
-                $document_array[$key]['acknowledge_document'] = $value['acknowledge_document'];
-                $document_array[$key]['sign_document'] = $value['sign_document'];
-                $document_array[$key]['set_expiry'] = $value['set_expiry'];
-                $document_array[$key]['user_set_expiry'] = $value['user_set_expiry'];
-                $document_array[$key]['document_type_radio'] = $value['document_type_radio'];
-                $document_array[$key]['expiration_within_price'] = $value['expiration_within'] ? (float)$value['expiration_within'] : 0.0;
-                $document_array[$key]['upload_file'] = $imageName;
-                $document_array[$key]['credential_id'] = $credential_id;
+    //             $imageName = '';
+    //             if (isset($value['formFile']) && !empty($value['formFile'])) {
+    //                 $imageName = $value['formFile']->store('public');
+    //             }
+    //             $document_array[$key]['upload_only'] = $value['upload_only'];
+    //             $document_array[$key]['acknowledge_document'] = $value['acknowledge_document'];
+    //             $document_array[$key]['sign_document'] = $value['sign_document'];
+    //             $document_array[$key]['set_expiry'] = $value['set_expiry'];
+    //             $document_array[$key]['user_set_expiry'] = $value['user_set_expiry'];
+    //             $document_array[$key]['document_type_radio'] = $value['document_type_radio'];
+    //             $document_array[$key]['expiration_within_price'] = $value['expiration_within'] ? (float)$value['expiration_within'] : 0.0;
+    //             $document_array[$key]['upload_file'] = $imageName;
+    //             $document_array[$key]['credential_id'] = $credential_id;
 
-                if (isset($value['formFile']) && !empty($value['formFile'])) {
-                    $image = Storage::disk('public')->get(str_replace('public/', '', $imageName));
-                    $image = Image::make($image)->resize(400, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->encode('jpg');
-                    Storage::put('public/thumb_' . str_replace('public/', '', $imageName), $image);
-                }
-            }
+    //             if (isset($value['formFile']) && !empty($value['formFile'])) {
+    //                 $image = Storage::disk('public')->get(str_replace('public/', '', $imageName));
+    //                 $image = Image::make($image)->resize(400, null, function ($constraint) {
+    //                     $constraint->aspectRatio();
+    //                 })->encode('jpg');
+    //                 Storage::put('public/thumb_' . str_replace('public/', '', $imageName), $image);
+    //             }
+    //         }
 
-            $documents = Documents::insert($document_array);
-        }
+    //         $documents = Documents::insert($document_array);
+    //     }
 
-        $this->title = null;
-        $this->attach_tags = null;
-        $this->attach_specializations = null;
-        $this->attach_accommodation_services = null;
-        $this->deactivate_associated_service = null;
-        $this->reset_provider_priority = null;
-        $this->hold_all_assignment_invitations = null;
-        $this->lenient = null;
-        $this->selected_services = [];
-        $this->selected_accommodations = [];
-        $this->selected_accommodations_services = [];
+    //     $this->title = null;
+    //     $this->attach_tags = null;
+    //     $this->attach_specializations = null;
+    //     $this->attach_accommodation_services = null;
+    //     $this->deactivate_associated_service = null;
+    //     $this->reset_provider_priority = null;
+    //     $this->hold_all_assignment_invitations = null;
+    //     $this->lenient = null;
+    //     $this->selected_services = [];
+    //     $this->selected_accommodations = [];
+    //     $this->selected_accommodations_services = [];
 
-        $this->documents = [
-            'document_type_radio' => '',
-            'expiration-within' => '',
-            'formFile' => ''
-        ];
+    //     $this->documents = [
+    //         'document_type_radio' => '',
+    //         'expiration-within' => '',
+    //         'formFile' => null,
+    //         'temp_file'=>null
+    //     ];
 
-        $this->messageFormSubmit = 'Form submit successfull';
-    }
+    //     $this->messageFormSubmit = 'Form submit successfull';
+    // }
 }
