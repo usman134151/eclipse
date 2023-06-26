@@ -4,12 +4,14 @@ namespace App\Http\Livewire\App\Common\Modals;
 use Livewire\Component;
 use App\Models\Tenant\UserAddress;
 use Illuminate\Validation\Rule;
+use App\Models\Tenant\Country;
 
 class AddAddress extends Component
 {
     public $address;
     public $addressType=1;
     public $functionExecuted = false;
+    public $countries=[];
     protected $listeners = ['updateAddressType'];
     public function render()
     {
@@ -20,6 +22,8 @@ class AddAddress extends Component
     public function mount()
     {
        $this->updateAddressData();
+       $this->countries=Country::get()->toArray();
+      
 
     }
     public function updateAddressType($type){
