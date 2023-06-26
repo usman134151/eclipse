@@ -10,14 +10,19 @@ use App\Models\Tenant\SystemRoleUser;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\File;
+
 use DB, Arr;
+use Livewire\WithFileUploads;
 
 class AdminStaffForm extends Component
 {
+    use WithFileUploads;
+
     public $component = 'profile';
-    public $user,$isAdd=true,$user_roles=[];
+    public $user,$isAdd=true,$user_roles=[],$temp_image =null;
     
-    public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone','roles'];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone','roles','profile_pic'=>null];
     public $setupValues = [
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',5]],
         'gender' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 2, 'setup_value_label', false,'userdetail.gender_id','','gender_id',4]],
@@ -104,7 +109,10 @@ class AdminStaffForm extends Component
             'userdetail.gender_id' => [
                 'nullable'],
             'userdetail.country' => [
-                    'nullable']
+                    'nullable'],
+
+			'temp_image' => 'nullable|image|mimes:jpg,png,jpeg',
+
 
 		];
 	}
@@ -113,6 +121,8 @@ class AdminStaffForm extends Component
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
+		$this->userdetail['profile_pic'] = $this->saveImage();
+
 		$userService = new UserService;
        
         $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],$this->isAdd);
@@ -142,6 +152,22 @@ class AdminStaffForm extends Component
         $this->isAdd=false;
 
 
+    }
+
+    public function saveImage()
+    {
+
+        if ($this->temp_image) {
+            if ($this->userdetail['profile_pic'] != null) {
+                //delete existing image
+                if (File::exists(public_path($this->userdetail['profile_pic'])))
+                    File::delete(public_path($this->userdetail['profile_pic']));
+            }
+            $name = md5(microtime()) . '.' . $this->temp_image->extension();
+            $uploadPath = $this->temp_image->storeAs('/admin_staff', $name, 'public');
+            return '/tenant' . tenant('id') . '/app/public/admin_staff/' . $name;  //change domain here and in config/filesystems
+        } else
+        return null;
     }
 
 }
