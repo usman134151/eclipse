@@ -58,7 +58,11 @@
                             @if($user->email)
                             <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }"
                                 @click.prevent="tab = 'permission-configurations'" id="permission-configurations-tab"
-                                role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0" wire:click.prevent="switch('permission-configurations',2,true)">
+                                role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0"
+                                wire:click.prevent="save(0)"
+
+                                 {{-- wire:click.prevent="switch('permission-configurations',2,true)" --}}
+                                 >
                                 <span class="number">2</span>
                                 Permission Configurations
                             </a>
