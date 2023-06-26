@@ -18,7 +18,7 @@
 						<label for="cropfile" class="form-label visually-hidden">Input File</label>
 						<input wire:model="temp_image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
 					</div>
-					@error('team.team_image')
+					@error('team_image')
                     <span class="d-inline-block invalid-feedback mt-2">
                         {{ $message }}
                     </span>

@@ -159,8 +159,8 @@
                                                     @foreach($services_list as $key => $services)
                                                         @if(isset($services['service_categories']) && !empty($services['service_categories']))
                                                             <tr>
-                                                                <td colspan="2">
-                                                                    {{ $services['name'] }}
+                                                                <td colspan="2"> <b>
+                                                                    {{ $services['name'] }} </b>
                                                                 </td>
                                                             </tr>
                                                        
@@ -312,6 +312,8 @@
                             </div>
                             <div class="d-lg-flex gap-4 align-items-center">
                                 <div>
+                                        <h6><b>Document Action:</b> </h6>
+
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label" for="upload-only-{{ $index }}">
                                         <input class="form-check-input" id="upload-only-{{ $index }}" name="documents_{{$index }}_document_type_radio" type="radio"
@@ -345,6 +347,8 @@
                                             </svg>
                                         </label>
                                     </div>
+                                        <h6><b>Expiration:</b> </h6>
+
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label" for="set-expiry-{{ $index }}">
                                         <input class="form-check-input" id="set-expiry-{{ $index }}" name="expiration_type_{{$index }}" type="radio"
@@ -385,7 +389,7 @@
                                     <label for="formFile" class="form-label">
                                         Upload Document
                                     </label>
-                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.defer="documents.{{$index}}.formFile" accept="image/*">
+                                    <input class="form-control" type="file" id="formFile"  wire:key="form-{{ $index }}" wire:model.defer="documents.{{$index}}.formFile" >
                                     @error('documents.'.$index.'.formFile')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
                                         
                                         {{-- displays existing document name --}}
