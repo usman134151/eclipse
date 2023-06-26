@@ -39,7 +39,7 @@ class CustomerForm extends Component
 
 	//modals variables
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage,$selectedAdminStaff;
+		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage=[],$selectedAdminStaff=[];
 	
 	//end of modals variables
 
