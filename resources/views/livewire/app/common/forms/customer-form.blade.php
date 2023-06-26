@@ -575,18 +575,37 @@
                                                     Assigned Supervisor(s)
                                                 </label>
                                                 <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal" data-bs-target="#assignedSupervisorModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Assigned Supervisor(s)" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Supervisor(s)
-                                                    </button>
+                                                    <div class="d-flex gap-5">
+                                                        <button type="button"
+                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                            data-bs-toggle="modal" data-bs-target="#assignedSupervisorModal">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Assigned Supervisor(s)" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Assigned Supervisor(s)
+                                                        </button>
+                                                        <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($supervisorNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $sv_limit; $i++)
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisorNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($supervisorNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($supervisorNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                     <div class="form-check mb-lg-0">
                                                         <input disabled class="form-check-input" type="checkbox" wire:model.defer="same_sv"  wire:click="selectSameSupervisor"
                                                             id="AssignSame_User">
@@ -632,7 +651,7 @@
                                                     @if(count($supervisingNames)>0)
                                                         
 
-                                                        @for ($i = 0; $i < $limit; $i++)
+                                                        @for ($i = 0; $i <= $limit; $i++)
                                                         <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisingNames[$i]['name']}}"
                                                             alt="Profile Image">
                                                         @endfor
@@ -655,19 +674,38 @@
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#assignedBillingManagerModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Supervising" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Billing Manager
-                                                    </button>
+                                                    <div class="d-flex gap-5">
+                                                        <button type="button"
+                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#assignedBillingManagerModal">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Supervising" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Assigned Billing Manager
+                                                        </button>
+                                                        <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($bManagerNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $bm_limit; $i++)
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$bManagerNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($bManagerNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($bManagerNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                     <div class="form-check mb-lg-0">
                                                         <input disabled class="form-check-input" type="checkbox" wire:model.defer="same_bm"  wire:click="selectSameBManager"
                                                             id="Assign-Same-User">
@@ -723,6 +761,7 @@
                                                         Billing Manager
                                                     </label>
                                                 </div>
+                                                <div class="d-flex gap-5">
                                                 <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                     data-bs-toggle="modal" data-bs-target="#billManagingModal">
                                                     {{-- Updated by Shanila to Add svg icon--}}
@@ -734,6 +773,24 @@
                                                     {{-- End of update by Shanila --}}
                                                     Billing Manager
                                                 </button>
+                                                  <div class="uploaded-data d-flex align-items-center">
+                                                        @if(count($managerNames)>0)
+                                                            
+
+                                                            @for ($i = 0; $i <= $m_limit; $i++)
+                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$managerNames[$i]['name']}}"
+                                                                alt="Profile Image">
+                                                            @endfor
+                                                            @if(count($managerNames)>4)
+                                                            <div class="more">    
+                                                                <span class="value">{{count($managerNames)-4}}</span> more
+                                                            </div>
+                                                            
+                                                            @endif
+
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row between-section-segment-spacing">
@@ -859,18 +916,37 @@
                                                     Assigned Admin-Staff
                                                 </label>
                                                 <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal" data-bs-target="#adminStaffModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Assigned Admin-Staff" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Admin-Staff
-                                                    </button>
+                                                    <div class="d-flex gap-5">
+                                                        <button type="button"
+                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                            data-bs-toggle="modal" data-bs-target="#adminStaffModal">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Assigned Admin-Staff" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Assigned Admin-Staff
+                                                        </button>
+                                                        <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($adminStaffNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $s_limit; $i++)
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$adminStaffNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($adminStaffNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($adminStaffNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             {{-- Action Buttons Start --}}
