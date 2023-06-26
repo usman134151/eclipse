@@ -104,6 +104,7 @@ class TeamInfo extends Component
 		$fileService = new UploadFileService();
 		$this->team->team_image = $fileService->saveFile('profile_pic',$this->temp_image,$this->team->team_image);
 
+		$this->team->save();
 		$userService = new UserService;
 		if($this->user_roles!=null)
 			$userService->storeAdminRoles($this->user_roles, $this->team->id,2); //storing team roles

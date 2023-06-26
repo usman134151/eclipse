@@ -18,7 +18,7 @@ class AdminTeam extends Model
         'team_phone',
         'team_email',
         'team_description',
-        'team_notes'
+        'team_notes','team_image'
     ];
     public function staff(): BelongsToMany
     {
