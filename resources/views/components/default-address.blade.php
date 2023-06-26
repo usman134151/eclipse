@@ -20,7 +20,7 @@
                 <td>{{ $loop->index+1 }}</td>
                 <td class="position-relative">
                     <p>
-                    {{$address['address_name']}}:  {{ $address['address_line1'].' '.$address['city'].' '.$address['state'].' '.$address['country'] }}<a href="#" title="Delete" aria-label="Delete" wire:click.prevent="deleteAddress({{ $loop->index }})" class="btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0"  style="top:15px !important;right: -15px !important;" name="deleteIcon" onclick="$(this).parent().slideUp();">
+                    {{$address['address_name']}}:  {{ $address['address_line1'].'<br/>'.$address['city'].', '.$address['state'].', '.$address['country'] }}<a href="#" title="Delete" aria-label="Delete" wire:click.prevent="deleteAddress({{ $loop->index }})" class="btn btn-sm btn-secondary rounded btn-hs-icon position-absolute top-0 end-0"  style="top:15px !important;right: -15px !important;" name="deleteIcon" onclick="$(this).parent().slideUp();">
                     
                                                                 <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <use xlink:href="/css/sprite.svg#delete-icon"></use>
