@@ -58,22 +58,7 @@
                             <h1>{{$listTitle}}</h1>
                           </div>
                           <div class="d-flex flex-column flex-md-row justify-content-end mt-4 mb-3 gap-2">
-										<button wire:click.prevent="downloadExportFile()" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
-												{{-- Updated by Shanila to Add svg icon--}}
-												<svg aria-label="Download Import File" width="20" height="20" viewBox="0 0 20 20">
-													<use xlink:href="/css/common-icons.svg#import-file"></use>
-												</svg>
-												{{-- End of update by Shanila --}}
-												<span>Download Import File</span>
-										</button>
-                    <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="importFile">
-												{{-- Updated by Shanila to Add svg icon--}}
-												<svg aria-label="Import credential" width="20" height="20" viewBox="0 0 20 20">
-													<use xlink:href="/css/common-icons.svg#import-file"></use>
-												</svg>
-												{{-- End of update by Shanila --}}
-												<span>Import credential</span>
-											</button>
+
                             <a href="#"  wire:click="showForm" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">Add Credential</a>
                           </div>
                           <p>{{$listDescription}}</p>
