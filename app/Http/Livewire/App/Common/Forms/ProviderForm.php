@@ -15,7 +15,7 @@ use Illuminate\Support\Arr;
 
 class ProviderForm extends Component
 {
-    public $user,$isAdd=true;
+    public $user,$isAdd=true,$temp_file=null;
     public $ethnicity;
     public $timezone;
     public $gender;
@@ -238,6 +238,7 @@ class ProviderForm extends Component
                 'nullable'],
             'userdetail.country' => [
                 'nullable'],
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
 
 		];
 	}
