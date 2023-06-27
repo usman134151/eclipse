@@ -111,7 +111,7 @@ final class Providers extends PowerGridComponent
 		->addColumn('name')
 		->addColumn('customer', function (User $model) {
 			if($model->profile_pic==null)
-				$col='<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
+				$col= '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
 			else
 				$col = '<div class="row g-2 align-items-center"><div class="col-md-2 provider_image_panel">			
 				<div class="provider_image" style="width:64px;height:64px;top:1rem"> <img class="user_img cropfile" src="' . $model->profile_pic . '"></div>

@@ -170,7 +170,9 @@
 													<div class="row">
 														<div class="col-md-6">
 															<div class="d-inline-block position-relative">
-																<img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Profile Image of Provider"/>
+																<img  style="width:250px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+
+																 class="img-fluid rounded-circle" alt="Profile Image of Provider"/>
 															</div>
 															<div class="d-flex">
 
