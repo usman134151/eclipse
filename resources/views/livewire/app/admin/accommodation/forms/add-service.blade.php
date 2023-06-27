@@ -1312,7 +1312,9 @@
                                             Request Form
                                         </h3>
                                         <div class="mb-2">
-                                        {!! $setupValues['customerForms']['rendered'] !!}
+                                            <select class="form-select" aria-label="Select Request Form">
+                                                <option>Select Request Form</option>
+                                            </select>
                                         </div>
                                         <div class="text-end">
                                             <a href="#" class="fw-bold">

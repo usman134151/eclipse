@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\Specialization;
-use App\Models\Tenant\SetupValue;
 use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
 use Illuminate\Auth\Events\Validated;
@@ -31,8 +30,7 @@ class AddService extends Component
 
 
     public $setupValues = [
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]],
-        'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
+        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]]
 
 	];
     public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
@@ -132,14 +130,7 @@ class AddService extends Component
         $this->setupCheckboxes['service_types']=['rendered'=>''];
         $this->loadValues($this->service);
         $this->specializations=Specialization::all()->where('status',1);
-        $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
-        for($i=0,$j=1;$i<4;$i++,$j++){
-            if($j==3)
-               $j=4;
-            $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
-        }
-        
-       
+       // dd($this->service);
 
 	}
     public function rules()
@@ -274,7 +265,6 @@ class AddService extends Component
            'service.notification_settings_t' => 'sometimes|nullable',
            'service.notification_settings_p' => 'sometimes|nullable',
            'billingIncrements.*.*' => 'numeric',
-           'service.request_form_id'=> 'sometimes|nullable'
 
 		];
 	}
@@ -461,7 +451,7 @@ class AddService extends Component
             $this->service->notification_settings_t=json_encode([$this->notificationSettings["5"]]);
         }
       
-        //dd( $this->service);
+    //    dd( $this->service->payment_increment);
       
        
         $this->service = $categoryService->createService($this->service,$specializationRecords);
@@ -474,7 +464,6 @@ class AddService extends Component
 		}
         else{  //reconvert values 
             $this->reconvertValues();
-
             $this->step++;
         }
     }    
@@ -483,7 +472,6 @@ class AddService extends Component
           $this->service->service_type=explode(',',$this->service->service_type);
         if(!is_array($this->service->frequency_id))  
         $this->service->frequency_id=explode(',',$this->service->frequency_id);
-        $this->dispatchBrowserEvent('refreshSelects');
         
     }
     public function back(){
