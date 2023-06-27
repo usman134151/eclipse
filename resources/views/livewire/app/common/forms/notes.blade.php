@@ -36,7 +36,7 @@
                                                             <img class="round" title="{{$note->author->name}}" src="{{$note->author->userdetail->profile_pic != null ? $note->author->userdetail->profile_pic :'/tenant-resources/images/portrait/small/avatar-s-11.jpg'}}" alt="avatar" height="25" width="25">
                                                              <small>{{$note->author->name}}</small> -
                                                         @endif
-                                                        <small>{{date_format(date_create($note->created_at), "d/m/Y H:i A")}}</small>
+                                                        <small>{{date_format(date_create($note->updated_at), "d/m/Y H:i A")}}</small>
 
                                                     </div>
                                                 </div>
