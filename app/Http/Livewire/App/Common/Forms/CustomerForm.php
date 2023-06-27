@@ -8,15 +8,19 @@ use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use App\Services\App\AddressService;
+use App\Services\App\UploadFileService;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
+
 use Carbon\Carbon;
 
 
 class CustomerForm extends Component
 {
-    public $user,$isAdd=true,$userAddresses=[];
+	use withFileUploads;
+    public $user,$isAdd=true,$userAddresses=[],$image=null;
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
-	'user_introduction'=>null, 'title' => null, 'user_position' => null];
+	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	public $rolesArr=[],$same_sv,$same_bm;
@@ -223,7 +227,9 @@ class CustomerForm extends Component
 					'nullable','max:150'],
 			'userdetail.state'=>['nullable','max:150'],
 			'userdetail.city' => ['nullable', 'max:150'],
-			'userdetail.zip' => ['nullable', 'max:150'], 	                              
+			'userdetail.zip' => ['nullable', 'max:150'],
+			'image' => 'nullable|image|mimes:jpg,png,jpeg',
+
 
 			
 		];
@@ -242,6 +248,10 @@ class CustomerForm extends Component
 		$this->user->status=1;
 
 		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
+		if($this->image!=null){
+			$fileService = new UploadFileService();
+			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);	
+		}
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);

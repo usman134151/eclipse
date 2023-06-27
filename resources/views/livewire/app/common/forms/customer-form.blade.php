@@ -121,21 +121,27 @@
                                             <form  class="form">
                                                 @csrf
                                                 <div class="row between-section-segment-spacing">
-                                                    <div class="col-12 text-center">
-                                                        <div class="d-inline-block position-relative">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Profile Image of Customer" />
-                                                            <div
-                                                                class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                                                <svg aria-label="Upload Picture" width="57" height="57"
-                                                                    viewBox="0 0 57 57" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <use xlink:href="/css/provider.svg#camera"></use>
-                                                                </svg>
-                                                            </div>
+                                                      <div class="provider_image_panel">
+                                                    <div class="provider_image">
+                                                        @if ($image!=null)
+                                                            <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
+                                                        @else
+                                                            <img class="user_img cropfile" src="{{$userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
+                                                        @endif
+                                                        <div class="input--file">
+                                                            <span>
+                                                                <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+                                                            </span>
+                                                            <label for="cropfile" class="form-label visually-hidden">Input File</label>
+                                                            <input wire:model="image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
                                                         </div>
+                                                        @error('image')
+                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                     </div>
+                                                </div>
                                                 </div>
                                                 <div class="row between-section-segment-spacing">
                                                     <div class="col-lg-12">
@@ -536,7 +542,10 @@
                                         <form class="form">
                                             @csrf
                                             <div class="col-lg-12 inner-section-segment-spacing">
+                                         
+                                                    
                                                 <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                                    
                                                     <h2 class="mb-lg-0">Permission Configurations</h2>
                                                     <div
                                                         class="d-flex flex-column justify-content-center align-items-center gap-1">

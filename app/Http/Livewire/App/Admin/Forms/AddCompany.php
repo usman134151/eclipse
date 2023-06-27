@@ -180,8 +180,10 @@ class AddCompany extends Component
 		$this->validate();
 		$this->company->added_by = Auth::id();
 
-		$fileService = new UploadFileService();
-		$this->company->company_logo = $fileService->saveFile('profile_pic', $this->image, $this->company->company_logo);
+		if($this->image!=null){
+			$fileService = new UploadFileService();
+			$this->company->company_logo = $fileService->saveFile('profile_pic', $this->image, $this->company->company_logo);
+		}
 
 		$companyService = new CompanyService;
 		$this->company->unfavored_providers = implode(', ', $this->unfv_providers);
