@@ -137,6 +137,7 @@ class AddService extends Component
                $j=4;
             $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
         }
+        $this->dispatchBrowserEvent('refreshSelects');
 
 
 	}
@@ -480,6 +481,7 @@ class AddService extends Component
           $this->service->service_type=explode(',',$this->service->service_type);
         if(!is_array($this->service->frequency_id))  
         $this->service->frequency_id=explode(',',$this->service->frequency_id);
+        $this->dispatchBrowserEvent('refreshSelects');
         
     }
     public function back(){
@@ -572,6 +574,7 @@ class AddService extends Component
     public function switch($component)
 	{
 		$this->component = $component;
+       
 	}
     public function serviceRates(){
         $this->step =3;
@@ -740,6 +743,8 @@ class AddService extends Component
       
         if(!is_null($this->service->name))
             $this->step=$stepNo;
+
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
     public function addCharges($type){
