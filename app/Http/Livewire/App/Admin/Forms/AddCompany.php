@@ -11,12 +11,15 @@ use App\Models\Tenant\Phone;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
+use App\Services\App\UploadFileService;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 class AddCompany extends Component
 {
-	public $component = 'company-info';
+	use WithFileUploads;
+	public $component = 'company-info',$image=null;
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
 	public $deletedNumbers=[],$companyUsers=[],$admins=[], $providers=[],$fv_providers=[], $unfv_providers=[];
 	public $setupValues = [
@@ -168,12 +171,18 @@ class AddCompany extends Component
 			'company.language_id' => 'nullable',
 			'company.company_service_start_date' => 'nullable|date_format:m/d/Y',
 			'company.company_service_end_date' => 'nullable|date_format:m/d/Y',
+			'image' => 'nullable|image|mimes:jpg,png,jpeg',
+
 		];
 	}
 
 	public function save($redirect=1){
 		$this->validate();
 		$this->company->added_by = Auth::id();
+
+		$fileService = new UploadFileService();
+		$this->company->company_logo = $fileService->saveFile('profile_pic', $this->image, $this->company->company_logo);
+
 		$companyService = new CompanyService;
 		$this->company->unfavored_providers = implode(', ', $this->unfv_providers);
 		$this->company->favored_providers = implode(', ', $this->fv_providers);

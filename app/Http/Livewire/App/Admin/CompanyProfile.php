@@ -22,6 +22,7 @@ class CompanyProfile extends Component
 
 	public function mount()
 	{}
+		
     public function showDetails($company){
 		$this->company=$company;
 		$this->company['users'] = User::where('company_name',$company['id'])->get()->count();
