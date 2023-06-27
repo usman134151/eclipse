@@ -212,7 +212,7 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-4">
                                                         <div class="d-inline-block position-relative">
-                                                            <img style="height: 86px;" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                            <img style="width:300px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                 class="img-fluid rounded-circle"
                                                                 alt="Customer Profile Image" />
                                                         </div>

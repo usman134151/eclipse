@@ -231,7 +231,7 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="d-inline-block position-relative">
-                                                                <img style="height: 86px;" src="{{$company['company_logo'] !=null ? $company['company_logo'] : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                                <img  style="width:300px;height:200px;top:1rem" src="{{$company['company_logo'] !=null ? $company['company_logo'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Company Image" />
                                                             </div>
