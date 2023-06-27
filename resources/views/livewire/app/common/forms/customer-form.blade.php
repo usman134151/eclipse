@@ -602,7 +602,7 @@
                                                                 
 
                                                                 @for ($i = 0; $i <= $sv_limit; $i++)
-                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisorNames[$i]['name']}}"
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$supervisorNames[$i]['userdetail']['profile_pic'] !=null ? $supervisorNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$supervisorNames[$i]['name']}}"
                                                                     alt="Profile Image">
                                                                 @endfor
                                                                 @if(count($supervisorNames)>4)
@@ -661,7 +661,7 @@
                                                         
 
                                                         @for ($i = 0; $i <= $limit; $i++)
-                                                        <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisingNames[$i]['name']}}"
+                                                        <img style="width:50px;height:50px;top:1rem" src="{{$supervisingNames[$i]['userdetail']['profile_pic'] !=null ? $supervisingNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$supervisingNames[$i]['name']}}"
                                                             alt="Profile Image">
                                                         @endfor
                                                         @if(count($supervisingNames)>4)
@@ -702,7 +702,7 @@
                                                                 
 
                                                                 @for ($i = 0; $i <= $bm_limit; $i++)
-                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$bManagerNames[$i]['name']}}"
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$bManagerNames[$i]['userdetail']['profile_pic'] !=null ? $bManagerNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$bManagerNames[$i]['name']}}"
                                                                     alt="Profile Image">
                                                                 @endfor
                                                                 @if(count($bManagerNames)>4)
@@ -787,7 +787,7 @@
                                                             
 
                                                             @for ($i = 0; $i <= $m_limit; $i++)
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$managerNames[$i]['name']}}"
+                                                            <img style="width:50px;height:50px;top:1rem" src="{{$managerNames[$i]['userdetail']['profile_pic'] !=null ? $managerNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$managerNames[$i]['name']}}"
                                                                 alt="Profile Image">
                                                             @endfor
                                                             @if(count($managerNames)>4)
@@ -943,7 +943,7 @@
                                                                 
 
                                                                 @for ($i = 0; $i <= $s_limit; $i++)
-                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="" title="{{$adminStaffNames[$i]['name']}}"
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$adminStaffNames[$i]['userdetail']['profile_pic']!=null? $adminStaffNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$adminStaffNames[$i]['name']}}"
                                                                     alt="Profile Image">
                                                                 @endfor
                                                                 @if(count($adminStaffNames)>4)

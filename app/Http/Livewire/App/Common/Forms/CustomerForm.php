@@ -124,7 +124,7 @@ class CustomerForm extends Component
 	   $this->user=$user;
 		//    if(is_array($user['userdetail']))
 		//    	$this->userdetail=$user['userdetail'];
-		if($user->userdetail->exists())
+		if($user->userdetail!=null && $user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
 		if ($this->user->userdetail->get('user_configuration') != null)
 		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
@@ -351,7 +351,7 @@ class CustomerForm extends Component
 
 		$this->supervisorNames=[];
 		foreach ($selectedSupervisors as $us) {
-			$this->supervisorNames[] = User::find($us)->toArray();
+			$this->supervisorNames[] = User::where('id',$us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->supervisorNames) >= 4)
 			$this->sv_limit = 3;
@@ -369,7 +369,7 @@ class CustomerForm extends Component
 		$this->selectedSupervising = $selectedSupervising;
 		$this->supervisingNames =[];
 		foreach($selectedSupervising as $us){
-			$this->supervisingNames[] = User::find($us)->toArray();
+			$this->supervisingNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if(count($this->supervisingNames)>=4)
 			$this->limit = 3;
@@ -383,7 +383,7 @@ class CustomerForm extends Component
 
 		$this->bManagerNames=[];
 		foreach ($selectedBManagers as $us) {
-			$this->bManagerNames[] = User::find($us)->toArray();
+			$this->bManagerNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->bManagerNames) >= 4)
 			$this->bm_limit = 3;
@@ -402,7 +402,7 @@ class CustomerForm extends Component
 
 		$this->managerNames = [];
 		foreach ($selectedUsersToManage as $us) {
-			$this->managerNames[] = User::find($us)->toArray();
+			$this->managerNames[] =User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->managerNames) >= 4)
 			$this->m_limit = 3;
@@ -414,7 +414,7 @@ class CustomerForm extends Component
 		$this->selectedAdminStaff = $selectedStaff;
 		$this->adminStaffNames = [];
 		foreach ($selectedStaff as $us) {
-			$this->adminStaffNames[] = User::find($us['id'])->toArray();
+			$this->adminStaffNames[] =User::where('id', $us['id'])->with('userdetail')->first()->toArray();;
 		}
 		if (count($this->adminStaffNames) >= 4)
 			$this->s_limit = 3;
