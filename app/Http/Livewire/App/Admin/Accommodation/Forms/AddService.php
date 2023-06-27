@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\Specialization;
+use App\Models\Tenant\SetupValue;
 use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
 use Illuminate\Auth\Events\Validated;
@@ -30,9 +31,9 @@ class AddService extends Component
 
 
     public $setupValues = [
-        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]]
-
-	];
+        'accomodations' => ['parameters' => ['Accommodation', 'id', 'name', '', '', 'name', false, 'service.accommodations_id','','accommodations_id',1]],
+        'customerForms' => ['parameters' => ['CustomizeForms', 'id', 'request_form_name', 'form_name_id', '37', 'request_form_name', false, 'service.request_form_id','','request_form_id',1]]
+    ];
     public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
                           '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
                           '4'=>['class'=>'phone-rate','postfix'=>'_p','title'=>'Phone'],
@@ -130,7 +131,13 @@ class AddService extends Component
         $this->setupCheckboxes['service_types']=['rendered'=>''];
         $this->loadValues($this->service);
         $this->specializations=Specialization::all()->where('status',1);
-       // dd($this->service);
+        $serviceTypeLabels=SetupValue::where('setup_id',5)->pluck('setup_value_label')->toArray();
+        for($i=0,$j=1;$i<4;$i++,$j++){
+            if($j==3)
+               $j=4;
+            $this->serviceTypes[$j]['title']=$serviceTypeLabels[$i];
+        }
+
 
 	}
     public function rules()
@@ -265,6 +272,7 @@ class AddService extends Component
            'service.notification_settings_t' => 'sometimes|nullable',
            'service.notification_settings_p' => 'sometimes|nullable',
            'billingIncrements.*.*' => 'numeric',
+           'service.request_form_id'=> 'sometimes|nullable'
 
 		];
 	}
