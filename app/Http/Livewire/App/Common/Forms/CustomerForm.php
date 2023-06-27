@@ -8,15 +8,19 @@ use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use App\Services\App\AddressService;
+use App\Services\App\UploadFileService;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
+
 use Carbon\Carbon;
 
 
 class CustomerForm extends Component
 {
-    public $user,$isAdd=true,$userAddresses=[];
+	use withFileUploads;
+    public $user,$isAdd=true,$userAddresses=[],$image=null;
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
-	'user_introduction'=>null, 'title' => null, 'user_position' => null];
+	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	public $rolesArr=[],$same_sv,$same_bm;
@@ -120,7 +124,7 @@ class CustomerForm extends Component
 	   $this->user=$user;
 		//    if(is_array($user['userdetail']))
 		//    	$this->userdetail=$user['userdetail'];
-		if($user->userdetail->exists())
+		if($user->userdetail!=null && $user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
 		if ($this->user->userdetail->get('user_configuration') != null)
 		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
@@ -223,7 +227,9 @@ class CustomerForm extends Component
 					'nullable','max:150'],
 			'userdetail.state'=>['nullable','max:150'],
 			'userdetail.city' => ['nullable', 'max:150'],
-			'userdetail.zip' => ['nullable', 'max:150'], 	                              
+			'userdetail.zip' => ['nullable', 'max:150'],
+			'image' => 'nullable|image|mimes:jpg,png,jpeg',
+
 
 			
 		];
@@ -242,6 +248,10 @@ class CustomerForm extends Component
 		$this->user->status=1;
 
 		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
+		if($this->image!=null){
+			$fileService = new UploadFileService();
+			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);	
+		}
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
@@ -341,7 +351,7 @@ class CustomerForm extends Component
 
 		$this->supervisorNames=[];
 		foreach ($selectedSupervisors as $us) {
-			$this->supervisorNames[] = User::find($us)->toArray();
+			$this->supervisorNames[] = User::where('id',$us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->supervisorNames) >= 4)
 			$this->sv_limit = 3;
@@ -359,7 +369,7 @@ class CustomerForm extends Component
 		$this->selectedSupervising = $selectedSupervising;
 		$this->supervisingNames =[];
 		foreach($selectedSupervising as $us){
-			$this->supervisingNames[] = User::find($us)->toArray();
+			$this->supervisingNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if(count($this->supervisingNames)>=4)
 			$this->limit = 3;
@@ -373,7 +383,7 @@ class CustomerForm extends Component
 
 		$this->bManagerNames=[];
 		foreach ($selectedBManagers as $us) {
-			$this->bManagerNames[] = User::find($us)->toArray();
+			$this->bManagerNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->bManagerNames) >= 4)
 			$this->bm_limit = 3;
@@ -392,7 +402,7 @@ class CustomerForm extends Component
 
 		$this->managerNames = [];
 		foreach ($selectedUsersToManage as $us) {
-			$this->managerNames[] = User::find($us)->toArray();
+			$this->managerNames[] =User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if (count($this->managerNames) >= 4)
 			$this->m_limit = 3;
@@ -404,7 +414,7 @@ class CustomerForm extends Component
 		$this->selectedAdminStaff = $selectedStaff;
 		$this->adminStaffNames = [];
 		foreach ($selectedStaff as $us) {
-			$this->adminStaffNames[] = User::find($us['id'])->toArray();
+			$this->adminStaffNames[] =User::where('id', $us['id'])->with('userdetail')->first()->toArray();;
 		}
 		if (count($this->adminStaffNames) >= 4)
 			$this->s_limit = 3;

@@ -74,7 +74,7 @@ final class Customers extends PowerGridComponent
 			'companies.name as company',
 			'user_details.phone',
 			'users.status as status',
-			'user_details.user_id'
+			'user_details.user_id', 'profile_pic'
 		]);
 	
 	}
@@ -113,7 +113,11 @@ final class Customers extends PowerGridComponent
 		return PowerGrid::eloquent()
 		->addColumn('name')
 		->addColumn('customer', function (User $model) {
-			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
+			if($model->profile_pic ==null)
+				$col='<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
+			else
+				$col = '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="width:64px;height:64px;top:1rem"  src="'.$model->profile_pic.'" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">' . $model->name . '</h6><p>' . $model->email . '</p></div></div>';
+			return $col;
 		})
 		->addColumn('phone')
 		->addColumn('company')

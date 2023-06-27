@@ -212,7 +212,7 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-4">
                                                         <div class="d-inline-block position-relative">
-                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
+                                                            <img style="width:300px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                 class="img-fluid rounded-circle"
                                                                 alt="Customer Profile Image" />
                                                         </div>
@@ -850,7 +850,7 @@
                                                                                     <td class="align-middle">
                                                                                         <div class="row g-2">
                                                                                             <div class="col-md-2">
-                                                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
+                                                                                                <img style="width:54px;height:54px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                                                     class="img-fluid rounded-circle"
                                                                                                     alt="Provider Profile Image">
                                                                                             </div>
