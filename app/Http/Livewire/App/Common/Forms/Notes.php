@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\Note;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Notes extends Component
@@ -17,8 +18,10 @@ class Notes extends Component
 
     public function mount($showForm,$record_id,$record_type)
     {
+        // dd(Note::where('id',2)->first()->author->userdetail->profile_pic);
        $this->note['record_id'] =$record_id;
        $this->note['record_type']=$record_type;
+        $this->note['user_id'] = Auth::id();
        
        $this->refreshData();
        
@@ -38,7 +41,7 @@ class Notes extends Component
         $this->note['notes_text']=null; 
         $this->label="Add"; 
         $this->noteId = null;
-        $this->notesArr = Note::where(['record_id' => $this->note['record_id'], 'record_type' => $this->note['record_type']])->get()->toArray();
+        $this->notesArr = Note::where(['record_id' => $this->note['record_id'], 'record_type' => $this->note['record_type']])->get();
         
     }
     public function editNote($noteid){
@@ -49,7 +52,7 @@ class Notes extends Component
 
     public function addNote(){
         $this->validate();
-
+        $this->note['user_id'] = Auth::id();
         if($this->noteId==null){
             //save
             Note::create($this->note);

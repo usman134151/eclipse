@@ -25,22 +25,30 @@
                                             <div class="d-inline-flex align-items-center">
                                                 <div class="bg-warning rounded px-2 py-3">
                                                     <p class="mb-0">
-                                                        {{$note['notes_text']}}
+                                                        {{$note->notes_text}}
 
                                                            {{-- <span class="text-primary">
                                                             @Admin @Comapny
                                                         </span> --}}
                                                     </p>
+                                                    <div class="d-flex gap-2 align-items-center mt-2">
+                                                        @if($note->author!=null)
+                                                            <img class="round" title="{{$note->author->name}}" src="{{$note->author->userdetail->profile_pic != null ? $note->author->userdetail->profile_pic :'/tenant-resources/images/portrait/small/avatar-s-11.jpg'}}" alt="avatar" height="25" width="25">
+                                                             <small>{{$note->author->name}}</small> -
+                                                        @endif
+                                                        <small>{{date_format(date_create($note->created_at), "d/m/Y H:i A")}}</small>
+
+                                                    </div>
                                                 </div>
                                                 <div class="d-flex actions mx-2">
-                                                    <a href="#" title="Inactive" aria-label="Inactive" wire:click="editNote({{$note['id']}})"
+                                                    <a href="#" title="Inactive" aria-label="Inactive" wire:click="editNote({{$note->id}})"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon ">
                                                         <svg width="20" height="20" viewBox="0 0 20 20">
                                                             <use xlink:href="/css/common-icons.svg#pencil">
                                                             </use>
                                                         </svg>
                                                     </a>
-                                                    <a href="#" title="Inactive" aria-label="Inactive" wire:click="deleteNote({{$note['id']}})"
+                                                    <a href="#" title="Inactive" aria-label="Inactive" wire:click="deleteNote({{$note->id}})"
                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
                                                         {{-- Updated by Shanila to Add svg icon--}}
                                                         <svg aria-label="Inactive" width="21" height="21" viewBox="0 0 21 21">

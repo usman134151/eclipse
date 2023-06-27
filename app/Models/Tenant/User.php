@@ -6,6 +6,7 @@ use App\Models\Tenant;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -105,5 +106,11 @@ class User extends Authenticatable
 	{
 		return $this->belongsToMany(Department::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps();
 	}
+
+	public function notes(): HasMany
+	{
+		return $this->hasMany(Note::class);
+	}
+
 }
 
