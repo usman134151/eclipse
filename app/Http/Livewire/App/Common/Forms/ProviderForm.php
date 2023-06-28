@@ -18,14 +18,15 @@ use Livewire\WithFileUploads;
 class ProviderForm extends Component
 {
     use WithFileUploads;
-    public $user,$isAdd=true,$image=null;
+    public $user,$isAdd=true,$image=null, $teamNames=[];
     public $ethnicity;
     public $timezone;
     public $gender;
     public $languages;
 
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','payment_settings',
+    'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null];
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
@@ -137,7 +138,7 @@ class ProviderForm extends Component
         'updateSelectedTeams'
     ];
     public $providers;
-    public $selectedTeams =[];
+    public $selectedTeams =[], $media_file=null;
 	public function render()
 	{
         $roles = SystemRole::get();
@@ -242,6 +243,7 @@ class ProviderForm extends Component
             'userdetail.country' => [
                 'nullable'],
             'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'media_file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
 
 		];
 	}
@@ -262,9 +264,14 @@ class ProviderForm extends Component
         $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
         $fileService = new UploadFileService();
-
-        $this->userdetail['profile_pic']= $fileService->saveFile('profile_pic',$this->image, $this->userdetail['profile_pic']);
         
+        if($this->image!=null){
+            $this->userdetail['profile_pic']= $fileService->saveFile('profile_pic',$this->image, $this->userdetail['profile_pic']);
+        }
+
+        if ($this->media_file != null) {
+            $this->userdetail['user_introduction_file'] = $fileService->saveFile('files', $this->media_file, $this->userdetail['user_introduction_file']);
+        }
         $userService = new UserService;
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
         // put null/empty check for teams 
@@ -452,8 +459,10 @@ class ProviderForm extends Component
 
     //modal functions
 
-    public function updateSelectedTeams($selectedTeams)
+    public function updateSelectedTeams($selectedTeams,$teamNames)
     {
         $this->selectedTeams = $selectedTeams;
+		$this->teamNames = $teamNames;
+
     }
 }
