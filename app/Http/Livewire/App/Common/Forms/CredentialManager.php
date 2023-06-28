@@ -7,6 +7,7 @@ use App\Models\Tenant\Accommodation;
 use App\Models\Tenant\Credential;
 use App\Models\Tenant\CredentialDocument;
 use App\Models\Tenant\ServiceCategory;
+use App\Models\Tenant\Specialization;
 use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +22,7 @@ class CredentialManager extends Component
     public $showForm;
     protected $listeners = [
                 'showList' => 'resetForm',
-                'editRecord' => 'edit'
+                'editRecord' => 'edit', 'updateVal'
             ];
     
 
@@ -39,6 +40,7 @@ class CredentialManager extends Component
     ]];
 
     public $credential;
+    public $specializations;
 
     public $accommodations = [];
     public $accommodation_list = [];
@@ -70,7 +72,10 @@ class CredentialManager extends Component
     {
         $this->credential=$credential;
         $this->accommodations = Accommodation::select('id', 'name')->get()->toArray();
-        $this->accommodation_list = $this->accommodations;   
+        $this->accommodation_list = $this->accommodations;
+        $this->specializations = Specialization::select('id', 'name')->get()->toArray();
+
+        $this->dispatchBrowserEvent('refreshSelects');
     }
 
     // Validation Rules
@@ -82,6 +87,7 @@ class CredentialManager extends Component
             'credential.deactivate_associated_service' => 'nullable',
             'credential.reset_provider_priority' => 'nullable',
             'credential.hold_all_assignment_invitations' => 'nullable',
+            'credential.specializations'=>'nullable',
             'credential.lenient' => 'nullable',
 
             'documents.*.formFile' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
@@ -99,6 +105,9 @@ class CredentialManager extends Component
         $accommodations = $this->credential->accommodations;
         $documents = $this->credential->documents;
         $services = $this->credential->services;
+        if($credential->specializations!=null)
+            $this->credential->specializations = json_decode($credential->specializations,true);
+
 
         if(!empty($accommodations)){
             $this->accommodation_list = $accommodations->map(function ($accommodation) {
@@ -161,18 +170,29 @@ class CredentialManager extends Component
     
         $this->validate();
         // $this->credential->added_by=1;
+        // dd($this->credential);
+        
+        $this-> credential->specializations = json_encode($this->credential->specializations);
+
         $this->credential->save();
 
         $credential_id = $this->credential->id;
 
-        if(!empty($this->selected_services)){
+        if($this->credential->attach_accommodation_services != 'accomodation-service'){
+            $this->selected_accommodations =[];
+            $this->selected_services = [];
+
+        }
+
+        // if(!empty($this->selected_services)){
             // sync credentials and accommodations
             $this->credential->services()->sync(array_column($this->selected_services, 'id'));
-        }
-        if(!empty($this->selected_accommodations)){
+        // }
+        // if(!empty($this->selected_accommodations)){
             // sync credentials and services category
             $this->credential->accommodations()->sync(array_column($this->selected_accommodations, 'id'));
-        }
+        // }
+
 
         $document_array = [];
         if (!empty($this->documents)) {
@@ -465,4 +485,11 @@ class CredentialManager extends Component
         $this->accommodation_list = $accommodation;
     }
 
+    public function updateVal($attrName, $val)
+    {
+
+            $this->credential[$attrName] = $val;
+    }
 }
+
+

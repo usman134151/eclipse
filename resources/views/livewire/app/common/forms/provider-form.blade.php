@@ -234,7 +234,17 @@
                                                     Add Provider Teams
                                                 </div>
                                             </button>
+                                             <div>
+                                                            @if(count($teamNames)>0)
+                                                                <b>Selected Team(s) : </b> 
+                                                                @foreach($teamNames as $key=> $team)
+                                                                {{$team }}
+                                                                @if($key != count($teamNames)-1) , @endif
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
                                         </div>
+                                        
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="email">
                                                 Email
@@ -472,24 +482,37 @@
                                             <label class="form-label" for="provider-introduction-media">
                                                 Provider Introduction Media
                                             </label>
-                                            <input type="file" id="provider-introduction-media" class="form-control"
-                                                name="companeyAdmins" placeholder="Add Admins" />
+                                            <input type="file" id="provider-introduction-media" class="form-control" wire:model.defer="media_file"
+                                                name="provider_introduction_media" placeholder="Add Media Document" />
+                                               @error('media_file')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
+                                        
+                                                {{-- displays existing document name --}}
+                                                @if($userdetail['user_introduction_file']!=null)
+                                                    <p class="mt-2"> <b>Uploaded Document </b><br>
+                                                    <a href="{{$userdetail['user_introduction_file']}}" target="_blank" aria-label="file"  >
+                                                                {{basename($userdetail['user_introduction_file'])}}
+                                                            </a> 
+                                                    </p>
+                                                @endif
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="payment-settings">
                                                 Payment Settings
                                             </label>
-                                            <select class="select2 form-select" id="payment-settings">
-                                                <option value="Al">
-                                                    Select Payment Settings
-                                                </option>
+                                            <select class="select2 form-select" id="payment_settings" name="payment_settings" tabindex='8' wire.model.defer="userdetail.payment_settings">
+                                                <option >Select your option </option>
+
+                                                <option value="require_invoices">Require Invoices (Contractors)</option>
+                                                <option value="allow_invoices">Allow Invoices </option>
+                                                <option value="no_invoices">No Invoices (Employee)</option>
+
                                             </select>
                                         </div>
                                         <div class="col-lg-6 ps-lg-5">
                                             <label class="form-label" for="default-remittance-temp">
-                                                Select Default Remittance Template
+                                                Select Default Remittance Template <small>(coming soon)</small>
                                             </label>
-                                            <select class="select2 form-select" id="default-remittance-temp">
+                                            <select class="select2 form-select" disabled id="default-remittance-temp">
                                                 <option value="Al">
                                                     Select Default Remittance Template
                                                 </option>
@@ -517,7 +540,7 @@
                                     <button type="submit" class="btn btn-primary rounded"  wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                         Save & Exit
                                     </button>
-                                    <button type="button" class="btn btn-primary rounded"
+                                    <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(0)"
                                     x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
                                         Next
                                     </button>

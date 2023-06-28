@@ -6,13 +6,17 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
 use App\Models\Tenant\SystemRole;
+use App\Services\App\UploadFileService;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
+
 class AccountProfile extends Component
 {
+    use WithFileUploads;
     public $showForm;
-    public $user,$isAdd=true;
+    public $user,$isAdd=true,$image=null;
     public $userdetail=['gender_id','country','timezone_id','userdetail.ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone'];
     public $setupValues = [
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',0]],
@@ -90,7 +94,9 @@ class AccountProfile extends Component
             'userdetail.gender_id' => [
                 'nullable'],
             'userdetail.country' => [
-                    'nullable']
+                    'nullable'],
+			'image' => 'nullable|mimes:png,jpg,jpeg,gif,bmp,svg',
+
 
 		];
 	}
@@ -99,6 +105,11 @@ class AccountProfile extends Component
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
 		$this->user->added_by = Auth::id();
         $this->user->status=1;
+        if($this->image!=null){ 
+            $fileService = new UploadFileService();
+            $this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);
+        
+        }
 		$userService = new UserService;
        // dd($this->user);
         $this->user = $userService->createUser($this->user,$this->userdetail,1,1,[],false);

@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Tenant\Schedule;
+use App\Services\App\UploadFileService;
 
 class BusinessSetup extends Component
 {
     use WithFileUploads;
 
 	public $component = 'configuration-setting';
-	public $showForm, $configuration;
+	public $showForm, $configuration, $company_logo, $login_screen;
     public $staffProviders=[], $contractProviders = [];
         
 	protected $listeners = ['showList'=>'resetForm'];
@@ -70,6 +71,8 @@ class BusinessSetup extends Component
             'policies.*.title' => [ 'max:255', 'required_with:policies.*.url,policies.*.file'],
             'policies.*.url' => ['nullable','url'],
 
+            'login_screen' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
+            'company_logo' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg',
 
 
         ];
@@ -179,8 +182,14 @@ class BusinessSetup extends Component
     public function save($submit = 1)
     {
         $this->validate();
-        $this->configuration->company_logo = '';
-        $this->configuration->login_screen = '';
+
+        $fileService = new UploadFileService();
+
+        if($this->company_logo)
+        $this->configuration->company_logo = $fileService->saveFile('setup', $this->company_logo, $this->configuration->company_logo);
+
+        if ($this->login_screen)
+        $this->configuration->login_screen = $fileService->saveFile('setup', $this->login_screen, $this->configuration->login_screen);;
 
         $this->configuration->user_id = Auth::id();
 

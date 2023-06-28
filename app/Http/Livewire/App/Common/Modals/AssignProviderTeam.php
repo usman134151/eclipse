@@ -27,13 +27,22 @@ class AssignProviderTeam extends Component
 
     public function setSelectedTeams(User $provider){
         $this->selectedTeams =TeamProviders::where("provider_id", $provider->id)->get()->pluck('team_id')->toArray();
+        // dd($this->selectedTeams,$provider);
+        $this->updateData();
     }
 
     // Child Laravel component's updateData function
     public function updateData()
     {
+        $teamNames = [];
+        foreach ($this->selectedTeams as $team) {
+            $teamRecord = $this->teams->firstWhere('id', $team);
+            if (!is_null($teamRecord)) {
+                $teamNames[] = $teamRecord->name;
+            }
+        }
         // Emit an event to the parent component with the selected Teams
-        $this->emit('updateSelectedTeams', $this->selectedTeams);
+        $this->emit('updateSelectedTeams', $this->selectedTeams,$teamNames);
     }
 
 
