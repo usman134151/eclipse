@@ -61,7 +61,7 @@ class TeamInfo extends Component
 				'max:255',
 				Rule::unique('admin_teams', 'team_name')->ignore($this->team->id)],
             'team.admin_id'=>'required',
-			'temp_image' => 'nullable|image|mimes:jpg,png,jpeg',
+			'temp_image' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg,',
 			'team.team_email'=>'nullable|email',
             'team.team_phone'=>[
 				'nullable',

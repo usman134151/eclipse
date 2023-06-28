@@ -172,14 +172,18 @@
                                                     <div class="col-lg-12">
                                                         <label class="form-label" for="add-company-logo"> Add Company
                                                             Logo</label>
-                                                        <input aria-label="Company Logo" type="file" name="" wire:model.defer="configuration.company_logo"
+                                                        <input aria-label="Company Logo" type="file" name="" wire:model.defer="company_logo"
                                                             class="form-control" placeholder="Name">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
-                                                <img src="/html-prototype/images/company/rectangle-logo.png"
-                                                    class="img-fluid" alt="help-desk">
+                                                @if ($company_logo!=null)
+                                                    <img class="user_img " style="width:300px;height:200px;top:1rem"  src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$company_logo->getFilename() }}">
+                                                @else
+                                                    <img class="user_img " style="width:300px;height:200px;top:1rem"  src="{{$configuration->company_logo == null ? '' : url($configuration->company_logo) }}">
+                                                @endif
+                                              
                                             </div>
                                         </div>
                                         <div class="row inner-section-segment-spacing">
@@ -191,15 +195,19 @@
                                                     <div class="col-lg-12">
                                                         <label class="form-label" for="upload-login-screen-image">Upload
                                                             Login Screen Image</label>
-                                                        <input aria-label="Upload Login Screen Image" type="file" name="" wire:model.defer="configuration.login_screen"
+                                                        <input aria-label="Upload Login Screen Image" type="file" accept="image/*" name="" wire:model.defer="login_screen"
                                                             class="form-control" placeholder="Name">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
-
-                                                <img src="/html-prototype/images/company/help-desk.png" class="img-fluid"
-                                                    alt="help-desk" />
+                                                @if ($login_screen!=null)
+                                                    <img class="user_img " style="width:300px;height:200px;top:1rem"  src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$login_screen->getFilename() }}">
+                                                @else
+                                                    <img class="user_img " style="width:300px;height:200px;top:1rem"  src="{{$configuration->login_screen == null ? '' : url($configuration->login_screen) }}">
+                                                @endif
+                                                {{-- <img src="/html-prototype/images/company/help-desk.png" class="img-fluid"
+                                                    alt="help-desk" /> --}}
                                             </div>
                                         </div>
                                         <div class="row inner-section-segment-spacing">
