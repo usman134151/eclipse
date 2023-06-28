@@ -172,14 +172,19 @@
                                                     <div class="col-lg-12">
                                                         <label class="form-label" for="add-company-logo"> Add Company
                                                             Logo</label>
-                                                        <input aria-label="Company Logo" type="file" name="" wire:model.defer="company_logo"
+                                                        <input aria-label="Company Logo" type="file" name=""  accept="image/*" wire:model.defer="company_logo"
                                                             class="form-control" placeholder="Name">
+                                                            @error('company_logo')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    {{ $message }}
+                                                                </span>
+                                                            @enderror
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-lg-6 mb-4 align-self-end ps-lg-5">
                                                 @if ($company_logo!=null)
-                                                    <img class="user_img " style="width:300px;height:200px;top:1rem"  src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$company_logo->getFilename() }}">
+                                                    <img class="user_img "  style="width:300px;height:200px;top:1rem"  src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$company_logo->getFilename() }}">
                                                 @else
                                                     <img class="user_img " style="width:300px;height:200px;top:1rem"  src="{{$configuration->company_logo == null ? '' : url($configuration->company_logo) }}">
                                                 @endif
@@ -197,6 +202,12 @@
                                                             Login Screen Image</label>
                                                         <input aria-label="Upload Login Screen Image" type="file" accept="image/*" name="" wire:model.defer="login_screen"
                                                             class="form-control" placeholder="Name">
+                                                        @error('login_screen')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                    {{ $message }}
+                                                                </span>
+                                                            @enderror
+
                                                     </div>
                                                 </div>
                                             </div>
