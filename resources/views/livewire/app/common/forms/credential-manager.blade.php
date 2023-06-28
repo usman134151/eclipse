@@ -1,5 +1,5 @@
 <div >
-<div id="loader-section" class="loader-section" wire:loading>
+    <div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
 				<span class="visually-hidden">Loading...</span>
@@ -54,211 +54,236 @@
                                 Attach Credential To
                             </label>
                             <div class="form-check">
-                                <input class="form-check-input" id="tags" name="tags" type="checkbox" tabindex="" value="tags" wire:model.defer="credential.attach_tags" />
+                                <input class="form-check-input" id="tags" name="tags" type="checkbox" tabindex="" wire:model.defer="credential.attach_tags" />
                                 <label class="form-check-label" for="tags">Tags</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" id="specializations" name="specializations" type="checkbox" tabindex="" value="specializations" wire:model.defer="credential.attach_specializations" />
+                                <input class="form-check-input" id="specializations" name="specializations" type="checkbox" tabindex=""  wire:model="credential.attach_specializations" />
                                 <label class="form-check-label" for="specializations"> Specializations</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" id="accomodation-service" name="accomodation-service" type="checkbox" tabindex="" checkeds value="accomodation-service" wire:model.defer="credential.attach_accommodation_services" />
+                                <input class="form-check-input" id="accomodation-service" name="accomodation_service" type="checkbox" tabindex=""   wire:model="credential.attach_accommodation_services" />
                                 <label class="form-check-label" for="accomodation-service"> Accommodations &
                                     Services</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 mb-md-2">
-                        <div class="row">
-                            <div class="col-lg-5 mb-3">
-                                <p class="fs-5">Select Accommodation</p>
-                                <div class="content-body">
-                                    <div class="card">
-                                        <div class="card-body shadow-sm">
-                                            <input type="search" class="form-control" id="search" name="search"
-                                                placeholder="Search" autocomplete="on"
-                                                aria-label="Search Accommodation" wire:model="accommodation_search" wire:keyup="searchInAccommodation" />
-                                            <div class="overflow-y-auto max-h-30rem">
-                                                <table id="unassigned_data" class="table table-hover"
-                                                    aria-label="Admin Staff Teams Table">
-                                                    <tbody>
-                                                        @if(!empty($accommodation_list))
-                                                        <tr role="row" class="odd" wire:click.lazy="selectAllAccommodation">
-                                                            <td class="text-start">
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex actions me-4">
-                                                                    <span class="me-1">Add All</span>
-                                                                    <svg width="20" height="21" viewBox="0 0 20 21">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#grey-plus-icon">
-                                                                        </use>
-                                                                    </svg>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        
-                                                        @foreach($accommodation_list as $key => $accommodation)
-                                                            <tr role="row" class="odd" wire:click.lazy="selectAccommodation({{ $key }},{{ $accommodation['id'] }},'{{ $accommodation['name']}}')">
+                @if($credential['attach_specializations'])
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                                 <label class="form-label" for="preferred-colleagues-column">
+                                                Specializations
+                                            </label>
+                                            {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
+                                            <select name="specializations" id="specializations" class=" select2 form-select " wire:model.defer="credential.specializations" tabindex="6" multiple  aria-label="Select Specializations">
+                                                <option >Select an option</option>
+                                                @foreach($specializations as $s)
+                                                 <option value="{{$s['id']}}" >{{$s['name']}}</option>
+                                                @endforeach
+                                            </select>
+
+                             </div>
+                                  
+                                
+                    </div>
+                 
+                @endif
+                @if($credential['attach_accommodation_services'])
+
+                    <div class="row">
+                        <div class="col-md-12 mb-md-2">
+                                <div class="row">
+                                    <div class="col-lg-5 mb-3">
+                                        <p class="fs-5">Select Accommodation</p>
+                                        <div class="content-body">
+                                            <div class="card">
+                                                <div class="card-body shadow-sm">
+                                                    <input type="search" class="form-control" id="search" name="search"
+                                                        placeholder="Search" autocomplete="on"
+                                                        aria-label="Search Accommodation" wire:model="accommodation_search" wire:keyup="searchInAccommodation" />
+                                                    <div class="overflow-y-auto max-h-30rem">
+                                                        <table id="unassigned_data" class="table table-hover"
+                                                            aria-label="Admin Staff Teams Table">
+                                                            <tbody>
+                                                                @if(!empty($accommodation_list))
+                                                                <tr role="row" class="odd" wire:click.lazy="selectAllAccommodation">
+                                                                    <td class="text-start">
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex actions me-4">
+                                                                            <span class="me-1">Add All</span>
+                                                                            <svg width="20" height="21" viewBox="0 0 20 21">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#grey-plus-icon">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                @foreach($accommodation_list as $key => $accommodation)
+                                                                    <tr role="row" class="odd" wire:click.lazy="selectAccommodation({{ $key }},{{ $accommodation['id'] }},'{{ $accommodation['name']}}')">
+                                                                        <td class="text-start">
+                                                                            <p>
+                                                                                {{ $accommodation['name'] }}
+                                                                            </p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="d-flex justify-content-end actions mx-5">
+                                                                                <svg width="20" height="21" viewBox="0 0 20 21">
+                                                                                    <use
+                                                                                        xlink:href="/css/common-icons.svg#grey-plus-icon">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                @endif
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5 ps-lg-5 mx-3">
+                                        <div class="mb-3">
+                                            <p class="fs-5">Select Service</p>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body shadow-sm">
+                                                <input type="search" class="form-control" id="search-service"
+                                                    name="search-service" placeholder="Search" autocomplete="on"
+                                                    aria-label="Search Service" wire:model="service_search" wire:keyup="searchInServices"/>
+                                                <div class="overflow-y-auto max-h-30rem">
+                                                    <table id="" class="table table-hover" aria-label="Select Service Table">
+                                                        <tbody>
+                                                            @if(!empty($services_list))
+                                                            <tr role="row" class="odd" wire:click.lazy="selectAllServices">
                                                                 <td class="text-start">
-                                                                    <p>
-                                                                        {{ $accommodation['name'] }}
-                                                                    </p>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="d-flex justify-content-end actions mx-5">
+                                                                    <div class="d-flex actions me-4">
+                                                                        <span class="me-1">Add All</span>
                                                                         <svg width="20" height="21" viewBox="0 0 20 21">
                                                                             <use
                                                                                 xlink:href="/css/common-icons.svg#grey-plus-icon">
                                                                             </use>
                                                                         </svg>
                                                                     </div>
+
                                                                 </td>
                                                             </tr>
-                                                        @endforeach
-                                                        @endif
-
-                                                    </tbody>
-                                                </table>
+                                                            @foreach($services_list as $key => $services)
+                                                                @if(isset($services['service_categories']) && !empty($services['service_categories']))
+                                                                    <tr>
+                                                                        <td colspan="2"> <b>
+                                                                            {{ $services['name'] }} </b>
+                                                                        </td>
+                                                                    </tr>
+                                                            
+                                                                @foreach($services['service_categories'] as $k => $service)
+                                                                <tr role="row" class="odd" wire:click.lazy="selectServices({{ $key }},{{ $service['id'] }},'{{ $service['name']}}', {{ $services['id']}},{{ $k }})">
+                                                                    
+                                                                    <td class="text-start">
+                                                                        <p>
+                                                                            {{ $service['name'] }}
+                                                                        </p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex justify-content-end actions mx-5">
+                                                                            <svg width="20" height="21" viewBox="0 0 20 21">
+                                                                                <use
+                                                                                    xlink:href="/css/common-icons.svg#grey-plus-icon">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                @endforeach
+                                                                @endif
+                                                            @endforeach
+                                                            @endif
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-5 ps-lg-5 mx-3">
-                                <div class="mb-3">
-                                    <p class="fs-5">Select Service</p>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body shadow-sm">
-                                        <input type="search" class="form-control" id="search-service"
-                                            name="search-service" placeholder="Search" autocomplete="on"
-                                            aria-label="Search Service" wire:model="service_search" wire:keyup="searchInServices"/>
-                                        <div class="overflow-y-auto max-h-30rem">
-                                            <table id="" class="table table-hover" aria-label="Select Service Table">
-                                                <tbody>
-                                                    @if(!empty($services_list))
-                                                    <tr role="row" class="odd" wire:click.lazy="selectAllServices">
-                                                        <td class="text-start">
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-flex actions me-4">
-                                                                <span class="me-1">Add All</span>
-                                                                <svg width="20" height="21" viewBox="0 0 20 21">
-                                                                    <use
-                                                                        xlink:href="/css/common-icons.svg#grey-plus-icon">
-                                                                    </use>
-                                                                </svg>
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                    @foreach($services_list as $key => $services)
-                                                        @if(isset($services['service_categories']) && !empty($services['service_categories']))
-                                                            <tr>
-                                                                <td colspan="2"> <b>
-                                                                    {{ $services['name'] }} </b>
-                                                                </td>
-                                                            </tr>
-                                                       
-                                                        @foreach($services['service_categories'] as $k => $service)
-                                                        <tr role="row" class="odd" wire:click.lazy="selectServices({{ $key }},{{ $service['id'] }},'{{ $service['name']}}', {{ $services['id']}},{{ $k }})">
-                                                            
-                                                            <td class="text-start">
-                                                                <p>
-                                                                    {{ $service['name'] }}
-                                                                </p>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end actions mx-5">
-                                                                    <svg width="20" height="21" viewBox="0 0 20 21">
-                                                                        <use
-                                                                            xlink:href="/css/common-icons.svg#grey-plus-icon">
-                                                                        </use>
-                                                                    </svg>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @endif
-                                                    @endforeach
-                                                    @endif
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-10">
-                        <h3 class="mb-4">Selected Accommodation & Services </h3>
-                        <table class="table table-light" aria-label="Selected Accommodation & Services ">
-                            <thead>
-                                <th scope="col" class="text-dark">Accommodation</th>
-                                <th scope="col" class="text-dark">Service</th>
-                                <th scope="col" class="text-dark">ACTION</th>
-                            </thead>
-                            <tbody>
-                                @if(!empty($selected_accommodations_services))
-                                    @foreach($selected_accommodations_services as $key => $value)
-                                        <tr class="odd">
-                                            <td>
-                                                @if(isset($value['accommodations']) && !empty($value['accommodations']))
-                                                    {{ $value['accommodations']['name'] }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if(isset($value['services']) && !empty($value['services']))
-                                                    {{ $value['services']['name'] }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="#" aria-label="delete" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click.lazy="removeSelectedAccommodationService({{ $key }})">
-                                                    <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                                                        <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
+                    <div class="row mb-4">
+                        <div class="col-lg-10">
+                            <h3 class="mb-4">Selected Accommodation & Services </h3>
+                            <table class="table table-light" aria-label="Selected Accommodation & Services ">
+                                <thead>
+                                    <th scope="col" class="text-dark">Accommodation</th>
+                                    <th scope="col" class="text-dark">Service</th>
+                                    <th scope="col" class="text-dark">ACTION</th>
+                                </thead>
+                                <tbody>
+                                    @if(!empty($selected_accommodations_services))
+                                        @foreach($selected_accommodations_services as $key => $value)
+                                            <tr class="odd">
+                                                <td>
+                                                    @if(isset($value['accommodations']) && !empty($value['accommodations']))
+                                                        {{ $value['accommodations']['name'] }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if(isset($value['services']) && !empty($value['services']))
+                                                        {{ $value['services']['name'] }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="#" aria-label="delete" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click.lazy="removeSelectedAccommodationService({{ $key }})">
+                                                        <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                            <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                        </svg>
+                                                    </a>
+                                                </td>
+                                            </tr>
 
-                                        @if(isset($value['accommodations']['service_categories']) && !empty($value['accommodations']['service_categories']))
-                                            @foreach($value['accommodations']['service_categories'] as $index => $val)
-                                                <tr class="odd">
-                                                    <td>
-                                                        
-                                                    </td>
-                                                    <td>
-                                                        {{ $val['name'] }}
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" aria-label="delete" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click.lazy="removeSelectedAccommodationService({{ $key }}, {{ $index }}, {{$value['accommodations']['id']}})">
-                                                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                                                                <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-                                                            </svg>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
+                                            @if(isset($value['accommodations']['service_categories']) && !empty($value['accommodations']['service_categories']))
+                                                @foreach($value['accommodations']['service_categories'] as $index => $val)
+                                                    <tr class="odd">
+                                                        <td>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            {{ $val['name'] }}
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" aria-label="delete" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click.lazy="removeSelectedAccommodationService({{ $key }}, {{ $index }}, {{$value['accommodations']['id']}})">
+                                                                <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                                                    <use xlink:href="/css/common-icons.svg#recycle-bin"></use>
+                                                                </svg>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
 
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                @endif
+                
                 <div class="row mb-4">
                     <h3 class="mb-4">Requirement Status: (what to do if document expires)</h3>
                     <div class="col-lg-12">
                         <div class="form-check">
                             <input class="form-check-input" id="deactivated-associated-service"
-                                name="deactivated-associated-service" type="checkbox" tabindex="" value="deactivated-associated-service" wire:model.defer="credential.deactivate_associated_service" />
+                                name="deactivated-associated-service" type="checkbox" tabindex=""  wire:model.defer="credential.deactivate_associated_service" />
                             <label class="form-check-label" for="deactivated-associated-service">           Deactivate Associated Service
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -266,7 +291,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="reset-provider-priority" name="reset-provider-priority" type="checkbox" tabindex="" value="reset-provider-priority" wire:model.defer="credential.reset_provider_priority" />
+                            <input class="form-check-input" id="reset-provider-priority" name="reset-provider-priority" type="checkbox" tabindex="" wire:model.defer="credential.reset_provider_priority" />
                             <label class="form-check-label" for="reset-provider-priority">Reset Provider Priority
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -274,7 +299,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="assignment-invitation" name="assignment-invitation" type="checkbox" tabindex="" value="assignment-invitation" wire:model.defer="credential.hold_all_assignment_invitations" />
+                            <input class="form-check-input" id="assignment-invitation" name="assignment-invitation" type="checkbox" tabindex=""  wire:model.defer="credential.hold_all_assignment_invitations" />
                             <label class="form-check-label" for="assignment-invitation">Hold All Assignment Invitations
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -282,7 +307,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="lenient" name="lenient" type="checkbox" tabindex="" value="lenient" wire:model.defer="credential.lenient" />
+                            <input class="form-check-input" id="lenient" name="lenient" type="checkbox" tabindex=""  wire:model.defer="credential.lenient" />
                             <label class="form-check-label" for="lenient">Lenient
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -435,14 +460,12 @@
             </div> --}}
         </div>
     </div>
-</div>
+    <script>
+        function updateVal(attrName,val){
+          
+            Livewire.emit('updateVal', attrName, val);
 
-{{-- <script type="text/javascript">
-    function onlyNumberKey(evt) {         
-        // Only ASCII character in that range allowed
-        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-            return false;
-        return true;
-    }
-</script> --}}
+        }
+
+    </script>
+</div>
