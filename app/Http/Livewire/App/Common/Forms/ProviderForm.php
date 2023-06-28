@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,12 @@ class ProviderForm extends Component
     public $timezone;
     public $gender;
     public $languages;
-
+    public $documentActive, $serviceActive, $scheduleActive, $profileActive;
+    public $schedule;
 	public $component = 'profile';
     public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','payment_settings',
     'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null];
+    
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
@@ -34,14 +37,9 @@ class ProviderForm extends Component
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
         'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]],
         'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'userdetail.certification', '', 'certification', 5]],
-        // 'favored_users' => ['parameters' => ['User', 'id', 'name', '', '1 OR exists (select * from `roles` inner join `role_user` on `roles`.`id` = `role_user`.`role_id` where `users`.`id` = `role_user`.`user_id` and `role_id` = 2', 'name', true, 'userdetail.favored_users', '', 'favored_users', 6]]
     ];
 
-        // $providers = User::query()
-		// ->where('status',1)
-		// ->whereHas('roles', function ($query) {
-		// 	$query->where('role_id',2);})
-        // ->get();
+      
     public $inpersons=[[
         'hours'=>'',
         'charges'=>'',
@@ -276,6 +274,10 @@ class ProviderForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
         // put null/empty check for teams 
         $userService->addProviderTeams($this->selectedTeams,$this->user);
+		$this->step = 2;
+        $this->dispatchBrowserEvent('refreshSelects');
+
+
 		if($redirect){
 			$this->showList("Provider has been saved successfully");
 			$this->user = new User;
@@ -301,11 +303,72 @@ class ProviderForm extends Component
         });
 
     }
+
+    public function getProviderSchedule()
+    {
+        //reinit schedule
+        $providerSchedule = Schedule::where('model_id', $this->company->id)->where('model_type', 3)->get()->first();
+        if (!is_null($providerSchedule)) {
+            $this->schedule = $providerSchedule;
+        } else {
+            $this->schedule = new Schedule;
+            $this->schedule->model_type = 2;
+            $this->schedule->working_days = json_encode([]);
+            $this->schedule->timezone_id = 0;
+
+            $this->schedule->model_id = $this->company->id;
+            $this->schedule->save();
+        }
+
+
+        $this->scheduleActive = "active";
+
+        $this->switch('schedule');
+
+        $this->emit('getRecord', $this->schedule->id, true);
+    }
+
+    public function saveSchedule($redirect = 1)
+    {
+        $this->emit('saveSchedule');
+        if ($redirect) {
+            $this->showList("Company has been saved successfully");
+            $this->user = new User;
+            $this->schedule = new Schedule;
+        } else {
+            $this->serviceActive = "active";
+            $this->scheduleActive = "";
+            $this->switch('provider-service');
+            $this->step = 3;
+        }
+    }
+    public function setStep($step, $tabName, $component)
+    {
+        $tabs = ['profileActive', 'serviceActive', 'scheduleActive', 'documentActive'];
+        foreach ($tabs as $key)
+        $this->$key = '';
+        $this->step = $step;
+        $this->$tabName = "active";
+        $this->switch($component);
+        $this->dispatchBrowserEvent('refreshSelects');
+    }
+
+    public function stepIncremented()
+    {
+
+        $this->step = $this->step + 1;
+        if ($this->step == 3) {
+            $this->serviceActive = 'active';
+            $this->documentActive = '';
+        }
+    }
+
      public function updateVal($attrName, $val)
      {
         if($attrName=='user_dob'){
             $this->user['user_dob']=$val;
         }
+       
         else
          $this->userdetail[$attrName] = $val;
 
