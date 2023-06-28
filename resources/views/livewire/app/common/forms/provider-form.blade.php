@@ -499,7 +499,7 @@
                                             <label class="form-label" for="payment-settings">
                                                 Payment Settings
                                             </label>
-                                            <select class="select2 form-select" id="payment_settings" name="payment_settings" tabindex='8' wire.model.defer="userdetail.payment_settings">
+                                            <select class="select2 form-select" id="payment_settings"  wire:model.defer="userdetail.payment_settings">
                                                 <option >Select your option </option>
 
                                                 <option value="require_invoices">Require Invoices (Contractors)</option>
