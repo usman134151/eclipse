@@ -88,6 +88,7 @@ class CredentialManager extends Component
             'credential.deactivate_associated_service' => 'nullable',
             'credential.reset_provider_priority' => 'nullable',
             'credential.hold_all_assignment_invitations' => 'nullable',
+            'credential.specializations'=>'nullable',
             'credential.lenient' => 'nullable',
 
             'documents.*.formFile' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
