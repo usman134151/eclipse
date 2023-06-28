@@ -105,6 +105,9 @@ class CredentialManager extends Component
         $accommodations = $this->credential->accommodations;
         $documents = $this->credential->documents;
         $services = $this->credential->services;
+        if($credential->specializations!=null)
+            $this->credential->specializations = json_decode($credential->specializations,true);
+
 
         if(!empty($accommodations)){
             $this->accommodation_list = $accommodations->map(function ($accommodation) {
@@ -168,6 +171,9 @@ class CredentialManager extends Component
         $this->validate();
         // $this->credential->added_by=1;
         // dd($this->credential);
+        
+        $this-> credential->specializations = json_encode($this->credential->specializations);
+
         $this->credential->save();
 
         $credential_id = $this->credential->id;
@@ -186,6 +192,7 @@ class CredentialManager extends Component
             // sync credentials and services category
             $this->credential->accommodations()->sync(array_column($this->selected_accommodations, 'id'));
         // }
+
 
         $document_array = [];
         if (!empty($this->documents)) {
