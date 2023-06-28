@@ -74,9 +74,8 @@ class CredentialManager extends Component
         $this->accommodations = Accommodation::select('id', 'name')->get()->toArray();
         $this->accommodation_list = $this->accommodations;
         $this->specializations = Specialization::select('id', 'name')->get()->toArray();
+
         $this->dispatchBrowserEvent('refreshSelects');
-
-
     }
 
     // Validation Rules

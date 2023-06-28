@@ -61,6 +61,20 @@
                                 <input class="form-check-input" id="specializations" name="specializations" type="checkbox" tabindex=""  wire:model="credential.attach_specializations" />
                                 <label class="form-check-label" for="specializations"> Specializations</label>
                             </div>
+                              
+                            @if($credential['attach_specializations'])
+                                <div class="form-check">
+
+                                
+                                    <select name="specializations" id="specializations" class=" select2 form-select " wire:model.defer="credential.specializations" tabindex="6" multiple  aria-label="Select Specializations">
+                                        <option >Select an option</option>
+                                        @foreach($specializations as $s)
+                                        <option value="{{$s['id']}}" >{{$s['name']}}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>                            
+                            @endif
                             <div class="form-check">
                                 <input class="form-check-input" id="accomodation-service" name="accomodation_service" type="checkbox" tabindex=""   wire:model="credential.attach_accommodation_services" />
                                 <label class="form-check-label" for="accomodation-service"> Accommodations &
@@ -68,28 +82,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                @if($credential['attach_specializations'])
-
-                    <div class="row">
-                        <div class="col-lg-5">
-                                 <label class="form-label" for="preferred-colleagues-column">
-                                                Specializations
-                                            </label>
-                                            {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
-                                            <select name="specializations" id="specializations" class=" select2 form-select " wire:model.defer="credential.specializations" tabindex="6" multiple  aria-label="Select Specializations">
-                                                <option >Select an option</option>
-                                                @foreach($specializations as $s)
-                                                 <option value="{{$s['id']}}" >{{$s['name']}}</option>
-                                                @endforeach
-                                            </select>
-
-                             </div>
-                                  
-                                
-                    </div>
-                 
-                @endif
+              
                 @if($credential['attach_accommodation_services'])
 
                     <div class="row">
