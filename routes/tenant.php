@@ -98,7 +98,9 @@ Route::group([
 			Route::view('/admin/templates', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'System Notifications',"type"=>"2"]);
 			Route::view('/admin/sms-templates', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'SMS Notifications',"type"=>"3"]);
 			Route::view('/admin/change-password', 'tenant/settings/change-password');
-			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager');
+			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager', ["showForm" => false]);
+			Route::view('/admin/credential/create-credential', 'tenant/settings/credential-manager', ["showForm" => true]);
+
 			Route::view('/admin/setup-values', 'tenant/settings/setup-values', ["showForm"=>false]);
 			Route::view('/admin/setup/create-setup', 'tenant/settings/setup-values', ["showForm"=>true]);
 			// End of Admin Setting Routes

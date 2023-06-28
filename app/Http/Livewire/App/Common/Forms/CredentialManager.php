@@ -178,13 +178,14 @@ class CredentialManager extends Component
 
         $credential_id = $this->credential->id;
 
-        if($this->credential->attach_accommodation_services != 'accomodation-service'){
+        //if checkout unchecked, remove details
+        if(!$this->credential->attach_accommodation_services){
             $this->selected_accommodations =[];
             $this->selected_services = [];
 
         }
 
-        // if(!empty($this->selected_services)){
+        // if(!empty($this->selected_services)){ 
             // sync credentials and accommodations
             $this->credential->services()->sync(array_column($this->selected_services, 'id'));
         // }
