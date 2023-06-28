@@ -20,7 +20,7 @@ class TeamInfo extends Component
     public $component = 'team-info';
 	use WithFileUploads;
 
-    public $temp_image = null;
+    public $image = null;
     protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
     public $teamAdmin=[];
@@ -61,7 +61,7 @@ class TeamInfo extends Component
 				'max:255',
 				Rule::unique('admin_teams', 'team_name')->ignore($this->team->id)],
             'team.admin_id'=>'required',
-			'temp_image' => 'nullable|image|mimes:png,jpg,jpeg,gif,bmp,svg,',
+			'image' => 'nullable|mimes:png,jpg,jpeg,gif,bmp,svg',
 			'team.team_email'=>'nullable|email',
             'team.team_phone'=>[
 				'nullable',
@@ -101,9 +101,10 @@ class TeamInfo extends Component
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
 
-		$fileService = new UploadFileService();
-		$this->team->team_image = $fileService->saveFile('profile_pic',$this->temp_image,$this->team->team_image);
-
+		if($this->image!=null){
+			$fileService = new UploadFileService();
+			$this->team->team_image = $fileService->saveFile('profile_pic',$this->image,$this->team->team_image);
+		}
 		$this->team->save();
 		$userService = new UserService;
 		if($this->user_roles!=null)
