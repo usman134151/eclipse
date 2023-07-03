@@ -10,7 +10,7 @@ use Livewire\Component;
 class ServiceCatelog extends Component
 {
     public $accomodations,$services=[],$modelId,$modelType,$modelServices=[];
-    protected $listeners = ['showList' => 'resetForm'];
+   
 
     public function render()
     {
