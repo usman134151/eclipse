@@ -59,6 +59,7 @@ class TeamsForm extends Component
 
     public function save(){
         $this->validate();
+        $this->team->provider_count = count($this->selected_providers);
         $this->team->save();
 
         // save team information

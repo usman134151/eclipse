@@ -23,6 +23,14 @@ class UploadFileService{
             return null;
     }
 
+    public function deleteFile($path=null){
+        if ($path != null) {
+            //delete existing file
+            if (File::exists(public_path($path)))
+                File::delete(public_path($path));
+        }
+           
+    }
     // public function saveImage()
     // {
 

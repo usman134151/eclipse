@@ -20,7 +20,7 @@ class AdminStaffForm extends Component
 {
     use WithFileUploads;
 
-    public $component = 'profile';
+    public $component = 'profile',$label='Add';
     public $user,$isAdd=true,$user_roles=[],$image =null;
     
     public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','user_position','address_line1','address_line2','zip','permission','city','state','phone','roles','profile_pic'=>null];

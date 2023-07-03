@@ -693,12 +693,14 @@
                                 {{-- Drive Tab - Start --}}
                                 <div class="tab-pane fade" id="drive-tab-pane" role="tabpanel"
                                     aria-labelledby="drive-tab" tabindex="0">
-                                    <h3>Drive <small>(coming soon)</small></h3>
+                                    <h3>Drive</h3>
                                     <p>
                                         Here you can manage company required documents. You will receive notifications
                                         when your credentials are approaching expiration or have expired.
                                     </p>
-                                    <div class="row">
+                                    @livewire('app.common.forms.drive-uploads',['showSearch'=>true,'record_id'=>$company['id'],'record_type'=>1])
+
+                                    {{-- <div class="row">
                                         <div class="col-md-4 col-12 mb-4">
                                             <label class="form-label" for="search">
                                                 Search
@@ -743,21 +745,19 @@
                                             </label>
                                             <button @click="addDocument = true"
                                                 class="btn btn-secondary btn-outline-secondary" type="button">Choose
-                                                File</button>
+                                                File</button> --}}
                                             {{-- <input type="file" id="upload-document" class="form-control"
                                                 name="upload-document" placeholder="upload-document" /> --}}
-                                        </div>
+                                        {{-- </div>
                                     </div>
                                     <div class="row">
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
                                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{-- Updated by Shanila to Add svg icon--}}
                                                 <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
                                                     <use xlink:href="/css/common-icons.svg#document-dropdown">
                                                     </use>
                                                 </svg>
-                                                {{-- End of update by Shanila --}}
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -783,7 +783,7 @@
                                             <img src="/tenant-resources/images/img-placeholder-document.jpg" />
                                             <p>Certification</p>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 {{-- Drive Tab -End --}}
 

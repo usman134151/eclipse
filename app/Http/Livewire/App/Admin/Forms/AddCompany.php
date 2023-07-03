@@ -19,7 +19,7 @@ use Livewire\WithFileUploads;
 class AddCompany extends Component
 {
 	use WithFileUploads;
-	public $component = 'company-info',$image=null;
+	public $component = 'company-info',$image=null, $label='Add';
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
 	public $deletedNumbers=[],$companyUsers=[],$admins=[], $providers=[],$fv_providers=[], $unfv_providers=[];
 	public $setupValues = [

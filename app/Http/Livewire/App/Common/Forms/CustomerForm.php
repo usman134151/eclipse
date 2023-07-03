@@ -18,7 +18,7 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
 	use withFileUploads;
-    public $user,$isAdd=true,$userAddresses=[],$image=null;
+    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add';
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
