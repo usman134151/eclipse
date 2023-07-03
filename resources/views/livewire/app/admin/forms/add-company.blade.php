@@ -11,7 +11,7 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">
-                        Add Company
+                        {{$label}} Company
                     </h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
@@ -33,7 +33,7 @@
                                 All Companies
                             </li>
                             <li class="breadcrumb-item">
-                                Add Company
+                                {{$label}} Company
                             </li>
                         </ol>
                     </div>

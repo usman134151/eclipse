@@ -3,7 +3,7 @@
 		<div class="content-header-left col-md-9 col-12 mb-2">
 			<div class="row breadcrumbs-top">
 				<div class="col-12">
-					<h1 class="content-header-title float-start mb-0">Create New Role</h1>
+					<h1 class="content-header-title float-start mb-0">{{$label}} Role</h1>
 					<div class="breadcrumb-wrapper">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
@@ -19,7 +19,7 @@
 								Settings
 							</li>
 							<li class="breadcrumb-item">
-								Create New Role
+								{{$label}} Role
 							</li>
 						</ol>
 					</div>
