@@ -64,7 +64,7 @@
                                                 
                                     </div>
                                     <div class="text-md-center">
-                                    <button wire:click="$set('uploadDoc',true)"
+                                    <button wire:click="showForm"
                                                     class="btn btn-primary rounded  " type="button">Choose
                                                     File</button> 
                                     </div>

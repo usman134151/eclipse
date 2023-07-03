@@ -4,6 +4,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use App\Models\Tenant\DriveUpload;
 use App\Services\App\UploadFileService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -50,9 +51,10 @@ class DriveUploads extends Component
     }
 
 
-    function showForm()
-    {     
-       $this->showForm=true;
+    public function showForm()
+    {
+        $this->uploadDoc = !$this->uploadDoc;
+        $this->dispatchBrowserEvent('refreshSelects');
     }
     public function resetForm()
     {
@@ -63,6 +65,8 @@ class DriveUploads extends Component
         if(!$this->noExp){
             $this->field['expiration_date']=null;
         }
+        $this->dispatchBrowserEvent('refreshSelects');
+
 
     }
     public function rules()
@@ -85,7 +89,10 @@ class DriveUploads extends Component
             $fileService = new UploadFileService();
             $this->field['document_path'] = $fileService->saveFile('drive/'.$this->field['record_type'].'/' . $this->field['record_id'], $this->file);
         }
-        DriveUpload::create($this->field);
+        if($this->field['expiration_date']!=null) //convert before saving
+            $this->field['expiration_date'] = Carbon::parse($this->field['expiration_date']);
+
+            DriveUpload::create($this->field);
         $this->confirmation("File Uploaded to drive successfully");
         $this->refreshData();
 
@@ -116,10 +123,9 @@ class DriveUploads extends Component
 
     public function updateVal($attrName, $val)
     {
-        $this->$attrName = $val;
-        // if ($attrName == 'roles')
-        // $this->user_roles = $val;
-        // else
-            // $this->team[$attrName] = $val;
+        if ($attrName == 'expiration_date')
+            $this->field['expiration_date'] = $val;
+        else
+            $this->$attrName = $val;
     }
 }
