@@ -19,7 +19,7 @@ use Livewire\WithFileUploads;
 class ProviderForm extends Component
 {
     use WithFileUploads;
-    public $user,$isAdd=true,$image=null, $teamNames=[];
+    public $user,$isAdd=true,$image=null, $teamNames=[],$label="Add";
     public $ethnicity;
     public $timezone;
     public $gender;

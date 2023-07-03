@@ -10,6 +10,7 @@ use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\RoleUserDetail;
+use App\Models\Tenant\Team;
 use App\Models\Tenant\TeamProviders;
 use App\Models\Tenant\UserAddress;
 use Illuminate\Support\Facades\Hash;
@@ -78,6 +79,9 @@ class UserService
     TeamProviders::where('provider_id', $user->id)->delete();
     foreach ($selectedTeams as $team_id) {
       TeamProviders::create(["provider_id" => $user->id, "team_id" => $team_id, "status" => 1]);
+      $team  = Team::find($team_id);
+      $team->provider_count = count($team->providers);
+      $team->save();
     }
   }
 

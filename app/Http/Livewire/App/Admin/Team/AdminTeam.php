@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class AdminTeam extends Component
 {
-    public $component = 'team-info',$team;
+    public $component = 'team-info',$team,$label="Add";
     public $confirmationMessage;
 	public $showForm;
 	protected $listeners = [
@@ -24,8 +24,11 @@ class AdminTeam extends Component
         if ($team) {
 			$this->team = $team;
 			$this->emit('editRecord', $team);
+			$this->label="Edit";
 		}
 		$this->showForm=true;
+		$this->label = "Add";
+
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/admin-team/create-admin-team']);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}

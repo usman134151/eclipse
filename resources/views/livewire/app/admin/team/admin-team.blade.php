@@ -11,7 +11,7 @@
             <div class="content-header-left col-md-9 col-12 mb-4">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h1 class="content-header-title float-start mb-0">Add Admin Staff Team</h1>
+                        <h1 class="content-header-title float-start mb-0">{{$label}} Admin Staff Team</h1>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
@@ -29,7 +29,7 @@
                                 </li>
                                 <li class="breadcrumb-item">
                                     <a href="#">
-                                        Add Admin Staff Team
+                                        {{$label}} Admin Staff Team
                                     </a>
                                 </li>
                             </ol>
