@@ -70,7 +70,7 @@
                                                                                     placeholder="Search"
                                                                                     autocomplete="on"
                                                                                     aria-label="Search" />
-                                                                                    @foreach($this->services as $service)
+                                                                                    @foreach($this->services as $index=>$service)
                                                                                         <tr role="row" class="odd">
                                                                                             <td class="text-start">
                                                                                                 <p>{{$service['name']}}</p>
@@ -82,11 +82,10 @@
                                                                                                         class="form-check-input"
                                                                                                         type="checkbox"
                                                                                                         role="switch"
-                                                                                                        aria-label="Toggle Status" checked>
-                                                                                                    <label
-                                                                                                        class="form-check-label" >
-                                                                                                        DeActivated
-                                                                                                    </label>
+                                                                                                        value="1"
+                                                                                                        aria-label="Toggle Status" wire:model="services.{{$index}}.activated"
+                                                                                                        wire:click="updateService({{$index}})">
+
                                                                                                 </div>
                                                                                             </td>
                                                                                             <td>
