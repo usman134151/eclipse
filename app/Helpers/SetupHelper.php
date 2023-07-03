@@ -204,7 +204,8 @@ class SetupHelper
             
             $model = '\App\Models\Tenant\\SetupValue';
             $record = $model::find($id);
-            return $record->setup_value_label;
+            if(!is_null($record))
+                return $record->setup_value_label;
         }
         return 'N/A';
     }
