@@ -41,10 +41,17 @@ x-data="{ isUploading: false, progress: 0 }"
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <div class=" col-md-3  col-12">
-                                             <button wire:click="clearFilters"
-                                                        class="btn btn-secondary rounded  " type="button">Clear Filters</button> 
+                                            <div class=" col-md-3  d-flex  " style="margin-top: 60px">
+
+                                                <div wire:click.prevent="clearFilters()" style="cursor: pointer; padding-right: 4px">
+                                                    <span class="badge rounded-pill bg-light text-dark">Clear
+                                                        {{-- <svg width="10" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+                                                            <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7"></path>
+                                                        </svg> --}}
+                                                    </span>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 @endif
@@ -63,7 +70,7 @@ x-data="{ isUploading: false, progress: 0 }"
                                         </div>
 
                                         @if($uploadDoc)
-                                            <form  class="form">
+                                            <form  class="form mt-3">
                                                 @csrf
                                                     <div class=" row mt-3">
                                                     
@@ -154,7 +161,7 @@ x-data="{ isUploading: false, progress: 0 }"
                                                             
                                                         <div class="row mt-3">
 
-                                                            <div class=" form-actions">
+                                                            <div class=" ">
                                                                 {{-- <button wire:click="refreshData"
                                                                     class="btn btn-outline-dark rounded px-4 py-2" type="button">Cancel</button>  --}}
                                                         
@@ -199,7 +206,7 @@ x-data="{ isUploading: false, progress: 0 }"
                                          @foreach($existingDocuments as $index=> $doc)
                                             
                                             <div class="d-lg-inline-flex">
-                                                <div class="mx-2">
+                                                <div class="mx-2" style="width:200px;">
                                                     <div class="position-relative">
                                                       
                                                         <img style="width:190px;height:230px" src="{{$this->isImage($doc->document_path) ? $doc->document_path : '/tenant-resources/images/img-placeholder-document.jpg'}}"/>

@@ -1662,126 +1662,12 @@
                                 <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel"
                                     aria-labelledby="my-drive-tab" tabindex="0">
                                     <div class="row mb-3">
-                                        <h3>My Drive <small>(coming soon)</small></h3>
+                                        <h3>My Drive</h3>
                                         
 
                                     </div>
-                                    <div class="inner-section-segment-spacing">
-                                        <div class="col-md-12 d-lg-flex col-12 gap-4">
-                                            <div class="col-md-3 col-12">
-                                                <div>
-                                                    <label class="form-label" for="keyword-search">
-                                                        Search
-                                                    </label>
-                                                    <input type="text" id="keyword-search" class="form-control"
-                                                        placeholder="Keyword Search" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-12">
-                                                <label class="form-label" for="payment-status">
-                                                    Document Type
-                                                </label>
-                                                <select class="select2 form-select" id="payment-status">
-                                                    <option>Select Document Type</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-3  col-12">
-                                                <label class="form-label" for="set_set_date">
-                                                    Date Range
-                                                </label>
-                                                <div class="position-relative">
-                                                    <input type="" name="" class="form-control js-single-date"
-                                                        placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
-                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row inner-section-segment-spacing">
-                                        <div class="col-md-3">
-                                            <label class="form-label" for="search">
-                                                Upload Document
-                                            </label>
-                                            <button @click="addDocument = true"
-                                                class="btn btn-secondary btn-outline-secondary" type="button">Choose
-                                                File</button>
-                                        </div>
-                                    </div>
-                                    <div class="row inner-section-segment-spacing">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                                                    </svg>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="d-lg-inline-flex">
-                                            <div class="mx-2">
-                                                <div class="position-relative">
-													<img src="/tenant-resources/images/img-placeholder-document.jpg"/>
-													<div class="position-absolute top-0 end-0">
-													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-														</svg>
-													  </a>
-													</div>
-												  </div>
-                                                <p>Certification</p>
-                                            </div>
-                                            <div class="mx-2">
-                                                <div class="position-relative">
-													<img src="/tenant-resources/images/img-placeholder-document.jpg"/>
-													<div class="position-absolute top-0 end-0">
-													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-														</svg>
-													  </a>
-													</div>
-												  </div>
-                                                <p>Certification</p>
-                                            </div>
-                                            <div class="mx-2">
-                                                <div class="position-relative">
-													<img src="/tenant-resources/images/img-placeholder-document.jpg"/>
-													<div class="position-absolute top-0 end-0">
-													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-														</svg>
-													  </a>
-													</div>
-												  </div>
-                                                <p>Certification</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @livewire('app.common.forms.drive-uploads',['showForm'=>false,'showSearch'=>true,'record_id'=>$userid,'record_type'=>2])
+                                  
                                 </div>
 
                                 <!-- drive Tab End-->

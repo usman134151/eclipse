@@ -76,6 +76,7 @@ class DriveUploads extends Component
         $this->drive_file=null;
         $this->field['document_title'] = null;
         $this->field['document_path'] = null;
+        $this->field['document_type'] = null;
         $this->field['expiration_date'] = null;
         $this->field['note'] = null;
         // $this->existingDocuments = DriveUpload::where(['record_id'=>$this->field['record_id'], 'record_type' => $this->field['record_type']])->get();
