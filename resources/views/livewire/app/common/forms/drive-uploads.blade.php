@@ -17,7 +17,7 @@ x-data="{ isUploading: false, progress: 0 }"
                                                     <label class="form-label" for="keyword-search">
                                                         Search
                                                     </label>
-                                                    <input type="text" id="keyword-search" class="form-control"
+                                                    <input type="text" id="keyword-search" wire:model='keywords' class="form-control"
                                                         placeholder="Keyword Search" />
                                                 </div>
                                             </div>
@@ -25,22 +25,25 @@ x-data="{ isUploading: false, progress: 0 }"
                                                 <label class="form-label" for="payment-status">
                                                     Document Type
                                                 </label>
-                                                <select class="select2 form-select" id="payment-status">
-                                                    <option>Select Document Type</option>
-                                                </select>
+                                               {!! $setupValues['search_document_type']['rendered'] !!}
+
                                             </div>
                                             <div class="col-md-3  col-12">
                                                 <label class="form-label" for="set_set_date">
                                                     Date Range
                                                 </label>
                                                 <div class="position-relative">
-                                                    <input type="" name="" class="form-control js-single-date"
+                                                    <input type="" wire:model="dateRange" name="dateRange" id="dateRange" class="form-control js-single-date"
                                                         placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
                                                     <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
                                                         <use xlink:href="/css/common-icons.svg#datefield-icon">
                                                         </use>
                                                     </svg>
                                                 </div>
+                                            </div>
+                                            <div class=" col-md-3  col-12">
+                                             <button wire:click="clearFilters"
+                                                        class="btn btn-secondary rounded  " type="button">Clear Filters</button> 
                                             </div>
                                         </div>
                                     </div>

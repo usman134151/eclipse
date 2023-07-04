@@ -13,14 +13,41 @@ use Livewire\WithFileUploads;
 class DriveUploads extends Component
 {
     use WithFileUploads;
-    public $showForm, $showSearch = false,$field=null, $existingDocuments, $uploadDoc, $noExp, $drive_file,$documentType;
+    public $showForm, $showSearch = false,$field=null, $existingDocuments, $uploadDoc, $noExp, $drive_file;
+    public $keywords=null,$documentType = null,$dateRange ='';
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
     public $setupValues = [
+        'search_document_type' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 9, 'setup_value_label', false, 'documentType', '', 'documentType', 2]],
         'document_types' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 9, 'setup_value_label', false, 'field.document_type', '', 'document_type', 3]],
     ];
 
+    public function clearFilters(){
+        $this->keywords=null;
+        $this->documentType=null;
+        $this->dateRange='';
+
+    }
     public function render()
     {
+        $query = DriveUpload::query();
+        $query->where(['record_id' => $this->field['record_id'], 'record_type' => $this->field['record_type']]);
+
+        if ($this->keywords!=null) {
+            $query->where('document_title','like', '%' . $this->keywords . '%');
+        }
+
+        if ($this->documentType!=null) {
+            $query->where('document_type', '=', $this->documentType );
+        }
+        if ($this->dateRange != null) {
+            $date = Carbon::parse($this->dateRange);
+            $query->whereDate('expiration_date', '=', $date);
+        }
+
+        
+        $this->existingDocuments=$query->get();
+
+
         return view('livewire.app.common.forms.drive-uploads');
     }
 
@@ -51,7 +78,7 @@ class DriveUploads extends Component
         $this->field['document_path'] = null;
         $this->field['expiration_date'] = null;
         $this->field['note'] = null;
-        $this->existingDocuments = DriveUpload::where(['record_id'=>$this->field['record_id'], 'record_type' => $this->field['record_type']])->get();
+        // $this->existingDocuments = DriveUpload::where(['record_id'=>$this->field['record_id'], 'record_type' => $this->field['record_type']])->get();
         // $this->resetValidation();
         $this->dispatchBrowserEvent('refreshSelects');
 
@@ -83,10 +110,13 @@ class DriveUploads extends Component
         return [
             'field.document_title' => 'nullable|string|max:255',
             'field.document_path' => 'nullable',
-            'field.expiration_date' => 'nullable',
             'field.note' => 'nullable',
             'drive_file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
-  
+            'field.expiration_date' => [
+                'nullable',
+                'date',
+                'after:today'
+            ], 
         ];
     }
 
