@@ -15,7 +15,7 @@ class DriveUploads extends Component
     use WithFileUploads;
     public $showForm, $showSearch = false,$field=null, $existingDocuments, $uploadDoc, $noExp, $drive_file;
     public $keywords=null,$documentType = null,$dateRange ='';
-    protected $listeners = ['showList' => 'resetForm', 'updateVal'];
+    protected $listeners = ['updateVal'];
     public $setupValues = [
         'search_document_type' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 9, 'setup_value_label', false, 'documentType', '', 'documentType', 2]],
         'document_types' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 9, 'setup_value_label', false, 'field.document_type', '', 'document_type', 3]],

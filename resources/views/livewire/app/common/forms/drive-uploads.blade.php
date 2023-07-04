@@ -1,12 +1,10 @@
- 
-{{-- root element --}}
 <div 
-x-data="{ isUploading: false, progress: 0 }"
+    x-data="{ isUploading: false, progress: 0 }"
     x-on:livewire-upload-start="isUploading = true"
     x-on:livewire-upload-finish="isUploading = false"
     x-on:livewire-upload-error="isUploading = false"
     x-on:livewire-upload-progress="progress = $event.detail.progress"
-    >
+>
     
                                 @if($showSearch)
 
@@ -206,11 +204,7 @@ x-data="{ isUploading: false, progress: 0 }"
                                 @endif
                                             
                                          
-                                   
-</div>    {{-- close root element --}}
-
-
-@push('scripts')
+                                @push('scripts')
 
 <script>
         function updateVal(attrName,val){
@@ -222,5 +216,6 @@ x-data="{ isUploading: false, progress: 0 }"
 
 
 </script>
-@endpush
+@endpush                                   
+</div>
 
