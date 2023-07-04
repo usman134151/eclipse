@@ -1666,7 +1666,7 @@
                                         
 
                                     </div>
-                                    @livewire('app.common.forms.drive-uploads',['showForm'=>false,'showSearch'=>true,'record_id'=>$userid,'record_type'=>2])
+                                    @livewire('app.common.forms.drive-uploads',['showForm'=>false,'showSearch'=>true,'record_id'=>$userid,'record_type'=>3])
                                   
                                 </div>
 
