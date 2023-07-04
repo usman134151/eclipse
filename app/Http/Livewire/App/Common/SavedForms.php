@@ -8,15 +8,15 @@ class SavedForms extends Component
 {
 	public $showForm,$counter=0, $formId, $formLabel,$formDeleteable,$formDetails=false;
 	protected $listeners = ['showList'=>'resetForm',
-		'refreshFormDetails' => 'refreshDetails'
+		'refreshDepartmentDetails' => 'refreshDetails'
 	];
 
-	public function refreshDetails($formId, $formLabel, $formDeleteable)
+	public function refreshDetails($formId, $formLabel)
 	{  
 		if ($this->counter == 0) {
 			$this->formId = 0;
 			$this->formLabel = $formLabel;
-			$this->dispatchBrowserEvent('refresh-form-details', ['formId' => $formId, 'formLabel' => $formLabel, 'formDeleteable' => $formDeleteable]); 
+			$this->dispatchBrowserEvent('refresh-department-details', ['formId' => $formId, 'formLabel' => $formLabel]); 
 			$this->counter = 1;
 			$this->formDetails = true;
 			$this->formDeleteable = $formDeleteable; 
