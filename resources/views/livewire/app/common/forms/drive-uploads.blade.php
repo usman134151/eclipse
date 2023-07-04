@@ -173,43 +173,16 @@ x-data="{ isUploading: false, progress: 0 }"
                                             </form>
                                         @endif
                                     </div>
-                                    <div class="row inner-section-segment-spacing">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                                                    </svg>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 @if($existingDocuments!=null)
                                         
                                   
                                          @foreach($existingDocuments as $index=> $doc)
                                             
                                             <div class="d-lg-inline-flex">
-                                                <div class="mx-2" style="width:200px;">
-                                                    <div class="position-relative">
+                                                <div class="mx-2" style="max-width:190px">
+                                                    <div class="position-relative" style="width:190px;height:250px">
                                                       
-                                                        <img style="width:190px;height:230px" src="{{$this->isImage($doc->document_path) ? $doc->document_path : '/tenant-resources/images/img-placeholder-document.jpg'}}"/>
+                                                        <img style="width:100%;height:100%" src="{{$this->isImage($doc->document_path) ? $doc->document_path : '/tenant-resources/images/img-placeholder-document.jpg'}}"/>
                                                         <div class="position-absolute top-0 end-0">
                                                         <a  wire:click.prevent="deleteFile({{$doc->id}},'{{$doc->document_path}}')" href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
                                                             <svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
