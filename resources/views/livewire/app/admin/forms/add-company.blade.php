@@ -587,14 +587,14 @@
                         </div>
                      
                         {{-- End: Service Catalog --}}
-                        @else
+                        @elseif($step==4)
                         
                         {{-- BEGIN: Drive Documents Pane --}}
                         <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }"
                             @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
                             aria-labelledby="drive-documents-tab" tabindex="0">
                             <section id="multiple-column-form">
-                                @livewire('app.common.forms.drive-uploads',['showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1])
+                                @livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))
                                 <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="setStep(3,'serviceActive','service-catalog')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">

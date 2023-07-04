@@ -12,7 +12,7 @@ class Note extends Model
     protected $fillable = [
         'record_id',
         'record_type',
-        //1 ->company, 2 -> provider, 3->customer (can add as needed)
+        //1 ->company, 2 -> provider, 3->customer , 4-departments (can add as needed)
         'notes_text',
         'user_id'
     ];
