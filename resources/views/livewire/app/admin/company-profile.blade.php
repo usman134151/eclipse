@@ -1,4 +1,11 @@
 <div x-data="{addDocument: false}">
+<div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
     @if($showDepartmentProfile)
 	@livewire('app.common.department-profile')
 	@else
@@ -698,92 +705,9 @@
                                         Here you can manage company required documents. You will receive notifications
                                         when your credentials are approaching expiration or have expired.
                                     </p>
-                                    @livewire('app.common.forms.drive-uploads',['showSearch'=>true,'record_id'=>$company['id'],'record_type'=>1])
+                                    @livewire('app.common.forms.drive-uploads',['showForm'=>false,'showSearch'=>true,'record_id'=>$company['id'],'record_type'=>1])
 
-                                    {{-- <div class="row">
-                                        <div class="col-md-4 col-12 mb-4">
-                                            <label class="form-label" for="search">
-                                                Search
-                                            </label>
-                                            <input type="text" id="search" class="form-control" name="search"
-                                                placeholder="Keyword Search" />
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="form-label" for="search">
-                                                Tags
-                                            </label>
-                                            <input type="text" id="tags" class="form-control" name="search"
-                                                placeholder="tags" />
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <label class="form-label" for="search">
-                                                Document Type
-                                            </label>
-                                            <select class="select2 form-select" id="document-type">
-                                                <option value="document-type">
-                                                    Select Document Type
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-md-2">
-                                            <label class="form-label" for="search">
-                                                Status
-                                            </label>
-                                            <select class="select2 form-select" id="document-type">
-                                                <option value="document-type">
-                                                    Pending
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-md-3">
-                                            <label class="form-label" for="search">
-                                                Upload Document
-                                            </label>
-                                            <button @click="addDocument = true"
-                                                class="btn btn-secondary btn-outline-secondary" type="button">Choose
-                                                File</button> --}}
-                                            {{-- <input type="file" id="upload-document" class="form-control"
-                                                name="upload-document" placeholder="upload-document" /> --}}
-                                        {{-- </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg aria-label="Export Button" width="23" height="26" viewBox="0 0 23 26">
-                                                    <use xlink:href="/css/common-icons.svg#document-dropdown">
-                                                    </use>
-                                                </svg>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="row my-4">
-                                        <div class="col-md-2">
-                                            <img src="/tenant-resources/images/img-placeholder-document.jpg" />
-                                            <p>Certification</p>
-                                        </div>
-                                    </div> --}}
+                                 
                                 </div>
                                 {{-- Drive Tab -End --}}
 

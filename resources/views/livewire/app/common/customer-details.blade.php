@@ -1667,41 +1667,41 @@
 
                                     </div>
                                     <div class="inner-section-segment-spacing">
-                                    <div class="col-md-12 d-lg-flex col-12 gap-4">
-                                        <div class="col-md-3 col-12">
-                                            <div>
-                                                <label class="form-label" for="keyword-search">
-                                                    Search
-                                                </label>
-                                                <input type="text" id="keyword-search" class="form-control"
-                                                    placeholder="Keyword Search" />
+                                        <div class="col-md-12 d-lg-flex col-12 gap-4">
+                                            <div class="col-md-3 col-12">
+                                                <div>
+                                                    <label class="form-label" for="keyword-search">
+                                                        Search
+                                                    </label>
+                                                    <input type="text" id="keyword-search" class="form-control"
+                                                        placeholder="Keyword Search" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-3 col-12">
-                                            <label class="form-label" for="payment-status">
-                                                Document Type
-                                            </label>
-                                            <select class="select2 form-select" id="payment-status">
-                                                <option>Select Document Type</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3  col-12">
-                                            <label class="form-label" for="set_set_date">
-                                                Date Range
-                                            </label>
-                                            <div class="position-relative">
-                                                <input type="" name="" class="form-control js-single-date"
-                                                    placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
+                                            <div class="col-md-3 col-12">
+                                                <label class="form-label" for="payment-status">
+                                                    Document Type
+                                                </label>
+                                                <select class="select2 form-select" id="payment-status">
+                                                    <option>Select Document Type</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3  col-12">
+                                                <label class="form-label" for="set_set_date">
+                                                    Date Range
+                                                </label>
+                                                <div class="position-relative">
+                                                    <input type="" name="" class="form-control js-single-date"
+                                                        placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
+                                                    {{-- Updated by Shanila to Add svg icon--}}
+                                                    <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
+                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                        </use>
+                                                    </svg>
+                                                    {{-- End of update by Shanila --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                     <div class="row inner-section-segment-spacing">
                                         <div class="col-md-3">
                                             <label class="form-label" for="search">

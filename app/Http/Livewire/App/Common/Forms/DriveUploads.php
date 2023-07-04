@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common\Forms;
 
+use App\Helpers\SetupHelper;
 use App\Models\Tenant\DriveUpload;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
@@ -12,17 +13,22 @@ use Livewire\WithFileUploads;
 class DriveUploads extends Component
 {
     use WithFileUploads;
-    public $showForm, $showSearch = false,$field=null, $existingDocuments, $uploadDoc, $noExp, $file;
+    public $showForm, $showSearch = false,$field=null, $existingDocuments, $uploadDoc, $noExp, $drive_file,$documentType;
     protected $listeners = ['showList' => 'resetForm', 'updateVal'];
-
+    public $setupValues = [
+        'document_types' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 9, 'setup_value_label', false, 'field.document_type', '', 'document_type', 3]],
+    ];
 
     public function render()
     {
         return view('livewire.app.common.forms.drive-uploads');
     }
 
-    public function mount($showSearch,$record_id,$record_type)
+    public function mount($showSearch, $showForm,$record_id,$record_type)
     {
+		$this->setupValues = SetupHelper::loadSetupValues($this->setupValues);
+        $this->showForm = $showForm;
+
         $this->showSearch= $showSearch;
         $this->field = [
             'record_id' => $record_id,
@@ -30,36 +36,39 @@ class DriveUploads extends Component
             'added_by' => Auth::id()];
        
         $this->refreshData();
+        
        
        
     }
 
     function refreshData(){
 
-        $this->uploadDoc=false;
+
+        $this->uploadDoc=$this->showForm;
         $this->noExp = true;
-        $this->file=null;
+        $this->drive_file=null;
         $this->field['document_title'] = null;
         $this->field['document_path'] = null;
         $this->field['expiration_date'] = null;
         $this->field['note'] = null;
         $this->existingDocuments = DriveUpload::where(['record_id'=>$this->field['record_id'], 'record_type' => $this->field['record_type']])->get();
-        $this->resetValidation();
+        // $this->resetValidation();
         $this->dispatchBrowserEvent('refreshSelects');
 
-
     }
 
 
-    public function showForm()
+
+    public function isImage($file)
     {
-        $this->uploadDoc = !$this->uploadDoc;
-        $this->dispatchBrowserEvent('refreshSelects');
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        $imgExtArr = ['jpg', 'jpeg', 'png','gif', 'bmp', 'svg'];
+        if (in_array($extension, $imgExtArr)) {
+            return true;
+        }
+        return false;
     }
-    public function resetForm()
-    {
-        $this->showForm=false;
-    }
+
     public function setExpDate(){
         // $this->noExp = !$this->noExp;
         if(!$this->noExp){
@@ -76,7 +85,7 @@ class DriveUploads extends Component
             'field.document_path' => 'nullable',
             'field.expiration_date' => 'nullable',
             'field.note' => 'nullable',
-            'file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
+            'drive_file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
   
         ];
     }
@@ -85,9 +94,9 @@ class DriveUploads extends Component
     {
         $this->validate();
 
-        if ($this->file != null) {
+        if ($this->drive_file != null) {
             $fileService = new UploadFileService();
-            $this->field['document_path'] = $fileService->saveFile('drive/'.$this->field['record_type'].'/' . $this->field['record_id'], $this->file);
+            $this->field['document_path'] = $fileService->saveFile('drive/'.$this->field['record_type'].'/' . $this->field['record_id'], $this->drive_file);
         }
         if($this->field['expiration_date']!=null) //convert before saving
             $this->field['expiration_date'] = Carbon::parse($this->field['expiration_date']);
@@ -125,6 +134,8 @@ class DriveUploads extends Component
     {
         if ($attrName == 'expiration_date')
             $this->field['expiration_date'] = $val;
+        elseif ($attrName == 'document_type')
+            $this->field['document_type'] = $val;
         else
             $this->$attrName = $val;
     }
