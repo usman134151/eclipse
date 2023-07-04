@@ -23,4 +23,9 @@ class Service extends Model
     {
         return $this->belongsToMany(Team::class, 'team_services')->withTimestamps();
     }
+
+    public function associateServices()
+    {
+        return $this->hasMany(AssociateService::class);
+    }
 }

@@ -13,7 +13,7 @@ class Credentials extends Component
     public $showForm;
     public $confirmationMessage;
     public $listTitle="Credentials";
-    public $listDescription="Here you can set up industries by which to organize your customers and collect appropriate request details in step 2 on the service request form.";
+    public $listDescription="You can setup required credentials for providers based on Tags, Specializations or Accommodations & Services.";
     // property for holding the ID of the record being edited/deleted
     public $recordId;
     // define event listeners for this component
