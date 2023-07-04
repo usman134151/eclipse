@@ -12,6 +12,7 @@ final class Companies extends PowerGridComponent
 {
 	use ActionButton;
 	public $name;
+	public  $selectedCompanyId;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -110,8 +111,15 @@ final class Companies extends PowerGridComponent
             })
 			->addColumn('edit', function (Company $model) {
 				return "<div class='d-flex actions'><a href='#' title='Edit Company' wire:click=\"edit($model->id)\"  aria-label='Edit Company' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
-				<a href='javascript:void(0)' wire:click=\"showProfile($model->id)\" title='View Company' aria-label='View Company' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Company Users' aria-label='View Company Users' href='#' class='dropdown-item'><i class='fa fa-users'></i>View Company Users</a><a href='#' title='View Company Departments' aria-label='View Company Departments' class='dropdown-item' @click='departmentList = true'><i class='fa fa-building'></i>View Company Departments</a><a href='javascript:void(0)' aria-label='Deactivate Company' title='Deactivate Company' class='dropdown-item'><i class='fa fa-trash'></i>Deactivate Company</a></div></div></div></div>";
+				<a href='javascript:void(0)' wire:click=\"showProfile($model->id)\" title='View Company' aria-label='View Company' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Company Users' aria-label='View Company Users' href='#' class='dropdown-item'><i class='fa fa-users'></i>View Company Users</a><a href='#' title='View Company Departments' aria-label='View Company Departments' class='dropdown-item' wire:click.prevent='showDetails(".$model->id.",\"".$model->name."\")'  @click='departmentList = true'><i class='fa fa-building'></i>View Company Departments</a><a href='javascript:void(0)' aria-label='Deactivate Company' title='Deactivate Company' class='dropdown-item'><i class='fa fa-trash'></i>Deactivate Company</a></div></div></div></div>";
 			});
+	}
+
+	public function showDetails($companyId, $companyLabel)
+	{
+		$this->selectedCompanyId = $companyId;
+
+		$this->emit('refreshDepartmentDetails', $companyId, $companyLabel);
 	}
 
 	/*
