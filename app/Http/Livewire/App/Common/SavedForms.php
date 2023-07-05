@@ -11,12 +11,12 @@ class SavedForms extends Component
 		'refreshDepartmentDetails' => 'refreshDetails'
 	];
 
-	public function refreshDetails($formId, $formLabel)
+	public function refreshDetails($formId, $formLabel, $formDeleteable)
 	{  
 		if ($this->counter == 0) {
 			$this->formId = 0;
 			$this->formLabel = $formLabel;
-			$this->dispatchBrowserEvent('refresh-department-details', ['formId' => $formId, 'formLabel' => $formLabel]); 
+			$this->dispatchBrowserEvent('refresh-form-details', ['formId' => $formId, 'formLabel' => $formLabel]); 
 			$this->counter = 1;
 			$this->formDetails = true;
 			$this->formDeleteable = $formDeleteable; 

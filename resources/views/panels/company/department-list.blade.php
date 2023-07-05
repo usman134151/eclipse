@@ -3,7 +3,7 @@
 	<x-slot name="title">{{$companyLabel}} - List of Departments</x-slot>
         @if($companyId>0)
 
-			@livewire('app.common.panels.company.department-list',['companyId'=>$companyId,'companyLabel'=>$companyLabel])
+			@livewire('app.common.lists.departments',['companyId'=>$companyId,'companyLabel'=>$companyLabel])
 		@endif
 </x-off-canvas>
 <script>

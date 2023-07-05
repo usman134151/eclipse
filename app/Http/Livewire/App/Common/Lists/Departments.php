@@ -14,6 +14,8 @@ final class Departments extends PowerGridComponent
 	use ActionButton;
 	public $name;
     public $companyId;
+	public $companyLabel;
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -132,7 +134,7 @@ final class Departments extends PowerGridComponent
 				->sortable()
 				->editOnClick(),
 			Column::make('Phone Number', 'phone'),
-			Column::make('Total Departments', 'departments'),
+			// Column::make('Total Departments', 'departments'),
 			Column::make('Department User', 'users'),
 			Column::make('Action', 'edit')->visibleInExport(false),
 		];
