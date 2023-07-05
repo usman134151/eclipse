@@ -41,33 +41,63 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a href="#" class="nav-link" :class="{ 'active': tab === 'department-info' }"
+                                <a href="#" class="nav-link {{$departmentActive}}" :class="{ 'active': tab === 'department-info' }"
                                     @click.prevent="tab = 'department-info'" id="department-info-tab" role="tab"
-                                    aria-controls="department-info" aria-selected="true"><span
+                                    aria-controls="department-info" aria-selected="true" wire:click.prevent="setStep(1,'departmentActive','department-info');"><span
                                         class="number">1</span>Department Info</a>
                             </li>
                              <li class="nav-item" role="presentation">
-                                <a href="#" class="nav-link" :class="{ 'active': tab === 'schedule' }"
-                                    @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
+                                @if($department->name)
+
+                                <a href="#" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
+                                    @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab" wire:click.prevent="save(0)" 
                                     aria-controls="schedule" aria-selected="false"><span class="number">2</span>
                                     Department Schedule</a>
+                                @else
+                                <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                    <span class="number">2</span>
+                                    Department Schedule
+                                </div>                            
+                                @endif
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }"
+                                @if($department->name)
+
+                                <a href="#" class="nav-link {{$serviceActive}}" :class="{ 'active': tab === 'service-catalog' }"
                                     @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
+                                     wire:click.prevent="setStep(3,'serviceActive','service-catalog')"
                                     aria-controls="service-catalog" aria-selected="false"><span class="number">3</span>
                                     Service Catalog</a>
+                                @else
+                                <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                    <span class="number">3</span>
+                                    Service Catalog
+                                </div>                            
+                                @endif
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }"
+                                @if($department->name)
+
+                                <a href="#" class="nav-link {{$driveActive}}" :class="{ 'active': tab === 'drive-documents' }"
                                     @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
+                                    wire:click.prevent="setStep(4,'driveActive','drive-documents');"
                                     aria-controls="drive-documents" aria-selected="false"><span class="number">4</span>
                                     Drive Documents</a>
+                                @else
+                                <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                    <span class="number">2</span>
+                                    Drive Documents
+                                </div>                            
+                                @endif
                             </li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <!-- BEGIN: Customer Info -->
+                            @if($step==1)
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'department-info' }"
                                 @click.prevent="tab = 'department-info'" id="department-info" role="tabpanel"
                                 aria-labelledby="department-info-tab" tabindex="0" x-show="tab === 'department-info'">
@@ -465,39 +495,80 @@
                                     </div>
                                 </section>
                             </div><!-- end Customer Info  -->
+                            @elseif($step==2)
 
-                            <!-- BEGIN: Schedule -->
+                                <!-- BEGIN: Schedule -->
 
-                            <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
-                            id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
-                            x-show="tab === 'schedule'">
-                                <section id="multiple-column-form">
-                                {{-- @livewire('app.admin.customer.service-catelog') --}}
+                                <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
+                                    id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
+                                    x-show="tab === 'schedule'">
+                                        <section id="multiple-column-form">
 
-                                </section>
-                            </div>
-                            <!-- END: Schedule -->
+                                            @livewire('app.common.setup.business-hours-setup', ['model_id' => $department->id, 'model_type' => '4'])
+                                            <div class="col-12 form-actions">
+                                                        <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                            wire:click.prevent="showList">
+                                                            Back
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                            Save & Exit
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                            wire:click.prevent="saveSchedule(0)"
+                                                            x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                            Next
+                                                        </button>
+                                                </div>
+                                            </section>
 
+                                </div>
+                                <!-- END: Schedule -->
+                            @elseif($step==3)
                             <!--BEGIN: Service Catalog-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
-                            id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
-                            x-show="tab === 'service-catalog'">
-                                <section id="multiple-column-form">
-                                @livewire('app.admin.customer.service-catelog')
-
-                                </section>
+                                id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
+                                x-show="tab === 'service-catalog'">
+                                    <section id="multiple-column-form">
+                                            @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$department->id,'modelType'=>'department'])
+                                            <div class="col-12 form-actions">
+                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                                    wire:click.prevent="setStep(2,'scheduleActive','schedule')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                                    Back
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="serviceCatelog" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                                    Save & Exit
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                                    wire:click.prevent="serviceCatelog(0)"
+                                                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                                    Next
+                                                                </button>
+                                            </div>
+                                        </section>
                             </div>
-                          @include('panels.common.customers')
                             <!--End: Service Catalog-->
+
+                            @endif
+
                             <!--BEGIN: Drive Documents Pane-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
                             @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
                             aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
+                             <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $department->id ,'record_type'=>4], key($department->id))</div>
                             <section id="multiple-column-form">
-                                {{-- @livewire('app.admin.customer.drive') --}}
-                            {{-- <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))</div> --}}
-                                
+                            
+                                <div class="col-12 form-actions">
+                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="setStep(3,'serviceActive','service-catalog')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
+                                                        Back
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+                                </div>                    
+
                             </section>
+
                         </div>
                             <!--End: Drive Documents Pane-->
                         </div><!-- tab-content-end    -->
@@ -507,6 +578,8 @@
             </div>
         </div>
     </div>
+@include('panels.common.customers')
+
 
 <script>
         function updateVal(attrName,val){

@@ -7,12 +7,14 @@ use App\Helpers\SetupHelper;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Department;
 use App\Models\Tenant\Phone;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
 use app\Services\App\AddressService;
 use Illuminate\Validation\Rule;
 use App\Services\App\DepartmentService;
 use app\Services\App\UploadFileService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentForm extends Component
 {
@@ -24,7 +26,10 @@ class DepartmentForm extends Component
         'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'department.industry_id','','industry_id',1 ]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'department.language_id','','language_id',2]]
 	];
-    protected $listeners = ['updateVal' => 'updateVal'];
+    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented'];
+	public $driveActive, $serviceActive, $scheduleActive, $departmentActive;
+	public $schedule;
+	
     public $step = 1;
 
 	public function showList($message='')
@@ -119,7 +124,7 @@ class DepartmentForm extends Component
     public function save($redirect = 1){
 		$this->validate();
         $this->step=2;
-		$this->department->added_by = 1;
+		$this->department->added_by = Auth::id();
 
 		if ($this->department->department_service_start_date != null) //convert before saving
 			$this->department->department_service_start_date = Carbon::parse($this->department->department_service_start_date);
@@ -144,11 +149,91 @@ class DepartmentForm extends Component
 			$this->department = new Department;
 
 		} else {
-			$this->emit('updateComponent', $this->team);
+			$this->getCompanySchedule();
 		}
 
 
+
 	}
+
+
+	public function getCompanySchedule()
+	{
+		//reinit schedule
+		$departmentSchedule = Schedule::where('model_id', $this->department->id)->where('model_type', 4)->get()->first();
+		if (!is_null($departmentSchedule)) {
+			$this->schedule = $departmentSchedule;
+		} else {
+			$this->schedule = new Schedule;
+			$this->schedule->model_type = 4;
+			$this->schedule->working_days = json_encode([]);
+			$this->schedule->timezone_id = 0;
+
+			$this->schedule->model_id = $this->department->id;
+			$this->schedule->save();
+		}
+
+
+		$this->scheduleActive = "active";
+
+		$this->switch('schedule');
+
+		$this->emit('getRecord', $this->schedule->id, true);
+	}
+
+
+	public function saveSchedule($redirect = 1)
+	{
+		$this->emit('saveSchedule');
+		if ($redirect) {
+			$this->showList("Company has been saved successfully");
+			$this->department = new Department;
+			$this->schedule = new Schedule();
+		} else {
+			$this->serviceActive = "active";
+			$this->scheduleActive = "";
+			$this->switch('service-catalog');
+			$this->step = 3;
+		}
+	}
+
+	public function serviceCatelog($redirect = 1)
+	{
+
+		if ($redirect) {
+			$this->showList("Company has been saved successfully");
+			$this->department = new Department;
+			$this->schedule = new Schedule;
+		} else {
+			$this->serviceActive = "";
+			$this->scheduleActive = "";
+			$this->driveActive = "active";
+			$this->switch('drive-documents');
+			$this->step = 4;
+		}
+	}
+
+	public function setStep($step, $tabName, $component)
+	{
+		$tabs = ['serviceActive', 'driveActive', 'scheduleActive', 'departmentActive'];
+		foreach ($tabs as $key)
+			$this->$key = '';
+		$this->step = $step;
+		$this->$tabName = "active";
+		$this->switch($component);
+		$this->dispatchBrowserEvent('refreshSelects');
+	}
+
+	public function stepIncremented()
+	{
+
+		$this->step = $this->step + 1;
+		if ($this->step == 4) {
+			$this->driveActive = 'active';
+			$this->serviceActive = '';
+		}
+	}
+
     public function updateVal($attrName, $val)
     {
 		if($attrName== 'favored_providers'){
