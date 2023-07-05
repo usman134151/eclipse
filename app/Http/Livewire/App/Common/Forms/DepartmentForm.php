@@ -26,9 +26,16 @@ class DepartmentForm extends Component
 
 	public function mount(Department $department)
 	{
+		if (request()->departmentID != null) {	//edit
+			
+			$this->department = Department::find(request()->departmentID);
+			
+		}else{ 	//create
+			$this->department = $department;
+		}
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
-        $this->department=$department;
     }
+	
     public function rules()
 	{
 		return [
