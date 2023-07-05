@@ -8,14 +8,16 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\Department;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\User;
+use app\Services\App\AddressService;
 use Illuminate\Validation\Rule;
 use App\Services\App\DepartmentService;
+use app\Services\App\UploadFileService;
 use Carbon\Carbon;
 
 class DepartmentForm extends Component
 {
-    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
-	public $component = 'department-info';
+    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [];
+	public $component = 'department-info',$image=null, $companyPhones=[];
     public $department,$providers=[], $fv=[],$unfv =[];
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'department.company_id','','company_id',0]],
@@ -53,16 +55,37 @@ class DepartmentForm extends Component
 					$this->phoneNumbers[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
 				}
 			}
+			if (count($this->department->addresses)) {
+				//dd($company->phones);
+				$this->userAddresses = [];
+				foreach ($this->department->addresses as $address) {
+					$this->userAddresses[] = $address->toArray();
+				}
+			}
+			if (count($this->department->company->phones)) {
+			
+				$this->companyPhones = [];
+				foreach ($this->department->company->phones as $phone) {
+					$this->companyPhones[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
+				}
+
 				$this->dispatchBrowserEvent('refreshSelects');
+			}
 			
 		}elseif(request()->companyID != null){ 	//create
 			$this->department = $department;
 			$this->department->company_id= request()->companyID;
 			$company = Company::find(request()->companyID);
 			$this->department->industry_id = $company->industry_id;
-
-		}
-
+			if(count($company->phones)) {
+					$this->companyPhones = [];
+					foreach ($company->phones as $phone) {
+						$this->companyPhones[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
+				
+					}
+				}
+			}
+		
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->providers = User::query()
 			->where('status', 1)
@@ -89,6 +112,8 @@ class DepartmentForm extends Component
 			'department.language_id' => 'nullable',
 			'department.department_service_start_date' => 'nullable|date_format:m/d/Y',
 			'department.department_service_end_date' => 'nullable|date_format:m/d/Y',
+			'image' => 'nullable|image|mimes:jpg,png,jpeg',
+
 		];
 	}
     public function save($redirect = 1){
@@ -104,10 +129,13 @@ class DepartmentForm extends Component
 		$this->department->favored_providers = implode(', ', $this->fv);
 		$this->department->unfavored_providers = implode(', ', $this->unfv);
 
-		
+		if ($this->image != null) {
+			$fileService = new UploadFileService();
+			$this->department->department_logo = $fileService->saveFile('profile_pic', $this->image, $this->department->department_logo);
+		}
 
         $departmentService = new DepartmentService;
-        $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers);
+        $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers,$this->userAddresses);
 
 		if ($redirect) {
 			// save and exit
@@ -140,9 +168,11 @@ class DepartmentForm extends Component
 	{
 		return view('livewire.app.common.forms.department-form');
 	}
+
     public function addPhone(){
 		$this->phoneNumbers[]=['phone_title'=>'','phone_number'=>''];
 	}
+
 	public function removePhone($index)
     {
 		if (key_exists('id', $this->phoneNumbers[$index])) {
@@ -153,6 +183,21 @@ class DepartmentForm extends Component
         unset($this->phoneNumbers[$index]);
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }
+
+	public function addAddress($addressArr)
+	{
+		$this->userAddresses[] = $addressArr;
+	}
+
+	public function deleteAddress($index)
+	{
+		if (key_exists('id', $this->userAddresses[$index])) {
+			AddressService::deleteAddress($this->userAddresses[$index]['id']);
+		}
+
+		unset($this->userAddresses[$index]);
+		$this->userAddresses = array_values($this->userAddresses);
+	}
     public function addServices(){
 		$this->step=3;
 	}

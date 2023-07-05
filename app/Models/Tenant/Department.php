@@ -19,7 +19,7 @@ class Department extends Model
 		'name', 'status', 'added_by',
 		'favored_providers', 'unfavored_providers', 'industry_id', 'company_id',
 		'department_website', 'language_id', 'department_service_start_date', 'department_service_end_date',
-		'department_timezone', 'department_logo', 'department_timeformat',
+		'department_timezone', 'department_logo', 'department_timeformat', 'hide_details','company_phones'
 	];
 
 	public function user()
@@ -34,7 +34,7 @@ class Department extends Model
 	}
 	public function addresses()
 	{
-    	return $this->hasMany(UserAddress::class,'user_id');
+    	return $this->hasMany(UserAddress::class,'user_id')->where('user_address_type',3);
 	}
 	public function users(): BelongsToMany
 	{
