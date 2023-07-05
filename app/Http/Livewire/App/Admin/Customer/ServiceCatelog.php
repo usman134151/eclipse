@@ -9,28 +9,38 @@ use Livewire\Component;
 
 class ServiceCatelog extends Component
 {
-    public $accomodations,$services=[],$modelId,$modelType,$modelServices=[];
-   
+    public $accomodations,$accomodationsList,$services=[],$searchParameter,$modelId,$modelType,$modelServices=[],$servicesList=[],$serviceSearch;
+    protected $listeners = ['resetCatalog'];
 
     public function render()
     {
-        return view('livewire.app.admin.customer.service-catelog');
+        return view('livewire.app.admin.customer.service-catelog',[
+            'accommodations' => $this->accomodations,
+        ]);
     }
 
     public function mount()
     {
-       $this->accomodations=Accommodation::where('status',1)->get()->toArray();
-       $this->fetchModelServices();
+        $this->resetCatalog();
        
     }
+    public function resetCatalog(){
+        $this->accomodationsList=Accommodation::where('status',1)->get()->toArray();
+        $this->accomodations=$this->accomodationsList;
+        $this->fetchModelServices();
+        $this->updateServices();
+    }
 
-    public function updateServices($accomodationId){
+    public function updateServices($accomodationId=null){
        
         $this->services=[];
+        $this->servicesList=[];
         
         $this->services=ServiceCategory::select('id', 'name', 'disable_for_companies')
         ->where('status', 1)
-        ->where('accommodations_id', $accomodationId)
+        ->when($accomodationId, function ($query, $accomodationId) {
+            return $query->where('accommodations_id', $accomodationId);
+        })
         ->get()
         ->toArray();
         
@@ -50,7 +60,8 @@ class ServiceCatelog extends Component
                 $this->services[$index]['activated']=1;
             }    
         }
-        //dd($this->services);
+        $this->servicesList=$this->services;
+      
     }
 	public function updateService($index){
         AssociateService::updateOrCreate(
@@ -67,5 +78,19 @@ class ServiceCatelog extends Component
             ->toArray();
             
     }
+
+    public function filterResults($list="accomodationsList",$arr="accomodations",$searchParameter='searchParameter'){
+        $this->$arr = [];
+      
+        foreach ($this->$list as $item) {
+            if (stripos($item['name'], $this->$searchParameter) !== false) {
+                $this->$arr[] = $item;
+            }
+        }
+       // dd($this->accommodations);
+        return  $this->$arr;
+    }
+
+
 
 }

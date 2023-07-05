@@ -111,6 +111,7 @@
                     </ul>
 
                     {{-- Tab Panes --}}
+                    
                     <div class="tab-content">
                         @if($step==1)
                         {{-- BEGIN: Customer Info --}}
@@ -584,17 +585,17 @@
                                                     </button>
                                 </div>
                             </section>
+                            
                         </div>
                      
                         {{-- End: Service Catalog --}}
-                        @elseif($step==4)
+                        @endif
                         
                         {{-- BEGIN: Drive Documents Pane --}}
-                        <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }"
-                            @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
-                            aria-labelledby="drive-documents-tab" tabindex="0">
+                        <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }">
+                            <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))</div>
                             <section id="multiple-column-form">
-                                @livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))
+                            
                                 <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="setStep(3,'serviceActive','service-catalog')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
@@ -603,16 +604,18 @@
                                                     <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                         Save & Exit
                                                     </button>
+                                </div>                    
 
                             </section>
                         </div>
-                        @endif
+                       
                         {{-- BEGIN: Drive Documents Pane --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+   
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
 

@@ -10,10 +10,18 @@
                                             <div class="col-md-12 between-section-segment-spacing">
                                                 <div class="row">
                                                     <div class="col-lg-5">
-                                                        <div class="mb-3">
-                                                            <p class="fs-5">
-                                                                Filter By Accommodation
-                                                            </p>
+                                                        <div>
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <p class="fs-5">
+                                                                    Filter By Accommodation
+                                                                </p>
+                                                                <a href="#" wire:click="resetCatalog" title="Reset" aria-label="Reset" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    <svg aria-label="Reset" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <use xlink:href="/css/provider.svg#revert"></use>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+
                                                         </div>
                                                         <div class="content-body">
                                                             <div class="card">
@@ -29,7 +37,9 @@
                                                                                         id="search-record" name="search"
                                                                                         placeholder="Search"
                                                                                         autocomplete="on"
-                                                                                        aria-label="Search" />
+                                                                                        aria-label="Search" 
+                                                                                        wire:model.debounce.500ms="searchParameter"
+                                                                                        wire:keyup="filterResults" />
                                                                                         @foreach($accomodations as $accomodation)
                                                                                     <tr role="row" class="odd">
                                                                                       
@@ -53,9 +63,16 @@
 
                                                     <div class="col-lg-7">
                                                         <div class="mb-3">
-                                                            <p class="fs-5">
-                                                                Select Service
-                                                            </p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                                <p class="fs-5">
+                                                                   Select Service(s)
+                                                                </p>
+                                                                <a href="#" wire:click="resetCatalog" title="Reset" aria-label="Reset" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                                                                    <svg aria-label="Reset" class="fill-stroke" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <use xlink:href="/css/provider.svg#revert"></use>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                         <div class="card">
                                                             <div class="card-body">
@@ -69,7 +86,9 @@
                                                                                     class="form-control" name="search"
                                                                                     placeholder="Search"
                                                                                     autocomplete="on"
-                                                                                    aria-label="Search" />
+                                                                                    aria-label="Search"
+                                                                                    wire:model.debounce.500ms="serviceSearch"
+                                                                                    wire:keyup="filterResults('servicesList','services','serviceSearch')"                                                                                      />
                                                                                     @foreach($this->services as $index=>$service)
                                                                                         <tr role="row" class="odd">
                                                                                             <td class="text-start">
@@ -92,8 +111,8 @@
                                                                                                 <div class="d-flex actions">
                                                                                                     <a @click="customers = true"
                                                                                                         href="#"
-                                                                                                        title="Customers"
-                                                                                                        aria-label="Customers"
+                                                                                                        title="Customers (coming soon)"
+                                                                                                        aria-label="Customers (coming soon)"
                                                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                                         <svg aria-label="Customers"
                                                                                                             class="fill"
@@ -108,8 +127,8 @@
                                                                                                         </svg>
                                                                                                     </a>
                                                                                                     <a href="#"
-                                                                                                        title="Department"
-                                                                                                        aria-label="Department"
+                                                                                                        title="Department  (coming soon)"
+                                                                                                        aria-label="Department (coming soon)"
                                                                                                         class="btn btn-sm btn-secondary rounded btn-hs-icon">
                                                                                                         <svg aria-label="Department"
                                                                                                             class="fill"
