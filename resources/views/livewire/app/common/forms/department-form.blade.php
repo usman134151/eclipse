@@ -185,7 +185,7 @@
                                                         <div class="mb-4">
                                                             <label class="form-label"
                                                                 for="department-manager">Department
-                                                                Manager(s)</label>
+                                                                Supervisors(s)</label>
                                                             <div class="mb-1">
                                                                 <button type="button"
                                                                     class="btn btn-has-icon px-0 btn-multiselect-popup"
@@ -199,7 +199,7 @@
                                                                             xlink:href="/css/sprite.svg#right-color-arrow">
                                                                         </use>
                                                                     </svg>
-                                                                    Add Department Manger(s)
+                                                                    Add Department Supervisor(s)
                                                                 </button>
                                                             </div>
                                                         </div>

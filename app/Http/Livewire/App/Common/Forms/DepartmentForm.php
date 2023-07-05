@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\Company;
 use App\Models\Tenant\Department;
+use App\Models\Tenant\Phone;
 use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
 use App\Services\App\DepartmentService;
@@ -44,7 +45,15 @@ class DepartmentForm extends Component
 
 			if ($this->department->get('unfavored_providers') != null)
 				$this->unfv = explode(', ', $this->department->unfavored_providers);
-				// $this->dispatchBrowserEvent('refreshSelects');
+
+			if (count($this->department->phones)) {
+				//dd($company->phones);
+				$this->phoneNumbers = [];
+				foreach ($this->department->phones as $phone) {
+					$this->phoneNumbers[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
+				}
+			}
+				$this->dispatchBrowserEvent('refreshSelects');
 			
 		}elseif(request()->companyID != null){ 	//create
 			$this->department = $department;
@@ -136,6 +145,11 @@ class DepartmentForm extends Component
 	}
 	public function removePhone($index)
     {
+		if (key_exists('id', $this->phoneNumbers[$index])) {
+			Phone::destroy($this->phoneNumbers[$index]['id']);
+		}
+
+		unset($this->phoneNumbers[$index]);
         unset($this->phoneNumbers[$index]);
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }

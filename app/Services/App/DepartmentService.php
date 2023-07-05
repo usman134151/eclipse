@@ -7,9 +7,14 @@ class DepartmentService{
     public function createDeparment($department,$phones){
         $department->save();
         foreach ($phones as $phoneData) {
-            $phone = new Phone($phoneData);
-            $department->phones()->save($phone);
+            if (key_exists('id', $phoneData)) {
+                Phone::where('id', $phoneData['id'])->update(['phone_number' => $phoneData['phone_number'], 'phone_title' => $phoneData['phone_title']]);
+            } else {
+                $phone = new Phone($phoneData);
+                $department->phones()->save($phone);
+            }
         }
+    
         return $department;
     }
 }
