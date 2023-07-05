@@ -552,7 +552,7 @@
 
                             <!--BEGIN: Drive Documents Pane-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
-                            @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
+                            id="drive-documents" role="tabpanel"
                             aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
                              <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $department->id ,'record_type'=>4], key($department->id))</div>
                             <section id="multiple-column-form">
@@ -571,14 +571,14 @@
 
                         </div>
                             <!--End: Drive Documents Pane-->
-                        </div><!-- tab-content-end    -->
+                       
                     </div><!-- Basic Floating Label Form section end -->
                 </div><!-- ...card-body... -->
                 <!-- END: Steps -->
             </div>
         </div>
     </div>
-@include('panels.common.customers')
+
 
 
 <script>
