@@ -716,6 +716,8 @@
                             aria-labelledby="drive-documents-tab" tabindex="0" x-show="tab === 'drive-documents'">
                             <section id="multiple-column-form">
                                 @livewire('app.admin.customer.drive')
+                            {{-- <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))</div> --}}
+                                
                             </section>
                         </div>
                             <!--End: Drive Documents Pane-->
