@@ -578,21 +578,6 @@
             </div>
         </div>
     </div>
-
-
-
-<script>
-        function updateVal(attrName,val){
-          
-          Livewire.emit('updateVal', attrName, val);
-
-      }
-
-
-
-</script>
-
-
 </div>
 
 
