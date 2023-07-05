@@ -41,6 +41,12 @@ class Department extends Model
 		return $this->belongsToMany(User::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps();
 	}
 
+	public function supervisors(): BelongsToMany
+	{
+		return $this->belongsToMany(User::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps()
+		->where('is_supervisor',true);
+	}
+
 	public function company()
 	{
 		return $this->belongsTo(Company::class, 'company_id');
