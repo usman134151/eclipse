@@ -4,14 +4,18 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\Company;
 use App\Models\Tenant\Department;
+use App\Models\Tenant\User;
 use Illuminate\Validation\Rule;
 use App\Services\App\DepartmentService;
+use Carbon\Carbon;
+
 class DepartmentForm extends Component
 {
     public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']];
 	public $component = 'department-info';
-    public $department;
+    public $department,$providers=[], $fv=[],$unfv =[];
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'department.company_id','','company_id',0]],
         'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'department.industry_id','','industry_id',1 ]],
@@ -19,9 +23,10 @@ class DepartmentForm extends Component
 	];
     protected $listeners = ['updateVal' => 'updateVal'];
     public $step = 1;
-	public function showList()
+
+	public function showList($message='')
 	{
-		$this->emit('showList');
+		$this->emit('showList',$message);
 	}
 
 	public function mount(Department $department)
@@ -29,13 +34,38 @@ class DepartmentForm extends Component
 		if (request()->departmentID != null) {	//edit
 			
 			$this->department = Department::find(request()->departmentID);
+			if ($this->department->department_service_start_date)
+				$this->department->department_service_start_date = Carbon::createFromFormat('Y-m-d', $this->department->department_service_start_date)->format('m/d/Y');
+			if ($this->department->department_service_end_date)
+			$this->department->department_service_end_date = Carbon::createFromFormat('Y-m-d', $this->department->department_service_end_date)->format('m/d/Y');
+
+			if ($this->department->get('favored_providers') != null)
+				$this->fv = explode(', ', $this->department->favored_providers);
+
+			if ($this->department->get('unfavored_providers') != null)
+				$this->unfv = explode(', ', $this->department->unfavored_providers);
+				// $this->dispatchBrowserEvent('refreshSelects');
 			
-		}else{ 	//create
+		}elseif(request()->companyID != null){ 	//create
 			$this->department = $department;
+			$this->department->company_id= request()->companyID;
+			$company = Company::find(request()->companyID);
+			$this->department->industry_id = $company->industry_id;
+
 		}
+
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+		$this->providers = User::query()
+			->where('status', 1)
+			->whereHas('roles', function ($query) {
+				$query->where('role_id', 2);
+			})
+			->select('id', 'name')
+			->get()->toArray();
+
+
     }
-	
+
     public function rules()
 	{
 		return [
@@ -52,22 +82,44 @@ class DepartmentForm extends Component
 			'department.department_service_end_date' => 'nullable|date_format:m/d/Y',
 		];
 	}
-    public function save(){
+    public function save($redirect = 1){
 		$this->validate();
         $this->step=2;
 		$this->department->added_by = 1;
+
+		if ($this->department->department_service_start_date != null) //convert before saving
+			$this->department->department_service_start_date = Carbon::parse($this->department->department_service_start_date);
+		if ($this->department->department_service_end_date != null) //convert before saving
+			$this->department->department_service_end_date = Carbon::parse($this->department->department_service_end_date);
+
+		$this->department->favored_providers = implode(', ', $this->fv);
+		$this->department->unfavored_providers = implode(', ', $this->unfv);
+
+		
+
         $departmentService = new DepartmentService;
         $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers);
-        
-		
-		$this->department = new Department;
+
+		if ($redirect) {
+			// save and exit
+
+			$this->showList("Department has been saved successfully");
+			$this->department = new Department;
+
+		} else {
+			$this->emit('updateComponent', $this->team);
+		}
+
 
 	}
     public function updateVal($attrName, $val)
     {
-
-        $this->department[$attrName] = $val;
-
+		if($attrName== 'favored_providers'){
+			$this->fv=$val;
+		}elseif($attrName == 'unfavored_providers'){
+			$this->unfv=$val;
+		}else
+        $this->department->$attrName = $val;
 
     }
 	public function switch($component)

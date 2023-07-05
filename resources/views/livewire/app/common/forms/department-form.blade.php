@@ -46,16 +46,22 @@
                                     aria-controls="department-info" aria-selected="true"><span
                                         class="number">1</span>Department Info</a>
                             </li>
+                             <li class="nav-item" role="presentation">
+                                <a href="#" class="nav-link" :class="{ 'active': tab === 'schedule' }"
+                                    @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
+                                    aria-controls="schedule" aria-selected="false"><span class="number">2</span>
+                                    Department Schedule</a>
+                            </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }"
                                     @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
-                                    aria-controls="service-catalog" aria-selected="false"><span class="number">2</span>
+                                    aria-controls="service-catalog" aria-selected="false"><span class="number">3</span>
                                     Service Catalog</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }"
                                     @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
-                                    aria-controls="drive-documents" aria-selected="false"><span class="number">3</span>
+                                    aria-controls="drive-documents" aria-selected="false"><span class="number">4</span>
                                     Drive Documents</a>
                             </li>
                         </ul>
@@ -161,30 +167,7 @@
                                                                         @enderror
                                                             </div>
                                                         </div>
-                                                    <!-- Department Business Hours -->
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="mb-4">
-                                                            <label class="form-label"
-                                                                for="department-business-hours">Department Business
-                                                                Hours</label>
-                                                            <div class="mb-1">
-                                                                <button type="button"
-                                                                    class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#companybusinesshoursModel">
-                                                                    <svg class="fill" width="25" height="18"
-                                                                        viewBox="0 0 25 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <use
-                                                                            xlink:href="/css/sprite.svg#right-color-arrow">
-                                                                        </use>
-                                                                    </svg>
-                                                                    Add Schedule
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                    
                                                     <!-- Preferred Language -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
@@ -196,54 +179,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- Service End Date -->
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="mb-4">
-                                                            <label class="form-label" for="service-start-date">
-                                                                Service Start Date
-                                                            </label>
-                                                            <div class="position-relative">
-                                                                <input type="" name="" class="form-control"
-                                                                    placeholder="17/01//2023" id="service-start-date" wire:model="department.department_service_start_date">
-                                                                <svg class="icon-date" width="20" height="20"
-                                                                    viewBox="0 0 20 20" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <use xlink:href="/css/provider.svg#date-field">
-                                                                    </use>
-                                                                </svg>
-                                                                @error('department.department_service_start_date')
-                                                                <span class="d-inline-block invalid-feedback mt-2">
-                                                                {{ $message }}
-                                                                </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Service End Date -->
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="mb-4">
-                                                            <label class="form-label" for="service-end-date">
-                                                                Service End Date
-                                                            </label>
-                                                            <div class="position-relative">
-                                                                <input type="" name="" class="form-control"
-                                                                    placeholder="17/01//2023" id="service-end-date" wire:model="department.department_service_end_date">
-                                                                <svg class="icon-date" width="20" height="20"
-                                                                    viewBox="0 0 20 20" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <use xlink:href="/css/provider.svg#date-field">
-                                                                    </use>
-                                                                </svg>
-                                                                @error('department.department_service_end_date')
-												            <span class="d-inline-block invalid-feedback mt-2">
-													        {{ $message }}
-												            </span>
-												            @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                    
                                                     <!-- Department Manager(s) -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
@@ -268,25 +204,66 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Associated Tags -->
+
+                                                    <!-- Service End Date -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
-                                                            <label class="form-label" for="associated-tags">Associated
-                                                                Tags</label>
-                                                            <input type="text" id="associated-tags" class="form-control"
-                                                                name="associated-tags"
-                                                                placeholder="Enter Associated Tags" />
+                                                            <label class="form-label" for="service-start-date">
+                                                                Service Start Date
+                                                            </label>
+                                                            <div class="position-relative">
+                                                                <input type="" name="" class="form-control js-single-date" name="department_service_start_date" id="department_service_start_date"
+                                                                    placeholder="17/01//2023" id="service-start-date" wire:model.defer="department.department_service_start_date">
+                                                                <svg class="icon-date" width="20" height="20"
+                                                                    viewBox="0 0 20 20" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <use xlink:href="/css/provider.svg#date-field">
+                                                                    </use>
+                                                                </svg>
+                                                                @error('department.department_service_start_date')
+                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                                </span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                    <!-- Service End Date -->
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="service-end-date">
+                                                                Service End Date
+                                                            </label>
+                                                            <div class="position-relative">
+                                                                <input type="" name="" class="form-control js-single-date" name="department_service_end_date" id="department_service_end_date"
+                                                                    placeholder="17/01//2023" id="service-end-date" wire:model.defer="department.department_service_end_date">
+                                                                <svg class="icon-date" width="20" height="20"
+                                                                    viewBox="0 0 20 20" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <use xlink:href="/css/provider.svg#date-field">
+                                                                    </use>
+                                                                </svg>
+                                                                @error('department.department_service_end_date')
+												            <span class="d-inline-block invalid-feedback mt-2">
+													        {{ $message }}
+												            </span>
+												            @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <!-- Preferred Providers -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
                                                             <label class="form-label"
                                                                 for="preferred-providers">Preferred
                                                                 Providers</label>
-                                                            <select class="select2 form-select"
-                                                                id="preferred-providers">
-                                                                <option>Select Preferred Providers</option>
+                                                            <select multiple class="select2 form-select" wire:model.defer="fv"
+                                                                id="favored_providers" name="favored_providers">
+                                                                @foreach($providers as $provider)
+                                                                    <option value="{{$provider['id']}}"> {{$provider['name']}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -297,9 +274,11 @@
                                                             <label class="form-label"
                                                                 for="disfavored-providers">Disfavored
                                                                 Providers</label>
-                                                            <select class="select2 form-select"
-                                                                id="disfavored-providers">
-                                                                <option>Select Disfavored Providers</option>
+                                                            <select multiple class="select2 form-select" wire:model.defer="unfv"
+                                                                id="unfavored_providers" name="unfavored_providers">
+                                                                 @foreach($providers as $provider)
+                                                                    <option value="{{$provider['id']}}"> {{$provider['name']}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -310,8 +289,8 @@
                                                             <label class="form-label"
                                                                 for="select-default-invoice-template">Select Default
                                                                 Invoice
-                                                                Template</label>
-                                                            <select class="select2 form-select"
+                                                                Template <small>(coming soon)</small></label>
+                                                            <select disabled class="select2 form-select"
                                                                 id="select-default-invoice-template">
                                                                 <option>Select Default Invoice Template</option>
                                                             </select>
@@ -323,8 +302,8 @@
                                                         <div class="mb-4">
                                                             <label class="form-label"
                                                                 for="select-default-quote-template">Select Default Quote
-                                                                Template</label>
-                                                            <select class="select2 form-select"
+                                                                Template <small>(coming soon)</small></label>
+                                                            <select class="select2 form-select" disabled
                                                                 id="select-default-quote-template">
                                                                 <option>Select Default Quote Template</option>
                                                             </select>
@@ -336,8 +315,8 @@
                                                         <div class="mb-4">
                                                             <label class="form-label"
                                                                 for="select-default-timesheet">Select
-                                                                Default Timesheet</label>
-                                                            <select class="select2 form-select"
+                                                                Default Timesheet <small>(coming soon)</small></label>
+                                                            <select disabled class="select2 form-select"
                                                                 id="select-default-timesheet">
                                                                 <option>Select Default Timesheet</option>
                                                             </select>
@@ -348,9 +327,9 @@
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
                                                             <label class="form-label" for="tags-column">
-                                                                Tags
+                                                                Tags <small>(coming soon)</small>
                                                             </label>
-                                                            <select data-placeholder="" multiple
+                                                            <select disabled data-placeholder="" multiple
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
                                                                     <option value=""></option>
                                                                     <option selected>Admin staff</option>
@@ -686,8 +665,8 @@
                                                         <button type="submit"
                                                             class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">Save
                                                             & Exit</button>
-                                                        <button type="submit" class="btn btn-primary rounded px-4 py-2"
-                                                        x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">Next</button>
+                                                        <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save(0)"
+                                                        x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('schedule')">Next</button>
 
                                                     </div>
                                                 </div>
@@ -698,16 +677,27 @@
                                 </section>
                             </div><!-- end Customer Info  -->
 
+                            <!-- BEGIN: Schedule -->
+
+                            <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
+                            id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
+                            x-show="tab === 'schedule'">
+                                <section id="multiple-column-form">
+                                {{-- @livewire('app.admin.customer.service-catelog') --}}
+
+                                </section>
+                            </div>
+                            <!-- END: Schedule -->
 
                             <!--BEGIN: Service Catalog-->
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
-                            <section id="multiple-column-form">
-                             @livewire('app.admin.customer.service-catelog')
+                                <section id="multiple-column-form">
+                                @livewire('app.admin.customer.service-catelog')
 
-                            </section>
-                          </div>
+                                </section>
+                            </div>
                           @include('panels.common.customers')
                             <!--End: Service Catalog-->
                             <!--BEGIN: Drive Documents Pane-->
@@ -728,4 +718,19 @@
             </div>
         </div>
     </div>
+
+<script>
+        function updateVal(attrName,val){
+          
+          Livewire.emit('updateVal', attrName, val);
+
+      }
+
+
+
+</script>
+
 </div>
+</div>
+
+

@@ -16,7 +16,10 @@ class Department extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'status', 'added_by'
+		'name', 'status', 'added_by',
+		'favored_providers', 'unfavored_providers', 'industry_id', 'company_id',
+		'department_website', 'language_id', 'department_service_start_date', 'department_service_end_date',
+		'department_timezone', 'department_logo', 'department_timeformat',
 	];
 
 	public function user()
