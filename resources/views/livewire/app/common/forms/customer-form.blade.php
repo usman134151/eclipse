@@ -1520,55 +1520,26 @@
                                 </section>
                             </div>
                             {{-- END: Service Catalog --}}
-                        @elseif($step==4)
+                                             @endif
+
                             {{-- BEGIN: Drive Documents Pane --}}
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
                                 id="drive-documents" role="tabpanel" aria-labelledby="drive-documents-tab" tabindex="0"
                                 x-show="tab === 'drive-documents'">
+
                                 <section id="multiple-column-form">
                                     <div class="row">
                                         <div class="col-12">
-                                            <form class="form">
-                                                {{-- updated by shanila to add csrf --}}
-                                                @csrf
-                                                {{-- updated end by shanila --}}
                                                 <div class="col-md-8 mb-md-2">
-                                                    <h2>Drive Documents (Coming Soon)</h2>
+                                                    <h2>Drive Documents</h2>
                                                 </div>
+                                                <div>
+                                                    @livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $user->id ,'record_type'=>3], key($user->id))
+                                                </div>
+
                                                 <div class="col-md-12 mb-md-2">
                                                     <div class="row">
-                                                        <div class="col-md-12 mb-md-2">
-                                                            <div class="row justify-content-center">
-                                                                <div class="col-md-8">
-                                                                    <div
-                                                                        class="d-flex flex-column align-items-md-center justify-content-md-center mb-3">
-                                                                        <label for="formFile" class="form-label">
-                                                                            Upload Document
-                                                                        </label>
-                                                                        <input class="form-control" type="file"
-                                                                            id="formFile">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
-                                                                <div>
-                                                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                                        alt="Preview File" />
-                                                                    <p>File Name</p>
-                                                                </div>
-                                                                <div>
-                                                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                                        alt="Preview File" />
-                                                                    <p>File Name</p>
-                                                                </div>
-                                                                <div>
-                                                                    <img src="/tenant-resources/images/img-placeholder-document.jpg"
-                                                                        alt="Preview File" />
-                                                                    <p>File Name</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                         {{-- Action Buttons Start --}}
                                                         <div
                                                             class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
@@ -1577,24 +1548,20 @@
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
-                                                                <button type="button" class="btn btn-primary rounded w-100">
+                                                                <button type="button" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" class="btn btn-primary rounded w-100">
                                                                     Submit
                                                                 </button>
                                                             </a>
-                                                            {{-- <button type="submit" class="btn btn-primary rounded">
-                                                                Next
-                                                            </button> --}}
+                                                            
                                                         </div>
                                                         {{-- Action Buttons End --}}
                                                     </div>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </section>
                             </div>
                             {{-- END: Drive Documents Pane --}}
-                        @endif
                     </div>
                 </div>
             </div>
