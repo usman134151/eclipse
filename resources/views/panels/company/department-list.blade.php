@@ -1,5 +1,5 @@
 {{-- Department List Off Canvas - Start --}}
-<x-off-canvas show="departmentList">
+<x-off-canvas show="departmentList" :allowBackdrop="false" size="fullscreen">
 	<x-slot name="title">{{$companyLabel}} - List of Departments</x-slot>
         @if($companyId>0)
 
