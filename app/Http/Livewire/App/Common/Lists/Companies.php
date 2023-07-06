@@ -125,10 +125,8 @@ final class Companies extends PowerGridComponent
 
 	public function showUsers($cu_companyId, $cu_companyLabel)
 	{
-		// $this->selectedCompanyId = $companyId;
 		$this->emit('refreshCompanyUsers', $cu_companyId, $cu_companyLabel);
 	}
-
 	
 	
 	/*

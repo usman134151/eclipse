@@ -97,6 +97,7 @@
 		</section>
 	</div>
 	@endif
+		@include('panels.company.department-users')
 
     @include('modals.common.add-address')
     @include('modals.department-manager')

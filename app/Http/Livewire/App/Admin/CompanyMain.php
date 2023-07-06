@@ -11,6 +11,7 @@ class CompanyMain extends Component
 	public $showForm, $counter = 0, $companyId, $companyLabel,  $companyDetails = false;
 	public  $dcounter = 0, $departmentId, $departmentLabel,  $departmentDetails = false;
 	public $cu_counter = 0, $cu_companyId, $cu_companyLabel,  $cu_companyDetails = false; //for company users
+	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 	
 	public $showProfile;
 	public $importFile;
@@ -22,7 +23,7 @@ class CompanyMain extends Component
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 		'refreshDepartmentDetails' => 'refreshDetails',
 		'refreshDepartmentProfile' => 'refreshProfileDetails',
-		'refreshCompanyUsers'
+		'refreshCompanyUsers', 'refreshDepartmentUsers'
 
 	];
 	protected $exportDataFile;
@@ -110,6 +111,19 @@ class CompanyMain extends Component
 		}
 	}
 
+	public function refreshDepartmentUsers($users_departmentId, $users_departmentLabel) //for company users
+	{
+		if ($this->du_counter == 0) {
+			$this->du_departmentId = 0;
+			$this->du_departmentLabel = $users_departmentLabel;
+			$this->dispatchBrowserEvent('refresh-department-users', ['departmentId' => $users_departmentId, 'departmentLabel' => $users_departmentLabel]);
+			$this->du_counter = 1;
+			$this->du_departmentDetails = true;
+		} else {
+			$this->du_departmentId = $users_departmentId;
+			$this->du_counter = 0;
+		}
+	}
 
 	public function showProfile($company)
 	{
