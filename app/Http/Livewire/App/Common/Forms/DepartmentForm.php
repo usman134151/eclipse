@@ -9,17 +9,19 @@ use App\Models\Tenant\Department;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
-use app\Services\App\AddressService;
+use App\Services\App\AddressService;
 use Illuminate\Validation\Rule;
 use App\Services\App\DepartmentService;
-use app\Services\App\UploadFileService;
+use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 class DepartmentForm extends Component
 {
+	use WithFileUploads;
     public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [];
-	public $component = 'department-info',$image=null, $companyPhones=[];
+	public $component = 'department-info',$image=null, $companyPhones=[],$companyUsers=[];
     public $department,$providers=[], $fv=[],$unfv =[];
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'department.company_id','','company_id',0]],
@@ -28,13 +30,13 @@ class DepartmentForm extends Component
 	];
     protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented'];
 	public $driveActive, $serviceActive, $scheduleActive, $departmentActive;
-	public $schedule;
+	public $schedule,$company_id=0;
 	
     public $step = 1;
 
 	public function showList($message='')
 	{
-		$this->emit('showList',$message);
+		$this->emit('showList',$message,$this->company_id);
 	}
 
 	public function mount(Department $department)
@@ -52,6 +54,9 @@ class DepartmentForm extends Component
 
 			if ($this->department->get('unfavored_providers') != null)
 				$this->unfv = explode(', ', $this->department->unfavored_providers);
+
+			if ($this->department->get('company_phones') != null)
+				$this->department->company_phones = explode(', ', $this->department->company_phones);
 
 			if (count($this->department->phones)) {
 				//dd($company->phones);
@@ -74,8 +79,8 @@ class DepartmentForm extends Component
 					$this->companyPhones[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
 				}
 
-				$this->dispatchBrowserEvent('refreshSelects');
 			}
+			$this->dispatchBrowserEvent('refreshSelects');
 			
 		}elseif(request()->companyID != null){ 	//create
 			$this->department = $department;
@@ -89,7 +94,7 @@ class DepartmentForm extends Component
 				
 					}
 				}
-			}
+		}
 		
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->providers = User::query()
@@ -99,10 +104,13 @@ class DepartmentForm extends Component
 			})
 			->select('id', 'name')
 			->get()->toArray();
-
+		$this->company_id = $this->department->company_id;
 
     }
+	public function setData(){
+		$this->emit('setData', $this->department->company->id);
 
+}
     public function rules()
 	{
 		return [
@@ -110,11 +118,15 @@ class DepartmentForm extends Component
 				'required',
 				'string',
 				'max:255',
-				Rule::unique('departments', 'name')->ignore($this->department->id)],
+				'unique:departments,name,'.$this->department->id.',id,company_id,'.$this->company_id,
+				// Rule::unique('departments', 'name')->ignore($this->department->id)
+			],
             'department.company_id'=>'required',
 			'department.industry_id'=>'required',
 			'department.department_website' => 'nullable|url',
 			'department.language_id' => 'nullable',
+			'department.company_phones.*' => 'nullable',
+			'department.hide_details' => 'nullable',
 			'department.department_service_start_date' => 'nullable|date_format:m/d/Y',
 			'department.department_service_end_date' => 'nullable|date_format:m/d/Y',
 			'image' => 'nullable|image|mimes:jpg,png,jpeg',
@@ -133,6 +145,10 @@ class DepartmentForm extends Component
 
 		$this->department->favored_providers = implode(', ', $this->fv);
 		$this->department->unfavored_providers = implode(', ', $this->unfv);
+
+		if(($this->department->company_phones!=null)&&count($this->department->company_phones))
+			$this->department->company_phones = implode(', ', $this->department->company_phones);
+
 
 		if ($this->image != null) {
 			$fileService = new UploadFileService();
@@ -186,7 +202,7 @@ class DepartmentForm extends Component
 	{
 		$this->emit('saveSchedule');
 		if ($redirect) {
-			$this->showList("Company has been saved successfully");
+			$this->showList("Department has been saved successfully");
 			$this->department = new Department;
 			$this->schedule = new Schedule();
 		} else {
@@ -201,7 +217,7 @@ class DepartmentForm extends Component
 	{
 
 		if ($redirect) {
-			$this->showList("Company has been saved successfully");
+			$this->showList("Department has been saved successfully");
 			$this->department = new Department;
 			$this->schedule = new Schedule;
 		} else {
