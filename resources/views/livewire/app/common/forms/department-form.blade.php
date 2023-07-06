@@ -225,7 +225,7 @@
                                                             for="department-manager">Department
                                                             Supervisors(s)</label>
                                                         <div class="mb-1">
-                                                            <button type="button"
+                                                            <button type="button" wire:click="setData"
                                                                 class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#departmentManagerModal"

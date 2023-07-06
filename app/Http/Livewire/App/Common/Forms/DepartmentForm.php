@@ -21,7 +21,7 @@ class DepartmentForm extends Component
 {
 	use WithFileUploads;
     public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [];
-	public $component = 'department-info',$image=null, $companyPhones=[];
+	public $component = 'department-info',$image=null, $companyPhones=[],$companyUsers=[];
     public $department,$providers=[], $fv=[],$unfv =[];
     public $setupValues = [
         'companies'=>['parameters'=>['Company', 'id', 'name', '', '', 'name', false, 'department.company_id','','company_id',0]],
@@ -79,8 +79,8 @@ class DepartmentForm extends Component
 					$this->companyPhones[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
 				}
 
-				$this->dispatchBrowserEvent('refreshSelects');
 			}
+			$this->dispatchBrowserEvent('refreshSelects');
 			
 		}elseif(request()->companyID != null){ 	//create
 			$this->department = $department;
@@ -94,7 +94,7 @@ class DepartmentForm extends Component
 				
 					}
 				}
-			}
+		}
 		
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->providers = User::query()
@@ -107,7 +107,10 @@ class DepartmentForm extends Component
 
 
     }
+	public function setData(){
+		$this->emit('setData', $this->department->company->id);
 
+}
     public function rules()
 	{
 		return [

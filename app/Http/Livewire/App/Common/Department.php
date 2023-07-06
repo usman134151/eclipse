@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\App\Common;
 
-use App\Http\Livewire\app\common\lists\Companies;
 use App\Models\Tenant\Company;
 use Livewire\Component;
 
