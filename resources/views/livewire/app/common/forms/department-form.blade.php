@@ -99,7 +99,7 @@
                             <!-- BEGIN: Customer Info -->
                             @if($step==1)
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'department-info' }"
-                                @click.prevent="tab = 'department-info'" id="department-info" role="tabpanel"
+                                     id="department-info" role="tabpanel"
                                 aria-labelledby="department-info-tab" tabindex="0" x-show="tab === 'department-info'">
 
                                 <!-- Basic multiple Column Form section start -->
@@ -388,9 +388,9 @@
                                                                     </label>
                                                                     @foreach($companyPhones as $phone)
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" wire:model.defer="department.company_phones"
-                                                                            id="{{$phone['id']}}" value="{{$phone['id']}}"
-                                                                            name="company_phones" type="checkbox"
+                                                                        <input class="form-check-input" wire:key='{{$phone['id']}}' wire:model.defer="department.company_phones"
+                                                                            id="{{$phone['id']}}"  value="{{$phone['id']}}"
+                                                                            type="checkbox"
                                                                             tabindex="" />
                                                                         <label class="form-check-label"
                                                                             for="phone-number-ceo">{{$phone['phone_title']}}:
@@ -466,13 +466,15 @@
                                                     <!-- Check-boxes -->
                                                     <div class="col-md-12 col-12 mt-5 mb-4">
                                                         <div class="col-md-12 col-12 mb-4">
+                                                          <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                value="hide-user-details-providers"
+                                                                wire:model.defer="department.hide_details"
                                                                 id="hide-user-details-providers">
                                                             <label class="form-check-label"
                                                                 for="hide-user-details-providers">
                                                                 Hide All Comapny Users' Details from Providers
                                                             </label>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- ....cancel/next (buttons)... -->

@@ -9,15 +9,17 @@ use App\Models\Tenant\Department;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
-use app\Services\App\AddressService;
+use App\Services\App\AddressService;
 use Illuminate\Validation\Rule;
 use App\Services\App\DepartmentService;
-use app\Services\App\UploadFileService;
+use App\Services\App\UploadFileService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 class DepartmentForm extends Component
 {
+	use WithFileUploads;
     public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [];
 	public $component = 'department-info',$image=null, $companyPhones=[];
     public $department,$providers=[], $fv=[],$unfv =[];
@@ -52,6 +54,9 @@ class DepartmentForm extends Component
 
 			if ($this->department->get('unfavored_providers') != null)
 				$this->unfv = explode(', ', $this->department->unfavored_providers);
+
+			if ($this->department->get('company_phones') != null)
+				$this->department->company_phones = explode(', ', $this->department->company_phones);
 
 			if (count($this->department->phones)) {
 				//dd($company->phones);
@@ -115,6 +120,8 @@ class DepartmentForm extends Component
 			'department.industry_id'=>'required',
 			'department.department_website' => 'nullable|url',
 			'department.language_id' => 'nullable',
+			'department.company_phones.*' => 'nullable',
+			'department.hide_details' => 'nullable',
 			'department.department_service_start_date' => 'nullable|date_format:m/d/Y',
 			'department.department_service_end_date' => 'nullable|date_format:m/d/Y',
 			'image' => 'nullable|image|mimes:jpg,png,jpeg',
@@ -133,6 +140,10 @@ class DepartmentForm extends Component
 
 		$this->department->favored_providers = implode(', ', $this->fv);
 		$this->department->unfavored_providers = implode(', ', $this->unfv);
+
+		if(count($this->department->company_phones))
+			$this->department->company_phones = implode(', ', $this->department->company_phones);
+
 
 		if ($this->image != null) {
 			$fileService = new UploadFileService();
