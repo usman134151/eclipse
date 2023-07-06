@@ -144,7 +144,7 @@ class DepartmentForm extends Component
 		$this->department->favored_providers = implode(', ', $this->fv);
 		$this->department->unfavored_providers = implode(', ', $this->unfv);
 
-		if(count($this->department->company_phones))
+		if(($this->department->company_phones!=null)&&count($this->department->company_phones))
 			$this->department->company_phones = implode(', ', $this->department->company_phones);
 
 
@@ -200,7 +200,7 @@ class DepartmentForm extends Component
 	{
 		$this->emit('saveSchedule');
 		if ($redirect) {
-			$this->showList("Company has been saved successfully");
+			$this->showList("Department has been saved successfully");
 			$this->department = new Department;
 			$this->schedule = new Schedule();
 		} else {
@@ -215,7 +215,7 @@ class DepartmentForm extends Component
 	{
 
 		if ($redirect) {
-			$this->showList("Company has been saved successfully");
+			$this->showList("Department has been saved successfully");
 			$this->department = new Department;
 			$this->schedule = new Schedule;
 		} else {
