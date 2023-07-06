@@ -10,6 +10,7 @@ class CompanyMain extends Component
 {
 	public $showForm, $counter = 0, $companyId, $companyLabel,  $companyDetails = false;
 	public  $dcounter = 0, $departmentId, $departmentLabel,  $departmentDetails = false;
+	public $cu_counter = 0, $cu_companyId, $cu_companyLabel,  $cu_companyDetails = false; //for company users
 	
 	public $showProfile;
 	public $importFile;
@@ -20,7 +21,8 @@ class CompanyMain extends Component
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
 		'refreshDepartmentDetails' => 'refreshDetails',
-		'refreshDepartmentProfile' => 'refreshProfileDetails'
+		'refreshDepartmentProfile' => 'refreshProfileDetails',
+		'refreshCompanyUsers'
 
 	];
 	protected $exportDataFile;
@@ -91,6 +93,20 @@ class CompanyMain extends Component
 		} else {
 			$this->departmentId = $departmentId;
 			$this->dcounter = 0;
+		}
+	}
+
+	public function refreshCompanyUsers($users_companyId, $users_companyLabel) //for company users
+	{
+		if ($this->cu_counter == 0) {
+			$this->cu_companyId = 0;
+			$this->cu_companyLabel = $users_companyLabel;
+			$this->dispatchBrowserEvent('refresh-company-users', ['companyId' => $users_companyId, 'companyLabel' => $users_companyLabel]);
+			$this->cu_counter = 1;
+			$this->cu_companyDetails = true;
+		} else {
+			$this->cu_companyId = $users_companyId;
+			$this->cu_counter = 0;
 		}
 	}
 
