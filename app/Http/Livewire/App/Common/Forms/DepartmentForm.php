@@ -30,13 +30,13 @@ class DepartmentForm extends Component
 	];
     protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented'];
 	public $driveActive, $serviceActive, $scheduleActive, $departmentActive;
-	public $schedule;
+	public $schedule,$company_id=0;
 	
     public $step = 1;
 
 	public function showList($message='')
 	{
-		$this->emit('showList',$message);
+		$this->emit('showList',$message,$this->company_id);
 	}
 
 	public function mount(Department $department)
@@ -104,7 +104,7 @@ class DepartmentForm extends Component
 			})
 			->select('id', 'name')
 			->get()->toArray();
-
+		$this->company_id = $this->department->company_id;
 
     }
 	public function setData(){
@@ -118,7 +118,9 @@ class DepartmentForm extends Component
 				'required',
 				'string',
 				'max:255',
-				Rule::unique('departments', 'name')->ignore($this->department->id)],
+				'unique:departments,name,'.$this->department->id.',id,company_id,'.$this->company_id,
+				// Rule::unique('departments', 'name')->ignore($this->department->id)
+			],
             'department.company_id'=>'required',
 			'department.industry_id'=>'required',
 			'department.department_website' => 'nullable|url',

@@ -9,7 +9,7 @@ use Livewire\Component;
 class DepartmentManager extends Component
 {
     public $showForm,$users=[];
-    protected $listeners = ['showList' => 'resetForm', 'setData'];
+    protected $listeners = [ 'setData'];
 
     public function render()
     {

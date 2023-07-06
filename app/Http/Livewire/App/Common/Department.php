@@ -18,8 +18,13 @@ class Department extends Component
 		$this->showForm=true;
 	}
 
-	public function resetForm($message='')
+	public function resetForm($message='',$companyId=0)
 	{
+		if($companyId){
+		$this->company = Company::find($companyId);
+		$this->companyId = $companyId;}
+
+
 		$this->showForm=false;
 		$this->showProfile = false;
 		if ($message) {
