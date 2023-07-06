@@ -12,7 +12,7 @@
     
 	@elseif ($showProfile)
         
-	    @livewire('app.common.department-profile',['departmentId'=>$department->id])
+	    @livewire('app.common.department-profile',['departmentId'=>$department['id']])
 
     @else
     <div class="content-wrapper container-xxl p-0">

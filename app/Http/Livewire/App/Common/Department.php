@@ -34,8 +34,9 @@ class Department extends Component
 
 	public function showProfile($department)
 	{
+		$this->department = $department;
+
 		$this->showProfile = true;
-		$this->department= $department;
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
