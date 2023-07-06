@@ -140,7 +140,7 @@ final class Departments extends PowerGridComponent
 			})
 			->addColumn('edit', function (Department $model) {
 				return "<div class='d-flex actions'><a href='".url('/admin/department/edit-department/'.$model->id)."' title='Edit Department' aria-label='Edit Department' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg aria-label='Edit' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#edit-icon'></use></svg></a>
-				<a href='javascript:void(0)'  @click='departmentProfile = true' wire:click=\"showDepartmentProfile($model->id)\" title='View Department' aria-label='View Department' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Department Users' aria-label='View Department Users' href='#' class='dropdown-item'><i class='fa fa-users'></i>View Department Users</a></div></div></div></div>";
+				<a href='javascript:void(0)'  @click='departmentProfile = true' wire:click=\"showDepartmentProfile($model->id,'$model->name')\" title='View Department' aria-label='View Department' class='btn btn-sm btn-secondary rounded btn-hs-icon' wire:click='showProfile'><svg aria-label='View' class='fill' width='20' height='28' viewBox='0 0 20 28'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/provider.svg#view'></use></svg></a><div class='d-flex actions'><div class='dropdown ac-cstm'><a href='javascript:void(0)' class='btn btn-sm btn-secondary rounded btn-hs-icon dropdown-toggle' title='More Options' aria-label='More Options' data-bs-toggle='dropdown' data-bs-auto-close='outside' data-bs-popper-config='{&quot;strategy&quot;:&quot;fixed&quot;}'><svg aria-label='More Options' class='fill' width='20' height='20' viewBox='0 0 20 20'fill='none' xmlns='http://www.w3.org/2000/svg'><use xlink:href='/css/sprite.svg#dropdown'></use></svg></a><div class='tablediv dropdown-menu'><a title='View Department Users' aria-label='View Department Users' href='#' class='dropdown-item'><i class='fa fa-users'></i>View Department Users</a></div></div></div></div>";
 			});
 	}
 
@@ -186,9 +186,16 @@ final class Departments extends PowerGridComponent
         // Emits an event to show the form for editing a record
         $this->emit('showForm', Department::with('phones')->find($id));
     }
-	function showDepartmentProfile($id) {
+	function showDepartmentProfile($departmentId, $departmentLabel)
+	{
 		// Emits an event to show the customer profile
-       
-        $this->emit('showDepartmentProfile', Department::with(['phones','addresses'])->find($id));
+
+		$this->emit('refreshDepartmentProfile', $departmentId, $departmentLabel);
 	}
+
+	// function showDepartmentProfile($id) {
+	// 	// Emits an event to show the customer profile
+       
+    //     $this->emit('showDepartmentProfile', Department::with(['phones','addresses'])->find($id));
+	// }
 }

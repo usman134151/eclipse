@@ -123,13 +123,7 @@ final class Companies extends PowerGridComponent
 		$this->emit('refreshDepartmentDetails', $companyId, $companyLabel);
 	}
 
-	function showDepartmentProfile($id)
-	{
-		// Emits an event to show the customer profile
-
-		$this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($id));
-	}
-
+	
 	
 	/*
 	|--------------------------------------------------------------------------

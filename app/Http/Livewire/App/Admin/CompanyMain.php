@@ -9,6 +9,8 @@ use App\Services\ExportDataFile;
 class CompanyMain extends Component
 {
 	public $showForm, $counter = 0, $companyId, $companyLabel,  $companyDetails = false;
+	public  $dcounter = 0, $departmentId, $departmentLabel,  $departmentDetails = false;
+	
 	public $showProfile;
 	public $importFile;
 
@@ -17,7 +19,9 @@ class CompanyMain extends Component
 		'showProfile' => 'showProfile',
 		'showForm' => 'showForm', // show form when the parent component requests it
 		'updateRecordId' => 'updateRecordId', // update the ID of the record being edited/deleted
-		'refreshDepartmentDetails' => 'refreshDetails'
+		'refreshDepartmentDetails' => 'refreshDetails',
+		'refreshDepartmentProfile' => 'refreshProfileDetails'
+
 	];
 	protected $exportDataFile;
 
@@ -72,6 +76,21 @@ class CompanyMain extends Component
 		} else {
 			$this->companyId = $companyId;
 			$this->counter = 0;
+		}
+	}
+
+	public function refreshProfileDetails($departmentId, $departmentLabel)
+	{
+
+		if ($this->dcounter == 0) {
+			$this->departmentId = 0;
+			$this->departmentLabel = $departmentLabel;
+			$this->dispatchBrowserEvent('refresh-department-profile', ['departmentId' => $departmentId, 'departmentLabel' => $departmentLabel]);
+			$this->dcounter = 1;
+			$this->departmentDetails = true;
+		} else {
+			$this->departmentId = $departmentId;
+			$this->dcounter = 0;
 		}
 	}
 
