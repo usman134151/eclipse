@@ -15,6 +15,7 @@ final class Departments extends PowerGridComponent
 	public $name;
     public $companyId;
 	public $companyLabel;
+	public $listpage=false;
 
 
 	/*
@@ -190,7 +191,12 @@ final class Departments extends PowerGridComponent
 	{
 		// Emits an event to show the customer profile
 
+		if(isset($this->companyLabel))
 		$this->emit('refreshDepartmentProfile', $departmentId, $departmentLabel);
+
+		else	//open panel for profile 
+			$this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($departmentId)); //on department page
+
 	}
 
 	// function showDepartmentProfile($id) {

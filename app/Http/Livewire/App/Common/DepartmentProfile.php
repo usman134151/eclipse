@@ -18,7 +18,7 @@ class DepartmentProfile extends Component
 		return view('livewire.app.common.department-profile');
 	}
 
-	public function mount($departmentId,$departmentLabel)
+	public function mount($departmentId)
 	{
 		$this->department= Department::find($departmentId);
 		$this->showDepartmentDetails($this->department);

@@ -7,7 +7,7 @@
           </div>
     </div>
     @if($showDepartmentProfile)
-	@livewire('app.common.department-profile')
+	@livewire('app.common.department-profile',['departmentId'=>$department['id']])
 	@else
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">

@@ -74,9 +74,9 @@ Route::group([
 			Route::view('/admin/customer-invoices', 'tenant/common/customer-invoices', ["showForm"=>false]);
 
 			// Admin Department Routes
-			Route::view('/admin/department', 'tenant/common/department', ["showForm"=>false]);
-			Route::view('/admin/department/create-department/{companyID}', 'tenant/common/department', ["showForm"=>true]);
-			Route::view('/admin/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true]);
+			Route::view('/admin/department/{companyID}', 'tenant/common/department', ["showForm"=>false,'status'=>1]);
+			Route::view('/admin/department/create-department/{companyID}', 'tenant/common/department', ["showForm"=>true, 'status' => 1]);
+			Route::view('/admin/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true, 'status' => 1]);
 
 			// End of Admin Department Routes
 
