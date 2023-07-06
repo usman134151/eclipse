@@ -1,4 +1,4 @@
-<div>
+<div x-data="{departmentUsers:false }">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -88,7 +88,7 @@
 									
 										@livewire('app.common.lists.departments',['companyId'=>$companyId,'listpage'=>true])
 
-							{{-- Icon Legend Bar - Start --}}
+										@include('panels.company.department-users')
 						
 						</div>
 					</div>
@@ -97,7 +97,6 @@
 		</section>
 	</div>
 	@endif
-		@include('panels.company.department-users')
 
     @include('modals.common.add-address')
     @include('modals.department-manager')

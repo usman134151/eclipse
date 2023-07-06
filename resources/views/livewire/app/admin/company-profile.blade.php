@@ -4784,6 +4784,8 @@
         </section>
     </div>
     @include('modals.mark-as-paid')
+										@include('panels.company.department-users')
+
     @include('panels.common.add-document')
     @include('modals.mark-as-paid')
   @endif

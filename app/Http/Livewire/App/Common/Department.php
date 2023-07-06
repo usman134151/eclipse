@@ -9,7 +9,9 @@ class Department extends Component
 {
 	public $showForm, $confirmationMessage;
 	public $showProfile, $status, $companyId=0,$company, $department;
-	protected $listeners = ['showList' => 'resetForm', 'showDepartmentProfile'=>'showProfile'];
+	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
+
+	protected $listeners = ['showList' => 'resetForm', 'showDepartmentProfile'=>'showProfile', 'refreshDepartmentUsers'];
 
 	function showForm()
 	{
@@ -31,6 +33,22 @@ class Department extends Component
 		}
 		$this->dispatchBrowserEvent('update-url', ['url' => '/admin/department/'.$this->companyId]);
 	}
+
+
+	public function refreshDepartmentUsers($users_departmentId, $users_departmentLabel) //for company users
+	{
+		if ($this->du_counter == 0) {
+			$this->du_departmentId = 0;
+			$this->du_departmentLabel = $users_departmentLabel;
+			$this->dispatchBrowserEvent('refresh-department-users', ['departmentId' => $users_departmentId, 'departmentLabel' => $users_departmentLabel]);
+			$this->du_counter = 1;
+			$this->du_departmentDetails = true;
+		} else {
+			$this->du_departmentId = $users_departmentId;
+			$this->du_counter = 0;
+		}
+	}
+
 
 	public function showProfile($department)
 	{
