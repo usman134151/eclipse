@@ -20,7 +20,7 @@ use Livewire\WithFileUploads;
 class DepartmentForm extends Component
 {
 	use WithFileUploads;
-    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [];
+    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [], $label="Add";
 	public $component = 'department-info',$image=null, $companyPhones=[],$companyUsers=[];
     public $department,$providers=[], $fv=[],$unfv =[];
     public $setupValues = [
@@ -28,9 +28,12 @@ class DepartmentForm extends Component
         'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'department.industry_id','','industry_id',1 ]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'department.language_id','','language_id',2]]
 	];
-    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented'];
+    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedSupervisors'];
 	public $driveActive, $serviceActive, $scheduleActive, $departmentActive;
 	public $schedule,$company_id=0;
+
+	//modal variables
+	public $selectedSupervisors=[], $supervisorNames=[], $defaultSupervisor,$sv_limit;
 	
     public $step = 1;
 
@@ -42,8 +45,9 @@ class DepartmentForm extends Component
 	public function mount(Department $department)
 	{
 		if (request()->departmentID != null) {	//edit
-			
+			$this->label="Edit";
 			$this->department = Department::find(request()->departmentID);
+
 			if ($this->department->department_service_start_date)
 				$this->department->department_service_start_date = Carbon::createFromFormat('Y-m-d', $this->department->department_service_start_date)->format('m/d/Y');
 			if ($this->department->department_service_end_date)
@@ -80,7 +84,15 @@ class DepartmentForm extends Component
 				}
 
 			}
-			$this->dispatchBrowserEvent('refreshSelects');
+
+			//setting supervisors modal detail
+			
+			foreach ($department->supervisors as $user) {
+				if ($user->userdetail->department == $department->id)
+					$this->defaultSupervisor = $user->id;
+			}
+			$this->updateSelectedSupervisors($this->department->supervisors()->allRelatedIds(), $this->defaultSupervisor);
+			
 			
 		}elseif(request()->companyID != null){ 	//create
 			$this->department = $department;
@@ -106,11 +118,16 @@ class DepartmentForm extends Component
 			->get()->toArray();
 		$this->company_id = $this->department->company_id;
 
-    }
-	public function setData(){
-		$this->emit('setData', $this->department->company->id);
 
-}
+		$this->dispatchBrowserEvent('refreshSelects');
+
+    }
+
+	public function setData(){
+		
+		// $this->emit('setData', $this->department);
+	}
+
     public function rules()
 	{
 		return [
@@ -157,6 +174,8 @@ class DepartmentForm extends Component
 
         $departmentService = new DepartmentService;
         $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers,$this->userAddresses);
+
+		$departmentService->saveSupervisors($this->department, $this->selectedSupervisors, $this->defaultSupervisor);
 
 		if ($redirect) {
 			// save and exit
@@ -252,6 +271,18 @@ class DepartmentForm extends Component
 
     public function updateVal($attrName, $val)
     {
+		if($attrName == 'company_id'){
+			//department company changed
+			$this->department->company_id = $val;
+			$company = Company::find($val);
+			$this->department->industry_id = $company->industry_id;
+			if (count($company->phones)) {
+				$this->companyPhones = [];
+				foreach ($company->phones as $phone) {
+					$this->companyPhones[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
+				}
+			}
+		}
 		if($attrName== 'favored_providers'){
 			$this->fv=$val;
 		}elseif($attrName == 'unfavored_providers'){
@@ -301,5 +332,27 @@ class DepartmentForm extends Component
 	}
     public function addServices(){
 		$this->step=3;
+	}
+
+	// modal listener function
+	public function updateSelectedSupervisors($selectedSupervisors, $default)
+	{
+		
+		$this->defaultSupervisor = $default;
+		$this->selectedSupervisors=[];
+		$this->supervisorNames = [];
+		foreach ($selectedSupervisors as $us) {
+			$this->supervisorNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
+			$this->selectedSupervisors[]=[
+				'user_id'=>$us,
+				'is_supervisor'=>1,
+			];
+		}
+		if (count($this->supervisorNames) >= 4)
+			$this->sv_limit = 3;
+		else
+			$this->sv_limit = count($this->supervisorNames) - 1;
+
+
 	}
 }

@@ -4,7 +4,7 @@
             <div class="content-header-left col-md-9 col-12 mb-5">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h1 class="content-header-title float-start mb-0">Add Department</h1>
+                        <h1 class="content-header-title float-start mb-0">{{$label}} Department</h1>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
@@ -25,7 +25,7 @@
                                     All Departments
                                 </li>
                                 <li class="breadcrumb-item">
-                                    Add Department
+                                    {{$label}} Department
                                 </li>
                             </ol>
                         </div>
@@ -225,7 +225,7 @@
                                                             for="department-manager">Department
                                                             Supervisors(s)</label>
                                                         <div class="mb-1">
-                                                            <button type="button" wire:click="setData"
+                                                            <button type="button" wire:click="setData()"
                                                                 class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#departmentManagerModal"
@@ -580,6 +580,11 @@
             </div>
         </div>
     </div>
+    @if($label=='Edit')
+    <script>
+    document.getElementById("company_id").disabled = true;
+    </script>
+    @endif
 </div>
 
 

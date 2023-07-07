@@ -1,8 +1,8 @@
 <?php
 namespace app\Services\App;
-use App\Models\Department;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\UserAddress;
+use App\Models\Tenant\UserDetail;
 
 class DepartmentService{
 
@@ -31,5 +31,12 @@ class DepartmentService{
 
             UserAddress::updateOrCreate($addressData, $addressAttributes);
         }
+    }
+
+    public function saveSupervisors($department, $selectedSupervisors,$defaultSupervisor){
+        $department->supervisors()->sync($selectedSupervisors);
+        // saving default supervisor
+        UserDetail::where('department', $department->id)->update(['department' => null]);
+        UserDetail::where('user_id', $defaultSupervisor)->update(['department' => $department->id]);
     }
 }

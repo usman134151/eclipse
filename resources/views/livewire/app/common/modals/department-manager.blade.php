@@ -21,7 +21,7 @@
           <div class="row">
             <div class="col-lg-8 py-1">
               <div class="form-check mb-0">
-                  <input class="form-check-input mt-3 ms-1" type="checkbox" value="" aria-label="Select Manager">
+                  <input class="form-check-input mt-3 ms-1" type="checkbox" value="{{$user->id}}" wire:model.defer="selectedSupervisors" aria-label="Select Manager">
                 <div class="row g-2 d-flex gap-2 align-items-center">
                   <div class="col-md-2 ms-3">
                     <img  width="50" height="50"  src="{{$user->profile_pic != null ? $user->profile_pic : '/tenant-resources/images/portrait/small/avatar-s-11.jpg'}}" class="rounded-circle" alt="Profile Image">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-4 text-center py-1">
               <div class="form-check mb-0 mx-auto d-inline-block">
-                  <input class="form-check-input" type="radio" name="Choose manager" id="Choose manager">
+                  <input class="form-check-input" value="{{$user->id}}" wire:model="isDefault" type="radio" name="Choose manager" id="Choose manager">
               </div>
             </div>
           </div><!-- END: Row Data -->
@@ -50,7 +50,7 @@
           <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
         </div>
         <div class="col-lg-3">
-          <button type="button" class="btn rounded w-100 btn-primary">Add</button>
+          <button type="button" class="btn rounded w-100 btn-primary"  data-bs-dismiss="modal" wire:click="updateData">Add</button>
         </div>
       </div>
     </div>

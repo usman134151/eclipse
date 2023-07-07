@@ -4,7 +4,10 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Department extends Model
 {
@@ -46,6 +49,7 @@ class Department extends Model
 		return $this->belongsToMany(User::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps()
 		->where('is_supervisor',true);
 	}
+
 
 	public function company()
 	{
