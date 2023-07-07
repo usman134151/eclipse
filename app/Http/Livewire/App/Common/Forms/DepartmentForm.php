@@ -125,7 +125,7 @@ class DepartmentForm extends Component
 
 	public function setData(){
 		
-		// $this->emit('setData', $this->department);
+		$this->emit('setData', $this->department->id,$this->company_id);
 	}
 
     public function rules()

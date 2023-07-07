@@ -29,21 +29,24 @@ class DepartmentManager extends Component
     {
     }
 
-    public function setData(Department $department){
-        $this->companyId = $department->company_id;
+    public function setData($departmentid,$company_id){
+        $department = Department::find($departmentid);
+        
+        if ($department!=null) {
+            if ($this->companyId==0||($department->company_id == $this->companyId)) { //checking if company is changed
+           
+            $this->selectedSupervisors = $department->supervisors()->allRelatedIds();
+            foreach ($department->supervisors as $user) {
+                if ($user->userdetail->department == $department->id)
+                    $this->isDefault = $user->id;
+            }
+            }
+        } else {
 
-        // if ($department->company_id == $this->companyId) { //checking if company is changed
-        //     if($department->id){
-        //     $this->selectedSupervisors = $department->supervisors()->allRelatedIds();
-        //     foreach ($department->supervisors as $user) {
-        //         if ($user->userdetail->department == $department->id)
-        //             $this->isDefault = $user->id;
-        //     }
-        // } else {
-
-        //     $this->selectedSupervisors = [];
-        //     $this->isDefault = 0;
-        // }
+            $this->selectedSupervisors = [];
+            $this->isDefault = 0;
+        }
+        $this->companyId = $company_id;
 
 
         $this->updateData();
@@ -55,7 +58,7 @@ class DepartmentManager extends Component
     public function updateData()
     {
         // Emit an event to the parent component with the selected values
-        // $this->emit('updateSelectedSupervisors', $this->selectedSupervisors, $this->isDefault);
+        $this->emit('updateSelectedSupervisors', $this->selectedSupervisors, $this->isDefault);
     }
 
     function showForm()
