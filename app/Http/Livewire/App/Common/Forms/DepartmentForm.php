@@ -282,6 +282,8 @@ class DepartmentForm extends Component
 					$this->companyPhones[] = ['phone_number' => $phone->phone_number, 'phone_title' => $phone->phone_title, 'id' => $phone->id];
 				}
 			}
+			$this->company_id = $val;
+			$this->setData();
 		}
 		if($attrName== 'favored_providers'){
 			$this->fv=$val;
