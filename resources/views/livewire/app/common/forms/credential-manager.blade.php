@@ -276,7 +276,7 @@
                     <div class="col-lg-12">
                         <div class="form-check">
                             <input class="form-check-input" id="deactivated-associated-service"
-                                name="deactivated-associated-service" type="checkbox" tabindex=""  wire:model.defer="credential.deactivate_associated_service" />
+                                name="requirement_status" type="radio" tabindex="" value="deactivate_associated_service"  wire:model.defer="credential.requirement_status" />
                             <label class="form-check-label" for="deactivated-associated-service">           Deactivate Associated Service
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -284,7 +284,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="reset-provider-priority" name="reset-provider-priority" type="checkbox" tabindex="" wire:model.defer="credential.reset_provider_priority" />
+                            <input class="form-check-input" id="reset-provider-priority" value="reset_provider_priority" name="requirement_status" type="radio" tabindex="" wire:model.defer="credential.requirement_status" />
                             <label class="form-check-label" for="reset-provider-priority">Reset Provider Priority
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -292,7 +292,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="assignment-invitation" name="assignment-invitation" type="checkbox" tabindex=""  wire:model.defer="credential.hold_all_assignment_invitations" />
+                            <input class="form-check-input" id="assignment-invitation" value="hold_assignment_invitations" name="requirement_status" type="radio" tabindex=""  wire:model.defer="credential.requirement_status" />
                             <label class="form-check-label" for="assignment-invitation">Hold All Assignment Invitations
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
@@ -300,7 +300,7 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" id="lenient" name="lenient" type="checkbox" tabindex=""  wire:model.defer="credential.lenient" />
+                            <input class="form-check-input" id="lenient" value="linient"  name="requirement_status" type="radio" tabindex=""  wire:model.defer="credential.requirement_status" />
                             <label class="form-check-label" for="lenient">Lenient
                                 <svg aria-label="Information" width="15" height="16" viewBox="0 0 15 16">
                                     <use xlink:href="/css/common-icons.svg#fill-question"></use>
