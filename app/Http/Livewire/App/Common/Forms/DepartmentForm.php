@@ -28,7 +28,7 @@ class DepartmentForm extends Component
         'industries'=>['parameters'=>['Industry', 'id', 'name', '', '', 'name', false, 'department.industry_id','','industry_id',1 ]],
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'department.language_id','','language_id',2]]
 	];
-    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented'];
+    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateAddress' => 'addAddress','addPhone'];
 	public $driveActive, $serviceActive, $scheduleActive, $departmentActive;
 	public $schedule,$company_id=0;
 	
@@ -284,7 +284,10 @@ class DepartmentForm extends Component
         unset($this->phoneNumbers[$index]);
         $this->phoneNumbers = array_values($this->phoneNumbers);
     }
-
+	public function updateAddressType($type)
+	{
+		$this->emit('updateAddressType', $type);
+	}
 	public function addAddress($addressArr)
 	{
 		$this->userAddresses[] = $addressArr;
