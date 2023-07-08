@@ -1,10 +1,17 @@
 <div x-data="{customers: false}">
+<div id="loader-section" class="loader-section" wire:loading>
+          <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+            <div class="spinner-border" role="status" aria-live="polite">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-5">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h1 class="content-header-title float-start mb-0">Add Department</h1>
+                        <h1 class="content-header-title float-start mb-0">{{$label}} Department</h1>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
@@ -25,7 +32,7 @@
                                     All Departments
                                 </li>
                                 <li class="breadcrumb-item">
-                                    Add Department
+                                    {{$label}} Department
                                 </li>
                             </ol>
                         </div>
@@ -224,8 +231,8 @@
                                                         <label class="form-label"
                                                             for="department-manager">Department
                                                             Supervisors(s)</label>
-                                                        <div class="mb-1">
-                                                            <button type="button" wire:click="setData"
+                                                        <div class="mb-1 d-flex gap-5">
+                                                            <button type="button" wire:click="setData()"
                                                                 class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#departmentManagerModal"
@@ -239,6 +246,25 @@
                                                                 </svg>
                                                                 Add Department Supervisor(s)
                                                             </button>
+                                                            <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($supervisorNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $sv_limit; $i++)
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$supervisorNames[$i]['userdetail']['profile_pic'] !=null ? $supervisorNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$supervisorNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($supervisorNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($supervisorNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                            </div>
+
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -580,6 +606,11 @@
             </div>
         </div>
     </div>
+    @if($label=='Edit')
+    <script>
+    document.getElementById("company_id").disabled = true;
+    </script>
+    @endif
 </div>
 
 

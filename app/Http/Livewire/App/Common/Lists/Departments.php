@@ -112,12 +112,7 @@ final class Departments extends PowerGridComponent
 
 				$col=' <div class="uploaded-data d-flex align-items-center">';
 				if(count($model->supervisors)>0){
-					if (count($model->supervisors) >= 4)	//setting limit
-						$sv_limit = 3;
-					else
-						$sv_limit = count($model->supervisors) - 1;
-
-						// dd($model->supervisors->first()->userdetail);
+									// dd($model->supervisors->first()->userdetail);
 						// $s = $model->supervisors->userdetail->toArray();
 						
                          foreach ($model->supervisors as $index =>$s){
@@ -128,7 +123,7 @@ final class Departments extends PowerGridComponent
 									$image_path= '/tenant-resources/images/portrait/small/avatar-s-20.jpg';
 
 								 $col.=$image_path.'" class="" title="'. $s->name.'"alt="Profile Image">';
-							if($index>$sv_limit)
+							if($index==3)
 							break;
 						}
 							if(count($model->supervisors)>4)
