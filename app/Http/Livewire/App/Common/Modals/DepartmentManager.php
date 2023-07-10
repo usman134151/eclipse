@@ -9,7 +9,7 @@ use Livewire\Component;
 class DepartmentManager extends Component
 {
     public $showForm,$users=[],$companyId =0, $selectedSupervisors=[], $isDefault=false;
-    protected $listeners = [ 'setData'];
+    protected $listeners = [ 'setData','setCompany'];
     
     public function render()
     {
@@ -28,28 +28,26 @@ class DepartmentManager extends Component
     public function mount()
     {
     }
-
-    public function setData($departmentid,$company_id){
-        $department = Department::find($departmentid);
-        
-        if ($department!=null) {
-            if ($this->companyId==0||($department->company_id == $this->companyId)) { //checking if company is changed
-           
-            $this->selectedSupervisors = $department->supervisors()->allRelatedIds();
-            foreach ($department->supervisors as $user) {
-                if ($user->userdetail->department == $department->id)
-                    $this->isDefault = $user->id;
-            }
-            }
-        } else {
-
-            $this->selectedSupervisors = [];
-            $this->isDefault = 0;
-        }
+    public function setCompany($company_id){
+        //on company id update
         $this->companyId = $company_id;
 
+                    $this->selectedSupervisors = [];
+                    $this->isDefault = 0;
+    }
 
-        $this->updateData();
+    public function setData($departmentid,$company_id,$selectedSupervisors=[], $defaultSupervisor=0){
+        $department = Department::find($departmentid);
+        $this->selectedSupervisors=[];
+        
+         foreach ($selectedSupervisors as $s) {
+                    $this->selectedSupervisors[] = $s['user_id'];
+                }
+                    $this->isDefault=$defaultSupervisor;
+    
+
+        $this->companyId = $company_id;
+
     }
 
   

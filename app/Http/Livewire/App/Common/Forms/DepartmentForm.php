@@ -124,8 +124,7 @@ class DepartmentForm extends Component
     }
 
 	public function setData(){
-		
-		$this->emit('setData', $this->department->id,$this->company_id);
+		$this->emit('setData', $this->department->id,$this->company_id,$this->selectedSupervisors,$this->defaultSupervisor);
 	}
 
     public function rules()
@@ -286,6 +285,9 @@ class DepartmentForm extends Component
 			$this->department->company_id = $val;
 			$company = Company::find($val);
 			$this->department->industry_id = $company->industry_id;
+			$this->selectedSupervisors=[]; $this->defaultSupervisor=[];
+			$this->supervisorNames=[];
+			
 			if (count($company->phones)) {
 				$this->companyPhones = [];
 				foreach ($company->phones as $phone) {
