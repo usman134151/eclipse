@@ -79,17 +79,8 @@ class CustomerForm extends Component
 			$this->edit($user);
 			$this->emit('editRecord', $user);
 
-			// $this->switch(request()->step);/
 
-			$step = request()->step;
-			if($step == "permission-configurations")
-				$this->save(0); //call prev steps save methods
-			elseif ($step == 'service-catalog')
-				$this->permissionConfiguration(0); //call prev steps save methods
-			elseif ($step == 'drive-documents')
-				$this->addServices(0);
 			
-				$this->switch($step);
 
 		}
 
@@ -270,7 +261,8 @@ class CustomerForm extends Component
 		$this->validate();
 		
 		if ($this->user->user_dob) {
-			$this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+			$this->user->user_dob =Carbon::parse($this->user->user_dob); 
+			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 		}
 
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;

@@ -67,7 +67,7 @@ Route::group([
 
 			Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false,'status'=>1]);
 			Route::view('/admin/customer/create-customer', 'tenant/common/customer', ["showForm"=>true,"status"=>1]);
-			Route::view('/admin/customer/edit-customer/{customerID}/{step}', 'tenant/common/customer', ["showForm" => true,'status'=>1]);
+			Route::view('/admin/customer/edit-customer/{customerID}', 'tenant/common/customer', ["showForm" => true,'status'=>1]);
 
 			Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
 			Route::view('/admin/company/create-company', 'tenant/admin/company', ["showForm"=>true]);
