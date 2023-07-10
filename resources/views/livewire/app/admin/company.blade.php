@@ -9,7 +9,7 @@
 	@if($showForm)
 		@livewire('app.admin.forms.add-company') {{-- Show Add / Edit Form --}}
 	@elseif ($showProfile)
-		@livewire('app.admin.company-profile')
+		@livewire('app.admin.company-profile',['company'=>$company])
 	@elseif($importFile)
 		@livewire('app.common.import.company-import')	
 	@else

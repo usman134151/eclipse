@@ -70,10 +70,10 @@ Route::group([
 			Route::view('/admin/customer/edit-customer/{customerID}', 'tenant/common/customer', ["showForm" => true,'showProfile' => false, 'status'=>1])->name('customer-edit');
 			Route::view('/admin/customer/profile/{customerID}', 'tenant/common/customer', ["showForm" => false,'showProfile'=>true, 'status' => 1])->name('customer-profile');
 
-			Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
-			Route::view('/admin/company/create-company', 'tenant/admin/company', ["showForm"=>true]);
+			Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false, "showProfile" => false]);
+			Route::view('/admin/company/create-company', 'tenant/admin/company', ["showForm"=>true, "showProfile" => false]);
 			Route::view('/admin/company/edit-company/{companyID}', 'tenant/admin/company', ["showForm" => true, "showProfile" => false])->name('company-edit');
-			Route::view('/admin/company/profile/{companyID}', 'tenant/admin/company', ["showForm" => false, "showProfile" => true])->name('company-edit');
+			Route::view('/admin/company/profile/{companyID}', 'tenant/admin/company', ["showForm" => false, "showProfile" => true])->name('company-profile');
 
 
 			Route::view('/admin/deactivated-customer', 'tenant/common/customer', ["showForm"=>false,"status"=>0]);
