@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 use App\Services\ExportDataFile;
 
@@ -10,7 +11,7 @@ class Customer extends Component
 	public $showForm;
 	public $showProfile;
 	public $importFile;
-	public $status;
+	public $status,$user;
 	
 
 	protected $listeners = [
@@ -27,8 +28,13 @@ class Customer extends Component
         $this->exportDataFile = new ExportDataFile;
     }
 
-	public function mount($status=1){
+	public function mount($showProfile,$status=1){
 		$this->status=$status;
+		$this->showProfile = $showProfile;
+		if($showProfile){
+			$this->user = User::where('id',request()->customerID)->with(['userdetail','industries','company'])->first()->toArray();
+		}
+
 	}
 
     public function downloadExportFile()
