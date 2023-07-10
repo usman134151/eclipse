@@ -359,11 +359,13 @@ class DepartmentForm extends Component
 		$this->selectedSupervisors=[];
 		$this->supervisorNames = [];
 		foreach ($selectedSupervisors as $us) {
+			if($us){
 			$this->supervisorNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
 			$this->selectedSupervisors[]=[
 				'user_id'=>$us,
 				'is_supervisor'=>1,
 			];
+			}
 		}
 		if (count($this->supervisorNames) >= 4)
 			$this->sv_limit = 3;
