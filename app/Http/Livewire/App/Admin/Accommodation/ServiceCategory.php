@@ -8,11 +8,13 @@ class ServiceCategory extends Component
 {
     public $component = 'basic-service-setup';
     public $showForm;
+	
     protected $listeners = [
 		'showList' => 'resetForm', // Reset form when the parent component shows a list
 		'showForm' => 'showForm', // Show form when the parent component requests it
 		'delete' => 'deleteRecord', // Delete the record with the specified ID
 		'updateRecordId' => 'updateRecordId', // Update the ID of the record being edited / deleted
+		'associateService'
 	];
     public $recordId;
     public function resetForm($message)
@@ -67,5 +69,8 @@ class ServiceCategory extends Component
 	{
 		$this->component = $component;
 	}
-
+	public function associateService($service){
+		$this->emit('assoicateService',$service);
+		
+	}
 }
