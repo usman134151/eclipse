@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Department;
+use App\Models\Tenant\User;
 use Livewire\Component;
 
 class DepartmentProfile extends Component
@@ -36,6 +37,7 @@ class DepartmentProfile extends Component
 
 	public function showDepartmentDetails($department){
 		$this->department=$department;
+		
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}

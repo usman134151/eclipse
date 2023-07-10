@@ -27,7 +27,7 @@
                         <div class="col-md-9"
                          >
                             <h6 class="fw-semibold">
-                                 {{$user->name}}
+                                <a href="{{route('tenant.customer-profile',['customerID'=> $user->id])}}"> {{$user->name}} </a>
                             </h6>
                             <p> {{$user->email}} </p>
                         </div>
@@ -41,7 +41,7 @@
                 </td>
                 <td>
                     <div class="d-flex actions">
-                        <a href="javascript:void(0)" title="View  (coming soon)" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <a href="{{route('tenant.customer-profile',['customerID'=> $user->id])}}" title="View " aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
                                 xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
                                 </svg>

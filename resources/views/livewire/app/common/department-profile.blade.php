@@ -167,7 +167,8 @@
 													<div class="row">
 														<div class="col-md-4">
 															<div class="d-inline-block position-relative">
-																<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Image"/>
+																<img  style="width:300px;height:200px;top:1rem" src="{{$department->department_logo !=null ? $department->department_logo : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                                     class="img-fluid rounded-circle" alt="Department Image"/>
 															</div>
 															<div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">
 																<svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +182,13 @@
 																</svg>
 																<div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
 																	<label class="text-white form-label-sm ps-2" for="">
-																		Sydney, Australia
+																		  @if (count($department->addresses) > 0)
+
+                                                                                        {{ $department->addresses->first()->city ?? '' }},
+                                                                                        {{ $department->addresses->first()->country ?? '' }}
+                                                                                @else
+                                                                                    N/A
+                                                                                @endif
 																	</label>
 																</div>
 															</div>
@@ -192,15 +199,20 @@
                                                                 <h3 class="font-family-tertiary fw-medium">
 																{{$department['name']}}
                                                                 </h3>
-                                                                <span>Information Technology</span>
+                                                                <span>{{$department->company->name}}</span>
                                                             </div>
 															<div class="row mb-4">
 																<div class="col-md-12">
 																	<div class="row mb-1">
 																		<div class="col-md-12">
 																			<p class="font-family-tertiary">
-																				(923) 023-9683
-																			</p>
+																			@foreach($department->phones as $phone)
+																					@if($phone->phone_number)
+																					{{$phone->phone_number}}
+																					@else
+																					N/A
+																					@endif
+																			@endforeach</p>
 																		</div>
 																	</div>
 																	<div class="row">
@@ -213,19 +225,24 @@
 																	<div class="row">
 																		<div class="col-md-12">
 																			<p class="font-family-tertiary">
-																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+ 																				@if (count($department->addresses) > 0)
+                                                                                     @foreach ($department->addresses as $address)
+                                                                                         <p>
+                                                                                        {{ $address->address_line1 ?? '' }}
+                                                                                        {{ $address->address_line2 ?? '' }}
+                                                                                        {{ $address->city ?? '' }}
+                                                                                        {{ $address->state ?? '' }}
+                                                                                        {{ $address->zip ?? '' }}
+                                                                                        {{ $address->country ?? '' }}
+                                                                                    </p>
+                                                                                     @endforeach
+                                                                                     @else
+                                                                                     <p>N/A</p>
+                                                                                @endif
 																			</p>
 																		</div>
 																	</div>
-																	<div class="row">
-																		<div class="col-md-12">
-																			<p class="text-sm">
-																				<a href="#" class="font-family-tertiary text-primary">
-																					Mrs 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-																				</a>
-																			</p>
-																		</div>
-																	</div>
+																	
 																</div>
 															</div>
 														</div>
@@ -238,12 +255,21 @@
 															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
-																		Company Admin:
+																		Department Supervisors:
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<a href="#" class="font-family-secondary">
-																		Thomas Charles , Harry Peter
+																	@if(count($department->supervisors))
+																	 @foreach($department->supervisors as $key=>$supervisor)
+                                                                            <a href="{{route('tenant.customer-profile',['customerID'=>$supervisor->id])}}"> {{$supervisor->name}} </a>
+                                                                             @if($key != count($department->supervisors)-1) , @endif
+
+                                                                        @endforeach
+																	@else
+																		N/A
+																	@endif
+
 																	</a>
 																</div>
 															</div>
@@ -253,6 +279,7 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Provider Experience:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
@@ -272,6 +299,7 @@
 																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
                                                                     </svg>
+																	<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -280,12 +308,12 @@
 															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
-																		Customers:
+																		Users:
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		40
+																		{{count($department->users)}}
 																	</div>
 																</div>
 															</div>
@@ -295,11 +323,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Completed Requests:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		50 Hours
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -309,11 +339,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Open Requests:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		80 Hours
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -323,11 +355,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Invoiced:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$192892.00
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -337,11 +371,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Paid:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$84733.55
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -351,11 +387,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Due:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$2834.00
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -365,11 +403,14 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Overdue:
+																		
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$78734.00
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -379,11 +420,15 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Service Start Date:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		17/01/2023
+																		@if($department->department_service_start_date)
+																		{{date_format(date_create($department->department_service_start_date), "m/d/Y")}}
+																		@else N/A @endif
+
 																	</div>
 																</div>
 															</div>
@@ -393,11 +438,14 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Service End Date:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		17/01/2023
+																		@if($department->department_service_end_date)
+																		{{date_format(date_create($department->department_service_end_date), "m/d/Y")}}
+																		@else N/A @endif 
 																	</div>
 																</div>
 															</div>
@@ -409,6 +457,7 @@
 												<div class="row" id="table-hover-row">
 													<div class="col-12">
 														<div class="mb-0">
+														<small>(coming soon)</small>
 															<h3>Business Hours</h3>
 														</div>
 														<div class="card">
