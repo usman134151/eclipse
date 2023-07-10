@@ -14,7 +14,7 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">
-                        Add Customer
+                        {{$label}} Customer
                     </h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
@@ -31,7 +31,7 @@
                                 Customers
                             </li>
                             <li class="breadcrumb-item">
-                                Add Customer
+                                {{$label}} Customer
                             </li>
                         </ol>
                     </div>
@@ -58,7 +58,11 @@
                             @if($user->email)
                             <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }"
                                 @click.prevent="tab = 'permission-configurations'" id="permission-configurations-tab"
-                                role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0" wire:click.prevent="switch('permission-configurations',2,true)">
+                                role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0"
+                                wire:click.prevent="save(0)"
+
+                                 {{-- wire:click.prevent="switch('permission-configurations',2,true)" --}}
+                                 >
                                 <span class="number">2</span>
                                 Permission Configurations
                             </a>
@@ -117,21 +121,27 @@
                                             <form  class="form">
                                                 @csrf
                                                 <div class="row between-section-segment-spacing">
-                                                    <div class="col-12 text-center">
-                                                        <div class="d-inline-block position-relative">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
-                                                                class="img-fluid rounded-circle"
-                                                                alt="Profile Image of Customer" />
-                                                            <div
-                                                                class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                                                <svg aria-label="Upload Picture" width="57" height="57"
-                                                                    viewBox="0 0 57 57" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <use xlink:href="/css/provider.svg#camera"></use>
-                                                                </svg>
-                                                            </div>
+                                                      <div class="provider_image_panel">
+                                                    <div class="provider_image">
+                                                        @if ($image!=null)
+                                                            <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
+                                                        @else
+                                                            <img class="user_img cropfile" src="{{$userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
+                                                        @endif
+                                                        <div class="input--file">
+                                                            <span>
+                                                                <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+                                                            </span>
+                                                            <label for="cropfile" class="form-label visually-hidden">Input File</label>
+                                                            <input wire:model="image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
                                                         </div>
+                                                        @error('image')
+                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                     </div>
+                                                </div>
                                                 </div>
                                                 <div class="row between-section-segment-spacing">
                                                     <div class="col-lg-12">
@@ -380,6 +390,8 @@
                                                         </label>
                                                         <input type="text" id="phone-number" class="form-control" name="phone"
                                                             placeholder="Enter Phone Number" wire:model.defer="userdetail.phone" />
+                                                             @error('userdetail.phone')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                                     </div>
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="country">
@@ -393,6 +405,8 @@
                                                 <input type="text" id="state" class="form-control"
                                                     name="state" placeholder="Enter State Name"
                                                     required aria-required="true" wire:model.defer="userdetail.state"/>
+                                                    @error('userdetail.state')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
@@ -401,6 +415,8 @@
                                                 <input type="text" id="city" class="form-control"
                                                     name="city" placeholder="Enter City Name"
                                                     required aria-required="true" wire:model.defer="userdetail.city"/>
+                                                    @error('userdetail.city')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                             </div>
                                         </div>
                                         <div class="col-lg-6 mb-4 ps-lg-5">
@@ -409,6 +425,8 @@
                                             </label>
                                             <input type="text" id="zip-code" class="form-control" name="zipCode"
                                                 placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
+                                            @error('userdetail.zip')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+
                                         </div>
                                         <div class="col-lg-6 mb-4 pe-lg-5">
                                             <label class="form-label" for="address-line-1">
@@ -524,7 +542,10 @@
                                         <form class="form">
                                             @csrf
                                             <div class="col-lg-12 inner-section-segment-spacing">
+                                         
+                                                    
                                                 <div class="d-lg-flex align-items-center justify-content-between mb-3">
+                                                    
                                                     <h2 class="mb-lg-0">Permission Configurations</h2>
                                                     <div
                                                         class="d-flex flex-column justify-content-center align-items-center gap-1">
@@ -563,18 +584,37 @@
                                                     Assigned Supervisor(s)
                                                 </label>
                                                 <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal" data-bs-target="#assignedSupervisorModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Assigned Supervisor(s)" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Supervisor(s)
-                                                    </button>
+                                                    <div class="d-flex gap-5">
+                                                        <button type="button"
+                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                            data-bs-toggle="modal" data-bs-target="#assignedSupervisorModal">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Assigned Supervisor(s)" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Assigned Supervisor(s)
+                                                        </button>
+                                                        <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($supervisorNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $sv_limit; $i++)
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$supervisorNames[$i]['userdetail']['profile_pic'] !=null ? $supervisorNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$supervisorNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($supervisorNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($supervisorNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                     <div class="form-check mb-lg-0">
                                                         <input disabled class="form-check-input" type="checkbox" wire:model.defer="same_sv"  wire:click="selectSameSupervisor"
                                                             id="AssignSame_User">
@@ -620,8 +660,8 @@
                                                     @if(count($supervisingNames)>0)
                                                         
 
-                                                        @for ($i = 0; $i < $limit; $i++)
-                                                        <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="" title="{{$supervisingNames[$i]['name']}}"
+                                                        @for ($i = 0; $i <= $limit; $i++)
+                                                        <img style="width:50px;height:50px;top:1rem" src="{{$supervisingNames[$i]['userdetail']['profile_pic'] !=null ? $supervisingNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$supervisingNames[$i]['name']}}"
                                                             alt="Profile Image">
                                                         @endfor
                                                         @if(count($supervisingNames)>4)
@@ -643,19 +683,38 @@
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#assignedBillingManagerModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Supervising" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Billing Manager
-                                                    </button>
+                                                    <div class="d-flex gap-5">
+                                                        <button type="button"
+                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#assignedBillingManagerModal">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Supervising" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Assigned Billing Manager
+                                                        </button>
+                                                        <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($bManagerNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $bm_limit; $i++)
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$bManagerNames[$i]['userdetail']['profile_pic'] !=null ? $bManagerNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$bManagerNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($bManagerNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($bManagerNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                     <div class="form-check mb-lg-0">
                                                         <input disabled class="form-check-input" type="checkbox" wire:model.defer="same_bm"  wire:click="selectSameBManager"
                                                             id="Assign-Same-User">
@@ -711,6 +770,7 @@
                                                         Billing Manager
                                                     </label>
                                                 </div>
+                                                <div class="d-flex gap-5">
                                                 <button type="button" class="btn btn-has-icon px-0 btn-multiselect-popup"
                                                     data-bs-toggle="modal" data-bs-target="#billManagingModal">
                                                     {{-- Updated by Shanila to Add svg icon--}}
@@ -722,6 +782,24 @@
                                                     {{-- End of update by Shanila --}}
                                                     Billing Manager
                                                 </button>
+                                                  <div class="uploaded-data d-flex align-items-center">
+                                                        @if(count($managerNames)>0)
+                                                            
+
+                                                            @for ($i = 0; $i <= $m_limit; $i++)
+                                                            <img style="width:50px;height:50px;top:1rem" src="{{$managerNames[$i]['userdetail']['profile_pic'] !=null ? $managerNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$managerNames[$i]['name']}}"
+                                                                alt="Profile Image">
+                                                            @endfor
+                                                            @if(count($managerNames)>4)
+                                                            <div class="more">    
+                                                                <span class="value">{{count($managerNames)-4}}</span> more
+                                                            </div>
+                                                            
+                                                            @endif
+
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row between-section-segment-spacing">
@@ -847,18 +925,37 @@
                                                     Assigned Admin-Staff
                                                 </label>
                                                 <div>
-                                                    <button type="button"
-                                                        class="btn btn-has-icon px-0 btn-multiselect-popup"
-                                                        data-bs-toggle="modal" data-bs-target="#adminStaffModal">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Assigned Admin-Staff" width="25" height="18"
-                                                            viewBox="0 0 25 18">
-                                                            <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                        Assigned Admin-Staff
-                                                    </button>
+                                                    <div class="d-flex gap-5">
+                                                        <button type="button"
+                                                            class="btn btn-has-icon px-0 btn-multiselect-popup"
+                                                            data-bs-toggle="modal" data-bs-target="#adminStaffModal">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Assigned Admin-Staff" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                            Assigned Admin-Staff
+                                                        </button>
+                                                        <div class="uploaded-data d-flex align-items-center">
+                                                            @if(count($adminStaffNames)>0)
+                                                                
+
+                                                                @for ($i = 0; $i <= $s_limit; $i++)
+                                                                <img style="width:50px;height:50px;top:1rem" src="{{$adminStaffNames[$i]['userdetail']['profile_pic']!=null? $adminStaffNames[$i]['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/avatar-s-20.jpg'}}" class="" title="{{$adminStaffNames[$i]['name']}}"
+                                                                    alt="Profile Image">
+                                                                @endfor
+                                                                @if(count($adminStaffNames)>4)
+                                                                <div class="more">    
+                                                                    <span class="value">{{count($adminStaffNames)-4}}</span> more
+                                                                </div>
+                                                                
+                                                                @endif
+
+                                                            @endif
+                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             {{-- Action Buttons Start --}}
@@ -1423,55 +1520,26 @@
                                 </section>
                             </div>
                             {{-- END: Service Catalog --}}
-                        @elseif($step==4)
+                                             @endif
+
                             {{-- BEGIN: Drive Documents Pane --}}
                             <div class="tab-pane fade" :class="{ 'active show': tab === 'drive-documents' }"
                                 id="drive-documents" role="tabpanel" aria-labelledby="drive-documents-tab" tabindex="0"
                                 x-show="tab === 'drive-documents'">
+
                                 <section id="multiple-column-form">
                                     <div class="row">
                                         <div class="col-12">
-                                            <form class="form">
-                                                {{-- updated by shanila to add csrf --}}
-                                                @csrf
-                                                {{-- updated end by shanila --}}
                                                 <div class="col-md-8 mb-md-2">
-                                                    <h2>Drive Documents (Coming Soon)</h2>
+                                                    <h2>Drive Documents</h2>
                                                 </div>
+                                                <div>
+                                                    @livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $user->id ,'record_type'=>3], key($user->id))
+                                                </div>
+
                                                 <div class="col-md-12 mb-md-2">
                                                     <div class="row">
-                                                        <div class="col-md-12 mb-md-2">
-                                                            <div class="row justify-content-center">
-                                                                <div class="col-md-8">
-                                                                    <div
-                                                                        class="d-flex flex-column align-items-md-center justify-content-md-center mb-3">
-                                                                        <label for="formFile" class="form-label">
-                                                                            Upload Document
-                                                                        </label>
-                                                                        <input class="form-control" type="file"
-                                                                            id="formFile">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
-                                                                <div>
-                                                                    <img src="/tenant/images/img-placeholder-document.jpg"
-                                                                        alt="Preview File" />
-                                                                    <p>File Name</p>
-                                                                </div>
-                                                                <div>
-                                                                    <img src="/tenant/images/img-placeholder-document.jpg"
-                                                                        alt="Preview File" />
-                                                                    <p>File Name</p>
-                                                                </div>
-                                                                <div>
-                                                                    <img src="/tenant/images/img-placeholder-document.jpg"
-                                                                        alt="Preview File" />
-                                                                    <p>File Name</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                         {{-- Action Buttons Start --}}
                                                         <div
                                                             class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
@@ -1480,24 +1548,20 @@
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
-                                                                <button type="button" class="btn btn-primary rounded w-100">
+                                                                <button type="button" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" class="btn btn-primary rounded w-100">
                                                                     Submit
                                                                 </button>
                                                             </a>
-                                                            {{-- <button type="submit" class="btn btn-primary rounded">
-                                                                Next
-                                                            </button> --}}
+                                                            
                                                         </div>
                                                         {{-- Action Buttons End --}}
                                                     </div>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </section>
                             </div>
                             {{-- END: Drive Documents Pane --}}
-                        @endif
                     </div>
                 </div>
             </div>

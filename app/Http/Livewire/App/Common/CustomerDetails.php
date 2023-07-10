@@ -8,7 +8,7 @@ use App\Services\App\UserService;
 use App\Helpers\SetupHelper;
 class CustomerDetails extends Component
 {
-	public $user;
+	public $user,$userid;
 	protected $listeners = [
 		'showDetails'
 	];
@@ -23,6 +23,7 @@ class CustomerDetails extends Component
 
 	public function showDetails($user){
 		$this->user=$user;	
+		$this->userid = $user['id'];
 		$user1 = User::find($user['id']);
 		$this->user['userdetail']['departments']=$user1->departments->pluck('name');
 		$userService = new UserService;
@@ -34,8 +35,8 @@ class CustomerDetails extends Component
 		$this->user['userdetail']['billing_managers'] = User::whereIn('id', $data->pluck('user_id')->toArray())->get()->pluck('name')->toArray();
 
 		$data = explode(',', $this->user['userdetail']['favored_users']);
-		$this->user['userdetail']['favoured_users'] = User::whereIn('id', $data)->limit(5)->select('name','email')->get()->toArray();
-		// dd($user1->addresses->isEmpty());
+		$this->user['userdetail']['favoured_users'] = User::whereIn('id', $data)->limit(5)->with('userdetail')->get()->toArray();
+		// dd($this->user['userdetail']['favoured_users']);
 
 		if($user1->addresses->isNotEmpty()){
 			$this->user['userdetail']['physical_address'] =  $user1->addresses->sortBy('address_type')->toArray()[0];

@@ -7,7 +7,7 @@
       <div class="d-flex justify-content-center">
         <div class="row my-4">
           <div class="col-md-2">
-              <img src="/tenant/images/img-placeholder-document.jpg"/>
+              <img src="/tenant-resources/images/img-placeholder-document.jpg"/>
           </div>
       </div>
       </div>

@@ -23,17 +23,17 @@
                                                 </div>
                                                 <div class="d-md-flex justify-content-center gap-3 mt-5">
                                                     <div>
-                                                        <img src="/tenant/images/img-placeholder-document.jpg"
+                                                        <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                             alt="Preview File" />
                                                         <p>File Name</p>
                                                     </div>
                                                     <div>
-                                                        <img src="/tenant/images/img-placeholder-document.jpg"
+                                                        <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                             alt="Preview File" />
                                                         <p>File Name</p>
                                                     </div>
                                                     <div>
-                                                        <img src="/tenant/images/img-placeholder-document.jpg"
+                                                        <img src="/tenant-resources/images/img-placeholder-document.jpg"
                                                             alt="Preview File" />
                                                         <p>File Name</p>
                                                     </div>

@@ -10,9 +10,11 @@ class CompanyProfile extends Component
 {
     public $company;
 	public $showDepartmentProfile;
+	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
+
 	protected $listeners = [
 		'showDetails',
-		'showDepartmentProfile'
+		'showDepartmentProfile', 'refreshDepartmentUsers'
 	];
 
 	public function render()
@@ -22,6 +24,7 @@ class CompanyProfile extends Component
 
 	public function mount()
 	{}
+		
     public function showDetails($company){
 		$this->company=$company;
 		$this->company['users'] = User::where('company_name',$company['id'])->get()->count();
@@ -58,4 +61,21 @@ class CompanyProfile extends Component
         $company=Company::find($userId);
 		$this->emit('showList');
 	}
+
+	//for department-list department users modal
+
+	public function refreshDepartmentUsers($users_departmentId, $users_departmentLabel) //for department users
+	{
+		if ($this->du_counter == 0) {
+			$this->du_departmentId = 0;
+			$this->du_departmentLabel = $users_departmentLabel;
+			$this->dispatchBrowserEvent('refresh-department-users', ['departmentId' => $users_departmentId, 'departmentLabel' => $users_departmentLabel]);
+			$this->du_counter = 1;
+			$this->du_departmentDetails = true;
+		} else {
+			$this->du_departmentId = $users_departmentId;
+			$this->du_counter = 0;
+		}
+	}
+
 }

@@ -11,7 +11,7 @@
             <div class="row breadcrumbs-top">
                 <div class="col-12">
                     <h1 class="content-header-title float-start mb-0">
-                        Add Company
+                        {{$label}} Company
                     </h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
@@ -33,7 +33,7 @@
                                 All Companies
                             </li>
                             <li class="breadcrumb-item">
-                                Add Company
+                                {{$label}} Company
                             </li>
                         </ol>
                     </div>
@@ -111,6 +111,7 @@
                     </ul>
 
                     {{-- Tab Panes --}}
+                    
                     <div class="tab-content">
                         @if($step==1)
                         {{-- BEGIN: Customer Info --}}
@@ -125,19 +126,25 @@
                                             @csrf
                                             {{-- update ended by shanila --}}
                                             <div class="row between-section-segment-spacing">
-                                                <div class="col-12 text-center">
-                                                    <div class="d-inline-block position-relative">
-                                                        <img src="/tenant/images/portrait/small/testing.png" width="150"
-                                                            height="130" class="img-fluid rounded-circle"
-                                                            alt="Company Image" />
-                                                        <div
-                                                            class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                                            <svg aria-label="Upload Picture" width="57" height="57"
-                                                                viewBox="0 0 57 57" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <use xlink:href="/css/provider.svg#camera"></use>
-                                                            </svg>
+                                                <div class="provider_image_panel">
+                                                    <div class="provider_image">
+                                                        @if ($image!=null)
+                                                            <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
+                                                        @else
+                                                            <img class="user_img cropfile" src="{{$company->company_logo == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($company->company_logo) }}">
+                                                        @endif
+                                                        <div class="input--file">
+                                                            <span>
+                                                                <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+                                                            </span>
+                                                            <label for="cropfile" class="form-label visually-hidden">Input File</label>
+                                                            <input wire:model="image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
                                                         </div>
+                                                        @error('image')
+                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -323,7 +330,7 @@
                                                         <select data-placeholder="" multiple
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="favored_providers" 
                                                             aria-label="Select Preferred Providers" wire:model.defer="fv_providers">
-                                                            <option value="">Select Preferred Providers</option>
+                                                            {{-- <option value="">Select Preferred Providers</option> --}}
                                                                 @foreach($providers as $p)
                                                                     <option value='{{$p['id']}}' >{{$p['name']}}</option>
                                                                 @endforeach
@@ -340,7 +347,7 @@
                                                          <select data-placeholder="" multiple
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="unfavored_providers" 
                                                             aria-label="Select Disfavored Providers" wire:model.defer="unfv_providers">
-                                                            <option value=""></option>
+                                                            {{-- <option value=""></option> --}}
                                                                 @foreach($providers as $p)
                                                                     <option value='{{$p['id']}}' >{{$p['name']}}</option>
                                                                 @endforeach
@@ -562,7 +569,7 @@
                             id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
                             x-show="tab === 'service-catalog'">
                             <section id="multiple-column-form">
-                             @livewire('app.admin.customer.service-catelog',['showButtons'=>false])
+                             @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$company->id,'modelType'=>'company'])
                              <div class="col-12 form-actions">
                              <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="setStep(2,'scheduleActive','schedule')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
@@ -578,17 +585,17 @@
                                                     </button>
                                 </div>
                             </section>
+                            
                         </div>
                      
                         {{-- End: Service Catalog --}}
-                        @else
+                        @endif
                         
                         {{-- BEGIN: Drive Documents Pane --}}
-                        <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }"
-                            @click.prevent="tab = 'drive-documents'" id="drive-documents" role="tabpanel"
-                            aria-labelledby="drive-documents-tab" tabindex="0">
+                        <div class="tab-pane fade"  :class="{ 'active show': tab === 'drive-documents' }">
+                            <div>@livewire('app.common.forms.drive-uploads',['showForm'=>true,'showSearch'=>false,'record_id'=> $company->id ,'record_type'=>1], key($company->id))</div>
                             <section id="multiple-column-form">
-                                @livewire('app.admin.customer.drive',['showButtons'=>false])
+                            
                                 <div class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
                                                         wire:click.prevent="setStep(3,'serviceActive','service-catalog')" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')">
@@ -597,16 +604,18 @@
                                                     <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                         Save & Exit
                                                     </button>
+                                </div>                    
 
                             </section>
                         </div>
-                        @endif
+                       
                         {{-- BEGIN: Drive Documents Pane --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+   
     @include('modals.company-business-hours')
     @include('modals.common.add-address')
 

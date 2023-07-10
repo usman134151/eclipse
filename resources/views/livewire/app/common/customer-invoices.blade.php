@@ -134,7 +134,7 @@
                                   <p class="mt-1">08/24/2022</p></td>
                                   <td class="align-middle"> <div class="d-flex gap-2 align-items-center">
                                     <div class="">
-                                      <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                      <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                     </div>
                                     <div class="">
                                       <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -195,7 +195,7 @@
                                   <td class="align-middle">
                                     <div class="d-flex gap-2 align-items-center">
                                       <div class="">
-                                        <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                        <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                       </div>
                                       <div class="">
                                         <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -257,7 +257,7 @@
                                   <td class="align-middle">
                                     <div class="d-flex gap-2 align-items-center">
                                       <div class="">
-                                        <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                        <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                       </div>
                                       <div class="">
                                         <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -319,7 +319,7 @@
                                     <td class="align-middle">
                                       <div class="d-flex gap-2 align-items-center">
                                         <div class="">
-                                          <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                          <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                         </div>
                                         <div class="">
                                           <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -373,7 +373,7 @@
                                       <td class="align-middle">
                                         <div class="d-flex gap-2 align-items-center">
                                           <div class="">
-                                            <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                            <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                           </div>
                                           <div class="">
                                             <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -436,7 +436,7 @@
                                       <td class="align-middle">
                                         <div class="d-flex gap-2 align-items-center">
                                           <div class="">
-                                            <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                            <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                           </div>
                                           <div class="">
                                             <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -498,7 +498,7 @@
                                         <td class="align-middle">
                                           <div class="d-flex gap-2 align-items-center">
                                             <div class="">
-                                              <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                              <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                             </div>
                                             <div class="">
                                               <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -560,7 +560,7 @@
                                           <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
                                               <div class="">
-                                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                               </div>
                                               <div class="">
                                                 <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -623,7 +623,7 @@
                                           <td class="align-middle">
                                             <div class="d-flex gap-2 align-items-center">
                                               <div class="">
-                                                <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                                <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                               </div>
                                               <div class="">
                                                 <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>
@@ -685,7 +685,7 @@
                                             <td class="align-middle">
                                               <div class="d-flex gap-2 align-items-center">
                                                 <div class="">
-                                                  <img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+                                                  <img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
                                                 </div>
                                                 <div class="">
                                                   <div class="fw-semibold fs-6 text-nowrap">Information Technology</div>

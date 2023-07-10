@@ -8,6 +8,7 @@ use App\Models\Tenant\AdminTeam;
 use App\Models\Tenant\SystemRoleUser;
 use App\Models\Tenant\User;
 use App\Services\App\AdminTeamService;
+use App\Services\App\UploadFileService;
 use App\Services\App\UserService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -19,7 +20,7 @@ class TeamInfo extends Component
     public $component = 'team-info';
 	use WithFileUploads;
 
-    public $temp_image = null;
+    public $image = null;
     protected $listeners = ['editRecord' => 'edit','updateVal'];
     public $label = "Add";
     public $teamAdmin=[];
@@ -60,7 +61,7 @@ class TeamInfo extends Component
 				'max:255',
 				Rule::unique('admin_teams', 'team_name')->ignore($this->team->id)],
             'team.admin_id'=>'required',
-			'temp_image' => 'nullable|image|mimes:jpg,png,jpeg',
+			'image' => 'nullable|mimes:png,jpg,jpeg,gif,bmp,svg',
 			'team.team_email'=>'nullable|email',
             'team.team_phone'=>[
 				'nullable',
@@ -96,10 +97,15 @@ class TeamInfo extends Component
 	}
 	public function save($redirect=1){
 		$this->validate();
-		$this->team->team_image = $this->saveImage();
 
         $teamService = new AdminTeamService;
         $this->team = $teamService->createAdminTeam($this->team);
+
+		if($this->image!=null){
+			$fileService = new UploadFileService();
+			$this->team->team_image = $fileService->saveFile('profile_pic',$this->image,$this->team->team_image);
+		}
+		$this->team->save();
 		$userService = new UserService;
 		if($this->user_roles!=null)
 			$userService->storeAdminRoles($this->user_roles, $this->team->id,2); //storing team roles
@@ -118,21 +124,6 @@ class TeamInfo extends Component
 	}
 
 	
-	public function saveImage()
-	{
-		if ($this->temp_image) {
-			if($this->team->team_image !=null){
-				//delete existing image
-				if (File::exists(public_path($this->team->team_image)))
-					File::delete(public_path($this->team->team_image));
-			}
-			$name = md5(microtime()) . '.' . $this->temp_image->extension();
-			$this->temp_image->storeAs('/admin_teams/', $name, 'public');
-			return '/tenant'.tenant('id').'/admin_teams/' . $name;  //change domain here and in config/filesystems
-    	}else
-			return null;
-	}
-
 
 
     public function edit(AdminTeam $team){
@@ -146,4 +137,6 @@ class TeamInfo extends Component
 			$this->emit('switch', $component); //hit parent component switch func
 
 	}
+
+
 }

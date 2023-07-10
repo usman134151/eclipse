@@ -42,7 +42,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -66,7 +66,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -90,7 +90,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -114,7 +114,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -138,7 +138,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -162,7 +162,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -186,7 +186,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -210,7 +210,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -234,7 +234,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths
@@ -258,7 +258,7 @@
 				<td class="align-middle">
 					<div class="row g-2">
 						<div class="col-2">
-							<img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+							<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
 						</div>
 						<div class="col-10 align-self-center">
 							Dori Griffiths

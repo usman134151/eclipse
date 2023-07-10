@@ -42,7 +42,7 @@
                 <td>
                    <div class="row ">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">Accenture</h6>
@@ -73,7 +73,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">CVS Health</h6>
@@ -104,7 +104,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">MET International</h6>
@@ -137,7 +137,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">HRS Inc.</h6>
@@ -170,7 +170,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">Demo Company</h6>

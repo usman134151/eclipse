@@ -8,15 +8,19 @@ use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use App\Services\App\AddressService;
+use App\Services\App\UploadFileService;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
+
 use Carbon\Carbon;
 
 
 class CustomerForm extends Component
 {
-    public $user,$isAdd=true,$userAddresses=[];
+	use withFileUploads;
+    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add';
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
-	'user_introduction'=>null, 'title' => null, 'user_position' => null];
+	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
 	public $user_configuration= ['hide_from_providers'=>"false",'grant_access_to_schedule'=> "false", 'hide_billing'=>"false", 'require_approval'=>"false", 'have_access_to'=>[] ];    
 	public $rolesArr=[],$same_sv,$same_bm;
@@ -39,8 +43,9 @@ class CustomerForm extends Component
 
 	//modals variables
 	public $selectedIndustries=[],  $selectedDepartments = [], $svDepartments=[],$industryNames=[], $departmentNames=[],$selectedSupervisors=[],
-		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage,$selectedAdminStaff;
+		$defaultSupervisor, $selectedSupervising=[],$supervisingNames=[], $selectedBManagers=[], $defaultBManager,$selectedUsersToManage=[],$selectedAdminStaff=[];
 	
+		public $supervisorNames=[],$sv_limit, $bManagerNames=[],$bm_limit,$managerNames=[],$m_limit,$adminStaffNames=[],$s_limit;
 	//end of modals variables
 
 
@@ -146,7 +151,7 @@ class CustomerForm extends Component
 	   $this->user=$user;
 		//    if(is_array($user['userdetail']))
 		//    	$this->userdetail=$user['userdetail'];
-		if($user->userdetail->exists())
+		if($user->userdetail!=null && $user->userdetail->exists())
 		$this->userdetail = $user->userdetail->toArray();
 		if ($this->user->userdetail->get('user_configuration') != null)
 		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
@@ -247,7 +252,13 @@ class CustomerForm extends Component
             'userdetail.gender_id' => [
                 'nullable'],
 			'userdetail.phone' => [
-					'nullable']   	                              
+					'nullable','max:150'],
+			'userdetail.state'=>['nullable','max:150'],
+			'userdetail.city' => ['nullable', 'max:150'],
+			'userdetail.zip' => ['nullable', 'max:150'],
+			'image' => 'nullable|image|mimes:jpg,png,jpeg',
+
+
 			
 		];
 	}
@@ -267,6 +278,10 @@ class CustomerForm extends Component
 		$this->user->status=1;
 
 		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
+		if($this->image!=null){
+			$fileService = new UploadFileService();
+			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);	
+		}
 		$userService = new UserService;
       
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
@@ -365,6 +380,16 @@ class CustomerForm extends Component
 	{
 		$this->selectedSupervisors = $selectedSupervisors;
 		$this->defaultSupervisor = $default;
+
+		$this->supervisorNames=[];
+		foreach ($selectedSupervisors as $us) {
+			$this->supervisorNames[] = User::where('id',$us)->with('userdetail')->first()->toArray();
+		}
+		if (count($this->supervisorNames) >= 4)
+			$this->sv_limit = 3;
+		else
+			$this->sv_limit = count($this->supervisorNames) - 1;
+
 		// if (in_array($this->user->id, $this->selectedSupervisors)) //setting checkbox
 		// 	$this->same_sv = true;
 		// else
@@ -374,11 +399,12 @@ class CustomerForm extends Component
 	{
 		$this->supervisingNames=[];
 		$this->selectedSupervising = $selectedSupervising;
+		$this->supervisingNames =[];
 		foreach($selectedSupervising as $us){
-			$this->supervisingNames[] = User::find($us)->toArray();
+			$this->supervisingNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
 		}
 		if(count($this->supervisingNames)>=4)
-			$this->limit = 4;
+			$this->limit = 3;
 		else
 			$this->limit= count($this->supervisingNames)-1;
 	}
@@ -386,6 +412,15 @@ class CustomerForm extends Component
 	{
 		$this->selectedBManagers = $selectedBManagers;
 		$this->defaultBManager = $default;
+
+		$this->bManagerNames=[];
+		foreach ($selectedBManagers as $us) {
+			$this->bManagerNames[]= User::where('id', $us)->with('userdetail')->first()->toArray();
+		}
+		if (count($this->bManagerNames) >= 4)
+			$this->bm_limit = 3;
+		else
+			$this->bm_limit = count($this->bManagerNames) - 1;
         // if (in_array($this->user->id, $this->selectedBManagers)) //setting checkbox
 		// 	$this->same_bm = true; 
 		// else
@@ -396,10 +431,27 @@ class CustomerForm extends Component
 	public function updateSelectedUsersToManager($selectedUsersToManage)
 	{
 		$this->selectedUsersToManage = $selectedUsersToManage;
+
+		$this->managerNames = [];
+		foreach ($selectedUsersToManage as $us) {
+			$this->managerNames[] =User::where('id', $us)->with('userdetail')->first()->toArray();
+		}
+		if (count($this->managerNames) >= 4)
+			$this->m_limit = 3;
+		else
+			$this->m_limit = count($this->managerNames) - 1;
 	}
 	public function updateSelectedStaff($selectedStaff)
 	{
 		$this->selectedAdminStaff = $selectedStaff;
+		$this->adminStaffNames = [];
+		foreach ($selectedStaff as $us) {
+			$this->adminStaffNames[] =User::where('id', $us['id'])->with('userdetail')->first()->toArray();;
+		}
+		if (count($this->adminStaffNames) >= 4)
+			$this->s_limit = 3;
+		else
+			$this->s_limit = count($this->adminStaffNames) - 1;
 	}
 
 	public function updateAddressType($type){

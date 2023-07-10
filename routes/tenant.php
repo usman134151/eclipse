@@ -76,8 +76,10 @@ Route::group([
 			Route::view('/admin/customer-invoices', 'tenant/common/customer-invoices', ["showForm"=>false]);
 
 			// Admin Department Routes
-			Route::view('/admin/department', 'tenant/common/department', ["showForm"=>false]);
-			Route::view('/admin/department/create-department', 'tenant/common/department', ["showForm"=>true]);
+			Route::view('/admin/department/{companyID}', 'tenant/common/department', ["showForm"=>false,'status'=>1]);
+			Route::view('/admin/department/create-department/{companyID}', 'tenant/common/department', ["showForm"=>true, 'status' => 1]);
+			Route::view('/admin/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true, 'status' => 1]);
+
 			// End of Admin Department Routes
 
 			// Admin Staff Routes
@@ -100,7 +102,9 @@ Route::group([
 			Route::view('/admin/templates', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'System Notifications',"type"=>"2"]);
 			Route::view('/admin/sms-templates', 'tenant/settings/notification-configuration', ["showForm"=>false,'title'=>'SMS Notifications',"type"=>"3"]);
 			Route::view('/admin/change-password', 'tenant/settings/change-password');
-			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager');
+			Route::view('/admin/credential-manager', 'tenant/settings/credential-manager', ["showForm" => false]);
+			Route::view('/admin/credential/create-credential', 'tenant/settings/credential-manager', ["showForm" => true]);
+
 			Route::view('/admin/setup-values', 'tenant/settings/setup-values', ["showForm"=>false]);
 			Route::view('/admin/setup/create-setup', 'tenant/settings/setup-values', ["showForm"=>true]);
 			// End of Admin Setting Routes

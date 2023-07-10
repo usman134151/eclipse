@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\Department;
 use Livewire\Component;
 
 class DepartmentProfile extends Component
@@ -17,8 +18,11 @@ class DepartmentProfile extends Component
 		return view('livewire.app.common.department-profile');
 	}
 
-	public function mount()
-	{}
+	public function mount($departmentId)
+	{
+		$this->department= Department::find($departmentId);
+		$this->showDepartmentDetails($this->department);
+	}
 
 	function showForm()
 	{

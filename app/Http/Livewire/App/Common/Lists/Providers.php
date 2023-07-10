@@ -66,7 +66,7 @@ final class Providers extends PowerGridComponent
 			'users.id',
 			'users.name',
 			'users.email',
-			'user_details.phone',
+			'user_details.phone','user_details.profile_pic',
 			'status'
 		])
 
@@ -110,7 +110,13 @@ final class Providers extends PowerGridComponent
 
 		->addColumn('name')
 		->addColumn('customer', function (User $model) {
-			return '<div class="row g-2 align-items-center"><div class="col-md-2"><img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Customer Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
+			if($model->profile_pic==null)
+				$col= '<div class="row g-2 align-items-center"><div class="col-md-2"><img style="" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Profile Image"></div><div class="col-md-10"><h6 class="fw-semibold">'. $model->name .'</h6><p>'. $model->email .'</p></div></div>';
+			else
+				$col = '<div class="row g-2 align-items-center"><div class="col-md-2 provider_image_panel">			
+				<div class="provider_image" style="width:64px;height:64px;top:1rem;max-width:100%"> <img class="user_img cropfile" src="' . $model->profile_pic . '" style="max-width:100%;"></div>
+				</div><div class="col-md-10"><h6 class="fw-semibold">' . $model->name . '</h6><p>' . $model->email . '</p></div></div>';
+			return $col;
 		})
 		->addColumn('phone')
 		->addColumn('upcoming', function (User $model) {

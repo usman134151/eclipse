@@ -1,4 +1,4 @@
-<div x-data="{ departmentList:false, departmentProfile:false }">
+<div x-data="{ departmentList:false, departmentProfile:false ,companyUsers:false,departmentUsers:false }">
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -114,7 +114,7 @@
                                             <td>
                                                 <div class="row g-2">
                                                     <div class="col-md-2">
-                                                        <img src="/tenant/images/portrait/small/image4.png"
+                                                        <img src="/tenant-resources/images/portrait/small/image4.png"
                                                             class="img-fluid rounded-circle"
                                                             alt="User Profile Image">
                                                     </div>

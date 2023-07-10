@@ -180,7 +180,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="d-inline-block position-relative">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Profile Image of Admin Staff" />
                                                                 </div>
@@ -288,7 +288,7 @@
                                                                                 <td>
                                                                                     <div class="row g-2">
                                                                                         <div class="col-md-2">
-                                                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                                                 class="img-fluid rounded-circle"
                                                                                                 alt="Team Profile Image">
                                                                                         </div>
@@ -324,7 +324,7 @@
                                                                                 <td>
                                                                                     <div class="row g-2">
                                                                                         <div class="col-md-2">
-                                                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                                                 class="img-fluid rounded-circle"
                                                                                                 alt="Team Profile Image">
                                                                                         </div>
@@ -360,7 +360,7 @@
                                                                                 <td>
                                                                                     <div class="row g-2">
                                                                                         <div class="col-md-2">
-                                                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                                                 class="img-fluid rounded-circle"
                                                                                                 alt="Team Profile Image">
                                                                                         </div>
@@ -396,7 +396,7 @@
                                                                                 <td>
                                                                                     <div class="row g-2">
                                                                                         <div class="col-md-2">
-                                                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                                                 class="img-fluid rounded-circle"
                                                                                                 alt="Team Profile Image">
                                                                                         </div>
@@ -432,7 +432,7 @@
                                                                                 <td>
                                                                                     <div class="row g-2">
                                                                                         <div class="col-md-2">
-                                                                                            <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                            <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                                                 class="img-fluid rounded-circle"
                                                                                                 alt="Team Profile Image">
                                                                                         </div>
@@ -5115,7 +5115,7 @@
                                             </div>
                                             <hr>
                                             <div>
-                                                <img src="/tenant/images/portrait/small/pending-payment.png" 
+                                                <img src="/tenant-resources/images/portrait/small/pending-payment.png" 
                                                     class="img-fluid" alt="Pending Payment image">
                                             </div>
                                         </div>

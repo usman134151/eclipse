@@ -1,4 +1,5 @@
     <!-- BEGIN: Header-->
+    
     <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
       <div class="navbar-container d-flex content">
         <div class="bookmark-wrapper d-flex align-items-center">
@@ -121,8 +122,13 @@
               <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                 @csrf
               </form>
+              
               <span class="avatar">
-                <img class="round" src="/tenant/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
+                @if(Auth::user()->userDetails->profile_pic)
+                <img class="round" src="{{Auth::user()->userDetails->profile_pic}}" alt="avatar" height="40" width="40">
+                @else
+                <img class="round" src="/tenant-resources/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
+                @endif
                 <span class="avatar-status-online"></span>
               </span>
             </a>

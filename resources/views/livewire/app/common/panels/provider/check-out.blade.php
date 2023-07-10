@@ -131,7 +131,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <img src="/tenant/images/portrait/small/img-timesheet.jpg" alt="Timesheet Image">
+                  <img src="/tenant-resources/images/portrait/small/img-timesheet.jpg" alt="Timesheet Image">
                 </div>
               </div>
             </div>
@@ -195,7 +195,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <img src="/tenant/images/portrait/small/img-timesheet.jpg" alt="Timesheet Image">
+                  <img src="/tenant-resources/images/portrait/small/img-timesheet.jpg" alt="Timesheet Image">
                 </div>
               </div>
             </div>

@@ -42,7 +42,7 @@
                 <td>
                    <div class="row ">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">Tessa Leo</h6>
@@ -73,7 +73,7 @@
                 <td>
                    <div class="row ">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">Tommy Paul</h6>
@@ -104,7 +104,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Admin Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">James Micheal</h6>
@@ -135,7 +135,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">David Jack</h6>
@@ -167,7 +167,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">Peter Lee</h6>
@@ -199,7 +199,7 @@
                 <td>
                    <div class="row g-2">
                         <div class="col-md-2">
-                           <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
+                           <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Image of Team Profile">
                         </div>
                         <div class="col-md-10">
                           <h6 class="fw-semibold">Danny Lis</h6>

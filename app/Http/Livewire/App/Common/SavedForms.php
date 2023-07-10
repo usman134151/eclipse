@@ -11,7 +11,7 @@ class SavedForms extends Component
 		'refreshFormDetails' => 'refreshDetails'
 	];
 
-	public function refreshDetails($formId, $formLabel, $formDeleteable)
+	public function refreshDetails($formId, $formLabel,$formDeleteable)
 	{  
 		if ($this->counter == 0) {
 			$this->formId = 0;

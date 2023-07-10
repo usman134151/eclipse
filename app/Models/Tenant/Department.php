@@ -4,7 +4,10 @@ namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Department extends Model
 {
@@ -16,7 +19,10 @@ class Department extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'status', 'added_by'
+		'name', 'status', 'added_by',
+		'favored_providers', 'unfavored_providers', 'industry_id', 'company_id',
+		'department_website', 'language_id', 'department_service_start_date', 'department_service_end_date',
+		'department_timezone', 'department_logo', 'department_timeformat', 'hide_details','company_phones'
 	];
 
 	public function user()
@@ -31,12 +37,19 @@ class Department extends Model
 	}
 	public function addresses()
 	{
-    	return $this->hasMany(UserAddress::class,'user_id');
+    	return $this->hasMany(UserAddress::class,'user_id')->where('user_address_type',3);
 	}
 	public function users(): BelongsToMany
 	{
 		return $this->belongsToMany(User::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps();
 	}
+
+	public function supervisors(): BelongsToMany
+	{
+		return $this->belongsToMany(User::class, 'user_departments')->withPivot('is_supervisor')->withTimestamps()
+		->where('is_supervisor',true);
+	}
+
 
 	public function company()
 	{

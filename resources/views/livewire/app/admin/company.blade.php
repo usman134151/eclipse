@@ -1,4 +1,4 @@
-<div x-data="{ departmentList:false, departmentProfile:false }">
+<div x-data="{ departmentList:false, departmentProfile:false, companyUsers:false,departmentUsers:false }">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -130,7 +130,11 @@
 				</div>
 			</div>
 		</div>
+		@include('panels.company.company-users')
+
 		@include('panels.company.department-list')
+		@include('panels.company.department-users')
+
 	@include('panels.company.department-profile')
 	</section>
 	{{-- End: Content --}}

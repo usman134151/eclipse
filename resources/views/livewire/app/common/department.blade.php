@@ -1,4 +1,4 @@
-<div>
+<div x-data="{departmentUsers:false }">
 	<div id="loader-section" class="loader-section" wire:loading>
 		<div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
 			<div class="spinner-border" role="status" aria-live="polite">
@@ -7,31 +7,41 @@
 		</div>
 	</div>
 	@if ($showForm)
-	@livewire('app.common.forms.department-form') {{-- Show Add / Edit Form --}}
+	<div>@livewire('app.common.forms.department-form') {{-- Show Add / Edit Form --}}</div>
 	 {{-- Show Add / Edit Form --}}
+    
 	@elseif ($showProfile)
-	    @livewire('app.common.department-profile')
-	@else
-	<div class="content-wrapper container-xxl p-0">
+        
+	    @livewire('app.common.department-profile',['departmentId'=>$department['id']])
+
+    @else
+    <div class="content-wrapper container-xxl p-0">
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-12 mb-2">
+			<div class="content-header-left col-12 mb-2">
 				<div class="row breadcrumbs-top">
 					<div class="col-12">
 						<h1 class="content-header-title float-start mb-0">All Departments</h1>
 						<div class="breadcrumb-wrapper">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
-									<a href="javascript:void(0)" title="Go to Dashboard" aria-label="Go to Dashboard">
+									<a href="http://127.0.0.1:8000" title="Go to Dashboard"
+										aria-label="Go to Dashboard">
+										{{-- Updated by Shanila to Add svg icon--}}
 										<svg aria-label="Go to Dashboard" width="22" height="23" viewBox="0 0 22 23">
-                                            <use xlink:href="/css/common-icons.svg#home"></use>
-                                        </svg>
+											<use xlink:href="/css/common-icons.svg#home"></use>
+										</svg>
+										{{-- End of update by Shanila --}}
 									</a>
 								</li>
 								<li class="breadcrumb-item">
-									Customers
+									<a href="javascript:void(0)">
+										{{$company->name}}
+									</a>
 								</li>
 								<li class="breadcrumb-item">
-									All Departments
+									<a href="javascript:void(0)" class="text-secondary">
+										All Departments
+									</a>
 								</li>
 							</ol>
 						</div>
@@ -39,508 +49,129 @@
 				</div>
 			</div>
 		</div>
-		<div class="content-body">
-			<div class="d-flex justify-content-end mt-4 mb-3">
-				<a href="javascript:void(0)" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
-					<svg aria-label="add provider" width="20" height="20" viewBox="0 0 20 20">
-                        <use xlink:href="/css/common-icons.svg#plus"></use>
-                    </svg>
-					<span>Add Department</span>
-				</a>
-			</div>
-			<div class="d-flex justify-content-between mb-2">
-				<div class="d-inline-flex align-items-center gap-4">
-					<label for="show_records_number" class="form-label">Show</label>
-					<select class="form-select" id="show_records_number">
-						<option>10</option>
-						<option>15</option>
-						<option>20</option>
-						<option>25</option>
-					</select>
-				</div>
-				<div class="d-inline-flex align-items-center gap-4">
-					<label for="search" class="form-label fw-semibold">Search</label>
-					<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
-				</div>
-			</div>
-			<!-- Hoverable rows start -->
-			<div class="row" id="table-hover-row">
-<div class="col-12">
-<div class="card">
-  <div class="table-responsive">
-	<table id="unassigned_data" class="table table-hover" aria-label="Department Table">
-	  <thead>
-		<tr role="row">
-		  <th scope="col" class="text-center">
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select All Departments">
-		  </th>
-		  <th scope="col">Name</th>
-		  <th scope="col">Phone Number</th>
-		  <th scope="col" >Department supervisor's</th>
-		  <th scope="col" class="text-center">Department User</th>
-		  <th scope="col">Action</th>
-		</tr>
-	  </thead>
-	  <tbody>
-		<tr role="row" class="odd">
-		  <td class="text-center">
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td >
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-		   <a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		  <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="even">
-		  <td class="text-center">
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<div class="d-flex actions">
-					<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-							<use xlink:href="/css/common-icons.svg#pencil"></use>
-						</svg>
-					</a>
-					<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-						<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-						  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-						</svg>
-					</a>
-					<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-							<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-						</svg>
-					</a>
-				</div>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="odd">
-		  <td class="text-center">
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<div class="d-flex actions">
-					<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-							<use xlink:href="/css/common-icons.svg#pencil"></use>
-						</svg>
-					</a>
-					<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-						<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-						  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-						</svg>
-					</a>
-					<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-							<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-						</svg>
-					</a>
-				</div>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="even">
-		  <td >
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="odd">
-		  <td >
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  </td>
-		  <td>
-			<div class="d-flex actions">
-				<div class="d-flex actions">
-					<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-							<use xlink:href="/css/common-icons.svg#pencil"></use>
-						</svg>
-					</a>
-					<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-						<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-						  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-						</svg>
-					</a>
-					<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-						<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-							<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-						</svg>
-					</a>
-				</div>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="even">
-		  <td>
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="odd">
-		  <td >
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="even">
-		  <td >
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="odd">
-		  <td >
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-		<tr role="row" class="even">
-		  <td class="text-center">
-			<input class="form-check-input" type="checkbox" value="" aria-label="Select Department">
-		  </td>
-		  <td>
-			<div class="row g-2">
-			  <div class="col-md-2">
-				<img src="/tenant/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Profile Image">
-			  </div>
-			  <div class="col-md-10">
-				<h6 class="fw-semibold">Testing Company</h6>
-				<p>www.software.com</p>
-			  </div>
-			</div>
-		  </td>
-		  <td>
-			<p>(923) 023-9683</p>
-		  </td>
-		  <td >
-			<a href="#"> Thomas Charles, Wade Dave, Seth IvanRiley Gilbert </a></td>
-		   <td class="text-center">5</td>
-		  <td>
-			<div class="d-flex actions">
-				<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Edit" width="20" height="20" viewBox="0 0 20 20">
-						<use xlink:href="/css/common-icons.svg#pencil"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon" wire:click="showProfile">
-					<svg aria-label="View" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
-					  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-					</svg>
-				</a>
-				<a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-						<use xlink:href="/css/common-icons.svg#recycle-bin"></use>
-					</svg>
-				</a>
-			</div>
-		  </td>
-		</tr>
-	  </tbody>
-	</table>
-  </div>
-  <div class="d-flex justify-content-between m-4">
-	<div>
-	  <p class="fw-semibold">Showing 1 to 5 of 100 entries</p>
-	</div>
-	<nav aria-label="Page Navigation">
-	  <ul class="pagination">
-		<li class="page-item">
-		  <a class="page-link" href="#" aria-label="Previous">
-			<span aria-hidden="true">&laquo;</span>
-		  </a>
-		</li>
-		<li class="page-item"><a class="page-link" href="#">1</a></li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
-		<li class="page-item"><a class="page-link" href="#">3</a></li>
-		<li class="page-item active"><a class="page-link" href="#">4</a></li>
-		<li class="page-item">
-		  <a class="page-link" href="#" aria-label="Next">
-			<span aria-hidden="true">&raquo;</span>
-		  </a>
-		</li>
-	  </ul>
-	</nav>
-  </div>
-</div>
-</div>
-</div>
-<!-- Hoverable rows end -->
+		{{-- END : Header Section --}}
+		<section id="multiple-column-form">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12 mb-md-2">
+                                
+									<div class="row">
+                                    <div class="d-flex flex-column flex-md-row justify-content-start mt-4 ">
+											
+										
+											<h2>{{$company->name}} Departments</h2>
+										</div>
+										<div class="d-flex flex-column flex-md-row justify-content-end mt-4 mb-3 gap-2">
+											
+										
+											<a href="/admin/department/create-department/{{$companyId}}" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" wire:click="showForm">
+												{{-- Updated by Shanila to Add svg icon--}}
+												<svg aria-label="Add Customer" width="20" height="20" viewBox="0 0 20 20">
+													<use xlink:href="/css/common-icons.svg#plus"></use>
+												</svg>
+												{{-- End of update by Shanila --}}
+												<span>Add Department</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
 
-</div>
-</div>
+							{{-- Hoverable rows Start --}}
+							<div class="row" id="table-hover-row">
+								
+								<div class="col-12">
+									<div class="card">
+									
+										@livewire('app.common.lists.departments',['companyId'=>$companyId,'listpage'=>true])
+
+										@include('panels.company.department-users')
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 	@endif
-    @include('modals.company-business-hours')
+
     @include('modals.common.add-address')
     @include('modals.department-manager')
-</div>
-<script>
+	<script>
 	function updateVal(attrName,val){
 
 		Livewire.emit('updateVal', attrName, val);
 
 	}
 </script>
+</div>
+@push('scripts')
+<script>
+	function updateVal(attrName,val){
+		if(attrName=='select-days')
+			Livewire.emit('updateDay', val);
+		if(attrName!='address.country')
+		Livewire.emit('updateVal', attrName, val);
+
+	}
+	var phoneIndex=0;
+	var localIncrements=0;
+	function newElement(parentRow, domRow,updatedIndex) {
+			  
+		    	phoneIndex=updatedIndex;
+                var newElem = document.createElement('div');
+                $(newElem).addClass('input-group my-5');
+                newElem.innerHTML = $(domRow).html();
+                $(newElem).find(':input').attr('value', '');
+            // $(newElem).find(':input').attr('onblur', 'saveElement(0,$(this).val())');
+                $(newElem).find('textarea').val('');
+                $(newElem).find(':checkbox, :radio').attr('checked', false);
+                $(newElem).css('display', 'none');
+            
+            
+                parentRow.append(newElem);
+                $(newElem).slideDown();
+                $(newElem).find('[name="title"]').focus();
+                // Get the phone number and title inputs in the new element
+                var phoneNumberInput = $(newElem).find('[name="phone-number"]');
+                var titleInput = $(newElem).find('[name="title"]');
+                var deleteIcon= $(newElem).find('[name="deleteIcon"]');
+                deleteIcon.attr('phone-id',phoneIndex);
+                // Attach the wire:model directive to the phone number input
+                phoneNumberInput.attr('wire:model', 'phoneNumbers.' + phoneIndex + '.phone_number');
+                               
+                // Attach the wire:model directive to the title input
+                titleInput.attr('wire:model', 'phoneNumbers.' + phoneIndex + '.phone_title');
+                                phoneIndex++;
+                // Listen to the wire:change event on the phone number input
+                phoneNumberInput.on('change', function() {
+                
+                    // Call the Livewire component function addPhone
+                    Livewire.emit('addPhone',titleInput.val(),phoneNumberInput.val());
+                });
+                deleteIcon.on('click', function() {
+                    $(newElem).slideUp();
+                // Call the Livewire component function addPhone
+                 Livewire.emit('removePhone',$(this).attr('phone-id'));
+            });
+
+}  
+Livewire.on('updateAddressType', (type) => {
+            // Handle the event here
+           
+            // Open the modal
+            $('#addAddressModal').modal('show');
+        });
+        Livewire.on('modalDismissed', () => {
+            $('#addAddressModal').modal('hide');
+               
+            });
+      
+</script>
+
+
+
+@endpush

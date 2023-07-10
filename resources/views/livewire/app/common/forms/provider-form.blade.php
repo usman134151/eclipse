@@ -11,7 +11,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h1 class="content-header-title float-start mb-0">Add Provider</h1>
+                    <h1 class="content-header-title float-start mb-0">{{$label}} Provider</h1>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -28,7 +28,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                Add Provider
+                                {{$label}} Provider
                             </li>
                         </ol>
                     </div>
@@ -44,482 +44,578 @@
                     {{-- Nav tabs --}}
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'profile' }"
-                                @click.prevent="tab = 'profile'" id="user-profile-tab" role="tab"
+                            <a href="#" class="nav-link {{$profileActive}}" :class="{ 'active': tab === 'profile' }"
+                                @click.prevent="tab = 'profile'" id="user-profile-tab" role="tab"  wire:click.prevent="setStep(1,'profileActive','profile');
                                 aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider
                                 info</a>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'provider-service' }"
-                                @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab"
-                                aria-controls="provider-service" aria-selected="false"><span
-                                    class="number">2</span>Provider Service Profile</a>
+                          <li class="nav-item" role="presentation">
+                            @if($user->name)
+                            <a href="javascript:void(0)" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
+                                @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
+                                wire:click.prevent="save(0)"
+                                aria-controls="schedule" aria-selected="true" >
+                            
+                                <span class="number">2</span>
+                                Provider Schedule
+                            </a>
+                            @else
+                            <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                <span class="number">2</span>
+                                Provider Schedule
+                            </div>                            
+                            @endif
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'upload-document' }"
-                                @click.prevent="tab = 'upload-document'" id="upload-document-tab" role="tab"
-                                aria-controls="upload-document" aria-selected="false"><span class="number">3</span>
+                            @if($user->name)
+
+                            <a href="#" class="nav-link {{$serviceActive}}" :class="{ 'active': tab === 'provider-service' }"
+                                @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab"  wire:click.prevent="setStep(3,'serviceActive','provider-service');
+                                aria-controls="provider-service" aria-selected="false"><span
+                                    class="number">3</span>Provider Service Profile</a>
+                            @else
+                            <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                <span class="number">3</span>
+                                Provider Service Profile
+                            </div>                            
+                            @endif
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            @if($user->name)
+
+                            <a href="#" class="nav-link {{$documentActive}}" :class="{ 'active': tab === 'upload-document' }"
+                                @click.prevent="tab = 'upload-document'" id="upload-document-tab" role="tab"  wire:click.prevent="setStep(4,'documentActive','upload-document');
+                                aria-controls="upload-document" aria-selected="false"><span class="number">4</span>
                                 Upload Document</a>
+                                 @else
+                            <div class="nav-link" title="Please fill step 1 to proceed">
+                            
+                                <span class="number">3</span>
+                                Upload Document
+                            </div>                            
+                            @endif
                         </li>
                     </ul>
                     {{-- Tab panes --}}
                     <div class="tab-content">
                         {{-- BEGIN: Profile --}}
-                        <div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile"
-                            role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
-                            {{-- Tab Panes --}}
-                            {{-- updated by shanila to add csrf and add form tag --}}
-                            <form class="form">
-                                @csrf
-                                <div class="row mt-2 mb-5">
-                                    {{-- BEGIN: Profile --}}
-                                    <div class="col-12 text-center">
-                                        <div class="d-inline-block position-relative">
-                                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
-                                                class="img-fluid rounded-circle" alt="Provider Profile Image" />
-                                            {{-- <div>
-                                                <input class="position-absolute form-control" type="file" />
-                                            </div> --}}
-                                            <div
-                                                class="position-absolute end-0 bottom-0 p-0 d-flex justify-content-center align-items-center">
-                                                <svg aria-label="Upload Picture" width="57" height="57"
-                                                    viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <use xlink:href="/css/provider.svg#camera"></use>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 mb-4">
-                                        <h2>Provider Information</h2>
-                                    </div>
-                                    <div class="row between-section-segment-spacing">
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="f-name">
-                                                First Name
-                                                <span class="mandatory" aria-hidden="true">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <input type="text" id="f-name" class="form-control" name="f-name"
-                                                placeholder="Enter First Name" required aria-required="true" wire:model.defer="user.first_name"/>
-                                                @error('user.first_name')
-												<span class="d-inline-block invalid-feedback mt-2">
-													{{ $message }}
-												</span>
-												@enderror
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="l-name">
-                                                Last Name
-                                                <span class="mandatory" aria-hidden="true">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <input type="text" id="l-name" class="form-control" name="l-name"
-                                                placeholder="Enter Last Name" required aria-required="true" wire:model.defer="user.last_name"/>
-                                                @error('user.last_name')
-												<span class="d-inline-block invalid-feedback mt-2">
-													{{ $message }}
-												</span>
-												@enderror
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="pronouns-column">
-                                                Pronouns
-                                            </label>
-                                            <input type="text" id="pronouns-column" class="form-control"
-                                                placeholder="Enter Pronouns" name="pronouns" wire:model.defer="userdetail.title"/>
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5 mb-4">
-                                            <label class="form-label" for="">
-                                                Date of Birth
-                                            </label>
-                                            <div class="d-flex align-items-center w-100">
-                                                <div class="position-relative flex-grow-1">
-                                                    <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date of Birth" aria-label=""
-                                                        aria-describedby="" wire:model.defer="user.user_dob" name="user_dob" id="user_dob">
-                                                    <!-- Begin : it will be replaced with livewire module-->
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Date" class="icon-date" width="20" height="21"
-                                                        viewBox="0 0 20 21">
-                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </div>
-                                                <button type="button" class="btn px-2">
-                                                    <!-- Begin : it will be replaced with livewire module-->
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="show" width="24" height="17" viewBox="0 0 24 17">
-                                                        <use xlink:href="/css/common-icons.svg#eye-icon">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <label class="form-label mb-lg-0" for="gender-column">
-                                                    Gender
-                                                </label>
-                                                <a @click="addNew = true" href="#" class="fw-bold">
-                                                    <small>
-                                                        {{-- Updated by Shanila to Add svg icon
-                                                        <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                                            viewBox="0 0 20 21">
-                                                            <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                                        </svg>
-                                                         End of update by Shanila
+                            @if($step==1)
 
-                                                        Add New  --}}
-                                                    </small>
-                                                </a>
-                                            </div>
-                                            {!! $setupValues['gender']['rendered'] !!}
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                                <label class="form-label" for="ethnicity-column">
-                                                    Ethnicity
-                                                </label>
-                                                <a @click="addNew = true" href="#" class="fw-bold">
-                                                    <small>
-                                                        {{-- 
-                                                        <svg aria-label="Add New" class="me-1" width="20" height="21"
-                                                            viewBox="0 0 20 21">
-                                                            <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                                        </svg>
-                                                       
-                                                        Add New --}}
-                                                    </small>
-                                                </a>
-                                            </div>
-                                            {!! $setupValues['ethnicities']['rendered'] !!}
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="providerID-column">
-                                                Provider ID
-                                            </label>
-                                            <input type="email" id="providerID-column" class="form-control"
-                                                name="providerID-column" placeholder="Enter Provider ID" wire:model.defer="userdetail.user_number" />
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label mb-3" for="assign-provider-teams">
-                                                Assign Provider Teams
-                                            </label>
-                                            <button type="button"
-                                                class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1"
-                                                data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
-                                                <div>
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label=" Add Provider Teams" width="25" height="18"
-                                                        viewBox="0 0 25 18">
-                                                        <use xlink:href="/css/common-icons.svg#right-color-arrow">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
+                                <div class="tab-pane fade" :class="{ 'active show': tab === 'profile' }" id="user-profile"
+                                    role="tabpanel" aria-labelledby="user-profile-tab" tabindex="0" x-show="tab === 'profile'">
+                                    {{-- Tab Panes --}}
+                                    {{-- updated by shanila to add csrf and add form tag --}}
+                                    <form class="form">
+                                        @csrf
+                                        <div class="row mt-2 mb-5">
+                                            {{-- BEGIN: Profile --}}
+                                            <div class="col-12 text-center">
+                                            <div class="provider_image_panel">
+                                                        <div class="provider_image">
+                                                            @if ($image!=null)
+                                                                <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
+                                                            @else
+                                                                <img class="user_img cropfile" src="{{$userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
+                                                            @endif
+                                                            <div class="input--file">
+                                                                <span>
+                                                                    <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+                                                                </span>
+                                                                <label for="cropfile" class="form-label visually-hidden">Input File</label>
+                                                                <input wire:model="image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
+                                                            </div>
+                                                            @error('image')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                        </div>
                                                 </div>
-                                                <div class="text-primary fw-semibold">
-                                                    Add Provider Teams
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 mb-4">
+                                                <h2>Provider Information</h2>
+                                            </div>
+                                            <div class="row between-section-segment-spacing">
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="f-name">
+                                                        First Name
+                                                        <span class="mandatory" aria-hidden="true">
+                                                            *
+                                                        </span>
+                                                    </label>
+                                                    <input type="text" id="f-name" class="form-control" name="f-name"
+                                                        placeholder="Enter First Name" required aria-required="true" wire:model.defer="user.first_name"/>
+                                                        @error('user.first_name')
+                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                 </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="l-name">
+                                                        Last Name
+                                                        <span class="mandatory" aria-hidden="true">
+                                                            *
+                                                        </span>
+                                                    </label>
+                                                    <input type="text" id="l-name" class="form-control" name="l-name"
+                                                        placeholder="Enter Last Name" required aria-required="true" wire:model.defer="user.last_name"/>
+                                                        @error('user.last_name')
+                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="pronouns-column">
+                                                        Pronouns
+                                                    </label>
+                                                    <input type="text" id="pronouns-column" class="form-control"
+                                                        placeholder="Enter Pronouns" name="pronouns" wire:model.defer="userdetail.title"/>
+                                                </div>
+                                                <div class="col-lg-6 ps-lg-5 mb-4">
+                                                    <label class="form-label" for="">
+                                                        Date of Birth
+                                                    </label>
+                                                    <div class="d-flex align-items-center w-100">
+                                                        <div class="position-relative flex-grow-1">
+                                                            <input type="text" class="form-control js-single-date"
+                                                                placeholder="Select Date of Birth" aria-label=""
+                                                                aria-describedby="" wire:model.defer="user.user_dob" name="user_dob" id="user_dob">
+                                                            <!-- Begin : it will be replaced with livewire module-->
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Date" class="icon-date" width="20" height="21"
+                                                                viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </div>
+                                                        <button type="button" class="btn px-2">
+                                                            <!-- Begin : it will be replaced with livewire module-->
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="show" width="24" height="17" viewBox="0 0 24 17">
+                                                                <use xlink:href="/css/common-icons.svg#eye-icon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                                        <label class="form-label mb-lg-0" for="gender-column">
+                                                            Gender
+                                                        </label>
+                                                        <a @click="addNew = true" href="#" class="fw-bold">
+                                                            <small>
+                                                                {{-- Updated by Shanila to Add svg icon
+                                                                <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                                    viewBox="0 0 20 21">
+                                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                                </svg>
+                                                                End of update by Shanila
+
+                                                                Add New  --}}
+                                                            </small>
+                                                        </a>
+                                                    </div>
+                                                    {!! $setupValues['gender']['rendered'] !!}
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                                        <label class="form-label" for="ethnicity-column">
+                                                            Ethnicity
+                                                        </label>
+                                                        <a @click="addNew = true" href="#" class="fw-bold">
+                                                            <small>
+                                                                {{-- 
+                                                                <svg aria-label="Add New" class="me-1" width="20" height="21"
+                                                                    viewBox="0 0 20 21">
+                                                                    <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                                </svg>
+                                                            
+                                                                Add New --}}
+                                                            </small>
+                                                        </a>
+                                                    </div>
+                                                    {!! $setupValues['ethnicities']['rendered'] !!}
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="providerID-column">
+                                                        Provider ID
+                                                    </label>
+                                                    <input type="email" id="providerID-column" class="form-control"
+                                                        name="providerID-column" placeholder="Enter Provider ID" wire:model.defer="userdetail.user_number" />
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label mb-3" for="assign-provider-teams">
+                                                        Assign Provider Teams
+                                                    </label>
+                                                    <button type="button"
+                                                        class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1"
+                                                        data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
+                                                        <div>
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label=" Add Provider Teams" width="25" height="18"
+                                                                viewBox="0 0 25 18">
+                                                                <use xlink:href="/css/common-icons.svg#right-color-arrow">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </div>
+                                                        <div class="text-primary fw-semibold">
+                                                            Add Provider Teams
+                                                        </div>
+                                                    </button>
+                                                    <div>
+                                                                    @if(count($teamNames)>0)
+                                                                        <b>Selected Team(s) : </b> 
+                                                                        @foreach($teamNames as $key=> $team)
+                                                                        {{$team }}
+                                                                        @if($key != count($teamNames)-1) , @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="email">
+                                                        Email
+                                                        <span class="mandatory" aria-hidden="true">
+                                                            *
+                                                        </span>
+                                                    </label>
+                                                    <input type="text" id="email" class="form-control" name="email"
+                                                        placeholder="Enter Email" required aria-required="true" wire:model.defer="user.email"/>
+                                                        @error('user.email')
+                                                        <span class="d-inline-block invalid-feedback mt-2">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror    
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="phone">Phone Number</label>
+                                                    <input type="text" id="phone" class="form-control" name="phone"
+                                                        placeholder="Enter Phone Number" wire:model.defer="userdetail.phone"/>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="country">
+                                                        Country
+                                                    </label>
+                                                    {!! $setupValues['countries']['rendered'] !!}
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="state">State / Province</label>
+                                                        <input type="text" id="state" class="form-control"
+                                                            name="state" placeholder="Enter State Name"
+                                                            required aria-required="true" wire:model.defer="userdetail.state"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <div class="mb-4">
+                                                        <label class="form-label" for="city">City</label>
+                                                        <input type="text" id="city" class="form-control"
+                                                            name="city" placeholder="Enter City Name"
+                                                            required aria-required="true" wire:model.defer="userdetail.city"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="zip-code">
+                                                        Zip Code
+                                                    </label>
+                                                    <input type="text" id="zip-code" class="form-control" name="zipCode"
+                                                        placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="address-line-1">
+                                                        Address Line 1
+                                                    </label>
+                                                    <input type="text" id="address-line-1" class="form-control"
+                                                        name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="address-line-2">
+                                                        Address Line 2
+                                                    </label>
+                                                    <input type="text" id="address-line-2" class="form-control"
+                                                        name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="start-date-column">
+                                                        Start Date
+                                                    </label>
+                                                    <div class="d-flex align-items-center w-100">
+                                                        <div class="position-relative flex-grow-1">
+                                                            <input type="text" class="form-control js-single-date"
+                                                                placeholder="Select Date" aria-label=""
+                                                                aria-describedby="" id="start_date">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Date" class="icon-date" width="20" height="21"
+                                                                viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <label class="form-label" for="end-date">
+                                                        End Date
+                                                    </label>
+                                                    <div class="d-flex align-items-center w-100">
+                                                        <div class="position-relative flex-grow-1">
+                                                            <input type="text" class="form-control js-single-date"
+                                                                placeholder="Select Date" aria-label="End Date"
+                                                                aria-describedby="" id="end-date-">
+                                                            {{-- Updated by Shanila to Add svg icon--}}
+                                                            <svg aria-label="Date" class="icon-date" width="20" height="21"
+                                                                viewBox="0 0 20 21">
+                                                                <use xlink:href="/css/common-icons.svg#datefield-icon">
+                                                                </use>
+                                                            </svg>
+                                                            {{-- End of update by Shanila --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <label class="form-label" for="education">
+                                                            Education
+                                                        </label>
+                                                        <a @click="addDocument = true" href="#" class="fw-bold">
+                                                            <small>
+                                                                <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
+                                                                        fill="#0A1E46" />
+                                                                </svg>
+                                                                Upload Supporting Documents
+                                                            </small>
+                                                        </a>
+                                                    </div>
+                                                    <input type="text" id="education" class="form-control"
+                                                        name="education-column" placeholder="Enter Education" wire:model.defer="userdetail.education" />
+                                                </div>
+                                                <div class="col-lg-6 mb-4 ps-lg-5">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <label class="form-label mb-lg-0" for="certification">
+                                                            Certification(s)
+                                                        </label>
+                                                        <div class="d-flex align-items-center gap-3">
+                                                            <a @click="addNew = true" href="#" class="fw-bold">
+                                                                <small>
+                                                                    {{--
+                                                                    <svg aria-label="Add New" class="me-1" width="20"
+                                                                        height="21" viewBox="0 0 20 21">
+                                                                        <use xlink:href="/css/common-icons.svg#add-new"></use>
+                                                                    </svg>
+                                                                
+                                                                    Add New  --}}
+                                                                </small>
+                                                            </a>
+                                                            <a @click="addDocument = true" href="#" class="fw-bold">
+                                                                <small>
+                                                                    <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
+                                                                            fill="#0A1E46" />
+                                                                    </svg>
+                                                                    Upload Supporting Documents
+                                                                </small>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        {{-- updated by maarooshaa to add multiselectdropdown --}}
+                                                            {!! $setupValues['certifications']['rendered'] !!}
+                                                        {{--ended updated--}}
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <input class="form-check-input" type="checkbox" value="display-provider"
+                                                            id="display-provider">
+                                                        <label class="form-check-label" for="display-provider">
+                                                            Display Provider as Certified
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <label class="form-label" for="experience">
+                                                            Experience
+                                                        </label>
+                                                        <a @click="addDocument = true" href="#" class="fw-bold">
+                                                            <small>
+                                                                <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
+                                                                        fill="#0A1E46" />
+                                                                </svg>
+                                                                Upload Supporting Documents
+                                                            </small>
+                                                        </a>
+                                                    </div>
+                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                        name="experienceColumn" id="experience" wire:model.defer="userdetail.user_experience"></textarea>
+                                                </div>
+                                                <div class="col-lg-6 ps-lg-5">
+                                                    <label class="form-label" for="notes_column">
+                                                        Notes
+                                                    </label>
+                                                    <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
+                                                        id="notes_column" wire:model.defer="userdetail.note"></textarea>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="preferred-language-column">
+                                                        Preferred Language
+                                                    </label>
+                                                    {!! $setupValues['languages']['rendered'] !!}
+                                                </div>
+                                                <div class="col-lg-6 ps-lg-5">
+                                                    <label class="form-label" for="set-time-zone-column">
+                                                        Set Time Zone
+                                                    </label>
+                                                    {!! $setupValues['timezones']['rendered'] !!}
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="preferred-colleagues-column">
+                                                        Preferred Colleagues
+                                                    </label>
+                                                    {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
+                                                    <select name="favored_users" id="favored_users" class=" select2 form-select " wire:model.defer="userdetail.favored_users" tabindex="6"multiple  aria-label="Select favored users">
+                                                        <option >Select an option</option>
+                                                        @foreach($providers as $provider)
+                                                        <option value="{{$provider->id}}" >{{$provider->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 ps-lg-5">
+                                                    <label class="form-label" for="disfavored-colleagues-column">
+                                                        Disfavored Colleagues
+                                                    </label>
+                                                    <select name="unfavored_users" id="unfavored_users" class=" select2 form-select " wire:model.defer="userdetail.unfavored_users" tabindex="7" multiple  aria-label="Select disfavored users">
+                                                        <option>Select an option</option>
+                                                        @foreach($providers as $provider)
+                                                        <option value="{{$provider->id}}" >{{$provider->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="provider-introduction">
+                                                        Provider Introduction
+                                                    </label>
+                                                    <textarea class="form-control" rows="3" cols="3" placeholder=""
+                                                        name="provider- introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
+                                                </div>
+                                                <div class="col-lg-6 ps-lg-5">
+                                                    <label class="form-label" for="provider-introduction-media">
+                                                        Provider Introduction Media
+                                                    </label>
+                                                    <input type="file" id="provider-introduction-media" class="form-control" wire:model.defer="media_file"
+                                                        name="provider_introduction_media" placeholder="Add Media Document" />
+                                                    @error('media_file')<span class="d-inline-block invalid-feedback mt-2">{{$message}}</span>@enderror 
+                                                
+                                                        {{-- displays existing document name --}}
+                                                        @if($userdetail['user_introduction_file']!=null)
+                                                            <p class="mt-2"> <b>Uploaded Document </b><br>
+                                                            <a href="{{$userdetail['user_introduction_file']}}" target="_blank" aria-label="file"  >
+                                                                        {{basename($userdetail['user_introduction_file'])}}
+                                                                    </a> 
+                                                            </p>
+                                                        @endif
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="payment-settings">
+                                                        Payment Settings
+                                                    </label>
+                                                    <select class="select2 form-select" id="payment_settings"  wire:model.defer="userdetail.payment_settings">
+                                                        <option >Select your option </option>
+
+                                                        <option value="require_invoices">Require Invoices (Contractors)</option>
+                                                        <option value="allow_invoices">Allow Invoices </option>
+                                                        <option value="no_invoices">No Invoices (Employee)</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 ps-lg-5">
+                                                    <label class="form-label" for="default-remittance-temp">
+                                                        Select Default Remittance Template <small>(coming soon)</small>
+                                                    </label>
+                                                    <select class="select2 form-select" disabled id="default-remittance-temp">
+                                                        <option value="Al">
+                                                            Select Default Remittance Template
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 mb-4 pe-lg-5">
+                                                    <label class="form-label" for="tags">
+                                                        Tags
+                                                    </label>
+                                                    <select data-placeholder="tags" multiple class="form-select  select2 form-select select2-hidden-accessible" id="tags">
+                                                        <option selected>Customer</option>
+                                                        <option selected>Companies</option>
+                                                        <option selected>Teams</option>
+                                                    </select>
+                                                </div>
+                                                {{-- Input Fields End --}}
+                                            </div>
+                                        </div>
+                                        {{-- Action Buttons - Start --}}
+                                        <div class="col-12 form-actions">
+                                            <button type="button" class="btn btn-outline-dark rounded"
+                                                wire:click.prevent="showList">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn-primary rounded"  wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                Save & Exit
+                                            </button>
+                                            <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(0)"
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('schedule')">
+                                                Next
                                             </button>
                                         </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="email">
-                                                Email
-                                                <span class="mandatory" aria-hidden="true">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <input type="text" id="email" class="form-control" name="email"
-                                                placeholder="Enter Email" required aria-required="true" wire:model.defer="user.email"/>
-                                                @error('user.email')
-												<span class="d-inline-block invalid-feedback mt-2">
-													{{ $message }}
-												</span>
-												@enderror    
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="phone">Phone Number</label>
-                                            <input type="text" id="phone" class="form-control" name="phone"
-                                                placeholder="Enter Phone Number" wire:model.defer="userdetail.phone"/>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="country">
-                                                Country
-                                            </label>
-                                            {!! $setupValues['countries']['rendered'] !!}
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="state">State / Province</label>
-                                                <input type="text" id="state" class="form-control"
-                                                    name="state" placeholder="Enter State Name"
-                                                    required aria-required="true" wire:model.defer="userdetail.state"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="city">City</label>
-                                                <input type="text" id="city" class="form-control"
-                                                    name="city" placeholder="Enter City Name"
-                                                    required aria-required="true" wire:model.defer="userdetail.city"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="zip-code">
-                                                Zip Code
-                                            </label>
-                                            <input type="text" id="zip-code" class="form-control" name="zipCode"
-                                                placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="address-line-1">
-                                                Address Line 1
-                                            </label>
-                                            <input type="text" id="address-line-1" class="form-control"
-                                                name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="address-line-2">
-                                                Address Line 2
-                                            </label>
-                                            <input type="text" id="address-line-2" class="form-control"
-                                                name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="start-date-column">
-                                                Start Date
-                                            </label>
-                                            <div class="d-flex align-items-center w-100">
-                                                <div class="position-relative flex-grow-1">
-                                                    <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date" aria-label=""
-                                                        aria-describedby="" id="start-date-column">
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Date" class="icon-date" width="20" height="21"
-                                                        viewBox="0 0 20 21">
-                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="end-date">
-                                                End Date
-                                            </label>
-                                            <div class="d-flex align-items-center w-100">
-                                                <div class="position-relative flex-grow-1">
-                                                    <input type="text" class="form-control js-single-date"
-                                                        placeholder="Select Date" aria-label="End Date"
-                                                        aria-describedby="" id="end-date-">
-                                                    {{-- Updated by Shanila to Add svg icon--}}
-                                                    <svg aria-label="Date" class="icon-date" width="20" height="21"
-                                                        viewBox="0 0 20 21">
-                                                        <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <label class="form-label" for="education">
-                                                    Education
-                                                </label>
-                                                <a @click="addDocument = true" href="#" class="fw-bold">
-                                                    <small>
-                                                        <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
-                                                                fill="#0A1E46" />
-                                                        </svg>
-                                                        Upload Supporting Documents
-                                                    </small>
-                                                </a>
-                                            </div>
-                                            <input type="text" id="education" class="form-control"
-                                                name="education-column" placeholder="Enter Education" wire:model.defer="userdetail.education" />
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <label class="form-label mb-lg-0" for="certification">
-                                                    Certification(s)
-                                                </label>
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <a @click="addNew = true" href="#" class="fw-bold">
-                                                        <small>
-                                                            {{--
-                                                            <svg aria-label="Add New" class="me-1" width="20"
-                                                                height="21" viewBox="0 0 20 21">
-                                                                <use xlink:href="/css/common-icons.svg#add-new"></use>
-                                                            </svg>
-                                                        
-                                                            Add New  --}}
-                                                        </small>
-                                                    </a>
-                                                    <a @click="addDocument = true" href="#" class="fw-bold">
-                                                        <small>
-                                                            <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
-                                                                    fill="#0A1E46" />
-                                                            </svg>
-                                                            Upload Supporting Documents
-                                                        </small>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                {{-- updated by maarooshaa to add multiselectdropdown --}}
-                                                    {!! $setupValues['certifications']['rendered'] !!}
-                                                {{--ended updated--}}
-                                            </div>
-                                            <div class="mt-2">
-                                                <input class="form-check-input" type="checkbox" value="display-provider"
-                                                    id="display-provider">
-                                                <label class="form-check-label" for="display-provider">
-                                                    Display Provider as Certified
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <label class="form-label" for="experience">
-                                                    Experience
-                                                </label>
-                                                <a @click="addDocument = true" href="#" class="fw-bold">
-                                                    <small>
-                                                        <svg aria-label="Upload Supporting Documents" class="me-1" width="21" height="16" viewBox="0 0 21 16"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M9.54545 16H5.25C3.80227 16 2.5655 15.475 1.53968 14.425C0.513227 13.375 0 12.0917 0 10.575C0 9.275 0.373864 8.11667 1.12159 7.1C1.86932 6.08333 2.84773 5.43333 4.05682 5.15C4.45455 3.61667 5.25 2.375 6.44318 1.425C7.63636 0.475 8.98864 0 10.5 0C12.3614 0 13.9402 0.679 15.2365 2.037C16.5334 3.39567 17.1818 5.05 17.1818 7C18.2795 7.13333 19.1905 7.629 19.9147 8.487C20.6382 9.34567 21 10.35 21 11.5C21 12.75 20.5825 13.8127 19.7476 14.688C18.9121 15.5627 17.8977 16 16.7045 16H11.4545V8.85L12.9818 10.4L14.3182 9L10.5 5L6.68182 9L8.01818 10.4L9.54545 8.85V16Z"
-                                                                fill="#0A1E46" />
-                                                        </svg>
-                                                        Upload Supporting Documents
-                                                    </small>
-                                                </a>
-                                            </div>
-                                            <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                name="experienceColumn" id="experience" wire:model.defer="userdetail.user_experience"></textarea>
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="notes_column">
-                                                Notes
-                                            </label>
-                                            <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                                id="notes_column" wire:model.defer="userdetail.note"></textarea>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="preferred-language-column">
-                                                Preferred Language
-                                            </label>
-                                            {!! $setupValues['languages']['rendered'] !!}
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="set-time-zone-column">
-                                                Set Time Zone
-                                            </label>
-                                            {!! $setupValues['timezones']['rendered'] !!}
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="preferred-colleagues-column">
-                                                Preferred Colleagues
-                                            </label>
-                                            {{-- {!! $setupValues['favored_users']['rendered'] !!} --}}
-                                            <select name="favored_users" id="favored_users" class=" select2 form-select " wire:model.defer="userdetail.favored_users" tabindex="6"multiple  aria-label="Select favored users">
-                                                <option >Select an option</option>
-                                                @foreach($providers as $provider)
-                                                 <option value="{{$provider->id}}" >{{$provider->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="disfavored-colleagues-column">
-                                                Disfavored Colleagues
-                                            </label>
-                                              <select name="unfavored_users" id="unfavored_users" class=" select2 form-select " wire:model.defer="userdetail.unfavored_users" tabindex="7" multiple  aria-label="Select disfavored users">
-                                                <option>Select an option</option>
-                                                @foreach($providers as $provider)
-                                                 <option value="{{$provider->id}}" >{{$provider->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="provider-introduction">
-                                                Provider Introduction
-                                            </label>
-                                            <textarea class="form-control" rows="3" cols="3" placeholder=""
-                                                name="provider- introduction" id="provider-introduction" wire:model.defer="userdetail.user_introduction"></textarea>
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="provider-introduction-media">
-                                                Provider Introduction Media
-                                            </label>
-                                            <input type="file" id="provider-introduction-media" class="form-control"
-                                                name="companeyAdmins" placeholder="Add Admins" />
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="payment-settings">
-                                                Payment Settings
-                                            </label>
-                                            <select class="select2 form-select" id="payment-settings">
-                                                <option value="Al">
-                                                    Select Payment Settings
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 ps-lg-5">
-                                            <label class="form-label" for="default-remittance-temp">
-                                                Select Default Remittance Template
-                                            </label>
-                                            <select class="select2 form-select" id="default-remittance-temp">
-                                                <option value="Al">
-                                                    Select Default Remittance Template
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="tags">
-                                                Tags
-                                            </label>
-                                            <select data-placeholder="tags" multiple class="form-select  select2 form-select select2-hidden-accessible" id="tags">
-                                                <option selected>Customer</option>
-                                                <option selected>Companies</option>
-                                                <option selected>Teams</option>
-                                            </select>
-                                        </div>
-                                        {{-- Input Fields End --}}
-                                    </div>
-                                </div>
-                                {{-- Action Buttons - Start --}}
-                                <div class="col-12 form-actions">
-                                    <button type="button" class="btn btn-outline-dark rounded"
-                                        wire:click.prevent="showList">
-                                        Cancel
-                                    </button>
-                                    <button type="submit" class="btn btn-primary rounded"  wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
-                                        Save & Exit
-                                    </button>
-                                    <button type="button" class="btn btn-primary rounded"
-                                    x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
-                                        Next
-                                    </button>
-                                </div>
-                            </form>
-                            {{-- ended update by shanila --}}
+                                    </form>
+                                    {{-- ended update by shanila --}}
 
-                        </div>
+                                </div>
+                           
                         {{-- END: Profile --}}
+                         {{-- BEGIN: Schedule --}}
+                        @elseif($step==2)
+                        <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
+                            id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
+                            x-show="tab === 'schedule'">
+                            <section id="multiple-column-form">
+                              @livewire('app.common.setup.business-hours-setup', ['model_id' => $user->id, 'model_type' => '3'])
+                              <div
+                                                    class="col-12 form-actions">
+                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                        wire:click.prevent="setStep(1,'profileActive','profile')">
+                                                        Back
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                        Save & Exit
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                        wire:click.prevent="saveSchedule(0)"
+                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
+                                                        Next
+                                                    </button>
+                                </div>
+                            </section>
+                        </div>
+
+                        {{-- End: Schedule --}}
+                        @elseif($step==3)
 
                         {{-- BEGIN: Provider Service --}}
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'provider-service' }"
@@ -2461,6 +2557,7 @@
                             </section>
                         </div>
                         {{-- END: Provider Service --}}
+                        @elseif($step==4)
 
                         {{-- BEGIN: Upload Document --}}
 
@@ -2623,6 +2720,7 @@
                                 </div>
                             </section>
                         </div>
+                        @endif
 
                         {{-- END: Upload Document --}}
                     </div>

@@ -3,7 +3,7 @@
         <div class="col-lg-4 mb-4 mb-lg-0">
           <div class="row">
           <div class="col-lg-4 mb-4 mb-lg-0">
-            <img src="/tenant/images/portrait/small/image.png" width="130" height="130" class="rounded-circle" alt="Company Image">
+            <img src="/tenant-resources/images/portrait/small/image.png" width="130" height="130" class="rounded-circle" alt="Company Image">
           </div>
           <div class="col-lg-8 align-self-center">
             <div class="mb-2">

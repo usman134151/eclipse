@@ -4,25 +4,32 @@ namespace App\Http\Livewire\App\Common\Forms;
 
 use Livewire\Component;
 use App\Helpers\SetupHelper;
+use App\Models\Tenant\Schedule;
 use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tenant\SystemRole;
+use App\Services\App\UploadFileService;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Livewire\WithFileUploads;
 
 class ProviderForm extends Component
 {
-    public $user,$isAdd=true;
+    use WithFileUploads;
+    public $user,$isAdd=true,$image=null, $teamNames=[],$label="Add";
     public $ethnicity;
     public $timezone;
     public $gender;
     public $languages;
-
+    public $documentActive, $serviceActive, $scheduleActive, $profileActive;
+    public $schedule;
 	public $component = 'profile';
-    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','state','phone','education','note','user_introduction','user_experience','certificate'];
+    public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','payment_settings',
+    'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null];
+    
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
         'ethnicities' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 3, 'setup_value_label', false,'userdetail.ethnicity_id','','ethnicity_id',1]],
@@ -30,14 +37,9 @@ class ProviderForm extends Component
         'timezones' => ['parameters' => ['SetupValue', 'id','setup_value_label', 'setup_id', 4, 'setup_value_label', false,'userdetail.timezone_id','','timezone_id',3]],
         'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]],
         'certifications' => ['parameters' => ['SetupValue', 'id', 'setup_value_label', 'setup_id', 8, 'setup_value_label', true, 'userdetail.certification', '', 'certification', 5]],
-        // 'favored_users' => ['parameters' => ['User', 'id', 'name', '', '1 OR exists (select * from `roles` inner join `role_user` on `roles`.`id` = `role_user`.`role_id` where `users`.`id` = `role_user`.`user_id` and `role_id` = 2', 'name', true, 'userdetail.favored_users', '', 'favored_users', 6]]
     ];
 
-        // $providers = User::query()
-		// ->where('status',1)
-		// ->whereHas('roles', function ($query) {
-		// 	$query->where('role_id',2);})
-        // ->get();
+      
     public $inpersons=[[
         'hours'=>'',
         'charges'=>'',
@@ -134,7 +136,7 @@ class ProviderForm extends Component
         'updateSelectedTeams'
     ];
     public $providers;
-    public $selectedTeams =[];
+    public $selectedTeams =[], $media_file=null;
 	public function render()
 	{
         $roles = SystemRole::get();
@@ -238,6 +240,8 @@ class ProviderForm extends Component
                 'nullable'],
             'userdetail.country' => [
                 'nullable'],
+            'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'media_file' => 'nullable|file|mimes:png,jpg,jpeg,gif,bmp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,rtf,zip,rar,tar.gz,tgz,tar.bz2,tbz2,7z,mp3,wav,aac,flac,wma,mp4,avi,mov,wmv,mkv,csv',
 
 		];
 	}
@@ -257,12 +261,23 @@ class ProviderForm extends Component
         $this->userdetail['certification'] =implode(', ', $this->userdetail['certification']);
         $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
-
+        $fileService = new UploadFileService();
         
+        if($this->image!=null){
+            $this->userdetail['profile_pic']= $fileService->saveFile('profile_pic',$this->image, $this->userdetail['profile_pic']);
+        }
+
+        if ($this->media_file != null) {
+            $this->userdetail['user_introduction_file'] = $fileService->saveFile('files', $this->media_file, $this->userdetail['user_introduction_file']);
+        }
         $userService = new UserService;
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
         // put null/empty check for teams 
         $userService->addProviderTeams($this->selectedTeams,$this->user);
+		$this->step = 2;
+        $this->dispatchBrowserEvent('refreshSelects');
+
+
 		if($redirect){
 			$this->showList("Provider has been saved successfully");
 			$this->user = new User;
@@ -288,11 +303,72 @@ class ProviderForm extends Component
         });
 
     }
+
+    public function getProviderSchedule()
+    {
+        //reinit schedule
+        $providerSchedule = Schedule::where('model_id', $this->company->id)->where('model_type', 3)->get()->first();
+        if (!is_null($providerSchedule)) {
+            $this->schedule = $providerSchedule;
+        } else {
+            $this->schedule = new Schedule;
+            $this->schedule->model_type = 2;
+            $this->schedule->working_days = json_encode([]);
+            $this->schedule->timezone_id = 0;
+
+            $this->schedule->model_id = $this->company->id;
+            $this->schedule->save();
+        }
+
+
+        $this->scheduleActive = "active";
+
+        $this->switch('schedule');
+
+        $this->emit('getRecord', $this->schedule->id, true);
+    }
+
+    public function saveSchedule($redirect = 1)
+    {
+        $this->emit('saveSchedule');
+        if ($redirect) {
+            $this->showList("Company has been saved successfully");
+            $this->user = new User;
+            $this->schedule = new Schedule;
+        } else {
+            $this->serviceActive = "active";
+            $this->scheduleActive = "";
+            $this->switch('provider-service');
+            $this->step = 3;
+        }
+    }
+    public function setStep($step, $tabName, $component)
+    {
+        $tabs = ['profileActive', 'serviceActive', 'scheduleActive', 'documentActive'];
+        foreach ($tabs as $key)
+        $this->$key = '';
+        $this->step = $step;
+        $this->$tabName = "active";
+        $this->switch($component);
+        $this->dispatchBrowserEvent('refreshSelects');
+    }
+
+    public function stepIncremented()
+    {
+
+        $this->step = $this->step + 1;
+        if ($this->step == 3) {
+            $this->serviceActive = 'active';
+            $this->documentActive = '';
+        }
+    }
+
      public function updateVal($attrName, $val)
      {
         if($attrName=='user_dob'){
             $this->user['user_dob']=$val;
         }
+       
         else
          $this->userdetail[$attrName] = $val;
 
@@ -446,8 +522,10 @@ class ProviderForm extends Component
 
     //modal functions
 
-    public function updateSelectedTeams($selectedTeams)
+    public function updateSelectedTeams($selectedTeams,$teamNames)
     {
         $this->selectedTeams = $selectedTeams;
+		$this->teamNames = $teamNames;
+
     }
 }

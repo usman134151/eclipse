@@ -54,7 +54,7 @@
     <div class="col-lg-4 mb-4 mb-lg-0">
       <div class="row">
         <div class="col-lg-4 mb-4 mb-lg-0">
-          <img src="/tenant/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Provider Image">
+          <img src="/tenant-resources/images/portrait/small/avatar-s-9.jpg" class="img-fluid rounded-circle" alt="Provider Image">
         </div>
         <div class="col-lg-8 align-self-center">
           <div class="mb-2">

@@ -212,7 +212,7 @@
                                                 <div class="row mb-4">
                                                     <div class="col-md-4">
                                                         <div class="d-inline-block position-relative">
-                                                            <img src="/tenant/images/portrait/small/avatar-s-9.jpg"
+                                                            <img style="width:300px;height:200px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                 class="img-fluid rounded-circle"
                                                                 alt="Customer Profile Image" />
                                                         </div>
@@ -850,7 +850,7 @@
                                                                                     <td class="align-middle">
                                                                                         <div class="row g-2">
                                                                                             <div class="col-md-2">
-                                                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                                                <img style="width:54px;height:54px;top:1rem" src="{{$user['userdetail']['profile_pic'] !=null ? $user['userdetail']['profile_pic'] : '/tenant-resources/images/portrait/small/image4.png'}}"
                                                                                                     class="img-fluid rounded-circle"
                                                                                                     alt="Provider Profile Image">
                                                                                             </div>
@@ -971,7 +971,7 @@
                                 </div>
                                     <div>
                                         <x-advancefilters/>
-                                        <img  class="w-100" alt="Schedule Calendar" src="/tenant/images/portrait/small/image-placeholder-calendar.png" />
+                                        <img  class="w-100" alt="Schedule Calendar" src="/tenant-resources/images/portrait/small/image-placeholder-calendar.png" />
                                     </div>
                                 </div>
                                 <!-- Schedule tab end -->
@@ -1092,7 +1092,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1190,7 +1190,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1288,7 +1288,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1386,7 +1386,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1484,7 +1484,7 @@
                                                         <td>
                                                             <div class="row g-2">
                                                                 <div class="col-md-2">
-                                                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                         class="img-fluid rounded-circle"
                                                                         alt="Customer Image">
                                                                 </div>
@@ -1662,126 +1662,12 @@
                                 <div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel"
                                     aria-labelledby="my-drive-tab" tabindex="0">
                                     <div class="row mb-3">
-                                        <h3>My Drive <small>(coming soon)</small></h3>
+                                        <h3>My Drive</h3>
                                         
 
                                     </div>
-                                    <div class="inner-section-segment-spacing">
-                                    <div class="col-md-12 d-lg-flex col-12 gap-4">
-                                        <div class="col-md-3 col-12">
-                                            <div>
-                                                <label class="form-label" for="keyword-search">
-                                                    Search
-                                                </label>
-                                                <input type="text" id="keyword-search" class="form-control"
-                                                    placeholder="Keyword Search" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-12">
-                                            <label class="form-label" for="payment-status">
-                                                Document Type
-                                            </label>
-                                            <select class="select2 form-select" id="payment-status">
-                                                <option>Select Document Type</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3  col-12">
-                                            <label class="form-label" for="set_set_date">
-                                                Date Range
-                                            </label>
-                                            <div class="position-relative">
-                                                <input type="" name="" class="form-control js-single-date"
-                                                    placeholder="Jan 1, 2022 - Oct 1, 2022" id="">
-                                                {{-- Updated by Shanila to Add svg icon--}}
-                                                <svg aria-label="Date" class="icon-date" width="20" height="20" viewBox="0 0 20 20">
-                                                    <use xlink:href="/css/common-icons.svg#datefield-icon">
-                                                    </use>
-                                                </svg>
-                                                {{-- End of update by Shanila --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="row inner-section-segment-spacing">
-                                        <div class="col-md-3">
-                                            <label class="form-label" for="search">
-                                                Upload Document
-                                            </label>
-                                            <button @click="addDocument = true"
-                                                class="btn btn-secondary btn-outline-secondary" type="button">Choose
-                                                File</button>
-                                        </div>
-                                    </div>
-                                    <div class="row inner-section-segment-spacing">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle btn-outline-primary"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                                                    </svg>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Another action
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Something else here
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="d-lg-inline-flex">
-                                            <div class="mx-2">
-                                                <div class="position-relative">
-													<img src="/tenant/images/img-placeholder-document.jpg"/>
-													<div class="position-absolute top-0 end-0">
-													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-														</svg>
-													  </a>
-													</div>
-												  </div>
-                                                <p>Certification</p>
-                                            </div>
-                                            <div class="mx-2">
-                                                <div class="position-relative">
-													<img src="/tenant/images/img-placeholder-document.jpg"/>
-													<div class="position-absolute top-0 end-0">
-													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-														</svg>
-													  </a>
-													</div>
-												  </div>
-                                                <p>Certification</p>
-                                            </div>
-                                            <div class="mx-2">
-                                                <div class="position-relative">
-													<img src="/tenant/images/img-placeholder-document.jpg"/>
-													<div class="position-absolute top-0 end-0">
-													  <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-0">
-														<svg aria-label="Delete" class="delete-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-														  xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#delete-icon"></use>
-														</svg>
-													  </a>
-													</div>
-												  </div>
-                                                <p>Certification</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @livewire('app.common.forms.drive-uploads',['showForm'=>false,'showSearch'=>true,'record_id'=>$userid,'record_type'=>3])
+                                  
                                 </div>
 
                                 <!-- drive Tab End-->
@@ -1896,7 +1782,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -1969,7 +1855,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2042,7 +1928,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2115,7 +2001,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2188,7 +2074,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2261,7 +2147,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2334,7 +2220,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2407,7 +2293,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2480,7 +2366,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2553,7 +2439,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -2690,174 +2576,8 @@
                                 <!-- Invoices Remittances Tab End-->
                                 <div class="tab-pane fade" id="notes-tab-pane" role="tabpanel"
                                     aria-labelledby="notes-tab" tabindex="0">
-                                    <div class="row">
-                                        <h3>Notes <small>(coming soon)</small></h3>
-                                        <div class="col-md-6 col-12 mb-4">
-                                            <label class="form-label" for="notes-column">
-                                                Add Notes
-                                            </label>
-                                            <textarea class="form-control" rows="3" placeholder="" name="notesColumn"
-                                                id="notes-column"></textarea>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-md-6 col-12 d-flex justify-content-end">
-                                                <button class="btn btn-primary rounded ">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-8">
-                                            <div class="d-inline-flex align-items-center">
-                                                <div class="bg-warning rounded px-2 py-3">
-                                                    <p class="mb-0">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                        eiusmod
-                                                    </p>
-                                                </div>
-                                                <div class="d-flex actions mx-2">
-                                                    <a href="#" title="Edit Customer" aria-label="Edit"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Edit Customer" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#pencil">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                    <a href="#" title="Inactive" aria-label="Inactive"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-                                                       {{-- Updated by Shanila to Add svg icon--}}
-                                                       <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                                                        <use
-                                                            xlink:href="/css/common-icons.svg#recycle-bin">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-8">
-                                            <div class="d-inline-flex align-items-center">
-                                                <div class="bg-warning rounded px-2 py-3">
-                                                    <p class="mb-0">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                        eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                        sed do eiusmod
-                                                        <span class="text-primary">
-                                                            @Admin @Comapny
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                <div class="d-flex actions mx-2">
-                                                    <a href="#" title="Edit Customer" aria-label="Edit"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Edit Customer" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#pencil">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                    <a href="#" title="Inactive" aria-label="Inactive"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-                                                       {{-- Updated by Shanila to Add svg icon--}}
-                                                       <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                                                        <use
-                                                            xlink:href="/css/common-icons.svg#recycle-bin">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-8">
-                                            <div class="d-inline-flex align-items-center">
-                                                <div class="bg-warning rounded px-2 py-3">
-                                                    <p class="mb-0">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                        eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                        sed do eiusmod Lorem ipsum dolor sit amet, consectetur
-                                                        adipiscing elit, sed do eiusmod
-                                                        <span class="text-primary">
-                                                            @Thomas_charles
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                <div class="d-flex actions mx-2">
-                                                    <a href="#" title="Edit Customer" aria-label="Edit"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Edit Customer" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#pencil">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                    <a href="#" title="Inactive" aria-label="Inactive"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-                                                       {{-- Updated by Shanila to Add svg icon--}}
-                                                       <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                                                        <use
-                                                            xlink:href="/css/common-icons.svg#recycle-bin">
-                                                        </use>
-                                                    </svg>
-                                                    {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-8">
-                                            <div class="d-inline-flex align-items-center">
-                                                <div class="bg-warning rounded px-2 py-3">
-                                                    <p class="mb-0">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                        eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                        sed do eiusmod Lorem ipsum dolor sit amet, consectetur
-                                                        adipiscing elit, sed do eiusmod
-                                                        <span class="text-primary">
-                                                            @Thomas_charles
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                                <div class="d-flex actions mx-2">
-                                                    <a href="#" title="Edit Customer" aria-label="Edit"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Edit Customer" width="20" height="20"
-                                                            viewBox="0 0 20 20">
-                                                            <use xlink:href="/css/common-icons.svg#pencil">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                    <a href="#" title="Inactive" aria-label="Inactive"
-                                                        class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-                                                        {{-- Updated by Shanila to Add svg icon--}}
-                                                        <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-                                                            <use
-                                                                xlink:href="/css/common-icons.svg#recycle-bin">
-                                                            </use>
-                                                        </svg>
-                                                        {{-- End of update by Shanila --}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @livewire('app.common.forms.notes', ['showForm'=>true,'record_id' => $userid,'record_type'=>3])
+                                    
                                 </div>
                                 <!-- Notes Tab End-->
                                 <div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel"
@@ -3323,7 +3043,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3417,7 +3137,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3511,7 +3231,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3604,7 +3324,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3697,7 +3417,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3790,7 +3510,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3883,7 +3603,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -3976,7 +3696,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -4068,7 +3788,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -4161,7 +3881,7 @@
                                                     <td class="align-middle">
                                                         <div class="row g-2">
                                                             <div class="col-md-2">
-                                                                <img src="/tenant/images/portrait/small/avatar-s-20.jpg"
+                                                                <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg"
                                                                     class="img-fluid rounded-circle"
                                                                     alt="Team Profile Image">
                                                             </div>
@@ -4387,7 +4107,7 @@
 										</div>
 										<hr>
 				                        <div>
-											<img src="/tenant/images/portrait/small/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Pending Payment image">
+											<img src="/tenant-resources/images/portrait/small/image-placeholder-assignment-graph.png" height="200" width="800" class="img-fluid" alt="Pending Payment image">
 										</div>
 									  </div>
 									<div class="mb-4">
@@ -4410,7 +4130,7 @@
 										</div>
 										<hr>
 				                        <div>
-											<img src="/tenant/images/portrait/small/pending-payment.png" class="img-fluid" alt="Pending Payment image">
+											<img src="/tenant-resources/images/portrait/small/pending-payment.png" class="img-fluid" alt="Pending Payment image">
 										</div>
 									  </div>
                                 </div>

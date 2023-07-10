@@ -17,7 +17,7 @@
                         <td>
                             <div class="row g-2">
                                 <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Dori Griffiths, Provider Image">
+                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Dori Griffiths, Provider Image">
                                 </div>
                                 <div class="col-md-10">
                                     <p class="fw-semibold">
@@ -45,7 +45,7 @@
                         <td>
                             <div class="row g-2">
                                 <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Dori Griffiths, Provider Image">
+                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Dori Griffiths, Provider Image">
                                 </div>
                                 <div class="col-md-10">
                                     <p class="fw-semibold">
@@ -73,7 +73,7 @@
                         <td>
                             <div class="row g-2">
                                 <div class="col-md-2">
-                                    <img src="/tenant/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Dori Griffiths, Provider Image">
+                                    <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Dori Griffiths, Provider Image">
                                 </div>
                                 <div class="col-md-10">
                                     <p class="fw-semibold">

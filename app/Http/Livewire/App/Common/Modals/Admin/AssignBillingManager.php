@@ -21,7 +21,7 @@ class AssignBillingManager extends Component
             ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
             ->leftJoin('companies', 'companies.id', '=', 'users.company_name')
             ->where('companies.id', '=', $company_id)
-            ->select('users.id', 'users.name', 'phone','email')
+            ->select('users.id', 'users.name', 'phone','email','profile_pic')
             ->get();
     }
 

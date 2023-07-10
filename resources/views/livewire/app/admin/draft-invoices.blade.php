@@ -165,7 +165,7 @@
 											<td class="align-middle">
 												<div class="d-flex gap-2 align-items-center">
 													<div>
-														<img width="50" height="50" src="/tenant/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
+														<img width="50" height="50" src="/tenant-resources/images/portrait/small/image.png" class="rounded-circle" alt="Company Profile Image">
 													</div>
 													<div class="pt-2">
 														<div class="font-family-secondary leading-none">

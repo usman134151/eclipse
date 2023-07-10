@@ -52,7 +52,12 @@
         </div>
         <div class="col-lg-6 mb-4">
           <label class="form-label" for="country">Country</label>
-          <select wire:model="address.country"  class="form-control" name="country-column" id="country"><option value="">Select Country</option><option value="USA" selected>USA</option></select>
+          
+          <select wire:model="address.country"  class="form-control" name="country-column" id="country"><option value="">Select Country</option>
+           @foreach($countries as $country)
+             <option value="{{$country['name']}}">{{$country['name']}}</option>
+           @endforeach
+        </select>
         </div>
         <div class="col-lg-6 mb-4">
           <label class="form-label" for="zip-code">Zip Code</label>
