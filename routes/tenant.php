@@ -67,8 +67,8 @@ Route::group([
 
 			Route::view('/admin/customer', 'tenant/common/customer', ["showForm"=>false, 'showProfile' => false, 'status'=>1]);
 			Route::view('/admin/customer/create-customer', 'tenant/common/customer', ["showForm"=>true, 'showProfile' => false, "status"=>1]);
-			Route::view('/admin/customer/edit-customer/{customerID}', 'tenant/common/customer', ["showForm" => true,'showProfile' => false, 'status'=>1]);
-			Route::view('/admin/customer/profile/{customerID}', 'tenant/common/customer', ["showForm" => false,'showProfile'=>true, 'status' => 1]);
+			Route::view('/admin/customer/edit-customer/{customerID}', 'tenant/common/customer', ["showForm" => true,'showProfile' => false, 'status'=>1])->name('customer-edit');
+			Route::view('/admin/customer/profile/{customerID}', 'tenant/common/customer', ["showForm" => false,'showProfile'=>true, 'status' => 1])->name('customer-profile');
 
 			Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
 			Route::view('/admin/company/create-company', 'tenant/admin/company', ["showForm"=>true]);
