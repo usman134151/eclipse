@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Company;
+use App\Models\Tenant\Department as TenantDepartment;
 use Livewire\Component;
 
 class Department extends Component
@@ -69,6 +70,12 @@ class Department extends Component
 			$this->companyId= request()->companyID;
 		}
 		$this->company = Company::find($this->companyId);
+
+
+		if (request()->departmentID != null) {
+			$this->department = TenantDepartment::find(request()->departmentID);
+			$this->showProfile($this->department);
+		}
 
 	}
 

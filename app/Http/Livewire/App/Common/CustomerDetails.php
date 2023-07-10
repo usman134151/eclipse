@@ -18,10 +18,15 @@ class CustomerDetails extends Component
 		return view('livewire.app.common.customer-details');
 	}
 
-	public function mount()
-	{}
+	public function mount($user =null)
+	{
+		if($user){
+			$this->showdetails($user);
+		}
+	}
 
 	public function showDetails($user){
+
 		$this->user=$user;	
 		$this->userid = $user['id'];
 		$user1 = User::find($user['id']);
@@ -52,6 +57,8 @@ class CustomerDetails extends Component
 			$this->user['userdetail']['language']='N/A';
 		}	
 		$this->dispatchBrowserEvent('refreshSelects');
+
+
 		
 	}
 

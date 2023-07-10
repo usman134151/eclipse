@@ -291,12 +291,12 @@
                                                 <div class="col-lg-6 pe-lg-5 col-12">
                                                     <div class="mb-4">
                                                         <label class="form-label" for="company-manager">
-                                                            Company Admin(s)
+                                                            Company Admin(s) 
                                                         </label>
                                                         <select data-placeholder="" multiple
                                                             class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="admins" 
                                                             aria-label="Select Company Admin" wire:model.defer="admins">
-                                                            <option value=""></option>
+                                                            {{-- <option value=""></option> --}}
                                                             {{-- @if(count($companyUser)>0 ) --}}
                                                                 @foreach($companyUsers as $user)
                                                                     <option value='{{$user['id']}}' >{{$user['name']}}</option>

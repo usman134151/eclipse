@@ -124,8 +124,7 @@ class DepartmentForm extends Component
     }
 
 	public function setData(){
-		
-		$this->emit('setData', $this->department->id,$this->company_id);
+		$this->emit('setData', $this->department->id,$this->company_id,$this->selectedSupervisors,$this->defaultSupervisor);
 	}
 
     public function rules()
@@ -185,6 +184,11 @@ class DepartmentForm extends Component
 
 		} else {
 			$this->getCompanySchedule();
+			if ($this->department->get('company_phones') != null)
+				$this->department->company_phones = explode(', ', $this->department->company_phones);
+			$this->dispatchBrowserEvent('refreshSelects');
+
+
 		}
 
 
@@ -256,6 +260,11 @@ class DepartmentForm extends Component
 		$this->step = $step;
 		$this->$tabName = "active";
 		$this->switch($component);
+
+		// loading schedule on back button
+		if($this->step==2)
+			$this->getCompanySchedule();
+			
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
@@ -276,6 +285,9 @@ class DepartmentForm extends Component
 			$this->department->company_id = $val;
 			$company = Company::find($val);
 			$this->department->industry_id = $company->industry_id;
+			$this->selectedSupervisors=[]; $this->defaultSupervisor=[];
+			$this->supervisorNames=[];
+			
 			if (count($company->phones)) {
 				$this->companyPhones = [];
 				foreach ($company->phones as $phone) {
@@ -347,11 +359,13 @@ class DepartmentForm extends Component
 		$this->selectedSupervisors=[];
 		$this->supervisorNames = [];
 		foreach ($selectedSupervisors as $us) {
+			if($us){
 			$this->supervisorNames[] = User::where('id', $us)->with('userdetail')->first()->toArray();
 			$this->selectedSupervisors[]=[
 				'user_id'=>$us,
 				'is_supervisor'=>1,
 			];
+			}
 		}
 		if (count($this->supervisorNames) >= 4)
 			$this->sv_limit = 3;

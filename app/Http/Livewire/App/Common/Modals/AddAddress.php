@@ -34,7 +34,7 @@ class AddAddress extends Component
     }
     public function updateData(){
         $this->validate();
-        $this->emitUp('updateAddress', $this->address);
+        $this->emit('updateAddress', $this->address);
         $this->updateAddressData();
         $this->functionExecuted = true;
         $this->emit('modalDismissed');

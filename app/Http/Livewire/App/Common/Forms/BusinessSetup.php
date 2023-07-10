@@ -204,6 +204,10 @@ class BusinessSetup extends Component
             $this->configuration->measurement_providers = null;
             $this->configuration->rate_for_travel_time = null;
             $this->configuration->currency = null;
+
+            //false checkboxes that fall under this portion
+            $this->configuration->enable_staff_providers = false;
+            $this->configuration->enable_contract_providers =false;
         }
 
         if(!$this->configuration->customer_billing){  //remove data if checkbox false

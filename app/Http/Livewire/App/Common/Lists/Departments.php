@@ -190,13 +190,15 @@ final class Departments extends PowerGridComponent
     }
 	function showDepartmentProfile($departmentId, $departmentLabel)
 	{
-		// Emits an event to show the customer profile
+		// Emits an event to show the  profile
 
-		if(isset($this->companyLabel))
+		if(isset($this->companyLabel))		//open profile in panel
 		$this->emit('refreshDepartmentProfile', $departmentId, $departmentLabel);
 
-		else	//open panel for profile 
-			$this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($departmentId)); //on department page
+		else	//reroute to profile page 
+			return redirect(url('admin/department/profile/'.$departmentId));
+
+			// $this->emit('showDepartmentProfile', Department::with(['phones', 'addresses'])->find($departmentId)); //on department page
 
 	}
 

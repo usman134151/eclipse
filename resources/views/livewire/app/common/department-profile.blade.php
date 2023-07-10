@@ -167,7 +167,8 @@
 													<div class="row">
 														<div class="col-md-4">
 															<div class="d-inline-block position-relative">
-																<img src="/tenant-resources/images/portrait/small/image4.png" class="img-fluid rounded-circle" alt="Department Image"/>
+																<img  style="width:300px;height:200px;top:1rem" src="{{$department->department_logo !=null ? $department->department_logo : '/tenant-resources/images/portrait/small/image4.png'}}"
+                                                                     class="img-fluid rounded-circle" alt="Department Image"/>
 															</div>
 															<div style="margin-left: -1rem;" class="d-inline-block position-relative mt-3">
 																<svg width="156" height="32" viewBox="0 0 156 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +182,13 @@
 																</svg>
 																<div class="position-absolute bottom-0 p-0 d-flex justify-content-center align-items-center">
 																	<label class="text-white form-label-sm ps-2" for="">
-																		Sydney, Australia
+																		  @if (count($department->addresses) > 0)
+
+                                                                                        {{ $department->addresses->first()->city ?? '' }},
+                                                                                        {{ $department->addresses->first()->country ?? '' }}
+                                                                                @else
+                                                                                    N/A
+                                                                                @endif
 																	</label>
 																</div>
 															</div>
@@ -192,15 +199,20 @@
                                                                 <h3 class="font-family-tertiary fw-medium">
 																{{$department['name']}}
                                                                 </h3>
-                                                                <span>Information Technology</span>
+                                                                <span>{{$department->company->name}}</span>
                                                             </div>
 															<div class="row mb-4">
 																<div class="col-md-12">
 																	<div class="row mb-1">
 																		<div class="col-md-12">
 																			<p class="font-family-tertiary">
-																				(923) 023-9683
-																			</p>
+																			@foreach($department->phones as $phone)
+																					@if($phone->phone_number)
+																					{{$phone->phone_number}}
+																					@else
+																					N/A
+																					@endif
+																			@endforeach</p>
 																		</div>
 																	</div>
 																	<div class="row">
@@ -213,19 +225,24 @@
 																	<div class="row">
 																		<div class="col-md-12">
 																			<p class="font-family-tertiary">
-																				Mrs Smith 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
+ 																				@if (count($department->addresses) > 0)
+                                                                                     @foreach ($department->addresses as $address)
+                                                                                         <p>
+                                                                                        {{ $address->address_line1 ?? '' }}
+                                                                                        {{ $address->address_line2 ?? '' }}
+                                                                                        {{ $address->city ?? '' }}
+                                                                                        {{ $address->state ?? '' }}
+                                                                                        {{ $address->zip ?? '' }}
+                                                                                        {{ $address->country ?? '' }}
+                                                                                    </p>
+                                                                                     @endforeach
+                                                                                     @else
+                                                                                     <p>N/A</p>
+                                                                                @endif
 																			</p>
 																		</div>
 																	</div>
-																	<div class="row">
-																		<div class="col-md-12">
-																			<p class="text-sm">
-																				<a href="#" class="font-family-tertiary text-primary">
-																					Mrs 98 Shirley Street PIMPAMA QLD 4209 AUSTRALIA
-																				</a>
-																			</p>
-																		</div>
-																	</div>
+																	
 																</div>
 															</div>
 														</div>
@@ -238,12 +255,21 @@
 															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
-																		Company Admin:
+																		Department Supervisors:
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<a href="#" class="font-family-secondary">
-																		Thomas Charles , Harry Peter
+																	@if(count($department->supervisors))
+																	 @foreach($department->supervisors as $key=>$supervisor)
+                                                                            <a href="{{route('tenant.customer-profile',['customerID'=>$supervisor->id])}}"> {{$supervisor->name}} </a>
+                                                                             @if($key != count($department->supervisors)-1) , @endif
+
+                                                                        @endforeach
+																	@else
+																		N/A
+																	@endif
+
 																	</a>
 																</div>
 															</div>
@@ -253,6 +279,7 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Provider Experience:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
@@ -272,6 +299,7 @@
 																	<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#star"></use>
                                                                     </svg>
+																	<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -280,12 +308,12 @@
 															<div class="col-md-12 d-flex">
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
-																		Customers:
+																		Users:
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		40
+																		{{count($department->users)}}
 																	</div>
 																</div>
 															</div>
@@ -295,11 +323,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Completed Requests:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		50 Hours
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -309,11 +339,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Open Requests:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		80 Hours
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -323,11 +355,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Invoiced:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$192892.00
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -337,11 +371,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Paid:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$84733.55
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -351,11 +387,13 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Due:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$2834.00
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -365,11 +403,14 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Total Overdue:
+																		
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
 																		$78734.00
+																		<small>(coming soon)</small>
 																	</div>
 																</div>
 															</div>
@@ -379,11 +420,15 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Service Start Date:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		17/01/2023
+																		@if($department->department_service_start_date)
+																		{{date_format(date_create($department->department_service_start_date), "m/d/Y")}}
+																		@else N/A @endif
+
 																	</div>
 																</div>
 															</div>
@@ -393,11 +438,14 @@
 																<div class="col-md-5">
 																	<label for="" class="col-form-label">
 																		Service End Date:
+																		
 																	</label>
 																</div>
 																<div class="col-md-7 align-self-center">
 																	<div class="font-family-secondary">
-																		17/01/2023
+																		@if($department->department_service_end_date)
+																		{{date_format(date_create($department->department_service_end_date), "m/d/Y")}}
+																		@else N/A @endif 
 																	</div>
 																</div>
 															</div>
@@ -409,6 +457,7 @@
 												<div class="row" id="table-hover-row">
 													<div class="col-12">
 														<div class="mb-0">
+														<small>(coming soon)</small>
 															<h3>Business Hours</h3>
 														</div>
 														<div class="card">
@@ -512,7 +561,7 @@
 								{{-- Schedule Tab - Start --}}
 								<div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0">
 									<div class="row mb-4">
-										<h3>Schedule</h3>
+										<h3>Schedule <small>(coming soon)</small></h3>
 									</div>
 									<div>
 										<x-advancefilters/>
@@ -526,36 +575,8 @@
 									<div class="row mb-3">
 										<h2>Department Users</h2>
 									</div>
-									<div class="d-flex justify-content-between mb-2">
-										<div class="d-inline-flex align-items-center gap-4">
-											<div class="dropdown">
-												<button class="btn btn-secondary dropdown-toggle btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-													<svg aria-label="Export" class="fill" width="23" height="26" viewBox="0 0 23 26"fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#export-dropdown"></use>
-                                                    </svg>
-												</button>
-												<ul class="dropdown-menu">
-													<li>
-														<a class="dropdown-item" href="#">
-															Action
-														</a>
-													</li>
-													<li>
-														<a class="dropdown-item" href="#">
-															Another action
-														</a>
-													</li>
-													<li>
-														<a class="dropdown-item" href="#">
-															Something else here
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
 									<div class="d-flex justify-content-end mt-4 mb-3"></div>
-									<div class="d-flex justify-content-between mb-2">
+									{{-- <div class="d-flex justify-content-between mb-2">
 										<div class="d-inline-flex align-items-center gap-4">
 											<label for="show_records_number" class="form-label">
 												Show
@@ -573,9 +594,12 @@
 											</label>
 											<input type="search" class="form-control" id="search" name="search" placeholder="Search here" autocomplete="on"/>
 										</div>
-									</div>
+									</div> --}}
 									<div class="card">
-										<div class="table-responsive">
+
+        									@livewire('app.common.department-users',['departmentId'=>$department->id,'departmentLabel'=>$department->name])
+
+										{{-- <div class="table-responsive">
 											<table id="unassigned_data" class="table table-hover" aria-label="Department Table">
 												<thead>
 													<tr role="row">
@@ -638,406 +662,11 @@
 															</div>
 														</td>
 													</tr>
-													<tr role="row" class="even">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-                                                    <tr role="row" class="odd">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-                                                    <tr role="row" class="odd">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-                                                    <tr role="row" class="odd">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-                                                    <tr role="row" class="odd">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="text-center">
-															<input class="form-check-input" type="checkbox" value="" aria-label="Select Department ">
-														</td>
-														<td>
-															<div class="row g-2">
-																<div class="col-md-2">
-																	<img class="img-fluid rounded-circle" src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" />
-																</div>
-																<div class="col-md-10">
-																	<h6 class="fw-semibold">
-																		Dori Griffiths
-																	</h6>
-																	<p>dorigriffit@gmail.com</p>
-																</div>
-															</div>
-														</td>
-														<td>
-															<p>(923) 023-9683</p>
-														</td>
-														<td class="text-center">Developer</td>
-														<td class="text-center">Inactive</td>
-														<td>
-															<div class="d-flex actions">
-																<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                                     </svg>
-																</a>
-																<a href="javascript:void(0)" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                                     </svg>
-																</a>
-                                                                <a href="javascript:void(0)" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-																		<use
-																			xlink:href="/css/common-icons.svg#recycle-bin">
-																		</use>
-																	</svg>
-																</a>
-															</div>
-														</td>
-													</tr>
+												
 												</tbody>
 											</table>
-										</div>
-										<div class="d-flex justify-content-between m-4">
+										</div> --}}
+										{{-- <div class="d-flex justify-content-between m-4">
 											<div>
 												<p class="fw-semibold">
 													Showing 1 to 5 of 100 entries
@@ -1069,42 +698,42 @@
 													</li>
 												</ul>
 											</nav>
-										</div>
-                                        <div class="d-flex actions gap-3 justify-content-end mb-2">
-                                            <div class="d-flex gap-2 align-items-center">
-                                              <a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
-                                                </svg>
-                                              </a>
-                                              <span class="text-sm">
-                                                View
-                                              </span>
-                                            </div>
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <a href="#" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                    <svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
-                                                     </svg>
-                                                </a>
-                                                <span class="text-sm">
-                                                    Message
-                                                </span>
-                                              </div>
-                                            <div class="d-flex gap-2 align-items-center">
-                                              <a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-													<use
-														xlink:href="/css/common-icons.svg#recycle-bin">
-													</use>
-												</svg>
-                                              </a>
-                                              <span class="text-sm">
-                                                Delete
-                                              </span>
-                                            </div>
+										</div> --}}
+                                        {{-- <div class="d-flex actions gap-3 justify-content-end mb-2">
+												<div class="d-flex gap-2 align-items-center">
+												<a href="#" title="View" aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+													<svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
+														xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+													</svg>
+												</a>
+												<span class="text-sm">
+													View
+												</span>
+												</div>
+												<div class="d-flex gap-2 align-items-center">
+													<a href="#" title="Message" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+														<svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
+															xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
+														</svg>
+													</a>
+													<span class="text-sm">
+														Message
+													</span>
+												</div>
+												<div class="d-flex gap-2 align-items-center">
+												<a href="#" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+													<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+														<use
+															xlink:href="/css/common-icons.svg#recycle-bin">
+														</use>
+													</svg>
+												</a>
+												<span class="text-sm">
+													Delete
+												</span>
+												</div>
 
-                                          </div>
+                                        </div> --}}
 									</div>
 								</div>
 								{{-- Users Tab - End --}}
@@ -1123,7 +752,7 @@
 								{{-- Feedback Tab - Start --}}
 								<div class="tab-pane fade" id="department-feedback-tab-pane" role="tabpanel" aria-labelledby="department-feedback-tab" tabindex="0">
 									<div class="row mb-4">
-										<h3>Feedback</h3>
+										<h3>Feedback <small>(coming soon)</small></h3>
 									</div>
 									<div class="row mb-4 mb-5">
 										<div class="dropdown">
@@ -1719,7 +1348,7 @@
                                 {{-- Updated by Shanila to fix remove Two search bars are added and edit name of heading add placeholder in date range input  --}}
 								<div class="tab-pane fade" id="invoices-tab-pane" role="tabpanel" aria-labelledby="invoices-tab" tabindex="0">
 									<h3>
-										Department Invoices
+										Department Invoices <small>(coming soon)</small>
 									</h3>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
 
@@ -2520,7 +2149,7 @@
 								{{-- Payments Tab - Start --}}
 								<div class="tab-pane fade" id="payments-tab-pane" role="tabpanel" aria-labelledby="payments-tab" tabindex="0">
 									<div class="row">
-										<h3>Payments</h3>
+										<h3>Payments <small>(coming soon)</small></h3>
 									</div>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
 										{{-- Search --}}
@@ -3463,7 +3092,7 @@
 								{{-- Referrals Tab - Start --}}
 								<div class="tab-pane fade" id="referrals-tab-pane" role="tabpanel" aria-labelledby="referrals-tab" tabindex="0">
 									<div class="row mb-4">
-										<h3>Referral Code: 122YCRK</h3>
+										<h3>Referral Code: 122YCRK <small>(coming soon)</small></h3>
 									</div>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
 										{{-- Date Range --}}
@@ -3729,149 +3358,17 @@
 								{{-- Referrals Tab - End --}}
 
 								{{-- Notes Tab - Start --}}
-								<div class="tab-pane fade" id="notes-tab-pane" role="tabpanel" aria-labelledby="notes-tab" tabindex="0">
-									<div class="row">
-										<h3>Notes</h3>
-										<div class="col-md-6 col-12 mb-4">
-											<label class="form-label" for="notes-column">
-												Add Notes
-											</label>
-											<textarea class="form-control" rows="3" placeholder="" name="notesColumn" id="notes-column"></textarea>
-										</div>
-										<div class="row mb-4">
-											<div class="col-md-6 col-12 d-flex justify-content-end">
-												<button class="btn btn-primary rounded ">Add</button>
-											</div>
-										</div>
-									</div>
-									<div class="row mb-3">
-										<div class="col-md-8">
-											<div class="d-inline-flex align-items-center">
-												<div class="bg-warning rounded px-2 py-3">
-													<p class="mb-0">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-													</p>
-												</div>
-												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<svg aria-label="Edit" width="20"
-														height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil">
-														</use>
-													</svg>
-													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<svg aria-label="Delete Customer" width="21" height="21" viewBox="0 0 21 21">
-															<use
-																xlink:href="/css/common-icons.svg#recycle-bin">
-															</use>
-														</svg>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row mb-3">
-										<div class="col-md-8">
-											<div class="d-inline-flex align-items-center">
-												<div class="bg-warning rounded px-2 py-3">
-													<p class="mb-0">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														<span class="text-primary">
-															@Admin @Comapny
-														</span>
-													</p>
-												</div>
-												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<svg aria-label="Edit" width="20"
-														height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil">
-														</use>
-													</svg>
-													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<svg aria-label="Delete Customer" width="21" height="21" viewBox="0 0 21 21">
-															<use
-																xlink:href="/css/common-icons.svg#recycle-bin">
-															</use>
-														</svg>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row mb-3">
-										<div class="col-md-8">
-											<div class="d-inline-flex align-items-center">
-												<div class="bg-warning rounded px-2 py-3">
-													<p class="mb-0">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														<span class="text-primary">
-															@Thomas_charles
-														</span>
-													</p>
-												</div>
-												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<svg aria-label="Edit " width="20"
-														height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil">
-														</use>
-													</svg>
-													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
-															<use
-																xlink:href="/css/common-icons.svg#recycle-bin">
-															</use>
-														</svg>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row mb-3">
-										<div class="col-md-8">
-											<div class="d-inline-flex align-items-center">
-												<div class="bg-warning rounded px-2 py-3">
-													<p class="mb-0">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-														<span class="text-primary">
-															@Thomas_charles
-														</span>
-													</p>
-												</div>
-												<div class="d-flex actions mx-2">
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon ">
-														<svg aria-label="Edit" width="20"
-														height="20" viewBox="0 0 20 20">
-														<use xlink:href="/css/common-icons.svg#pencil">
-														</use>
-													</svg>
-													</a>
-													<a href="#" title="Inactive" aria-label="Inactive" class="btn btn-sm btn-secondary rounded btn-hs-icon mx-2">
-														<svg aria-label="Delete Customer" width="21" height="21" viewBox="0 0 21 21">
-															<use
-																xlink:href="/css/common-icons.svg#recycle-bin">
-															</use>
-														</svg>
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								<div class="tab-pane fade" id="notes-tab-pane" role="tabpanel"
+                                    aria-labelledby="notes-tab" tabindex="0">
+                                        @livewire('app.common.forms.notes', ['showForm'=>true,'record_id' => $department->id,'record_type'=>4])
+                                </div>
 								{{-- Notes Tab -End --}}
                                 {{-- Updated by Shanila to fix Report tab not integrated --}}
                                 {{-- Report Tab start --}}
                                 <div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
 									<div class="row mb-3">
 										<h3>
-											Reports
+											Reports <small>(coming soon)</small>
 										</h3>
 									</div>
 									<div class="row mb-4">
@@ -3918,7 +3415,7 @@
 								{{-- Notifications Tab - Start --}}
 								<div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
 									<div class="row">
-										<h3>Notification</h3>
+										<h3>Notification <small>(coming soon)</small></h3>
 										<p class="mt-3">
 											Here you can control how you are notified about Profile activity.
 										</p>
@@ -4101,7 +3598,7 @@
 								<div class="tab-pane fade" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
 									<div class="row mb-4" >
 										<div class="col-lg-12">
-											<h2>Business Hours Setup</h2>
+											<h2>Business Hours Setup <small>(coming soon)</small></h2>
 											<p>
 												Your set hours determine when "Business hours" and "After-hours" rates are in effect for customer billing and Provider payroll and prevents services from being scheduled during your "closed" hours.You can also set the times which you are closed and not providing services; this will restrict customers from scheduling.
 											</p>
@@ -4602,7 +4099,7 @@
 								{{-- Logs Tab - Start --}}
 								<div class="tab-pane fade" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab" tabindex="0">
 									<div class="row mb-4">
-										<h3>Logs</h3>
+										<h3>Logs <small>(coming soon)</small></h3>
 									</div>
 									<div class="row mb-4">
 										<div class="dropdown">
