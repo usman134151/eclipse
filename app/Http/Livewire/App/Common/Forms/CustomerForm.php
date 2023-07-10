@@ -79,6 +79,7 @@ class CustomerForm extends Component
 			$this->edit($user);
 			$this->emit('editRecord', $user);
 
+			// $this->switch(request()->step);/
 
 			
 
@@ -168,6 +169,7 @@ class CustomerForm extends Component
 			$this->emit('updateCompany', $this->user->company_name);
 		}
 
+		$this->dispatchBrowserEvent('refreshSelects');
      
     }
 
@@ -261,7 +263,7 @@ class CustomerForm extends Component
 		$this->validate();
 		
 		if ($this->user->user_dob) {
-			$this->user->user_dob =Carbon::parse($this->user->user_dob); 
+			$this->user->user_dob = Carbon::parse($this->user->user_dob); 
 			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 		}
 
