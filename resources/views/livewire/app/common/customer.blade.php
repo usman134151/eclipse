@@ -10,7 +10,7 @@
 	@livewire('app.common.forms.customer-form') {{-- Show Add / Edit Form --}}
 	
 	@elseif($showProfile)
-	@livewire('app.common.customer-details')
+	@livewire('app.common.customer-details',['user'=>$user])
 	@elseif($importFile)
 	@livewire('app.common.import.customer')
 	@else

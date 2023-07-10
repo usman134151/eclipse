@@ -2,6 +2,6 @@
 
 @section('content')
 	{{-- BEGIN: Content --}}
-	@livewire('app.common.customer', ['showForm'=>$showForm,'status'=>$status])
+	@livewire('app.common.customer', ['showForm'=>$showForm,'showProfile'=>$showProfile,'status'=>$status])
 	{{-- End: Content --}}
 @endsection

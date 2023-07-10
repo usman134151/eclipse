@@ -547,413 +547,132 @@
                                                         </div>
                                                         {{-- Begin: Staff Providers --}}
                                                         <div class="col-lg-6">
-                                                            <label class="form-label" for="payment-schedule ">
-                                                                Payment Schedule
-                                                            </label>
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <div class="mb-2">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input"
-                                                                                id="staffProvider"
-                                                                                name="enrollDirectDeposit" type="checkbox" onclick="toggleItems('staff-provider')"
-                                                                                tabindex="" wire:model.defer="configuration.enable_staff_providers"/>
-                                                                            <label class="form-check-label"
-                                                                                for="staffProvider">Staff Providers</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4 mb-4 staff-provider" @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
-                                                                        <div class="mb-2  " >
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" wire:model.defer="staffProviders.payment_frequency"
-                                                                                    type="radio" name="staff-providers-radio" value="every-week" onclick="showSelectedItems('every-week','sp-radio')" 
-                                                                                    id="everyweekstarting">
-                                                                                <label class="form-check-label"
-                                                                                    for="everyweekstarting">
-                                                                                    Every week starting
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 every-week sp-radio" @if($staffProviders['payment_frequency']!="every-week") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="invoice-submission-day1">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select id="invoice-submission-day1" wire:model.defer="staffProviders.every-week.submission_day"
-                                                                                    class="form-select">
-
-                                                                                    <option selected value="monday">Monday</option>
-                                                                                    <option value="tuesday">Tuesday</option>
-                                                                                    <option value="wednesday">Wednesday</option>
-                                                                                    <option value="thursday">Thursday</option>
-                                                                                    <option value="friday">Friday</option>
-                                                                                    <option value="saturday">Saturday</option>
-                                                                                    <option value="sunday">Sunday</option>
-
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittanceRelease">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="remittanceRelease"  wire:model.defer='staffProviders.every-week.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 8; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mx-4 mb-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
+                                                            <div class=" provider-payments" @if(!$configuration['payment_payroll']) style="display:none"@endif">
+                                                                <label class="form-label" for="payment-schedule ">
+                                                                    Payment Schedule
+                                                                </label>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
                                                                         <div class="mb-2">
                                                                             <div class="form-check">
-                                                                                <input class="form-check-input" type="radio"
-                                                                                    name="staff-providers-radio" value="two-weeks" wire:model.defer="staffProviders.payment_frequency"
-                                                                                    onclick="showSelectedItems('two-weeks','sp-radio')" aria-label="Every two-weeks starting"
-                                                                                    checked>
-                                                                                <label class="form-check-label" for="">
-                                                                                    Every two-weeks starting
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 two-weeks sp-radio" @if($staffProviders['payment_frequency']!="two-weeks") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="invoice-submission-day2">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select id="invoice-submission-day2" wire:model.defer='staffProviders.two-weeks.submission_day'
-                                                                                    class="form-select">
-                                                                                   
-                                                                                    <option selected value="monday">Monday</option>
-                                                                                    <option value="tuesday">Tuesday</option>
-                                                                                    <option value="wednesday">Wednesday</option>
-                                                                                    <option value="thursday">Thursday</option>
-                                                                                    <option value="friday">Friday</option>
-                                                                                    <option value="saturday">Saturday</option>
-                                                                                    <option value="sunday">Sunday</option>
-
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance-release1">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="remittance-release1" wire:model.defer='staffProviders.two-weeks.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 15; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mx-4 mb-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif >
-                                                                        <div class="mb-2">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="radio" value="every-month" onclick="showSelectedItems('every-month','sp-radio')"
-                                                                                    name="staff-providers-radio" id="EveryMonthStarting"  wire:model.defer="staffProviders.payment_frequency">
+                                                                                <input class="form-check-input"
+                                                                                    id="staffProvider"
+                                                                                    name="enrollDirectDeposit" type="checkbox" onclick="toggleItems('staff-provider')"
+                                                                                    tabindex="" wire:model.defer="configuration.enable_staff_providers"/>
                                                                                 <label class="form-check-label"
-                                                                                    for="EveryMonthStarting">
-                                                                                    Every month starting
-                                                                                </label>
+                                                                                    for="staffProvider">Staff Providers</label>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="mx-4 every-month sp-radio" @if($staffProviders['payment_frequency']!="every-month") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="invoice-submission-day3">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select id="invoice-submission-day3" wire:model.defer='staffProviders.every-month.submission_day'
-                                                                                    class="form-select">
-                                                                                    <option value=1 >1st</option>
-                                                                                    <option value=2 >2nd</option>
-                                                                                    <option value=3 >3rd</option>
-                                                                                    @for ($i = 4; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}}th</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance-release2">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="remittance-release2" wire:model.defer='staffProviders.every-month.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mx-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
-                                                                        <div class="mb-2">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="radio" wire:model.defer="staffProviders.payment_frequency"                                                                                
-                                                                                name="staff-providers-radio" id="on-select-days-of-month" value="select-days" onclick="showSelectedItems('select-days','sp-radio')">
-                                                                                <label class="form-check-label"
-                                                                                    for="on-select-days-of-month">
-                                                                                    On select days of the month
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 select-days sp-radio" @if($staffProviders['payment_frequency']!="select-days") style="display:none"@endif>
-                                                                            @foreach($staffProviders['select-days']['submission_day'] as $index=> $sp_days)
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="invoice-submission-day4">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <div
-                                                                                    class="d-flex gap-1 align-items-center">
-                                                                                <select id="invoice-submission-day4" wire:key='submission-days-{{$index}}' wire:model.defer='staffProviders.select-days.submission_day.{{$index}}'
-                                                                                    class="form-select">
-                                                                                    <option value=1 >1st</option>
-                                                                                    <option value=2 >2nd</option>
-                                                                                    <option value=3 >3rd</option>
-                                                                                    @for ($i = 4; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}}th</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                                @if($index>0)
-                                                                                <svg aria-label="Add" width="20" height="20" wire:click="addSPDays"
-                                                                                        viewBox="0 0 20 20" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#blue-plus">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <svg aria-label="Delete" width="20" height="20" wire:click="removeSPDays({{$loop->index}})"
-                                                                                        viewBox="0 0 20 20" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#blue-delete-icon">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                @endif
+                                                                        <div class="mx-4 mb-4 staff-provider" @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2  " >
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" wire:model.defer="staffProviders.payment_frequency"
+                                                                                        type="radio" name="staff-providers-radio" value="every-week" onclick="showSelectedItems('every-week','sp-radio')" 
+                                                                                        id="everyweekstarting">
+                                                                                    <label class="form-check-label"
+                                                                                        for="everyweekstarting">
+                                                                                        Every week starting
+                                                                                    </label>
                                                                                 </div>
                                                                             </div>
-                                                                            @endforeach
-                                                                            {{-- <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance-release4">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <div
-                                                                                    class="d-flex gap-1 align-items-center">
-                                                                                    <select id="remittance-release4" '
-                                                                                        class="form-select">
-                                                                                        <option>14th</option>
-                                                                                    </select>
-                                                                                    <svg aria-label="Add" width="20" height="20"
-                                                                                        viewBox="0 0 20 20" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#blue-plus">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <svg aria-label="Delete" width="20" height="20"
-                                                                                        viewBox="0 0 20 20" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#blue-delete-icon">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                </div>
-                                                                            </div> --}}
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance-release5">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="remittance-release5" wire:model.defer='staffProviders.select-days.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                {{-- End: Staff Providers --}}
-                                                                {{-- Begin: Contract Providers --}}
-                                                                <div class="col-lg-6">
-                                                                    <div class="mb-2">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input"
-                                                                                id="contract-providers" wire:model.defer="configuration.enable_contract_providers" onclick="toggleItems('contract-provider')"
-                                                                                name="contract-providers" type="checkbox"
-                                                                                tabindex="" />
-                                                                            <label class="form-check-label"
-                                                                                for="contract-providers">Contract
-                                                                                Providers</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
-                                                                        <div class="mb-2">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="radio" onclick="showSelectedItems('every-week','cp-radio')"
-                                                                                    name="contract-providers-radio" id="every-week-starting" wire:model.defer="contractProviders.payment_frequency" value="every-week"
-                                                                                    >
-                                                                                <label class="form-check-label"
-                                                                                    for="every-week-starting">
-                                                                                    Every week starting
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 every-week cp-radio" @if($contractProviders['payment_frequency']!="every-week") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="invoiceSubmissionDay">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select id="invoiceSubmissionDay" wire:model.defer="contractProviders.every-week.submission_day"
-                                                                                    class="form-select">
-                                                                                    <option value="monday">Monday</option>                                                                                                                                                                        <option selected value="monday">Monday</option>
-                                                                                    <option value="tuesday">Tuesday</option>
-                                                                                    <option value="wednesday">Wednesday</option>
-                                                                                    <option value="thursday">Thursday</option>
-                                                                                    <option value="friday">Friday</option>
-                                                                                    <option value="saturday">Saturday</option>
-                                                                                    <option value="sunday">Sunday</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="Remittance-Release">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="RemittanceRelease"  wire:model.defer='contractProviders.every-week.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 8; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
-                                                                        <div class="mb-2">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="radio" 
-                                                                                    onclick="showSelectedItems('two-weeks','cp-radio')" wire:model.defer="contractProviders.payment_frequency"
-                                                                                    value="two-weeks" name="contract-providers-radio" id="EveryTwoWeeksStarting">
-                                                                                <label class="form-check-label"
-                                                                                    for="EveryTwoWeeksStarting">
-                                                                                    Every two-weeks starting
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 two-weeks cp-radio" @if($contractProviders['payment_frequency']!="two-weeks") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm" for="">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select class="form-select" wire:model.defer='contractProviders.two-weeks.submission_day'
-                                                                                    aria-label="Invoice Submission Day">
-                                                                                    <option value="monday">Monday</option>                                                                                                                                                                        <option selected value="monday">Monday</option>
-                                                                                    <option value="tuesday">Tuesday</option>
-                                                                                    <option value="wednesday">Wednesday</option>
-                                                                                    <option value="thursday">Thursday</option>
-                                                                                    <option value="friday">Friday</option>
-                                                                                    <option value="saturday">Saturday</option>
-                                                                                    <option value="sunday">Sunday</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance-release">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select class="form-select"
-                                                                                      wire:model.defer='contractProviders.two-weeks.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 8; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
-                                                                        <div class="mb-2">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="radio"     onclick="showSelectedItems('every-month','cp-radio')" 
-                                                                                    wire:model.defer="contractProviders.payment_frequency"
-                                                                                    value="every-month" name="contract-providers-radio" id="every-month-starting">
-                                                                                <label class="form-check-label"
-                                                                                    for="every-month-starting">
-                                                                                    Every month starting
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 every-month cp-radio" @if($contractProviders['payment_frequency']!="every-month") style="display:none"@endif>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label text-sm"
-                                                                                    for="Invoice-Submissio-nDay">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <select id="Invoice-Submissio-nDay" wire:model.defer='contractProviders.every-month.submission_day'
-
-                                                                                    class="form-select">
-                                                                                    <option value=1 >1st</option>
-                                                                                    <option value=2 >2nd</option>
-                                                                                    <option value=3 >3rd</option>
-                                                                                    @for ($i = 4; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}}th</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance_release">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="remittance_release" wire:model.defer='contractProviders.every-month.remittance_release'
-                                                                                    class="form-select">
-                                                                                    @for ($i = 1; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mx-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
-                                                                        <div class="mb-2">
-                                                                            <div class="form-check">
-                                                                                <input class="form-check-input" type="radio" onclick="showSelectedItems('select-days','cp-radio')" 
-                                                                                    wire:model.defer="contractProviders.payment_frequency"
-                                                                                    value="select-days"
-                                                                                    name="contract-providers-radio" id="on-select-day-of-month">
-                                                                                <label class="form-check-label"
-                                                                                    for="on-select-day-of-month">
-                                                                                    On select days of the month
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mx-4 select-days cp-radio" @if($contractProviders['payment_frequency']!="select-days") style="display:none"@endif>
-                                                                            @foreach($contractProviders['select-days']['submission_day'] as $index=> $cp_days)
+                                                                            <div class="mx-4 every-week sp-radio" @if($staffProviders['payment_frequency']!="every-week") style="display:none"@endif>
                                                                                 <div class="mb-2">
                                                                                     <label class="form-label text-sm"
-                                                                                        for="invoice-submissionday">
+                                                                                        for="invoice-submission-day1">
                                                                                         Invoice Submission Day
                                                                                     </label>
-                                                                                    <div class="d-flex gap-1 align-items-center">
-                                                                                    <select id="invoice-submissionday"  wire:key='cp-submission-days-{{$index}}' wire:model.defer='contractProviders.select-days.submission_day.{{$index}}'
+                                                                                    <select id="invoice-submission-day1" wire:model.defer="staffProviders.every-week.submission_day"
+                                                                                        class="form-select">
+
+                                                                                        <option selected value="monday">Monday</option>
+                                                                                        <option value="tuesday">Tuesday</option>
+                                                                                        <option value="wednesday">Wednesday</option>
+                                                                                        <option value="thursday">Thursday</option>
+                                                                                        <option value="friday">Friday</option>
+                                                                                        <option value="saturday">Saturday</option>
+                                                                                        <option value="sunday">Sunday</option>
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittanceRelease">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="remittanceRelease"  wire:model.defer='staffProviders.every-week.remittance_release'
+                                                                                        class="form-select">
+                                                                                        @for ($i = 1; $i < 8; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="mx-4 mb-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio"
+                                                                                        name="staff-providers-radio" value="two-weeks" wire:model.defer="staffProviders.payment_frequency"
+                                                                                        onclick="showSelectedItems('two-weeks','sp-radio')" aria-label="Every two-weeks starting"
+                                                                                        checked>
+                                                                                    <label class="form-check-label" for="">
+                                                                                        Every two-weeks starting
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 two-weeks sp-radio" @if($staffProviders['payment_frequency']!="two-weeks") style="display:none"@endif>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm"
+                                                                                        for="invoice-submission-day2">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <select id="invoice-submission-day2" wire:model.defer='staffProviders.two-weeks.submission_day'
+                                                                                        class="form-select">
+                                                                                    
+                                                                                        <option selected value="monday">Monday</option>
+                                                                                        <option value="tuesday">Tuesday</option>
+                                                                                        <option value="wednesday">Wednesday</option>
+                                                                                        <option value="thursday">Thursday</option>
+                                                                                        <option value="friday">Friday</option>
+                                                                                        <option value="saturday">Saturday</option>
+                                                                                        <option value="sunday">Sunday</option>
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance-release1">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="remittance-release1" wire:model.defer='staffProviders.two-weeks.remittance_release'
+                                                                                        class="form-select">
+                                                                                        @for ($i = 1; $i < 15; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="mx-4 mb-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif >
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" value="every-month" onclick="showSelectedItems('every-month','sp-radio')"
+                                                                                        name="staff-providers-radio" id="EveryMonthStarting"  wire:model.defer="staffProviders.payment_frequency">
+                                                                                    <label class="form-check-label"
+                                                                                        for="EveryMonthStarting">
+                                                                                        Every month starting
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 every-month sp-radio" @if($staffProviders['payment_frequency']!="every-month") style="display:none"@endif>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm"
+                                                                                        for="invoice-submission-day3">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <select id="invoice-submission-day3" wire:model.defer='staffProviders.every-month.submission_day'
                                                                                         class="form-select">
                                                                                         <option value=1 >1st</option>
                                                                                         <option value=2 >2nd</option>
@@ -961,71 +680,354 @@
                                                                                         @for ($i = 4; $i < 31; $i++)
                                                                                         <option value={{$i}} >{{$i}}th</option>
                                                                                         @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance-release2">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="remittance-release2" wire:model.defer='staffProviders.every-month.remittance_release'
+                                                                                        class="form-select">
+                                                                                        @for ($i = 1; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
+                                                                        <div class="mx-4 staff-provider"  @if(!$configuration['enable_staff_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" wire:model.defer="staffProviders.payment_frequency"                                                                                
+                                                                                    name="staff-providers-radio" id="on-select-days-of-month" value="select-days" onclick="showSelectedItems('select-days','sp-radio')">
+                                                                                    <label class="form-check-label"
+                                                                                        for="on-select-days-of-month">
+                                                                                        On select days of the month
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 select-days sp-radio" @if($staffProviders['payment_frequency']!="select-days") style="display:none"@endif>
+                                                                                @foreach($staffProviders['select-days']['submission_day'] as $index=> $sp_days)
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm"
+                                                                                        for="invoice-submission-day4">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <div
+                                                                                        class="d-flex gap-1 align-items-center">
+                                                                                    <select id="invoice-submission-day4" wire:key='submission-days-{{$index}}' wire:model.defer='staffProviders.select-days.submission_day.{{$index}}'
+                                                                                        class="form-select">
+                                                                                        <option value=1 >1st</option>
+                                                                                        <option value=2 >2nd</option>
+                                                                                        <option value=3 >3rd</option>
+                                                                                        @for ($i = 4; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}}th</option>
+                                                                                        @endfor
                                                                                     </select>
                                                                                     @if($index>0)
-                                                                                        <svg aria-label="Add" width="20" height="20" wire:click="addCPDays"
-                                                                                                viewBox="0 0 20 20" fill="none"
-                                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                                <use
-                                                                                                    xlink:href="/css/common-icons.svg#blue-plus">
-                                                                                                </use>
-                                                                                            </svg>
-                                                                                            <svg aria-label="Delete" width="20" height="20" wire:click="removeCPDays({{$index}})"
-                                                                                                viewBox="0 0 20 20" fill="none"
-                                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                                <use
-                                                                                                    xlink:href="/css/common-icons.svg#blue-delete-icon">
-                                                                                                </use>
+                                                                                    <svg aria-label="Add" width="20" height="20" wire:click="addSPDays"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#blue-plus">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <svg aria-label="Delete" width="20" height="20" wire:click="removeSPDays({{$loop->index}})"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#blue-delete-icon">
+                                                                                            </use>
                                                                                         </svg>
                                                                                     @endif
                                                                                     </div>
                                                                                 </div>
-                                                                            @endforeach
-                                                                            {{-- <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="invoice-submissionDay">
-                                                                                    Invoice Submission Day
-                                                                                </label>
-                                                                                <div
-                                                                                    class="d-flex gap-1 align-items-center">
-                                                                                    <select id="invoice-submissionDay"
+                                                                                @endforeach
+                                                                                {{-- <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance-release4">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <div
+                                                                                        class="d-flex gap-1 align-items-center">
+                                                                                        <select id="remittance-release4" '
+                                                                                            class="form-select">
+                                                                                            <option>14th</option>
+                                                                                        </select>
+                                                                                        <svg aria-label="Add" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#blue-plus">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <svg aria-label="Delete" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#blue-delete-icon">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </div> --}}
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance-release5">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="remittance-release5" wire:model.defer='staffProviders.select-days.remittance_release'
                                                                                         class="form-select">
-                                                                                        <option>14th</option>
+                                                                                        @for ($i = 1; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
                                                                                     </select>
-                                                                                    <svg aria-label="Add" width="20" height="20"
-                                                                                        viewBox="0 0 20 20" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#blue-plus">
-                                                                                        </use>
-                                                                                    </svg>
-                                                                                    <svg aria-label="Delete" width="20" height="20"
-                                                                                        viewBox="0 0 20 20" fill="none"
-                                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                                        <use
-                                                                                            xlink:href="/css/common-icons.svg#blue-delete-icon">
-                                                                                        </use>
-                                                                                    </svg>
                                                                                 </div>
-                                                                            </div> --}}
-                                                                            <div class="mb-2">
-                                                                                <label class="form-label input-sm text-sm"
-                                                                                    for="remittance-release-days">
-                                                                                    Remittance Release
-                                                                                </label>
-                                                                                <select id="remittance-release-days" wire:model.defer='contractProviders.select-days.remittance_release'
-                                                                                    class="form-select"> 
-                                                                                    @for ($i = 1; $i < 31; $i++)
-                                                                                    <option value={{$i}} >{{$i}} Days</option>
-                                                                                    @endfor
-                                                                                
-                                                                                </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    {{-- End: Staff Providers --}}
+                                                                    {{-- Begin: Contract Providers --}}
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-2">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input"
+                                                                                    id="contract-providers" wire:model.defer="configuration.enable_contract_providers" onclick="toggleItems('contract-provider')"
+                                                                                    name="contract-providers" type="checkbox"
+                                                                                    tabindex="" />
+                                                                                <label class="form-check-label"
+                                                                                    for="contract-providers">Contract
+                                                                                    Providers</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" onclick="showSelectedItems('every-week','cp-radio')"
+                                                                                        name="contract-providers-radio" id="every-week-starting" wire:model.defer="contractProviders.payment_frequency" value="every-week"
+                                                                                        >
+                                                                                    <label class="form-check-label"
+                                                                                        for="every-week-starting">
+                                                                                        Every week starting
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 every-week cp-radio" @if($contractProviders['payment_frequency']!="every-week") style="display:none"@endif>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm"
+                                                                                        for="invoiceSubmissionDay">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <select id="invoiceSubmissionDay" wire:model.defer="contractProviders.every-week.submission_day"
+                                                                                        class="form-select">
+                                                                                        <option value="monday">Monday</option>                                                                                                                                                                        <option selected value="monday">Monday</option>
+                                                                                        <option value="tuesday">Tuesday</option>
+                                                                                        <option value="wednesday">Wednesday</option>
+                                                                                        <option value="thursday">Thursday</option>
+                                                                                        <option value="friday">Friday</option>
+                                                                                        <option value="saturday">Saturday</option>
+                                                                                        <option value="sunday">Sunday</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="Remittance-Release">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="RemittanceRelease"  wire:model.defer='contractProviders.every-week.remittance_release'
+                                                                                        class="form-select">
+                                                                                        @for ($i = 1; $i < 8; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" 
+                                                                                        onclick="showSelectedItems('two-weeks','cp-radio')" wire:model.defer="contractProviders.payment_frequency"
+                                                                                        value="two-weeks" name="contract-providers-radio" id="EveryTwoWeeksStarting">
+                                                                                    <label class="form-check-label"
+                                                                                        for="EveryTwoWeeksStarting">
+                                                                                        Every two-weeks starting
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 two-weeks cp-radio" @if($contractProviders['payment_frequency']!="two-weeks") style="display:none"@endif>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm" for="">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <select class="form-select" wire:model.defer='contractProviders.two-weeks.submission_day'
+                                                                                        aria-label="Invoice Submission Day">
+                                                                                        <option value="monday">Monday</option>                                                                                                                                                                        <option selected value="monday">Monday</option>
+                                                                                        <option value="tuesday">Tuesday</option>
+                                                                                        <option value="wednesday">Wednesday</option>
+                                                                                        <option value="thursday">Thursday</option>
+                                                                                        <option value="friday">Friday</option>
+                                                                                        <option value="saturday">Saturday</option>
+                                                                                        <option value="sunday">Sunday</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance-release">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select class="form-select"
+                                                                                        wire:model.defer='contractProviders.two-weeks.remittance_release'
+                                                                                        class="form-select">
+                                                                                        @for ($i = 1; $i < 8; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="mx-4 mb-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio"     onclick="showSelectedItems('every-month','cp-radio')" 
+                                                                                        wire:model.defer="contractProviders.payment_frequency"
+                                                                                        value="every-month" name="contract-providers-radio" id="every-month-starting">
+                                                                                    <label class="form-check-label"
+                                                                                        for="every-month-starting">
+                                                                                        Every month starting
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 every-month cp-radio" @if($contractProviders['payment_frequency']!="every-month") style="display:none"@endif>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label text-sm"
+                                                                                        for="Invoice-Submissio-nDay">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <select id="Invoice-Submissio-nDay" wire:model.defer='contractProviders.every-month.submission_day'
+
+                                                                                        class="form-select">
+                                                                                        <option value=1 >1st</option>
+                                                                                        <option value=2 >2nd</option>
+                                                                                        <option value=3 >3rd</option>
+                                                                                        @for ($i = 4; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}}th</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance_release">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="remittance_release" wire:model.defer='contractProviders.every-month.remittance_release'
+                                                                                        class="form-select">
+                                                                                        @for ($i = 1; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="mx-4 contract-provider" @if(!$configuration['enable_contract_providers']) style="display:none"@endif>
+                                                                            <div class="mb-2">
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" onclick="showSelectedItems('select-days','cp-radio')" 
+                                                                                        wire:model.defer="contractProviders.payment_frequency"
+                                                                                        value="select-days"
+                                                                                        name="contract-providers-radio" id="on-select-day-of-month">
+                                                                                    <label class="form-check-label"
+                                                                                        for="on-select-day-of-month">
+                                                                                        On select days of the month
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mx-4 select-days cp-radio" @if($contractProviders['payment_frequency']!="select-days") style="display:none"@endif>
+                                                                                @foreach($contractProviders['select-days']['submission_day'] as $index=> $cp_days)
+                                                                                    <div class="mb-2">
+                                                                                        <label class="form-label text-sm"
+                                                                                            for="invoice-submissionday">
+                                                                                            Invoice Submission Day
+                                                                                        </label>
+                                                                                        <div class="d-flex gap-1 align-items-center">
+                                                                                        <select id="invoice-submissionday"  wire:key='cp-submission-days-{{$index}}' wire:model.defer='contractProviders.select-days.submission_day.{{$index}}'
+                                                                                            class="form-select">
+                                                                                            <option value=1 >1st</option>
+                                                                                            <option value=2 >2nd</option>
+                                                                                            <option value=3 >3rd</option>
+                                                                                            @for ($i = 4; $i < 31; $i++)
+                                                                                            <option value={{$i}} >{{$i}}th</option>
+                                                                                            @endfor
+
+                                                                                        </select>
+                                                                                        @if($index>0)
+                                                                                            <svg aria-label="Add" width="20" height="20" wire:click="addCPDays"
+                                                                                                    viewBox="0 0 20 20" fill="none"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <use
+                                                                                                        xlink:href="/css/common-icons.svg#blue-plus">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                                <svg aria-label="Delete" width="20" height="20" wire:click="removeCPDays({{$index}})"
+                                                                                                    viewBox="0 0 20 20" fill="none"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <use
+                                                                                                        xlink:href="/css/common-icons.svg#blue-delete-icon">
+                                                                                                    </use>
+                                                                                            </svg>
+                                                                                        @endif
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                                {{-- <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="invoice-submissionDay">
+                                                                                        Invoice Submission Day
+                                                                                    </label>
+                                                                                    <div
+                                                                                        class="d-flex gap-1 align-items-center">
+                                                                                        <select id="invoice-submissionDay"
+                                                                                            class="form-select">
+                                                                                            <option>14th</option>
+                                                                                        </select>
+                                                                                        <svg aria-label="Add" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#blue-plus">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                        <svg aria-label="Delete" width="20" height="20"
+                                                                                            viewBox="0 0 20 20" fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <use
+                                                                                                xlink:href="/css/common-icons.svg#blue-delete-icon">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </div> --}}
+                                                                                <div class="mb-2">
+                                                                                    <label class="form-label input-sm text-sm"
+                                                                                        for="remittance-release-days">
+                                                                                        Remittance Release
+                                                                                    </label>
+                                                                                    <select id="remittance-release-days" wire:model.defer='contractProviders.select-days.remittance_release'
+                                                                                        class="form-select"> 
+                                                                                        @for ($i = 1; $i < 31; $i++)
+                                                                                        <option value={{$i}} >{{$i}} Days</option>
+                                                                                        @endfor
+                                                                                    
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {{-- End: Contract Providers --}}
                                                                 </div>
-                                                                {{-- End: Contract Providers --}}
                                                             </div>
                                                         </div>
                                                         {{-- End: Right Column --}}

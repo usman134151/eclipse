@@ -19,8 +19,6 @@ class AddDepartment extends Component
     public function mount()
     {
         $this->departments = Department::where('company_id', $this->companyId)->get();
-
-       
     }
 
     public function setUser(User $user){
@@ -61,7 +59,6 @@ class AddDepartment extends Component
     }
 
     public function updateCompany($companyId){
-     
         $this->companyId=$companyId;
         $this->departments = Department::where('company_id',$companyId)->get();
         //  $this->selectedDepartments = [];

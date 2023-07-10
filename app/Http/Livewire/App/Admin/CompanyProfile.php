@@ -22,8 +22,11 @@ class CompanyProfile extends Component
 		return view('livewire.app.admin.company-profile');
 	}
 
-	public function mount()
-	{}
+	public function mount($company=null)
+	{
+		if($company)
+			$this->showDetails($company);
+	}
 		
     public function showDetails($company){
 		$this->company=$company;

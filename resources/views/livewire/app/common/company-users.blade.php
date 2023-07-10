@@ -8,7 +8,8 @@
                 </th> --}}
                 <th scope="col">Name</th>
                 <th scope="col">Phone Number</th>
-                {{-- <th scope="col">Action</th> --}}
+                <th scope="col">Position</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,7 @@
                         <div class="col-md-9"
                          >
                             <h6 class="fw-semibold">
-                                 {{$user->name}}
+                                <a href="{{route('tenant.customer-profile',['customerID'=> $user->id])}}"> {{$user->name}} </a>
                             </h6>
                             <p> {{$user->email}} </p>
                         </div>
@@ -34,6 +35,31 @@
                 <td>
                     <p>{{$user->phone}}</p>
                 </td>
+                  <td>
+                    <p>{{$user->position}}</p>
+                </td>
+                <td>
+                    <div class="d-flex actions">
+                        <a href="{{route('tenant.customer-profile',['customerID'=> $user->id])}}" title="View " aria-label="View" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <svg aria-label="View" class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
+                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/provider.svg#view"></use>
+                                </svg>
+                        </a>
+                        <a href="javascript:void(0)" title="Message (coming soon)" aria-label="Message" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <svg class="fill" width="20" height="20" viewBox="0 0 20 20"fill="none"
+                                xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#message"></use>
+                                </svg>
+                        </a>
+                        {{-- <a href="javascript:void(0)" wire:click="deleteRecord({{$user->id}})" title="Delete" aria-label="Delete" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                            <svg aria-label="Delete" width="21" height="21" viewBox="0 0 21 21">
+                                <use
+                                    xlink:href="/css/common-icons.svg#recycle-bin">
+                                </use>
+                            </svg>
+                        </a> --}}
+                    </div>
+                </td>
+            
                
             </tr>
             @endforeach

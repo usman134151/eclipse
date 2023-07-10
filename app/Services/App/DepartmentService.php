@@ -28,7 +28,6 @@ class DepartmentService{
                 'user_address_type' => 3,
                 'user_id' => $department->id,
             ];
-
             UserAddress::updateOrCreate($addressData, $addressAttributes);
         }
     }

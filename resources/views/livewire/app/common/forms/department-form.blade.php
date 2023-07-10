@@ -404,6 +404,7 @@
 
 
                                                     <!-- Company Phone Number -->
+                                                    @if(count($companyPhones))
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <h2>Department Phone Number</h2>
@@ -428,6 +429,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
 
                                                     <div class="row between-section-segment-spacing">
                                                         <div class="col-lg-12">
@@ -535,7 +537,7 @@
                                             @livewire('app.common.setup.business-hours-setup', ['model_id' => $department->id, 'model_type' => '4'])
                                             <div class="col-12 form-actions">
                                                         <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                                            wire:click.prevent="showList">
+                                                            wire:click.prevent="setStep(1,'departmentActive','department-info');">
                                                             Back
                                                         </button>
                                                         <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">

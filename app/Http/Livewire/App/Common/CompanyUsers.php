@@ -18,10 +18,13 @@ class CompanyUsers extends Component
         ->join('user_details', 'user_details.user_id', '=', 'users.id')
         ->join('companies', 'companies.id', '=', 'users.company_name')
         ->where('companies.id', '=', $this->companyId)
-        ->select('users.id', 'users.name', 'email','phone', 'profile_pic')
+        ->select('users.id', 'users.name', 'email','phone','user_position as position', 'profile_pic')
         ->get();
         return view('livewire.app.common.company-users');
     }
+
+    
+
 
     public function mount($companyId,$companyLabel)
     {

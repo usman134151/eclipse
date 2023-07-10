@@ -14,7 +14,7 @@ class CompanyMain extends Component
 	public $du_counter = 0, $du_departmentId, $du_departmentLabel,  $du_departmentDetails = false; //for company users
 	
 	public $showProfile;
-	public $importFile;
+	public $importFile, $company;
 
 	protected $listeners = [
 		'showList' => 'resetForm',
@@ -32,9 +32,13 @@ class CompanyMain extends Component
 	{
 		return view('livewire.app.admin.company');
 	}
-
-	public function mount()
-	{}
+	public function mount($showProfile)
+	{
+		$this->showProfile = $showProfile;
+		if ($showProfile) {
+			$this->company = Company::where('id', request()->companyID)->with(['phones', 'user', 'addresses'])->first()->toArray();
+		}
+	}
 	public function __construct()
     {
         $this->exportDataFile = new ExportDataFile;

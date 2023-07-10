@@ -36,7 +36,7 @@ class CustomerForm extends Component
 	];
 	
     public $step = 1,$email_invitation,$limit;
-    protected $listeners = ['updateVal' => 'updateVal','editRecord' => 'edit', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
+    protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
 		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers','updateSelectedSupervising', 'updateSelectedUsersToManager',
 		'updateSelectedStaff','updateAddress' => 'addAddress'];
 	public $serviceConsumer=false;
@@ -51,10 +51,14 @@ class CustomerForm extends Component
 
 
 	public function render()
-	{   //dd($this->user->company_name);
+	{   
+		//dd($this->user->company_name);
 		return view('livewire.app.common.forms.customer-form');
 	}
     public function mount(User $user){
+		
+		
+       
 
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
         $this->user=$user;
@@ -65,6 +69,21 @@ class CustomerForm extends Component
 			})
 			->select('id', 'name')
 			->get();
+
+		if (request()->customerID != null) {
+
+			$customer_id = request()->customerID;
+			$user = User::with(['userdetail', 'industries', 'company', 'addresses'])->find($customer_id);
+			$this->emit('updateCompany', $this->user->company_name);
+
+			$this->edit($user);
+			$this->emit('editRecord', $user);
+
+			// $this->switch(request()->step);/
+
+			
+
+		}
 
 
 	}
@@ -149,6 +168,8 @@ class CustomerForm extends Component
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);
 		}
+
+		$this->dispatchBrowserEvent('refreshSelects');
      
     }
 
@@ -238,9 +259,12 @@ class CustomerForm extends Component
 
 	public function save($redirect=1){
 		
+		
 		$this->validate();
+		
 		if ($this->user->user_dob) {
-			$this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+			$this->user->user_dob = Carbon::parse($this->user->user_dob); 
+			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 		}
 
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
@@ -297,6 +321,7 @@ class CustomerForm extends Component
 			// set modal values for step 2
 			$this->emit('setValues', $this->user->id);
 
+
 			$this->dispatchBrowserEvent('refreshSelects');
 			
 
@@ -336,6 +361,7 @@ class CustomerForm extends Component
 		
 
 	}
+
 	public function selectDepartments($selectedDepartments, $defaultDepartment,$departmentNames)
 	{
 		$this->selectedDepartments = $selectedDepartments;
