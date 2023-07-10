@@ -404,6 +404,7 @@
 
 
                                                     <!-- Company Phone Number -->
+                                                    @if(count($companyPhones))
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <h2>Department Phone Number</h2>
@@ -428,6 +429,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
 
                                                     <div class="row between-section-segment-spacing">
                                                         <div class="col-lg-12">
