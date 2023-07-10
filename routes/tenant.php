@@ -79,6 +79,7 @@ Route::group([
 			Route::view('/admin/department/{companyID}', 'tenant/common/department', ["showForm"=>false,'status'=>1]);
 			Route::view('/admin/department/create-department/{companyID}', 'tenant/common/department', ["showForm"=>true, 'status' => 1]);
 			Route::view('/admin/department/edit-department/{departmentID}', 'tenant/common/department', ["showForm" => true, 'status' => 1]);
+			Route::view('/admin/department/profile/{departmentID}', 'tenant/common/department', ["showForm" => false, "showProfile"=>true , 'status' => 1]);
 
 			// End of Admin Department Routes
 
