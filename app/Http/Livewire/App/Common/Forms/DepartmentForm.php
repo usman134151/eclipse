@@ -185,6 +185,11 @@ class DepartmentForm extends Component
 
 		} else {
 			$this->getCompanySchedule();
+			if ($this->department->get('company_phones') != null)
+				$this->department->company_phones = explode(', ', $this->department->company_phones);
+			$this->dispatchBrowserEvent('refreshSelects');
+
+
 		}
 
 
@@ -256,6 +261,11 @@ class DepartmentForm extends Component
 		$this->step = $step;
 		$this->$tabName = "active";
 		$this->switch($component);
+
+		// loading schedule on back button
+		if($this->step==2)
+			$this->getCompanySchedule();
+			
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
