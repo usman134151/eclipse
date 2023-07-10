@@ -72,6 +72,9 @@ Route::group([
 
 			Route::view('/admin/company', 'tenant/admin/company', ["showForm"=>false]);
 			Route::view('/admin/company/create-company', 'tenant/admin/company', ["showForm"=>true]);
+			Route::view('/admin/company/edit-company/{companyID}', 'tenant/admin/company', ["showForm" => true, "showProfile" => false]);
+
+
 			Route::view('/admin/deactivated-customer', 'tenant/common/customer', ["showForm"=>false,"status"=>0]);
 			Route::view('/admin/draft-invoices', 'tenant/admin/draft-invoices', ["showForm"=>false]);
 			Route::view('/admin/customer-invoices', 'tenant/common/customer-invoices', ["showForm"=>false]);

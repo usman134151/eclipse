@@ -54,6 +54,7 @@ class AddCompany extends Component
 		
         $this->label="Edit";
        $this->company=$company;
+		// dd($this->company->user->toArray());
 
 	   if(count($company->phones)){
 			//dd($company->phones);
@@ -78,7 +79,7 @@ class AddCompany extends Component
 				->whereHas('roles', function ($query) {
 					$query->where('role_id', 10);
 				})
-				->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+				// ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
 				->leftJoin('companies', 'companies.id', '=', 'users.company_name')
 				->where('companies.id', '=', $this->company->id)
 				->select('users.id', 'users.name')
@@ -98,6 +99,7 @@ class AddCompany extends Component
 		
     }
 	public function mount(Company $company){
+		
 		$this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
 		$this->company=$company;
 		$this->showHours=false;
@@ -110,8 +112,12 @@ class AddCompany extends Component
 			})
 			->select('id', 'name')
 			->get()->toArray();
-		
 
+		if (request()->companyID != null) {	//edit
+			$company = Company::where('id', request()->companyID)->with(['phones', 'user', 'addresses'])->first();
+			$this->edit($company);
+		}
+		
 
 	}
 	public function updateVal($attrName, $val)
