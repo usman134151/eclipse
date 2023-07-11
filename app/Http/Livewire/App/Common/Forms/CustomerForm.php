@@ -156,6 +156,9 @@ class CustomerForm extends Component
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
+		$this->selectedDepartments = $this->user->departments->pluck('id');
+		
+
 		if(count($user->addresses)){
 			//dd($company->phones);
 			$this->userAddresses=[];
@@ -168,6 +171,8 @@ class CustomerForm extends Component
 		if (!is_null($this->user->company_name)) {
 			$this->emit('updateCompany', $this->user->company_name);
 		}
+
+
 
 		$this->dispatchBrowserEvent('refreshSelects');
      

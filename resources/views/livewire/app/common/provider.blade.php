@@ -15,7 +15,7 @@
     @include('modals.staff-provider-availiblity')
     @include('panels.common.add-new')
 	@elseif($showProfile)
-	@livewire('app.common.provider-details')
+	@livewire('app.common.provider-details',['user'=>$user])
 	@elseif($importFile)
 	@livewire('app.common.import.provider')
 	@else
@@ -142,12 +142,21 @@
 	{{-- Provider List - End --}}
 	@endif
 </div>
+	@push('scripts')
+
 <script>
 	function updateVal(attrName,val){
 
 		Livewire.emit('updateVal', attrName, val);
 
 	}
+	Livewire.on('passwordmodalDismissed', () => {
+            $('#changePasswordModal').modal('hide');
+               
+            });
+
 </script>
+@endpush
+
 </div>
 

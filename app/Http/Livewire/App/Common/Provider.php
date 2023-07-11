@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\App\Common;
 
+use App\Models\Tenant\User;
 use Livewire\Component;
 use App\Services\ExportDataFile;
 
@@ -10,7 +11,7 @@ class Provider extends Component
 	public $showForm;
 	public $showProfile;
 	public $importFile;
-	public $status;
+	public $status,$user;
     protected $listeners = [
 		'showList' => 'resetForm',
 		'showProfile' => 'showProfile',
@@ -40,8 +41,13 @@ class Provider extends Component
 
 	}
 
-	public function mount() {
-
+	public function mount($showProfile, $status = 1)
+	{
+		$this->status = $status;
+		$this->showProfile = $showProfile;
+		if ($showProfile) {
+			$this->user = User::where('id', request()->providerID)->with(['userdetail', 'industries', 'company'])->first()->toArray();
+		}
 	}
 
 	function showForm($user = null)
