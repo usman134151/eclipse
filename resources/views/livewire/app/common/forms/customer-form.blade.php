@@ -462,11 +462,13 @@
                                                             <div class="col-lg-6 pe-lg-5">
                                                                 <label class="form-label" for="tags">Tags (Coming Soon)</label>
                                                                 <select data-placeholder="" multiple
-                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
+                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
                                                                     <option value=""></option>
                                                                     <option selected>Admin staff</option>
                                                                     <option selected>Customers</option>
+                                                                    <option>tags</option>
                                                                 </select>
+                                                                <input type="hidden" name="tags-holder" id="tags-holder" wire:model.defer="tags">
                                                             </div>
                                                         </div>
                                                     </div>

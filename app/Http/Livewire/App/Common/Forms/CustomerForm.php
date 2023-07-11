@@ -18,7 +18,7 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
 	use withFileUploads;
-    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add';
+    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add',$tags;
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
@@ -198,11 +198,18 @@ class CustomerForm extends Component
 		   else{
 			$this->userdetail[$attrName] = $val;
 		   }
+		  
 		}
 		else if($attrName == "have_access_to")
 				$this->user_configuration['have_access_to'] =$val;
 		else
 			$this->$attrName = $val;
+
+			if($attrName=='tags')
+			{
+				$this->$attrName = $val;
+
+			}
 
 	}
 
@@ -261,7 +268,7 @@ class CustomerForm extends Component
 		
 		
 		$this->validate();
-		
+		//dd($this->tags);
 		if ($this->user->user_dob) {
 			$this->user->user_dob = Carbon::parse($this->user->user_dob); 
 			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
