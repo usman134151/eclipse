@@ -1,4 +1,4 @@
-<div>
+<div class="modal-content"  x-data="{ currentPassword: true, password: @entangle('hidePassword'), confirmPassword: true }">
     <div class="modal-header">
         <h2 class="modal-title fs-5" id="changePasswordModalLabel">
             Reset Password
@@ -13,10 +13,11 @@
                         <div class="row">
                             <div class="col-md-12 mb-md-2">
                                 <p>
-                                    For the safety of your account and your information, do not share your account credentials with anyone. To change your account password, enter your old password followed by a new, strong password.
+                                    For the safety of your account and your information, do not share your account credentials with anyone. 
+                                    To change this users account password, enter a new, strong password.
                                     Passwords must contain an upper and lowercase letter, a number and a special character.
                                 </p>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-8">
                                         <div class="mb-4">
                                             <label class="form-label" for="current_password">
@@ -48,7 +49,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
                                         <div class="mb-2">
@@ -128,7 +129,7 @@
                             </div>
                         </div>
                         <div class="d-flex col-12 form-actions">
-                            <button type="submit" class="btn btn-primary rounded mx-2" wire:click.prevent="changePassword">
+                            <button type="submit"  class="btn btn-primary rounded mx-2" wire:click.prevent="changePassword">
                                 Change Password
                             </button>
                         </div>
@@ -136,5 +137,6 @@
                 </div>
             </div>
         </div>
+        {{-- $2y$10$L7EGWlqGlVfIVpkVQHpQJukxpudGKYjwKbc02paLIVCeClmw15WzK Rameez --}}
     </div>
 </div>

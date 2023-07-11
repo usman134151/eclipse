@@ -4154,9 +4154,16 @@
             </div>
             @include('panels.common.add-document')
             @include('modals.mark-as-paid')
-            @include('modals.common.change-password')
+            @include('modals.common.change-password',['userid'=>$userid])
         </section>
     @endif    
     </div>
+    <script>
+   
+        Livewire.on('modalDismissed', () => {
+            $('#changePasswordModalLabel').modal('hide');
+               
+            });
+    </script>
   
 </div>
