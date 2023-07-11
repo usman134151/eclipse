@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\App\Common;
 
 use App\Models\Tenant\Department;
-use App\Models\Tenant\User;
 use Livewire\Component;
 
 class DepartmentProfile extends Component
@@ -25,6 +24,26 @@ class DepartmentProfile extends Component
 		$this->showDepartmentDetails($this->department);
 	}
 
+	public function lockAccount()
+	{
+		$department = Department::find($this->department->id);
+		$department->status = !$department->status;
+		$department->save();
+		$this->department->status = $department->status;
+		$this->showConfirmation("Account Locked Successfully");
+	}
+
+	public function showConfirmation($message = "")
+	{
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
+	}
 	function showForm()
 	{
 		$this->showForm=true;

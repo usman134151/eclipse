@@ -14,6 +14,8 @@ class ChangePassword extends Component
 	public string $password = '';
 	public $password_confirmation;
 	public $hidePassword = true;
+	public $isModal = false , $userid; //to enable password reset for users 
+
 
 	public string $passwordStrength = 'Weak';
 	public int $strengthScore = 0;
@@ -29,15 +31,17 @@ class ChangePassword extends Component
 		'password.regex' => 'Password must have at least one uppercase letter, one number and one special character.',
 	];
 
+	public function mount($userid=null){
+		if($this->isModal){
+			$this->userid = $userid;	//admin changing password of some other user
+		}else
+		$this->userid=Auth::user()->id;	//self password change
+	}
+
 	public function changePassword()
 	{
-		$user = User::findOrFail(Auth::user()->id);
-		$this->validate([
-			'current_password' => ['required', function ($attribute, $value, $fail) use ($user) {
-				if (!Hash::check($value, $user->password)) {
-					return $fail(__('The current password is incorrect.'));
-				}
-			}],
+		$user = User::findOrFail($this->userid);
+		$rules=[
 			'password' => [
 				'required',
 				'string',
@@ -46,13 +50,28 @@ class ChangePassword extends Component
 				'regex:/[0-9]/', // Must have at least one number
 				'regex:/[!@#$%^&*(),.?":{}|<>]/', // Must have at least one special character
 				'confirmed',
-			],
-		]);
+				],
+			'password_confirmation'=>['required_with:password','same:password']
+		];
+
+		if(!$this->isModal){	//removing current password check if component called from modal
+			$rules['current_password'] = ['required', function ($attribute, $value, $fail) use ($user) {
+										if (!Hash::check($value, $user->password)) {
+											return $fail(__('The current password is incorrect.'));
+										}
+									}];
+		}
+		// dd($user,$rules);
+		$this->validate($rules);
 		
-		if(Hash::check($this->current_password, $user->password))
+		if(Hash::check($this->current_password, $user->password)||$this->isModal)
 		{
 			$user->password = Hash::make($this->password);
 			$user->save();
+
+			if ($this->isModal)
+			$this->emit('passwordmodalDismissed');
+
 			$this->dispatchBrowserEvent('swal:modal', [
 				'type' => 'success',
 				'title' => 'Success',
@@ -60,6 +79,7 @@ class ChangePassword extends Component
 			]);
 			$this->resetFields();
 		}
+
 	}
 
 	public function updatedPassword($value)
@@ -108,6 +128,9 @@ class ChangePassword extends Component
 
 	public function render()
 	{
-		return view('livewire.app.common.forms.change-password');
+		if($this->isModal)
+		return view('livewire.app.common.modals.change-password');	//open in modal for admin
+		else
+		return view('livewire.app.common.forms.change-password'); //self change
 	}
 }

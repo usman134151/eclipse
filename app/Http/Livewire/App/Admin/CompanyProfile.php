@@ -46,7 +46,21 @@ class CompanyProfile extends Component
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}
-     
+
+	public function lockAccount()
+	{
+		$company = Company::find($this->company['id']);
+		$company->status = !$company->status;
+		$company->save();
+		$this->company['status'] = $company->status;
+
+		$this->dispatchBrowserEvent('swal:modal', [
+			'type' => 'success',
+			'title' => 'Success',
+			'text' => 'Company Account Locked Successfully',
+		]);
+	}
+
 	public function showDepartmentProfile($department=null)
 	{	
 		if ($department) {

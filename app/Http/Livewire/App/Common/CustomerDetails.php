@@ -10,7 +10,7 @@ class CustomerDetails extends Component
 {
 	public $user,$userid;
 	protected $listeners = [
-		'showDetails'
+		'showDetails', 'showConfirmation' => '$refresh'
 	];
 	public function render()
 	{
@@ -58,8 +58,27 @@ class CustomerDetails extends Component
 		}	
 		$this->dispatchBrowserEvent('refreshSelects');
 
+	}
 
-		
+	public function lockAccount()
+	{
+		$user = User::find($this->user['id']);
+		$user->status = !$user->status ;
+		$user->save();
+		$this->user['status']= $user->status;
+		$this->showConfirmation("Account Locked Successfully");
+
+	}
+
+	public function showConfirmation($message=""){
+		if ($message) {
+			// Emit an event to display a success message using the SweetAlert package
+			$this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
+		}
 	}
 
 	public function showList($userId=1)
