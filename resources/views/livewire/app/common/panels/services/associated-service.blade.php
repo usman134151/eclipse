@@ -644,7 +644,7 @@
                  </div> {{--Customized Forms Selection end  --}}
                <div class="col-12 justify-content-center form-actions d-flex gap-2">
                 
-                 <button type="submit" class="btn btn-primary rounded">Save Changes </button>
+                 <button type="submit" class="btn btn-primary rounded" wire:click="saveServiceRates()">Save Changes </button>
                 
                </div>
              </div>

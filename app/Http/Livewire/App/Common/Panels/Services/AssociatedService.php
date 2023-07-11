@@ -5,8 +5,10 @@ use App\Models\Tenant\ServiceCategory;
 use App\Models\Tenant\ServiceSpecialization;
 use App\Models\Tenant\Specialization;
 use App\Models\Tenant\SetupValue;
+use App\Models\Tenant\StandardRate;
 use App\Helpers\SetupHelper;
 use App\Services\App\ServiceCatagoryService;
+
 
 use Livewire\Component;
 
@@ -340,6 +342,21 @@ class AssociatedService extends Component
             $this->modelType=$modelType;
             $this->loadValues($this->service);
            
+        }
+
+        public function saveServiceRates(){
+            $standardRate = new StandardRate();
+            $standardRate->user_id=$this->modelId;
+            $standardRate->model_type=$this->modelType;
+            $standardRate->accommodation_id=$this->service->accommodations_id;
+            $standardRate->accommodation_service_id=$this->service->id;
+        foreach ($this->service->getAttributes() as $attribute => $value) {
+            if (property_exists($standardRate, $attribute)) {
+                $standardRate->$attribute = $value;
+            }
+        }
+
+        $standardRate->save();
         }
 
 
