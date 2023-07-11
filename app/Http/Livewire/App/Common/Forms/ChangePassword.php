@@ -50,7 +50,8 @@ class ChangePassword extends Component
 				'regex:/[0-9]/', // Must have at least one number
 				'regex:/[!@#$%^&*(),.?":{}|<>]/', // Must have at least one special character
 				'confirmed',
-			]
+				],
+			'password_confirmation'=>['required_with:password','same:password']
 		];
 
 		if(!$this->isModal){	//removing current password check if component called from modal
@@ -67,6 +68,10 @@ class ChangePassword extends Component
 		{
 			$user->password = Hash::make($this->password);
 			$user->save();
+
+			if ($this->isModal)
+			$this->emit('passwordmodalDismissed');
+
 			$this->dispatchBrowserEvent('swal:modal', [
 				'type' => 'success',
 				'title' => 'Success',
@@ -74,8 +79,6 @@ class ChangePassword extends Component
 			]);
 			$this->resetFields();
 		}
-		if($this->isModal)
-			$this->emit('modalDismissed');
 
 	}
 
@@ -126,8 +129,8 @@ class ChangePassword extends Component
 	public function render()
 	{
 		if($this->isModal)
-		return view('livewire.app.common.modals.change-password');
+		return view('livewire.app.common.modals.change-password');	//open in modal for admin
 		else
-		return view('livewire.app.common.forms.change-password');
+		return view('livewire.app.common.forms.change-password'); //self change
 	}
 }

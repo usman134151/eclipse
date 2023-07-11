@@ -152,7 +152,11 @@
                
             });
 
-	
+   
+        Livewire.on('passwordmodalDismissed', () => {
+            $('#changePasswordModal').modal('hide');
+               
+            });
 
 
 </script>

@@ -6,8 +6,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="row">
-        <div class="col-12">
-            <div class="card">
+        <div class="col-12 ">
+            <div class="card mb-0">
                 <div class="card-body">
                     <form class="form">
                         <div class="row">
@@ -77,9 +77,9 @@
                                             </div>
                                         </div>
                                         <span class="fw-bold">Password strength:</span>
-                                      {{--    {{ $strengthLevels[$strengthScore] ?? 'Weak' }} --}}
-                                        <progress value="" max="4" class="w-100"></progress>
-                                        @error('password')
+                                     	{{ $strengthLevels[$strengthScore] ?? 'Weak' }}
+											<progress value="{{ $strengthScore }}" max="4" class="w-100"></progress>
+										       @error('password')
                                             <span class="d-inline-block invalid-feedback">
                                                 {{ $message }}
                                             </span>
@@ -137,6 +137,6 @@
                 </div>
             </div>
         </div>
-        {{-- $2y$10$L7EGWlqGlVfIVpkVQHpQJukxpudGKYjwKbc02paLIVCeClmw15WzK Rameez --}}
     </div>
+    
 </div>

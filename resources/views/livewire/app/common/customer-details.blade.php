@@ -4158,12 +4158,6 @@
         </section>
     @endif    
     </div>
-    <script>
-   
-        Livewire.on('modalDismissed', () => {
-            $('#changePasswordModalLabel').modal('hide');
-               
-            });
-    </script>
+    
   
 </div>
