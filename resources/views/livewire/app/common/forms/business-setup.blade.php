@@ -516,32 +516,7 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-12 mb-4 d-flex">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" onclick="toggleItems('customer-billing')"
-                                                                            role="switch" wire:model.defer="configuration.customer_billing"
-                                                                            aria-label="Toggle Customer Billing" id="customerBilling">
-                                                                        
-                                                                    </div>
-                                                                    
-                                                                    <label class="form-check-label mt-1">Customer
-                                                                            Billing</label>
-                                                                </div>
-                                                                <div class="col-lg-12 mb-4 customer-billing" @if(!$configuration['customer_billing']) style="display:none"@endif>
-                                                                    <label class="form-label" for="billingSchedule">
-                                                                        Billing Schedule (Days After Invoice) <br>Net
-                                                                    </label>
-                                                                    <div class="col-3 d-flex gap-2 align-items-center">
-                                                                        <input class="form-control" type="number" wire:model.defer="configuration.billing_days"
-                                                                            id="billingSchedule" placeholder="10">
-                                                                        <span>Days</span>
-                                                                        @error('configuration.billing_days')
-                                                                                <span class="d-inline-block invalid-feedback mt-2">
-                                                                                    {{ $message }}
-                                                                                </span>
-                                                                                @enderror
-                                                                    </div>
-                                                                </div>
+                                                              
                                                             </div>
 
                                                         </div>
@@ -1032,6 +1007,36 @@
                                                         </div>
                                                         {{-- End: Right Column --}}
                                                     </div>
+                                                     <div class="between-section-segment-spacing">
+                                                        <div class="row">
+                                                                <div class="col-lg-12 mb-4 d-flex align-items-center">
+                                                                    <div class="form-check form-switch mb-0">
+                                                                        <input class="form-check-input" type="checkbox" onclick="toggleItems('customer-billing')"
+                                                                            role="switch" wire:model.defer="configuration.customer_billing"
+                                                                            aria-label="Toggle Customer Billing" id="customerBilling">
+                                                                        
+                                                                    </div>
+                                                                    
+                                                                    <label class="form-label mb-0 ">Customer
+                                                                            Billing</label>
+                                                                </div>
+                                                                <div class="col-lg-12 mb-4 customer-billing" @if(!$configuration['customer_billing']) style="display:none"@endif>
+                                                                    <label class="form-label" for="billingSchedule">
+                                                                        Billing Schedule (Days After Invoice) <br>Net
+                                                                    </label>
+                                                                    <div class="col-3 d-flex gap-2 align-items-center">
+                                                                        <input class="form-control" type="number" wire:model.defer="configuration.billing_days"
+                                                                            id="billingSchedule" placeholder="10">
+                                                                        <span>Days</span>
+                                                                        @error('configuration.billing_days')
+                                                                                <span class="d-inline-block invalid-feedback mt-2">
+                                                                                    {{ $message }}
+                                                                                </span>
+                                                                                @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     <div class="between-section-segment-spacing">
                                                         <div class="row">
                                                             <div class="col-lg-12">
