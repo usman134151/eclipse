@@ -9,6 +9,7 @@ use App\Models\Tenant\SetupValue;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tenant\SystemRole;
+use App\Models\Tenant\Team;
 use App\Services\App\UploadFileService;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
@@ -160,7 +161,17 @@ class ProviderForm extends Component
         ->select('id','name')
         ->get();
 
+        if (request()->providerID != null) {
+
+            $provider_id = request()->providerID;
+            $user = User::with(['userdetail', 'teams', 'addresses'])->find($provider_id);
+
+            $this->edit($user);
+
+        }
+
 	}
+
 
 	public function showList($message = "")
 	{
@@ -285,7 +296,6 @@ class ProviderForm extends Component
 
 	}
     public function edit(User $user){
-
         $this->user=$user;
         $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
@@ -301,6 +311,10 @@ class ProviderForm extends Component
         $this->providers = $this->providers->filter(function ($provider, $key) {
             return $provider->id != $this->user->id;
         });
+
+        $this->updateSelectedTeams($this->user->teams()->allRelatedIds());
+
+
 
     }
 
@@ -522,10 +536,15 @@ class ProviderForm extends Component
 
     //modal functions
 
-    public function updateSelectedTeams($selectedTeams,$teamNames)
+    public function updateSelectedTeams($selectedTeams)
     {
         $this->selectedTeams = $selectedTeams;
-		$this->teamNames = $teamNames;
-
+        $this->teamNames = Team::whereIn('id', $selectedTeams)->pluck('name');
     }
+
+    public function updateData()
+    {
+        $this->emit('setData', $this->selectedTeams);
+    }
+
 }

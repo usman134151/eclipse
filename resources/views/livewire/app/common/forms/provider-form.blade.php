@@ -256,7 +256,7 @@
                                                     <label class="form-label mb-3" for="assign-provider-teams">
                                                         Assign Provider Teams
                                                     </label>
-                                                    <button type="button"
+                                                    <button type="button" wire:click="updateData"
                                                         class="btn btn-has-icon px-0 btn-multiselect-popup d-flex align-items-center gap-1"
                                                         data-bs-toggle="modal" data-bs-target="#AssignproviderTeamModal">
                                                         <div>

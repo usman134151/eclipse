@@ -128,8 +128,8 @@ final class Providers extends PowerGridComponent
 
 		->addColumn('edit', function(User $model) {
 			return "<div class='d-flex actions'>
-            <a href='#' wire:click=\"edit($model->id)\" title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
-            <a href='#' title='View Team' aria-label='View Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'  wire:click=\"showProfile($model->id)\"><svg aria-label='View Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
+            <a href='".route('tenant.provider-edit',['providerID'=>$model->id])."' title='Edit Team' aria-label='Edit Team' class='btn btn-sm btn-secondary rounded btn-hs-icon'><svg title='Edit Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#pencil'></use></svg></a>
+            <a href='". route('tenant.provider-profile', ['providerID' => $model->id])."' title='View Team' aria-label='View Team' class='btn btn-sm btn-secondary rounded btn-hs-icon' ><svg aria-label='View Team' width='20' height='20' viewBox='0 0 20 20'><use xlink:href='/css/common-icons.svg#view'><use></svg></a>
             </div>";
 		});
 	}
