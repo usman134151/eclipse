@@ -142,12 +142,21 @@
 	{{-- Provider List - End --}}
 	@endif
 </div>
+	@push('scripts')
+
 <script>
 	function updateVal(attrName,val){
 
 		Livewire.emit('updateVal', attrName, val);
 
 	}
+	Livewire.on('passwordmodalDismissed', () => {
+            $('#changePasswordModal').modal('hide');
+               
+            });
+
 </script>
+@endpush
+
 </div>
 

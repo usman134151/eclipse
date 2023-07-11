@@ -3184,7 +3184,7 @@
 			 @include('modals.common.add-address')
 			 @include('modals.mark-as-paid')
 			 @include('modals.common.revert-back')
-			 @include('modals.common.change-password')
+			 @include('modals.common.change-password',['userid'=>$userid])
 			 @include('modals.remittance-details')
 
 		   </section>
