@@ -88,8 +88,8 @@ final class ServiceCatagories extends PowerGridComponent
 	{
 		return PowerGrid::eloquent()
 			->addColumn('name')
-            ->addColumn('icon', function () {
-                return '<a @click="associateCompanies = true">
+            ->addColumn('icon', function (ServiceCategory $model) {
+                return '<a @click.prevent="associateCompanies = true;$wire.updateService('.$model->id.')">
                     <svg aria-label="Associate Companies & Customers" width="60" height="41" viewBox="0 0 60 41" fill="none"
                       xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/common-icons.svg#chain"></use>
                     </svg> Associate Companies & Customers
@@ -133,7 +133,10 @@ final class ServiceCatagories extends PowerGridComponent
         // Emits an event to show the form for editing a record
         $this->emit('showForm', ServiceCategory::with('specializations')->find($id));
     }
-
+    function updateService($id){
+        // Emits an event to show the form for editing a record
+        $this->emit('associateService', ServiceCategory::find($id));
+    }
 	public function copyService($serviceId)
     {
         // Find the original service record

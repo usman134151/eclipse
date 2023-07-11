@@ -1,5 +1,5 @@
-<div x-data="{ associateCompanies:false, associateCustomer:false, associateDepartment:false}">
-    {{-- associateservice:false commented due to creating error --}}
+<div x-data="{ associateCompanies:false, associateCustomer:false, associateDepartment:false,associateservice:false}">
+    {{--  commented due to creating error --}}
     <div id="loader-section" class="loader-section" wire:loading>
         <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
             <div class="spinner-border" role="status" aria-live="polite">
@@ -13,7 +13,7 @@
     @include('panels.services.associate-companies')
 	@include('panels.services.associate-customers')
     @include('panels.services.associate-department')
-    {{-- @include('panels.services.associated-service') --}}
+     @include('panels.services.associated-service') 
     {{-- associateservice commented due to creating error --}}
     <!-- BEGIN: Content-->
     <!-- BEGIN: Header-->
