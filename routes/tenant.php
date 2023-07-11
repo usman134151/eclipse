@@ -61,7 +61,7 @@ Route::group([
 			Route::view('/admin/reimbursement', 'tenant/admin/provider/reimbursement', ["showForm"=>false]);
 			Route::view('/admin/provider/remittances', 'tenant/admin/provider/remittances', ["showForm"=>false]);
 			Route::view('/admin/provider/pending-payments', 'tenant/admin/provider/pending-payments', ["showForm"=>false]);
-			Route::view('/admin/deactivated-provider', 'tenant/common/provider', ["showForm"=>false,'status'=>0]);
+			Route::view('/admin/deactivated-provider', 'tenant/common/provider', ["showForm"=>false, 'showProfile' => false,'status'=>0]);
 			Route::view('/admin/provider-applications', 'tenant/admin/provider-applications', ["showForm"=>false]);
 			Route::view('/admin/provider-screenings', 'tenant/admin/provider-screenings', ["showForm"=>false]);
 			

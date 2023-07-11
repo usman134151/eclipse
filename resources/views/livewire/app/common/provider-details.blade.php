@@ -841,9 +841,15 @@
 	                                              <!-- Assigned Teams colums (end) -->
 	                                              <!-- in line / side by side buttons (start) -->
 	                                              <div class="col-12 form-actions mt-4">
-	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
+	                                            	 <button wire:click="lockAccount" type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2">
 
-	                                            		 <span>Lock Account</span>
+	                                            		 <span>
+                                                        @if($this->user['status'])
+                                                            Lock Account
+                                                        @else
+                                                            Unlock Account
+                                                        @endif
+														</span>
 	                                            	 </button>
 	                                            	 <button type="button" class="d-inline-flex align-items-center btn btn-primary rounded px-3 py-2 gap-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
 
