@@ -93,7 +93,7 @@
 		<script src="/tenant-resources/js/select2.min.js"></script>
 		<script src="/tenant-resources/js/sweetalert.min.js"></script>
 		<script src="/tenant-resources/js/common.js"></script>
-
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&libraries=places&language=en-AU"></script>
 		@auth
 		@if(!request()->cookie('savedBrowser'))
 
@@ -252,6 +252,8 @@ window.addEventListener("livewire:load", () => {
         }
       });
     });
+
 </script>
+
 	</body>
 </html>

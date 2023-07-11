@@ -133,4 +133,9 @@ class AssociateModel extends Component
         $this->emit('updateDepartmentUsers', $companyId);
 
     }
+    public function updateServiceData($index){
+        
+        $this->emit('updateModel', $this->modelList[$index]['id'],$this->modelList[$index]['name'],$this->modelType );
+
+    }
 }
