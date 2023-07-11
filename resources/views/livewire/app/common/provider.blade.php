@@ -15,7 +15,7 @@
     @include('modals.staff-provider-availiblity')
     @include('panels.common.add-new')
 	@elseif($showProfile)
-	@livewire('app.common.provider-details')
+	@livewire('app.common.provider-details',['user'=>$user])
 	@elseif($importFile)
 	@livewire('app.common.import.provider')
 	@else

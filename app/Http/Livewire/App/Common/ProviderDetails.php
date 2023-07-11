@@ -7,12 +7,14 @@ use App\Models\Tenant\User;
 use App\Services\App\UserService;
 class ProviderDetails extends Component
 {
-    public $user;
+    public $user, $userid;
 	protected $listeners = [
 		'showDetails'
 	];
     public function showDetails($user){
 		$this->user=$user;
+		$this->userid = $user['id'];
+
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 
@@ -21,8 +23,12 @@ class ProviderDetails extends Component
 		return view('livewire.app.common.provider-details');
 	}
 
-	public function mount()
-	{}
+	public function mount($user=null)
+	{
+		if ($user) {
+			$this->showdetails($user);
+		}
+	}
 
 	public function showList($userId=1)
 	{

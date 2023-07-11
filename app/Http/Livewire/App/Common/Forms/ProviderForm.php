@@ -160,6 +160,16 @@ class ProviderForm extends Component
         ->select('id','name')
         ->get();
 
+        if (request()->providerID != null) {
+
+            $provider_id = request()->providerID;
+            $user = User::with(['userdetail', 'teams', 'addresses'])->find($provider_id);
+
+            $this->edit($user);
+            $this->emit('editRecord', $user);
+
+        }
+
 	}
 
 	public function showList($message = "")
@@ -285,7 +295,6 @@ class ProviderForm extends Component
 
 	}
     public function edit(User $user){
-
         $this->user=$user;
         $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
