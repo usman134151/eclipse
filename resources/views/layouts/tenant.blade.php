@@ -132,6 +132,9 @@
 					let attrName = $(this).attr('id');
 					updateVal(attrName,  $(this).select2("val"));
 				}
+				else{
+					alert( $(this).select2("val"));
+				}
             });
 		}
 		$('.js-single-date').daterangepicker({
@@ -183,8 +186,32 @@ window.addEventListener("livewire:load", () => {
 					let attrName = $(this).attr('id');
 					updateVal(attrName,  $(this).select2("val"));
 				}
+				else{
+					
+					$('#tags-holder').val( $(this).select2("val"));
+					updateVal('tags',$('#tags-holder').val());
+				}
 
             });
+			$('#tags-select').select2({
+        tags: true,
+        createTag: function (params) {
+          return {
+            id: params.term,
+            text: params.term,
+            isNew: true
+          };
+        }
+      });
+
+      $('#mySelect').on('select2:select', function (e) {
+        var selectedOption = e.params.data;
+
+        if (selectedOption.isNew) {
+          // A new value was entered
+          console.log('New value:', selectedOption.text);
+        }
+      });
 		}
 		
 	})
