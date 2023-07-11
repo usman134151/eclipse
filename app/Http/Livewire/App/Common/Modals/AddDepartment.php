@@ -18,9 +18,16 @@ class AddDepartment extends Component
 
     public function mount()
     {
-        $this->departments = Department::where('company_id', $this->companyId)->get();
-    }
 
+        if(request()->customerID){
+            $this->user = User::find(request()->customerID);
+            $this->companyId = $this->user->company_name;
+            // $this->setDepartmentsDetails();
+        }
+        $this->departments = Department::where('company_id', $this->companyId)->get();
+        if($this->user)
+           $this->setDepartmentsDetails();
+    }
     public function setUser(User $user){
         $this->user = $user;
     }
