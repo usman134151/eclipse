@@ -291,6 +291,11 @@ class AddCompany extends Component
 		$this->step=$step;
 		$this->$tabName="active";
 		$this->switch($component);
+
+		// loading schedule on back button
+		if ($this->step == 2)
+			$this->getCompanySchedule();
+			
 		$this->dispatchBrowserEvent('refreshSelects');
 		
 	}
