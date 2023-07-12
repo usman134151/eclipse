@@ -895,6 +895,35 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            		                                          	 <!-- left col  -->
+		                                           	<div class="col-md-6 mb-md-2">
+														<div class="row">
+															<div class="mb-3">
+															<h2>Associated Tags:</h2>
+															</div>
+														</div>
+														@if($this->user['tags'])
+														@foreach($this->user['tags'] as $index=>$tag)
+															@if($index%2==0)
+																<div class="row ">	@endif
+
+																<div class="col-md-4 mb-md-3">
+																	<button type="button"
+																	class="btn btn-outline-dark rounded w-100">{{$tag}} 
+																	</button>
+																</div>
+																@if($index%2==1)
+																</div>	@endif
+
+														@endforeach
+														@if(count($this->user['tags'])%2==1)
+																</div>	@endif
+														@else
+
+														<div class="row">  <small> No Tags Available</small> </div>
+														@endif
+		                                             
+		                                         	</div>
                                             <div class="col-md-12 inner-section-segment-spacing">
                                                             <small>(coming soon)</small>
 

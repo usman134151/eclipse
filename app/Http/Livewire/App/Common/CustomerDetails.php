@@ -55,7 +55,9 @@ class CustomerDetails extends Component
 			$this->user['userdetail']['language']=SetupHelper::getSetupValueById($this->user['userdetail']['language_id']);
 		else{
 			$this->user['userdetail']['language']='N/A';
-		}	
+		}
+		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
+
 		$this->dispatchBrowserEvent('refreshSelects');
 
 	}
