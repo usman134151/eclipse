@@ -47,7 +47,7 @@
                <div class="col-lg-4">
                <h4 class="mb-lg-0">Associated With:{{$modelName}}({{ucwords($modelType)}})</h4></div>
                <div class="col-lg-8">
-               <button type="submit" class="btn btn-primary rounded px-4 py-2">RESET CONFIGURATION</button></div>
+               <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click="resetConfigurations()">RESET CONFIGURATION</button></div>
              </div>
              <div class="d-lg-flex justify-content-between align-items-center mb-4">
                <h2 class="mb-lg-0">Basic Service Setup </h2>

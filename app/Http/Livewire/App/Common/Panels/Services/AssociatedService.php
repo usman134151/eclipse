@@ -376,11 +376,97 @@ class AssociatedService extends Component
 
         public function saveServiceRates(){
            
-           
+                        //will refactor later, not a good way
+                        $chargeData=[];
+                        foreach($this->serviceTypes as $type=>$parameters){
+                            $chargeData[$type]='';
+                            $cIndex=1;
+                            foreach($this->serviceCharge[$type] as $data){
+                                if($data['label']!='' && $data['price']!=''){
+                                    $chargeData[$type].=json_encode([$data]);
+                                    if(count($this->serviceCharge[$type])>$cIndex)
+                                    $chargeData[$type].=",";
+                                }
+                               
+            
+                                $cIndex++;  
+                            }
+                        }
+            
+                        $this->service->service_charge=str_replace("],]", "]]","[".$chargeData["1"]."]");
+                        $this->service->service_charge_v=str_replace("],]", "]]","[".$chargeData["2"]."]");
+                        $this->service->service_charge_p=str_replace("],]", "]]","[".$chargeData["4"]."]");
+                        $this->service->service_charge_t=str_replace("],]", "]]","[".$chargeData["5"]."]");
+                        
+            
+                        $paymentData=[];
+                        foreach($this->serviceTypes as $type=>$parameters){
+                            $paymentData[$type]='';
+                            $cIndex=1;
+                            foreach($this->servicePayment[$type] as $data){
+                                if($data['label']!='' && $data['price']!='' ){
+                                $paymentData[$type].=json_encode([$data]);
+                                if(count($this->servicePayment[$type])>$cIndex)
+                                $paymentData[$type].=",";
+                                }
+            
+                                $cIndex++;  
+                            }
+                        }
+            
+                            
+                        $this->service->service_payment=str_replace("],]", "]]","[".$paymentData["1"]."]");
+                        $this->service->service_payment_v=str_replace("],]", "]]","[".$paymentData["2"]."]");
+                        $this->service->service_payment_p=str_replace("],]", "]]","[".$paymentData["4"]."]");
+                        $this->service->service_payment_t=str_replace("],]", "]]","[".$paymentData["5"]."]");
+            
+                        $emergencyData=[];
+                        foreach($this->serviceTypes as $type=>$parameters){
+                            $emergencyData[$type]='';
+                            $cIndex=1;
+                            foreach($this->emergencyHour[$type] as $data){
+                                if($data['hour']!='' && $data['price']!=''){
+                                    $emergencyData[$type].=json_encode([$data]);
+                                    if(count($this->emergencyHour[$type])>$cIndex)
+                                      $emergencyData[$type].=",";
+                                }
+            
+                                $cIndex++;  
+                            }
+                        }
+            
+                            
+                        $this->service->emergency_hour=str_replace("],]", "]]","[".$emergencyData["1"]."]");
+                        $this->service->emergency_hour_v=str_replace("],]", "]]","[".$emergencyData["2"]."]");
+                        $this->service->emergency_hour_p=str_replace("],]", "]]","[".$emergencyData["4"]."]");
+                        $this->service->emergency_hour_t=str_replace("],]", "]]","[".$emergencyData["5"]."]");
+            
+                        $cancelData=[];
+                        foreach($this->serviceTypes as $type=>$parameters){
+                            $cancelData[$type]='';
+                            $cIndex=1;
+                            foreach($this->cancelCharges[$type] as $data){
+                                if($data['hour']!='' && $data['price']!=''){
+                                    $cancelData[$type].=json_encode([$data]);
+                                    if(count($this->cancelCharges[$type])>$cIndex)
+                                      $cancelData[$type].=",";
+                                }
+            
+                                $cIndex++;  
+                            }
+                        }
+            
+                            
+                        $this->service->cancellation_hour1=str_replace("],]", "]]","[".$cancelData["1"]."]");
+                        $this->service->cancellation_hour1_v=str_replace("],]", "]]","[".$cancelData["2"]."]");
+                        $this->service->cancellation_hour1_p=str_replace("],]", "]]","[".$cancelData["4"]."]");
+                        $this->service->cancellation_hour1_t=str_replace("],]", "]]","[".$cancelData["5"]."]");
+            
 
             $serviceAttributes = $this->service->getAttributes();
-            $standardRateAttributes = $this->standardRate->getFillable();
            
+            $standardRateAttributes = $this->standardRate->getFillable();
+         
             foreach ($standardRateAttributes as $attribute) {
               
                     $this->standardRate->$attribute = $this->service->$attribute;
@@ -390,6 +476,7 @@ class AssociatedService extends Component
             $this->standardRate->model_type = $this->modelType;
             $this->standardRate->accommodation_id = $this->service->accommodations_id;
             $this->standardRate->accommodation_service_id = $this->service->id;
+         
             $this->standardRate->save();
             $this->associateService($this->service->toArray());   
             $message="Rates saved sucessfully for ".$this->modelName." associated with ".$this->service->name;
@@ -398,6 +485,15 @@ class AssociatedService extends Component
 				'title' => 'Success',
 				'text' => $message,
 			]);
+        }
+
+        public function resetConfigurations(){
+            StandardRate::where('user_id', $this->modelId)
+            ->where('accommodation_service_id', $this->service->id)
+            ->where('model_type', $this->modelType)
+            ->delete();
+
+            $this->updateModel($this->modelId,$this->modelName,$this->modelType);
         }
 
         
