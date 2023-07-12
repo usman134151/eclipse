@@ -160,7 +160,13 @@ class AddCompany extends Component
     }
 
 	public function addAddress($addressArr){
-		$this->userAddresses[]=$addressArr;
+	
+		if(isset($addressArr['id'])){ //update existing
+			$key = array_search($addressArr['id'], array_column($this->userAddresses, 'id'));
+			$this->userAddresses[$key]= $addressArr;
+
+		}else
+			$this->userAddresses[]=$addressArr;
 		
 	}
 
@@ -310,6 +316,11 @@ class AddCompany extends Component
 		unset($this->userAddresses[$index]);
         $this->userAddresses= array_values($this->userAddresses);
 		
+	}
+
+	public function editAddress($index,$type)
+	{
+		$this->emit('updateAddressType',$type, $this->userAddresses[$index]);
 	}
 
 

@@ -24,14 +24,18 @@ class CompanyService{
     }
 
     public function saveAddresses($company, $addresses)
-    {
+    {   
+        
         foreach ($addresses as $addressData) {
-            $addressAttributes = [
-                'user_address_type' => 2,
-                'user_id' => $company->id,
-            ];
-    
-            UserAddress::updateOrCreate($addressData, $addressAttributes);
+            if (isset($addressData['id'])) { //update existing
+                $id= $addressData['id'];
+                unset($addressData['id']);
+                UserAddress::find($id)->update($addressData);
+            }else{
+                $addressData['user_address_type'] = 2;
+                $addressData['user_id'] = $company->id;
+                UserAddress::create($addressData);
+            }
         }
     }
     
