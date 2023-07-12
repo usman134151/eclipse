@@ -3,7 +3,7 @@
 
     <div class="d-inline-flex align-items-center gap-4">
         <label for="search-company" class="form-label fw-semibold">Search</label>
-        <input type="search" class="form-control py-2" id="search-admin-staff" name="search" placeholder="Search here" autocomplete="on"  wire:keyup="filterResults()"  wire:model.debounce.500ms="searchParameter"/>
+        <input type="text" class="form-control py-2" id="search-admin-staff" name="search" placeholder="Search here" autocomplete="on"  wire:keyup="filterResults()"  wire:model.debounce.500ms="searchParameter"/>
     </div>
 </div>
 <div class="table-responsive">
@@ -34,15 +34,15 @@
 
                 <td>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="permissionsToggle" checked aria-label="Activation Toggle" wire:model="modelList.{{$index}}.activated"
+                        <input class="form-check-input" type="checkbox" role="switch" id="permissionsToggle{{$model['name']}}" checked aria-label="Activation Toggle" wire:model="modelList.{{$index}}.activated"
                                                                                                         wire:click="updateModel({{$index}})">
-                        <label class="form-check-label" for="permissionsToggle">Deactivated</label>
-                        <label class="form-check-label" for="permissionsToggle">Activated</label>
+                        <label class="form-check-label" for="permissionsToggle{{$model['name']}}">Deactivated</label>
+                        <label class="form-check-label" for="permissionsToggle{{$model['name']}}">Activated</label>
                     </div>
                 </td>
                 <td>
                     <div class="d-flex actions">
-                        <a href="javascript:void(0)" @click="associateservice = true" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+                        <a href="javascript:void(0)" @click="associateservice = true;$wire.updateServiceData({{$index}})" title="Add Service Rates" aria-label="Add Service Rates" class="btn btn-sm btn-secondary rounded btn-hs-icon">
                             <x-icon name="dollar-icon"/>
                         </a>
                         @if($modelType=='company')

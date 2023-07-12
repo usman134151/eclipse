@@ -32,7 +32,7 @@
                                                                                 class="table table-hover"
                                                                                 aria-label="Admin Staff Teams Table">
                                                                                 <tbody>
-                                                                                    <input type="search"
+                                                                                    <input type="text"
                                                                                         class="form-control"
                                                                                         id="search-record" name="search"
                                                                                         placeholder="Search"
@@ -82,7 +82,7 @@
                                                                             class="table table-hover"
                                                                             aria-label="Admin Staff Teams Table">
                                                                             <tbody>
-                                                                                <input type="search"
+                                                                                <input type="text"
                                                                                     class="form-control" name="search"
                                                                                     placeholder="Search"
                                                                                     autocomplete="on"
