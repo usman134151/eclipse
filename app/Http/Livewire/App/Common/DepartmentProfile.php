@@ -56,6 +56,7 @@ class DepartmentProfile extends Component
 
 	public function showDepartmentDetails($department){
 		$this->department=$department;
+		$this->department['tags'] = json_decode($this->department->tags);
 		
         $this->dispatchBrowserEvent('refreshSelects');
 

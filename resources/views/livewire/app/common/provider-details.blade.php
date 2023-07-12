@@ -244,7 +244,7 @@
 												<div class="row mb-4">
 													<div class="col-md-12 mt-4">
 														<div class="">
-															<a href="#" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ms-auto">
+															<a href="{{route('tenant.provider-edit',['providerID'=>$userid])}}" title="Edit" aria-label="Edit" class="btn btn-sm btn-secondary rounded btn-hs-icon ms-auto">
 																<svg aria-label="Edit" class="fill" width="20" height="28" viewBox="0 0 20 28"fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#edit-icon"></use>
                                                                 </svg>
@@ -326,7 +326,7 @@
 					                                 <div class="row mb-1 mx-2">
 					                                   <div class="col-md-12 d-flex">
 					                                   <div class="col-md-4 "><label class="col-form-label" for="r-code">Referral Code:</label></div>
-					                                   <div class="col-md-8 align-self-center"><div class="font-family-secondary">NoYCRK</div></div>
+					                                   <div class="col-md-8 align-self-center"><div class="font-family-secondary">{{$user['userdetail']['user_number']}}</div></div>
 					                                   </div>
 					                                 </div>
 				                                    </div>
@@ -615,6 +615,7 @@
 			                                       <div class="row mb-4 mt-3">
 			                                    	<div class="col-md-6">
 			                                    	  <div class="row mb-1">
+													  		<small>(coming soon)</small>
 			                                    		  <h2 class="text-primary">Service Statistics</h2>
 			                                    		  <div class="col-md-12 d-flex">
 			                                    		   <div class="col-md-8"><label class="col-form-label" for="total-hours-worked:">Total Hours Worked:</label></div>
@@ -636,6 +637,8 @@
 			                                    	</div>
 			                                    	<div class="col-md-6">
 			                                    	 <div class="row mb-1">
+													  		<small>(coming soon)</small>
+
 			                                    		 <h2 class="text-primary">Last Login:</h2>
 			                                    		 <div class="col-md-12 d-flex">
 			                                    		  <div class="col-md-3 "><label class="col-form-label" for="date">Date:</label></div>
@@ -677,102 +680,34 @@
                                      					 </tr>
                                      					 </thead>
                                      					 <tbody>
-                                     					   <tr role="row" class="odd">
-                                     						 <td class="align-middle fw-bold">1</td>
-                                     						 <td class="align-middle"> <div class="row g-2">
-                                     						   <div class="col-md-2">
-                                     							 <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-						                                         </div>
-						                                         <div class="col-md-10 align-self-center">
-						                                      	 <h6 class="fw-semibold">Langauge Translation</h6>
-						                                      	 <p>languagetranslation@gmail.com</p>
-						                                         </div>
-					                                     	 </div></td>
-					                                     	 <td class="align-middle">
-					                                     		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
-																	   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
-															        </svg>
-					                                     		</a>
-					                                     	 </td>
-					                                        </tr>
-					                                        <tr role="row" class="even">
-					                                     	 <td class="align-middle fw-bold">2</td>
-					                                     	 <td class="align-middle"> <div class="row g-2">
-					                                     	   <div class="col-md-2">
-					                                     		 <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-					                                     	   </div>
-					                                     	   <div class="col-md-10 align-self-center">
-					                                     		 <h6 class="fw-semibold">Langauge Translation</h6>
-					                                     		 <p>languagetranslation@gmail.com</p>
-					                                     	   </div>
-					                                     	 </div></td>
-					                                    	 <td class="align-middle">
-					                                    		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					                                    			<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
-																	   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
-															        </svg>
-					                                    		</a>
-					                                    	 </td>
-					                                       </tr>
-					                                       <tr role="row" class="odd">
-					                                    	 <td class="align-middle fw-bold">3</td>
-					                                    	 <td class="align-middle"> <div class="row g-2">
-					                                    	   <div class="col-md-2">
-					                                    		 <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-					                                    	   </div>
-					                                    	   <div class="col-md-10 align-self-center">
-					                                    		 <h6 class="fw-semibold">Langauge Translation</h6>
-					                                    		 <p>languagetranslation@gmail.com</p>
-					                                    	   </div>
-					                                    	 </div></td>
-					                                    	 <td class="align-middle">
-					                                    		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-					                                    			<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
-																	   xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
-															        </svg>
-					                                    		</a>
-					                                    	 </td>
-					                                       </tr>
-					                                        <tr role="row" class="even">
-					                                     	 <td class="align-middle fw-bold">4</td>
-					                                     	 <td class="align-middle"> <div class="row g-2">
-					                                     	   <div class="col-md-2">
-					                                     		 <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-					                                     	   </div>
-					                                     	   <div class="col-md-10 align-self-center">
-					                                     		 <h6 class="fw-semibold">Langauge Translation</h6>
-					                                     		 <p>languagetranslation@gmail.com</p>
-					                                     	   </div>
-					                                     	 </div></td>
-					                                     	 <td class="align-middle">
-					                                     		<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																	<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
-																	xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
-																 </svg>
-					                                     		</a>
-					                                     	 </td>
-					                                        </tr>
-					                                        <tr role="row" class="odd">
-					                                     	 <td class="align-middle fw-bold">5</td>
-					                                     	 <td class="align-middle"> <div class="row g-2">
-					                                     	   <div class="col-md-2">
-					                                     		 <img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
-					                                     	   </div>
-					                                     	   <div class="col-md-10 align-self-center">
-					                                     		 <h6 class="fw-semibold">Langauge Translation</h6>
-					                                     		 <p>languagetranslation@gmail.com</p>
-					                                     	   </div>
-					                                     	 </div></td>
-		                                       				 <td class="align-middle">
-		                                       				  <a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
-																<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
-																xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
-															 </svg>
-		                                       				</a>
-		                                       				 </td>
-		                                       			   </tr>
-		                                       			 </tbody>
+															@if(count($user['teams']))
+																@foreach($user['teams'] as $index=> $team)
+																	<tr role="row" class="odd">
+																		<td class="align-middle fw-bold">{{$index+1}}</td>
+																		<td class="align-middle"> <div class="row g-2">
+																		<div class="col-md-2">
+																			<img src="/tenant-resources/images/portrait/small/avatar-s-20.jpg" class="img-fluid rounded-circle" alt="Team Profile Image">
+																			</div>
+																			<div class="col-md-10 align-self-center">
+																			<h6 class="fw-semibold">{{$team['name']}}</h6>
+																			<p>{{$team['description']}}</p>
+																			</div>
+																		</div></td>
+																		<td class="align-middle">
+																			<a href="#" class="btn btn-sm btn-secondary rounded btn-hs-icon">
+																				<svg aria-label="Message" class="fill" width="20" height="28" viewBox="0 0 20 28" fill="none"
+																				xmlns="http://www.w3.org/2000/svg"><use xlink:href="/css/sprite.svg#message"></use>
+																				</svg>
+																			</a>
+																		</td>
+																	</tr>
+																@endforeach
+															@else
+															 <tr>
+															 	<td> <small>No Teams Assigned</small> </td>
+															 </tr>
+															@endif
+														   </tbody>
 		                                       		   </table>
 		                                       		 </div>
 		                                       	   </div>
@@ -780,63 +715,34 @@
 		                                          </div>
 		                                      </div>
 		                                          	 <!-- left col  -->
-		                                           <div class="col-md-6 mb-md-2">
-		                                             <div class="row">
-		                                          	 <div class="mb-3">
-		                                          	   <h2>Associated Tags:</h2>
-		                                          	 </div>
-		                                             </div>
+		                                           	<div class="col-md-6 mb-md-2">
+														<div class="row">
+															<div class="mb-3">
+															<h2>Associated Tags:</h2>
+															</div>
+														</div>
+														@if($this->user['tags'])
+														@foreach($this->user['tags'] as $index=>$tag)
+															@if($index%2==0)
+																<div class="row ">	@endif
 
-		                                             <div class="row">
-		                                          	 <div class="col-md-4 mb-md-3">
-		                                          	   <button type="button"
-		                                          	   class="btn btn-outline-dark rounded w-100">Deaf and Blind
-		                                          	 </button>
-		                                          	   </div>
-		                                          	 <div class="col-md-4 mb-md-3">
-		                                          	   <button type="button"
-		                                          	   class="btn btn-outline-dark rounded w-100">Only Virtual
-		                                          	 </button>
-		                                          	   </div>
-		                                          	 </div>
-		                                             <div class="row">
-		                                          	 <div class="col-md-4 mb-md-3">
-		                                          	   <button type="button"
-		                                          	   class="btn btn-outline-dark rounded w-100">Pakistani Origin
-		                                          	 </button>
-		                                          	   </div>
-		                                          	 <div class="col-md-4 mb-md-3">
-		                                          	   <button type="button"
-		                                          	   class="btn btn-outline-dark rounded w-100">Sign Language
-		                                          	 </button>
-		                                          	   </div>
-		                                          	 </div>
-		                                             <div class="row">
-		                                          	 <div class="col-md-4 mb-md-3">
-		                                          	   <button type="button"
-		                                          	   class="btn btn-outline-dark rounded w-100">Legal
-		                                        	 </button>
-		                                        	   </div>
-		                                        	 <div class="col-md-4 mb-md-3">
-		                                        	   <button type="button"
-		                                        	   class="btn btn-outline-dark rounded w-100">Conference
-		                                        	 </button>
-		                                        	   </div>
-		                                        	 </div>
-		                                           <div class="row">
-		                                        	 <div class="col-md-4 mb-md-2">
-		                                        	   <button type="button"
-		                                        	   class="btn btn-outline-dark rounded w-100">Indian Origin
-		                                        	 </button>
-		                                        	   </div>
-		                                        	 <div class="col-md-4 mb-md-2">
-		                                        	   <button type="button"
-		                                        	   class="btn btn-outline-dark rounded w-100">Medical
-		                                        	 </button>
-		                                        	   </div>
-		                                        	 </div>
+																<div class="col-md-4 mb-md-3">
+																	<button type="button"
+																	class="btn btn-outline-dark rounded w-100">{{$tag}} 
+																	</button>
+																</div>
+																@if($index%2==1)
+																</div>	@endif
 
-		                                         </div>
+														@endforeach
+														@if(count($this->user['tags'])%2==1)
+																</div>	@endif
+														@else
+
+														<div class="row">  <small> No Tags Available</small> </div>
+														@endif
+		                                             
+		                                         	</div>
 	                                              </div>
 	                                              <!-- Assigned Teams colums (end) -->
 	                                              <!-- in line / side by side buttons (start) -->
@@ -871,7 +777,7 @@
 		                        <!-- Dashboard tab end -->
 		                        <div class="tab-pane fade" id="schedule-tab-pane" role="tabpanel" aria-labelledby="schedule-tab-tab" tabindex="0">
 			                        <div class="row mb-3">
-			                    	   <h3>Schedule</h3>
+			                    	   <h3>Schedule <small>(coming soon)</small> </h3>
 			                        </div>
 			                        <div class="d-flex justify-content-between mb-2">
 			                        	<div class="d-inline-flex align-items-center gap-4">
@@ -924,7 +830,7 @@
 			                    	<p>In this section, you can add your availability schedule for each working day. You can also register any future holidays when you are not available. It is flexible to create same working hours schedule or different for each day. You can choose your working days as well.</p>
 		                          </div>
 			                      <div class="row mb-3">
-			                    	<h2>Availability</h2>
+			                    	<h2>Availability <small>(coming soon)</small></h2>
 			                      </div>
 			                       <div class="d-flex justify-content-between mb-4">
 			                    	<div class="d-inline-flex align-items-center gap-4">
@@ -943,7 +849,7 @@
 		                        <!-- Availability Tab End-->
 		                        <div class="tab-pane fade" id="provider-feedback-tab-pane" role="tabpanel" aria-labelledby="provider-feedback-tab" tabindex="0">
                                     <div class="row mb-4">
-										<h3>Feedback</h3>
+										<h3>Feedback <small>(coming soon)</small></h3>
 									</div>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
 										{{-- Search --}}
@@ -1426,7 +1332,7 @@
 		                        </div>
 								<div class="tab-pane fade" id="my-drive-tab-pane" role="tabpanel" aria-labelledby="my-drive-tab" tabindex="0">
 								    <div class="row">
-										<h3>My Drive</h3>
+										<h3>My Drive <small>(coming soon)</small></h3>
 										<p>Here you can manage your professional credentials and required documents. You will receive notifications when your credentials are approaching expiration or have expired.</p>
 									</div>
 									<div class="col-md-12 d-flex col-12 gap-4 mb-4">
@@ -1717,7 +1623,7 @@
                                 <!-- Provider Feedback Tab End-->
 								<div class="tab-pane fade" id="invoices-remittances-tab-pane" role="tabpanel" aria-labelledby="invoices-remittances-tab" tabindex="0">
 									<div class="row">
-										<h3>Invoices & Remittances</h3>
+										<h3>Invoices & Remittances <small>(coming soon)</small></h3>
 									</div>
 									<div class="row">
 										<div class="col-md-8 mb-4 p-2">
@@ -2285,7 +2191,7 @@
 								<!-- Notes Tab End-->
 								<div class="tab-pane fade" id="notifications-tab-pane" role="tabpanel" aria-labelledby="notifications-tab" tabindex="0">
 									<div class="row">
-										<h3>Notification</h3>
+										<h3>Notification <small>(coming soon)</small></h3>
 										<p class="mt-3">
 											Here you can control how you are notified about Profile activity.
 										</p>
@@ -2781,7 +2687,7 @@
 								<div class="tab-pane fade" id="reports-tab-pane" role="tabpanel" aria-labelledby="reports-tab" tabindex="0">
 									<div class="row mb-3">
 										<h3>
-											Reports
+											Reports <small>(coming soon)</small>
 										</h3>
 									</div>
 									<div class="row mb-4">
@@ -2849,7 +2755,7 @@
 								<!-- Reports Tab End-->
 								<div class="tab-pane fade" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab" tabindex="0">
 									<div class="row mb-4">
-										<h3>Logs</h3>
+										<h3>Logs <small>(coming soon)</small></h3>
 									</div>
 									<div class="row mb-4">
 										<div class="dropdown">
@@ -3004,7 +2910,7 @@
 								<!-- Log Tab End-->
 								<div class="tab-pane fade" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
 									<div class="row mb-2">
-										<h2>Settings</h2>
+										<h2>Settings <small>(coming soon)</small></h2>
 									</div>
 								    <div class="row mb-2">
                                         <h3>Provider Payment & Preference</h3>
