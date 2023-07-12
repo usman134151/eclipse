@@ -14,7 +14,7 @@ class ProviderDetails extends Component
     public function showDetails($user){
 		$this->user=$user;
 		$this->userid = $user['id'];
-
+		$this->user['tags'] = json_decode($this->user['userdetail']['tags']);
 		$this->dispatchBrowserEvent('refreshSelects');
 	}
 

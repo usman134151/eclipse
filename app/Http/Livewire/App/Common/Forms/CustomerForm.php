@@ -171,6 +171,8 @@ class CustomerForm extends Component
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
 		$this->selectedDepartments = $this->user->departments->pluck('id');
+		$this->selectedIndustries = $this->user->industries->pluck('id');
+
 		
 
 		if(count($user->addresses)){
@@ -307,7 +309,7 @@ class CustomerForm extends Component
 			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);	
 		}
 		$userService = new UserService;
-      
+		
         $this->user = $userService->createUser($this->user,$this->userdetail,4,$this->email_invitation,$this->selectedIndustries,$this->isAdd);
 
 		$this->user->departments()->sync($this->selectedDepartments);
