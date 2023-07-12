@@ -159,15 +159,13 @@ class AddCompany extends Component
 
     }
 
-	public function addAddress($addressArr){
-	
-		if(isset($addressArr['id'])){ //update existing
-			$key = array_search($addressArr['id'], array_column($this->userAddresses, 'id'));
-			$this->userAddresses[$key]= $addressArr;
+	public function addAddress($addressArr)
+	{
 
-		}else
-			$this->userAddresses[]=$addressArr;
-		
+		if (isset($addressArr['index'])) { //update existing
+			$this->userAddresses[$addressArr['index']] = $addressArr;
+		} else
+		$this->userAddresses[] = $addressArr;
 	}
 
 	public function rules()
@@ -318,9 +316,10 @@ class AddCompany extends Component
 		
 	}
 
-	public function editAddress($index,$type)
+	public function editAddress($index, $type)
 	{
-		$this->emit('updateAddressType',$type, $this->userAddresses[$index]);
+		$this->userAddresses[$index]['index'] = $index;	//passing ref index
+		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
 	}
 
 

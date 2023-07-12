@@ -335,7 +335,11 @@ class DepartmentForm extends Component
 	}
 	public function addAddress($addressArr)
 	{
-		$this->userAddresses[] = $addressArr;
+
+		if (isset($addressArr['index'])) { //update existing
+			$this->userAddresses[$addressArr['index']] = $addressArr;
+		} else
+			$this->userAddresses[] = $addressArr;
 	}
 
 	public function deleteAddress($index)
@@ -350,6 +354,13 @@ class DepartmentForm extends Component
     public function addServices(){
 		$this->step=3;
 	}
+
+	public function editAddress($index, $type)
+	{
+		$this->userAddresses[$index]['index']=$index;	//passing ref index
+		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
+	}
+
 
 	// modal listener function
 	public function updateSelectedSupervisors($selectedSupervisors, $default)
