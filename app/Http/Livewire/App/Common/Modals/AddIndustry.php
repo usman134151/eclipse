@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class AddIndustry extends Component
 {
-    public $selectedIndustries=[],$defaultIndustry,$industries,$user=null;
+    public $selectedIndustries=[],$defaultIndustry,$industries,$user=null,$companyId;
     protected $listeners = ['editRecord' => 'setUser','updateCompany'];
 
     public function render()
@@ -19,7 +19,13 @@ class AddIndustry extends Component
 
     public function mount()
     {
+        if (request()->customerID) {
+            $this->user = User::find(request()->customerID);
+            $this->companyId = $this->user->company_name;
+        }
         $this->industries= Industry::where('status', 1)->get();
+        if ($this->user)
+            $this->setIndustries();
     }
 
     public function setUser(User $user)
