@@ -14,13 +14,13 @@ use App\Services\App\UploadFileService;
 use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
+use App\Models\Tenant\Tag;
 use Livewire\WithFileUploads;
 
 class ProviderForm extends Component
 {
     use WithFileUploads;
-    public $user,$isAdd=true,$image=null, $teamNames=[],$label="Add";
+    public $user,$isAdd=true,$image=null, $teamNames=[],$label="Add", $allTags = [], $tags = [];
     public $ethnicity;
     public $timezone;
     public $gender;
@@ -153,6 +153,7 @@ class ProviderForm extends Component
         $this->userdetail['certification'] = [];
         $this->userdetail['favored_users'] = [];
         $this->userdetail['unfavored_users'] = [];
+        $this->allTags = Tag::pluck('name')->toArray();
 
         $this->providers = User::query()
 		->where('status',1)
@@ -259,6 +260,14 @@ class ProviderForm extends Component
     public function ProvideService(){
         $this->step = 3;
     }
+
+    public function updateTags()
+    {
+        foreach ($this->allTags as $tag) {
+            Tag::firstOrCreate(['name' => $tag]);
+        }
+    }
+    
     public function save($redirect=1){
 		$this->validate();
         if($this->user->user_dob){
@@ -272,6 +281,10 @@ class ProviderForm extends Component
         $this->userdetail['certification'] =implode(', ', $this->userdetail['certification']);
         $this->userdetail['favored_users'] = implode(', ', $this->userdetail['favored_users']);
         $this->userdetail['unfavored_users'] = implode(', ', $this->userdetail['unfavored_users']);
+		$this->userdetail['tags'] = json_encode($this->tags);
+		$this->updateTags();
+
+
         $fileService = new UploadFileService();
         
         if($this->image!=null){
@@ -300,6 +313,12 @@ class ProviderForm extends Component
         $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
         $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
+
+        if ($user['userdetail']['tags'])
+            $this->tags = json_decode($user['userdetail']['tags'], true);
+        else
+            $this->tags = [];
+	
         
 	   $this->userdetail=$user['userdetail']->toArray();
        $this->label="Edit";
@@ -381,6 +400,10 @@ class ProviderForm extends Component
      {
         if($attrName=='user_dob'){
             $this->user['user_dob']=$val;
+        } elseif ($attrName == 'tags') {
+            $this->tags = explode(',', $val);
+            $this->allTags = array_unique(array_merge($this->allTags, $this->tags));
+            $this->allTags = array_values($this->allTags);
         }
        
         else

@@ -133,7 +133,8 @@
 					updateVal(attrName,  $(this).select2("val"));
 				}
 				else{
-					alert( $(this).select2("val"));
+						$('#tags-holder').val( $(this).select2("val"));
+					updateVal('tags',$('#tags-holder').val());
 				}
             });
 		}
@@ -190,6 +191,7 @@ window.addEventListener("livewire:load", () => {
 					
 					$('#tags-holder').val( $(this).select2("val"));
 					updateVal('tags',$('#tags-holder').val());
+
 				}
 
             });

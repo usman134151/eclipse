@@ -10,7 +10,7 @@ use App\Models\Tenant\Phone;
 use App\Models\Tenant\Schedule;
 use App\Models\Tenant\User;
 use App\Services\App\AddressService;
-use Illuminate\Validation\Rule;
+use App\Models\Tenant\Tag;
 use App\Services\App\DepartmentService;
 use App\Services\App\UploadFileService;
 use Carbon\Carbon;
@@ -20,7 +20,7 @@ use Livewire\WithFileUploads;
 class DepartmentForm extends Component
 {
 	use WithFileUploads;
-    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [], $label="Add";
+    public $phoneNumbers=[['phone_title'=>'','phone_number'=>'']], $userAddresses = [], $label="Add", $allTags = [], $tags = [];
 	public $component = 'department-info',$image=null, $companyPhones=[],$companyUsers=[];
     public $department,$providers=[], $fv=[],$unfv =[];
     public $setupValues = [
@@ -84,6 +84,10 @@ class DepartmentForm extends Component
 				}
 
 			}
+			if ($this->department->tags)
+				$this->tags = json_decode($this->department->tags, true);
+			else
+				$this->tags = [];
 
 			//setting supervisors modal detail
 			
@@ -109,6 +113,7 @@ class DepartmentForm extends Component
 		}
 		
         $this->setupValues=SetupHelper::loadSetupValues($this->setupValues);
+		$this->allTags = Tag::pluck('name')->toArray();
 		$this->providers = User::query()
 			->where('status', 1)
 			->whereHas('roles', function ($query) {
@@ -170,6 +175,8 @@ class DepartmentForm extends Component
 			$fileService = new UploadFileService();
 			$this->department->department_logo = $fileService->saveFile('profile_pic', $this->image, $this->department->department_logo);
 		}
+		$this->department->tags = json_encode($this->tags);
+		$this->updateTags();
 
         $departmentService = new DepartmentService;
         $this->department = $departmentService->createDeparment($this->department,$this->phoneNumbers,$this->userAddresses);
@@ -194,7 +201,12 @@ class DepartmentForm extends Component
 
 
 	}
-
+	public function updateTags()
+	{
+		foreach ($this->allTags as $tag) {
+			Tag::firstOrCreate(['name' => $tag]);
+		}
+	}
 
 	public function getCompanySchedule()
 	{
@@ -301,6 +313,10 @@ class DepartmentForm extends Component
 			$this->fv=$val;
 		}elseif($attrName == 'unfavored_providers'){
 			$this->unfv=$val;
+		} elseif ($attrName == 'tags') {
+			$this->tags = explode(',', $val);
+			$this->allTags = array_unique(array_merge($this->allTags, $this->tags));
+			$this->allTags = array_values($this->allTags);
 		}else
         $this->department->$attrName = $val;
 

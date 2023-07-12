@@ -10,6 +10,7 @@ use App\Models\Tenant\Company;
 use App\Models\Tenant\Phone;
 use App\Models\Tenant\RoleUser;
 use App\Models\Tenant\Schedule;
+use App\Models\Tenant\Tag;
 use App\Models\Tenant\User;
 use App\Services\App\UploadFileService;
 use Illuminate\Validation\Rule;
@@ -19,7 +20,7 @@ use Livewire\WithFileUploads;
 class AddCompany extends Component
 {
 	use WithFileUploads;
-	public $component = 'company-info',$image=null, $label='Add';
+	public $component = 'company-info',$image=null, $label='Add',$allTags=[],$tags=[];
 	public $phoneNumbers =[['phone_title'=>'','phone_number'=>'']];
 	public $deletedNumbers=[],$companyUsers=[],$admins=[], $providers=[],$fv_providers=[], $unfv_providers=[];
 	public $setupValues = [
@@ -93,7 +94,11 @@ class AddCompany extends Component
 		$this->unfv_providers = explode(', ', $this->company->unfavored_providers);
 
 
-
+		if ($this->company->tags)
+			$this->tags = json_decode($this->company->tags, true);
+		else
+			$this->tags = [];
+	
 		$this->dispatchBrowserEvent('refreshSelects');
 
 		
@@ -105,6 +110,8 @@ class AddCompany extends Component
 		$this->showHours=false;
 		$this->showAddress=false;
 		$this->companyUsers =[];
+		$this->allTags = Tag::pluck('name')->toArray();
+
 		$this->providers = User::query()
 			->where('status', 1)
 			->whereHas('roles', function ($query) {
@@ -130,6 +137,10 @@ class AddCompany extends Component
 			$this->fv_providers = $val;
 		} elseif ($attrName == "unfavored_providers") {
 			$this->unfv_providers = $val;
+		} elseif ($attrName == 'tags') {
+			$this->tags = explode(',', $val);
+			$this->allTags = array_unique(array_merge($this->allTags, $this->tags));
+			$this->allTags = array_values($this->allTags);
 		}else{
 			$this->company[$attrName.'_id'] = $val;
 		}
@@ -198,6 +209,8 @@ class AddCompany extends Component
 		$companyService = new CompanyService;
 		$this->company->unfavored_providers = implode(', ', $this->unfv_providers);
 		$this->company->favored_providers = implode(', ', $this->fv_providers);
+		$this->company->tags = json_encode($this->tags);
+		$this->updateTags();
 	
         $this->company = $companyService->createCompany($this->company,$this->phoneNumbers,$this->userAddresses);
 		if(count($this->admins))
@@ -219,6 +232,14 @@ class AddCompany extends Component
 		}
 
 	}
+
+	public function updateTags()
+	{
+		foreach ($this->allTags as $tag) {
+			Tag::firstOrCreate(['name' => $tag]);
+		}
+	}
+
 
 	public function stepIncremented()
 	{
