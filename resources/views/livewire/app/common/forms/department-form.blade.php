@@ -390,15 +390,15 @@
                                                     <!-- Select Tags -->
                                                     <div class="col-md-6 col-12">
                                                         <div class="mb-4">
-                                                            <label class="form-label" for="tags-column">
-                                                                Tags <small>(coming soon)</small>
-                                                            </label>
-                                                            <select disabled data-placeholder="" multiple
-                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags" wire:model.defer="tags">
-                                                                    <option value=""></option>
-                                                                    <option selected>Admin staff</option>
-                                                                    <option selected>Customers</option>
+                                                           <label class="form-label" for="tags">Tags</label>
+                                                                <select data-placeholder="" multiple 
+                                                                    class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
+                                                                    @foreach($allTags as $tag)
+                                                                        <option {{in_array($tag,$tags) ? 'selected' : ''}} value="{{$tag}}">{{$tag}}</option>
+                                                                    @endforeach
                                                                 </select>
+                                                                <input type="hidden" name="tags-holder" id="tags-holder" wire:model.defer="tags">
+                                      
                                                         </div>
                                                     </div>
 
