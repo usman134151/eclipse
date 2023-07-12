@@ -58,7 +58,7 @@ class UserService
 
     // set new token for reset password
     // Insert selected industries into user_industries table
-    if (!$isAdd && $role == 4)
+    if ($role == 4)
       $user->industries()->sync($selectedIndustries);
     //   UserIndustry::where('user_id', $user->id)->delete();
     // foreach ($selectedIndustries as $industry_id) {
