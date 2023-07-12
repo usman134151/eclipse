@@ -140,6 +140,11 @@ class ProviderForm extends Component
     public $selectedTeams =[], $media_file=null;
 	public function render()
 	{
+
+        //null check to avoid break
+        if (!is_array($this->tags))
+            $this->tags = [];
+            
         $roles = SystemRole::get();
 		return view('livewire.app.common.forms.provider-form',[
             'roles' => $roles
@@ -314,7 +319,7 @@ class ProviderForm extends Component
         $user['userdetail']['favored_users'] = explode(", ", $user['userdetail']['favored_users']);
         $user['userdetail']['unfavored_users'] = explode(", ", $user['userdetail']['unfavored_users']);
 
-        if ($user['userdetail']['tags'])
+        if ($user['userdetail']['tags'] != null)
             $this->tags = json_decode($user['userdetail']['tags'], true);
         else
             $this->tags = [];

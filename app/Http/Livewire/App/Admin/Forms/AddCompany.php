@@ -46,7 +46,11 @@ class AddCompany extends Component
 
 	public function render()
 	{
-		
+
+		//null check to avoid break
+		if (!is_array($this->tags))
+			$this->tags = [];
+			
 		return view('livewire.app.admin.forms.add-company');
 		
 	}
@@ -94,7 +98,7 @@ class AddCompany extends Component
 		$this->unfv_providers = explode(', ', $this->company->unfavored_providers);
 
 
-		if ($this->company->tags)
+		if ($this->company->get('tags') != null)
 			$this->tags = json_decode($this->company->tags, true);
 		else
 			$this->tags = [];

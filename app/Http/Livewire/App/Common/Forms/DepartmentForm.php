@@ -84,7 +84,7 @@ class DepartmentForm extends Component
 				}
 
 			}
-			if ($this->department->tags)
+			if ($this->department->get('tags') != null)
 				$this->tags = json_decode($this->department->tags, true);
 			else
 				$this->tags = [];
@@ -328,6 +328,11 @@ class DepartmentForm extends Component
 
 	public function render()
 	{
+
+		//null check to avoid break
+		if (!is_array($this->tags))
+			$this->tags = [];
+			
 		return view('livewire.app.common.forms.department-form');
 	}
 
