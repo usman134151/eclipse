@@ -42,7 +42,9 @@ class CompanyProfile extends Component
 			->where('companies.id', '=', $this->company['id'])
 			->select('users.id', 'users.name')
 			->get()->toArray();
-		
+
+		$this->company['tags'] = json_decode($this->company['tags']);
+
         $this->dispatchBrowserEvent('refreshSelects');
 
 	}

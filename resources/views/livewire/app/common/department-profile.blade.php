@@ -544,6 +544,38 @@
 														</div>
 													</div>
 												</div>
+												<!-- left col  -->
+		                                        <div class="row">
+													<div class="col-12">
+
+														<div class="row">
+															<div class="mb-3">
+															<h2>Associated Tags:</h2>
+															</div>
+														</div>
+														@if($this->department['tags'])
+														@foreach($this->department['tags'] as $index=>$tag)
+															@if($index%2==0)
+																<div class="row ">	@endif
+
+																<div class="col-md-4 mb-md-3">
+																	<button type="button"
+																	class="btn btn-outline-dark rounded w-100">{{$tag}} 
+																	</button>
+																</div>
+																@if($index%2==1)
+																</div>	@endif
+
+														@endforeach
+														@if(count($this->department['tags'])%2==1)
+																</div>	@endif
+														@else
+
+														<div class="row">  <small> No Tags Available</small> </div>
+														@endif
+		                                             
+		                                         	</div>
+												</div>
 											</div>
 											<div class="col-md-12 mb-md-2 text-center gap-2 mt-4">
 												<button type="button" wire:click='lockAccount' class="d-inline-flex align-items-center btn btn-outline-dark rounded px-3 py-2 gap-2">
@@ -3875,6 +3907,8 @@
 														</table>
 													</div>
 												</div>
+												
+												
 											</div>
 											<div class="row mb-4">
 												<div class="col-12">
