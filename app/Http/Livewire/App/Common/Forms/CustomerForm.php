@@ -5,6 +5,7 @@ namespace App\Http\Livewire\App\Common\Forms;
 use Livewire\Component;
 use App\Helpers\SetupHelper;
 use App\Models\Tenant\User;
+use App\Models\Tenant\Tag;
 use Illuminate\Support\Facades\Auth;
 use App\Services\App\UserService;
 use App\Services\App\AddressService;
@@ -19,7 +20,7 @@ use Carbon\Carbon;
 class CustomerForm extends Component
 {
 	use withFileUploads;
-    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add',$tags;
+    public $user,$isAdd=true,$userAddresses=[],$image=null,$label='Add',$tags=[];
     public $userdetail=['industry'=>null, 'phone' => null, 'gender_id' => null, 'language_id' => null, 'timezone_id' => null, 'ethnicity_id' => null,
 	'user_introduction'=>null, 'title' => null, 'user_position' => null,'profile_pic'=>null];
     public $providers=[], $allUserSchedules=[],$unfavored_providers=[],$favored_providers=[];
@@ -36,7 +37,7 @@ class CustomerForm extends Component
 
 	];
 	
-    public $step = 1,$email_invitation,$limit;
+    public $step = 1,$email_invitation,$limit, $allTags=[];
     protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
 		'updateSelectedDepartments' => 'selectDepartments', 'updateSelectedSupervisors', 'updateSelectedBManagers','updateSelectedSupervising', 'updateSelectedUsersToManager',
 		'updateSelectedStaff','updateAddress' => 'addAddress'];
@@ -70,6 +71,7 @@ class CustomerForm extends Component
 			})
 			->select('id', 'name')
 			->get();
+		$this->allTags = Tag::pluck('name')->toArray();
 
 		if (request()->customerID != null) {
 
@@ -122,6 +124,7 @@ class CustomerForm extends Component
 		$userDet['unfavored_users'] = implode(', ', $this->unfavored_providers);
 		$userDet['favored_users'] = implode(', ', $this->favored_providers);
 		$userDet['user_configuration'] = json_encode($this->user_configuration);
+
 		$userDet->save();
 
 
@@ -144,16 +147,22 @@ class CustomerForm extends Component
 	   $this->user=$user;
 		//    if(is_array($user['userdetail']))
 		//    	$this->userdetail=$user['userdetail'];
+
 		if($user->userdetail!=null && $user->userdetail->exists())
-		$this->userdetail = $user->userdetail->toArray();
+			$this->userdetail = $user->userdetail->toArray();
+
 		if ($this->user->userdetail->get('user_configuration') != null)
 		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
-		
-       $this->label="Edit";
-       $this->user=$user;
-	   $this->isAdd=false;
-	   if($this->user->user_dob)
-		$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+		if ($this->user->userdetail->tags)
+			$this->tags = json_decode($this->userdetail['tags'], true);
+		else
+			$this->tags=[];
+   
+		$this->label="Edit";
+        $this->user=$user;
+	    $this->isAdd=false;
+	    if($this->user->user_dob)
+			$this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
 
 		$this->industryNames = $this->user->industries->pluck('name');
 		$this->departmentNames = $this->user->departments->pluck('name');
@@ -204,6 +213,11 @@ class CustomerForm extends Component
 		   else{
 			$this->userdetail[$attrName] = $val;
 		   }
+			if ($attrName == 'tags') {
+				$this->tags =explode(',', $val);
+				$this->allTags =array_unique(array_merge($this->allTags, $this->tags));
+				$this->allTags = array_values($this->allTags);
+			}
 		  
 		}
 		else if($attrName == "have_access_to")
@@ -211,11 +225,7 @@ class CustomerForm extends Component
 		else
 			$this->$attrName = $val;
 
-			if($attrName=='tags')
-			{
-				$this->$attrName = $val;
-
-			}
+		
 
 	}
 
@@ -274,7 +284,6 @@ class CustomerForm extends Component
 		
 		
 		$this->validate();
-		//dd($this->tags);
 		if ($this->user->user_dob) {
 			$this->user->user_dob = Carbon::parse($this->user->user_dob); 
 			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
@@ -285,6 +294,10 @@ class CustomerForm extends Component
 		$this->user->status=1;
 
 		$this->userdetail['user_configuration']= json_encode($this->user_configuration);
+		$this->userdetail['tags'] = json_encode($this->tags);
+		$this->updateTags();
+
+
 		if($this->image!=null){
 			$fileService = new UploadFileService();
 			$this->userdetail['profile_pic'] = $fileService->saveFile('profile_pic', $this->image, $this->userdetail['profile_pic']);	
@@ -344,6 +357,12 @@ class CustomerForm extends Component
 		}
 		
 		
+	}
+
+	public function updateTags(){
+		foreach($this->allTags as $tag){
+			Tag::firstOrCreate(['name'=>$tag]);
+		}
 	}
 
 	public function selectSameSupervisor(){
