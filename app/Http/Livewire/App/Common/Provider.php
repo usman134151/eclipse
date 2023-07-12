@@ -46,7 +46,7 @@ class Provider extends Component
 		$this->status = $status;
 		$this->showProfile = $showProfile;
 		if ($showProfile) {
-			$this->user = User::where('id', request()->providerID)->with(['userdetail', 'industries', 'company'])->first()->toArray();
+			$this->user = User::where('id', request()->providerID)->with(['userdetail', 'teams'])->first()->toArray();
 		}
 	}
 
