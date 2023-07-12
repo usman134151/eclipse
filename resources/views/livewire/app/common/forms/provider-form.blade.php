@@ -557,14 +557,15 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6 mb-4 pe-lg-5">
-                                                    <label class="form-label" for="tags">
-                                                        Tags
-                                                    </label>
-                                                    <select data-placeholder="tags" multiple class="form-select  select2 form-select select2-hidden-accessible" id="tags">
-                                                        <option selected>Customer</option>
-                                                        <option selected>Companies</option>
-                                                        <option selected>Teams</option>
-                                                    </select>
+                                                        <label class="form-label" for="tags">Tags</label>
+                                                        <select data-placeholder="" multiple 
+                                                            class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
+                                                            @foreach($allTags as $tag)
+                                                                <option {{in_array($tag,$tags) ? 'selected' : ''}} value="{{$tag}}">{{$tag}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <input type="hidden" name="tags-holder" id="tags-holder" wire:model.defer="tags">
+                                
                                                 </div>
                                                 {{-- Input Fields End --}}
                                             </div>
