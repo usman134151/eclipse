@@ -14,7 +14,7 @@ use Livewire\Component;
 
 class AssociatedService extends Component
 {
-    public $service,$modelId,$modelType,$modelName;
+    public $service,$modelId,$modelType,$modelName,$standardRate;
     protected $listeners = ['associateService','updateModel'];
     public $serviceTypes=['1'=>['class'=>'inperson-rate','postfix'=>'','title'=>'In-Person'],
     '2'=>['class'=>'virtual-rate','postfix'=>'_v','title'=>'Virtual'],
@@ -337,28 +337,69 @@ class AssociatedService extends Component
         ];
         }
         public function updateModel($modelId,$modelName,$modelType){
+
             $this->modelId=$modelId;
             $this->modelName=$modelName;
             $this->modelType=$modelType;
-            $this->loadValues($this->service);
+            
+           
+            $existingRate = StandardRate::where('user_id', $this->modelId)
+            ->where('accommodation_service_id', $this->service->id)
+            ->where('model_type', $this->modelType)
+            ->first();
+
+            $this->associateService($this->service->toArray());   
+    
+            if ($existingRate) {
+                
+                $this->standardRate = $existingRate;
+                $serviceAttributes = $this->service->getAttributes();
+
+                foreach ($this->standardRate->getAttributes() as $attribute => $value) {
+                    if (array_key_exists($attribute, $serviceAttributes) && $attribute!='id') {
+                        $this->service->$attribute = $value;
+                       
+                    }
+                }
+                
+            } else {
+                $this->standardRate = new StandardRate();
+
+                
+            }
+           
+         
+          
+           
            
         }
 
         public function saveServiceRates(){
-            $standardRate = new StandardRate();
-            $standardRate->user_id=$this->modelId;
-            $standardRate->model_type=$this->modelType;
-            $standardRate->accommodation_id=$this->service->accommodations_id;
-            $standardRate->accommodation_service_id=$this->service->id;
-        foreach ($this->service->getAttributes() as $attribute => $value) {
-            if (property_exists($standardRate, $attribute)) {
-                $standardRate->$attribute = $value;
+           
+           
+
+            $serviceAttributes = $this->service->getAttributes();
+            $standardRateAttributes = $this->standardRate->getFillable();
+           
+            foreach ($standardRateAttributes as $attribute) {
+              
+                    $this->standardRate->$attribute = $this->service->$attribute;
+               
             }
+            $this->standardRate->user_id = $this->modelId;
+            $this->standardRate->model_type = $this->modelType;
+            $this->standardRate->accommodation_id = $this->service->accommodations_id;
+            $this->standardRate->accommodation_service_id = $this->service->id;
+            $this->standardRate->save();
+            $this->associateService($this->service->toArray());   
+            $message="Rates saved sucessfully for ".$this->modelName." associated with ".$this->service->name;
+            $this->dispatchBrowserEvent('swal:modal', [
+				'type' => 'success',
+				'title' => 'Success',
+				'text' => $message,
+			]);
         }
 
-        $standardRate->save();
-        }
-
-
+        
 
 }
