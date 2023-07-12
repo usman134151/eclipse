@@ -53,8 +53,11 @@ class CustomerForm extends Component
 
 
 	public function render()
-	{   
-		//dd($this->user->company_name);
+	{
+		//null check to avoid break
+		if (!is_array($this->tags))
+			$this->tags = [];
+
 		return view('livewire.app.common.forms.customer-form');
 	}
     public function mount(User $user){
@@ -72,6 +75,7 @@ class CustomerForm extends Component
 			->select('id', 'name')
 			->get();
 		$this->allTags = Tag::pluck('name')->toArray();
+		$this->tags=[];
 
 		if (request()->customerID != null) {
 
@@ -153,7 +157,7 @@ class CustomerForm extends Component
 
 		if ($this->user->userdetail->get('user_configuration') != null)
 		 $this->user_configuration = json_decode($this->userdetail['user_configuration'],true);
-		if ($this->user->userdetail->tags)
+		if ($this->user->userdetail->get('tags')!=null)
 			$this->tags = json_decode($this->userdetail['tags'], true);
 		else
 			$this->tags=[];
