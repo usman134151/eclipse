@@ -190,6 +190,7 @@ window.addEventListener("livewire:load", () => {
 					
 					$('#tags-holder').val( $(this).select2("val"));
 					updateVal('tags',$('#tags-holder').val());
+
 				}
 
             });

@@ -460,12 +460,12 @@
                                                     <div class="col-lg-12">
                                                         <div class="row">
                                                             <div class="col-lg-6 pe-lg-5">
-                                                                <label class="form-label" for="tags">Tags (Coming Soon)</label>
-                                                                <select data-placeholder="" multiple
+                                                                <label class="form-label" for="tags">Tags</label>
+                                                                <select data-placeholder="" multiple 
                                                                     class="form-select  select2 form-select select2-hidden-accessible" tabindex="" id="tags-select" aria-label="Select Tags">
                                                                     <option value=""></option>
-                                                                    <option selected>Admin staff</option>
-                                                                    <option selected>Customers</option>
+                                                                    <option>Admin staff</option>
+                                                                    <option >Customers</option>
                                                                     <option>tags</option>
                                                                 </select>
                                                                 <input type="hidden" name="tags-holder" id="tags-holder" wire:model.defer="tags">
@@ -473,6 +473,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
 
                                                 <div class="row inner-section-segment-spacing">
                                                 {{-- Default Billing Address --}}
