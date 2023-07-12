@@ -72,7 +72,6 @@ class CustomerForm extends Component
 			->select('id', 'name')
 			->get();
 		$this->allTags = Tag::pluck('name')->toArray();
-		$this->tags=[];
 
 		if (request()->customerID != null) {
 
@@ -285,7 +284,6 @@ class CustomerForm extends Component
 		
 		
 		$this->validate();
-		//dd($this->tags);
 		if ($this->user->user_dob) {
 			$this->user->user_dob = Carbon::parse($this->user->user_dob); 
 			// Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
