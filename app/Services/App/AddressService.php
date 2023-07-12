@@ -25,15 +25,20 @@ class AddressService{
         return 'Address not found.';
     }
 
-    public function saveAddresses($model,$type, $addresses)
+    public function saveAddresses($model_id,$model_type, $addresses)
     {
+        //model_type (1 => customers 2 => company 3 => departments)
+
         foreach ($addresses as $addressData) {
-            $addressAttributes = [
-                'user_address_type' => $type,
-                'user_id' => $model->id,
-            ];
-    
-            UserAddress::updateOrCreate($addressData, $addressAttributes);
+            if (isset($addressData['id'])) { //update existing
+                $id = $addressData['id'];
+                unset($addressData['id']);
+                UserAddress::find($id)->update($addressData);
+            } else {
+                $addressData['user_address_type'] = $model_type;
+                $addressData['user_id'] = $model_id;
+                UserAddress::create($addressData);
+            }
         }
     }
     

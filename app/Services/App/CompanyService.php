@@ -3,7 +3,8 @@ namespace app\Services\App;
 
 use App\Models\Company;
 use App\Models\Tenant\Phone;
-use App\Models\Tenant\UserAddress;
+use App\Services\App\AddressService;
+
 class CompanyService{
 
     public function createCompany($company,$phones,$userAddresses){
@@ -19,22 +20,11 @@ class CompanyService{
             }
 
         }
-        $this->saveAddresses($company,$userAddresses);
+        $addressService = new AddressService();
+        $addressService->saveAddresses($company->id,2,$userAddresses);
         return $company;
     }
 
-    public function saveAddresses($company, $addresses)
-    {
-        foreach ($addresses as $addressData) {
-            $addressAttributes = [
-                'user_address_type' => 2,
-                'user_id' => $company->id,
-            ];
-    
-            UserAddress::updateOrCreate($addressData, $addressAttributes);
-        }
-    }
-    
 
     public function getCompanyDetails($id){
        return Company::with(['phones','addresses'])->find($id); 

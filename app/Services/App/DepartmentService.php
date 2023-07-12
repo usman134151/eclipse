@@ -1,8 +1,9 @@
 <?php
 namespace app\Services\App;
 use App\Models\Tenant\Phone;
-use App\Models\Tenant\UserAddress;
 use App\Models\Tenant\UserDetail;
+use App\Services\App\AddressService;
+
 
 class DepartmentService{
 
@@ -16,21 +17,13 @@ class DepartmentService{
                 $department->phones()->save($phone);
             }
         }
-        $this->saveAddresses($department, $userAddresses);
-
+        $addressService = new AddressService();
+        $addressService->saveAddresses($department->id, 3, $userAddresses);
+  
     
         return $department;
     }
-    public function saveAddresses($department, $addresses)
-    {
-        foreach ($addresses as $addressData) {
-            $addressAttributes = [
-                'user_address_type' => 3,
-                'user_id' => $department->id,
-            ];
-            UserAddress::updateOrCreate($addressData, $addressAttributes);
-        }
-    }
+   
 
     public function saveSupervisors($department, $selectedSupervisors,$defaultSupervisor){
         $department->supervisors()->sync($selectedSupervisors);

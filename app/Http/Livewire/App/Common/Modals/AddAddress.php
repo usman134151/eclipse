@@ -12,7 +12,7 @@ class AddAddress extends Component
     public $addressType=1;
     public $functionExecuted = false;
     public $countries=[];
-    protected $listeners = ['updateAddressType'];
+    protected $listeners = ['updateAddressType', 'updateAddressID'=>'setAddress'];
     public function render()
     {
 
@@ -26,18 +26,22 @@ class AddAddress extends Component
       
 
     }
-    public function updateAddressType($type){
+   
+    public function updateAddressType($type,$address=null){
         $this->address['address_type']=$type;
+        if($address)
+            $this->address =$address;
+
     }
     public function updateAddressData($type=1){
         $this->address=['address_name'=>'','address_type'=>$type,'address_line1'=>'','address_line2'=>'','city'=>'','state'=>'','country'=>'USA','zip'=>'','notes'=>'','phone'=>'','is_default'=>0];
     }
     public function updateData(){
         $this->validate();
-        $this->emit('updateAddress', $this->address);
+        $this->emit('updateAddress', $this->address);   //display in parent component
         $this->updateAddressData();
         $this->functionExecuted = true;
-        $this->emit('modalDismissed');
+        $this->emit('modalDismissed');  // emit to close modal
     }
 
     public function rules()

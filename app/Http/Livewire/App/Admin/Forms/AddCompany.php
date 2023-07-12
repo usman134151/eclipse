@@ -159,9 +159,13 @@ class AddCompany extends Component
 
     }
 
-	public function addAddress($addressArr){
-		$this->userAddresses[]=$addressArr;
-		
+	public function addAddress($addressArr)
+	{
+
+		if (isset($addressArr['index'])) { //update existing
+			$this->userAddresses[$addressArr['index']] = $addressArr;
+		} else
+		$this->userAddresses[] = $addressArr;
 	}
 
 	public function rules()
@@ -310,6 +314,12 @@ class AddCompany extends Component
 		unset($this->userAddresses[$index]);
         $this->userAddresses= array_values($this->userAddresses);
 		
+	}
+
+	public function editAddress($index, $type)
+	{
+		$this->userAddresses[$index]['index'] = $index;	//passing ref index
+		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
 	}
 
 
