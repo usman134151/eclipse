@@ -12,6 +12,7 @@ use App\Services\App\UploadFileService;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 
+
 use Carbon\Carbon;
 
 
@@ -294,7 +295,9 @@ class CustomerForm extends Component
 
 		$this->user->departments()->sync($this->selectedDepartments);
 		if($this->step==1){
-			$userService->saveAddresses($this->user,$this->userAddresses);
+
+			$addressService = new AddressService();
+			$addressService->saveAddresses($this->user->id, 1, $this->userAddresses);
 		}
 		if ($redirect) {
 
@@ -464,11 +467,14 @@ class CustomerForm extends Component
 		$this->emit('updateAddressType',$type);
 	}
 
-	public function addAddress($addressArr){
-		
-		$this->userAddresses[]=$addressArr;
-		
-	} 
+	public function addAddress($addressArr)
+	{
+
+		if (isset($addressArr['index'])) { //update existing
+			$this->userAddresses[$addressArr['index']] = $addressArr;
+		} else
+		$this->userAddresses[] = $addressArr;
+	}
 
 	public function back($component){
         $this->step--;
@@ -486,4 +492,10 @@ class CustomerForm extends Component
         $this->userAddresses= array_values($this->userAddresses);
 		
 	}
+	public function editAddress($index, $type)
+	{
+		$this->userAddresses[$index]['index'] = $index;	//passing ref index
+		$this->emit('updateAddressType', $type, $this->userAddresses[$index]);
+	}
+
 }
