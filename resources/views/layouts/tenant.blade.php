@@ -120,27 +120,19 @@
         fillBillingAddressFields();
       });
 
-	function updateAddress(attrName,val){
-		Livewire.emit('updateAddressValues', attrName, val);
-	}
+		function updateAddress(attrName,val){
+			Livewire.emit('updateAddressValues', attrName, val);
+		}
 
 
       function fillBillingAddressFields() {
+		//emit changes to livewire address component
 		updateAddress("address_line1",  billingPlace.name || '');
 		updateAddress("city",  getAddressComponent(billingPlace, 'locality') || '');
 		updateAddress("state",  getAddressComponent(billingPlace, 'administrative_area_level_1') || '');
 		updateAddress("country",  getAddressComponent(billingPlace, 'country') || '');
 		updateAddress("zip",  getAddressComponent(billingPlace, 'postal_code') || '');
-
-        {{-- $('#billing_address').val(billingPlace.name || ''); 
-        $('#city').val(getAddressComponent(billingPlace, 'locality') || '');
-        $('#state').val(getAddressComponent(billingPlace, 'administrative_area_level_1') || '');
-        $('#country').val(getAddressComponent(billingPlace, 'country') || '');
-        $('#zipcode').val(getAddressComponent(billingPlace, 'postal_code') || ''); --}}
-      }
-
-
-
+	  }
 
       function getAddressComponent(place, component) {
         for (var i = 0; i < place.address_components.length; i++) {
