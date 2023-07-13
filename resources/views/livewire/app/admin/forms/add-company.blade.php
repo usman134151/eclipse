@@ -535,7 +535,7 @@
                               <div
                                                     class="col-12 form-actions">
                                                     <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                                        wire:click.prevent="showList">
+                                                        wire:click.prevent="setStep(1,'companyActive','company-info');">
                                                         Back
                                                     </button>
                                                     <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">

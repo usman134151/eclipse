@@ -36,6 +36,8 @@ class CustomerForm extends Component
 		'countries' => ['parameters' => ['Country', 'id', 'name', '', '', 'name', false, 'userdetail.country_id','','country',4]],
 
 	];
+	public $driveActive, $serviceActive, $permissionActive, $customerActive;
+
 	
     public $step = 1,$email_invitation,$limit, $allTags=[];
     protected $listeners = ['updateVal' => 'updateVal', 'stepIncremented', 'updateSelectedIndustries' => 'selectIndustries',
@@ -324,8 +326,6 @@ class CustomerForm extends Component
 			$this->user = new User;
 		}
 		else{
-		$this->step=2;
-		$this->serviceActive="active";
 		
 			if (!is_null($this->user->company_name)){
 				$this->emit('updateCompany', $this->user->company_name);
@@ -355,8 +355,7 @@ class CustomerForm extends Component
 			// set modal values for step 2
 			$this->emit('setValues', $this->user->id);
 
-
-			$this->dispatchBrowserEvent('refreshSelects');
+			$this->setStep(2, 'permissionActive', 'permission-configurations');
 			
 
 			
@@ -370,6 +369,35 @@ class CustomerForm extends Component
 			Tag::firstOrCreate(['name'=>$tag]);
 		}
 	}
+
+
+	public function serviceCatelog($redirect = 1)
+	{
+
+		if ($redirect) {
+			$this->showList("Company has been saved successfully");
+			$this->user = new User;
+		} else {
+			$this->serviceActive = "";
+			$this->permissionActive = "";
+			$this->driveActive = "active";
+			$this->switch('drive-documents');
+			$this->step = 4;
+		}
+	}
+
+	public function setStep($step, $tabName, $component)
+	{
+		$tabs = ['serviceActive', 'driveActive', 'permissionActive', 'customerActive'];
+		foreach ($tabs as $key)
+			$this->$key = '';
+		$this->step = $step;
+		$this->$tabName = "active";
+		$this->switch($component);
+
+		$this->dispatchBrowserEvent('refreshSelects');
+	}
+
 
 	public function selectSameSupervisor(){
 			$this->emit('selectSelfSupervisor',$this->same_sv);
