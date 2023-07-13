@@ -15,6 +15,7 @@ use App\Services\App\UserService;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use App\Models\Tenant\Tag;
+use App\Models\Tenant\UserDetail;
 use Livewire\WithFileUploads;
 
 class ProviderForm extends Component
@@ -29,7 +30,7 @@ class ProviderForm extends Component
     public $schedule;
 	public $component = 'profile';
     public $userdetail=['gender_id','country','timezone_id','ethnicity_id','title','address_line1','address_line2','zip','permission','city','payment_settings',
-    'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null];
+    'state','phone','education','note','user_introduction','user_experience','certificate','profile_pic'=>null, 'user_introduction_file' => null,'provider_type'=>null];
     
     public $setupValues = [
         'languages' => ['parameters' => ['SetupValue', 'id','setup_value_label','setup_id',1,'setup_value_label',false,'userdetail.language_id', '','language_id',0]],
@@ -262,8 +263,29 @@ class ProviderForm extends Component
 
 		];
 	}
-    public function ProvideService(){
-        $this->step = 3;
+    public function ProviderService($redirect=1){
+        $rules=['userdetail.provider_type'=>'nullable'];
+        $this->validate($rules);
+
+        UserDetail::where('user_id',$this->user->id)->update(['provider_type'=>$this->userdetail['provider_type']]);
+
+        if ($redirect) {
+            $this->showList("Provider has been saved successfully");
+            $this->user = new User;
+        }else
+            $this->setStep(3, 'documentActive', 'upload-document');
+
+        }
+
+    public function uploadDocument($redirect = 1)
+    {   
+
+        if ($redirect) {
+            $this->showList("Provider has been saved successfully");
+            $this->user = new User;
+        }else
+            $this->setStep(4, 'scheduleActive', 'schedule');
+
     }
 
     public function updateTags()
@@ -276,7 +298,8 @@ class ProviderForm extends Component
     public function save($redirect=1){
 		$this->validate();
         if($this->user->user_dob){
-            $this->user->user_dob = Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
+            $this->user->user_dob =Carbon::parse($this->user->user_dob);
+            // Carbon::createFromFormat('d/m/Y', $this->user->user_dob)->format('Y-m-d');
 
         }
         $this->user->name=$this->user->first_name.' '.$this->user->last_name;
@@ -303,16 +326,25 @@ class ProviderForm extends Component
         $this->user = $userService->createUser($this->user,$this->userdetail,2,1,[],$this->isAdd);
         // put null/empty check for teams 
         $userService->addProviderTeams($this->selectedTeams,$this->user);
-		$this->step = 2;
-        $this->dispatchBrowserEvent('refreshSelects');
-
+		
 
 		if($redirect){
 			$this->showList("Provider has been saved successfully");
 			$this->user = new User;
-		}
+		}else{
+            $this->step = 2;
+            //setting values for next
 
+            $this->userdetail['certification'] = explode(', ', $this->userdetail['certification']);
+            $this->userdetail['favored_users'] = explode(', ', $this->userdetail['favored_users']);
+            $this->userdetail['unfavored_users'] = explode(', ', $this->userdetail['unfavored_users']);
+
+            $this->dispatchBrowserEvent('refreshSelects');
+
+
+        }
 	}
+
     public function edit(User $user){
         $this->user=$user;
         $user['userdetail']['certification'] = explode(", ", $user['userdetail']['certification'] );
@@ -330,7 +362,7 @@ class ProviderForm extends Component
        $this->user=$user;
 	   $this->isAdd=false;
        if($this->user->user_dob)
-           $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('d/m/Y');
+           $this->user->user_dob = Carbon::createFromFormat('Y-m-d', $this->user->user_dob)->format('m/d/Y');
         //removing edit-user from provider list
         $this->providers = $this->providers->filter(function ($provider, $key) {
             return $provider->id != $this->user->id;
@@ -339,22 +371,21 @@ class ProviderForm extends Component
         $this->updateSelectedTeams($this->user->teams()->allRelatedIds());
 
 
-
     }
 
     public function getProviderSchedule()
     {
         //reinit schedule
-        $providerSchedule = Schedule::where('model_id', $this->company->id)->where('model_type', 3)->get()->first();
+        $providerSchedule = Schedule::where('model_id', $this->user->id)->where('model_type', 3)->get()->first();
         if (!is_null($providerSchedule)) {
             $this->schedule = $providerSchedule;
         } else {
             $this->schedule = new Schedule;
-            $this->schedule->model_type = 2;
+            $this->schedule->model_type = 3;
             $this->schedule->working_days = json_encode([]);
             $this->schedule->timezone_id = 0;
 
-            $this->schedule->model_id = $this->company->id;
+            $this->schedule->model_id = $this->user->id;
             $this->schedule->save();
         }
 
@@ -366,19 +397,13 @@ class ProviderForm extends Component
         $this->emit('getRecord', $this->schedule->id, true);
     }
 
-    public function saveSchedule($redirect = 1)
+    public function saveSchedule()
     {
         $this->emit('saveSchedule');
-        if ($redirect) {
             $this->showList("Company has been saved successfully");
             $this->user = new User;
             $this->schedule = new Schedule;
-        } else {
-            $this->serviceActive = "active";
-            $this->scheduleActive = "";
-            $this->switch('provider-service');
-            $this->step = 3;
-        }
+        
     }
     public function setStep($step, $tabName, $component)
     {
@@ -388,6 +413,8 @@ class ProviderForm extends Component
         $this->step = $step;
         $this->$tabName = "active";
         $this->switch($component);
+        if ($this->step == 4)
+            $this->getProviderSchedule();
         $this->dispatchBrowserEvent('refreshSelects');
     }
 
