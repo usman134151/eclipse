@@ -12,7 +12,7 @@ class AddAddress extends Component
     public $addressType=1;
     public $functionExecuted = false;
     public $countries=[];
-    protected $listeners = ['updateAddressType', 'updateAddressID'=>'setAddress'];
+    protected $listeners = ['updateAddressType', 'updateAddressValues','updateAddressID'=>'setAddress'];
     public function render()
     {
 
@@ -26,6 +26,11 @@ class AddAddress extends Component
       
 
     }
+    public function updateAddressValues($attrName, $val)
+    {
+            $this->address[$attrName] = $val;
+    }
+	
    
     public function updateAddressType($type,$address=null){
         $this->address['address_type']=$type;

@@ -1,4 +1,5 @@
 <div class="modal-content">
+
     <div class="modal-header">
       <h2 class="modal-title fs-5" id="addAddressModalLabel">Add Address</h2>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -20,7 +21,8 @@
         </div>
         <div class="col-lg-6 mb-4">
           <label class="form-label" for="address1">Address 1</label>
-          <input type="text" id="address1" class="form-control" name="address1-column" placeholder="Enter Address 1" required aria-required="true" wire:model.defer="address.address_line1">
+          <input type="text" class="form-control" id="billing_address" name="address1-column" autocomplete="on" fdprocessedid="141xf8"
+          placeholder="Enter Address 1" required aria-required="true" wire:model.defer="address.address_line1">
           @error('address.address_line1')
 				<span class="d-inline-block invalid-feedback mt-2">
 					{{ $message }}
@@ -61,7 +63,7 @@
         </div>
         <div class="col-lg-6 mb-4">
           <label class="form-label" for="zip-code">Zip Code</label>
-          <input type="text" id="zip" class="form-control" name="zip-column" placeholder="Enter Zip" required aria-required="true"  wire:model.defer="address.zip">
+          <input type="text" id="zipcode" class="form-control" name="zip-column" placeholder="Enter Zip" required aria-required="true"  wire:model.defer="address.zip">
           @error('address.zip')
           <span class="d-inline-block invalid-feedback mt-2">
               {{ $message }}
@@ -87,15 +89,24 @@
         </div>
         @endif
       </div>
+
+      
     </div>
     <div class="modal-footer">
       <div class="col-12 form-actions">
         <div class="col-lg-3">
           <button type="button" class="btn rounded w-100 btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
-        </div>
+        </div> 
         <div class="col-lg-3">
           <button type="button" class="btn rounded w-100 btn-primary" wire:click="updateData"  >Add</button>
         </div>
       </div>
     </div>
-  </div>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
+
+      {{-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAANwmAq3UQc8j5GkJgzF9AglzF7XLfPxI&libraries=places&language=en-AU"></script> --}}
+
+{{-- </script> --}}
+    
+    </div>
+

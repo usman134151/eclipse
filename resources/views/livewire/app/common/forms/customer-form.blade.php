@@ -47,22 +47,20 @@
                     {{-- Nav tabs --}}
                     <ul class="nav nav-tabs nav-steps" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'customer-info' }"
+                            <a href="#" class="nav-link {{$customerActive}}" :class="{ 'active': tab === 'customer-info' }"
                                 @click.prevent="tab = 'customer-info'" id="customer-info-tab" role="tab"
-                                aria-controls="customer-info" aria-selected="true" tabindex="0" wire:click.prevent="switch('customer-info',1,false)">
+                                aria-controls="customer-info" aria-selected="true" tabindex="0" 
+                                wire:click.prevent="setStep(1,'customerActive','customer-info');">
                                 <span class="number">1</span>
                                 Customer Info
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             @if($user->email)
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'permission-configurations' }"
+                            <a href="#" class="nav-link {{$permissionActive}} " :class="{ 'active': tab === 'permission-configurations' }"
                                 @click.prevent="tab = 'permission-configurations'" id="permission-configurations-tab"
                                 role="tab" aria-controls="permission-configurations" aria-selected="false" tabindex="0"
-                                wire:click.prevent="save(0)"
-
-                                 {{-- wire:click.prevent="switch('permission-configurations',2,true)" --}}
-                                 >
+                                wire:click.prevent="save(0)">
                                 <span class="number">2</span>
                                 Permission Configurations
                             </a>
@@ -75,9 +73,10 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             @if($user->email)
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'service-catalog' }"
+                            <a href="#" class="nav-link {{$serviceActive}}" :class="{ 'active': tab === 'service-catalog' }"
                                 @click.prevent="tab = 'service-catalog'" id="service-catalog-tab" role="tab"
-                                aria-controls="service-catalog" aria-selected="false" tabindex="0" wire:click.prevent="switch('service-catalog',3,true)">
+                                aria-controls="service-catalog" aria-selected="false" tabindex="0" 
+                                wire:click.prevent="setStep(3,'serviceActive','service-catalog')">
                                 <span class="number">3</span>
                                 Service Catalog 
                             </a>
@@ -90,9 +89,10 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             @if($user->email)    
-                            <a href="#" class="nav-link" :class="{ 'active': tab === 'drive-documents' }"
+                            <a href="#" class="nav-link {{$driveActive}}" :class="{ 'active': tab === 'drive-documents' }"
                                 @click.prevent="tab = 'drive-documents'" id="drive-documents-tab" role="tab"
-                                aria-controls="drive-documents" aria-selected="false" tabindex="0"  wire:click.prevent="switch('drive-documents',4,true)">
+                                aria-controls="drive-documents" aria-selected="false" tabindex="0"  
+                                wire:click.prevent="setStep(4,'driveActive','drive-documents');">
                                 <span class="number">4</span>
                                 Drive Documents
                             </a>
@@ -118,30 +118,30 @@
                                     <div class="row">
                                         <div class="col-12">
                                             {{-- updated by shanila to add csrf and add form tag --}}
-                                            <form  class="form">
+                                        <form  class="form">
                                                 @csrf
                                                 <div class="row between-section-segment-spacing">
                                                       <div class="provider_image_panel">
-                                                    <div class="provider_image">
-                                                        @if ($image!=null)
-                                                            <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
-                                                        @else
-                                                            <img class="user_img cropfile" src="{{$userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
-                                                        @endif
-                                                        <div class="input--file">
-                                                            <span>
-                                                                <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+                                                        <div class="provider_image">
+                                                            @if ($image!=null)
+                                                                <img class="user_img cropfile" src="{{ '/tenant'.tenant('id').'/app/livewire-tmp/'.$image->getFilename() }}">
+                                                            @else
+                                                                <img class="user_img cropfile" src="{{$userdetail['profile_pic'] == null ? '/tenant-resources/images/img-placeholder-document.jpg' : url($userdetail['profile_pic']) }}">
+                                                            @endif
+                                                            <div class="input--file">
+                                                                <span>
+                                                                    <img src="https://production-qa.eclipsescheduling.com/images/camera_icon.png" alt="">
+                                                                </span>
+                                                                <label for="cropfile" class="form-label visually-hidden">Input File</label>
+                                                                <input wire:model="image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
+                                                            </div>
+                                                            @error('image')
+                                                            <span class="d-inline-block invalid-feedback mt-2">
+                                                                {{ $message }}
                                                             </span>
-                                                            <label for="cropfile" class="form-label visually-hidden">Input File</label>
-                                                            <input wire:model="image" class="form-control inputFile" accept="image/*" id="cropfile" name="image" type="file" aria-invalid="false" >
+                                                            @enderror
                                                         </div>
-                                                        @error('image')
-                                                        <span class="d-inline-block invalid-feedback mt-2">
-                                                            {{ $message }}
-                                                        </span>
-                                                        @enderror
                                                     </div>
-                                                </div>
                                                 </div>
                                                 <div class="row between-section-segment-spacing">
                                                     <div class="col-lg-12">
@@ -394,54 +394,54 @@
 
                                                     </div>
                                                     <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="country">
-                                                Country
-                                            </label>
-                                            {!! $setupValues['countries']['rendered'] !!}
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="state">State / Province</label>
-                                                <input type="text" id="state" class="form-control"
-                                                    name="state" placeholder="Enter State Name"
-                                                    required aria-required="true" wire:model.defer="userdetail.state"/>
-                                                    @error('userdetail.state')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+                                                            <label class="form-label" for="country">
+                                                                Country
+                                                            </label>
+                                                            {!! $setupValues['countries']['rendered'] !!}
+                                                            </div>
+                                                            <div class="col-lg-6 mb-4 ps-lg-5">
+                                                                <div class="mb-4">
+                                                                    <label class="form-label" for="state">State / Province</label>
+                                                                    <input type="text" id="state" class="form-control"
+                                                                        name="state" placeholder="Enter State Name"
+                                                                        required aria-required="true" wire:model.defer="userdetail.state"/>
+                                                                        @error('userdetail.state')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="city">City</label>
-                                                <input type="text" id="city" class="form-control"
-                                                    name="city" placeholder="Enter City Name"
-                                                    required aria-required="true" wire:model.defer="userdetail.city"/>
-                                                    @error('userdetail.city')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+                                                             </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="city">City</label>
+                                                            <input type="text" id="city" class="form-control"
+                                                                name="city" placeholder="Enter City Name"
+                                                                required aria-required="true" wire:model.defer="userdetail.city"/>
+                                                                @error('userdetail.city')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="zip-code">
-                                                Zip Code
-                                            </label>
-                                            <input type="text" id="zip-code" class="form-control" name="zipCode"
-                                                placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
-                                            @error('userdetail.zip')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-4 ps-lg-5">
+                                                        <label class="form-label" for="zip-code">
+                                                            Zip Code
+                                                        </label>
+                                                        <input type="text" id="zip-code" class="form-control" name="zipCode"
+                                                            placeholder="Enter Zip Code" wire:model.defer="userdetail.zip"/>
+                                                        @error('userdetail.zip')<span class="d-inline-block invalid-feedback mt-2">{{ $message }}</span>@enderror
 
-                                        </div>
-                                        <div class="col-lg-6 mb-4 pe-lg-5">
-                                            <label class="form-label" for="address-line-1">
-                                                Address Line 1
-                                            </label>
-                                            <input type="text" id="address-line-1" class="form-control"
-                                                name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
-                                        </div>
-                                        <div class="col-lg-6 mb-4 ps-lg-5">
-                                            <label class="form-label" for="address-line-2">
-                                                Address Line 2
-                                            </label>
-                                            <input type="text" id="address-line-2" class="form-control"
-                                                name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
-                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-4 pe-lg-5">
+                                                        <label class="form-label" for="address-line-1">
+                                                            Address Line 1
+                                                        </label>
+                                                        <input type="text" id="address-line-1" class="form-control"
+                                                            name="address-line-1" placeholder="Enter Address Line 1" wire:model.defer="userdetail.address_line1"/>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-4 ps-lg-5">
+                                                        <label class="form-label" for="address-line-2">
+                                                            Address Line 2
+                                                        </label>
+                                                        <input type="text" id="address-line-2" class="form-control"
+                                                            name="addressLine2" placeholder="Enter Address Line 2" wire:model.defer="userdetail.address_line2"/>
+                                                    </div>
                                                     <div class="col-lg-6 pe-lg-5 mb-4">
                                                         <label class="form-label" for="preferred-language">
                                                             Preferred Language
@@ -475,57 +475,59 @@
                                                 
 
                                                 <div class="row inner-section-segment-spacing">
-                                                {{-- Default Billing Address --}}
-                                                <div class="col-lg-12">
-                                                    <div class="row between-section-segment-spacing">
-                                                    @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses, 'title'=>'Additional'])
+                                                    {{-- Default Billing Address --}}
+                                                    <div class="col-lg-12">
+                                                        <div class="row between-section-segment-spacing">
+                                                        @include('components.default-address', ['type' => 1, 'userAddresses' => $userAddresses, 'title'=>'Additional'])
 
-                                                    @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses, 'title'=>'Additional'])
+                                                        @include('components.default-address', ['type' => 2, 'userAddresses' => $userAddresses, 'title'=>'Additional'])
 
                                                     </div>
                                                 </div>
-                                                </div>
+                                            {{-- </div> --}}
 
 
 
-                                                <div
-                                                    class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
-                                                    <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" wire:model.defer="user_configuration.hide_from_providers"
-                                                            id="HideUsersDetailsfromProvider" value="true">
-                                                        <label class="form-check-label" for="HideUsersDetailsfromProvider">
-                                                            Hide User's Details from Providers
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check mb-lg-0">
-                                                        <input class="form-check-input" type="checkbox" value="1"
-                                                            id="email_invitation" wire:model.defer="email_invitation">
-                                                        <label class="form-check-label"
-                                                            for="SendInvitationEmailtotheCustomer">
-                                                            Send Invitation Email to the Customer
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                {{-- Action Buttons Start --}}
-                                                <div
-                                                    class="col-12 form-actions">
-                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                                            wire:click.prevent="showList">
-                                                            Cancel
-                                                        </button>
-                                                        <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
-                                                            Save & Exit
-                                                        </button>
-                                                        <button type="button" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save(0)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
-                                                            Next
-                                                        </button>
-                                                </div>
-                                                {{-- Action Buttons End --}}
-
-                                            </form>
-                                            {{-- ended update by shanila --}}
-
+                                        <div class="col-lg-12 d-lg-flex gap-5 justify-content-center between-section-segment-spacing">
+                                            <div class="form-check mb-lg-0">
+                                                <input class="form-check-input" type="checkbox" wire:model.defer="user_configuration.hide_from_providers"
+                                                    id="HideUsersDetailsfromProvider" value="true">
+                                                <label class="form-check-label" for="HideUsersDetailsfromProvider">
+                                                    Hide User's Details from Providers
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-lg-0">
+                                                <input class="form-check-input" type="checkbox" value="1"
+                                                    id="email_invitation" wire:model.defer="email_invitation">
+                                                <label class="form-check-label"
+                                                    for="SendInvitationEmailtotheCustomer">
+                                                    Send Invitation Email to the Customer
+                                                </label>
+                                            </div>
                                         </div>
+                                        
+                                        {{-- Action Buttons Start --}}
+                                        <div
+                                            class="col-12 form-actions">
+                                            <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                    wire:click.prevent="showList">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary rounded px-4 py-2"
+                                                 wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                    Save & Exit
+                                                </button>
+                                                <button type="button" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save(0)"
+                                                 x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                    Next
+                                                </button>
+                                        </div>
+                                        {{-- Action Buttons End --}}
+
+                                    </form>
+                                                {{-- ended update by shanila --}}
+
+                                            </div>
                                     </div>
                                 </section>
                                 
@@ -964,14 +966,17 @@
                                             <div
                                                 class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="back('customer-info')">
+                                                onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })" 
+                                                wire:click.prevent="setStep(1,'customerActive','customer-info');">
                                                     Back
                                                 </button>
-                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="permissionConfiguration" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                 <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="permissionConfiguration"
+                                                  x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                             Save & Exit
                                                         </button>
                                                 <button type="button" class="btn btn-primary rounded"
-                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="permissionConfiguration(0)">
+                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('service-catalog')"
+                                                 wire:click.prevent="permissionConfiguration(0)">
                                                     Next
                                                 </button>
                                             </div>
@@ -985,542 +990,31 @@
                             {{-- END: Permission Configurations --}}
                         @elseif($step==3)
                             {{-- BEGIN: Service Catalog --}}
-                            <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
-                                id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
-                                x-show="tab === 'service-catalog'">
-                                <section id="multiple-column-form">
-                                    <div class="row">
-                                        {{-- updated by shanila to add csrf and add form tag --}}
-                                        <form class="form" >
-                                            @csrf
-                                            <div class="card-body">
-                                                <div class="col-lg-8">
-                                                    <h2>Service Catalog (Coming Soon)</h2>
-                                                </div>
-
-                                                <div class="col-md-12 mb-md-2">
-                                                    <div class="row">
-                                                        <div class="col-lg-5 mb-3">
-                                                            <p class="fs-5">Filter By Accommodation</p>
-                                                            <div class="content-body">
-                                                                <div class="card">
-                                                                    <div class="card-body shadow-sm">
-                                                                        <input type="search" class="form-control"
-                                                                            id="search" name="search" placeholder="Search"
-                                                                            autocomplete="on" />
-                                                                        <div class="overflow-y-auto max-h-30rem">
-                                                                            <table id="unassigned_data"
-                                                                                class="table table-hover"
-                                                                                aria-label="Admin Staff Teams Table">
-                                                                                <tbody>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>Shelby Sign Language</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>Language Translation Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>Real Time Captioning Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>Real Time Captioning Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>Real Time Captioning Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p>Real Time Captioning Services
-                                                                                            </p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p> Sign Language Interpreting
-                                                                                                Services</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p> Spoken Language Interpreting
-                                                                                                Services</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p> Spoken Language Interpreting
-                                                                                                Services</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p> Spoken Language Interpreting
-                                                                                                Services</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p> Spoken Language Interpreting
-                                                                                                Services</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <tr role="row" class="odd">
-                                                                                        <td class="text-start">
-                                                                                            <p> Spoken Language Interpreting
-                                                                                                Services</p>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-7 ps-lg-5">
-                                                            <div class="mb-3">
-                                                                <p class="fs-5">Select Service</p>
-                                                            </div>
-                                                            <div class="card">
-                                                                <div class="card-body shadow-sm">
-                                                                    <input type="search" class="form-control" id="search"
-                                                                        name="search" placeholder="Search"
-                                                                        autocomplete="on" />
-                                                                    <div class="overflow-y-auto max-h-30rem">
-                                                                        <table id="" class="table table-hover"
-                                                                            aria-label="Select Service Table">
-                                                                            <tbody>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Language Interpreting</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div
-                                                                                            class="form-check form-switch mb-0">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                id="Languageinterpreting"
-                                                                                                aria-label="Toggle active">
-                                                                                            <label
-                                                                                                class="form-check-label text-nowrap"
-                                                                                                for="Languageinterpreting">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label
-                                                                                                class="form-check-label text-nowrap"
-                                                                                                for="Languageinterpreting">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>New service capacity and
-                                                                                            capabilities
-                                                                                        </p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Shelby test two service</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>CART Captioning</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Transcript Services</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Transcript Services</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Transcript Services</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Transcript Services</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="text-start">
-                                                                                        <p>Transcript Services</p>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <div class="form-check form-switch">
-                                                                                            <input class="form-check-input"
-                                                                                                type="checkbox"
-                                                                                                role="switch"
-                                                                                                aria-label="Toggle active"
-                                                                                                checked>
-                                                                                            <label class="form-check-label">
-                                                                                                In-Active
-                                                                                            </label>
-                                                                                            <label class="form-check-label">
-                                                                                                Active
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td width="5%">
-                                                                                        <div class="d-flex actions">
-                                                                                            <a @click="associateservice = true"
-                                                                                                href="#" title=""
-                                                                                                aria-label="associate service"
-                                                                                                class="btn btn-sm btn-secondary rounded btn-hs-icon">
-                                                                                                {{-- Updated by Shanila to
-                                                                                                Add
-                                                                                                svg icon--}}
-                                                                                                <svg aria-label="associate service"
-                                                                                                    width="22" height="20"
-                                                                                                    viewBox="0 0 22 20">
-                                                                                                    <use
-                                                                                                        xlink:href="/css/common-icons.svg#dollar-icon">
-                                                                                                    </use>
-                                                                                                </svg>
-                                                                                                {{-- End of update by
-                                                                                                Shanila
-                                                                                                --}}
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{-- Action Buttons Start --}}
-                                            <div
-                                                class="col-12 form-actions">
-                                                <button type="button" class="btn btn-outline-dark rounded"
-                                                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="back('permission-configurations')">
-                                                    Back
-                                                </button>
-                                                <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
-                                                            Save & Exit
-                                                        </button>
-                                                <button type="button" class="btn btn-primary rounded"
-                                                wire:click.prevent="addServices"  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-                                                    Next
-                                                </button>
-                                            </div>
-                                            {{-- Action Buttons End --}}
-                                        </form>
-                                        {{-- ended update by shanila --}}
-
-                                    </div>
-                                </section>
-                            </div>
+                              <div class="tab-pane fade" :class="{ 'active show': tab === 'service-catalog' }"
+                                    id="service-catalog" role="tabpanel" aria-labelledby="service-catalog-tab" tabindex="0"
+                                    x-show="tab === 'service-catalog'">
+                                    <section id="multiple-column-form">
+                                    @livewire('app.admin.customer.service-catelog',['showButtons'=>false,'modelId'=>$user->id,'modelType'=>'customer'])
+                                    <div class="col-12 form-actions">
+                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                                wire:click.prevent="setStep(2,'permissionActive','permission-configurations')" 
+                                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('permission-configurations')">
+                                                                Back
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="serviceCatelog"
+                                                             x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                                Save & Exit
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary rounded px-4 py-2"
+                                                                wire:click.prevent="serviceCatelog(0)"
+                                                                x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('drive-documents')">
+                                                                Next
+                                                            </button>
+                                        </div>
+                                    </section>
+                                    
+                                </div>
+                            
                             {{-- END: Service Catalog --}}
                                              @endif
 
@@ -1546,11 +1040,13 @@
                                                         <div
                                                             class="col-12 justify-content-center form-actions d-flex flex-column flex-md-row gap-2">
                                                             <button type="button" class="btn btn-outline-dark rounded"
-                                                            onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })" wire:click.prevent="back('service-catalog')">
+                                                            onclick=" window.scrollTo({ top: 0, behavior: 'smooth' })"
+                                                             wire:click.prevent="setStep(2,'serviceActive','service-catalog')">
                                                                 Back
                                                             </button>
                                                             <a href="/admin/customer">
-                                                                <button type="button" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" class="btn btn-primary rounded w-100">
+                                                                <button type="button" wire:click.prevent="save" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });" 
+                                                                class="btn btn-primary rounded w-100">
                                                                     Submit
                                                                 </button>
                                                             </a>
