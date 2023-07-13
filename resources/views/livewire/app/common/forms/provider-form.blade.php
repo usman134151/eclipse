@@ -49,35 +49,19 @@
                                 aria-controls="user-profile" aria-selected="true"><span class="number">1</span> Provider
                                 info</a>
                         </li>
-                          <li class="nav-item" role="presentation">
-                            @if($user->name)
-                            <a href="javascript:void(0)" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
-                                @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
-                                wire:click.prevent="save(0)"
-                                aria-controls="schedule" aria-selected="true" >
-                            
-                                <span class="number">2</span>
-                                Provider Schedule
-                            </a>
-                            @else
-                            <div class="nav-link" title="Please fill step 1 to proceed">
-                            
-                                <span class="number">2</span>
-                                Provider Schedule
-                            </div>                            
-                            @endif
-                        </li>
+                          
                         <li class="nav-item" role="presentation">
                             @if($user->name)
 
                             <a href="#" class="nav-link {{$serviceActive}}" :class="{ 'active': tab === 'provider-service' }"
-                                @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab"  wire:click.prevent="setStep(3,'serviceActive','provider-service');
+                                @click.prevent="tab = 'provider-service'" id="provider-service-tab" role="tab" 
+                                 wire:click.prevent="save(0)"
                                 aria-controls="provider-service" aria-selected="false"><span
-                                    class="number">3</span>Provider Service Profile</a>
+                                    class="number">2</span>Provider Service Profile</a>
                             @else
                             <div class="nav-link" title="Please fill step 1 to proceed">
                             
-                                <span class="number">3</span>
+                                <span class="number">2</span>
                                 Provider Service Profile
                             </div>                            
                             @endif
@@ -86,8 +70,9 @@
                             @if($user->name)
 
                             <a href="#" class="nav-link {{$documentActive}}" :class="{ 'active': tab === 'upload-document' }"
-                                @click.prevent="tab = 'upload-document'" id="upload-document-tab" role="tab"  wire:click.prevent="setStep(4,'documentActive','upload-document');
-                                aria-controls="upload-document" aria-selected="false"><span class="number">4</span>
+                                @click.prevent="tab = 'upload-document'" id="upload-document-tab" role="tab"  
+                                wire:click.prevent="setStep(3,'documentActive','upload-document');
+                                aria-controls="upload-document" aria-selected="false"><span class="number">3</span>
                                 Upload Document</a>
                                  @else
                             <div class="nav-link" title="Please fill step 1 to proceed">
@@ -97,6 +82,19 @@
                             </div>                            
                             @endif
                         </li>
+                        @if($userdetail['provider_type']=="staff_provider")
+                        <li class="nav-item" role="presentation">
+                            <a href="javascript:void(0)" class="nav-link {{$scheduleActive}}" :class="{ 'active': tab === 'schedule' }"
+                                @click.prevent="tab = 'schedule'" id="schedule-tab" role="tab"
+                                 wire:click.prevent="setStep(4,'scheduleActive','schedule');
+                               
+                                aria-controls="schedule" aria-selected="true" >
+                            
+                                <span class="number">4</span>
+                                Provider Schedule
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                     {{-- Tab panes --}}
                     <div class="tab-content">
@@ -580,7 +578,7 @@
                                                 Save & Exit
                                             </button>
                                             <button type="button" class="btn btn-primary rounded"  wire:click.prevent="save(0)"
-                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('schedule')">
+                                            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
                                                 Next
                                             </button>
                                         </div>
@@ -592,31 +590,9 @@
                         {{-- END: Profile --}}
                          {{-- BEGIN: Schedule --}}
                         @elseif($step==2)
-                        <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
-                            id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
-                            x-show="tab === 'schedule'">
-                            <section id="multiple-column-form">
-                              @livewire('app.common.setup.business-hours-setup', ['model_id' => $user->id, 'model_type' => '3'])
-                              <div
-                                                    class="col-12 form-actions">
-                                                    <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
-                                                        wire:click.prevent="setStep(1,'profileActive','profile')">
-                                                        Back
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
-                                                        Save & Exit
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary rounded px-4 py-2"
-                                                        wire:click.prevent="saveSchedule(0)"
-                                                        x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
-                                                        Next
-                                                    </button>
-                                </div>
-                            </section>
-                        </div>
+                        
 
-                        {{-- End: Schedule --}}
-                        @elseif($step==3)
+                 
 
                         {{-- BEGIN: Provider Service --}}
                         <div class="tab-pane fade" :class="{ 'active show': tab === 'provider-service' }"
@@ -645,8 +621,8 @@
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="ProviderType"
-                                                                                            id="ContractProviderType"
-                                                                                            checked>
+                                                                                            id="ContractProviderType" value="contract_provider"
+                                                                                            wire:model.defer="userdetail.provider_type">
                                                                                         <label class="form-check-label"
                                                                                             for="ContractProviderType">
                                                                                             Contract Provider
@@ -665,19 +641,20 @@
                                                                                         --}}
                                                                                     </div>
                                                                                 </div>
-                                                                                <div>
+                                                                                {{-- enabled using steps --}}
+                                                                                {{-- <div>
                                                                                     <button type="button"
                                                                                         class="btn btn-outline-primary px-3 py-1 rounded-lg btn-has-icon px-0 btn-multiselect-popup"
                                                                                         data-bs-toggle="modal"
                                                                                         data-bs-target="#contractProviderAvailiblityModal">
                                                                                         Availability Schedule
                                                                                     </button>
-                                                                                </div>
+                                                                                </div> --}}
                                                                             </div>
                                                                         </div>
                                                                             <div class="form-check ">
                                                                                 <label class="form-check-label" for="addnewserviceconsumer">Staff Provider</label>
-                                                                                <input class="form-check-input show-hidden-content"
+                                                                                <input class="form-check-input show-hidden-content" value="staff_provider" wire:model.defer="userdetail.provider_type"
                                                                                     id="addnewserviceconsumer" name="ProviderType"
                                                                                     type="radio" tabindex="">
 
@@ -2539,15 +2516,16 @@
                                                 </div>
                                                 <!-- cancel/next (buttons) -->
                                                 <div class="col-12 form-actions">
-                                                    <button type="button" class="btn btn-outline-dark rounded"
+                                                    <button type="button" class="btn btn-outline-dark rounded" wire:click.prevent="setStep(1,'profileActive','profile')"
                                                     x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('profile')">
                                                         Back
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary rounded">
+                                                    <button type="submit" class="btn btn-primary rounded" wire:click.prevent="ProviderService"
+                                                    x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
                                                         Save & Exit
                                                     </button>
-                                                    <button type="button" class="btn btn-primary rounded"
-                                                     x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('upload-document')">
+                                                    <button type="button" class="btn btn-primary rounded" wire:click.prevent="ProviderService(0)"
+                                                          x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('upload-document')">
                                                         Next
                                                     </button>
                                                 </div>
@@ -2558,7 +2536,7 @@
                             </section>
                         </div>
                         {{-- END: Provider Service --}}
-                        @elseif($step==4)
+                        @elseif($step==3)
 
                         {{-- BEGIN: Upload Document --}}
 
@@ -2706,15 +2684,29 @@
                                             </div>
                                             <div class="col-12 form-actions">
                                                 <button type="button" class="btn btn-outline-dark rounded"
-                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')">
+                                                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' });$wire.switch('provider-service')"
+                                                wire:click.prevent="setStep(2,'serviceActive','provider-service')">
+                                                
                                                     Back
                                                 </button>
-                                                <button type="submit" class="btn btn-primary rounded">
-                                                    Submit
-                                                </button>
-                                                {{-- <button type="submit" class="btn btn-primary rounded">
-                                                    Next
-                                                </button> --}}
+                                                @if($userdetail['provider_type']=='staff_provider')
+                                                    <button type="submit" class="btn btn-primary rounded"
+                                                    wire:click.prevent="uploadDocument" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+                                                    >
+                                                        Save & Exit
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary rounded"
+                                                    wire:click.prevent="uploadDocument(0)" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+                                                    >
+                                                        Next
+                                                    </button>
+                                                @else
+                                                    <button type="submit" class="btn btn-primary rounded" 
+                                                    wire:click.prevent="uploadDocument" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });"
+                                                    >
+                                                        Submit
+                                                    </button>
+                                                @endif
                                             </div>
                                         </form>
                                     </div>
@@ -2722,8 +2714,32 @@
                             </section>
                         </div>
                         @endif
-
                         {{-- END: Upload Document --}}
+
+                        {{-- BEGIN: Provider Schedule --}}
+
+                        @if($userdetail['provider_type']=="staff_provider")
+                            <div class="tab-pane fade" :class="{ 'active show': tab === 'schedule' }"
+                                id="schedule" role="tabpanel" aria-labelledby="schedule-tab" tabindex="0"
+                                x-show="tab === 'schedule'">
+                                <section id="multiple-column-form">
+                                @livewire('app.common.setup.business-hours-setup', ['model_id' => $user->id, 'model_type' => '3'])
+                                <div
+                                                        class="col-12 form-actions">
+                                                        <button type="button" class="btn btn-outline-dark rounded px-4 py-2"
+                                                            wire:click.prevent="setStep(3,'documentActive','upload-document')">
+                                                            Back
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary rounded px-4 py-2" wire:click.prevent="saveSchedule" x-on:click=" window.scrollTo({ top: 0, behavior: 'smooth' });">
+                                                            Save & Exit
+                                                        </button>
+                                                        
+                                    </div>
+                                </section>
+                            </div>
+                        @endif
+
+                        {{-- END: Provider Schedule --}}
                     </div>
                 </div>
             </div>

@@ -13,8 +13,8 @@ class Schedule extends Model
   
 
     protected $fillable = [
-        'model_id',
-        'model_type',
+        'model_id', 
+        'model_type', //company =>2 , provider =>3 , department => 4
         'timezone_id',
         'time_format',
         'working_days'
